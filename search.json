@@ -30,11 +30,11 @@
     ]
   },
   {
-    "objectID": "index.html#lab-norms-high-signal-defaults",
-    "href": "index.html#lab-norms-high-signal-defaults",
+    "objectID": "index.html#lab-norms",
+    "href": "index.html#lab-norms",
     "title": "Data Analysis in the Musser Lab",
-    "section": "Lab norms (high signal defaults)",
-    "text": "Lab norms (high signal defaults)\n\n\n\n\n\n\nImportantLab norms\n\n\n\n\nOne project, one publication Think of projects as the computational infrastructure for one publication.\nNever install packages into the base conda environment. Create a conda environment specific to the project.\nEvery project has both: a conda environment definition (for Python) and an renv lockfile (for R), unless explicitly documented otherwise.\nIf you change dependencies (e.g. installing new R packages), commit the lockfile(s) with your other changes (environment.yml / renv.lock).\nKeep git repositories lightweight: avoid large raw data or output plots in git unless it’s deliberately small demo data.\nEvery project has a README: what it is, how to run it, where outputs go.",
+    "section": "Lab norms",
+    "text": "Lab norms\n\nOne project, one publication Think of projects as the computational infrastructure for one publication.\nNever install packages into the base conda environment. Create a conda environment specific to the project.\nEvery project has both: a conda environment definition (for Python) and an renv lockfile (for R), unless explicitly documented otherwise.\nIf you change dependencies (e.g. installing new R packages), commit the lockfile(s) with your other changes (environment.yml / renv.lock).\nKeep git repositories lightweight: avoid large raw data or output plots in git unless it’s deliberately small demo data.\nEvery project has a README: what it is, how to run it, where outputs go.",
     "crumbs": [
       "Welcome"
     ]
