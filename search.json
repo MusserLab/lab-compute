@@ -34,7 +34,7 @@
     "href": "index.html#lab-norms-high-signal-defaults",
     "title": "Data Analysis in the Musser Lab",
     "section": "Lab norms (high signal defaults)",
-    "text": "Lab norms (high signal defaults)\n\n\n\n\n\n\nImportantLab norms (please follow)\n\n\n\n\nOne project, one publication Think of projects as the computational infrastructure for one publication.\nNever install packages into the base conda environment. Create a conda environment specific to the project.\nEvery project has both: a conda environment definition (for Python) and an renv lockfile (for R), unless explicitly documented otherwise.\nIf you change dependencies (e.g. installing new R packages), commit the lockfile(s) with your other changes (environment.yml / renv.lock).\nKeep git repositories lightweight: avoid large raw data or output plots in git unless it’s deliberately small demo data.\nEvery project has a README: what it is, how to run it, where outputs go.",
+    "text": "Lab norms (high signal defaults)\n\n\n\n\n\n\nImportantLab norms\n\n\n\n\nOne project, one publication Think of projects as the computational infrastructure for one publication.\nNever install packages into the base conda environment. Create a conda environment specific to the project.\nEvery project has both: a conda environment definition (for Python) and an renv lockfile (for R), unless explicitly documented otherwise.\nIf you change dependencies (e.g. installing new R packages), commit the lockfile(s) with your other changes (environment.yml / renv.lock).\nKeep git repositories lightweight: avoid large raw data or output plots in git unless it’s deliberately small demo data.\nEvery project has a README: what it is, how to run it, where outputs go.",
     "crumbs": [
       "Welcome"
     ]
@@ -74,7 +74,7 @@
     "href": "part1/intro.html",
     "title": "1  Introduction",
     "section": "",
-    "text": "1.1 Why These Tools?\nModern computational analysis requires more than just writing code. You need to:\nThe tools in this guide work together to solve these challenges:",
+    "text": "1.1 Why These Tools?\nIn the Musser Lab, most analyses are written as self-contained Quarto scripts (.qmd). A .qmd is both a script and a publishable document: it contains code, narrative, and the logic to render a shareable output (usually HTML).\nThis workflow supports how we actually work:\nThe toolchain in this guide exists to make .qmd-based analyses:",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
@@ -85,7 +85,7 @@
     "href": "part1/intro.html#why-these-tools",
     "title": "1  Introduction",
     "section": "",
-    "text": "Reproduce your results — Run the same analysis months later and get the same output\nCollaborate effectively — Share code with colleagues without “it works on my machine” problems\nManage complexity — Keep track of dependencies, data, and analysis steps\nWork efficiently — Leverage modern tools to speed up your workflow\n\n\n\n\n\nTool\nPurpose\n\n\n\n\nPositron\nIDE designed for data science (R + Python)\n\n\nConda\nPython environment management\n\n\nrenv\nR package management\n\n\nGit/GitHub\nVersion control and collaboration\n\n\nClaude Code\nAI-assisted coding and analysis",
+    "text": "We often use both R and Python across a project.\nEach analysis script clearly states what data it reads and what it produces.\nScripts are designed to be readable, annotated, and reproducible for other lab members.\n\n\n\nReproducible — same results on another machine\nCollaborative — easy to review and share\nMaintainable — clear provenance and version control\n\n\n\n\nTool\nPurpose\n\n\n\n\nPositron\nIDE designed for data science (R + Python)\n\n\nConda\nPython environment management\n\n\nrenv\nR package management\n\n\nGit/GitHub\nVersion control and collaboration\n\n\nClaude Code\nAI-assisted coding and analysis\n\n\n\n\n1.1.1 What “good” looks like\nA typical analysis loop in the lab:\n\nOpen a project folder in Positron\nActivate the project environments (conda for Python, renv for R)\nWrite a Quarto analysis script (.qmd) that loads data, runs analysis, and exports results\nRender the script to HTML: quarto render analysis/my_analysis.qmd\nCommit and push code + lockfiles (environment.yml, renv.lock) with Git",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
@@ -96,7 +96,7 @@
     "href": "part1/intro.html#how-they-fit-together",
     "title": "1  Introduction",
     "section": "1.2 How They Fit Together",
-    "text": "1.2 How They Fit Together\n┌─────────────────────────────────────────────────┐\n│                   Positron                       │\n│              (Your workspace)                    │\n│                                                  │\n│  ┌──────────┐  ┌──────────┐  ┌──────────────┐  │\n│  │  Conda   │  │   renv   │  │  Claude Code │  │\n│  │ (Python) │  │   (R)    │  │    (AI)      │  │\n│  └──────────┘  └──────────┘  └──────────────┘  │\n│                                                  │\n│  ┌──────────────────────────────────────────┐   │\n│  │              Git / GitHub                 │   │\n│  │        (Version control for all)          │   │\n│  └──────────────────────────────────────────┘   │\n└─────────────────────────────────────────────────┘\nPositron is your central workspace where you write and run code. It integrates with all the other tools.\nConda manages Python environments — isolated spaces with specific Python versions and packages for each project.\nrenv does the same for R — tracking which R packages each project needs.\nGit tracks changes to your code over time. GitHub hosts your code online for backup and collaboration.\nClaude Code is an AI assistant that runs in your terminal and helps you write, debug, and understand code.",
+    "text": "1.2 How They Fit Together\n┌─────────────────────────────────────────────────┐\n│                   Positron                      │\n│              (Your workspace)                   │\n│                                                 │\n│  ┌──────────┐  ┌──────────┐  ┌──────────────┐  │\n│  │  Conda   │  │   renv   │  │  Claude Code │  │\n│  │ (Python) │  │   (R)    │  │    (AI)      │  │\n│  └──────────┘  └──────────┘  └──────────────┘  │\n│                                                 │\n│  ┌──────────────────────────────────────────┐   │\n│  │              Git / GitHub                │   │\n│  │        (Version control for all)         │   │\n└──┴──────────────────────────────────────────┴───┘\nPositron is where you write and run code and manage project files.\nConda defines a Python environment for the project (Python version + packages).\nrenv pins the R package set for the project.\nGit/GitHub tracks changes to scripts, data-processing logic, and environment definitions.\nClaude Code is optional; it can help write or debug code, but outputs must be verified.\n\n\n\n\n\n\nNoteKey concepts\n\n\n\n\nQuarto script (.qmd): the main analysis artifact in the lab; it renders to a shareable output (HTML/PDF).\nEnvironment: project-specific dependencies.\n\nPython dependencies: conda (environment.yml)\nR dependencies: renv (renv.lock)\n\nRender: convert .qmd → HTML/PDF, executing code in the process.\nInterpreter/kernel selection: Quarto and Positron must run the correct R and Python; this guide shows how to verify which ones are being used.\n\n\n\nFor a deeper introduction to Quarto, see Part 2 → Quarto documents.",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
@@ -107,7 +107,7 @@
     "href": "part1/intro.html#what-youll-learn",
     "title": "1  Introduction",
     "section": "1.3 What You’ll Learn",
-    "text": "1.3 What You’ll Learn\nBy the end of Part 1, you will have:\n\nAll tools installed and configured\nCreated a project with both R and Python code\nTracked it with Git and pushed to GitHub\nUsed Claude Code to help write code\n\nLet’s start by installing everything.",
+    "text": "1.3 What You’ll Learn\nBy the end of Part 1, you will have:\n\nInstalled the core tools and verified they work\nOpened a lab-style project folder in Positron\nSet up project environments:\n\nconda environment for Python\nrenv for R packages\n\nWritten a Quarto analysis script (.qmd) that:\n\nstates what it reads and what it produces\nruns an analysis and generates a figure\nrenders to HTML\n\nPut the project under version control and pushed it to GitHub\n\nNext, we’ll install tools and build your first Quarto-based analysis project.",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
@@ -173,7 +173,7 @@
     "href": "part1/installation.html#github-account",
     "title": "2  Installation",
     "section": "2.5 5. GitHub Account",
-    "text": "2.5 5. GitHub Account\n\nGo to https://github.com and create an account if you don’t have one\nWe’ll set up authentication in Section 3.9",
+    "text": "2.5 5. GitHub Account\n\nGo to https://github.com and create an account if you don’t have one\nWe’ll set up authentication in Section 3.10",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Installation</span>"
@@ -228,7 +228,7 @@
     "href": "part1/first-project.html",
     "title": "3  Your First Project",
     "section": "",
-    "text": "3.1 Step 1: Create the Project Folder\nLet’s create a complete project that uses all the tools together. By the end, you’ll have:\nOpen your terminal and create a new project:",
+    "text": "3.1 Step 1: Create the Project Folder\nLet’s create a complete project that demonstrates the full workflow. By the end, you’ll have:\nOpen your terminal and create a new project:",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Your First Project</span>"
@@ -261,7 +261,7 @@
     "href": "part1/first-project.html#step-3-initialize-git",
     "title": "3  Your First Project",
     "section": "3.3 Step 3: Initialize Git",
-    "text": "3.3 Step 3: Initialize Git\nIn Positron’s terminal (View → Terminal), initialize a Git repository:\ngit init\nCreate a .gitignore file to exclude files that shouldn’t be tracked:\n# Create .gitignore\ncat &gt; .gitignore &lt;&lt; 'EOF'\n# R\n.Rhistory\n.RData\n.Rproj.user/\nrenv/library/\nrenv/staging/\n\n# Python\n__pycache__/\n*.pyc\n.conda/\n.venv/\n\n# Data (large files)\ndata/raw/\n\n# OS files\n.DS_Store\nThumbs.db\n\n# IDE\n.vscode/\n.positron/\nEOF",
+    "text": "3.3 Step 3: Initialize Git\nIn Positron’s terminal (View → Terminal), initialize a Git repository:\ngit init\nCreate a .gitignore file to exclude files that shouldn’t be tracked:\n# Create .gitignore\ncat &gt; .gitignore &lt;&lt; 'EOF'\n# R\n.Rhistory\n.RData\n.Rproj.user/\nrenv/library/\nrenv/staging/\n\n# Python\n__pycache__/\n*.pyc\n.conda/\n.venv/\n\n# Quarto\n*_files/\n.quarto/\n\n# Data (large files)\ndata/raw/\n\n# OS files\n.DS_Store\nThumbs.db\n\n# IDE\n.vscode/\n.positron/\nEOF",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Your First Project</span>"
@@ -272,7 +272,7 @@
     "href": "part1/first-project.html#step-4-set-up-conda-environment",
     "title": "3  Your First Project",
     "section": "3.4 Step 4: Set Up Conda Environment",
-    "text": "3.4 Step 4: Set Up Conda Environment\nCreate a conda environment for this project:\nconda create -n my-first-analysis python=3.11 -y\nconda activate my-first-analysis\nInstall some basic packages:\nconda install pandas numpy matplotlib -y\nSave the environment specification:\nconda env export &gt; environment.yml\n\n\n\n\n\n\nTipEnvironment Activation\n\n\n\nEvery time you work on this project, activate the environment first:\nconda activate my-first-analysis",
+    "text": "3.4 Step 4: Set Up Conda Environment\nEvery project gets a conda environment, even if you’re primarily using R. This keeps Python dependencies isolated and establishes good habits for mixed-language projects.\nconda create -n my-first-analysis python=3.11 -y\nconda activate my-first-analysis\nSave the environment specification:\nconda env export &gt; environment.yml\n\n\n\n\n\n\nTipEnvironment Activation\n\n\n\nEvery time you work on this project, activate the environment first:\nconda activate my-first-analysis",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Your First Project</span>"
@@ -283,7 +283,7 @@
     "href": "part1/first-project.html#step-5-set-up-r-with-renv",
     "title": "3  Your First Project",
     "section": "3.5 Step 5: Set Up R with renv",
-    "text": "3.5 Step 5: Set Up R with renv\nIn Positron’s R console (or terminal running R), initialize renv:\n# Install renv if needed\ninstall.packages(\"renv\")\n\n# Initialize renv for this project\nrenv::init()\nThis creates: - renv/ folder for package library - renv.lock file tracking package versions - .Rprofile to auto-activate renv\nInstall a package to test:\ninstall.packages(\"ggplot2\")\nrenv::snapshot()  # Save the state",
+    "text": "3.5 Step 5: Set Up R with renv\nIn Positron’s R console, initialize renv:\n# Install renv if needed\ninstall.packages(\"renv\")\n\n# Initialize renv for this project\nrenv::init()\nThis creates:\n\nrenv/ folder for the package library\nrenv.lock file tracking package versions\n.Rprofile to auto-activate renv\n\nInstall the packages we’ll need for our analysis:\ninstall.packages(c(\"ggplot2\", \"dplyr\", \"palmerpenguins\"))\nrenv::snapshot()  # Save the state",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Your First Project</span>"
@@ -294,29 +294,40 @@
     "href": "part1/first-project.html#step-6-create-project-structure",
     "title": "3  Your First Project",
     "section": "3.6 Step 6: Create Project Structure",
-    "text": "3.6 Step 6: Create Project Structure\nCreate a standard folder structure:\nmkdir -p data/raw data/processed scripts output\nYour project now looks like:\nmy-first-analysis/\n├── .git/\n├── .gitignore\n├── data/\n│   ├── raw/          # Original data (not tracked)\n│   └── processed/    # Cleaned data\n├── scripts/          # Analysis scripts\n├── output/           # Results, figures\n├── environment.yml   # Conda environment\n├── renv/             # R packages\n└── renv.lock         # R package versions",
+    "text": "3.6 Step 6: Create Project Structure\nCreate a standard folder structure:\nmkdir -p data/raw data/processed analysis output\nYour project now looks like:\nmy-first-analysis/\n├── .git/\n├── .gitignore\n├── analysis/          # Quarto analysis scripts\n├── data/\n│   ├── raw/           # Original data (not tracked)\n│   └── processed/     # Cleaned data\n├── output/            # Final results, figures\n├── environment.yml    # Conda environment\n├── renv/              # R packages\n└── renv.lock          # R package versions",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Your First Project</span>"
     ]
   },
   {
-    "objectID": "part1/first-project.html#step-7-write-code-with-claude-code",
-    "href": "part1/first-project.html#step-7-write-code-with-claude-code",
+    "objectID": "part1/first-project.html#step-7-write-a-quarto-analysis-script",
+    "href": "part1/first-project.html#step-7-write-a-quarto-analysis-script",
     "title": "3  Your First Project",
-    "section": "3.7 Step 7: Write Code with Claude Code",
-    "text": "3.7 Step 7: Write Code with Claude Code\nNow let’s use Claude Code to help write some analysis code.\nIn the terminal, start Claude Code:\nclaude\nTry asking it to create a simple analysis script:\n\n“Create a Python script in scripts/ that loads a CSV file, calculates summary statistics, and saves a plot”\n\nClaude Code will: 1. Ask clarifying questions if needed 2. Write the code for you 3. Save it to the file\n[TODO: screenshot of Claude Code interaction]\nDo the same for R:\n\n“Create an R script in scripts/ that does similar analysis using tidyverse and ggplot2”",
+    "section": "3.7 Step 7: Write a Quarto Analysis Script",
+    "text": "3.7 Step 7: Write a Quarto Analysis Script\nNow we’ll create a Quarto analysis script—the main artifact in our workflow. Create a new file at analysis/penguin_summary.qmd:\n---\ntitle: \"Penguin Size Summary\"\nauthor: \"Your Name\"\nformat: html\n---\n\n## Overview\n\nThis analysis summarizes body size measurements from the Palmer Penguins dataset.\n\n**Input:** `palmerpenguins` package (built-in dataset)\n**Output:** Summary statistics and a figure saved to `output/`\n\n```{r}\n#| label: setup\nlibrary(palmerpenguins)\nlibrary(dplyr)\nlibrary(ggplot2)\n```\n\n## Data summary\n\n```{r}\n#| label: summary\npenguins |&gt;\n  group_by(species) |&gt;\n  summarise(\n    n = n(),\n    mean_mass_g = mean(body_mass_g, na.rm = TRUE),\n    mean_flipper_mm = mean(flipper_length_mm, na.rm = TRUE)\n  )\n```\n\n## Body mass by species\n\n```{r}\n#| label: fig-mass\n#| fig-cap: \"Body mass distribution by penguin species\"\n\np &lt;- ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +\n  geom_boxplot() +\n  labs(x = \"Species\", y = \"Body mass (g)\") +\n  theme_minimal() +\n  theme(legend.position = \"none\")\n\nprint(p)\n\n# Save to output folder\nggsave(\"../output/penguin_mass.png\", p, width = 6, height = 4)\n```\n\n## Summary\n\nWe summarized body mass across three penguin species. The figure has been saved to `output/penguin_mass.png`.\n\n\n\n\n\n\nNoteWhat makes this a “lab-style” analysis script?\n\n\n\n\nSelf-contained — All code needed to run is in the file\nDocuments what it does — States its input and output clearly\nProduces a shareable result — Renders to HTML; exports figures",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Your First Project</span>"
     ]
   },
   {
-    "objectID": "part1/first-project.html#step-8-make-your-first-commit",
-    "href": "part1/first-project.html#step-8-make-your-first-commit",
+    "objectID": "part1/first-project.html#step-8-render-the-analysis",
+    "href": "part1/first-project.html#step-8-render-the-analysis",
     "title": "3  Your First Project",
-    "section": "3.8 Step 8: Make Your First Commit",
-    "text": "3.8 Step 8: Make Your First Commit\nStage and commit your work:\n# See what files are ready to commit\ngit status\n\n# Add all files (except those in .gitignore)\ngit add .\n\n# Make your first commit\ngit commit -m \"Initial project setup with conda and renv\"",
+    "section": "3.8 Step 8: Render the Analysis",
+    "text": "3.8 Step 8: Render the Analysis\nRun Quarto to execute the code and produce an HTML report:\nquarto render analysis/penguin_summary.qmd\nThis creates analysis/penguin_summary.html. Open it in a browser to see your rendered analysis.\n[TODO: screenshot of rendered HTML]\nYou should also see output/penguin_mass.png — the figure exported by the script.\n\n\n\n\n\n\nTipPreview mode\n\n\n\nDuring development, use quarto preview to see live updates as you edit:\nquarto preview analysis/penguin_summary.qmd",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Your First Project</span>"
+    ]
+  },
+  {
+    "objectID": "part1/first-project.html#step-9-commit-your-work",
+    "href": "part1/first-project.html#step-9-commit-your-work",
+    "title": "3  Your First Project",
+    "section": "3.9 Step 9: Commit Your Work",
+    "text": "3.9 Step 9: Commit Your Work\nStage and commit everything:\n# See what's ready to commit\ngit status\n\n# Add files\ngit add .\n\n# Commit\ngit commit -m \"Initial project setup with penguin analysis\"",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Your First Project</span>"
@@ -326,19 +337,19 @@
     "objectID": "part1/first-project.html#sec-github-auth",
     "href": "part1/first-project.html#sec-github-auth",
     "title": "3  Your First Project",
-    "section": "3.9 Step 9: Push to GitHub",
-    "text": "3.9 Step 9: Push to GitHub\n\n3.9.1 Create a GitHub Repository\n\nGo to github.com and click New repository\nName it my-first-analysis\nKeep it private (or public if you prefer)\nDon’t initialize with README (we already have files)\nClick Create repository\n\n\n\n3.9.2 Authenticate with GitHub\nThe easiest method is using the GitHub CLI:\n# Install GitHub CLI\n# macOS:\nbrew install gh\n\n# Windows: Download from https://cli.github.com/\n\n# Authenticate\ngh auth login\nFollow the prompts to authenticate via browser.\n\n\n3.9.3 Push Your Code\n# Add the remote repository\ngit remote add origin https://github.com/YOUR-USERNAME/my-first-analysis.git\n\n# Push your code\ngit push -u origin main",
+    "section": "3.10 Step 10: Push to GitHub",
+    "text": "3.10 Step 10: Push to GitHub\n\n3.10.1 Create a GitHub Repository\n\nGo to github.com and click New repository\nName it my-first-analysis\nKeep it private (or public if you prefer)\nDon’t initialize with README (we already have files)\nClick Create repository\n\n\n\n3.10.2 Authenticate with GitHub\nIf you haven’t already, install and authenticate the GitHub CLI:\n# macOS\nbrew install gh\n\n# Windows: Download from https://cli.github.com/\n\n# Authenticate\ngh auth login\nFollow the prompts to authenticate via browser.\n\n\n3.10.3 Push Your Code\n# Add the remote repository\ngit remote add origin https://github.com/YOUR-USERNAME/my-first-analysis.git\n\n# Push your code\ngit push -u origin main",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Your First Project</span>"
     ]
   },
   {
-    "objectID": "part1/first-project.html#congratulations",
-    "href": "part1/first-project.html#congratulations",
+    "objectID": "part1/first-project.html#what-youve-built",
+    "href": "part1/first-project.html#what-youve-built",
     "title": "3  Your First Project",
-    "section": "3.10 Congratulations!",
-    "text": "3.10 Congratulations!\nYou’ve created a complete project with:\n\n✅ Organized folder structure\n✅ Python environment (conda)\n✅ R package management (renv)\n✅ Version control (Git)\n✅ Cloud backup (GitHub)\n✅ AI-assisted code (Claude Code)",
+    "section": "3.11 What You’ve Built",
+    "text": "3.11 What You’ve Built\nYou now have a complete project with:\n\n✅ Organized folder structure\n✅ Python environment (conda) — ready for mixed-language work\n✅ R package management (renv)\n✅ A Quarto analysis script that renders to HTML\n✅ Exported figures in output/\n✅ Version control (Git) and cloud backup (GitHub)\n\nThis is the pattern you’ll use for every analysis in the lab.",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Your First Project</span>"
@@ -348,8 +359,8 @@
     "objectID": "part1/first-project.html#whats-next",
     "href": "part1/first-project.html#whats-next",
     "title": "3  Your First Project",
-    "section": "3.11 What’s Next?",
-    "text": "3.11 What’s Next?\n\nPart 2 dives deeper into each tool\nPart 3 covers common workflows like collaboration and reproducibility\n\nWhen you return to this project later:\ncd my-first-analysis\nconda activate my-first-analysis\n# R will auto-activate renv when you start it\npositron .  # Or open Positron and navigate to the folder",
+    "section": "3.12 What’s Next",
+    "text": "3.12 What’s Next\n\nPart 2 dives deeper into each tool\nPart 3 covers workflows like collaboration and troubleshooting\n\nWhen you return to this project:\ncd my-first-analysis\nconda activate my-first-analysis\n# R will auto-activate renv when you start it",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Your First Project</span>"
@@ -697,674 +708,1213 @@
     ]
   },
   {
-    "objectID": "part2/git-github.html",
-    "href": "part2/git-github.html",
-    "title": "7  Git & GitHub",
+    "objectID": "part2/quarto.html",
+    "href": "part2/quarto.html",
+    "title": "7  Quarto Documents",
     "section": "",
-    "text": "7.1 Why Version Control?\nGit tracks changes to your code over time. GitHub hosts your Git repositories online for backup and collaboration.\nWithout version control:\nWith Git: - One file, complete history - See what changed, when, and why - Revert mistakes - Collaborate without overwriting each other",
+    "text": "7.1 Quarto vs R Markdown\nA Quarto document is a plain-text file (.qmd) that combines:\nWhen you render a Quarto document, Quarto executes the code and produces a publishable output—typically HTML, but also PDF or Word.\nIn the Musser Lab, .qmd files are the standard format for data analysis because they are:\nIf you’ve used R Markdown (.Rmd), Quarto will feel familiar. The core idea—mixing code, results, and narrative—is the same.\nKey differences:\nYou don’t need to memorize the differences—just know that Quarto is the modern successor and works similarly.",
     "crumbs": [
       "Core Tools",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Git & GitHub</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto Documents</span>"
+    ]
+  },
+  {
+    "objectID": "part2/quarto.html#quarto-vs-r-markdown",
+    "href": "part2/quarto.html#quarto-vs-r-markdown",
+    "title": "7  Quarto Documents",
+    "section": "",
+    "text": "R Markdown\nQuarto\n\n\n\n\nFile extension\n.Rmd\n.qmd\n\n\nLanguage focus\nR-centric\nMulti-language (R, Python, Julia)\n\n\nProject types\nDocuments, some websites\nDocuments, websites, books, slides\n\n\nChunk options\n{r, echo=FALSE}\n#| echo: false (YAML-style)",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto Documents</span>"
+    ]
+  },
+  {
+    "objectID": "part2/quarto.html#document-structure",
+    "href": "part2/quarto.html#document-structure",
+    "title": "7  Quarto Documents",
+    "section": "7.2 Document Structure",
+    "text": "7.2 Document Structure\nA Quarto document has two parts:\n\nYAML header — metadata and rendering options (at the top, between --- markers)\nBody — Markdown text interspersed with code chunks\n\n\n7.2.1 Minimal Example\n---\ntitle: \"My Analysis\"\nformat: html\n---\n\n## Introduction\n\nThis analysis examines...\n\n```{r}\nlibrary(tidyverse)\ndata &lt;- read_csv(\"data/input.csv\")\nglimpse(data)\n```",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto Documents</span>"
+    ]
+  },
+  {
+    "objectID": "part2/quarto.html#the-yaml-header",
+    "href": "part2/quarto.html#the-yaml-header",
+    "title": "7  Quarto Documents",
+    "section": "7.3 The YAML Header",
+    "text": "7.3 The YAML Header\nThe YAML header controls how your document renders. Here’s a typical header for a lab analysis:\n---\ntitle: \"Phosphoproteomics Volcano Plots\"\nsubtitle: \"Tryptamine treatment time course\"\nauthor: \"Your Name\"\ndate: today\nformat:\n  html:\n    toc: true\n    toc-depth: 2\n    number-sections: true\n    code-fold: false\n    code-tools: true\n    self-contained: true\nexecute:\n  echo: true\n  message: false\n  warning: false\n---\n\n7.3.1 Common Options\nDocument metadata:\n\n\n\nOption\nPurpose\nExample\n\n\n\n\ntitle\nDocument title\n\"My Analysis\"\n\n\nsubtitle\nSecondary title\n\"Version 2\"\n\n\nauthor\nYour name\n\"Jane Doe\"\n\n\ndate\nDate (use today for auto)\ntoday\n\n\n\nFormat options (under format: html:):\n\n\n\nOption\nPurpose\nExample\n\n\n\n\ntoc\nTable of contents\ntrue\n\n\ntoc-depth\nHeading levels in TOC\n2\n\n\nnumber-sections\nNumbered headings\ntrue\n\n\ncode-fold\nCollapsible code blocks\ntrue or false\n\n\ncode-tools\nShow/hide all code button\ntrue\n\n\nself-contained\nSingle HTML file (no dependencies)\ntrue\n\n\n\nExecute options (under execute:):\n\n\n\nOption\nPurpose\nExample\n\n\n\n\necho\nShow code in output\ntrue\n\n\nmessage\nShow package messages\nfalse\n\n\nwarning\nShow warnings\nfalse\n\n\ncache\nCache chunk results\nfalse",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto Documents</span>"
+    ]
+  },
+  {
+    "objectID": "part2/quarto.html#code-chunks",
+    "href": "part2/quarto.html#code-chunks",
+    "title": "7  Quarto Documents",
+    "section": "7.4 Code Chunks",
+    "text": "7.4 Code Chunks\nCode chunks are fenced with triple backticks and a language identifier:\n```{r}\n# R code here\n```\n\n```{python}\n# Python code here\n```\n\n7.4.1 Chunk Options\nUse the #| syntax to set options for individual chunks:\n#| label: load-data\n#| message: false\n#| warning: false\n\ndata &lt;- read_csv(\"data/input.csv\")\nCommon chunk options:\n\n\n\nOption\nPurpose\nValues\n\n\n\n\nlabel\nChunk identifier (for cross-refs, debugging)\nload-data\n\n\necho\nShow this chunk’s code\ntrue, false\n\n\neval\nRun this chunk\ntrue, false\n\n\ninclude\nInclude chunk in output at all\ntrue, false\n\n\nmessage\nShow messages\ntrue, false\n\n\nwarning\nShow warnings\ntrue, false\n\n\nfig-cap\nFigure caption\n\"My figure\"\n\n\nfig-width\nFigure width (inches)\n6\n\n\nfig-height\nFigure height (inches)\n4\n\n\n\n\n\n7.4.2 The Setup Chunk\nMost analysis scripts start with a setup chunk that loads packages, defines paths, and sets options. Use #| include: false to run it without showing it in the output:\n#| label: setup\n#| include: false\n\n# ---- Libraries ----\nsuppressPackageStartupMessages({\n  library(tidyverse)\n  library(here)\n  library(scales)\n})\n\n# ---- Paths ----\ndir_data &lt;- here::here(\"data\", \"processed\")\ndir_out &lt;- here::here(\"output\", \"figures\")\n\n# Create output directory if needed\ndir.create(dir_out, recursive = TRUE, showWarnings = FALSE)\n\n# ---- Options ----\noptions(stringsAsFactors = FALSE)\nset.seed(42)\nKey patterns:\n\nsuppressPackageStartupMessages() keeps the output clean\nhere::here() builds paths relative to the project root\ndir.create(..., showWarnings = FALSE) ensures output folders exist",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto Documents</span>"
+    ]
+  },
+  {
+    "objectID": "part2/quarto.html#lab-guidelines-for-analysis-scripts",
+    "href": "part2/quarto.html#lab-guidelines-for-analysis-scripts",
+    "title": "7  Quarto Documents",
+    "section": "7.5 Lab Guidelines for Analysis Scripts",
+    "text": "7.5 Lab Guidelines for Analysis Scripts\n\n7.5.1 State Inputs and Outputs\nAt the top of your document (after the YAML, before the setup chunk), clearly state what the script reads and produces:\n# Introduction\n\nThis script generates volcano plots for the phosphoproteomics time course.\n\n**Inputs:**\n\n- `data/processed/limma_results.rds` — differential expression results\n- `data/processed/metadata.csv` — sample metadata\n\n**Outputs:**\n\n- `output/figures/volcano_*.pdf` — volcano plots per timepoint\n- `output/tables/significant_hits.csv` — filtered results table\n\n\n7.5.2 One Script, One Purpose\nEach .qmd should do one coherent thing:\n\n01_qc.qmd — quality control and filtering\n02_differential_expression.qmd — statistical analysis\n03_volcano_plots.qmd — visualization\n\nAvoid giant all-purpose notebooks.\n\n\n7.5.3 Save Outputs Explicitly\nDon’t rely on the Plots pane or copy-paste. Save figures and tables to files:\n#| label: fig-volcano\n#| fig-cap: \"Volcano plot showing differential phosphorylation\"\n\np &lt;- ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +\n  geom_point() +\n  theme_minimal()\n\nprint(p)\n\n# Save to output folder\nggsave(\n  file.path(dir_out, \"volcano_plot.pdf\"),\n  plot = p,\n  width = 6,\n  height = 4\n)\n\n\n7.5.4 Render Before Sharing\nBefore sending a report or committing, render the full document to ensure it runs cleanly:\nquarto render analysis/my_analysis.qmd\nThis catches errors that might not appear when running chunks interactively.\n\n\n\n\n\n\nTipProject Organization\n\n\n\nFor how to structure your project folders and track which scripts produce which outputs, see the Project Organization chapter.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto Documents</span>"
+    ]
+  },
+  {
+    "objectID": "part2/quarto.html#rendering",
+    "href": "part2/quarto.html#rendering",
+    "title": "7  Quarto Documents",
+    "section": "7.6 Rendering",
+    "text": "7.6 Rendering\n\n7.6.1 From the Terminal\n# Render a single document\nquarto render analysis/01_qc.qmd\n\n# Render all .qmd files in a directory\nquarto render analysis/\n\n\n7.6.2 From Positron\n\nClick the Render button in the editor toolbar\nOr use the keyboard shortcut (Cmd+Shift+K on macOS)\n\n\n\n7.6.3 Preview Mode\nFor interactive development, use preview mode—it re-renders automatically when you save:\nquarto preview analysis/01_qc.qmd",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto Documents</span>"
+    ]
+  },
+  {
+    "objectID": "part2/quarto.html#working-directory",
+    "href": "part2/quarto.html#working-directory",
+    "title": "7  Quarto Documents",
+    "section": "7.7 Working Directory",
+    "text": "7.7 Working Directory\nWhen Quarto renders a .qmd, the working directory is the folder containing the .qmd file—not the project root.\nThis means relative paths in your code are relative to the .qmd location:\nproject/\n├── analysis/\n│   └── 01_qc.qmd      ← working directory when rendering\n├── data/\n│   └── input.csv\n└── output/\nFrom analysis/01_qc.qmd, you’d write:\n# Relative path (works, but fragile)\ndata &lt;- read_csv(\"../data/input.csv\")\n\n# Better: use here::here() for project-relative paths\ndata &lt;- read_csv(here::here(\"data\", \"input.csv\"))\nThe here package finds the project root (by looking for .git, .Rproj, etc.) and builds paths from there. This makes your code work regardless of where the .qmd lives.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto Documents</span>"
+    ]
+  },
+  {
+    "objectID": "part2/quarto.html#common-issues",
+    "href": "part2/quarto.html#common-issues",
+    "title": "7  Quarto Documents",
+    "section": "7.8 Common Issues",
+    "text": "7.8 Common Issues\n\n7.8.1 “Object not found” errors during render\nCode that works interactively may fail during render if you rely on objects in your R environment that aren’t created in the script. The rendered document starts with a fresh environment.\nFix: Ensure your .qmd is self-contained—all objects must be created within the script.\n\n\n7.8.2 Figures not appearing\nIf a plot doesn’t show up, make sure you’re printing it:\np &lt;- ggplot(data, aes(x, y)) + geom_point()\nprint(p)  # Required inside functions or complex chunks\n\n\n7.8.3 Package messages cluttering output\nSet message: false and warning: false in the execute: block or per-chunk.\n\n\n7.8.4 Output file is huge\nIf your HTML is very large, it might be embedding high-resolution images. Options:\n\nUse self-contained: false (creates a _files folder for assets)\nReduce figure resolution with fig-dpi: 150\nUse fig-format: png instead of svg",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto Documents</span>"
+    ]
+  },
+  {
+    "objectID": "part2/quarto.html#quick-reference",
+    "href": "part2/quarto.html#quick-reference",
+    "title": "7  Quarto Documents",
+    "section": "7.9 Quick Reference",
+    "text": "7.9 Quick Reference\n\n7.9.1 Typical YAML Header\n---\ntitle: \"Analysis Title\"\nauthor: \"Your Name\"\ndate: today\nformat:\n  html:\n    toc: true\n    number-sections: true\n    code-tools: true\n    self-contained: true\nexecute:\n  echo: true\n  message: false\n  warning: false\n---\n\n\n7.9.2 Chunk Option Syntax\n#| label: my-chunk\n#| echo: false\n#| fig-cap: \"My figure caption\"\n#| fig-width: 8\n#| fig-height: 6\n\n\n7.9.3 Useful Commands\nquarto render file.qmd      # Render once\nquarto preview file.qmd     # Live preview\nquarto render analysis/     # Render all in folder",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto Documents</span>"
+    ]
+  },
+  {
+    "objectID": "part2/project-organization.html",
+    "href": "part2/project-organization.html",
+    "title": "8  Project Organization",
+    "section": "",
+    "text": "8.1 The Core Principle\nA well-organized project makes it easy to find files, understand dependencies, and reproduce analyses. This chapter describes the lab’s conventions for structuring analysis projects.\nEvery analysis project has two types of files:\nThe key to staying organized is keeping these separate and tracking which scripts produce which outputs.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Project Organization</span>"
+    ]
+  },
+  {
+    "objectID": "part2/project-organization.html#the-core-principle",
+    "href": "part2/project-organization.html#the-core-principle",
+    "title": "8  Project Organization",
+    "section": "",
+    "text": "External inputs — data that comes from outside the project (sequencing results, collaborator files, public datasets)\nGenerated outputs — everything produced by your scripts (processed data, figures, tables, reports)",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Project Organization</span>"
+    ]
+  },
+  {
+    "objectID": "part2/project-organization.html#project-structure",
+    "href": "part2/project-organization.html#project-structure",
+    "title": "8  Project Organization",
+    "section": "8.2 Project Structure",
+    "text": "8.2 Project Structure\nA typical lab project has three core folders:\nmy-project/\n├── data/              # External inputs only\n├── scripts/           # Quarto analysis scripts\n├── outs/              # All generated outputs\n├── environment.yml    # Conda environment\n├── renv.lock          # R package versions\n└── README.md          # Project overview\n\n8.2.1 data/ — External Inputs\nThis folder holds data that comes from outside the project:\n\nRaw sequencing data from the core facility\nFiles from collaborators\nDownloaded public datasets\nMetadata spreadsheets\n\ndata/\n├── counts_matrix.csv          # From sequencing core\n├── sample_metadata.xlsx       # From collaborator\n└── reference_genome.fasta     # Downloaded from NCBI\nRules for data/:\n\nNever modify these files\nNever put script-generated files here\nDocument where each file came from (in the README or a data/README.md)\n\n\n\n8.2.2 scripts/ — Analysis Scripts\nAll .qmd analysis scripts live here, numbered to indicate their logical order:\nscripts/\n├── 01_import_qc.qmd\n├── 02_normalize.qmd\n├── 03_differential.qmd\n├── 04_volcano_plots.qmd\n└── 05_heatmaps.qmd\nThe numbers indicate the general flow of the analysis, not a strict linear dependency. Script 05 might read outputs from scripts 01 and 03 directly—the numbering just helps you understand the overall structure at a glance.\n\n\n8.2.3 outs/ — Generated Outputs\nEvery script gets a corresponding output folder. Script 01_import_qc.qmd writes to outs/01_import_qc/:\nouts/\n├── 01_import_qc/\n│   ├── filtered_counts.rds\n│   ├── qc_report.html\n│   └── sample_summary.csv\n├── 02_normalize/\n│   └── normalized_counts.rds\n├── 03_differential/\n│   ├── limma_results.rds\n│   └── significant_hits.csv\n├── 04_volcano_plots/\n│   ├── volcano_3min.pdf\n│   ├── volcano_15min.pdf\n│   └── volcano_30min.pdf\n└── 05_heatmaps/\n    └── cluster_heatmap.pdf\nThis structure encodes provenance. When you see a file in outs/03_differential/, you know exactly which script created it.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Project Organization</span>"
+    ]
+  },
+  {
+    "objectID": "part2/project-organization.html#how-dependencies-work",
+    "href": "part2/project-organization.html#how-dependencies-work",
+    "title": "8  Project Organization",
+    "section": "8.3 How Dependencies Work",
+    "text": "8.3 How Dependencies Work\nScripts read from two places:\n\ndata/ — external inputs\nouts/ — outputs from other scripts (typically earlier-numbered ones)\n\nDependencies don’t have to be strictly linear. Here’s an example dependency graph:\ndata/counts.csv ──────────────────────────────┐\n                                              │\n01_import_qc.qmd ─────► outs/01_import_qc/    │\n        │                      │              │\n        │                      ▼              │\n        │              02_normalize.qmd ──► outs/02_normalize/\n        │                      │\n        │                      ▼\n        │              03_differential.qmd ──► outs/03_differential/\n        │                      │                      │\n        ▼                      ▼                      │\n05_heatmaps.qmd ◄──────────────┴──────────────────────┘\n        │\n        ▼\n  outs/05_heatmaps/\nIn this example: - Scripts 01 → 02 → 03 form a linear chain - Script 05 reads from 01, 03, AND the original data - The numbering reflects the logical order, not strict dependencies",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Project Organization</span>"
+    ]
+  },
+  {
+    "objectID": "part2/project-organization.html#documenting-dependencies",
+    "href": "part2/project-organization.html#documenting-dependencies",
+    "title": "8  Project Organization",
+    "section": "8.4 Documenting Dependencies",
+    "text": "8.4 Documenting Dependencies\nAt the top of each script, explicitly list inputs and outputs:\n# Volcano Plots\n\n**Inputs:**\n\n- `data/sample_metadata.csv`\n- `outs/03_differential/limma_results.rds`\n\n**Outputs:**\n\n- `outs/04_volcano_plots/volcano_*.pdf`\nThis makes dependencies grep-able:\n# Find which script produces a file\ngrep -r \"limma_results.rds\" scripts/\n\n# Find which scripts depend on a file\ngrep -r \"limma_results.rds\" scripts/ | grep \"Inputs:\" -A5",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Project Organization</span>"
+    ]
+  },
+  {
+    "objectID": "part2/project-organization.html#setting-up-output-paths",
+    "href": "part2/project-organization.html#setting-up-output-paths",
+    "title": "8  Project Organization",
+    "section": "8.5 Setting Up Output Paths",
+    "text": "8.5 Setting Up Output Paths\nIn your setup chunk, define paths that match this structure:\n#| label: setup\n#| include: false\n\nlibrary(tidyverse)\nlibrary(here)\n\n# This script's output folder\ndir_out &lt;- here::here(\"outs\", \"03_differential\")\ndir.create(dir_out, recursive = TRUE, showWarnings = FALSE)\n\n# Input paths\npath_normalized &lt;- here::here(\"outs\", \"02_normalize\", \"normalized_counts.rds\")\npath_metadata &lt;- here::here(\"data\", \"sample_metadata.csv\")\nThen save outputs to dir_out:\n# Save results\nsaveRDS(results, file.path(dir_out, \"limma_results.rds\"))\nwrite_csv(significant, file.path(dir_out, \"significant_hits.csv\"))\n\n# Save figures\nggsave(file.path(dir_out, \"volcano_plot.pdf\"), p, width = 6, height = 4)",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Project Organization</span>"
+    ]
+  },
+  {
+    "objectID": "part2/project-organization.html#handling-subprojects",
+    "href": "part2/project-organization.html#handling-subprojects",
+    "title": "8  Project Organization",
+    "section": "8.6 Handling Subprojects",
+    "text": "8.6 Handling Subprojects\nFor projects with multiple distinct analyses (e.g., phosphoproteomics AND transcriptomics), prefix script names with the subproject:\nscripts/\n├── phospho_01_qc.qmd\n├── phospho_02_normalize.qmd\n├── phospho_03_differential.qmd\n├── trans_01_import.qmd\n├── trans_02_pca.qmd\n└── combined_01_integration.qmd\nOutputs mirror this structure:\nouts/\n├── phospho_01_qc/\n├── phospho_02_normalize/\n├── phospho_03_differential/\n├── trans_01_import/\n├── trans_02_pca/\n└── combined_01_integration/\nThe combined_* scripts can read from both phospho_* and trans_* outputs.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Project Organization</span>"
+    ]
+  },
+  {
+    "objectID": "part2/project-organization.html#naming-conventions",
+    "href": "part2/project-organization.html#naming-conventions",
+    "title": "8  Project Organization",
+    "section": "8.7 Naming Conventions",
+    "text": "8.7 Naming Conventions\n\n8.7.1 Scripts\n\nUse lowercase with underscores: 01_import_qc.qmd\nStart with a two-digit number: 01_, 02_, … 10_, 11_\nUse descriptive names: 03_differential.qmd not 03_analysis.qmd\n\n\n\n8.7.2 Output Files\n\nName files descriptively: normalized_counts.rds not data.rds\nUse consistent extensions: .rds for R objects, .csv for tables, .pdf for figures\nFor multiple similar outputs, use a pattern: volcano_3min.pdf, volcano_15min.pdf\n\n\n\n8.7.3 What to Avoid\n\nSpaces in filenames (use underscores or hyphens)\nGeneric names (output.csv, figure1.pdf, results.rds)\nDate prefixes on every file (let git track versions)",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Project Organization</span>"
+    ]
+  },
+  {
+    "objectID": "part2/project-organization.html#version-control-considerations",
+    "href": "part2/project-organization.html#version-control-considerations",
+    "title": "8  Project Organization",
+    "section": "8.8 Version Control Considerations",
+    "text": "8.8 Version Control Considerations\n\n8.8.1 What to Commit\n\nAll scripts (scripts/*.qmd)\nExternal data if small enough (data/)\nEnvironment files (environment.yml, renv.lock)\nREADME and documentation\n\n\n\n8.8.2 What to Ignore\nAdd to .gitignore:\n# Large data files\ndata/large_file.h5ad\n\n# Generated outputs (can be reproduced)\nouts/\n\n# Quarto rendering artifacts\n*_files/\n*_cache/\n.quarto/\nWhether to commit outs/ is a judgment call:\n\nCommit outputs if they’re small and you want them versioned\nIgnore outputs if they’re large or easily regenerated\n\nIf you ignore outputs, document how to regenerate them in the README.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Project Organization</span>"
+    ]
+  },
+  {
+    "objectID": "part2/project-organization.html#handling-old-versions",
+    "href": "part2/project-organization.html#handling-old-versions",
+    "title": "8  Project Organization",
+    "section": "8.9 Handling Old Versions",
+    "text": "8.9 Handling Old Versions\nAnalysis projects tend to accumulate old scripts and outputs. Resist the urge to create old/ folders everywhere.\nBetter approaches:\n\nUse git. Delete old files; recover from history if needed.\nArchive at project root. If you must keep old versions outside git:\nproject/\n├── scripts/\n├── outs/\n└── _archive/           # One place for old stuff\n    ├── old_scripts/\n    └── old_outputs/\nDate sparingly. Only add dates when you need multiple versions to coexist (e.g., comparing runs with different parameters):\nouts/03_differential/\n├── 2025-01-15_strict_threshold/\n└── 2025-01-20_relaxed_threshold/",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Project Organization</span>"
+    ]
+  },
+  {
+    "objectID": "part2/project-organization.html#complete-example",
+    "href": "part2/project-organization.html#complete-example",
+    "title": "8  Project Organization",
+    "section": "8.10 Complete Example",
+    "text": "8.10 Complete Example\nHere’s a well-organized phosphoproteomics project:\ntryptamine_phospho/\n├── data/\n│   ├── README.md                    # Documents data sources\n│   ├── raw_counts.csv               # From mass spec core\n│   ├── sample_metadata.csv          # Experimental design\n│   └── gene_annotations.tsv         # Downloaded from UniProt\n│\n├── scripts/\n│   ├── 01_import_qc.qmd\n│   ├── 02_normalize.qmd\n│   ├── 03_differential.qmd\n│   ├── 04_volcano_plots.qmd\n│   ├── 05_trajectory_clustering.qmd\n│   └── 06_heatmaps.qmd\n│\n├── outs/\n│   ├── 01_import_qc/\n│   │   ├── filtered_counts.rds\n│   │   └── qc_summary.html\n│   ├── 02_normalize/\n│   │   └── normalized_counts.rds\n│   ├── 03_differential/\n│   │   ├── limma_results.rds\n│   │   └── significant_hits.csv\n│   ├── 04_volcano_plots/\n│   │   ├── volcano_3min.pdf\n│   │   ├── volcano_15min.pdf\n│   │   └── volcano_30min.pdf\n│   ├── 05_trajectory_clustering/\n│   │   ├── cluster_assignments.csv\n│   │   └── elbow_plot.pdf\n│   └── 06_heatmaps/\n│       ├── heatmap_all_clusters.pdf\n│       └── heatmap_per_cluster/\n│\n├── environment.yml\n├── renv.lock\n├── .gitignore\n└── README.md\nDependency flow:\ndata/* ──► 01 ──► 02 ──► 03 ──► 04\n                   │      │\n                   │      └──► 05 ──► 06\n                   │            │\n                   └────────────┘\nFrom this structure, anyone can understand: - Where the raw data came from (data/README.md) - The analysis workflow (numbered scripts) - What each script produces (matching output folders) - How to reproduce the analysis (environment files + scripts)",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Project Organization</span>"
+    ]
+  },
+  {
+    "objectID": "part2/git-github.html",
+    "href": "part2/git-github.html",
+    "title": "9  Git & GitHub",
+    "section": "",
+    "text": "9.1 Why Version Control?\nGit tracks changes to your code over time. GitHub hosts your Git repositories online for backup and collaboration.\nWithout version control:\nWith Git: - One file, complete history - See what changed, when, and why - Revert mistakes - Collaborate without overwriting each other",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Git & GitHub</span>"
     ]
   },
   {
     "objectID": "part2/git-github.html#why-version-control",
     "href": "part2/git-github.html#why-version-control",
-    "title": "7  Git & GitHub",
+    "title": "9  Git & GitHub",
     "section": "",
     "text": "analysis_v1.R\nanalysis_v2.R\nanalysis_v2_final.R\nanalysis_v2_final_FINAL.R\nanalysis_v2_final_FINAL_fixed.R",
     "crumbs": [
       "Core Tools",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Git & GitHub</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Git & GitHub</span>"
     ]
   },
   {
     "objectID": "part2/git-github.html#git-basics",
     "href": "part2/git-github.html#git-basics",
-    "title": "7  Git & GitHub",
-    "section": "7.2 Git Basics",
-    "text": "7.2 Git Basics\n\n7.2.1 Key Concepts\n\nRepository (repo): A project folder tracked by Git\nCommit: A snapshot of your project at a point in time\nStage: Mark files to include in the next commit\nBranch: A parallel version of your project\nRemote: A copy of your repo on another server (like GitHub)\n\n\n\n7.2.2 The Basic Workflow\n# 1. Make changes to files\n\n# 2. See what changed\ngit status\n\n# 3. Stage changes\ngit add filename.R\n# Or stage everything:\ngit add .\n\n# 4. Commit with a message\ngit commit -m \"Add analysis script\"\n\n\n7.2.3 Viewing History\n# See commit history\ngit log\n\n# See compact history\ngit log --oneline\n\n# See what changed in a commit\ngit show abc123",
+    "title": "9  Git & GitHub",
+    "section": "9.2 Git Basics",
+    "text": "9.2 Git Basics\n\n9.2.1 Key Concepts\n\nRepository (repo): A project folder tracked by Git\nCommit: A snapshot of your project at a point in time\nStage: Mark files to include in the next commit\nBranch: A parallel version of your project\nRemote: A copy of your repo on another server (like GitHub)\n\n\n\n9.2.2 The Basic Workflow\n# 1. Make changes to files\n\n# 2. See what changed\ngit status\n\n# 3. Stage changes\ngit add filename.R\n# Or stage everything:\ngit add .\n\n# 4. Commit with a message\ngit commit -m \"Add analysis script\"\n\n\n9.2.3 Viewing History\n# See commit history\ngit log\n\n# See compact history\ngit log --oneline\n\n# See what changed in a commit\ngit show abc123",
     "crumbs": [
       "Core Tools",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Git & GitHub</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Git & GitHub</span>"
     ]
   },
   {
     "objectID": "part2/git-github.html#essential-commands",
     "href": "part2/git-github.html#essential-commands",
-    "title": "7  Git & GitHub",
-    "section": "7.3 Essential Commands",
-    "text": "7.3 Essential Commands\n\n7.3.1 Starting a Repo\n# Initialize new repo\ngit init\n\n# Clone existing repo\ngit clone https://github.com/user/repo.git\n\n\n7.3.2 Daily Work\n# Check status\ngit status\n\n# See changes\ngit diff\n\n# Stage files\ngit add file.R\ngit add .  # All files\n\n# Commit\ngit commit -m \"Your message\"\n\n# Push to GitHub\ngit push\n\n\n7.3.3 Undoing Things\n# Unstage a file\ngit reset HEAD file.R\n\n# Discard changes to a file\ngit checkout -- file.R\n\n# Undo last commit (keep changes)\ngit reset --soft HEAD~1",
+    "title": "9  Git & GitHub",
+    "section": "9.3 Essential Commands",
+    "text": "9.3 Essential Commands\n\n9.3.1 Starting a Repo\n# Initialize new repo\ngit init\n\n# Clone existing repo\ngit clone https://github.com/user/repo.git\n\n\n9.3.2 Daily Work\n# Check status\ngit status\n\n# See changes\ngit diff\n\n# Stage files\ngit add file.R\ngit add .  # All files\n\n# Commit\ngit commit -m \"Your message\"\n\n# Push to GitHub\ngit push\n\n\n9.3.3 Undoing Things\n# Unstage a file\ngit reset HEAD file.R\n\n# Discard changes to a file\ngit checkout -- file.R\n\n# Undo last commit (keep changes)\ngit reset --soft HEAD~1",
     "crumbs": [
       "Core Tools",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Git & GitHub</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Git & GitHub</span>"
     ]
   },
   {
     "objectID": "part2/git-github.html#writing-good-commit-messages",
     "href": "part2/git-github.html#writing-good-commit-messages",
-    "title": "7  Git & GitHub",
-    "section": "7.4 Writing Good Commit Messages",
-    "text": "7.4 Writing Good Commit Messages\nBad: - “update” - “fix” - “changes”\nGood: - “Add function to normalize expression data” - “Fix off-by-one error in loop index” - “Update README with installation instructions”\nFormat: - Short summary (50 chars or less) - Blank line - Detailed description if needed",
+    "title": "9  Git & GitHub",
+    "section": "9.4 Writing Good Commit Messages",
+    "text": "9.4 Writing Good Commit Messages\nBad: - “update” - “fix” - “changes”\nGood: - “Add function to normalize expression data” - “Fix off-by-one error in loop index” - “Update README with installation instructions”\nFormat: - Short summary (50 chars or less) - Blank line - Detailed description if needed",
     "crumbs": [
       "Core Tools",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Git & GitHub</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Git & GitHub</span>"
     ]
   },
   {
     "objectID": "part2/git-github.html#branching",
     "href": "part2/git-github.html#branching",
-    "title": "7  Git & GitHub",
-    "section": "7.5 Branching",
-    "text": "7.5 Branching\nBranches let you work on features without affecting the main code.\n# Create and switch to new branch\ngit checkout -b feature-name\n\n# Work, commit, etc...\n\n# Switch back to main\ngit checkout main\n\n# Merge feature into main\ngit merge feature-name\n\n7.5.1 When to Branch\n\nAdding a new feature\nFixing a bug\nExperimenting\n\nKeep main stable. Do work in branches.",
+    "title": "9  Git & GitHub",
+    "section": "9.5 Branching",
+    "text": "9.5 Branching\nBranches let you work on features without affecting the main code.\n# Create and switch to new branch\ngit checkout -b feature-name\n\n# Work, commit, etc...\n\n# Switch back to main\ngit checkout main\n\n# Merge feature into main\ngit merge feature-name\n\n9.5.1 When to Branch\n\nAdding a new feature\nFixing a bug\nExperimenting\n\nKeep main stable. Do work in branches.",
     "crumbs": [
       "Core Tools",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Git & GitHub</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Git & GitHub</span>"
     ]
   },
   {
     "objectID": "part2/git-github.html#github",
     "href": "part2/git-github.html#github",
-    "title": "7  Git & GitHub",
-    "section": "7.6 GitHub",
-    "text": "7.6 GitHub\nGitHub hosts your repositories online, enabling:\n\nBackup of your code\nCollaboration with others\nIssue tracking\nPull requests for code review\n\n\n7.6.1 Connecting to GitHub\n# Add remote\ngit remote add origin https://github.com/user/repo.git\n\n# Push (first time)\ngit push -u origin main\n\n# Push (after first time)\ngit push\n\n\n7.6.2 Pull Changes\nIf someone else pushed changes:\ngit pull\n\n\n7.6.3 Cloning a Repo\ngit clone https://github.com/user/repo.git\ncd repo",
+    "title": "9  Git & GitHub",
+    "section": "9.6 GitHub",
+    "text": "9.6 GitHub\nGitHub hosts your repositories online, enabling:\n\nBackup of your code\nCollaboration with others\nIssue tracking\nPull requests for code review\n\n\n9.6.1 Connecting to GitHub\n# Add remote\ngit remote add origin https://github.com/user/repo.git\n\n# Push (first time)\ngit push -u origin main\n\n# Push (after first time)\ngit push\n\n\n9.6.2 Pull Changes\nIf someone else pushed changes:\ngit pull\n\n\n9.6.3 Cloning a Repo\ngit clone https://github.com/user/repo.git\ncd repo",
     "crumbs": [
       "Core Tools",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Git & GitHub</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Git & GitHub</span>"
     ]
   },
   {
     "objectID": "part2/git-github.html#pull-requests",
     "href": "part2/git-github.html#pull-requests",
-    "title": "7  Git & GitHub",
-    "section": "7.7 Pull Requests",
-    "text": "7.7 Pull Requests\nPull requests (PRs) let you propose changes and get feedback.\n\nCreate a branch\nMake changes and push\nOpen PR on GitHub\nGet review/feedback\nMerge when approved\n\nThis is standard for collaboration, even on solo projects (to review your own work).",
+    "title": "9  Git & GitHub",
+    "section": "9.7 Pull Requests",
+    "text": "9.7 Pull Requests\nPull requests (PRs) let you propose changes and get feedback.\n\nCreate a branch\nMake changes and push\nOpen PR on GitHub\nGet review/feedback\nMerge when approved\n\nThis is standard for collaboration, even on solo projects (to review your own work).",
     "crumbs": [
       "Core Tools",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Git & GitHub</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Git & GitHub</span>"
     ]
   },
   {
     "objectID": "part2/git-github.html#gitignore",
     "href": "part2/git-github.html#gitignore",
-    "title": "7  Git & GitHub",
-    "section": "7.8 .gitignore",
-    "text": "7.8 .gitignore\nList files Git should ignore:\n# Data files (too large)\ndata/raw/\n*.csv\n\n# R\n.Rhistory\n.RData\n.Rproj.user/\n\n# Python\n__pycache__/\n*.pyc\n\n# Secrets\n.env\ncredentials.json\n\n# OS files\n.DS_Store\nCreate .gitignore before your first commit.",
+    "title": "9  Git & GitHub",
+    "section": "9.8 .gitignore",
+    "text": "9.8 .gitignore\nList files Git should ignore:\n# Data files (too large)\ndata/raw/\n*.csv\n\n# R\n.Rhistory\n.RData\n.Rproj.user/\n\n# Python\n__pycache__/\n*.pyc\n\n# Secrets\n.env\ncredentials.json\n\n# OS files\n.DS_Store\nCreate .gitignore before your first commit.",
     "crumbs": [
       "Core Tools",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Git & GitHub</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Git & GitHub</span>"
     ]
   },
   {
     "objectID": "part2/git-github.html#common-scenarios",
     "href": "part2/git-github.html#common-scenarios",
-    "title": "7  Git & GitHub",
-    "section": "7.9 Common Scenarios",
-    "text": "7.9 Common Scenarios\n\n7.9.1 “I committed but haven’t pushed”\nYou can still modify:\n# Amend the last commit\ngit commit --amend -m \"New message\"\n\n# Add forgotten file to last commit\ngit add forgotten-file.R\ngit commit --amend --no-edit\n\n\n7.9.2 “I want to see an old version”\n# View old version of file\ngit show abc123:path/to/file.R\n\n# Temporarily go back to old commit\ngit checkout abc123\ngit checkout main  # Return to present\n\n\n7.9.3 “I have merge conflicts”\nWhen the same lines changed in both branches:\n\nOpen the conflicted file\nLook for conflict markers:\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD\nyour changes\n=======\ntheir changes\n&gt;&gt;&gt;&gt;&gt;&gt;&gt; branch-name\nEdit to resolve (keep what you want)\nRemove the markers\nStage and commit",
+    "title": "9  Git & GitHub",
+    "section": "9.9 Common Scenarios",
+    "text": "9.9 Common Scenarios\n\n9.9.1 “I committed but haven’t pushed”\nYou can still modify:\n# Amend the last commit\ngit commit --amend -m \"New message\"\n\n# Add forgotten file to last commit\ngit add forgotten-file.R\ngit commit --amend --no-edit\n\n\n9.9.2 “I want to see an old version”\n# View old version of file\ngit show abc123:path/to/file.R\n\n# Temporarily go back to old commit\ngit checkout abc123\ngit checkout main  # Return to present\n\n\n9.9.3 “I have merge conflicts”\nWhen the same lines changed in both branches:\n\nOpen the conflicted file\nLook for conflict markers:\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD\nyour changes\n=======\ntheir changes\n&gt;&gt;&gt;&gt;&gt;&gt;&gt; branch-name\nEdit to resolve (keep what you want)\nRemove the markers\nStage and commit",
     "crumbs": [
       "Core Tools",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Git & GitHub</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Git & GitHub</span>"
     ]
   },
   {
     "objectID": "part2/git-github.html#best-practices",
     "href": "part2/git-github.html#best-practices",
-    "title": "7  Git & GitHub",
-    "section": "7.10 Best Practices",
-    "text": "7.10 Best Practices\n\n7.10.1 Commit Often\nSmall, focused commits are easier to understand and revert.\n\n\n7.10.2 Pull Before Push\ngit pull\ngit push\nAvoid conflicts by syncing first.\n\n\n7.10.3 Don’t Commit Secrets\nNever commit passwords, API keys, or credentials. Use .gitignore.\n\n\n7.10.4 Don’t Commit Large Data\nGit struggles with large files. Keep data separate or use Git LFS.",
+    "title": "9  Git & GitHub",
+    "section": "9.10 Best Practices",
+    "text": "9.10 Best Practices\n\n9.10.1 Commit Often\nSmall, focused commits are easier to understand and revert.\n\n\n9.10.2 Pull Before Push\ngit pull\ngit push\nAvoid conflicts by syncing first.\n\n\n9.10.3 Don’t Commit Secrets\nNever commit passwords, API keys, or credentials. Use .gitignore.\n\n\n9.10.4 Don’t Commit Large Data\nGit struggles with large files. Keep data separate or use Git LFS.",
     "crumbs": [
       "Core Tools",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Git & GitHub</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Git & GitHub</span>"
     ]
   },
   {
     "objectID": "part2/git-github.html#quick-reference",
     "href": "part2/git-github.html#quick-reference",
-    "title": "7  Git & GitHub",
-    "section": "7.11 Quick Reference",
-    "text": "7.11 Quick Reference\n\n\n\nTask\nCommand\n\n\n\n\nInitialize repo\ngit init\n\n\nClone repo\ngit clone URL\n\n\nCheck status\ngit status\n\n\nStage file\ngit add FILE\n\n\nStage all\ngit add .\n\n\nCommit\ngit commit -m \"message\"\n\n\nPush\ngit push\n\n\nPull\ngit pull\n\n\nView log\ngit log --oneline\n\n\nCreate branch\ngit checkout -b NAME\n\n\nSwitch branch\ngit checkout NAME\n\n\nMerge branch\ngit merge NAME",
+    "title": "9  Git & GitHub",
+    "section": "9.11 Quick Reference",
+    "text": "9.11 Quick Reference\n\n\n\nTask\nCommand\n\n\n\n\nInitialize repo\ngit init\n\n\nClone repo\ngit clone URL\n\n\nCheck status\ngit status\n\n\nStage file\ngit add FILE\n\n\nStage all\ngit add .\n\n\nCommit\ngit commit -m \"message\"\n\n\nPush\ngit push\n\n\nPull\ngit pull\n\n\nView log\ngit log --oneline\n\n\nCreate branch\ngit checkout -b NAME\n\n\nSwitch branch\ngit checkout NAME\n\n\nMerge branch\ngit merge NAME",
     "crumbs": [
       "Core Tools",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Git & GitHub</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Git & GitHub</span>"
     ]
   },
   {
-    "objectID": "part2/claude-code.html",
-    "href": "part2/claude-code.html",
-    "title": "8  Claude Code",
+    "objectID": "claude-code/intro.html",
+    "href": "claude-code/intro.html",
+    "title": "10  Introduction to Claude Code",
     "section": "",
-    "text": "8.1 What Claude Code Can Do\nClaude Code is an AI assistant that runs in your terminal and helps you write, debug, and understand code. Unlike web-based AI tools, Claude Code works directly with your files and can execute commands.",
+    "text": "10.1 What Claude Code Can Do\nClaude Code is an AI assistant that runs in your terminal and works directly with your files. Unlike web-based AI tools, it can read your code, edit files, and execute commands—all within the context of your project.",
     "crumbs": [
-      "Core Tools",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Claude Code</span>"
+      "Claude Code",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introduction to Claude Code</span>"
     ]
   },
   {
-    "objectID": "part2/claude-code.html#what-claude-code-can-do",
-    "href": "part2/claude-code.html#what-claude-code-can-do",
-    "title": "8  Claude Code",
+    "objectID": "claude-code/intro.html#what-claude-code-can-do",
+    "href": "claude-code/intro.html#what-claude-code-can-do",
+    "title": "10  Introduction to Claude Code",
     "section": "",
-    "text": "Write code — Generate scripts, functions, and analyses\nEdit files — Modify existing code based on your instructions\nRun commands — Execute shell commands and see output\nSearch codebases — Find files and patterns across projects\nExplain code — Help you understand complex code\nDebug — Identify and fix errors",
+    "text": "Write code — Generate scripts, functions, and analyses\nEdit files — Modify existing code based on your instructions\nRun commands — Execute shell commands and see output\nSearch codebases — Find files and patterns across projects\nExplain code — Help you understand complex or unfamiliar code\nDebug — Identify and fix errors",
     "crumbs": [
-      "Core Tools",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Claude Code</span>"
+      "Claude Code",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introduction to Claude Code</span>"
     ]
   },
   {
-    "objectID": "part2/claude-code.html#installation",
-    "href": "part2/claude-code.html#installation",
-    "title": "8  Claude Code",
-    "section": "8.2 Installation",
-    "text": "8.2 Installation\nSee Installation for setup instructions.",
+    "objectID": "claude-code/intro.html#when-to-use-claude-code",
+    "href": "claude-code/intro.html#when-to-use-claude-code",
+    "title": "10  Introduction to Claude Code",
+    "section": "10.2 When to Use Claude Code",
+    "text": "10.2 When to Use Claude Code\nClaude Code is particularly useful when you:\n\nAre starting a new analysis and want to scaffold the structure\nNeed to write boilerplate code (data loading, standard plots)\nAre debugging an error you don’t understand\nWant to refactor or clean up existing code\nNeed to understand unfamiliar code in a project",
     "crumbs": [
-      "Core Tools",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Claude Code</span>"
+      "Claude Code",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introduction to Claude Code</span>"
     ]
   },
   {
-    "objectID": "part2/claude-code.html#basic-usage",
-    "href": "part2/claude-code.html#basic-usage",
-    "title": "8  Claude Code",
-    "section": "8.3 Basic Usage",
-    "text": "8.3 Basic Usage\n\n8.3.1 Starting a Session\nIn your project directory:\nclaude\nThis opens an interactive session where you can type requests.\n\n\n8.3.2 Example Prompts\nWriting code: &gt; “Create a Python script that loads data.csv and plots a histogram of the ‘value’ column”\nEditing files: &gt; “In analysis.R, add a log transformation step after loading the data”\nRunning commands: &gt; “Run the tests and show me any failures”\nUnderstanding code: &gt; “Explain what the normalize_counts function does”\n\n\n8.3.3 Exiting\nType /exit or press Ctrl+C to end the session.",
+    "objectID": "claude-code/intro.html#when-not-to-use-claude-code",
+    "href": "claude-code/intro.html#when-not-to-use-claude-code",
+    "title": "10  Introduction to Claude Code",
+    "section": "10.3 When Not to Use Claude Code",
+    "text": "10.3 When Not to Use Claude Code\nClaude Code is a tool, not a replacement for understanding your analysis:\n\nDon’t blindly accept generated code without reviewing it\nDon’t use it for tasks you need to deeply understand (learn the method first)\nDon’t rely on it for domain-specific scientific decisions\nDon’t assume it knows your data or experimental design",
     "crumbs": [
-      "Core Tools",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Claude Code</span>"
+      "Claude Code",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introduction to Claude Code</span>"
     ]
   },
   {
-    "objectID": "part2/claude-code.html#configuring-claude-code",
-    "href": "part2/claude-code.html#configuring-claude-code",
-    "title": "8  Claude Code",
-    "section": "8.4 Configuring Claude Code",
-    "text": "8.4 Configuring Claude Code\n\n8.4.1 The CLAUDE.md File\nClaude Code reads instructions from CLAUDE.md files. This is how you teach it about your project.\nGlobal instructions go in ~/.claude/CLAUDE.md — these apply to all projects.\nProject-specific instructions go in &lt;project&gt;/.claude/CLAUDE.md — these apply only to that project.\n\n\n8.4.2 What to Put in Project CLAUDE.md\nCreate .claude/CLAUDE.md in your project root:\n# Project: My Analysis\n\n## Overview\nThis project analyzes gene expression data from [experiment description].\n\n## Environment\n- Python: conda activate my-analysis-env\n- R: Uses renv (auto-activates)\n\n## Key Files\n- `data/raw/` — Original data files (do not modify)\n- `scripts/` — Analysis scripts\n- `output/` — Results and figures\n\n## Workflows\n- Run full analysis: `quarto render analysis.qmd`\n- Run tests: `pytest tests/`\n\n## Conventions\n- Use tidyverse style for R\n- Functions should have docstrings\n- Commit after completing each analysis step\nClaude Code reads this at the start of each session, giving it context about your project.\n\n\n8.4.3 Skills\nSkills are reusable instructions for specific tasks. They live in ~/.claude/skills/ and load automatically when relevant.\nExample skill structure:\n~/.claude/skills/\n├── data-handling/\n│   └── SKILL.md\n├── r-plotting-style/\n│   └── SKILL.md\n└── git-conventions/\n    └── SKILL.md\nSkills are triggered by keywords in your requests. For example, a “data-handling” skill might activate when you ask Claude to write data analysis code.\n\n8.4.3.1 Example: Data Handling Skill\nA data handling skill might instruct Claude to:\n\nShow data summaries after major transformations\nAnnotate analytical decisions with comments\nValidate joins and report row counts\nAsk before making important analytical choices\n\n# Data Handling Best Practices\n\n## Show Data at Key Steps\n\nInclude `glimpse()` or summaries whenever datasets are created or altered:\n\n\\```r\ndata &lt;- read_csv(\"data.csv\")\ncat(\"Loaded\", nrow(data), \"rows,\", ncol(data), \"columns\\n\")\nglimpse(data)\n\\```\n\n## Annotate Analytical Decisions\n\nDocument the \"why\" directly in code comments:\n\n\\```r\n# Normalize by library size using TMM (Robinson & Oshlack 2010)\n# TMM chosen over RLE because of high proportion of zeros\nnorm_factors &lt;- calcNormFactors(dge, method = \"TMM\")\n\\```\n\n\n8.4.3.2 Example: Git Conventions Skill\nA git skill might instruct Claude to:\n\nInclude co-author attribution in commits\nCheck status before committing\nPrompt you about commits at appropriate times",
+    "objectID": "claude-code/intro.html#installation",
+    "href": "claude-code/intro.html#installation",
+    "title": "10  Introduction to Claude Code",
+    "section": "10.4 Installation",
+    "text": "10.4 Installation\nSee Installation for setup instructions.",
     "crumbs": [
-      "Core Tools",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Claude Code</span>"
+      "Claude Code",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introduction to Claude Code</span>"
     ]
   },
   {
-    "objectID": "part2/claude-code.html#working-effectively-with-claude-code",
-    "href": "part2/claude-code.html#working-effectively-with-claude-code",
-    "title": "8  Claude Code",
-    "section": "8.5 Working Effectively with Claude Code",
-    "text": "8.5 Working Effectively with Claude Code\n\n8.5.1 Be Specific\nVague: &gt; “Make the plot better”\nSpecific: &gt; “In figure1.R, change the plot colors to a colorblind-friendly palette and increase the axis label font size to 14pt”\n\n\n8.5.2 Provide Context\nWithout context: &gt; “Fix the error”\nWith context: &gt; “The script throws ‘object not found’ on line 45. I think it’s because the data loading step failed.”\n\n\n8.5.3 Ask for Explanations\nDon’t just accept code — understand it:\n\n“Explain why you chose that normalization method”\n\n\n“What are the trade-offs of this approach?”\n\n\n\n8.5.4 Review Before Accepting\nClaude Code shows you changes before applying them. Review:\n\nDoes the code do what you asked?\nAre there any obvious errors?\nDoes it follow your project conventions?",
+    "objectID": "claude-code/intro.html#starting-a-session",
+    "href": "claude-code/intro.html#starting-a-session",
+    "title": "10  Introduction to Claude Code",
+    "section": "10.5 Starting a Session",
+    "text": "10.5 Starting a Session\nNavigate to your project directory and start Claude Code:\ncd ~/projects/my-analysis\nclaude\nThis opens an interactive session. Claude Code automatically reads any project configuration files (covered in the next chapter) to understand your project context.",
     "crumbs": [
-      "Core Tools",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Claude Code</span>"
+      "Claude Code",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introduction to Claude Code</span>"
     ]
   },
   {
-    "objectID": "part2/claude-code.html#integration-with-other-tools",
-    "href": "part2/claude-code.html#integration-with-other-tools",
-    "title": "8  Claude Code",
-    "section": "8.6 Integration with Other Tools",
-    "text": "8.6 Integration with Other Tools\n\n8.6.1 With Git\nClaude Code can commit changes for you:\n\n“Commit these changes with a descriptive message”\n\nIt will show you the diff and proposed message before committing.\n\n\n8.6.2 With Conda\nFor Python work, Claude Code can activate your environment:\nsource ~/miniforge3/etc/profile.d/conda.sh && conda activate my-env && python script.py\nDocument your conda environment in .claude/CLAUDE.md so Claude knows which one to use.\n\n\n8.6.3 With renv\nR environments activate automatically via .Rprofile. Just tell Claude Code your project uses renv and it will respect package versions.\n\n\n8.6.4 With Quarto\nClaude Code can render Quarto documents:\n\n“Render analysis.qmd and show me any errors”",
+    "objectID": "claude-code/intro.html#basic-interactions",
+    "href": "claude-code/intro.html#basic-interactions",
+    "title": "10  Introduction to Claude Code",
+    "section": "10.6 Basic Interactions",
+    "text": "10.6 Basic Interactions\n\n10.6.1 Asking Questions\n&gt; What does the normalize_counts function do?\nClaude Code will read the relevant file and explain the code.\n\n\n10.6.2 Writing Code\n&gt; Create an R script that loads data/counts.csv and calculates summary statistics by group\nClaude Code will write the code and show you the result before saving.\n\n\n10.6.3 Editing Files\n&gt; In analysis.qmd, add a step that filters out samples with fewer than 1000 counts\nClaude Code shows you the proposed changes and asks for confirmation.\n\n\n10.6.4 Running Commands\n&gt; Run quarto render on analysis.qmd and show me any errors\nClaude Code executes the command and reports the output.",
     "crumbs": [
-      "Core Tools",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Claude Code</span>"
+      "Claude Code",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introduction to Claude Code</span>"
     ]
   },
   {
-    "objectID": "part2/claude-code.html#common-workflows",
-    "href": "part2/claude-code.html#common-workflows",
-    "title": "8  Claude Code",
-    "section": "8.7 Common Workflows",
-    "text": "8.7 Common Workflows\n\n8.7.1 Starting a New Analysis\n\nOpen Claude Code in your project\nDescribe what you want to analyze\nLet it scaffold the initial structure\nReview and refine iteratively\n\nExample: &gt; “I have RNA-seq count data in data/counts.csv. Help me set up a differential expression analysis using DESeq2. Start by creating a script that loads the data and does quality control.”\n\n\n8.7.2 Debugging\n\nDescribe the error\nShow the relevant code or file\nAsk for diagnosis and fix\n\nExample: &gt; “Running analysis.R gives this error: [paste error]. The relevant code is in the normalize_data function. What’s wrong?”\n\n\n8.7.3 Code Review\n\n“Review scripts/analysis.R. Are there any bugs, style issues, or ways to improve it?”\n\n\n\n8.7.4 Documentation\n\n“Add comments explaining the key steps in analysis.R”",
+    "objectID": "claude-code/intro.html#reviewing-changes",
+    "href": "claude-code/intro.html#reviewing-changes",
+    "title": "10  Introduction to Claude Code",
+    "section": "10.7 Reviewing Changes",
+    "text": "10.7 Reviewing Changes\nClaude Code always shows you what it plans to do before doing it:\n\nFile edits — Shows a diff of proposed changes\nNew files — Shows the content it will write\nCommands — Shows the command before running (for potentially destructive operations)\n\nReview carefully before accepting. You can:\n\nAccept the change\nAsk for modifications\nReject and try a different approach",
     "crumbs": [
-      "Core Tools",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Claude Code</span>"
+      "Claude Code",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introduction to Claude Code</span>"
     ]
   },
   {
-    "objectID": "part2/claude-code.html#tips-for-success",
-    "href": "part2/claude-code.html#tips-for-success",
-    "title": "8  Claude Code",
-    "section": "8.8 Tips for Success",
-    "text": "8.8 Tips for Success\n\n8.8.1 Start Small\nDon’t ask Claude to build an entire analysis at once. Build incrementally:\n\nLoad and inspect data\nClean and transform\nAnalyze\nVisualize\nDocument\n\n\n\n8.8.2 Trust but Verify\nClaude Code is helpful but not infallible:\n\nReview generated code before running\nTest with small datasets first\nCheck that results make scientific sense\n\n\n\n8.8.3 Save Your Prompts\nIf you find prompts that work well, save them:\n\nIn your CLAUDE.md file\nAs skills for reuse\nIn project documentation",
+    "objectID": "claude-code/intro.html#ending-a-session",
+    "href": "claude-code/intro.html#ending-a-session",
+    "title": "10  Introduction to Claude Code",
+    "section": "10.8 Ending a Session",
+    "text": "10.8 Ending a Session\nType /exit or press Ctrl+C to end the session.",
     "crumbs": [
-      "Core Tools",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Claude Code</span>"
+      "Claude Code",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introduction to Claude Code</span>"
     ]
   },
   {
-    "objectID": "part2/claude-code.html#troubleshooting",
-    "href": "part2/claude-code.html#troubleshooting",
-    "title": "8  Claude Code",
-    "section": "8.9 Troubleshooting",
-    "text": "8.9 Troubleshooting\n\n8.9.1 “Command not found” for conda\nClaude Code runs in a non-interactive shell. Source conda explicitly:\nsource ~/miniforge3/etc/profile.d/conda.sh && conda activate ENV && command\n\n\n8.9.2 Claude doesn’t know about my project\nCheck that your .claude/CLAUDE.md exists and contains relevant information. Claude reads this at session start.\n\n\n8.9.3 Responses are too generic\nProvide more context:\n\nDescribe your data\nExplain your goals\nPoint to relevant files\nShare error messages in full",
+    "objectID": "claude-code/intro.html#the-mental-model",
+    "href": "claude-code/intro.html#the-mental-model",
+    "title": "10  Introduction to Claude Code",
+    "section": "10.9 The Mental Model",
+    "text": "10.9 The Mental Model\nThink of Claude Code as a capable assistant who:\n\nCan see and modify your project files\nKnows general programming patterns and best practices\nReads your project configuration to understand context\nDoes not inherently know your scientific domain or data\nDoes not remember previous sessions (each session starts fresh)\n\nYour job is to:\n\nProvide clear instructions\nSupply necessary context about your data and goals\nReview and verify all outputs\nMake scientific and analytical decisions",
     "crumbs": [
-      "Core Tools",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Claude Code</span>"
+      "Claude Code",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introduction to Claude Code</span>"
     ]
   },
   {
-    "objectID": "part2/claude-code.html#quick-reference",
-    "href": "part2/claude-code.html#quick-reference",
-    "title": "8  Claude Code",
-    "section": "8.10 Quick Reference",
-    "text": "8.10 Quick Reference\n\n\n\nTask\nExample Prompt\n\n\n\n\nWrite code\n“Create a script that…”\n\n\nEdit file\n“In file.R, change X to Y”\n\n\nRun command\n“Run pytest and show failures”\n\n\nExplain code\n“Explain the normalize function”\n\n\nDebug\n“This error occurs: [error]. Why?”\n\n\nCommit\n“Commit with message describing changes”",
+    "objectID": "claude-code/intro.html#next-steps",
+    "href": "claude-code/intro.html#next-steps",
+    "title": "10  Introduction to Claude Code",
+    "section": "10.10 Next Steps",
+    "text": "10.10 Next Steps\nThe following chapters cover:\n\nProject and User Files — How to configure Claude Code for your projects\nSkills — Reusable instructions for common tasks\nSession Walkthrough — A complete example of using Claude Code in practice",
     "crumbs": [
-      "Core Tools",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Claude Code</span>"
+      "Claude Code",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Introduction to Claude Code</span>"
+    ]
+  },
+  {
+    "objectID": "claude-code/project-files.html",
+    "href": "claude-code/project-files.html",
+    "title": "11  Project and User Files",
+    "section": "",
+    "text": "11.1 The Two Levels of Configuration\nClaude Code reads configuration files to understand your projects and preferences. This chapter explains what these files are and how to write effective ones.\nUser-level (~/.claude/CLAUDE.md): Global preferences and instructions that apply everywhere.\nProject-level (&lt;project&gt;/.claude/CLAUDE.md): Project-specific context, conventions, and workflows.\nClaude Code reads both at session start. Project instructions take precedence when there’s a conflict.",
+    "crumbs": [
+      "Claude Code",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Project and User Files</span>"
+    ]
+  },
+  {
+    "objectID": "claude-code/project-files.html#the-two-levels-of-configuration",
+    "href": "claude-code/project-files.html#the-two-levels-of-configuration",
+    "title": "11  Project and User Files",
+    "section": "",
+    "text": "~/.claude/\n└── CLAUDE.md              # User-level: applies to ALL projects\n\n~/projects/my-analysis/\n└── .claude/\n    └── CLAUDE.md          # Project-level: applies to THIS project only",
+    "crumbs": [
+      "Claude Code",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Project and User Files</span>"
+    ]
+  },
+  {
+    "objectID": "claude-code/project-files.html#user-level-configuration",
+    "href": "claude-code/project-files.html#user-level-configuration",
+    "title": "11  Project and User Files",
+    "section": "11.2 User-Level Configuration",
+    "text": "11.2 User-Level Configuration\nYour ~/.claude/CLAUDE.md should contain preferences that apply across all your work:\n# User-Level Instructions for Claude Code\n\n## General Preferences\n\n- Use tidyverse style for R code\n- Prefer base Python over pandas for simple operations\n- Always show data dimensions after loading\n\n## Environment\n\n- Conda must be sourced before activation:\n  `source ~/miniconda3/etc/profile.d/conda.sh`\n- Quarto is at `/usr/local/bin/quarto`\n\n## Troubleshooting Notes\n\n- \"renv out of sync\" warnings can be ignored; run `renv::status()` if concerned\nKeep user-level instructions general. Project-specific details go in the project file.",
+    "crumbs": [
+      "Claude Code",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Project and User Files</span>"
+    ]
+  },
+  {
+    "objectID": "claude-code/project-files.html#project-level-configuration",
+    "href": "claude-code/project-files.html#project-level-configuration",
+    "title": "11  Project and User Files",
+    "section": "11.3 Project-Level Configuration",
+    "text": "11.3 Project-Level Configuration\nCreate .claude/CLAUDE.md in your project root. This file should answer: “What does Claude Code need to know to work effectively on this project?”\n\n11.3.1 Template\n# Project: [Name]\n\n## Overview\n[One paragraph describing what this project does and its current state]\n\n## Environment\n\n- **Python**: `conda activate [env-name]`\n- **R**: Uses renv (auto-activates)\n\n## Project Structure\nproject/ ├── data/ │ ├── raw/ # Original data (DO NOT MODIFY) │ └── processed/ # Cleaned data ├── analysis/ # Quarto analysis scripts ├── output/ # Results, figures, tables └── scripts/ # Utility scripts\n\n## Key Files\n\n- `analysis/main.qmd` — Primary analysis script\n- `data/raw/counts.csv` — Input count matrix (10,000 genes × 50 samples)\n- `output/figures/` — Publication figures\n\n## Workflows\n\n### Run the full analysis\n```bash\nquarto render analysis/main.qmd\n\n\n11.3.2 Run tests\npytest tests/",
+    "crumbs": [
+      "Claude Code",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Project and User Files</span>"
+    ]
+  },
+  {
+    "objectID": "claude-code/project-files.html#conventions",
+    "href": "claude-code/project-files.html#conventions",
+    "title": "11  Project and User Files",
+    "section": "11.4 Conventions",
+    "text": "11.4 Conventions\n\nFigures should use the lab color palette (see scripts/theme.R)\nCommit after completing each logical step\nUse descriptive variable names (no single letters except loop indices)",
+    "crumbs": [
+      "Claude Code",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Project and User Files</span>"
+    ]
+  },
+  {
+    "objectID": "claude-code/project-files.html#current-status-notes",
+    "href": "claude-code/project-files.html#current-status-notes",
+    "title": "11  Project and User Files",
+    "section": "11.5 Current Status / Notes",
+    "text": "11.5 Current Status / Notes\n\nWorking on: differential expression analysis\nBlocked on: waiting for batch 2 samples\nKnown issue: memory error with full dataset, use subset for testing\n\n\n### What Makes a Good Project File\n\n**Be specific about data.** Don't just say \"gene expression data\"—say \"10,000 genes × 50 samples, raw counts, columns are sample IDs.\"\n\n**Document the non-obvious.** If there's a quirk in your data or workflow, mention it.\n\n**Keep it current.** Update the \"Current Status\" section as the project evolves.\n\n**Include actual commands.** Don't say \"run the analysis\"—give the exact command.\n\n## What Not to Include\n\n- **Sensitive data** — No API keys, passwords, or private paths\n- **Obvious things** — No need to explain what `git commit` does\n- **Lengthy documentation** — Link to docs rather than copying them in\n\n## Checking Your Configuration\n\nStart a Claude Code session and ask:\n\n\nWhat do you know about this project?\n\n\nClaude Code will summarize what it learned from your configuration files. If something's missing, update your `.claude/CLAUDE.md`.\n\n## Example: Real Project Configuration\n\nHere's an example from a genomics analysis project:\n\n```markdown\n# Project: Sponge Cell Atlas\n\n## Overview\n\nSingle-cell RNA-seq analysis of *Ephydatia muelleri* (freshwater sponge).\nGoal: identify cell types and marker genes.\n\n## Environment\n\n- Python: `conda activate sponge-atlas`\n- R: renv (Seurat 5.0, auto-activates)\n\n## Data\n\n- `data/raw/counts.h5ad` — AnnData object, 15,000 cells × 12,000 genes\n- `data/raw/metadata.csv` — Sample metadata (batch, condition)\n- Cell type annotations in `obs['cell_type']` (preliminary, needs refinement)\n\n## Analysis Scripts\n\n| Script | Purpose | Status |\n|--------|---------|--------|\n| `analysis/01_qc.qmd` | Quality control, filtering | Complete |\n| `analysis/02_clustering.qmd` | Dimensionality reduction, clustering | Complete |\n| `analysis/03_markers.qmd` | Marker gene identification | In progress |\n| `analysis/04_figures.qmd` | Publication figures | Not started |\n\n## Conventions\n\n- Use Seurat naming conventions (e.g., `FindMarkers`, not `find_markers`)\n- Cluster colors defined in `scripts/colors.R`\n- All figures 300 DPI, max 7 inches wide\n\n## Notes\n\n- Batch effect between samples 1-3 and 4-6; already corrected with Harmony\n- Cluster 7 is likely doublets—exclude from marker analysis",
+    "crumbs": [
+      "Claude Code",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Project and User Files</span>"
+    ]
+  },
+  {
+    "objectID": "claude-code/project-files.html#updating-configuration",
+    "href": "claude-code/project-files.html#updating-configuration",
+    "title": "11  Project and User Files",
+    "section": "11.6 Updating Configuration",
+    "text": "11.6 Updating Configuration\nYour project configuration should evolve with the project:\n\nStart of project: Basic structure, environment, data description\nDuring analysis: Add workflows, document decisions, note blockers\nBefore sharing: Clean up, remove personal notes, ensure commands work\n\nA good test: could a new lab member (or future you) read this file and understand how to work on the project?",
+    "crumbs": [
+      "Claude Code",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Project and User Files</span>"
+    ]
+  },
+  {
+    "objectID": "claude-code/skills.html",
+    "href": "claude-code/skills.html",
+    "title": "12  Skills",
+    "section": "",
+    "text": "12.1 Why Skills?\nSkills are reusable instruction sets that teach Claude Code how to handle specific types of tasks. They live in ~/.claude/skills/ and activate automatically based on context.\nWithout skills, you’d repeat the same instructions across projects:\nSkills let you write these instructions once and have them apply automatically.",
+    "crumbs": [
+      "Claude Code",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Skills</span>"
+    ]
+  },
+  {
+    "objectID": "claude-code/skills.html#why-skills",
+    "href": "claude-code/skills.html#why-skills",
+    "title": "12  Skills",
+    "section": "",
+    "text": "“Use tidyverse style”\n“Show data summaries after transformations”\n“Include co-author attribution in commits”",
+    "crumbs": [
+      "Claude Code",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Skills</span>"
+    ]
+  },
+  {
+    "objectID": "claude-code/skills.html#how-skills-work",
+    "href": "claude-code/skills.html#how-skills-work",
+    "title": "12  Skills",
+    "section": "12.2 How Skills Work",
+    "text": "12.2 How Skills Work\n~/.claude/skills/\n├── data-handling/\n│   └── SKILL.md\n├── r-plotting-style/\n│   └── SKILL.md\n└── git-conventions/\n    └── SKILL.md\nEach skill is a folder containing a SKILL.md file with instructions. Claude Code loads relevant skills based on:\n\nKeywords in your requests\nFile types you’re working with\nTasks you’re performing",
+    "crumbs": [
+      "Claude Code",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Skills</span>"
+    ]
+  },
+  {
+    "objectID": "claude-code/skills.html#anatomy-of-a-skill",
+    "href": "claude-code/skills.html#anatomy-of-a-skill",
+    "title": "12  Skills",
+    "section": "12.3 Anatomy of a Skill",
+    "text": "12.3 Anatomy of a Skill\nA skill file has two parts:\n\nFrontmatter — Metadata that controls when the skill activates\nInstructions — The actual guidance for Claude Code\n\n---\ndescription: Data handling best practices for R and Python analysis scripts\ntriggers:\n  - data manipulation\n  - analysis pipelines\n  - .qmd scripts that process data\n---\n\n# Data Handling Best Practices\n\n## Show Data at Key Steps\n\nInclude summaries whenever datasets are created or transformed:\n\n\\```r\ndata &lt;- read_csv(\"input.csv\")\ncat(\"Loaded\", nrow(data), \"rows,\", ncol(data), \"columns\\n\")\nglimpse(data)\n\\```\n\n## Annotate Analytical Decisions\n\nDocument the reasoning directly in code:\n\n\\```r\n# Filter to genes with &gt; 10 counts in at least 3 samples\n# Threshold based on recommendation from DESeq2 vignette\nkeep &lt;- rowSums(counts &gt;= 10) &gt;= 3\ncounts_filtered &lt;- counts[keep, ]\n\\```",
+    "crumbs": [
+      "Claude Code",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Skills</span>"
+    ]
+  },
+  {
+    "objectID": "claude-code/skills.html#example-skills",
+    "href": "claude-code/skills.html#example-skills",
+    "title": "12  Skills",
+    "section": "12.4 Example Skills",
+    "text": "12.4 Example Skills\n\n12.4.1 Data Handling\n---\ndescription: Data handling best practices for R and Python analysis scripts\ntriggers:\n  - data manipulation\n  - analysis pipelines\n  - loading data\n  - transforming data\n---\n\n# Data Handling Best Practices\n\n## Show Data at Key Steps\n\nAfter loading or transforming data, show dimensions and a preview:\n\n\\```r\ndata &lt;- read_csv(\"data.csv\")\ncat(\"Loaded\", nrow(data), \"rows,\", ncol(data), \"columns\\n\")\nglimpse(data)\n\\```\n\n\\```python\ndata = pd.read_csv(\"data.csv\")\nprint(f\"Loaded {len(data)} rows, {len(data.columns)} columns\")\ndata.head()\n\\```\n\n## Validate Joins\n\nWhen joining datasets, report the result:\n\n\\```r\nmerged &lt;- left_join(a, b, by = \"id\")\ncat(\"Joined:\", nrow(a), \"→\", nrow(merged), \"rows\\n\")\ncat(\"Unmatched:\", sum(is.na(merged$new_column)), \"\\n\")\n\\```\n\n## Annotate Decisions\n\nExplain non-obvious analytical choices:\n\n\\```r\n# Using median normalization (not TPM) because samples have\n# varying library complexity — see docs/normalization_comparison.html\n\\```\n\n## Ask Before Deciding\n\nFor consequential analytical decisions (filtering thresholds, normalization methods, etc.), present options and ask the user before proceeding.\n\n\n12.4.2 R Plotting Style\n---\ndescription: R ggplot2 plotting conventions and theme\ntriggers:\n  - ggplot\n  - plotting\n  - visualization\n  - figures\n---\n\n# R Plotting Conventions\n\n## Base Theme\n\nUse `theme_minimal()` as the starting point:\n\n\\```r\np &lt;- ggplot(data, aes(x, y)) +\n  geom_point() +\n  theme_minimal()\n\\```\n\n## Standard Modifications\n\n\\```r\ntheme_minimal() +\ntheme(\n  axis.text = element_text(size = 11),\n  axis.title = element_text(size = 12),\n  legend.position = \"bottom\",\n  panel.grid.minor = element_blank()\n)\n\\```\n\n## Color Palettes\n\n- Categorical: `scale_color_brewer(palette = \"Set2\")`\n- Sequential: `scale_color_viridis_c()`\n- Diverging: `scale_color_distiller(palette = \"RdBu\")`\n\n## Figure Dimensions\n\n- Single column: 3.5 × 3 inches\n- Double column: 7 × 4 inches\n- Save at 300 DPI for publication\n\n\\```r\nggsave(\"figure.png\", p, width = 7, height = 4, dpi = 300)\n\\```\n\n\n12.4.3 Git Conventions\n---\ndescription: Git commit practices and conventions\ntriggers:\n  - commit\n  - git\n  - version control\n---\n\n# Git Conventions\n\n## Commit Messages\n\nWrite clear, descriptive commit messages:\n\n- Start with a verb (Add, Fix, Update, Remove, Refactor)\n- Keep the first line under 50 characters\n- Add detail in the body if needed\n\nGood: `Add QC filtering step to preprocessing`\nBad: `updates`\n\n## Co-Author Attribution\n\nInclude co-author line when Claude Code contributes substantially:\n\n\\```\nAdd differential expression analysis\n\nCo-Authored-By: Claude Code &lt;noreply@anthropic.com&gt;\n\\```\n\n## When to Commit\n\nPrompt the user to commit after:\n\n- Completing a logical unit of work\n- Before switching to a different task\n- After fixing a bug\n\n## What to Commit\n\n- Source code and scripts\n- Configuration files (environment.yml, renv.lock)\n- Documentation\n\nNever commit:\n\n- Large data files\n- Credentials or secrets\n- Generated output (unless specifically requested)",
+    "crumbs": [
+      "Claude Code",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Skills</span>"
+    ]
+  },
+  {
+    "objectID": "claude-code/skills.html#creating-your-own-skills",
+    "href": "claude-code/skills.html#creating-your-own-skills",
+    "title": "12  Skills",
+    "section": "12.5 Creating Your Own Skills",
+    "text": "12.5 Creating Your Own Skills\n\n12.5.1 Step 1: Identify the Pattern\nWhat instructions do you find yourself repeating? Common candidates:\n\nCoding style preferences\nDocumentation requirements\nTesting practices\nDomain-specific conventions\n\n\n\n12.5.2 Step 2: Create the Skill Folder\nmkdir -p ~/.claude/skills/my-new-skill\n\n\n12.5.3 Step 3: Write the SKILL.md\n---\ndescription: Brief description of what this skill does\ntriggers:\n  - keyword1\n  - keyword2\n  - file pattern or task type\n---\n\n# Skill Title\n\n## Section 1\n\nInstructions...\n\n## Section 2\n\nMore instructions...\n\n\n12.5.4 Step 4: Test It\nStart a Claude Code session and try a task that should trigger your skill:\n&gt; [Request that should activate the skill]\nCheck if Claude Code follows your instructions. Refine as needed.",
+    "crumbs": [
+      "Claude Code",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Skills</span>"
+    ]
+  },
+  {
+    "objectID": "claude-code/skills.html#skill-best-practices",
+    "href": "claude-code/skills.html#skill-best-practices",
+    "title": "12  Skills",
+    "section": "12.6 Skill Best Practices",
+    "text": "12.6 Skill Best Practices\nBe specific. Vague instructions produce vague results. Show examples.\nKeep skills focused. One skill = one concern. Don’t combine plotting style with git conventions.\nUse code examples. Show the pattern you want, not just describe it.\nInclude the “why.” When a convention has a reason, explain it—helps Claude Code make good judgment calls.\nTest with edge cases. Make sure your skill handles variations in how you might phrase requests.",
+    "crumbs": [
+      "Claude Code",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Skills</span>"
+    ]
+  },
+  {
+    "objectID": "claude-code/skills.html#organizing-skills",
+    "href": "claude-code/skills.html#organizing-skills",
+    "title": "12  Skills",
+    "section": "12.7 Organizing Skills",
+    "text": "12.7 Organizing Skills\nAs your skill collection grows, keep it organized:\n~/.claude/skills/\n├── code-style/\n│   └── SKILL.md           # General coding style\n├── r-plotting/\n│   └── SKILL.md           # R visualization\n├── python-style/\n│   └── SKILL.md           # Python conventions\n├── data-handling/\n│   └── SKILL.md           # Data manipulation\n├── git-conventions/\n│   └── SKILL.md           # Version control\n└── lab-specific/\n    └── SKILL.md           # Lab conventions",
+    "crumbs": [
+      "Claude Code",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Skills</span>"
+    ]
+  },
+  {
+    "objectID": "claude-code/skills.html#sharing-skills",
+    "href": "claude-code/skills.html#sharing-skills",
+    "title": "12  Skills",
+    "section": "12.8 Sharing Skills",
+    "text": "12.8 Sharing Skills\nSkills are just text files. To share with lab members:\n\nCopy the skill folder to the shared location\nHave them copy it to their ~/.claude/skills/\n\nOr include lab-wide skills in a shared repository that everyone clones.",
+    "crumbs": [
+      "Claude Code",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Skills</span>"
+    ]
+  },
+  {
+    "objectID": "claude-code/session-walkthrough.html",
+    "href": "claude-code/session-walkthrough.html",
+    "title": "13  Session Walkthrough",
+    "section": "",
+    "text": "13.1 The Scenario\nThis chapter shows a complete Claude Code session from start to finish. We’ll work through a realistic analysis task, demonstrating how to interact effectively with Claude Code.\nYou have a project with RNA-seq count data and want to:",
+    "crumbs": [
+      "Claude Code",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Session Walkthrough</span>"
+    ]
+  },
+  {
+    "objectID": "claude-code/session-walkthrough.html#the-scenario",
+    "href": "claude-code/session-walkthrough.html#the-scenario",
+    "title": "13  Session Walkthrough",
+    "section": "",
+    "text": "Load and explore the data\nPerform basic quality control\nCreate a summary visualization\nDocument the analysis in a Quarto script",
+    "crumbs": [
+      "Claude Code",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Session Walkthrough</span>"
+    ]
+  },
+  {
+    "objectID": "claude-code/session-walkthrough.html#starting-the-session",
+    "href": "claude-code/session-walkthrough.html#starting-the-session",
+    "title": "13  Session Walkthrough",
+    "section": "13.2 Starting the Session",
+    "text": "13.2 Starting the Session\nFirst, navigate to your project and start Claude Code:\ncd ~/projects/rnaseq-analysis\nclaude\nClaude Code reads your project configuration (.claude/CLAUDE.md) and is ready to help.",
+    "crumbs": [
+      "Claude Code",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Session Walkthrough</span>"
+    ]
+  },
+  {
+    "objectID": "claude-code/session-walkthrough.html#step-1-understanding-the-data",
+    "href": "claude-code/session-walkthrough.html#step-1-understanding-the-data",
+    "title": "13  Session Walkthrough",
+    "section": "13.3 Step 1: Understanding the Data",
+    "text": "13.3 Step 1: Understanding the Data\nYou:\n&gt; I have count data in data/raw/counts.csv. What does it look like?\nClaude Code reads the file and responds:\nI've examined data/raw/counts.csv. Here's what I found:\n\n- Dimensions: 12,000 rows × 8 columns\n- First column \"gene_id\" contains gene identifiers (e.g., \"ENSG00000141510\")\n- Remaining 7 columns are sample names: \"sample_1\" through \"sample_7\"\n- Values are integer counts (range: 0 to 458,291)\n- No missing values detected\n\nFirst few rows:\ngene_id        sample_1  sample_2  sample_3  ...\nENSG00000141510    1523      1687      1456  ...\nENSG00000012048     892       923       845  ...\nThis gives you a clear picture without writing any code yourself.",
+    "crumbs": [
+      "Claude Code",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Session Walkthrough</span>"
+    ]
+  },
+  {
+    "objectID": "claude-code/session-walkthrough.html#step-2-creating-the-analysis-script",
+    "href": "claude-code/session-walkthrough.html#step-2-creating-the-analysis-script",
+    "title": "13  Session Walkthrough",
+    "section": "13.4 Step 2: Creating the Analysis Script",
+    "text": "13.4 Step 2: Creating the Analysis Script\nYou:\n&gt; Create a Quarto analysis script at analysis/01_qc.qmd that loads this data and does basic QC. Include:\n&gt; - Library loading\n&gt; - Data import with summary\n&gt; - A histogram of total counts per sample\n&gt; - A histogram of detected genes per sample\nClaude Code creates the file and shows you the content:\n---\ntitle: \"Quality Control\"\nauthor: \"Your Name\"\nformat: html\n---\n\n## Overview\n\n**Input:** `data/raw/counts.csv`\n**Output:** QC summary and diagnostic plots\n\n```{r}\n#| label: setup\nlibrary(tidyverse)\n```\n\n## Load Data\n\n```{r}\n#| label: load-data\ncounts &lt;- read_csv(\"../data/raw/counts.csv\")\ncat(\"Loaded\", nrow(counts), \"genes ×\", ncol(counts) - 1, \"samples\\n\")\n```\n\n## Sample-Level QC\n\n### Total Counts per Sample\n\n```{r}\n#| label: fig-total-counts\n#| fig-cap: \"Total counts per sample\"\n\nsample_totals &lt;- counts |&gt;\n  select(-gene_id) |&gt;\n  colSums() |&gt;\n  enframe(name = \"sample\", value = \"total_counts\")\n\nggplot(sample_totals, aes(x = sample, y = total_counts / 1e6)) +\n  geom_col() +\n  labs(x = \"Sample\", y = \"Total counts (millions)\") +\n  theme_minimal()\n```\n\n### Detected Genes per Sample\n\n```{r}\n#| label: fig-detected-genes\n#| fig-cap: \"Number of detected genes per sample\"\n\ndetected_genes &lt;- counts |&gt;\n  select(-gene_id) |&gt;\n  summarise(across(everything(), ~sum(. &gt; 0))) |&gt;\n  pivot_longer(everything(), names_to = \"sample\", values_to = \"n_detected\")\n\nggplot(detected_genes, aes(x = sample, y = n_detected)) +\n  geom_col() +\n  labs(x = \"Sample\", y = \"Detected genes (count &gt; 0)\") +\n  theme_minimal()\n```\n\n## Summary\n\nBasic QC complete. All samples have similar library sizes and detection rates.\nClaude Code asks:\nShould I save this to analysis/01_qc.qmd?\nYou: Review the code, then accept.",
+    "crumbs": [
+      "Claude Code",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Session Walkthrough</span>"
+    ]
+  },
+  {
+    "objectID": "claude-code/session-walkthrough.html#step-3-running-the-analysis",
+    "href": "claude-code/session-walkthrough.html#step-3-running-the-analysis",
+    "title": "13  Session Walkthrough",
+    "section": "13.5 Step 3: Running the Analysis",
+    "text": "13.5 Step 3: Running the Analysis\nYou:\n&gt; Render the script and show me if there are any errors\nClaude Code runs:\nquarto render analysis/01_qc.qmd\nAnd reports:\nRendering complete. Output saved to analysis/01_qc.html\n\nNo errors. Two figures generated successfully.",
+    "crumbs": [
+      "Claude Code",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Session Walkthrough</span>"
+    ]
+  },
+  {
+    "objectID": "claude-code/session-walkthrough.html#step-4-refining-based-on-results",
+    "href": "claude-code/session-walkthrough.html#step-4-refining-based-on-results",
+    "title": "13  Session Walkthrough",
+    "section": "13.6 Step 4: Refining Based on Results",
+    "text": "13.6 Step 4: Refining Based on Results\nYou open 01_qc.html in your browser and notice one sample has much lower counts than the others.\nYou:\n&gt; Sample_3 looks like an outlier with much lower counts. Add a section that:\n&gt; 1. Calculates summary stats for each sample (total counts, detected genes, median count)\n&gt; 2. Flags any sample more than 2 standard deviations from the mean\nClaude Code shows the proposed edit:\n#| label: sample-summary\n\nsample_stats &lt;- counts |&gt;\n  select(-gene_id) |&gt;\n  summarise(across(everything(), list(\n    total = sum,\n    detected = ~sum(. &gt; 0),\n    median = median\n  ))) |&gt;\n  pivot_longer(everything(),\n               names_to = c(\"sample\", \"stat\"),\n               names_pattern = \"(.*)_(.*)\") |&gt;\n  pivot_wider(names_from = stat, values_from = value)\n\n# Flag outliers (&gt; 2 SD from mean)\nsample_stats &lt;- sample_stats |&gt;\n  mutate(\n    outlier_total = abs(total - mean(total)) &gt; 2 * sd(total),\n    outlier_detected = abs(detected - mean(detected)) &gt; 2 * sd(detected)\n  )\n\nsample_stats |&gt;\n  knitr::kable(digits = 0)\nYou: Accept, then ask Claude Code to re-render.",
+    "crumbs": [
+      "Claude Code",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Session Walkthrough</span>"
+    ]
+  },
+  {
+    "objectID": "claude-code/session-walkthrough.html#step-5-committing-your-work",
+    "href": "claude-code/session-walkthrough.html#step-5-committing-your-work",
+    "title": "13  Session Walkthrough",
+    "section": "13.7 Step 5: Committing Your Work",
+    "text": "13.7 Step 5: Committing Your Work\nYou:\n&gt; Commit the QC analysis with a descriptive message\nClaude Code runs git status and shows:\nChanges to be committed:\n  new file:   analysis/01_qc.qmd\n  new file:   analysis/01_qc.html\n\nProposed commit message:\n\"Add QC analysis script with sample-level diagnostics\"\n\nProceed?\nYou: Accept.\nClaude Code stages and commits:\ngit add analysis/01_qc.qmd analysis/01_qc.html\ngit commit -m \"Add QC analysis script with sample-level diagnostics\n\nCo-Authored-By: Claude Code &lt;noreply@anthropic.com&gt;\"",
+    "crumbs": [
+      "Claude Code",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Session Walkthrough</span>"
+    ]
+  },
+  {
+    "objectID": "claude-code/session-walkthrough.html#patterns-to-notice",
+    "href": "claude-code/session-walkthrough.html#patterns-to-notice",
+    "title": "13  Session Walkthrough",
+    "section": "13.8 Patterns to Notice",
+    "text": "13.8 Patterns to Notice\n\n13.8.1 1. Start with exploration\nBefore writing code, ask Claude Code to examine your data. This catches issues early and ensures you understand what you’re working with.\n\n\n13.8.2 2. Be specific about outputs\nInstead of “do QC,” specify exactly what you want: “histogram of total counts per sample.” Claude Code produces better results with clear requirements.\n\n\n13.8.3 3. Iterate based on results\nLook at the output, then refine. This mirrors how you’d work manually—but faster.\n\n\n13.8.4 4. Review before accepting\nAlways read the code Claude Code generates. Check that it: - Does what you asked - Handles edge cases appropriately - Follows your project conventions\n\n\n13.8.5 5. Commit logical units\nCommit after completing a coherent piece of work, not after every small change.",
+    "crumbs": [
+      "Claude Code",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Session Walkthrough</span>"
+    ]
+  },
+  {
+    "objectID": "claude-code/session-walkthrough.html#common-session-patterns",
+    "href": "claude-code/session-walkthrough.html#common-session-patterns",
+    "title": "13  Session Walkthrough",
+    "section": "13.9 Common Session Patterns",
+    "text": "13.9 Common Session Patterns\n\n13.9.1 Debugging\n&gt; I'm getting this error when I render: [paste error]\n&gt; The relevant code is in the load-data chunk. What's wrong?\n\n\n13.9.2 Extending existing code\n&gt; In 01_qc.qmd, add a PCA plot after the detected genes histogram\n\n\n13.9.3 Understanding code\n&gt; Explain what the pivot_longer line is doing in the sample stats calculation\n\n\n13.9.4 Refactoring\n&gt; The plotting code is repetitive. Extract a helper function for the bar plots",
+    "crumbs": [
+      "Claude Code",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Session Walkthrough</span>"
+    ]
+  },
+  {
+    "objectID": "claude-code/session-walkthrough.html#ending-the-session",
+    "href": "claude-code/session-walkthrough.html#ending-the-session",
+    "title": "13  Session Walkthrough",
+    "section": "13.10 Ending the Session",
+    "text": "13.10 Ending the Session\nWhen you’re done:\n&gt; /exit\nOr press Ctrl+C.",
+    "crumbs": [
+      "Claude Code",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Session Walkthrough</span>"
+    ]
+  },
+  {
+    "objectID": "claude-code/session-walkthrough.html#tips-for-effective-sessions",
+    "href": "claude-code/session-walkthrough.html#tips-for-effective-sessions",
+    "title": "13  Session Walkthrough",
+    "section": "13.11 Tips for Effective Sessions",
+    "text": "13.11 Tips for Effective Sessions\n\nHave your CLAUDE.md ready. The better your project documentation, the better Claude Code understands your context.\nWork incrementally. Don’t ask for an entire analysis at once. Build piece by piece.\nAsk “why” questions. If Claude Code makes a choice you don’t understand, ask about it.\nCorrect mistakes immediately. If something’s wrong, say so—Claude Code learns from feedback within the session.\nSave useful prompts. When you find a prompt that works well, note it for future use.",
+    "crumbs": [
+      "Claude Code",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Session Walkthrough</span>"
     ]
   },
   {
     "objectID": "part3/starting-project.html",
     "href": "part3/starting-project.html",
-    "title": "9  Starting a New Analysis Project",
+    "title": "14  Starting a New Analysis Project",
     "section": "",
-    "text": "9.1 The Standard Structure\nThis chapter walks through setting up a new analysis project from scratch, using all the tools together.\nEvery analysis project should have:",
+    "text": "14.1 The Standard Structure\nThis chapter walks through setting up a new analysis project from scratch, using all the tools together.\nEvery analysis project should have:",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Starting a New Analysis Project</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Starting a New Analysis Project</span>"
     ]
   },
   {
     "objectID": "part3/starting-project.html#the-standard-structure",
     "href": "part3/starting-project.html#the-standard-structure",
-    "title": "9  Starting a New Analysis Project",
+    "title": "14  Starting a New Analysis Project",
     "section": "",
     "text": "project-name/\n├── .claude/\n│   └── CLAUDE.md         # Claude Code instructions\n├── .git/                  # Git repository\n├── .gitignore            # Files to exclude from Git\n├── data/\n│   ├── raw/              # Original data (never modify)\n│   └── processed/        # Cleaned/transformed data\n├── scripts/              # Analysis scripts\n├── output/               # Results, figures, tables\n├── environment.yml       # Conda environment (Python)\n├── renv.lock            # R package versions\n└── README.md            # Project description",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Starting a New Analysis Project</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Starting a New Analysis Project</span>"
     ]
   },
   {
     "objectID": "part3/starting-project.html#step-by-step-setup",
     "href": "part3/starting-project.html#step-by-step-setup",
-    "title": "9  Starting a New Analysis Project",
-    "section": "9.2 Step-by-Step Setup",
-    "text": "9.2 Step-by-Step Setup\n\n9.2.1 1. Create the Project Directory\nmkdir my-analysis\ncd my-analysis\n\n\n9.2.2 2. Initialize Git\ngit init\nCreate .gitignore:\n# Data (large files)\ndata/raw/\n*.csv\n*.tsv\n*.xlsx\n\n# R\n.Rhistory\n.RData\n.Rproj.user/\nrenv/library/\nrenv/staging/\n\n# Python\n__pycache__/\n*.pyc\n.venv/\n\n# Output (regenerated from code)\noutput/\n\n# OS\n.DS_Store\nThumbs.db\n\n# IDE\n.vscode/\n.positron/\n\n# Secrets\n.env\n\n\n9.2.3 3. Create Directory Structure\nmkdir -p data/raw data/processed scripts output .claude\n\n\n9.2.4 4. Set Up Python Environment (if using Python)\nconda create -n my-analysis python=3.11 -y\nconda activate my-analysis\nconda install pandas numpy matplotlib seaborn -y\nconda env export &gt; environment.yml\n\n\n9.2.5 5. Set Up R with renv (if using R)\nIn R:\nrenv::init()\ninstall.packages(c(\"tidyverse\", \"here\"))\nrenv::snapshot()\n\n\n9.2.6 6. Create Project CLAUDE.md\nCreate .claude/CLAUDE.md:\n# Project: My Analysis\n\n## Overview\n[Brief description of what this project does]\n\n## Environment\n- Python: `conda activate my-analysis`\n- R: Uses renv (auto-activates)\n\n## Key Directories\n- `data/raw/` — Original data (read-only)\n- `data/processed/` — Cleaned data\n- `scripts/` — Analysis code\n- `output/` — Results and figures\n\n## Workflows\n[How to run the analysis]\n\n## Data\n[Description of data files and their contents]\n\n\n9.2.7 7. Create README\nCreate README.md:\n# My Analysis\n\n## Overview\n[What this project does]\n\n## Setup\n\n### Python\nconda env create -f environment.yml\nconda activate my-analysis\n\n### R\n# renv will auto-activate; run renv::restore() if needed\n\n## Running the Analysis\n[Instructions]\n\n## Data\n[Data sources and descriptions]\n\n\n9.2.8 8. First Commit\ngit add .\ngit commit -m \"Initial project setup\"\n\n\n9.2.9 9. Push to GitHub\ngh repo create my-analysis --private --source=. --push\nOr manually:\n\nCreate repo on GitHub\ngit remote add origin https://github.com/USERNAME/my-analysis.git\ngit push -u origin main",
+    "title": "14  Starting a New Analysis Project",
+    "section": "14.2 Step-by-Step Setup",
+    "text": "14.2 Step-by-Step Setup\n\n14.2.1 1. Create the Project Directory\nmkdir my-analysis\ncd my-analysis\n\n\n14.2.2 2. Initialize Git\ngit init\nCreate .gitignore:\n# Data (large files)\ndata/raw/\n*.csv\n*.tsv\n*.xlsx\n\n# R\n.Rhistory\n.RData\n.Rproj.user/\nrenv/library/\nrenv/staging/\n\n# Python\n__pycache__/\n*.pyc\n.venv/\n\n# Output (regenerated from code)\noutput/\n\n# OS\n.DS_Store\nThumbs.db\n\n# IDE\n.vscode/\n.positron/\n\n# Secrets\n.env\n\n\n14.2.3 3. Create Directory Structure\nmkdir -p data/raw data/processed scripts output .claude\n\n\n14.2.4 4. Set Up Python Environment (if using Python)\nconda create -n my-analysis python=3.11 -y\nconda activate my-analysis\nconda install pandas numpy matplotlib seaborn -y\nconda env export &gt; environment.yml\n\n\n14.2.5 5. Set Up R with renv (if using R)\nIn R:\nrenv::init()\ninstall.packages(c(\"tidyverse\", \"here\"))\nrenv::snapshot()\n\n\n14.2.6 6. Create Project CLAUDE.md\nCreate .claude/CLAUDE.md:\n# Project: My Analysis\n\n## Overview\n[Brief description of what this project does]\n\n## Environment\n- Python: `conda activate my-analysis`\n- R: Uses renv (auto-activates)\n\n## Key Directories\n- `data/raw/` — Original data (read-only)\n- `data/processed/` — Cleaned data\n- `scripts/` — Analysis code\n- `output/` — Results and figures\n\n## Workflows\n[How to run the analysis]\n\n## Data\n[Description of data files and their contents]\n\n\n14.2.7 7. Create README\nCreate README.md:\n# My Analysis\n\n## Overview\n[What this project does]\n\n## Setup\n\n### Python\nconda env create -f environment.yml\nconda activate my-analysis\n\n### R\n# renv will auto-activate; run renv::restore() if needed\n\n## Running the Analysis\n[Instructions]\n\n## Data\n[Data sources and descriptions]\n\n\n14.2.8 8. First Commit\ngit add .\ngit commit -m \"Initial project setup\"\n\n\n14.2.9 9. Push to GitHub\ngh repo create my-analysis --private --source=. --push\nOr manually:\n\nCreate repo on GitHub\ngit remote add origin https://github.com/USERNAME/my-analysis.git\ngit push -u origin main",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Starting a New Analysis Project</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Starting a New Analysis Project</span>"
     ]
   },
   {
     "objectID": "part3/starting-project.html#adding-data",
     "href": "part3/starting-project.html#adding-data",
-    "title": "9  Starting a New Analysis Project",
-    "section": "9.3 Adding Data",
-    "text": "9.3 Adding Data\n\n9.3.1 Raw Data\nPut original data files in data/raw/. Never modify these files — treat them as read-only.\nIf data files are large, don’t commit them to Git. Add to .gitignore:\ndata/raw/*.csv\nInstead, document where to obtain the data in your README.\n\n\n9.3.2 Processing Data\nScripts that clean or transform data should:\n\nRead from data/raw/\nWrite to data/processed/\nInclude documentation of what transformations were applied\n\n# scripts/01_clean_data.R\n\nlibrary(tidyverse)\nlibrary(here)\n\n# Load raw data\nraw &lt;- read_csv(here(\"data/raw/experiment_data.csv\"))\ncat(\"Loaded\", nrow(raw), \"rows\\n\")\n\n# Clean: remove rows with missing values\nclean &lt;- raw %&gt;%\n  filter(!is.na(value)) %&gt;%\n  filter(quality &gt; 0.8)\ncat(\"After cleaning:\", nrow(clean), \"rows\\n\")\n\n# Save\nwrite_csv(clean, here(\"data/processed/clean_data.csv\"))",
+    "title": "14  Starting a New Analysis Project",
+    "section": "14.3 Adding Data",
+    "text": "14.3 Adding Data\n\n14.3.1 Raw Data\nPut original data files in data/raw/. Never modify these files — treat them as read-only.\nIf data files are large, don’t commit them to Git. Add to .gitignore:\ndata/raw/*.csv\nInstead, document where to obtain the data in your README.\n\n\n14.3.2 Processing Data\nScripts that clean or transform data should:\n\nRead from data/raw/\nWrite to data/processed/\nInclude documentation of what transformations were applied\n\n# scripts/01_clean_data.R\n\nlibrary(tidyverse)\nlibrary(here)\n\n# Load raw data\nraw &lt;- read_csv(here(\"data/raw/experiment_data.csv\"))\ncat(\"Loaded\", nrow(raw), \"rows\\n\")\n\n# Clean: remove rows with missing values\nclean &lt;- raw %&gt;%\n  filter(!is.na(value)) %&gt;%\n  filter(quality &gt; 0.8)\ncat(\"After cleaning:\", nrow(clean), \"rows\\n\")\n\n# Save\nwrite_csv(clean, here(\"data/processed/clean_data.csv\"))",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Starting a New Analysis Project</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Starting a New Analysis Project</span>"
     ]
   },
   {
     "objectID": "part3/starting-project.html#organizing-scripts",
     "href": "part3/starting-project.html#organizing-scripts",
-    "title": "9  Starting a New Analysis Project",
-    "section": "9.4 Organizing Scripts",
-    "text": "9.4 Organizing Scripts\nName scripts with numbers to indicate order:\nscripts/\n├── 01_clean_data.R\n├── 02_exploratory_analysis.R\n├── 03_statistical_analysis.R\n└── 04_generate_figures.R\nOr organize by function:\nscripts/\n├── preprocessing/\n│   ├── clean_data.R\n│   └── normalize.R\n├── analysis/\n│   ├── differential_expression.R\n│   └── pathway_analysis.R\n└── figures/\n    ├── figure1.R\n    └── figure2.R",
+    "title": "14  Starting a New Analysis Project",
+    "section": "14.4 Organizing Scripts",
+    "text": "14.4 Organizing Scripts\nName scripts with numbers to indicate order:\nscripts/\n├── 01_clean_data.R\n├── 02_exploratory_analysis.R\n├── 03_statistical_analysis.R\n└── 04_generate_figures.R\nOr organize by function:\nscripts/\n├── preprocessing/\n│   ├── clean_data.R\n│   └── normalize.R\n├── analysis/\n│   ├── differential_expression.R\n│   └── pathway_analysis.R\n└── figures/\n    ├── figure1.R\n    └── figure2.R",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Starting a New Analysis Project</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Starting a New Analysis Project</span>"
     ]
   },
   {
     "objectID": "part3/starting-project.html#using-claude-code",
     "href": "part3/starting-project.html#using-claude-code",
-    "title": "9  Starting a New Analysis Project",
-    "section": "9.5 Using Claude Code",
-    "text": "9.5 Using Claude Code\nWith your .claude/CLAUDE.md in place, start Claude Code:\nclaude\nExample workflow:\n\n“I have RNA-seq counts in data/raw/counts.csv. Create a script to load it, do basic QC, and save a cleaned version.”\n\nReview the generated code, then:\n\n“Commit this with an appropriate message”",
+    "title": "14  Starting a New Analysis Project",
+    "section": "14.5 Using Claude Code",
+    "text": "14.5 Using Claude Code\nWith your .claude/CLAUDE.md in place, start Claude Code:\nclaude\nExample workflow:\n\n“I have RNA-seq counts in data/raw/counts.csv. Create a script to load it, do basic QC, and save a cleaned version.”\n\nReview the generated code, then:\n\n“Commit this with an appropriate message”",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Starting a New Analysis Project</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Starting a New Analysis Project</span>"
     ]
   },
   {
     "objectID": "part3/starting-project.html#checklist",
     "href": "part3/starting-project.html#checklist",
-    "title": "9  Starting a New Analysis Project",
-    "section": "9.6 Checklist",
-    "text": "9.6 Checklist\nBefore starting analysis:\n\nGit initialized\n.gitignore in place\nDirectory structure created\nConda environment created and exported\nrenv initialized (if using R)\n.claude/CLAUDE.md written\nREADME drafted\nFirst commit made\nPushed to GitHub",
+    "title": "14  Starting a New Analysis Project",
+    "section": "14.6 Checklist",
+    "text": "14.6 Checklist\nBefore starting analysis:\n\nGit initialized\n.gitignore in place\nDirectory structure created\nConda environment created and exported\nrenv initialized (if using R)\n.claude/CLAUDE.md written\nREADME drafted\nFirst commit made\nPushed to GitHub",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Starting a New Analysis Project</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Starting a New Analysis Project</span>"
     ]
   },
   {
     "objectID": "part3/collaborating.html",
     "href": "part3/collaborating.html",
-    "title": "10  Collaborating with Others",
+    "title": "15  Collaborating with Others",
     "section": "",
-    "text": "10.1 Sharing a Project\nThis chapter covers how to work on projects with collaborators using Git and GitHub.",
+    "text": "15.1 Sharing a Project\nThis chapter covers how to work on projects with collaborators using Git and GitHub.",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Collaborating with Others</span>"
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Collaborating with Others</span>"
     ]
   },
   {
     "objectID": "part3/collaborating.html#sharing-a-project",
     "href": "part3/collaborating.html#sharing-a-project",
-    "title": "10  Collaborating with Others",
+    "title": "15  Collaborating with Others",
     "section": "",
-    "text": "10.1.1 Giving Access\nOn GitHub:\n\nGo to repository Settings → Collaborators\nClick Add people\nEnter collaborator’s GitHub username or email\nThey’ll receive an invitation\n\n\n\n10.1.2 Collaborator Setup\nYour collaborator clones the repo:\ngit clone https://github.com/USERNAME/project-name.git\ncd project-name\nThen sets up environments:\n# Python\nconda env create -f environment.yml\nconda activate project-name\n\n# R (in R console)\nrenv::restore()",
+    "text": "15.1.1 Giving Access\nOn GitHub:\n\nGo to repository Settings → Collaborators\nClick Add people\nEnter collaborator’s GitHub username or email\nThey’ll receive an invitation\n\n\n\n15.1.2 Collaborator Setup\nYour collaborator clones the repo:\ngit clone https://github.com/USERNAME/project-name.git\ncd project-name\nThen sets up environments:\n# Python\nconda env create -f environment.yml\nconda activate project-name\n\n# R (in R console)\nrenv::restore()",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Collaborating with Others</span>"
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Collaborating with Others</span>"
     ]
   },
   {
     "objectID": "part3/collaborating.html#the-collaboration-workflow",
     "href": "part3/collaborating.html#the-collaboration-workflow",
-    "title": "10  Collaborating with Others",
-    "section": "10.2 The Collaboration Workflow",
-    "text": "10.2 The Collaboration Workflow\n\n10.2.1 Before Starting Work\nAlways pull the latest changes:\ngit pull\nCheck for environment updates:\n# Python - check if environment.yml changed\nconda env update -f environment.yml\n\n# R - check renv status\n# renv::status()\n# renv::restore()\n\n\n10.2.2 Making Changes\n\nPull latest changes\nDo your work\nStage and commit\nPush\n\ngit pull\n# ... make changes ...\ngit add .\ngit commit -m \"Add analysis for condition B\"\ngit push\n\n\n10.2.3 When Collaborators Push\nIf someone pushed while you were working:\ngit pull\n# May need to resolve conflicts (see below)\ngit push",
+    "title": "15  Collaborating with Others",
+    "section": "15.2 The Collaboration Workflow",
+    "text": "15.2 The Collaboration Workflow\n\n15.2.1 Before Starting Work\nAlways pull the latest changes:\ngit pull\nCheck for environment updates:\n# Python - check if environment.yml changed\nconda env update -f environment.yml\n\n# R - check renv status\n# renv::status()\n# renv::restore()\n\n\n15.2.2 Making Changes\n\nPull latest changes\nDo your work\nStage and commit\nPush\n\ngit pull\n# ... make changes ...\ngit add .\ngit commit -m \"Add analysis for condition B\"\ngit push\n\n\n15.2.3 When Collaborators Push\nIf someone pushed while you were working:\ngit pull\n# May need to resolve conflicts (see below)\ngit push",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Collaborating with Others</span>"
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Collaborating with Others</span>"
     ]
   },
   {
     "objectID": "part3/collaborating.html#branching-workflow",
     "href": "part3/collaborating.html#branching-workflow",
-    "title": "10  Collaborating with Others",
-    "section": "10.3 Branching Workflow",
-    "text": "10.3 Branching Workflow\nFor larger changes, use branches:\n\n10.3.1 Create a Branch\ngit checkout -b my-feature\n\n\n10.3.2 Work on the Branch\n# Make changes, commit as usual\ngit add .\ngit commit -m \"Add new analysis\"\n\n\n10.3.3 Push the Branch\ngit push -u origin my-feature\n\n\n10.3.4 Create a Pull Request\n\nGo to the repository on GitHub\nClick Compare & pull request\nAdd description of changes\nRequest review from collaborator\nMerge when approved\n\n\n\n10.3.5 After Merging\ngit checkout main\ngit pull\ngit branch -d my-feature  # Delete local branch",
+    "title": "15  Collaborating with Others",
+    "section": "15.3 Branching Workflow",
+    "text": "15.3 Branching Workflow\nFor larger changes, use branches:\n\n15.3.1 Create a Branch\ngit checkout -b my-feature\n\n\n15.3.2 Work on the Branch\n# Make changes, commit as usual\ngit add .\ngit commit -m \"Add new analysis\"\n\n\n15.3.3 Push the Branch\ngit push -u origin my-feature\n\n\n15.3.4 Create a Pull Request\n\nGo to the repository on GitHub\nClick Compare & pull request\nAdd description of changes\nRequest review from collaborator\nMerge when approved\n\n\n\n15.3.5 After Merging\ngit checkout main\ngit pull\ngit branch -d my-feature  # Delete local branch",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Collaborating with Others</span>"
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Collaborating with Others</span>"
     ]
   },
   {
     "objectID": "part3/collaborating.html#handling-merge-conflicts",
     "href": "part3/collaborating.html#handling-merge-conflicts",
-    "title": "10  Collaborating with Others",
-    "section": "10.4 Handling Merge Conflicts",
-    "text": "10.4 Handling Merge Conflicts\nConflicts happen when two people change the same lines.\n\n10.4.1 Recognizing a Conflict\ngit pull\n# CONFLICT (content): Merge conflict in analysis.R\n# Automatic merge failed; fix conflicts and then commit.\n\n\n10.4.2 Resolving Conflicts\nOpen the conflicted file. You’ll see markers:\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD\n# Your version\nresult &lt;- calculate_mean(data)\n=======\n# Their version\nresult &lt;- calculate_median(data)\n&gt;&gt;&gt;&gt;&gt;&gt;&gt; origin/main\nEdit to keep what you want:\n# Keep both approaches, or choose one\nresult_mean &lt;- calculate_mean(data)\nresult_median &lt;- calculate_median(data)\nRemove the conflict markers, then:\ngit add analysis.R\ngit commit -m \"Resolve merge conflict in analysis.R\"\ngit push",
+    "title": "15  Collaborating with Others",
+    "section": "15.4 Handling Merge Conflicts",
+    "text": "15.4 Handling Merge Conflicts\nConflicts happen when two people change the same lines.\n\n15.4.1 Recognizing a Conflict\ngit pull\n# CONFLICT (content): Merge conflict in analysis.R\n# Automatic merge failed; fix conflicts and then commit.\n\n\n15.4.2 Resolving Conflicts\nOpen the conflicted file. You’ll see markers:\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD\n# Your version\nresult &lt;- calculate_mean(data)\n=======\n# Their version\nresult &lt;- calculate_median(data)\n&gt;&gt;&gt;&gt;&gt;&gt;&gt; origin/main\nEdit to keep what you want:\n# Keep both approaches, or choose one\nresult_mean &lt;- calculate_mean(data)\nresult_median &lt;- calculate_median(data)\nRemove the conflict markers, then:\ngit add analysis.R\ngit commit -m \"Resolve merge conflict in analysis.R\"\ngit push",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Collaborating with Others</span>"
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Collaborating with Others</span>"
     ]
   },
   {
     "objectID": "part3/collaborating.html#environment-synchronization",
     "href": "part3/collaborating.html#environment-synchronization",
-    "title": "10  Collaborating with Others",
-    "section": "10.5 Environment Synchronization",
-    "text": "10.5 Environment Synchronization\n\n10.5.1 When You Add Packages\nPython:\nconda install new-package\nconda env export &gt; environment.yml\ngit add environment.yml\ngit commit -m \"Add new-package to environment\"\ngit push\nR:\ninstall.packages(\"new-package\")\nrenv::snapshot()\ngit add renv.lock\ngit commit -m \"Add new-package to renv\"\ngit push\n\n\n10.5.2 When Collaborator Adds Packages\nAfter pulling:\nPython:\nconda env update -f environment.yml\nR:\nrenv::restore()",
+    "title": "15  Collaborating with Others",
+    "section": "15.5 Environment Synchronization",
+    "text": "15.5 Environment Synchronization\n\n15.5.1 When You Add Packages\nPython:\nconda install new-package\nconda env export &gt; environment.yml\ngit add environment.yml\ngit commit -m \"Add new-package to environment\"\ngit push\nR:\ninstall.packages(\"new-package\")\nrenv::snapshot()\ngit add renv.lock\ngit commit -m \"Add new-package to renv\"\ngit push\n\n\n15.5.2 When Collaborator Adds Packages\nAfter pulling:\nPython:\nconda env update -f environment.yml\nR:\nrenv::restore()",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Collaborating with Others</span>"
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Collaborating with Others</span>"
     ]
   },
   {
     "objectID": "part3/collaborating.html#best-practices",
     "href": "part3/collaborating.html#best-practices",
-    "title": "10  Collaborating with Others",
-    "section": "10.6 Best Practices",
-    "text": "10.6 Best Practices\n\n10.6.1 Communicate\n\nTell collaborators what you’re working on\nAvoid working on the same files simultaneously\nUse issues to track tasks\n\n\n\n10.6.2 Commit Often\nSmall, frequent commits are easier to merge than large changes.\n\n\n10.6.3 Pull Before Push\ngit pull\ngit push\nThis catches conflicts early.\n\n\n10.6.4 Use .gitignore\nEnsure everyone has the same .gitignore to avoid committing:\n\nLarge data files\nPersonal IDE settings\nSystem files\n\n\n\n10.6.5 Document Changes\nUpdate README and documentation when you change:\n\nHow to run the analysis\nEnvironment dependencies\nData requirements",
+    "title": "15  Collaborating with Others",
+    "section": "15.6 Best Practices",
+    "text": "15.6 Best Practices\n\n15.6.1 Communicate\n\nTell collaborators what you’re working on\nAvoid working on the same files simultaneously\nUse issues to track tasks\n\n\n\n15.6.2 Commit Often\nSmall, frequent commits are easier to merge than large changes.\n\n\n15.6.3 Pull Before Push\ngit pull\ngit push\nThis catches conflicts early.\n\n\n15.6.4 Use .gitignore\nEnsure everyone has the same .gitignore to avoid committing:\n\nLarge data files\nPersonal IDE settings\nSystem files\n\n\n\n15.6.5 Document Changes\nUpdate README and documentation when you change:\n\nHow to run the analysis\nEnvironment dependencies\nData requirements",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Collaborating with Others</span>"
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Collaborating with Others</span>"
     ]
   },
   {
     "objectID": "part3/collaborating.html#working-with-github-issues",
     "href": "part3/collaborating.html#working-with-github-issues",
-    "title": "10  Collaborating with Others",
-    "section": "10.7 Working with GitHub Issues",
-    "text": "10.7 Working with GitHub Issues\n\n10.7.1 Creating Issues\nUse issues to track:\n\nBugs to fix\nFeatures to add\nQuestions to resolve\n\nClick New Issue on GitHub and describe the task.\n\n\n10.7.2 Referencing Issues in Commits\nLink commits to issues:\ngit commit -m \"Fix normalization bug (closes #12)\"\nThis automatically closes the issue when merged.",
+    "title": "15  Collaborating with Others",
+    "section": "15.7 Working with GitHub Issues",
+    "text": "15.7 Working with GitHub Issues\n\n15.7.1 Creating Issues\nUse issues to track:\n\nBugs to fix\nFeatures to add\nQuestions to resolve\n\nClick New Issue on GitHub and describe the task.\n\n\n15.7.2 Referencing Issues in Commits\nLink commits to issues:\ngit commit -m \"Fix normalization bug (closes #12)\"\nThis automatically closes the issue when merged.",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Collaborating with Others</span>"
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Collaborating with Others</span>"
     ]
   },
   {
     "objectID": "part3/collaborating.html#forking-for-external-collaborators",
     "href": "part3/collaborating.html#forking-for-external-collaborators",
-    "title": "10  Collaborating with Others",
-    "section": "10.8 Forking (For External Collaborators)",
-    "text": "10.8 Forking (For External Collaborators)\nIf someone isn’t a direct collaborator:\n\nThey fork the repo (creates their copy)\nThey make changes in their fork\nThey open a pull request to your repo\nYou review and merge\n\nThis is common for open-source contributions.",
+    "title": "15  Collaborating with Others",
+    "section": "15.8 Forking (For External Collaborators)",
+    "text": "15.8 Forking (For External Collaborators)\nIf someone isn’t a direct collaborator:\n\nThey fork the repo (creates their copy)\nThey make changes in their fork\nThey open a pull request to your repo\nYou review and merge\n\nThis is common for open-source contributions.",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Collaborating with Others</span>"
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Collaborating with Others</span>"
     ]
   },
   {
     "objectID": "part3/collaborating.html#checklist-for-collaboration",
     "href": "part3/collaborating.html#checklist-for-collaboration",
-    "title": "10  Collaborating with Others",
-    "section": "10.9 Checklist for Collaboration",
-    "text": "10.9 Checklist for Collaboration\nStarting a collaborative project:\n\nRepository on GitHub with collaborators added\nClear README with setup instructions\n.gitignore preventing large/personal files\nenvironment.yml (Python) and renv.lock (R) committed\nAgreed workflow (branches vs direct commits)\nCommunication channel established\n\nDaily workflow:\n\nPull before starting work\nUpdate environments if needed\nCommit small, focused changes\nPush when done\nCommunicate about what you changed",
+    "title": "15  Collaborating with Others",
+    "section": "15.9 Checklist for Collaboration",
+    "text": "15.9 Checklist for Collaboration\nStarting a collaborative project:\n\nRepository on GitHub with collaborators added\nClear README with setup instructions\n.gitignore preventing large/personal files\nenvironment.yml (Python) and renv.lock (R) committed\nAgreed workflow (branches vs direct commits)\nCommunication channel established\n\nDaily workflow:\n\nPull before starting work\nUpdate environments if needed\nCommit small, focused changes\nPush when done\nCommunicate about what you changed",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Collaborating with Others</span>"
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Collaborating with Others</span>"
     ]
   },
   {
     "objectID": "part3/reproducibility.html",
     "href": "part3/reproducibility.html",
-    "title": "11  Reproducible Analysis",
+    "title": "16  Reproducible Analysis",
     "section": "",
-    "text": "11.1 Why Reproducibility Matters\nReproducibility means others (including future you) can run your analysis and get the same results. This chapter covers practices that ensure reproducibility.",
+    "text": "16.1 Why Reproducibility Matters\nReproducibility means others (including future you) can run your analysis and get the same results. This chapter covers practices that ensure reproducibility.",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Reproducible Analysis</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Reproducible Analysis</span>"
     ]
   },
   {
     "objectID": "part3/reproducibility.html#why-reproducibility-matters",
     "href": "part3/reproducibility.html#why-reproducibility-matters",
-    "title": "11  Reproducible Analysis",
+    "title": "16  Reproducible Analysis",
     "section": "",
     "text": "Verification: Others can check your work\nBuilding on work: You or others can extend the analysis\nDebugging: Easier to find and fix problems\nPublication: Increasingly required by journals\nFuture you: Six months from now, you’ll thank yourself",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Reproducible Analysis</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Reproducible Analysis</span>"
     ]
   },
   {
     "objectID": "part3/reproducibility.html#the-three-pillars",
     "href": "part3/reproducibility.html#the-three-pillars",
-    "title": "11  Reproducible Analysis",
-    "section": "11.2 The Three Pillars",
-    "text": "11.2 The Three Pillars\n\n11.2.1 1. Version Control (Git)\nTrack every change to your code:\n\nWhat changed\nWhen it changed\nWhy it changed\n\nWith Git, you can always return to a working state.\n\n\n11.2.2 2. Environment Management (Conda + renv)\nLock down exact package versions:\n# environment.yml\ndependencies:\n  - python=3.11.5\n  - pandas=2.0.3\n  - numpy=1.24.3\n// renv.lock\n\"ggplot2\": {\n  \"Version\": \"3.4.2\"\n}\nDifferent package versions can give different results.\n\n\n11.2.3 3. Documentation\nExplain:\n\nHow to set up the environment\nHow to run the analysis\nWhat the data looks like\nWhat decisions you made and why",
+    "title": "16  Reproducible Analysis",
+    "section": "16.2 The Three Pillars",
+    "text": "16.2 The Three Pillars\n\n16.2.1 1. Version Control (Git)\nTrack every change to your code:\n\nWhat changed\nWhen it changed\nWhy it changed\n\nWith Git, you can always return to a working state.\n\n\n16.2.2 2. Environment Management (Conda + renv)\nLock down exact package versions:\n# environment.yml\ndependencies:\n  - python=3.11.5\n  - pandas=2.0.3\n  - numpy=1.24.3\n// renv.lock\n\"ggplot2\": {\n  \"Version\": \"3.4.2\"\n}\nDifferent package versions can give different results.\n\n\n16.2.3 3. Documentation\nExplain:\n\nHow to set up the environment\nHow to run the analysis\nWhat the data looks like\nWhat decisions you made and why",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Reproducible Analysis</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Reproducible Analysis</span>"
     ]
   },
   {
     "objectID": "part3/reproducibility.html#reproducibility-checklist",
     "href": "part3/reproducibility.html#reproducibility-checklist",
-    "title": "11  Reproducible Analysis",
-    "section": "11.3 Reproducibility Checklist",
-    "text": "11.3 Reproducibility Checklist\n\n11.3.1 Environment\n\nAll dependencies listed in environment.yml (Python) or renv.lock (R)\nSpecific versions pinned, not just package names\nInstructions for environment setup in README\n\n\n\n11.3.2 Data\n\nRaw data preserved unchanged\nData processing steps documented and scripted\nData sources documented\nIf data can’t be shared, describe format and structure\n\n\n\n11.3.3 Code\n\nAnalysis runs from start to finish without manual intervention\nFile paths are relative, not absolute\nNo hardcoded paths like /Users/myname/...\nRandom seeds set for stochastic processes\nIntermediate results can be regenerated from code\n\n\n\n11.3.4 Documentation\n\nREADME explains setup and execution\nAnalysis steps documented in code comments or notebooks\nKey decisions annotated with rationale",
+    "title": "16  Reproducible Analysis",
+    "section": "16.3 Reproducibility Checklist",
+    "text": "16.3 Reproducibility Checklist\n\n16.3.1 Environment\n\nAll dependencies listed in environment.yml (Python) or renv.lock (R)\nSpecific versions pinned, not just package names\nInstructions for environment setup in README\n\n\n\n16.3.2 Data\n\nRaw data preserved unchanged\nData processing steps documented and scripted\nData sources documented\nIf data can’t be shared, describe format and structure\n\n\n\n16.3.3 Code\n\nAnalysis runs from start to finish without manual intervention\nFile paths are relative, not absolute\nNo hardcoded paths like /Users/myname/...\nRandom seeds set for stochastic processes\nIntermediate results can be regenerated from code\n\n\n\n16.3.4 Documentation\n\nREADME explains setup and execution\nAnalysis steps documented in code comments or notebooks\nKey decisions annotated with rationale",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Reproducible Analysis</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Reproducible Analysis</span>"
     ]
   },
   {
     "objectID": "part3/reproducibility.html#using-relative-paths",
     "href": "part3/reproducibility.html#using-relative-paths",
-    "title": "11  Reproducible Analysis",
-    "section": "11.4 Using Relative Paths",
-    "text": "11.4 Using Relative Paths\nBad — hardcoded absolute paths:\ndata &lt;- read_csv(\"/Users/jm284/projects/analysis/data/raw/data.csv\")\nGood — relative paths with here:\nlibrary(here)\ndata &lt;- read_csv(here(\"data/raw/data.csv\"))\nPython — use pathlib:\nfrom pathlib import Path\n\ndata_dir = Path(__file__).parent.parent / \"data\" / \"raw\"\ndata = pd.read_csv(data_dir / \"data.csv\")\nThe here package (R) and pathlib (Python) find paths relative to the project root, regardless of where scripts are run from.",
+    "title": "16  Reproducible Analysis",
+    "section": "16.4 Using Relative Paths",
+    "text": "16.4 Using Relative Paths\nBad — hardcoded absolute paths:\ndata &lt;- read_csv(\"/Users/jm284/projects/analysis/data/raw/data.csv\")\nGood — relative paths with here:\nlibrary(here)\ndata &lt;- read_csv(here(\"data/raw/data.csv\"))\nPython — use pathlib:\nfrom pathlib import Path\n\ndata_dir = Path(__file__).parent.parent / \"data\" / \"raw\"\ndata = pd.read_csv(data_dir / \"data.csv\")\nThe here package (R) and pathlib (Python) find paths relative to the project root, regardless of where scripts are run from.",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Reproducible Analysis</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Reproducible Analysis</span>"
     ]
   },
   {
     "objectID": "part3/reproducibility.html#setting-random-seeds",
     "href": "part3/reproducibility.html#setting-random-seeds",
-    "title": "11  Reproducible Analysis",
-    "section": "11.5 Setting Random Seeds",
-    "text": "11.5 Setting Random Seeds\nMany analyses involve randomness (bootstrapping, sampling, train/test splits). Set seeds for reproducibility:\nR:\nset.seed(42)\nresult &lt;- sample(data, 100)\nPython:\nimport random\nimport numpy as np\n\nrandom.seed(42)\nnp.random.seed(42)\nresult = np.random.choice(data, 100)\nDocument why you chose that seed (or just pick a number consistently).",
+    "title": "16  Reproducible Analysis",
+    "section": "16.5 Setting Random Seeds",
+    "text": "16.5 Setting Random Seeds\nMany analyses involve randomness (bootstrapping, sampling, train/test splits). Set seeds for reproducibility:\nR:\nset.seed(42)\nresult &lt;- sample(data, 100)\nPython:\nimport random\nimport numpy as np\n\nrandom.seed(42)\nnp.random.seed(42)\nresult = np.random.choice(data, 100)\nDocument why you chose that seed (or just pick a number consistently).",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Reproducible Analysis</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Reproducible Analysis</span>"
     ]
   },
   {
     "objectID": "part3/reproducibility.html#documenting-data",
     "href": "part3/reproducibility.html#documenting-data",
-    "title": "11  Reproducible Analysis",
-    "section": "11.6 Documenting Data",
-    "text": "11.6 Documenting Data\nIn your README or a separate DATA.md:\n# Data Description\n\n## Raw Data\n\n### data/raw/counts.csv\n- Source: GEO accession GSE12345\n- Downloaded: 2024-01-15\n- Format: CSV, 20,000 genes × 12 samples\n- Columns: gene_id, sample1, sample2, ...\n\n### data/raw/metadata.csv\n- Source: Provided by collaborator\n- Format: CSV, 12 rows\n- Columns: sample_id, condition, batch, replicate",
+    "title": "16  Reproducible Analysis",
+    "section": "16.6 Documenting Data",
+    "text": "16.6 Documenting Data\nIn your README or a separate DATA.md:\n# Data Description\n\n## Raw Data\n\n### data/raw/counts.csv\n- Source: GEO accession GSE12345\n- Downloaded: 2024-01-15\n- Format: CSV, 20,000 genes × 12 samples\n- Columns: gene_id, sample1, sample2, ...\n\n### data/raw/metadata.csv\n- Source: Provided by collaborator\n- Format: CSV, 12 rows\n- Columns: sample_id, condition, batch, replicate",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Reproducible Analysis</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Reproducible Analysis</span>"
     ]
   },
   {
     "objectID": "part3/reproducibility.html#running-the-full-analysis",
     "href": "part3/reproducibility.html#running-the-full-analysis",
-    "title": "11  Reproducible Analysis",
-    "section": "11.7 Running the Full Analysis",
-    "text": "11.7 Running the Full Analysis\nCreate a master script or Makefile that runs everything:\nShell script (run_analysis.sh):\n#!/bin/bash\nset -e  # Exit on error\n\necho \"Setting up environment...\"\nconda activate my-analysis\n\necho \"Step 1: Cleaning data...\"\nRscript scripts/01_clean_data.R\n\necho \"Step 2: Analysis...\"\npython scripts/02_analyze.py\n\necho \"Step 3: Figures...\"\nRscript scripts/03_figures.R\n\necho \"Done!\"\nQuarto (analysis.qmd):\nA Quarto document that runs all code chunks in order is inherently reproducible — rendering the document runs the full analysis.\nMake (Makefile):\nall: output/figures/figure1.pdf output/results.csv\n\noutput/figures/figure1.pdf: scripts/03_figures.R data/processed/clean.csv\n    Rscript scripts/03_figures.R\n\ndata/processed/clean.csv: scripts/01_clean_data.R data/raw/data.csv\n    Rscript scripts/01_clean_data.R",
+    "title": "16  Reproducible Analysis",
+    "section": "16.7 Running the Full Analysis",
+    "text": "16.7 Running the Full Analysis\nCreate a master script or Makefile that runs everything:\nShell script (run_analysis.sh):\n#!/bin/bash\nset -e  # Exit on error\n\necho \"Setting up environment...\"\nconda activate my-analysis\n\necho \"Step 1: Cleaning data...\"\nRscript scripts/01_clean_data.R\n\necho \"Step 2: Analysis...\"\npython scripts/02_analyze.py\n\necho \"Step 3: Figures...\"\nRscript scripts/03_figures.R\n\necho \"Done!\"\nQuarto (analysis.qmd):\nA Quarto document that runs all code chunks in order is inherently reproducible — rendering the document runs the full analysis.\nMake (Makefile):\nall: output/figures/figure1.pdf output/results.csv\n\noutput/figures/figure1.pdf: scripts/03_figures.R data/processed/clean.csv\n    Rscript scripts/03_figures.R\n\ndata/processed/clean.csv: scripts/01_clean_data.R data/raw/data.csv\n    Rscript scripts/01_clean_data.R",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Reproducible Analysis</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Reproducible Analysis</span>"
     ]
   },
   {
     "objectID": "part3/reproducibility.html#testing-reproducibility",
     "href": "part3/reproducibility.html#testing-reproducibility",
-    "title": "11  Reproducible Analysis",
-    "section": "11.8 Testing Reproducibility",
-    "text": "11.8 Testing Reproducibility\n\n11.8.1 Fresh Environment Test\n\nClone your repo to a new location\nCreate environment from scratch\nRun the full analysis\nCompare results\n\n# In a temporary directory\ngit clone https://github.com/user/project.git test-project\ncd test-project\nconda env create -f environment.yml\nconda activate project-name\n./run_analysis.sh\n\n\n11.8.2 Docker (Advanced)\nFor maximum reproducibility, package everything in a Docker container:\nFROM rocker/tidyverse:4.3.1\n\nCOPY . /analysis\nWORKDIR /analysis\n\nRUN R -e \"renv::restore()\"\n\nCMD [\"Rscript\", \"run_all.R\"]\nThis captures:\n\nOperating system\nR version\nAll packages",
+    "title": "16  Reproducible Analysis",
+    "section": "16.8 Testing Reproducibility",
+    "text": "16.8 Testing Reproducibility\n\n16.8.1 Fresh Environment Test\n\nClone your repo to a new location\nCreate environment from scratch\nRun the full analysis\nCompare results\n\n# In a temporary directory\ngit clone https://github.com/user/project.git test-project\ncd test-project\nconda env create -f environment.yml\nconda activate project-name\n./run_analysis.sh\n\n\n16.8.2 Docker (Advanced)\nFor maximum reproducibility, package everything in a Docker container:\nFROM rocker/tidyverse:4.3.1\n\nCOPY . /analysis\nWORKDIR /analysis\n\nRUN R -e \"renv::restore()\"\n\nCMD [\"Rscript\", \"run_all.R\"]\nThis captures:\n\nOperating system\nR version\nAll packages",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Reproducible Analysis</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Reproducible Analysis</span>"
     ]
   },
   {
     "objectID": "part3/reproducibility.html#common-reproducibility-problems",
     "href": "part3/reproducibility.html#common-reproducibility-problems",
-    "title": "11  Reproducible Analysis",
-    "section": "11.9 Common Reproducibility Problems",
-    "text": "11.9 Common Reproducibility Problems\n\n11.9.1 “It works on my machine”\nCause: Different package versions, OS differences, or missing dependencies.\nSolution: Use conda/renv, test in fresh environment.\n\n\n11.9.2 Missing files\nCause: Data files not included or paths are wrong.\nSolution: Document data sources, use relative paths.\n\n\n11.9.3 Different results each run\nCause: Unseeded random number generation.\nSolution: Set random seeds.\n\n\n11.9.4 Manual steps\nCause: Analysis requires clicking buttons or manual edits.\nSolution: Script everything. If you must have manual steps, document them precisely.",
+    "title": "16  Reproducible Analysis",
+    "section": "16.9 Common Reproducibility Problems",
+    "text": "16.9 Common Reproducibility Problems\n\n16.9.1 “It works on my machine”\nCause: Different package versions, OS differences, or missing dependencies.\nSolution: Use conda/renv, test in fresh environment.\n\n\n16.9.2 Missing files\nCause: Data files not included or paths are wrong.\nSolution: Document data sources, use relative paths.\n\n\n16.9.3 Different results each run\nCause: Unseeded random number generation.\nSolution: Set random seeds.\n\n\n16.9.4 Manual steps\nCause: Analysis requires clicking buttons or manual edits.\nSolution: Script everything. If you must have manual steps, document them precisely.",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Reproducible Analysis</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Reproducible Analysis</span>"
     ]
   },
   {
     "objectID": "part3/reproducibility.html#tools-that-help",
     "href": "part3/reproducibility.html#tools-that-help",
-    "title": "11  Reproducible Analysis",
-    "section": "11.10 Tools That Help",
-    "text": "11.10 Tools That Help\n\n\n\nTool\nPurpose\n\n\n\n\nhere (R)\nReliable relative paths\n\n\npathlib (Python)\nPath handling\n\n\nrenv\nR package management\n\n\nconda\nPython environment management\n\n\nQuarto\nLiterate programming\n\n\nGit\nVersion control\n\n\nDocker\nFull environment capture",
+    "title": "16  Reproducible Analysis",
+    "section": "16.10 Tools That Help",
+    "text": "16.10 Tools That Help\n\n\n\nTool\nPurpose\n\n\n\n\nhere (R)\nReliable relative paths\n\n\npathlib (Python)\nPath handling\n\n\nrenv\nR package management\n\n\nconda\nPython environment management\n\n\nQuarto\nLiterate programming\n\n\nGit\nVersion control\n\n\nDocker\nFull environment capture",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Reproducible Analysis</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Reproducible Analysis</span>"
     ]
   },
   {
     "objectID": "part3/reproducibility.html#quick-reference",
     "href": "part3/reproducibility.html#quick-reference",
-    "title": "11  Reproducible Analysis",
-    "section": "11.11 Quick Reference",
-    "text": "11.11 Quick Reference\nFor every project:\n\nUse Git for version control\nLock environments with conda/renv\nUse relative paths\nSet random seeds\nDocument everything\nTest in a fresh environment before sharing",
+    "title": "16  Reproducible Analysis",
+    "section": "16.11 Quick Reference",
+    "text": "16.11 Quick Reference\nFor every project:\n\nUse Git for version control\nLock environments with conda/renv\nUse relative paths\nSet random seeds\nDocument everything\nTest in a fresh environment before sharing",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Reproducible Analysis</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Reproducible Analysis</span>"
     ]
   },
   {
     "objectID": "part3/troubleshooting.html",
     "href": "part3/troubleshooting.html",
-    "title": "12  Common Tasks & Troubleshooting",
+    "title": "17  Common Tasks & Troubleshooting",
     "section": "",
-    "text": "12.1 Conda\nThis chapter covers frequently asked questions and common problems.",
+    "text": "17.1 Conda\nThis chapter covers frequently asked questions and common problems.",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Common Tasks & Troubleshooting</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Common Tasks & Troubleshooting</span>"
     ]
   },
   {
     "objectID": "part3/troubleshooting.html#conda",
     "href": "part3/troubleshooting.html#conda",
-    "title": "12  Common Tasks & Troubleshooting",
+    "title": "17  Common Tasks & Troubleshooting",
     "section": "",
-    "text": "12.1.1 “command not found: conda”\nmacOS/Linux: Conda isn’t initialized in this shell session.\nsource ~/miniforge3/etc/profile.d/conda.sh\n# Or for miniconda:\nsource ~/miniconda3/etc/profile.d/conda.sh\nAdd this to your ~/.zshrc or ~/.bashrc to make it permanent.\nWindows: Open “Anaconda Prompt” or “Miniforge Prompt” instead of regular Command Prompt.\n\n\n12.1.2 “Solving environment” is very slow\nConda’s dependency resolver can be slow with complex environments.\nSolutions:\n\nUse mamba (faster drop-in replacement):\nconda install mamba -n base\nmamba install package-name\nCreate minimal environments:\nconda create -n project python=3.11 pandas numpy\n# Instead of installing everything at once\nUse conda-forge channel consistently:\nconda config --add channels conda-forge\nconda config --set channel_priority strict\n\n\n\n12.1.3 Environment not activating in Positron\n\nOpen Positron’s integrated terminal\nManually activate: conda activate my-env\nUse Command Palette: “Python: Select Interpreter” → choose the environment\n\n\n\n12.1.4 Recreating a broken environment\nconda deactivate\nconda env remove -n broken-env\nconda env create -f environment.yml",
+    "text": "17.1.1 “command not found: conda”\nmacOS/Linux: Conda isn’t initialized in this shell session.\nsource ~/miniforge3/etc/profile.d/conda.sh\n# Or for miniconda:\nsource ~/miniconda3/etc/profile.d/conda.sh\nAdd this to your ~/.zshrc or ~/.bashrc to make it permanent.\nWindows: Open “Anaconda Prompt” or “Miniforge Prompt” instead of regular Command Prompt.\n\n\n17.1.2 “Solving environment” is very slow\nConda’s dependency resolver can be slow with complex environments.\nSolutions:\n\nUse mamba (faster drop-in replacement):\nconda install mamba -n base\nmamba install package-name\nCreate minimal environments:\nconda create -n project python=3.11 pandas numpy\n# Instead of installing everything at once\nUse conda-forge channel consistently:\nconda config --add channels conda-forge\nconda config --set channel_priority strict\n\n\n\n17.1.3 Environment not activating in Positron\n\nOpen Positron’s integrated terminal\nManually activate: conda activate my-env\nUse Command Palette: “Python: Select Interpreter” → choose the environment\n\n\n\n17.1.4 Recreating a broken environment\nconda deactivate\nconda env remove -n broken-env\nconda env create -f environment.yml",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Common Tasks & Troubleshooting</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Common Tasks & Troubleshooting</span>"
     ]
   },
   {
     "objectID": "part3/troubleshooting.html#renv",
     "href": "part3/troubleshooting.html#renv",
-    "title": "12  Common Tasks & Troubleshooting",
-    "section": "12.2 renv",
-    "text": "12.2 renv\n\n12.2.1 “The project is out-of-sync”\nThis warning means packages in your library don’t match renv.lock.\nTo see what’s different:\nrenv::status()\nTo sync library to lockfile (recommended):\nrenv::restore()\nTo update lockfile to match library:\nrenv::snapshot()\n\n\n12.2.2 Package installation fails\nTry clearing the cache and rebuilding:\nrenv::install(\"package-name\", rebuild = TRUE)\nFor persistent issues:\n# Check for system dependencies\nrenv::diagnostics()\n\n# Install from a different repository\nrenv::install(\"package-name\", repos = \"https://cloud.r-project.org\")\n\n\n12.2.3 Starting fresh with renv\nrenv::deactivate()\nrm -rf renv renv.lock .Rprofile\nrenv::init()",
+    "title": "17  Common Tasks & Troubleshooting",
+    "section": "17.2 renv",
+    "text": "17.2 renv\n\n17.2.1 “The project is out-of-sync”\nThis warning means packages in your library don’t match renv.lock.\nTo see what’s different:\nrenv::status()\nTo sync library to lockfile (recommended):\nrenv::restore()\nTo update lockfile to match library:\nrenv::snapshot()\n\n\n17.2.2 Package installation fails\nTry clearing the cache and rebuilding:\nrenv::install(\"package-name\", rebuild = TRUE)\nFor persistent issues:\n# Check for system dependencies\nrenv::diagnostics()\n\n# Install from a different repository\nrenv::install(\"package-name\", repos = \"https://cloud.r-project.org\")\n\n\n17.2.3 Starting fresh with renv\nrenv::deactivate()\nrm -rf renv renv.lock .Rprofile\nrenv::init()",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Common Tasks & Troubleshooting</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Common Tasks & Troubleshooting</span>"
     ]
   },
   {
     "objectID": "part3/troubleshooting.html#git",
     "href": "part3/troubleshooting.html#git",
-    "title": "12  Common Tasks & Troubleshooting",
-    "section": "12.3 Git",
-    "text": "12.3 Git\n\n12.3.1 “Updates were rejected because the remote contains work…”\nSomeone pushed while you were working.\ngit pull\n# Resolve any conflicts if needed\ngit push\n\n\n12.3.2 Accidentally committed large files\nRemove from history (if not yet pushed):\ngit reset --soft HEAD~1\n# Edit .gitignore to exclude the file\ngit add .gitignore\ngit commit -m \"Fix gitignore\"\nIf already pushed, use BFG or git-filter-branch (more complex).\n\n\n12.3.3 Undo the last commit (keep changes)\ngit reset --soft HEAD~1\n\n\n12.3.4 See what changed in a file\ngit log -p filename.R\n\n\n12.3.5 Discard all uncommitted changes\ngit checkout -- .\n# Or for all files including untracked:\ngit clean -fd\n⚠️ This permanently deletes uncommitted work!",
+    "title": "17  Common Tasks & Troubleshooting",
+    "section": "17.3 Git",
+    "text": "17.3 Git\n\n17.3.1 “Updates were rejected because the remote contains work…”\nSomeone pushed while you were working.\ngit pull\n# Resolve any conflicts if needed\ngit push\n\n\n17.3.2 Accidentally committed large files\nRemove from history (if not yet pushed):\ngit reset --soft HEAD~1\n# Edit .gitignore to exclude the file\ngit add .gitignore\ngit commit -m \"Fix gitignore\"\nIf already pushed, use BFG or git-filter-branch (more complex).\n\n\n17.3.3 Undo the last commit (keep changes)\ngit reset --soft HEAD~1\n\n\n17.3.4 See what changed in a file\ngit log -p filename.R\n\n\n17.3.5 Discard all uncommitted changes\ngit checkout -- .\n# Or for all files including untracked:\ngit clean -fd\n⚠️ This permanently deletes uncommitted work!",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Common Tasks & Troubleshooting</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Common Tasks & Troubleshooting</span>"
     ]
   },
   {
     "objectID": "part3/troubleshooting.html#claude-code",
     "href": "part3/troubleshooting.html#claude-code",
-    "title": "12  Common Tasks & Troubleshooting",
-    "section": "12.4 Claude Code",
-    "text": "12.4 Claude Code\n\n12.4.1 “Command not found” for conda in Claude Code\nClaude Code runs in a non-interactive shell. Always source conda first:\nsource ~/miniforge3/etc/profile.d/conda.sh && conda activate my-env && python script.py\nDocument this pattern in your .claude/CLAUDE.md.\n\n\n12.4.2 Claude doesn’t understand my project\nEnsure .claude/CLAUDE.md exists and contains:\n\nProject overview\nEnvironment setup commands\nKey file locations\nCommon workflows\n\n\n\n12.4.3 Responses are generic or unhelpful\nProvide more context:\n\nShow the specific file or code\nExplain what you’re trying to accomplish\nShare error messages in full\n\nInstead of: “Fix the bug”\nTry: “In analysis.R line 45, I get ‘object x not found’. Here’s the relevant code: [paste code]. The data is loaded from data/raw/data.csv.”",
+    "title": "17  Common Tasks & Troubleshooting",
+    "section": "17.4 Claude Code",
+    "text": "17.4 Claude Code\n\n17.4.1 “Command not found” for conda in Claude Code\nClaude Code runs in a non-interactive shell. Always source conda first:\nsource ~/miniforge3/etc/profile.d/conda.sh && conda activate my-env && python script.py\nDocument this pattern in your .claude/CLAUDE.md.\n\n\n17.4.2 Claude doesn’t understand my project\nEnsure .claude/CLAUDE.md exists and contains:\n\nProject overview\nEnvironment setup commands\nKey file locations\nCommon workflows\n\n\n\n17.4.3 Responses are generic or unhelpful\nProvide more context:\n\nShow the specific file or code\nExplain what you’re trying to accomplish\nShare error messages in full\n\nInstead of: “Fix the bug”\nTry: “In analysis.R line 45, I get ‘object x not found’. Here’s the relevant code: [paste code]. The data is loaded from data/raw/data.csv.”",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Common Tasks & Troubleshooting</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Common Tasks & Troubleshooting</span>"
     ]
   },
   {
     "objectID": "part3/troubleshooting.html#positron",
     "href": "part3/troubleshooting.html#positron",
-    "title": "12  Common Tasks & Troubleshooting",
-    "section": "12.5 Positron",
-    "text": "12.5 Positron\n\n12.5.1 R not detected\n\nCheck R is installed: R --version in terminal\nIn Positron settings, search for “R Path” and set it explicitly\nRestart Positron\n\n\n\n12.5.2 Python interpreter not showing\n\nActivate conda environment in terminal\nCommand Palette → “Python: Select Interpreter”\nClick “Enter interpreter path” and navigate to the environment’s Python\n\n\n\n12.5.3 Slow or unresponsive\n\nClose unused tabs\nRestart Positron\nCheck if large objects are in memory (clear R/Python session)\nCheck system memory usage",
+    "title": "17  Common Tasks & Troubleshooting",
+    "section": "17.5 Positron",
+    "text": "17.5 Positron\n\n17.5.1 R not detected\n\nCheck R is installed: R --version in terminal\nIn Positron settings, search for “R Path” and set it explicitly\nRestart Positron\n\n\n\n17.5.2 Python interpreter not showing\n\nActivate conda environment in terminal\nCommand Palette → “Python: Select Interpreter”\nClick “Enter interpreter path” and navigate to the environment’s Python\n\n\n\n17.5.3 Slow or unresponsive\n\nClose unused tabs\nRestart Positron\nCheck if large objects are in memory (clear R/Python session)\nCheck system memory usage",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Common Tasks & Troubleshooting</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Common Tasks & Troubleshooting</span>"
     ]
   },
   {
     "objectID": "part3/troubleshooting.html#quarto",
     "href": "part3/troubleshooting.html#quarto",
-    "title": "12  Common Tasks & Troubleshooting",
-    "section": "12.6 Quarto",
-    "text": "12.6 Quarto\n\n12.6.1 “quarto: command not found”\nmacOS:\nbrew install quarto\n# Or use full path:\n/usr/local/bin/quarto render document.qmd\nWindows: Ensure Quarto installer added it to PATH. Restart terminal.\n\n\n12.6.2 Render fails with R errors\n\nRun the R code chunks manually to find the error\nCheck that all packages are installed\nEnsure working directory is correct (use here package)\n\n\n\n12.6.3 Render fails with Python errors\n\nEnsure correct conda environment is active\nCheck Python interpreter in document YAML:\njupyter: python3",
+    "title": "17  Common Tasks & Troubleshooting",
+    "section": "17.6 Quarto",
+    "text": "17.6 Quarto\n\n17.6.1 “quarto: command not found”\nmacOS:\nbrew install quarto\n# Or use full path:\n/usr/local/bin/quarto render document.qmd\nWindows: Ensure Quarto installer added it to PATH. Restart terminal.\n\n\n17.6.2 Render fails with R errors\n\nRun the R code chunks manually to find the error\nCheck that all packages are installed\nEnsure working directory is correct (use here package)\n\n\n\n17.6.3 Render fails with Python errors\n\nEnsure correct conda environment is active\nCheck Python interpreter in document YAML:\njupyter: python3",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Common Tasks & Troubleshooting</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Common Tasks & Troubleshooting</span>"
     ]
   },
   {
     "objectID": "part3/troubleshooting.html#general-workflow",
     "href": "part3/troubleshooting.html#general-workflow",
-    "title": "12  Common Tasks & Troubleshooting",
-    "section": "12.7 General Workflow",
-    "text": "12.7 General Workflow\n\n12.7.1 How do I start working on a project?\ncd project-directory\nconda activate project-env  # if Python\npositron .\n# R activates renv automatically via .Rprofile\n\n\n12.7.2 How do I end a work session?\ngit status                    # See what changed\ngit add .                     # Stage changes\ngit commit -m \"Description\"   # Commit\ngit push                      # Push to GitHub\n\n\n12.7.3 How do I update all packages?\nPython:\nconda update --all\nconda env export &gt; environment.yml\ngit add environment.yml && git commit -m \"Update packages\"\nR:\nrenv::update()\nrenv::snapshot()\ngit add renv.lock && git commit -m \"Update R packages\"\n\n\n12.7.4 How do I share my project?\n\nEnsure environment.yml and renv.lock are up to date\nWrite clear README with setup instructions\nPush to GitHub\nShare the repository URL\n\nThe collaborator then:\ngit clone https://github.com/user/project.git\ncd project\nconda env create -f environment.yml\n# In R: renv::restore()",
+    "title": "17  Common Tasks & Troubleshooting",
+    "section": "17.7 General Workflow",
+    "text": "17.7 General Workflow\n\n17.7.1 How do I start working on a project?\ncd project-directory\nconda activate project-env  # if Python\npositron .\n# R activates renv automatically via .Rprofile\n\n\n17.7.2 How do I end a work session?\ngit status                    # See what changed\ngit add .                     # Stage changes\ngit commit -m \"Description\"   # Commit\ngit push                      # Push to GitHub\n\n\n17.7.3 How do I update all packages?\nPython:\nconda update --all\nconda env export &gt; environment.yml\ngit add environment.yml && git commit -m \"Update packages\"\nR:\nrenv::update()\nrenv::snapshot()\ngit add renv.lock && git commit -m \"Update R packages\"\n\n\n17.7.4 How do I share my project?\n\nEnsure environment.yml and renv.lock are up to date\nWrite clear README with setup instructions\nPush to GitHub\nShare the repository URL\n\nThe collaborator then:\ngit clone https://github.com/user/project.git\ncd project\nconda env create -f environment.yml\n# In R: renv::restore()",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Common Tasks & Troubleshooting</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Common Tasks & Troubleshooting</span>"
     ]
   },
   {
     "objectID": "part3/troubleshooting.html#getting-help",
     "href": "part3/troubleshooting.html#getting-help",
-    "title": "12  Common Tasks & Troubleshooting",
-    "section": "12.8 Getting Help",
-    "text": "12.8 Getting Help\n\n12.8.1 For tool-specific issues:\n\nConda: docs.conda.io\nrenv: rstudio.github.io/renv\nGit: git-scm.com/doc\nPositron: positron.posit.co\nClaude Code: claude.com/claude-code\nQuarto: quarto.org\n\n\n\n12.8.2 In Claude Code:\nJust ask! Describe your problem with as much detail as possible.",
+    "title": "17  Common Tasks & Troubleshooting",
+    "section": "17.8 Getting Help",
+    "text": "17.8 Getting Help\n\n17.8.1 For tool-specific issues:\n\nConda: docs.conda.io\nrenv: rstudio.github.io/renv\nGit: git-scm.com/doc\nPositron: positron.posit.co\nClaude Code: claude.com/claude-code\nQuarto: quarto.org\n\n\n\n17.8.2 In Claude Code:\nJust ask! Describe your problem with as much detail as possible.",
     "crumbs": [
       "Workflows",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Common Tasks & Troubleshooting</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Common Tasks & Troubleshooting</span>"
     ]
   },
   {
