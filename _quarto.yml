@@ -7,8 +7,8 @@ execute:
   freeze: auto
 
 book:
-  title: "Lab Compute Guide"
-  subtitle: "A Practical Guide to Computational Analysis"
+  title: "Data Analysis in the Musser Lab"
+  subtitle: "A Practical Guide to Reproducible Research"
   author: "Jacob Musser, in collaboration with Claude Code"
   date: today
   date-format: "MMMM YYYY"
