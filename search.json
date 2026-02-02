@@ -117,11 +117,11 @@
     ]
   },
   {
-    "objectID": "part1/installation.html#r",
-    "href": "part1/installation.html#r",
+    "objectID": "part1/installation.html#r-using-rig",
+    "href": "part1/installation.html#r-using-rig",
     "title": "2  Installation",
-    "section": "2.3 3. R",
-    "text": "2.3 3. R\n\n2.3.1 macOS\n\nDownload R from https://cran.r-project.org/bin/macosx/\nOpen the .pkg file and follow the installer\nVerify in Terminal:\n\nR --version\n\n\n2.3.2 Windows\n\nDownload R from https://cran.r-project.org/bin/windows/base/\nRun the installer with default settings\nVerify in Command Prompt:\n\nR --version",
+    "section": "2.3 3. R (using rig)",
+    "text": "2.3 3. R (using rig)\nWe use rig (R Installation Manager) to install and manage R versions. This makes it easy to install R, switch between versions, and keep R updated.\n\n2.3.1 macOS\nFirst, install rig using Homebrew:\nbrew tap r-lib/rig\nbrew install --cask rig\nThen install the latest R version:\nrig add release\nVerify the installation:\nR --version\n\n\n\n\n\n\nTiprig Commands\n\n\n\n\nrig list — See installed R versions\nrig add release — Install latest stable R\nrig add devel — Install development version\nrig default &lt;version&gt; — Set default R version\n\n\n\n\n\n2.3.2 Windows\n\nDownload the rig installer from https://github.com/r-lib/rig/releases\n\nChoose rig-windows-latest.exe\n\nRun the installer\nOpen a new PowerShell window and install R:\n\nrig add release\n\nVerify:\n\nR --version\n\n\n2.3.3 Why rig?\n\nEasy updates: rig add release always gets the latest version\nMultiple versions: Install R 4.3 and R 4.4 side by side for testing\nClean uninstall: rig rm &lt;version&gt; removes R cleanly\nConsistent: Same commands on macOS and Windows",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Installation</span>"
