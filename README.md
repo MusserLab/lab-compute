@@ -1,6 +1,6 @@
-# Lab Compute Guide
+# Data Analysis in the Musser Lab
 
-A practical guide to computational analysis using modern tools and reproducible workflows.
+A practical guide to reproducible research using modern tools and workflows.
 
 **📖 Read the book:** https://MusserLab.github.io/lab-compute/
 
@@ -51,7 +51,7 @@ Or open an issue to report errors or suggest improvements.
 
 ## Author
 
-Jacob Musser, in collaboration with [Claude Code](https://claude.ai/claude-code)
+Jacob Musser, in collaboration with [Claude Code](https://code.claude.com/docs/en/overview)
 
 ## License
 

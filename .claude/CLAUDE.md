@@ -1,8 +1,8 @@
-# Lab Compute Guide
+# Data Analysis in the Musser Lab
 
 ## Overview
 
-A Quarto book teaching Musser Lab students how to perform computational analysis using modern tools: Positron, conda, renv, Git/GitHub, and Claude Code.
+A Quarto book teaching Musser Lab students how to set up reproducible data analysis workflows using modern tools: Positron, conda, renv, Git/GitHub, and Claude Code.
 
 **Author:** Jacob Musser, in collaboration with Claude Code
 **Live site:** https://MusserLab.github.io/lab-compute/
@@ -62,6 +62,12 @@ git commit -m "Description of changes"
 git push
 quarto publish gh-pages
 ```
+
+### Keep README in sync
+When making significant changes to the book (title, structure, content scope), update `README.md` to match. The README should reflect:
+- Current book title and description
+- What the book covers
+- Links to the live site
 
 ## Available Skills
 

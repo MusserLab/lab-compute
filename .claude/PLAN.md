@@ -34,10 +34,11 @@
 
 ## Ideas for Future Chapters
 
-- [ ] Working with HPC/cluster computing
 - [ ] Quarto documents and reports
 - [ ] Data management best practices
 - [ ] Common bioinformatics workflows
+
+> **Note:** HPC/cluster computing, genomic resources, and data storage info will be in a separate "Lab Resources" reference, not this book.
 
 ## Screenshots Needed
 
@@ -59,6 +60,9 @@
 - [x] Created `/publish` skill for Quarto publishing
 - [x] Created `/quarto-book-setup` skill for new books
 - [x] Updated `/done` skill to offer publishing for Quarto books/websites
+- [x] Updated book title to "Data Analysis in the Musser Lab"
+- [x] Changed rig macOS install to .pkg from GitHub (not Homebrew)
+- [x] Moved PLAN.md to .claude/ folder
 
 ---
 
@@ -66,7 +70,15 @@
 
 _Add notes here during working sessions_
 
-### 2026-02-01
+### 2026-02-01 (session 2)
+- Updated book title to "Data Analysis in the Musser Lab"
+- Changed rig macOS install to use .pkg from GitHub (not Homebrew)
+- Removed "clean uninstall" from rig benefits (keep old R versions!)
+- Discussed scope: this book = data science setup; separate resource for HPC/storage/genomic resources
+- Moved PLAN.md to .claude/ folder
+- Added README sync reminder to project CLAUDE.md
+
+### 2026-02-01 (session 1)
 - Created initial book structure
 - Published to https://MusserLab.github.io/lab-compute/
 - Updated to use rig for R installation
