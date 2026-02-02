@@ -6,7 +6,7 @@ In the Musser Lab, most analyses are written as **self-contained Quarto scripts*
 
 This workflow supports how we actually work:
 
-- We often use **both R and Python** across a project.
+- We often use **both R and Python** across a project, although usually one one language per script.
 - Each analysis script clearly states what data it reads and what it produces.
 - Scripts are designed to be readable, annotated, and reproducible for other lab members.
 
@@ -28,8 +28,8 @@ The toolchain in this guide exists to make `.qmd`-based analyses:
 
 A typical analysis loop in the lab:
 
-1. Open a project folder in Positron
-2. Activate the project environments (conda for Python, renv for R)
+1. Open the project folder in Positron
+2. Positron automatically activates the project environments (conda for Python, renv for R)
 3. Write a Quarto analysis script (`.qmd`) that loads data, runs analysis, and exports results
 4. Render the script to HTML: `quarto render analysis/my_analysis.qmd`
 5. Commit and push code + lockfiles (`environment.yml`, `renv.lock`) with Git
@@ -56,7 +56,7 @@ A typical analysis loop in the lab:
 
 **Conda** defines a Python environment for the project (Python version + packages).
 
-**renv** pins the R package set for the project.
+**renv** manages the R package set for the project.
 
 **Git/GitHub** tracks changes to scripts, data-processing logic, and environment definitions.
 

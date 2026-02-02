@@ -27,7 +27,7 @@ We treat an analysis as a portable object:
 A collaborator should be able to clone the repo, recreate the environments, and reproduce outputs.
 :::
 
-## RStudio → Positron translation (90 seconds)
+## RStudio → Positron translation
 
 If you're used to RStudio, here are the key conceptual shifts:
 
@@ -77,7 +77,6 @@ We emphasize:
 1. **Reproducibility** — analysis runs should be easy to reproduce and share
 2. **Environment isolation** — library/package dependencies are explicit and project-specific
 3. **Version control** — changes are tracked, reviewable, and reversible
-4. **Pragmatism** — workflows should save time, not create busy work
-5. **AI assistance** — accelerate analysis, manage project goals, automate git, but **verify outputs**
+4. **AI assistance** — accelerate analysis, manage project goals, automate git, but **verify outputs**
 
 If you remember one idea: **make analyses easy to reproduce for someone else.**
