@@ -429,6 +429,9 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome</a>
   <ul class="collapse">
+  <li><a href="#by-the-end-of-your-first-week" id="toc-by-the-end-of-your-first-week" class="nav-link" data-scroll-target="#by-the-end-of-your-first-week">By the end of your first week</a></li>
+  <li><a href="#rstudio-positron-translation-90-seconds" id="toc-rstudio-positron-translation-90-seconds" class="nav-link" data-scroll-target="#rstudio-positron-translation-90-seconds">RStudio → Positron translation (90 seconds)</a></li>
+  <li><a href="#lab-norms-high-signal-defaults" id="toc-lab-norms-high-signal-defaults" class="nav-link" data-scroll-target="#lab-norms-high-signal-defaults">Lab norms (high signal defaults)</a></li>
   <li><a href="#who-this-guide-is-for" id="toc-who-this-guide-is-for" class="nav-link" data-scroll-target="#who-this-guide-is-for">Who This Guide Is For</a></li>
   <li><a href="#how-to-use-this-guide" id="toc-how-to-use-this-guide" class="nav-link" data-scroll-target="#how-to-use-this-guide">How to Use This Guide</a></li>
   <li><a href="#the-philosophy" id="toc-the-philosophy" class="nav-link" data-scroll-target="#the-philosophy">The Philosophy</a></li>
@@ -474,34 +477,140 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="welcome" class="level1 unnumbered">
 <h1 class="unnumbered">Welcome</h1>
-<p>This guide teaches you how to perform computational analysis using a modern, reproducible workflow. You’ll learn to use:</p>
+<p>This guide teaches reproducible, collaborative data analysis workflows for the Musser Lab. Most lab projects use <strong>both R and Python</strong>: R is often best for statistical analysis, plotting, and many important legacy packages used for RNA sequencing and proteomic analysis (e.g.&nbsp;Seurat, DESeq2, and limma); Python is often best for automating analysis pipelines (including in bash), manipulating files, working with sequences and strings, and a growing number of RNAseq data analysis libraries (e.g.&nbsp;Scanpy, metacell) and plotting libraries (e.g.&nbsp;Matplotlib). The goal of this guide is to help you set up a standard workflow for creating computational projects that are <strong>well-managed, documented, collaborative, and reproducible</strong>.</p>
+<p>The lab’s standard toolchain is:</p>
 <ul>
-<li><strong>Positron</strong> — A powerful IDE designed for data science</li>
-<li><strong>Conda</strong> — Environment management for Python</li>
-<li><strong>renv</strong> — Package management for R</li>
-<li><strong>Git &amp; GitHub</strong> — Version control and collaboration</li>
-<li><strong>Claude Code</strong> — AI-assisted coding</li>
+<li><strong>Positron</strong> — the IDE/workspace where we develop and run R + Python</li>
+<li><strong>Conda</strong> — Python environment management (Python version + packages)</li>
+<li><strong>Rig &amp; renv</strong> — R installation and package management</li>
+<li><strong>Git &amp; GitHub</strong> — version control, collaboration, and backup</li>
+<li><strong>Claude Code</strong> — optional AI-assisted coding (useful, but never required)</li>
 </ul>
+<section id="by-the-end-of-your-first-week" class="level2">
+<h2 class="anchored" data-anchor-id="by-the-end-of-your-first-week">By the end of your first week</h2>
+<p>You should be able to:</p>
+<ol type="1">
+<li>Open a lab analysis folder in Positron and understand what “the project” is (it’s the folder)</li>
+<li>Create and activate a <strong>conda environment</strong> for Python and a <strong>renv environment</strong> for R in the same project</li>
+<li>Write a Quarto script (.qmd) with a small R chunk and render it into an HTML report.</li>
+<li>Commit and push changes to GitHub, including environment lockfiles when relevant</li>
+<li>Diagnose the most common setup issues (wrong interpreter/kernel, missing packages, PATH problems)</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>The key idea
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We treat an analysis as a portable object: <strong>(code + environment definitions + instructions)</strong> A collaborator should be able to clone the repo, recreate the environments, and reproduce outputs.</p>
+</div>
+</div>
+</section>
+<section id="rstudio-positron-translation-90-seconds" class="level2">
+<h2 class="anchored" data-anchor-id="rstudio-positron-translation-90-seconds">RStudio → Positron translation (90 seconds)</h2>
+<p>If you’re used to RStudio, here are the key conceptual shifts:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>RStudio concept</th>
+<th>Positron concept</th>
+<th>What changes?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>“Project” (.Rproj)</td>
+<td><strong>Open Folder / Workspace</strong></td>
+<td>The folder is the unit of work; you open it as a workspace.</td>
+</tr>
+<tr class="even">
+<td>R console</td>
+<td>R console</td>
+<td>Still an R process, but integrated with a broader editor/terminal model.</td>
+</tr>
+<tr class="odd">
+<td>Python integration</td>
+<td>Python interpreter + (sometimes) <strong>kernel</strong></td>
+<td>You must be explicit about which Python environment is used for scripts/notebooks.</td>
+</tr>
+<tr class="even">
+<td>R package library</td>
+<td><code>renv</code></td>
+<td>Packages are pinned per project; do not rely on global R libraries.</td>
+</tr>
+<tr class="odd">
+<td>“Environment pane”</td>
+<td>variable viewers + terminal + notebooks</td>
+<td>Different UI, same goals.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="lab-norms-high-signal-defaults" class="level2">
+<h2 class="anchored" data-anchor-id="lab-norms-high-signal-defaults">Lab norms (high signal defaults)</h2>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Lab norms (please follow)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>One project, one publication</strong> Think of projects as the computational infrastructure for one publication.</li>
+<li><strong>Never install packages into the base conda environment.</strong> Create a conda environment specific to the project.</li>
+<li><strong>Every project has both</strong>: a conda environment definition (for Python) and an renv lockfile (for R), unless explicitly documented otherwise.</li>
+<li>If you change dependencies (e.g.&nbsp;installing new R packages), <strong>commit the lockfile(s)</strong> with your other changes (<code>environment.yml</code> / <code>renv.lock</code>).</li>
+<li>Keep git repositories lightweight: <strong>avoid large raw data or output plots in git</strong> unless it’s deliberately small demo data.</li>
+<li>Every project has a <strong>README</strong>: what it is, how to run it, where outputs go.</li>
+</ul>
+</div>
+</div>
+</section>
 <section id="who-this-guide-is-for" class="level2">
 <h2 class="anchored" data-anchor-id="who-this-guide-is-for">Who This Guide Is For</h2>
-<p>This guide is written for students and researchers who have some programming experience but want to learn professional workflows for computational analysis. You should be comfortable with basic R or Python syntax, but don’t need prior experience with the specific tools covered here.</p>
+<p>This guide is for lab members with basic programming experience (often RStudio-based) who want professional workflows for reproducible analysis and collaboration. You do not need prior expertise with conda, renv, or Git—this guide is designed to get you to “operational competence.”</p>
 </section>
 <section id="how-to-use-this-guide" class="level2">
 <h2 class="anchored" data-anchor-id="how-to-use-this-guide">How to Use This Guide</h2>
-<p><strong>If you’re new</strong>, start with <a href="./part1/intro.html">Part 1: Quick Start</a>. You’ll install all the tools and create your first project in about 30 minutes.</p>
-<p><strong>If you need a reference</strong>, jump to <a href="./part2/positron.html">Part 2: Core Tools</a> for detailed coverage of each tool.</p>
-<p><strong>If you’re looking for workflows</strong>, see <a href="./part3/starting-project.html">Part 3: Workflows</a> for task-oriented guides.</p>
+<p>Start with <strong>Part 1: Quick Start</strong>. You’ll install tools and build a small first project that demonstrates the standard lab setup (Positron + conda + renv + Git/GitHub).</p>
+<p>Then:</p>
+<ul>
+<li>Use <strong>Part 2: Core Tools</strong> as reference when you need to understand a tool or troubleshoot it.</li>
+<li>Use <strong>Part 3: Workflows</strong> for checklists (starting a project, collaborating, reproducibility, troubleshooting).</li>
+</ul>
+<p>Suggested reading order for most new lab members:</p>
+<ol type="1">
+<li>Quick Start → Installation</li>
+<li>Quick Start → Your First Project</li>
+<li>Core Tools → Positron</li>
+<li>Core Tools → Conda and renv</li>
+<li>Core Tools → Git &amp; GitHub</li>
+<li>Core Tools - Claude Code</li>
+</ol>
 </section>
 <section id="the-philosophy" class="level2">
 <h2 class="anchored" data-anchor-id="the-philosophy">The Philosophy</h2>
 <p>We emphasize:</p>
 <ol type="1">
-<li><strong>Reproducibility</strong> — Your analyses should run on any machine</li>
-<li><strong>Version control</strong> — Track changes and collaborate effectively</li>
-<li><strong>Environment isolation</strong> — Each project has its own dependencies</li>
-<li><strong>AI assistance</strong> — Use modern tools to accelerate your work</li>
+<li><strong>Reproducibility</strong> — analysis runs should be easy to reproduce and share</li>
+<li><strong>Environment isolation</strong> — library/package dependencies are explicit and project-specific</li>
+<li><strong>Version control</strong> — changes are tracked, reviewable, and reversible</li>
+<li><strong>Pragmatism</strong> — workflows should save time, not create busy work</li>
+<li><strong>AI assistance</strong> — accelerate analysis, manage project goals, automate git, but <strong>verify outputs</strong></li>
 </ol>
-<p>Let’s get started.</p>
+<p>If you remember one idea: <strong>make analyses easy to reproduce for someone else.</strong></p>
 
 
 </section>

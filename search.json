@@ -4,7 +4,37 @@
     "href": "index.html",
     "title": "Data Analysis in the Musser Lab",
     "section": "",
-    "text": "Welcome\nThis guide teaches you how to perform computational analysis using a modern, reproducible workflow. You’ll learn to use:",
+    "text": "Welcome\nThis guide teaches reproducible, collaborative data analysis workflows for the Musser Lab. Most lab projects use both R and Python: R is often best for statistical analysis, plotting, and many important legacy packages used for RNA sequencing and proteomic analysis (e.g. Seurat, DESeq2, and limma); Python is often best for automating analysis pipelines (including in bash), manipulating files, working with sequences and strings, and a growing number of RNAseq data analysis libraries (e.g. Scanpy, metacell) and plotting libraries (e.g. Matplotlib). The goal of this guide is to help you set up a standard workflow for creating computational projects that are well-managed, documented, collaborative, and reproducible.\nThe lab’s standard toolchain is:",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#by-the-end-of-your-first-week",
+    "href": "index.html#by-the-end-of-your-first-week",
+    "title": "Data Analysis in the Musser Lab",
+    "section": "By the end of your first week",
+    "text": "By the end of your first week\nYou should be able to:\n\nOpen a lab analysis folder in Positron and understand what “the project” is (it’s the folder)\nCreate and activate a conda environment for Python and a renv environment for R in the same project\nWrite a Quarto script (.qmd) with a small R chunk and render it into an HTML report.\nCommit and push changes to GitHub, including environment lockfiles when relevant\nDiagnose the most common setup issues (wrong interpreter/kernel, missing packages, PATH problems)\n\n\n\n\n\n\n\nNoteThe key idea\n\n\n\nWe treat an analysis as a portable object: (code + environment definitions + instructions) A collaborator should be able to clone the repo, recreate the environments, and reproduce outputs.",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#rstudio-positron-translation-90-seconds",
+    "href": "index.html#rstudio-positron-translation-90-seconds",
+    "title": "Data Analysis in the Musser Lab",
+    "section": "RStudio → Positron translation (90 seconds)",
+    "text": "RStudio → Positron translation (90 seconds)\nIf you’re used to RStudio, here are the key conceptual shifts:\n\n\n\n\n\n\n\n\nRStudio concept\nPositron concept\nWhat changes?\n\n\n\n\n“Project” (.Rproj)\nOpen Folder / Workspace\nThe folder is the unit of work; you open it as a workspace.\n\n\nR console\nR console\nStill an R process, but integrated with a broader editor/terminal model.\n\n\nPython integration\nPython interpreter + (sometimes) kernel\nYou must be explicit about which Python environment is used for scripts/notebooks.\n\n\nR package library\nrenv\nPackages are pinned per project; do not rely on global R libraries.\n\n\n“Environment pane”\nvariable viewers + terminal + notebooks\nDifferent UI, same goals.",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#lab-norms-high-signal-defaults",
+    "href": "index.html#lab-norms-high-signal-defaults",
+    "title": "Data Analysis in the Musser Lab",
+    "section": "Lab norms (high signal defaults)",
+    "text": "Lab norms (high signal defaults)\n\n\n\n\n\n\nImportantLab norms (please follow)\n\n\n\n\nOne project, one publication Think of projects as the computational infrastructure for one publication.\nNever install packages into the base conda environment. Create a conda environment specific to the project.\nEvery project has both: a conda environment definition (for Python) and an renv lockfile (for R), unless explicitly documented otherwise.\nIf you change dependencies (e.g. installing new R packages), commit the lockfile(s) with your other changes (environment.yml / renv.lock).\nKeep git repositories lightweight: avoid large raw data or output plots in git unless it’s deliberately small demo data.\nEvery project has a README: what it is, how to run it, where outputs go.",
     "crumbs": [
       "Welcome"
     ]
@@ -14,7 +44,7 @@
     "href": "index.html#who-this-guide-is-for",
     "title": "Data Analysis in the Musser Lab",
     "section": "Who This Guide Is For",
-    "text": "Who This Guide Is For\nThis guide is written for students and researchers who have some programming experience but want to learn professional workflows for computational analysis. You should be comfortable with basic R or Python syntax, but don’t need prior experience with the specific tools covered here.",
+    "text": "Who This Guide Is For\nThis guide is for lab members with basic programming experience (often RStudio-based) who want professional workflows for reproducible analysis and collaboration. You do not need prior expertise with conda, renv, or Git—this guide is designed to get you to “operational competence.”",
     "crumbs": [
       "Welcome"
     ]
@@ -24,7 +54,7 @@
     "href": "index.html#how-to-use-this-guide",
     "title": "Data Analysis in the Musser Lab",
     "section": "How to Use This Guide",
-    "text": "How to Use This Guide\nIf you’re new, start with Part 1: Quick Start. You’ll install all the tools and create your first project in about 30 minutes.\nIf you need a reference, jump to Part 2: Core Tools for detailed coverage of each tool.\nIf you’re looking for workflows, see Part 3: Workflows for task-oriented guides.",
+    "text": "How to Use This Guide\nStart with Part 1: Quick Start. You’ll install tools and build a small first project that demonstrates the standard lab setup (Positron + conda + renv + Git/GitHub).\nThen:\n\nUse Part 2: Core Tools as reference when you need to understand a tool or troubleshoot it.\nUse Part 3: Workflows for checklists (starting a project, collaborating, reproducibility, troubleshooting).\n\nSuggested reading order for most new lab members:\n\nQuick Start → Installation\nQuick Start → Your First Project\nCore Tools → Positron\nCore Tools → Conda and renv\nCore Tools → Git & GitHub\nCore Tools - Claude Code",
     "crumbs": [
       "Welcome"
     ]
@@ -34,7 +64,7 @@
     "href": "index.html#the-philosophy",
     "title": "Data Analysis in the Musser Lab",
     "section": "The Philosophy",
-    "text": "The Philosophy\nWe emphasize:\n\nReproducibility — Your analyses should run on any machine\nVersion control — Track changes and collaborate effectively\nEnvironment isolation — Each project has its own dependencies\nAI assistance — Use modern tools to accelerate your work\n\nLet’s get started.",
+    "text": "The Philosophy\nWe emphasize:\n\nReproducibility — analysis runs should be easy to reproduce and share\nEnvironment isolation — library/package dependencies are explicit and project-specific\nVersion control — changes are tracked, reviewable, and reversible\nPragmatism — workflows should save time, not create busy work\nAI assistance — accelerate analysis, manage project goals, automate git, but verify outputs\n\nIf you remember one idea: make analyses easy to reproduce for someone else.",
     "crumbs": [
       "Welcome"
     ]
