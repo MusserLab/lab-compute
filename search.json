@@ -2,7 +2,7 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Lab Compute Guide",
+    "title": "Data Analysis in the Musser Lab",
     "section": "",
     "text": "Welcome\nThis guide teaches you how to perform computational analysis using a modern, reproducible workflow. You’ll learn to use:",
     "crumbs": [
@@ -12,7 +12,7 @@
   {
     "objectID": "index.html#who-this-guide-is-for",
     "href": "index.html#who-this-guide-is-for",
-    "title": "Lab Compute Guide",
+    "title": "Data Analysis in the Musser Lab",
     "section": "Who This Guide Is For",
     "text": "Who This Guide Is For\nThis guide is written for students and researchers who have some programming experience but want to learn professional workflows for computational analysis. You should be comfortable with basic R or Python syntax, but don’t need prior experience with the specific tools covered here.",
     "crumbs": [
@@ -22,7 +22,7 @@
   {
     "objectID": "index.html#how-to-use-this-guide",
     "href": "index.html#how-to-use-this-guide",
-    "title": "Lab Compute Guide",
+    "title": "Data Analysis in the Musser Lab",
     "section": "How to Use This Guide",
     "text": "How to Use This Guide\nIf you’re new, start with Part 1: Quick Start. You’ll install all the tools and create your first project in about 30 minutes.\nIf you need a reference, jump to Part 2: Core Tools for detailed coverage of each tool.\nIf you’re looking for workflows, see Part 3: Workflows for task-oriented guides.",
     "crumbs": [
@@ -32,7 +32,7 @@
   {
     "objectID": "index.html#the-philosophy",
     "href": "index.html#the-philosophy",
-    "title": "Lab Compute Guide",
+    "title": "Data Analysis in the Musser Lab",
     "section": "The Philosophy",
     "text": "The Philosophy\nWe emphasize:\n\nReproducibility — Your analyses should run on any machine\nVersion control — Track changes and collaborate effectively\nEnvironment isolation — Each project has its own dependencies\nAI assistance — Use modern tools to accelerate your work\n\nLet’s get started.",
     "crumbs": [
@@ -121,7 +121,7 @@
     "href": "part1/installation.html#r-using-rig",
     "title": "2  Installation",
     "section": "2.3 3. R (using rig)",
-    "text": "2.3 3. R (using rig)\nWe use rig (R Installation Manager) to install and manage R versions. This makes it easy to install R, switch between versions, and keep R updated.\n\n2.3.1 macOS\nFirst, install rig using Homebrew:\nbrew tap r-lib/rig\nbrew install --cask rig\nThen install the latest R version:\nrig add release\nVerify the installation:\nR --version\n\n\n\n\n\n\nTiprig Commands\n\n\n\n\nrig list — See installed R versions\nrig add release — Install latest stable R\nrig add devel — Install development version\nrig default &lt;version&gt; — Set default R version\n\n\n\n\n\n2.3.2 Windows\n\nDownload the rig installer from https://github.com/r-lib/rig/releases\n\nChoose rig-windows-latest.exe\n\nRun the installer\nOpen a new PowerShell window and install R:\n\nrig add release\n\nVerify:\n\nR --version\n\n\n2.3.3 Why rig?\n\nEasy updates: rig add release always gets the latest version\nMultiple versions: Install R 4.3 and R 4.4 side by side for testing\nClean uninstall: rig rm &lt;version&gt; removes R cleanly\nConsistent: Same commands on macOS and Windows",
+    "text": "2.3 3. R (using rig)\nWe use rig (R Installation Manager) to install and manage R versions. This makes it easy to install R, switch between versions, and keep R updated.\n\n2.3.1 macOS\n\nDownload the latest rig installer from https://github.com/r-lib/rig/releases\n\nChoose the .pkg file (e.g., rig-macos-arm64.pkg for Apple Silicon or rig-macos-x86_64.pkg for Intel Macs)\n\nDouble-click the .pkg file and follow the installation prompts\n\nThen install the latest R version:\nrig add release\nVerify the installation:\nR --version\n\n\n\n\n\n\nTiprig Commands\n\n\n\n\nrig list — See installed R versions\nrig add release — Install latest stable R\nrig add devel — Install development version\nrig default &lt;version&gt; — Set default R version\n\n\n\n\n\n2.3.2 Windows\n\nDownload the rig installer from https://github.com/r-lib/rig/releases\n\nChoose rig-windows-latest.exe\n\nRun the installer\nOpen a new PowerShell window and install R:\n\nrig add release\n\nVerify:\n\nR --version\n\n\n2.3.3 Why rig?\n\nEasy updates: rig add release always gets the latest version\nMultiple versions: Install R 4.3 and R 4.4 side by side for testing\nConsistent: Same commands on macOS and Windows",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Installation</span>"
