@@ -53,12 +53,22 @@ quarto preview
 ```
 
 ### Publish changes
+Use the `/publish` skill to commit and publish in one step.
+
+Or manually:
 ```bash
 git add .
 git commit -m "Description of changes"
 git push
 quarto publish gh-pages
 ```
+
+## Available Skills
+
+| Skill | Trigger | Purpose |
+|-------|---------|---------|
+| `/publish` | User types `/publish` | Commit and publish to GitHub Pages |
+| `/done` | User types `/done` | End-of-session wrap-up, update PLAN.md |
 
 ### Add screenshots
 Place images in `images/` folder and reference with:

@@ -55,6 +55,10 @@
 - [x] Published to GitHub Pages
 - [x] Updated R installation to use rig
 - [x] Author attribution added (Jacob Musser + Claude Code)
+- [x] Project `.claude/CLAUDE.md` created
+- [x] Created `/publish` skill for Quarto publishing
+- [x] Created `/quarto-book-setup` skill for new books
+- [x] Updated `/done` skill to offer publishing for Quarto books/websites
 
 ---
 
@@ -67,3 +71,5 @@ _Add notes here during working sessions_
 - Published to https://MusserLab.github.io/lab-compute/
 - Updated to use rig for R installation
 - Created this planning document
+- Created `/publish` and `/quarto-book-setup` skills
+- Updated `/done` to integrate Quarto publishing
