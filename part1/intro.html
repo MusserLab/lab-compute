@@ -505,7 +505,7 @@ ul.task-list li input[type="checkbox"] {
 <p>In the Musser Lab, most analyses are written as <strong>self-contained Quarto scripts</strong> (<code>.qmd</code>). A <code>.qmd</code> is both a <em>script</em> and a <em>publishable document</em>: it contains code, narrative, and the logic to render a shareable output (usually HTML).</p>
 <p>This workflow supports how we actually work:</p>
 <ul>
-<li>We often use <strong>both R and Python</strong> across a project.</li>
+<li>We often use <strong>both R and Python</strong> across a project, although usually one one language per script.</li>
 <li>Each analysis script clearly states what data it reads and what it produces.</li>
 <li>Scripts are designed to be readable, annotated, and reproducible for other lab members.</li>
 </ul>
@@ -549,8 +549,8 @@ ul.task-list li input[type="checkbox"] {
 <h3 data-number="1.1.1" class="anchored" data-anchor-id="what-good-looks-like"><span class="header-section-number">1.1.1</span> What “good” looks like</h3>
 <p>A typical analysis loop in the lab:</p>
 <ol type="1">
-<li>Open a project folder in Positron</li>
-<li>Activate the project environments (conda for Python, renv for R)</li>
+<li>Open the project folder in Positron</li>
+<li>Positron automatically activates the project environments (conda for Python, renv for R)</li>
 <li>Write a Quarto analysis script (<code>.qmd</code>) that loads data, runs analysis, and exports results</li>
 <li>Render the script to HTML: <code>quarto render analysis/my_analysis.qmd</code></li>
 <li>Commit and push code + lockfiles (<code>environment.yml</code>, <code>renv.lock</code>) with Git</li>
@@ -574,7 +574,7 @@ ul.task-list li input[type="checkbox"] {
 └──┴──────────────────────────────────────────┴───┘</code></pre>
 <p><strong>Positron</strong> is where you write and run code and manage project files.</p>
 <p><strong>Conda</strong> defines a Python environment for the project (Python version + packages).</p>
-<p><strong>renv</strong> pins the R package set for the project.</p>
+<p><strong>renv</strong> manages the R package set for the project.</p>
 <p><strong>Git/GitHub</strong> tracks changes to scripts, data-processing logic, and environment definitions.</p>
 <p><strong>Claude Code</strong> is optional; it can help write or debug code, but outputs must be verified.</p>
 <div class="callout callout-style-default callout-note callout-titled">
