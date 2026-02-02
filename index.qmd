@@ -1,32 +1,86 @@
 # Welcome {.unnumbered}
 
-This guide teaches you how to perform computational analysis using a modern, reproducible workflow. You'll learn to use:
+This guide teaches reproducible, collaborative data analysis workflows for the Musser Lab. Most lab projects use **both R and Python**: R is often best for statistical analysis, plotting, and many important legacy packages used for RNA sequencing and proteomic analysis (e.g. Seurat, DESeq2, and limma); Python is often best for automating analysis pipelines (including in bash), manipulating files, working with sequences and strings, and a growing number of RNAseq data analysis libraries (e.g. Scanpy, metacell) and plotting libraries (e.g. Matplotlib). The goal of this guide is to help you set up a standard workflow for creating computational projects that are **well-managed, documented, collaborative, and reproducible**.
 
-- **Positron** — A powerful IDE designed for data science
-- **Conda** — Environment management for Python
-- **renv** — Package management for R
-- **Git & GitHub** — Version control and collaboration
-- **Claude Code** — AI-assisted coding
+The lab's standard toolchain is:
+
+- **Positron** — the IDE/workspace where we develop and run R + Python
+- **Conda** — Python environment management (Python version + packages)
+- **Rig & renv** — R installation and package management
+- **Git & GitHub** — version control, collaboration, and backup
+- **Claude Code** — optional AI-assisted coding (useful, but never required)
+
+## By the end of your first week
+
+You should be able to:
+
+1. Open a lab analysis folder in Positron and understand what "the project" is (it's the folder)
+2. Create and activate a **conda environment** for Python and a **renv environment** for R in the same project
+3. Write a Quarto script (.qmd) with a small R chunk and render it into an HTML report.
+4. Commit and push changes to GitHub, including environment lockfiles when relevant
+5. Diagnose the most common setup issues (wrong interpreter/kernel, missing packages, PATH problems)
+
+::: {.callout-note}
+### The key idea
+We treat an analysis as a portable object:
+**(code + environment definitions + instructions)**
+A collaborator should be able to clone the repo, recreate the environments, and reproduce outputs.
+:::
+
+## RStudio → Positron translation (90 seconds)
+
+If you're used to RStudio, here are the key conceptual shifts:
+
+| RStudio concept | Positron concept | What changes? |
+|---|---|---|
+| "Project" (.Rproj) | **Open Folder / Workspace** | The folder is the unit of work; you open it as a workspace. |
+| R console | R console | Still an R process, but integrated with a broader editor/terminal model. |
+| Python integration | Python interpreter + (sometimes) **kernel** | You must be explicit about which Python environment is used for scripts/notebooks. |
+| R package library | `renv` | Packages are pinned per project; do not rely on global R libraries. |
+| "Environment pane" | variable viewers + terminal + notebooks | Different UI, same goals. |
+
+## Lab norms (high signal defaults)
+
+::: {.callout-important}
+### Lab norms (please follow)
+- **One project, one publication** Think of projects as the computational infrastructure for one publication.
+- **Never install packages into the base conda environment.** Create a conda environment specific to the project.
+- **Every project has both**: a conda environment definition (for Python) and an renv lockfile (for R), unless explicitly documented otherwise.
+- If you change dependencies (e.g. installing new R packages), **commit the lockfile(s)** with your other changes (`environment.yml` / `renv.lock`).
+- Keep git repositories lightweight: **avoid large raw data or output plots in git** unless it's deliberately small demo data.
+- Every project has a **README**: what it is, how to run it, where outputs go.
+:::
 
 ## Who This Guide Is For
 
-This guide is written for students and researchers who have some programming experience but want to learn professional workflows for computational analysis. You should be comfortable with basic R or Python syntax, but don't need prior experience with the specific tools covered here.
+This guide is for lab members with basic programming experience (often RStudio-based) who want professional workflows for reproducible analysis and collaboration. You do not need prior expertise with conda, renv, or Git—this guide is designed to get you to "operational competence."
 
 ## How to Use This Guide
 
-**If you're new**, start with [Part 1: Quick Start](part1/intro.qmd). You'll install all the tools and create your first project in about 30 minutes.
+Start with **Part 1: Quick Start**. You'll install tools and build a small first project that demonstrates the standard lab setup (Positron + conda + renv + Git/GitHub).
 
-**If you need a reference**, jump to [Part 2: Core Tools](part2/positron.qmd) for detailed coverage of each tool.
+Then:
 
-**If you're looking for workflows**, see [Part 3: Workflows](part3/starting-project.qmd) for task-oriented guides.
+- Use **Part 2: Core Tools** as reference when you need to understand a tool or troubleshoot it.
+- Use **Part 3: Workflows** for checklists (starting a project, collaborating, reproducibility, troubleshooting).
+
+Suggested reading order for most new lab members:
+
+1. Quick Start → Installation
+2. Quick Start → Your First Project
+3. Core Tools → Positron
+4. Core Tools → Conda and renv
+5. Core Tools → Git & GitHub
+6. Core Tools - Claude Code
 
 ## The Philosophy
 
 We emphasize:
 
-1. **Reproducibility** — Your analyses should run on any machine
-2. **Version control** — Track changes and collaborate effectively
-3. **Environment isolation** — Each project has its own dependencies
-4. **AI assistance** — Use modern tools to accelerate your work
+1. **Reproducibility** — analysis runs should be easy to reproduce and share
+2. **Environment isolation** — library/package dependencies are explicit and project-specific
+3. **Version control** — changes are tracked, reviewable, and reversible
+4. **Pragmatism** — workflows should save time, not create busy work
+5. **AI assistance** — accelerate analysis, manage project goals, automate git, but **verify outputs**
 
-Let's get started.
+If you remember one idea: **make analyses easy to reproduce for someone else.**
