@@ -20,9 +20,12 @@
 - [ ] **Conda**: Consider adding section on mamba for faster installs
 - [ ] **renv**: Add troubleshooting for common Bioconductor issues
 - [ ] **Git/GitHub**: Add section on GitHub Classroom (if using for courses)
-- [ ] **Claude Code**: Add examples from real lab workflows
 
-### Part 3: Workflows
+### Part 3: Claude Code
+- [ ] Add more examples from real lab workflows
+- [ ] Expand skills chapter with more skill examples
+
+### Part 4: Workflows
 - [ ] **Starting Project**: Add template repo link once created
 - [ ] **Collaborating**: Add section on code review practices
 - [ ] **Reproducibility**: Consider adding Docker basics
@@ -34,8 +37,6 @@
 
 ## Ideas for Future Chapters
 
-- [ ] Quarto documents and reports
-- [ ] Data management best practices
 - [ ] Common bioinformatics workflows
 
 > **Note:** HPC/cluster computing, genomic resources, and data storage info will be in a separate "Lab Resources" reference, not this book.
@@ -63,12 +64,25 @@
 - [x] Updated book title to "Data Analysis in the Musser Lab"
 - [x] Changed rig macOS install to .pkg from GitHub (not Homebrew)
 - [x] Moved PLAN.md to .claude/ folder
+- [x] Rewrote Part 1 intro — ".qmd as unit of analysis" framing
+- [x] Rewrote first-project.qmd — Quarto analysis with penguins dataset
+- [x] Created Quarto Documents chapter (part2/quarto.qmd)
+- [x] Created Project Organization chapter (part2/project-organization.qmd)
+- [x] Expanded Claude Code to full Part with 4 chapters
 
 ---
 
 ## Session Notes
 
 _Add notes here during working sessions_
+
+### 2026-02-02
+- Major restructure: ".qmd as unit of analysis" is now the central framing
+- Part 1 intro and first-project rewritten to match this framing
+- Created Quarto Documents chapter with mechanics based on TiHKAL patterns
+- Created Project Organization chapter — numbered scripts with matching output folders
+- Expanded Claude Code from one chapter to full Part (4 chapters)
+- Book structure now: Quick Start → Core Tools → Claude Code → Workflows
 
 ### 2026-02-01 (session 2)
 - Updated book title to "Data Analysis in the Musser Lab"

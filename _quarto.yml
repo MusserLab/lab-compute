@@ -25,8 +25,15 @@ book:
         - part2/positron.qmd
         - part2/conda.qmd
         - part2/renv.qmd
+        - part2/quarto.qmd
+        - part2/project-organization.qmd
         - part2/git-github.qmd
-        - part2/claude-code.qmd
+    - part: "Claude Code"
+      chapters:
+        - claude-code/intro.qmd
+        - claude-code/project-files.qmd
+        - claude-code/skills.qmd
+        - claude-code/session-walkthrough.qmd
     - part: "Workflows"
       chapters:
         - part3/starting-project.qmd

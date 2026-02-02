@@ -42,7 +42,7 @@ If you're used to RStudio, here are the key conceptual shifts:
 ## Lab norms (high signal defaults)
 
 ::: {.callout-important}
-### Lab norms (please follow)
+### Lab norms
 - **One project, one publication** Think of projects as the computational infrastructure for one publication.
 - **Never install packages into the base conda environment.** Create a conda environment specific to the project.
 - **Every project has both**: a conda environment definition (for Python) and an renv lockfile (for R), unless explicitly documented otherwise.

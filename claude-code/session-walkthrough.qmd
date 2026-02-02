@@ -1,0 +1,300 @@
+# Session Walkthrough
+
+This chapter shows a complete Claude Code session from start to finish. We'll work through a realistic analysis task, demonstrating how to interact effectively with Claude Code.
+
+## The Scenario
+
+You have a project with RNA-seq count data and want to:
+
+1. Load and explore the data
+2. Perform basic quality control
+3. Create a summary visualization
+4. Document the analysis in a Quarto script
+
+## Starting the Session
+
+First, navigate to your project and start Claude Code:
+
+```bash
+cd ~/projects/rnaseq-analysis
+claude
+```
+
+Claude Code reads your project configuration (`.claude/CLAUDE.md`) and is ready to help.
+
+## Step 1: Understanding the Data
+
+**You:**
+```
+> I have count data in data/raw/counts.csv. What does it look like?
+```
+
+**Claude Code** reads the file and responds:
+
+```
+I've examined data/raw/counts.csv. Here's what I found:
+
+- Dimensions: 12,000 rows × 8 columns
+- First column "gene_id" contains gene identifiers (e.g., "ENSG00000141510")
+- Remaining 7 columns are sample names: "sample_1" through "sample_7"
+- Values are integer counts (range: 0 to 458,291)
+- No missing values detected
+
+First few rows:
+gene_id        sample_1  sample_2  sample_3  ...
+ENSG00000141510    1523      1687      1456  ...
+ENSG00000012048     892       923       845  ...
+```
+
+This gives you a clear picture without writing any code yourself.
+
+## Step 2: Creating the Analysis Script
+
+**You:**
+```
+> Create a Quarto analysis script at analysis/01_qc.qmd that loads this data and does basic QC. Include:
+> - Library loading
+> - Data import with summary
+> - A histogram of total counts per sample
+> - A histogram of detected genes per sample
+```
+
+**Claude Code** creates the file and shows you the content:
+
+````markdown
+---
+title: "Quality Control"
+author: "Your Name"
+format: html
+---
+
+## Overview
+
+**Input:** `data/raw/counts.csv`
+**Output:** QC summary and diagnostic plots
+
+```{{r}}
+#| label: setup
+library(tidyverse)
+```
+
+## Load Data
+
+```{{r}}
+#| label: load-data
+counts <- read_csv("../data/raw/counts.csv")
+cat("Loaded", nrow(counts), "genes ×", ncol(counts) - 1, "samples\n")
+```
+
+## Sample-Level QC
+
+### Total Counts per Sample
+
+```{{r}}
+#| label: fig-total-counts
+#| fig-cap: "Total counts per sample"
+
+sample_totals <- counts |>
+  select(-gene_id) |>
+  colSums() |>
+  enframe(name = "sample", value = "total_counts")
+
+ggplot(sample_totals, aes(x = sample, y = total_counts / 1e6)) +
+  geom_col() +
+  labs(x = "Sample", y = "Total counts (millions)") +
+  theme_minimal()
+```
+
+### Detected Genes per Sample
+
+```{{r}}
+#| label: fig-detected-genes
+#| fig-cap: "Number of detected genes per sample"
+
+detected_genes <- counts |>
+  select(-gene_id) |>
+  summarise(across(everything(), ~sum(. > 0))) |>
+  pivot_longer(everything(), names_to = "sample", values_to = "n_detected")
+
+ggplot(detected_genes, aes(x = sample, y = n_detected)) +
+  geom_col() +
+  labs(x = "Sample", y = "Detected genes (count > 0)") +
+  theme_minimal()
+```
+
+## Summary
+
+Basic QC complete. All samples have similar library sizes and detection rates.
+````
+
+**Claude Code asks:**
+```
+Should I save this to analysis/01_qc.qmd?
+```
+
+**You:** Review the code, then accept.
+
+## Step 3: Running the Analysis
+
+**You:**
+```
+> Render the script and show me if there are any errors
+```
+
+**Claude Code** runs:
+```bash
+quarto render analysis/01_qc.qmd
+```
+
+And reports:
+```
+Rendering complete. Output saved to analysis/01_qc.html
+
+No errors. Two figures generated successfully.
+```
+
+## Step 4: Refining Based on Results
+
+You open `01_qc.html` in your browser and notice one sample has much lower counts than the others.
+
+**You:**
+```
+> Sample_3 looks like an outlier with much lower counts. Add a section that:
+> 1. Calculates summary stats for each sample (total counts, detected genes, median count)
+> 2. Flags any sample more than 2 standard deviations from the mean
+```
+
+**Claude Code** shows the proposed edit:
+
+```r
+#| label: sample-summary
+
+sample_stats <- counts |>
+  select(-gene_id) |>
+  summarise(across(everything(), list(
+    total = sum,
+    detected = ~sum(. > 0),
+    median = median
+  ))) |>
+  pivot_longer(everything(),
+               names_to = c("sample", "stat"),
+               names_pattern = "(.*)_(.*)") |>
+  pivot_wider(names_from = stat, values_from = value)
+
+# Flag outliers (> 2 SD from mean)
+sample_stats <- sample_stats |>
+  mutate(
+    outlier_total = abs(total - mean(total)) > 2 * sd(total),
+    outlier_detected = abs(detected - mean(detected)) > 2 * sd(detected)
+  )
+
+sample_stats |>
+  knitr::kable(digits = 0)
+```
+
+**You:** Accept, then ask Claude Code to re-render.
+
+## Step 5: Committing Your Work
+
+**You:**
+```
+> Commit the QC analysis with a descriptive message
+```
+
+**Claude Code** runs `git status` and shows:
+
+```
+Changes to be committed:
+  new file:   analysis/01_qc.qmd
+  new file:   analysis/01_qc.html
+
+Proposed commit message:
+"Add QC analysis script with sample-level diagnostics"
+
+Proceed?
+```
+
+**You:** Accept.
+
+Claude Code stages and commits:
+
+```bash
+git add analysis/01_qc.qmd analysis/01_qc.html
+git commit -m "Add QC analysis script with sample-level diagnostics
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>"
+```
+
+## Patterns to Notice
+
+### 1. Start with exploration
+
+Before writing code, ask Claude Code to examine your data. This catches issues early and ensures you understand what you're working with.
+
+### 2. Be specific about outputs
+
+Instead of "do QC," specify exactly what you want: "histogram of total counts per sample." Claude Code produces better results with clear requirements.
+
+### 3. Iterate based on results
+
+Look at the output, then refine. This mirrors how you'd work manually—but faster.
+
+### 4. Review before accepting
+
+Always read the code Claude Code generates. Check that it:
+- Does what you asked
+- Handles edge cases appropriately
+- Follows your project conventions
+
+### 5. Commit logical units
+
+Commit after completing a coherent piece of work, not after every small change.
+
+## Common Session Patterns
+
+### Debugging
+
+```
+> I'm getting this error when I render: [paste error]
+> The relevant code is in the load-data chunk. What's wrong?
+```
+
+### Extending existing code
+
+```
+> In 01_qc.qmd, add a PCA plot after the detected genes histogram
+```
+
+### Understanding code
+
+```
+> Explain what the pivot_longer line is doing in the sample stats calculation
+```
+
+### Refactoring
+
+```
+> The plotting code is repetitive. Extract a helper function for the bar plots
+```
+
+## Ending the Session
+
+When you're done:
+
+```
+> /exit
+```
+
+Or press `Ctrl+C`.
+
+## Tips for Effective Sessions
+
+1. **Have your CLAUDE.md ready.** The better your project documentation, the better Claude Code understands your context.
+
+2. **Work incrementally.** Don't ask for an entire analysis at once. Build piece by piece.
+
+3. **Ask "why" questions.** If Claude Code makes a choice you don't understand, ask about it.
+
+4. **Correct mistakes immediately.** If something's wrong, say so—Claude Code learns from feedback within the session.
+
+5. **Save useful prompts.** When you find a prompt that works well, note it for future use.

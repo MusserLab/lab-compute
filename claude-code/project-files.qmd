@@ -1,0 +1,186 @@
+# Project and User Files
+
+Claude Code reads configuration files to understand your projects and preferences. This chapter explains what these files are and how to write effective ones.
+
+## The Two Levels of Configuration
+
+```
+~/.claude/
+└── CLAUDE.md              # User-level: applies to ALL projects
+
+~/projects/my-analysis/
+└── .claude/
+    └── CLAUDE.md          # Project-level: applies to THIS project only
+```
+
+**User-level** (`~/.claude/CLAUDE.md`): Global preferences and instructions that apply everywhere.
+
+**Project-level** (`<project>/.claude/CLAUDE.md`): Project-specific context, conventions, and workflows.
+
+Claude Code reads both at session start. Project instructions take precedence when there's a conflict.
+
+## User-Level Configuration
+
+Your `~/.claude/CLAUDE.md` should contain preferences that apply across all your work:
+
+```markdown
+# User-Level Instructions for Claude Code
+
+## General Preferences
+
+- Use tidyverse style for R code
+- Prefer base Python over pandas for simple operations
+- Always show data dimensions after loading
+
+## Environment
+
+- Conda must be sourced before activation:
+  `source ~/miniconda3/etc/profile.d/conda.sh`
+- Quarto is at `/usr/local/bin/quarto`
+
+## Troubleshooting Notes
+
+- "renv out of sync" warnings can be ignored; run `renv::status()` if concerned
+```
+
+Keep user-level instructions general. Project-specific details go in the project file.
+
+## Project-Level Configuration
+
+Create `.claude/CLAUDE.md` in your project root. This file should answer: "What does Claude Code need to know to work effectively on this project?"
+
+### Template
+
+```markdown
+# Project: [Name]
+
+## Overview
+[One paragraph describing what this project does and its current state]
+
+## Environment
+
+- **Python**: `conda activate [env-name]`
+- **R**: Uses renv (auto-activates)
+
+## Project Structure
+
+```
+project/
+├── data/
+│   ├── raw/           # Original data (DO NOT MODIFY)
+│   └── processed/     # Cleaned data
+├── analysis/          # Quarto analysis scripts
+├── output/            # Results, figures, tables
+└── scripts/           # Utility scripts
+```
+
+## Key Files
+
+- `analysis/main.qmd` — Primary analysis script
+- `data/raw/counts.csv` — Input count matrix (10,000 genes × 50 samples)
+- `output/figures/` — Publication figures
+
+## Workflows
+
+### Run the full analysis
+```bash
+quarto render analysis/main.qmd
+```
+
+### Run tests
+```bash
+pytest tests/
+```
+
+## Conventions
+
+- Figures should use the lab color palette (see `scripts/theme.R`)
+- Commit after completing each logical step
+- Use descriptive variable names (no single letters except loop indices)
+
+## Current Status / Notes
+
+- Working on: differential expression analysis
+- Blocked on: waiting for batch 2 samples
+- Known issue: memory error with full dataset, use subset for testing
+```
+
+### What Makes a Good Project File
+
+**Be specific about data.** Don't just say "gene expression data"—say "10,000 genes × 50 samples, raw counts, columns are sample IDs."
+
+**Document the non-obvious.** If there's a quirk in your data or workflow, mention it.
+
+**Keep it current.** Update the "Current Status" section as the project evolves.
+
+**Include actual commands.** Don't say "run the analysis"—give the exact command.
+
+## What Not to Include
+
+- **Sensitive data** — No API keys, passwords, or private paths
+- **Obvious things** — No need to explain what `git commit` does
+- **Lengthy documentation** — Link to docs rather than copying them in
+
+## Checking Your Configuration
+
+Start a Claude Code session and ask:
+
+```
+> What do you know about this project?
+```
+
+Claude Code will summarize what it learned from your configuration files. If something's missing, update your `.claude/CLAUDE.md`.
+
+## Example: Real Project Configuration
+
+Here's an example from a genomics analysis project:
+
+```markdown
+# Project: Sponge Cell Atlas
+
+## Overview
+
+Single-cell RNA-seq analysis of *Ephydatia muelleri* (freshwater sponge).
+Goal: identify cell types and marker genes.
+
+## Environment
+
+- Python: `conda activate sponge-atlas`
+- R: renv (Seurat 5.0, auto-activates)
+
+## Data
+
+- `data/raw/counts.h5ad` — AnnData object, 15,000 cells × 12,000 genes
+- `data/raw/metadata.csv` — Sample metadata (batch, condition)
+- Cell type annotations in `obs['cell_type']` (preliminary, needs refinement)
+
+## Analysis Scripts
+
+| Script | Purpose | Status |
+|--------|---------|--------|
+| `analysis/01_qc.qmd` | Quality control, filtering | Complete |
+| `analysis/02_clustering.qmd` | Dimensionality reduction, clustering | Complete |
+| `analysis/03_markers.qmd` | Marker gene identification | In progress |
+| `analysis/04_figures.qmd` | Publication figures | Not started |
+
+## Conventions
+
+- Use Seurat naming conventions (e.g., `FindMarkers`, not `find_markers`)
+- Cluster colors defined in `scripts/colors.R`
+- All figures 300 DPI, max 7 inches wide
+
+## Notes
+
+- Batch effect between samples 1-3 and 4-6; already corrected with Harmony
+- Cluster 7 is likely doublets—exclude from marker analysis
+```
+
+## Updating Configuration
+
+Your project configuration should evolve with the project:
+
+- **Start of project**: Basic structure, environment, data description
+- **During analysis**: Add workflows, document decisions, note blockers
+- **Before sharing**: Clean up, remove personal notes, ensure commands work
+
+A good test: could a new lab member (or future you) read this file and understand how to work on the project?

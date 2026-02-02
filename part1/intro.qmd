@@ -2,14 +2,19 @@
 
 ## Why These Tools?
 
-Modern computational analysis requires more than just writing code. You need to:
+In the Musser Lab, most analyses are written as **self-contained Quarto scripts** (`.qmd`). A `.qmd` is both a *script* and a *publishable document*: it contains code, narrative, and the logic to render a shareable output (usually HTML).
 
-- **Reproduce your results** — Run the same analysis months later and get the same output
-- **Collaborate effectively** — Share code with colleagues without "it works on my machine" problems
-- **Manage complexity** — Keep track of dependencies, data, and analysis steps
-- **Work efficiently** — Leverage modern tools to speed up your workflow
+This workflow supports how we actually work:
 
-The tools in this guide work together to solve these challenges:
+- We often use **both R and Python** across a project.
+- Each analysis script clearly states what data it reads and what it produces.
+- Scripts are designed to be readable, annotated, and reproducible for other lab members.
+
+The toolchain in this guide exists to make `.qmd`-based analyses:
+
+- **Reproducible** — same results on another machine
+- **Collaborative** — easy to review and share
+- **Maintainable** — clear provenance and version control
 
 | Tool | Purpose |
 |------|---------|
@@ -19,42 +24,70 @@ The tools in this guide work together to solve these challenges:
 | **Git/GitHub** | Version control and collaboration |
 | **Claude Code** | AI-assisted coding and analysis |
 
+### What "good" looks like
+
+A typical analysis loop in the lab:
+
+1. Open a project folder in Positron
+2. Activate the project environments (conda for Python, renv for R)
+3. Write a Quarto analysis script (`.qmd`) that loads data, runs analysis, and exports results
+4. Render the script to HTML: `quarto render analysis/my_analysis.qmd`
+5. Commit and push code + lockfiles (`environment.yml`, `renv.lock`) with Git
+
 ## How They Fit Together
 
 ```
 ┌─────────────────────────────────────────────────┐
-│                   Positron                       │
-│              (Your workspace)                    │
-│                                                  │
+│                   Positron                      │
+│              (Your workspace)                   │
+│                                                 │
 │  ┌──────────┐  ┌──────────┐  ┌──────────────┐  │
 │  │  Conda   │  │   renv   │  │  Claude Code │  │
 │  │ (Python) │  │   (R)    │  │    (AI)      │  │
 │  └──────────┘  └──────────┘  └──────────────┘  │
-│                                                  │
+│                                                 │
 │  ┌──────────────────────────────────────────┐   │
-│  │              Git / GitHub                 │   │
-│  │        (Version control for all)          │   │
-│  └──────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────┘
+│  │              Git / GitHub                │   │
+│  │        (Version control for all)         │   │
+└──┴──────────────────────────────────────────┴───┘
 ```
 
-**Positron** is your central workspace where you write and run code. It integrates with all the other tools.
+**Positron** is where you write and run code and manage project files.
 
-**Conda** manages Python environments — isolated spaces with specific Python versions and packages for each project.
+**Conda** defines a Python environment for the project (Python version + packages).
 
-**renv** does the same for R — tracking which R packages each project needs.
+**renv** pins the R package set for the project.
 
-**Git** tracks changes to your code over time. **GitHub** hosts your code online for backup and collaboration.
+**Git/GitHub** tracks changes to scripts, data-processing logic, and environment definitions.
 
-**Claude Code** is an AI assistant that runs in your terminal and helps you write, debug, and understand code.
+**Claude Code** is optional; it can help write or debug code, but outputs must be verified.
+
+::: {.callout-note}
+### Key concepts
+
+- **Quarto script (`.qmd`)**: the main analysis artifact in the lab; it renders to a shareable output (HTML/PDF).
+- **Environment**: project-specific dependencies.
+  - Python dependencies: conda (`environment.yml`)
+  - R dependencies: renv (`renv.lock`)
+- **Render**: convert `.qmd` → HTML/PDF, executing code in the process.
+- **Interpreter/kernel selection**: Quarto and Positron must run the correct R and Python; this guide shows how to verify which ones are being used.
+:::
+
+For a deeper introduction to Quarto, see **Part 2 → Quarto documents**.
 
 ## What You'll Learn
 
 By the end of Part 1, you will have:
 
-1. All tools installed and configured
-2. Created a project with both R and Python code
-3. Tracked it with Git and pushed to GitHub
-4. Used Claude Code to help write code
+1. Installed the core tools and verified they work
+2. Opened a lab-style project folder in Positron
+3. Set up project environments:
+   - conda environment for Python
+   - renv for R packages
+4. Written a Quarto analysis script (`.qmd`) that:
+   - states what it reads and what it produces
+   - runs an analysis and generates a figure
+   - renders to HTML
+5. Put the project under version control and pushed it to GitHub
 
-Let's start by installing everything.
+Next, we'll install tools and build your first Quarto-based analysis project.

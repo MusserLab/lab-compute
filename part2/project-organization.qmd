@@ -1,0 +1,346 @@
+# Project Organization
+
+A well-organized project makes it easy to find files, understand dependencies, and reproduce analyses. This chapter describes the lab's conventions for structuring analysis projects.
+
+## The Core Principle
+
+Every analysis project has two types of files:
+
+1. **External inputs** — data that comes from outside the project (sequencing results, collaborator files, public datasets)
+2. **Generated outputs** — everything produced by your scripts (processed data, figures, tables, reports)
+
+The key to staying organized is keeping these separate and tracking which scripts produce which outputs.
+
+## Project Structure
+
+A typical lab project has three core folders:
+
+```
+my-project/
+├── data/              # External inputs only
+├── scripts/           # Quarto analysis scripts
+├── outs/              # All generated outputs
+├── environment.yml    # Conda environment
+├── renv.lock          # R package versions
+└── README.md          # Project overview
+```
+
+### `data/` — External Inputs
+
+This folder holds data that comes from **outside** the project:
+
+- Raw sequencing data from the core facility
+- Files from collaborators
+- Downloaded public datasets
+- Metadata spreadsheets
+
+```
+data/
+├── counts_matrix.csv          # From sequencing core
+├── sample_metadata.xlsx       # From collaborator
+└── reference_genome.fasta     # Downloaded from NCBI
+```
+
+**Rules for `data/`:**
+
+- Never modify these files
+- Never put script-generated files here
+- Document where each file came from (in the README or a `data/README.md`)
+
+### `scripts/` — Analysis Scripts
+
+All `.qmd` analysis scripts live here, numbered to indicate their logical order:
+
+```
+scripts/
+├── 01_import_qc.qmd
+├── 02_normalize.qmd
+├── 03_differential.qmd
+├── 04_volcano_plots.qmd
+└── 05_heatmaps.qmd
+```
+
+The numbers indicate the general flow of the analysis, not a strict linear dependency. Script 05 might read outputs from scripts 01 and 03 directly—the numbering just helps you understand the overall structure at a glance.
+
+### `outs/` — Generated Outputs
+
+**Every script gets a corresponding output folder.** Script `01_import_qc.qmd` writes to `outs/01_import_qc/`:
+
+```
+outs/
+├── 01_import_qc/
+│   ├── filtered_counts.rds
+│   ├── qc_report.html
+│   └── sample_summary.csv
+├── 02_normalize/
+│   └── normalized_counts.rds
+├── 03_differential/
+│   ├── limma_results.rds
+│   └── significant_hits.csv
+├── 04_volcano_plots/
+│   ├── volcano_3min.pdf
+│   ├── volcano_15min.pdf
+│   └── volcano_30min.pdf
+└── 05_heatmaps/
+    └── cluster_heatmap.pdf
+```
+
+**This structure encodes provenance.** When you see a file in `outs/03_differential/`, you know exactly which script created it.
+
+## How Dependencies Work
+
+Scripts read from two places:
+
+1. `data/` — external inputs
+2. `outs/` — outputs from other scripts (typically earlier-numbered ones)
+
+Dependencies don't have to be strictly linear. Here's an example dependency graph:
+
+```
+data/counts.csv ──────────────────────────────┐
+                                              │
+01_import_qc.qmd ─────► outs/01_import_qc/    │
+        │                      │              │
+        │                      ▼              │
+        │              02_normalize.qmd ──► outs/02_normalize/
+        │                      │
+        │                      ▼
+        │              03_differential.qmd ──► outs/03_differential/
+        │                      │                      │
+        ▼                      ▼                      │
+05_heatmaps.qmd ◄──────────────┴──────────────────────┘
+        │
+        ▼
+  outs/05_heatmaps/
+```
+
+In this example:
+- Scripts 01 → 02 → 03 form a linear chain
+- Script 05 reads from 01, 03, AND the original data
+- The numbering reflects the logical order, not strict dependencies
+
+## Documenting Dependencies
+
+At the top of each script, explicitly list inputs and outputs:
+
+```markdown
+# Volcano Plots
+
+**Inputs:**
+
+- `data/sample_metadata.csv`
+- `outs/03_differential/limma_results.rds`
+
+**Outputs:**
+
+- `outs/04_volcano_plots/volcano_*.pdf`
+```
+
+This makes dependencies grep-able:
+
+```bash
+# Find which script produces a file
+grep -r "limma_results.rds" scripts/
+
+# Find which scripts depend on a file
+grep -r "limma_results.rds" scripts/ | grep "Inputs:" -A5
+```
+
+## Setting Up Output Paths
+
+In your setup chunk, define paths that match this structure:
+
+```r
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(here)
+
+# This script's output folder
+dir_out <- here::here("outs", "03_differential")
+dir.create(dir_out, recursive = TRUE, showWarnings = FALSE)
+
+# Input paths
+path_normalized <- here::here("outs", "02_normalize", "normalized_counts.rds")
+path_metadata <- here::here("data", "sample_metadata.csv")
+```
+
+Then save outputs to `dir_out`:
+
+```r
+# Save results
+saveRDS(results, file.path(dir_out, "limma_results.rds"))
+write_csv(significant, file.path(dir_out, "significant_hits.csv"))
+
+# Save figures
+ggsave(file.path(dir_out, "volcano_plot.pdf"), p, width = 6, height = 4)
+```
+
+## Handling Subprojects
+
+For projects with multiple distinct analyses (e.g., phosphoproteomics AND transcriptomics), prefix script names with the subproject:
+
+```
+scripts/
+├── phospho_01_qc.qmd
+├── phospho_02_normalize.qmd
+├── phospho_03_differential.qmd
+├── trans_01_import.qmd
+├── trans_02_pca.qmd
+└── combined_01_integration.qmd
+```
+
+Outputs mirror this structure:
+
+```
+outs/
+├── phospho_01_qc/
+├── phospho_02_normalize/
+├── phospho_03_differential/
+├── trans_01_import/
+├── trans_02_pca/
+└── combined_01_integration/
+```
+
+The `combined_*` scripts can read from both `phospho_*` and `trans_*` outputs.
+
+## Naming Conventions
+
+### Scripts
+
+- Use lowercase with underscores: `01_import_qc.qmd`
+- Start with a two-digit number: `01_`, `02_`, ... `10_`, `11_`
+- Use descriptive names: `03_differential.qmd` not `03_analysis.qmd`
+
+### Output Files
+
+- Name files descriptively: `normalized_counts.rds` not `data.rds`
+- Use consistent extensions: `.rds` for R objects, `.csv` for tables, `.pdf` for figures
+- For multiple similar outputs, use a pattern: `volcano_3min.pdf`, `volcano_15min.pdf`
+
+### What to Avoid
+
+- Spaces in filenames (use underscores or hyphens)
+- Generic names (`output.csv`, `figure1.pdf`, `results.rds`)
+- Date prefixes on every file (let git track versions)
+
+## Version Control Considerations
+
+### What to Commit
+
+- All scripts (`scripts/*.qmd`)
+- External data if small enough (`data/`)
+- Environment files (`environment.yml`, `renv.lock`)
+- README and documentation
+
+### What to Ignore
+
+Add to `.gitignore`:
+
+```
+# Large data files
+data/large_file.h5ad
+
+# Generated outputs (can be reproduced)
+outs/
+
+# Quarto rendering artifacts
+*_files/
+*_cache/
+.quarto/
+```
+
+Whether to commit `outs/` is a judgment call:
+
+- **Commit outputs** if they're small and you want them versioned
+- **Ignore outputs** if they're large or easily regenerated
+
+If you ignore outputs, document how to regenerate them in the README.
+
+## Handling Old Versions
+
+Analysis projects tend to accumulate old scripts and outputs. Resist the urge to create `old/` folders everywhere.
+
+**Better approaches:**
+
+1. **Use git.** Delete old files; recover from history if needed.
+
+2. **Archive at project root.** If you must keep old versions outside git:
+   ```
+   project/
+   ├── scripts/
+   ├── outs/
+   └── _archive/           # One place for old stuff
+       ├── old_scripts/
+       └── old_outputs/
+   ```
+
+3. **Date sparingly.** Only add dates when you need multiple versions to coexist (e.g., comparing runs with different parameters):
+   ```
+   outs/03_differential/
+   ├── 2025-01-15_strict_threshold/
+   └── 2025-01-20_relaxed_threshold/
+   ```
+
+## Complete Example
+
+Here's a well-organized phosphoproteomics project:
+
+```
+tryptamine_phospho/
+├── data/
+│   ├── README.md                    # Documents data sources
+│   ├── raw_counts.csv               # From mass spec core
+│   ├── sample_metadata.csv          # Experimental design
+│   └── gene_annotations.tsv         # Downloaded from UniProt
+│
+├── scripts/
+│   ├── 01_import_qc.qmd
+│   ├── 02_normalize.qmd
+│   ├── 03_differential.qmd
+│   ├── 04_volcano_plots.qmd
+│   ├── 05_trajectory_clustering.qmd
+│   └── 06_heatmaps.qmd
+│
+├── outs/
+│   ├── 01_import_qc/
+│   │   ├── filtered_counts.rds
+│   │   └── qc_summary.html
+│   ├── 02_normalize/
+│   │   └── normalized_counts.rds
+│   ├── 03_differential/
+│   │   ├── limma_results.rds
+│   │   └── significant_hits.csv
+│   ├── 04_volcano_plots/
+│   │   ├── volcano_3min.pdf
+│   │   ├── volcano_15min.pdf
+│   │   └── volcano_30min.pdf
+│   ├── 05_trajectory_clustering/
+│   │   ├── cluster_assignments.csv
+│   │   └── elbow_plot.pdf
+│   └── 06_heatmaps/
+│       ├── heatmap_all_clusters.pdf
+│       └── heatmap_per_cluster/
+│
+├── environment.yml
+├── renv.lock
+├── .gitignore
+└── README.md
+```
+
+**Dependency flow:**
+
+```
+data/* ──► 01 ──► 02 ──► 03 ──► 04
+                   │      │
+                   │      └──► 05 ──► 06
+                   │            │
+                   └────────────┘
+```
+
+From this structure, anyone can understand:
+- Where the raw data came from (data/README.md)
+- The analysis workflow (numbered scripts)
+- What each script produces (matching output folders)
+- How to reproduce the analysis (environment files + scripts)

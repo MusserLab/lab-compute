@@ -1,12 +1,12 @@
 # Your First Project
 
-Let's create a complete project that uses all the tools together. By the end, you'll have:
+Let's create a complete project that demonstrates the full workflow. By the end, you'll have:
 
 - A project folder with organized structure
-- A conda environment for Python
+- A conda environment (Python)
 - An R project with renv
-- Git version control
-- Code you wrote with Claude Code's help
+- A Quarto analysis script that renders to HTML
+- Everything under Git version control
 
 ## Step 1: Create the Project Folder
 
@@ -53,6 +53,10 @@ __pycache__/
 .conda/
 .venv/
 
+# Quarto
+*_files/
+.quarto/
+
 # Data (large files)
 data/raw/
 
@@ -68,17 +72,11 @@ EOF
 
 ## Step 4: Set Up Conda Environment
 
-Create a conda environment for this project:
+Every project gets a conda environment, even if you're primarily using R. This keeps Python dependencies isolated and establishes good habits for mixed-language projects.
 
 ```bash
 conda create -n my-first-analysis python=3.11 -y
 conda activate my-first-analysis
-```
-
-Install some basic packages:
-
-```bash
-conda install pandas numpy matplotlib -y
 ```
 
 Save the environment specification:
@@ -97,7 +95,7 @@ conda activate my-first-analysis
 
 ## Step 5: Set Up R with renv
 
-In Positron's R console (or terminal running R), initialize renv:
+In Positron's R console, initialize renv:
 
 ```r
 # Install renv if needed
@@ -108,14 +106,15 @@ renv::init()
 ```
 
 This creates:
-- `renv/` folder for package library
+
+- `renv/` folder for the package library
 - `renv.lock` file tracking package versions
 - `.Rprofile` to auto-activate renv
 
-Install a package to test:
+Install the packages we'll need for our analysis:
 
 ```r
-install.packages("ggplot2")
+install.packages(c("ggplot2", "dplyr", "palmerpenguins"))
 renv::snapshot()  # Save the state
 ```
 
@@ -124,7 +123,7 @@ renv::snapshot()  # Save the state
 Create a standard folder structure:
 
 ```bash
-mkdir -p data/raw data/processed scripts output
+mkdir -p data/raw data/processed analysis output
 ```
 
 Your project now looks like:
@@ -133,57 +132,123 @@ Your project now looks like:
 my-first-analysis/
 ├── .git/
 ├── .gitignore
+├── analysis/          # Quarto analysis scripts
 ├── data/
-│   ├── raw/          # Original data (not tracked)
-│   └── processed/    # Cleaned data
-├── scripts/          # Analysis scripts
-├── output/           # Results, figures
-├── environment.yml   # Conda environment
-├── renv/             # R packages
-└── renv.lock         # R package versions
+│   ├── raw/           # Original data (not tracked)
+│   └── processed/     # Cleaned data
+├── output/            # Final results, figures
+├── environment.yml    # Conda environment
+├── renv/              # R packages
+└── renv.lock          # R package versions
 ```
 
-## Step 7: Write Code with Claude Code
+## Step 7: Write a Quarto Analysis Script
 
-Now let's use Claude Code to help write some analysis code.
+Now we'll create a Quarto analysis script—the main artifact in our workflow. Create a new file at `analysis/penguin_summary.qmd`:
 
-In the terminal, start Claude Code:
+````markdown
+---
+title: "Penguin Size Summary"
+author: "Your Name"
+format: html
+---
 
-```bash
-claude
+## Overview
+
+This analysis summarizes body size measurements from the Palmer Penguins dataset.
+
+**Input:** `palmerpenguins` package (built-in dataset)
+**Output:** Summary statistics and a figure saved to `output/`
+
+```{{r}}
+#| label: setup
+library(palmerpenguins)
+library(dplyr)
+library(ggplot2)
 ```
 
-Try asking it to create a simple analysis script:
+## Data summary
 
-> "Create a Python script in scripts/ that loads a CSV file, calculates summary statistics, and saves a plot"
+```{{r}}
+#| label: summary
+penguins |>
+  group_by(species) |>
+  summarise(
+    n = n(),
+    mean_mass_g = mean(body_mass_g, na.rm = TRUE),
+    mean_flipper_mm = mean(flipper_length_mm, na.rm = TRUE)
+  )
+```
 
-Claude Code will:
-1. Ask clarifying questions if needed
-2. Write the code for you
-3. Save it to the file
+## Body mass by species
 
-[TODO: screenshot of Claude Code interaction]
+```{{r}}
+#| label: fig-mass
+#| fig-cap: "Body mass distribution by penguin species"
 
-Do the same for R:
+p <- ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +
+  geom_boxplot() +
+  labs(x = "Species", y = "Body mass (g)") +
+  theme_minimal() +
+  theme(legend.position = "none")
 
-> "Create an R script in scripts/ that does similar analysis using tidyverse and ggplot2"
+print(p)
 
-## Step 8: Make Your First Commit
+# Save to output folder
+ggsave("../output/penguin_mass.png", p, width = 6, height = 4)
+```
 
-Stage and commit your work:
+## Summary
+
+We summarized body mass across three penguin species. The figure has been saved to `output/penguin_mass.png`.
+````
+
+::: {.callout-note}
+## What makes this a "lab-style" analysis script?
+
+1. **Self-contained** — All code needed to run is in the file
+2. **Documents what it does** — States its input and output clearly
+3. **Produces a shareable result** — Renders to HTML; exports figures
+:::
+
+## Step 8: Render the Analysis
+
+Run Quarto to execute the code and produce an HTML report:
 
 ```bash
-# See what files are ready to commit
+quarto render analysis/penguin_summary.qmd
+```
+
+This creates `analysis/penguin_summary.html`. Open it in a browser to see your rendered analysis.
+
+[TODO: screenshot of rendered HTML]
+
+You should also see `output/penguin_mass.png` — the figure exported by the script.
+
+::: {.callout-tip}
+## Preview mode
+During development, use `quarto preview` to see live updates as you edit:
+```bash
+quarto preview analysis/penguin_summary.qmd
+```
+:::
+
+## Step 9: Commit Your Work
+
+Stage and commit everything:
+
+```bash
+# See what's ready to commit
 git status
 
-# Add all files (except those in .gitignore)
+# Add files
 git add .
 
-# Make your first commit
-git commit -m "Initial project setup with conda and renv"
+# Commit
+git commit -m "Initial project setup with penguin analysis"
 ```
 
-## Step 9: Push to GitHub {#sec-github-auth}
+## Step 10: Push to GitHub {#sec-github-auth}
 
 ### Create a GitHub Repository
 
@@ -195,11 +260,10 @@ git commit -m "Initial project setup with conda and renv"
 
 ### Authenticate with GitHub
 
-The easiest method is using the GitHub CLI:
+If you haven't already, install and authenticate the GitHub CLI:
 
 ```bash
-# Install GitHub CLI
-# macOS:
+# macOS
 brew install gh
 
 # Windows: Download from https://cli.github.com/
@@ -220,27 +284,28 @@ git remote add origin https://github.com/YOUR-USERNAME/my-first-analysis.git
 git push -u origin main
 ```
 
-## Congratulations!
+## What You've Built
 
-You've created a complete project with:
+You now have a complete project with:
 
 - ✅ Organized folder structure
-- ✅ Python environment (conda)
+- ✅ Python environment (conda) — ready for mixed-language work
 - ✅ R package management (renv)
-- ✅ Version control (Git)
-- ✅ Cloud backup (GitHub)
-- ✅ AI-assisted code (Claude Code)
+- ✅ A Quarto analysis script that renders to HTML
+- ✅ Exported figures in `output/`
+- ✅ Version control (Git) and cloud backup (GitHub)
 
-## What's Next?
+This is the pattern you'll use for every analysis in the lab.
+
+## What's Next
 
 - **Part 2** dives deeper into each tool
-- **Part 3** covers common workflows like collaboration and reproducibility
+- **Part 3** covers workflows like collaboration and troubleshooting
 
-When you return to this project later:
+When you return to this project:
 
 ```bash
 cd my-first-analysis
 conda activate my-first-analysis
 # R will auto-activate renv when you start it
-positron .  # Or open Positron and navigate to the folder
 ```
