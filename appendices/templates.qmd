@@ -88,9 +88,9 @@ Brief description of what this project does.
 ## Setup
 
 ### Prerequisites
-- [Positron](https://positron.posit.co/) or VS Code
+- [Positron](https://positron.posit.co/) (recommended) or VS Code
+- [rig](https://github.com/r-lib/rig) for R installation
 - [Conda](https://github.com/conda-forge/miniforge) (Miniforge recommended)
-- [R](https://cran.r-project.org/) (if using R)
 - [Git](https://git-scm.com/)
 
 ### Installation
@@ -110,6 +110,18 @@ Brief description of what this project does.
 3. Install R packages (if using R):
    ```r
    renv::restore()
+   ```
+
+4. Configure Positron interpreters via Command Palette (Cmd+Shift+P / Ctrl+Shift+P):
+   - **R:** "R: Select Interpreter" → select R 4.x
+   - **Python:** "Python: Select Interpreter" → select `environment-name` conda env
+
+   Alternatively, create `.positron/settings.json`:
+   ```json
+   {
+     "positron.r.kernel.path": "/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/bin/R",
+     "python.defaultInterpreterPath": "~/miniconda3/envs/environment-name/bin/python"
+   }
    ```
 
 ## Usage
