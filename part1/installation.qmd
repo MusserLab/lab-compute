@@ -68,27 +68,62 @@ Open a new PowerShell or Command Prompt and verify:
 conda --version
 ```
 
-## 3. R
+## 3. R (using rig)
+
+We use **rig** (R Installation Manager) to install and manage R versions. This makes it easy to install R, switch between versions, and keep R updated.
 
 ### macOS
 
-1. Download R from [https://cran.r-project.org/bin/macosx/](https://cran.r-project.org/bin/macosx/)
-2. Open the `.pkg` file and follow the installer
-3. Verify in Terminal:
+First, install rig using Homebrew:
+
+```bash
+brew tap r-lib/rig
+brew install --cask rig
+```
+
+Then install the latest R version:
+
+```bash
+rig add release
+```
+
+Verify the installation:
 
 ```bash
 R --version
 ```
 
+::: {.callout-tip}
+## rig Commands
+- `rig list` — See installed R versions
+- `rig add release` — Install latest stable R
+- `rig add devel` — Install development version
+- `rig default <version>` — Set default R version
+:::
+
 ### Windows
 
-1. Download R from [https://cran.r-project.org/bin/windows/base/](https://cran.r-project.org/bin/windows/base/)
-2. Run the installer with default settings
-3. Verify in Command Prompt:
+1. Download the rig installer from [https://github.com/r-lib/rig/releases](https://github.com/r-lib/rig/releases)
+   - Choose `rig-windows-latest.exe`
+2. Run the installer
+3. Open a **new** PowerShell window and install R:
+
+```powershell
+rig add release
+```
+
+4. Verify:
 
 ```powershell
 R --version
 ```
+
+### Why rig?
+
+- **Easy updates**: `rig add release` always gets the latest version
+- **Multiple versions**: Install R 4.3 and R 4.4 side by side for testing
+- **Clean uninstall**: `rig rm <version>` removes R cleanly
+- **Consistent**: Same commands on macOS and Windows
 
 ## 4. Git
 

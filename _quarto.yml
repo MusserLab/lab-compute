@@ -9,7 +9,7 @@ execute:
 book:
   title: "Lab Compute Guide"
   subtitle: "A Practical Guide to Computational Analysis"
-  author: "Bhagwat Lab"
+  author: "Jacob Musser, in collaboration with Claude Code"
   date: today
   date-format: "MMMM YYYY"
 

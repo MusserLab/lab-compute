@@ -49,6 +49,10 @@ To suggest changes:
 
 Or open an issue to report errors or suggest improvements.
 
+## Author
+
+Jacob Musser, in collaboration with [Claude Code](https://claude.ai/claude-code)
+
 ## License
 
 This work is licensed for educational use within the Musser Lab.
