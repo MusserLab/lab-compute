@@ -39,17 +39,14 @@ If you're used to RStudio, here are the key conceptual shifts:
 | R package library | `renv` | Packages are pinned per project; do not rely on global R libraries. |
 | "Environment pane" | variable viewers + terminal + notebooks | Different UI, same goals. |
 
-## Lab norms (high signal defaults)
+## Lab norms
 
-::: {.callout-important}
-### Lab norms
 - **One project, one publication** Think of projects as the computational infrastructure for one publication.
 - **Never install packages into the base conda environment.** Create a conda environment specific to the project.
 - **Every project has both**: a conda environment definition (for Python) and an renv lockfile (for R), unless explicitly documented otherwise.
 - If you change dependencies (e.g. installing new R packages), **commit the lockfile(s)** with your other changes (`environment.yml` / `renv.lock`).
 - Keep git repositories lightweight: **avoid large raw data or output plots in git** unless it's deliberately small demo data.
 - Every project has a **README**: what it is, how to run it, where outputs go.
-:::
 
 ## Who This Guide Is For
 
