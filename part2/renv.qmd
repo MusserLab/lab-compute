@@ -1,0 +1,254 @@
+# renv
+
+renv is R's package management system. Like conda for Python, it creates isolated package libraries for each project, ensuring reproducibility.
+
+## Why renv?
+
+Without renv:
+- All projects share one R package library
+- Updating a package for one project might break another
+- Hard to know which packages a project needs
+
+With renv:
+- Each project has its own package library
+- Package versions are locked in `renv.lock`
+- Anyone can recreate your exact environment
+
+## Getting Started
+
+### Initialize renv
+
+In a new or existing R project:
+
+```r
+# Install renv if needed
+install.packages("renv")
+
+# Initialize renv for this project
+renv::init()
+```
+
+This creates:
+- `renv/` — Local package library
+- `renv.lock` — Lockfile recording package versions
+- `.Rprofile` — Activates renv when R starts
+
+### The Workflow
+
+1. **Install packages** as normal with `install.packages()`
+2. **Snapshot** to record what you installed: `renv::snapshot()`
+3. **Share** your project (including `renv.lock`)
+4. **Restore** on another machine: `renv::restore()`
+
+## Essential Commands
+
+### Installing Packages
+
+```r
+# Install from CRAN
+install.packages("ggplot2")
+
+# Install from GitHub
+renv::install("tidyverse/ggplot2")
+
+# Install specific version
+renv::install("ggplot2@3.4.0")
+```
+
+### Snapshot
+
+After installing packages, save the state:
+
+```r
+renv::snapshot()
+```
+
+This updates `renv.lock` with current package versions.
+
+### Restore
+
+When you clone a project or switch machines:
+
+```r
+renv::restore()
+```
+
+This installs all packages recorded in `renv.lock`.
+
+### Status
+
+Check if your library matches the lockfile:
+
+```r
+renv::status()
+```
+
+Outputs tell you if packages are:
+- Missing from the library
+- Not recorded in the lockfile
+- Different versions than the lockfile
+
+## The Lockfile
+
+`renv.lock` is a JSON file recording every package:
+
+```json
+{
+  "R": {
+    "Version": "4.3.1",
+    "Repositories": [...]
+  },
+  "Packages": {
+    "ggplot2": {
+      "Package": "ggplot2",
+      "Version": "3.4.2",
+      "Source": "Repository"
+    }
+  }
+}
+```
+
+**Always commit `renv.lock` to Git.** This is how others reproduce your environment.
+
+## What to Commit to Git
+
+Include:
+- `renv.lock` — Package versions
+- `renv/activate.R` — Activation script
+- `.Rprofile` — Auto-activation
+
+Exclude (in `.gitignore`):
+- `renv/library/` — Actual packages (too large)
+- `renv/staging/` — Temporary files
+
+## Updating Packages
+
+### Update All
+
+```r
+renv::update()
+renv::snapshot()  # Don't forget to snapshot!
+```
+
+### Update Specific Package
+
+```r
+renv::update("ggplot2")
+renv::snapshot()
+```
+
+### Revert an Update
+
+If something breaks, restore the previous state:
+
+```r
+renv::restore()
+```
+
+## Common Issues
+
+### "The project is out-of-sync"
+
+This means packages in your library don't match `renv.lock`:
+
+```r
+# See what's different
+renv::status()
+
+# Sync library to lockfile
+renv::restore()
+
+# Or update lockfile to match library
+renv::snapshot()
+```
+
+### Package Installation Fails
+
+Try:
+
+```r
+# Clear cache and reinstall
+renv::install("package-name", rebuild = TRUE)
+```
+
+### Starting Fresh
+
+If things are really broken:
+
+```r
+# Remove renv from project
+renv::deactivate()
+unlink("renv", recursive = TRUE)
+file.remove("renv.lock")
+
+# Reinitialize
+renv::init()
+```
+
+## Working with Bioconductor
+
+For bioinformatics packages:
+
+```r
+# Set up Bioconductor
+renv::install("BiocManager")
+BiocManager::install("DESeq2")
+renv::snapshot()
+```
+
+renv automatically detects Bioconductor packages.
+
+## Integration with Positron
+
+renv works automatically with Positron:
+
+1. Open a project with renv
+2. R automatically activates renv (via `.Rprofile`)
+3. Install packages as normal
+4. Run `renv::snapshot()` to save
+
+The R console should show:
+```
+- Project '/path/to/project' loaded. [renv 1.0.0]
+```
+
+## Best Practices
+
+### Snapshot Regularly
+
+After installing or updating packages:
+
+```r
+renv::snapshot()
+git add renv.lock
+git commit -m "Update package dependencies"
+```
+
+### Check Status Before Committing
+
+```r
+renv::status()
+```
+
+Ensure the lockfile reflects your actual packages.
+
+### Document Special Packages
+
+If packages need special installation (GitHub, local, etc.), document it:
+
+```r
+# Install custom packages:
+# renv::install("github-user/custom-package")
+```
+
+## Quick Reference
+
+| Task | Command |
+|------|---------|
+| Initialize | `renv::init()` |
+| Install package | `install.packages("pkg")` |
+| Snapshot | `renv::snapshot()` |
+| Restore | `renv::restore()` |
+| Check status | `renv::status()` |
+| Update all | `renv::update()` |
+| Update one | `renv::update("pkg")` |

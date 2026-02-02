@@ -1,0 +1,307 @@
+# Git & GitHub
+
+Git tracks changes to your code over time. GitHub hosts your Git repositories online for backup and collaboration.
+
+## Why Version Control?
+
+Without version control:
+```
+analysis_v1.R
+analysis_v2.R
+analysis_v2_final.R
+analysis_v2_final_FINAL.R
+analysis_v2_final_FINAL_fixed.R
+```
+
+With Git:
+- One file, complete history
+- See what changed, when, and why
+- Revert mistakes
+- Collaborate without overwriting each other
+
+## Git Basics
+
+### Key Concepts
+
+- **Repository (repo)**: A project folder tracked by Git
+- **Commit**: A snapshot of your project at a point in time
+- **Stage**: Mark files to include in the next commit
+- **Branch**: A parallel version of your project
+- **Remote**: A copy of your repo on another server (like GitHub)
+
+### The Basic Workflow
+
+```bash
+# 1. Make changes to files
+
+# 2. See what changed
+git status
+
+# 3. Stage changes
+git add filename.R
+# Or stage everything:
+git add .
+
+# 4. Commit with a message
+git commit -m "Add analysis script"
+```
+
+### Viewing History
+
+```bash
+# See commit history
+git log
+
+# See compact history
+git log --oneline
+
+# See what changed in a commit
+git show abc123
+```
+
+## Essential Commands
+
+### Starting a Repo
+
+```bash
+# Initialize new repo
+git init
+
+# Clone existing repo
+git clone https://github.com/user/repo.git
+```
+
+### Daily Work
+
+```bash
+# Check status
+git status
+
+# See changes
+git diff
+
+# Stage files
+git add file.R
+git add .  # All files
+
+# Commit
+git commit -m "Your message"
+
+# Push to GitHub
+git push
+```
+
+### Undoing Things
+
+```bash
+# Unstage a file
+git reset HEAD file.R
+
+# Discard changes to a file
+git checkout -- file.R
+
+# Undo last commit (keep changes)
+git reset --soft HEAD~1
+```
+
+## Writing Good Commit Messages
+
+**Bad:**
+- "update"
+- "fix"
+- "changes"
+
+**Good:**
+- "Add function to normalize expression data"
+- "Fix off-by-one error in loop index"
+- "Update README with installation instructions"
+
+Format:
+- Short summary (50 chars or less)
+- Blank line
+- Detailed description if needed
+
+## Branching
+
+Branches let you work on features without affecting the main code.
+
+```bash
+# Create and switch to new branch
+git checkout -b feature-name
+
+# Work, commit, etc...
+
+# Switch back to main
+git checkout main
+
+# Merge feature into main
+git merge feature-name
+```
+
+### When to Branch
+
+- Adding a new feature
+- Fixing a bug
+- Experimenting
+
+Keep `main` stable. Do work in branches.
+
+## GitHub
+
+GitHub hosts your repositories online, enabling:
+
+- Backup of your code
+- Collaboration with others
+- Issue tracking
+- Pull requests for code review
+
+### Connecting to GitHub
+
+```bash
+# Add remote
+git remote add origin https://github.com/user/repo.git
+
+# Push (first time)
+git push -u origin main
+
+# Push (after first time)
+git push
+```
+
+### Pull Changes
+
+If someone else pushed changes:
+
+```bash
+git pull
+```
+
+### Cloning a Repo
+
+```bash
+git clone https://github.com/user/repo.git
+cd repo
+```
+
+## Pull Requests
+
+Pull requests (PRs) let you propose changes and get feedback.
+
+1. Create a branch
+2. Make changes and push
+3. Open PR on GitHub
+4. Get review/feedback
+5. Merge when approved
+
+This is standard for collaboration, even on solo projects (to review your own work).
+
+## .gitignore
+
+List files Git should ignore:
+
+```
+# Data files (too large)
+data/raw/
+*.csv
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+
+# Python
+__pycache__/
+*.pyc
+
+# Secrets
+.env
+credentials.json
+
+# OS files
+.DS_Store
+```
+
+Create `.gitignore` before your first commit.
+
+## Common Scenarios
+
+### "I committed but haven't pushed"
+
+You can still modify:
+
+```bash
+# Amend the last commit
+git commit --amend -m "New message"
+
+# Add forgotten file to last commit
+git add forgotten-file.R
+git commit --amend --no-edit
+```
+
+### "I want to see an old version"
+
+```bash
+# View old version of file
+git show abc123:path/to/file.R
+
+# Temporarily go back to old commit
+git checkout abc123
+git checkout main  # Return to present
+```
+
+### "I have merge conflicts"
+
+When the same lines changed in both branches:
+
+1. Open the conflicted file
+2. Look for conflict markers:
+   ```
+   <<<<<<< HEAD
+   your changes
+   =======
+   their changes
+   >>>>>>> branch-name
+   ```
+3. Edit to resolve (keep what you want)
+4. Remove the markers
+5. Stage and commit
+
+## Best Practices
+
+### Commit Often
+
+Small, focused commits are easier to understand and revert.
+
+### Pull Before Push
+
+```bash
+git pull
+git push
+```
+
+Avoid conflicts by syncing first.
+
+### Don't Commit Secrets
+
+Never commit passwords, API keys, or credentials. Use `.gitignore`.
+
+### Don't Commit Large Data
+
+Git struggles with large files. Keep data separate or use Git LFS.
+
+## Quick Reference
+
+| Task | Command |
+|------|---------|
+| Initialize repo | `git init` |
+| Clone repo | `git clone URL` |
+| Check status | `git status` |
+| Stage file | `git add FILE` |
+| Stage all | `git add .` |
+| Commit | `git commit -m "message"` |
+| Push | `git push` |
+| Pull | `git pull` |
+| View log | `git log --oneline` |
+| Create branch | `git checkout -b NAME` |
+| Switch branch | `git checkout NAME` |
+| Merge branch | `git merge NAME` |

@@ -1,0 +1,136 @@
+# Positron
+
+Positron is a data science IDE built by Posit (formerly RStudio) on top of VS Code. It combines the power of VS Code with native support for R and Python data science workflows.
+
+## Why Positron?
+
+- **Dual language support**: First-class support for both R and Python
+- **Data viewer**: Inspect dataframes and tibbles interactively
+- **Variable explorer**: See all objects in your environment
+- **Integrated terminal**: Run shell commands without leaving the IDE
+- **Extensions**: Access the VS Code extension ecosystem
+
+[TODO: screenshot of Positron interface with labeled panes]
+
+## Key Interface Elements
+
+### The Console
+
+The console at the bottom shows your R or Python session. You can:
+
+- Run code interactively
+- See output and errors
+- Switch between R and Python sessions
+
+### The Environment Pane
+
+Shows all variables in your current session:
+
+- Dataframes with row/column counts
+- Click to view data in the Data Viewer
+- See memory usage
+
+### The Data Viewer
+
+Click any dataframe to open it in a spreadsheet-like viewer:
+
+- Sort by columns
+- Filter rows
+- Search for values
+
+[TODO: screenshot of Data Viewer]
+
+## Essential Keyboard Shortcuts
+
+| Action | macOS | Windows |
+|--------|-------|---------|
+| Run current line | Cmd+Enter | Ctrl+Enter |
+| Run selection | Cmd+Enter | Ctrl+Enter |
+| Open command palette | Cmd+Shift+P | Ctrl+Shift+P |
+| Toggle terminal | Cmd+` | Ctrl+` |
+| Quick file open | Cmd+P | Ctrl+P |
+| Save file | Cmd+S | Ctrl+S |
+
+## Working with R
+
+Positron detects R automatically. Start an R session by:
+
+1. Opening an `.R` file
+2. Clicking "Start R" in the status bar
+3. Running R code in the terminal
+
+### Sending Code to Console
+
+Select code and press **Cmd+Enter** (macOS) or **Ctrl+Enter** (Windows) to run it.
+
+## Working with Python
+
+### Selecting an Interpreter
+
+1. Open Command Palette (Cmd/Ctrl+Shift+P)
+2. Type "Python: Select Interpreter"
+3. Choose your conda environment
+
+NOTE: if you just initalized your conda environment you will need to restart Positron to see it as an option.
+
+### Jupyter-style Execution
+
+Python files support `# %%` cell markers for interactive execution:
+
+```python
+# %%
+import pandas as pd
+df = pd.read_csv("data.csv")
+
+# %%
+df.describe()
+```
+
+Run cells with Shift+Enter.
+
+## Recommended Extensions
+
+Positron comes with many extensions pre-installed. Consider adding:
+
+- **GitLens**: Enhanced Git integration
+- **Rainbow CSV**: Color-code CSV columns
+- **Quarto**: If you use Quarto documents
+
+Install extensions via the Extensions panel (Cmd/Ctrl+Shift+X).
+
+## Project Settings
+
+Create a `.vscode/settings.json` file for project-specific settings:
+
+```json
+{
+  "python.defaultInterpreterPath": "~/miniforge3/envs/my-project/bin/python",
+  "r.rpath.mac": "/usr/local/bin/R",
+  "files.autoSave": "afterDelay"
+}
+```
+
+## Tips for Effective Use
+
+1. **Use the Command Palette**: Press Cmd/Ctrl+Shift+P to access any command
+2. **Learn keyboard shortcuts**: They significantly speed up your workflow
+3. **Split the editor**: View multiple files side by side
+4. **Use integrated terminal**: Keep everything in one window
+
+## Troubleshooting
+
+### R not detected
+
+- Ensure R is installed and in your PATH
+- Check Positron settings for R path configuration
+
+### Python environment not showing
+
+- Activate the conda environment in the terminal first
+- Use "Python: Select Interpreter" to manually choose it
+
+### Slow performance
+
+- Close unused tabs
+- Restart Positron
+- Check if large data is loaded in memory

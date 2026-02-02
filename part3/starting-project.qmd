@@ -1,0 +1,270 @@
+# Starting a New Analysis Project
+
+This chapter walks through setting up a new analysis project from scratch, using all the tools together.
+
+## The Standard Structure
+
+Every analysis project should have:
+
+```
+project-name/
+├── .claude/
+│   └── CLAUDE.md         # Claude Code instructions
+├── .git/                  # Git repository
+├── .gitignore            # Files to exclude from Git
+├── data/
+│   ├── raw/              # Original data (never modify)
+│   └── processed/        # Cleaned/transformed data
+├── scripts/              # Analysis scripts
+├── output/               # Results, figures, tables
+├── environment.yml       # Conda environment (Python)
+├── renv.lock            # R package versions
+└── README.md            # Project description
+```
+
+## Step-by-Step Setup
+
+### 1. Create the Project Directory
+
+```bash
+mkdir my-analysis
+cd my-analysis
+```
+
+### 2. Initialize Git
+
+```bash
+git init
+```
+
+Create `.gitignore`:
+
+```
+# Data (large files)
+data/raw/
+*.csv
+*.tsv
+*.xlsx
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+renv/library/
+renv/staging/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Output (regenerated from code)
+output/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.positron/
+
+# Secrets
+.env
+```
+
+### 3. Create Directory Structure
+
+```bash
+mkdir -p data/raw data/processed scripts output .claude
+```
+
+### 4. Set Up Python Environment (if using Python)
+
+```bash
+conda create -n my-analysis python=3.11 -y
+conda activate my-analysis
+conda install pandas numpy matplotlib seaborn -y
+conda env export > environment.yml
+```
+
+### 5. Set Up R with renv (if using R)
+
+In R:
+
+```r
+renv::init()
+install.packages(c("tidyverse", "here"))
+renv::snapshot()
+```
+
+### 6. Create Project CLAUDE.md
+
+Create `.claude/CLAUDE.md`:
+
+```markdown
+# Project: My Analysis
+
+## Overview
+[Brief description of what this project does]
+
+## Environment
+- Python: `conda activate my-analysis`
+- R: Uses renv (auto-activates)
+
+## Key Directories
+- `data/raw/` — Original data (read-only)
+- `data/processed/` — Cleaned data
+- `scripts/` — Analysis code
+- `output/` — Results and figures
+
+## Workflows
+[How to run the analysis]
+
+## Data
+[Description of data files and their contents]
+```
+
+### 7. Create README
+
+Create `README.md`:
+
+```markdown
+# My Analysis
+
+## Overview
+[What this project does]
+
+## Setup
+
+### Python
+conda env create -f environment.yml
+conda activate my-analysis
+
+### R
+# renv will auto-activate; run renv::restore() if needed
+
+## Running the Analysis
+[Instructions]
+
+## Data
+[Data sources and descriptions]
+```
+
+### 8. First Commit
+
+```bash
+git add .
+git commit -m "Initial project setup"
+```
+
+### 9. Push to GitHub
+
+```bash
+gh repo create my-analysis --private --source=. --push
+```
+
+Or manually:
+
+1. Create repo on GitHub
+2. `git remote add origin https://github.com/USERNAME/my-analysis.git`
+3. `git push -u origin main`
+
+## Adding Data
+
+### Raw Data
+
+Put original data files in `data/raw/`. Never modify these files — treat them as read-only.
+
+If data files are large, don't commit them to Git. Add to `.gitignore`:
+
+```
+data/raw/*.csv
+```
+
+Instead, document where to obtain the data in your README.
+
+### Processing Data
+
+Scripts that clean or transform data should:
+
+1. Read from `data/raw/`
+2. Write to `data/processed/`
+3. Include documentation of what transformations were applied
+
+```r
+# scripts/01_clean_data.R
+
+library(tidyverse)
+library(here)
+
+# Load raw data
+raw <- read_csv(here("data/raw/experiment_data.csv"))
+cat("Loaded", nrow(raw), "rows\n")
+
+# Clean: remove rows with missing values
+clean <- raw %>%
+  filter(!is.na(value)) %>%
+  filter(quality > 0.8)
+cat("After cleaning:", nrow(clean), "rows\n")
+
+# Save
+write_csv(clean, here("data/processed/clean_data.csv"))
+```
+
+## Organizing Scripts
+
+Name scripts with numbers to indicate order:
+
+```
+scripts/
+├── 01_clean_data.R
+├── 02_exploratory_analysis.R
+├── 03_statistical_analysis.R
+└── 04_generate_figures.R
+```
+
+Or organize by function:
+
+```
+scripts/
+├── preprocessing/
+│   ├── clean_data.R
+│   └── normalize.R
+├── analysis/
+│   ├── differential_expression.R
+│   └── pathway_analysis.R
+└── figures/
+    ├── figure1.R
+    └── figure2.R
+```
+
+## Using Claude Code
+
+With your `.claude/CLAUDE.md` in place, start Claude Code:
+
+```bash
+claude
+```
+
+Example workflow:
+
+> "I have RNA-seq counts in data/raw/counts.csv. Create a script to load it, do basic QC, and save a cleaned version."
+
+Review the generated code, then:
+
+> "Commit this with an appropriate message"
+
+## Checklist
+
+Before starting analysis:
+
+- [ ] Git initialized
+- [ ] `.gitignore` in place
+- [ ] Directory structure created
+- [ ] Conda environment created and exported
+- [ ] renv initialized (if using R)
+- [ ] `.claude/CLAUDE.md` written
+- [ ] README drafted
+- [ ] First commit made
+- [ ] Pushed to GitHub

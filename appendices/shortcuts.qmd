@@ -1,0 +1,106 @@
+# Keyboard Shortcuts {#sec-shortcuts}
+
+Quick reference for frequently used keyboard shortcuts.
+
+## Positron / VS Code
+
+### General
+
+| Action | macOS | Windows |
+|--------|-------|---------|
+| Command Palette | `Cmd+Shift+P` | `Ctrl+Shift+P` |
+| Quick Open (files) | `Cmd+P` | `Ctrl+P` |
+| Settings | `Cmd+,` | `Ctrl+,` |
+| Toggle Sidebar | `Cmd+B` | `Ctrl+B` |
+| Toggle Terminal | `` Cmd+` `` | `` Ctrl+` `` |
+| New Window | `Cmd+Shift+N` | `Ctrl+Shift+N` |
+| Close Window | `Cmd+W` | `Ctrl+W` |
+
+### Editing
+
+| Action | macOS | Windows |
+|--------|-------|---------|
+| Save | `Cmd+S` | `Ctrl+S` |
+| Save All | `Cmd+Option+S` | `Ctrl+K S` |
+| Undo | `Cmd+Z` | `Ctrl+Z` |
+| Redo | `Cmd+Shift+Z` | `Ctrl+Y` |
+| Cut Line | `Cmd+X` | `Ctrl+X` |
+| Copy Line | `Cmd+C` | `Ctrl+C` |
+| Move Line Up/Down | `Option+↑/↓` | `Alt+↑/↓` |
+| Duplicate Line | `Shift+Option+↓` | `Shift+Alt+↓` |
+| Delete Line | `Cmd+Shift+K` | `Ctrl+Shift+K` |
+| Toggle Comment | `Cmd+/` | `Ctrl+/` |
+
+### Navigation
+
+| Action | macOS | Windows |
+|--------|-------|---------|
+| Go to Line | `Ctrl+G` | `Ctrl+G` |
+| Go to Symbol | `Cmd+Shift+O` | `Ctrl+Shift+O` |
+| Go to Definition | `F12` | `F12` |
+| Go Back | `Ctrl+-` | `Alt+←` |
+| Go Forward | `Ctrl+Shift+-` | `Alt+→` |
+
+### Multi-Cursor
+
+| Action | macOS | Windows |
+|--------|-------|---------|
+| Add Cursor | `Option+Click` | `Alt+Click` |
+| Add Cursor Above | `Cmd+Option+↑` | `Ctrl+Alt+↑` |
+| Add Cursor Below | `Cmd+Option+↓` | `Ctrl+Alt+↓` |
+| Select All Occurrences | `Cmd+Shift+L` | `Ctrl+Shift+L` |
+
+### Code Execution (R/Python)
+
+| Action | macOS | Windows |
+|--------|-------|---------|
+| Run Selection/Line | `Cmd+Enter` | `Ctrl+Enter` |
+| Run Cell | `Shift+Enter` | `Shift+Enter` |
+| Run All Above | `Cmd+Shift+Enter` | `Ctrl+Shift+Enter` |
+
+### Search
+
+| Action | macOS | Windows |
+|--------|-------|---------|
+| Find in File | `Cmd+F` | `Ctrl+F` |
+| Find and Replace | `Cmd+Option+F` | `Ctrl+H` |
+| Find in Files | `Cmd+Shift+F` | `Ctrl+Shift+F` |
+
+## Terminal / Bash
+
+| Action | Shortcut |
+|--------|----------|
+| Clear screen | `Ctrl+L` |
+| Cancel command | `Ctrl+C` |
+| End of input | `Ctrl+D` |
+| Move to line start | `Ctrl+A` |
+| Move to line end | `Ctrl+E` |
+| Delete to line start | `Ctrl+U` |
+| Delete to line end | `Ctrl+K` |
+| Previous command | `↑` |
+| Search history | `Ctrl+R` |
+
+## Git
+
+Common Git commands (not shortcuts, but frequently used):
+
+| Action | Command |
+|--------|---------|
+| Status | `git status` |
+| Stage all | `git add .` |
+| Commit | `git commit -m "message"` |
+| Push | `git push` |
+| Pull | `git pull` |
+| Log (compact) | `git log --oneline` |
+| Diff | `git diff` |
+| Branch list | `git branch` |
+| Switch branch | `git checkout branch-name` |
+
+## Claude Code
+
+| Action | Command |
+|--------|----------|
+| Exit session | `/exit` or `Ctrl+C` |
+| Clear screen | `/clear` |
+| Help | `/help` |
+| End session with summary | `/done` |

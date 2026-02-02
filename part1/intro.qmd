@@ -1,0 +1,60 @@
+# Introduction
+
+## Why These Tools?
+
+Modern computational analysis requires more than just writing code. You need to:
+
+- **Reproduce your results** — Run the same analysis months later and get the same output
+- **Collaborate effectively** — Share code with colleagues without "it works on my machine" problems
+- **Manage complexity** — Keep track of dependencies, data, and analysis steps
+- **Work efficiently** — Leverage modern tools to speed up your workflow
+
+The tools in this guide work together to solve these challenges:
+
+| Tool | Purpose |
+|------|---------|
+| **Positron** | IDE designed for data science (R + Python) |
+| **Conda** | Python environment management |
+| **renv** | R package management |
+| **Git/GitHub** | Version control and collaboration |
+| **Claude Code** | AI-assisted coding and analysis |
+
+## How They Fit Together
+
+```
+┌─────────────────────────────────────────────────┐
+│                   Positron                       │
+│              (Your workspace)                    │
+│                                                  │
+│  ┌──────────┐  ┌──────────┐  ┌──────────────┐  │
+│  │  Conda   │  │   renv   │  │  Claude Code │  │
+│  │ (Python) │  │   (R)    │  │    (AI)      │  │
+│  └──────────┘  └──────────┘  └──────────────┘  │
+│                                                  │
+│  ┌──────────────────────────────────────────┐   │
+│  │              Git / GitHub                 │   │
+│  │        (Version control for all)          │   │
+│  └──────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────┘
+```
+
+**Positron** is your central workspace where you write and run code. It integrates with all the other tools.
+
+**Conda** manages Python environments — isolated spaces with specific Python versions and packages for each project.
+
+**renv** does the same for R — tracking which R packages each project needs.
+
+**Git** tracks changes to your code over time. **GitHub** hosts your code online for backup and collaboration.
+
+**Claude Code** is an AI assistant that runs in your terminal and helps you write, debug, and understand code.
+
+## What You'll Learn
+
+By the end of Part 1, you will have:
+
+1. All tools installed and configured
+2. Created a project with both R and Python code
+3. Tracked it with Git and pushed to GitHub
+4. Used Claude Code to help write code
+
+Let's start by installing everything.

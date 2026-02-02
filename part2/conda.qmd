@@ -1,0 +1,248 @@
+# Conda
+
+Conda is an environment and package manager that creates isolated spaces for your Python projects. Each environment has its own Python version and packages, preventing conflicts between projects.
+
+## Why Use Environments?
+
+Without environments:
+
+- Project A needs `pandas 1.5`
+- Project B needs `pandas 2.0`
+- Both can't coexist in a single Python installation
+
+With environments:
+
+```
+project-a-env/
+  └── pandas 1.5
+
+project-b-env/
+  └── pandas 2.0
+```
+
+Each project has exactly what it needs.
+
+## Basic Commands
+
+### Create an Environment
+
+```bash
+# Create with specific Python version
+conda create -n my-project python=3.11
+
+# Create with packages included
+conda create -n my-project python=3.11 pandas numpy matplotlib
+```
+
+### Activate/Deactivate
+
+```bash
+# Activate (start using the environment)
+conda activate my-project
+
+# Deactivate (return to base)
+conda deactivate
+```
+
+When activated, your prompt shows the environment name:
+
+```bash
+(my-project) $
+```
+
+### Install Packages
+
+```bash
+# Install a package
+conda install pandas
+
+# Install specific version
+conda install pandas=2.0
+
+# Install multiple packages
+conda install pandas numpy matplotlib seaborn
+```
+
+### List Environments
+
+```bash
+# See all environments
+conda env list
+
+# See packages in current environment
+conda list
+```
+
+### Remove Environment
+
+```bash
+conda env remove -n my-project
+```
+
+## Environment Files
+
+### Export Your Environment
+
+Save your environment to a file so others can recreate it:
+
+```bash
+conda env export > environment.yml
+```
+
+This creates:
+
+```yaml
+name: my-project
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11.5
+  - pandas=2.0.3
+  - numpy=1.24.3
+  - pip:
+    - some-pip-package==1.0.0
+```
+
+### Recreate from File
+
+```bash
+conda env create -f environment.yml
+```
+
+### Cross-Platform Files
+
+The default export includes platform-specific builds. For cross-platform sharing:
+
+```bash
+conda env export --from-history > environment.yml
+```
+
+This exports only packages you explicitly installed.
+
+## Best Practices
+
+### One Environment Per Project
+
+Create a dedicated environment for each project:
+
+```bash
+conda create -n genomics-project python=3.11
+conda create -n imaging-analysis python=3.10
+```
+
+### Name Environments Meaningfully
+
+Use descriptive names:
+
+```bash
+# Good
+conda create -n tihkal-analysis python=3.11
+
+# Less helpful
+conda create -n env1 python=3.11
+```
+
+### Pin Major Versions
+
+Specify Python version when creating:
+
+```bash
+conda create -n my-project python=3.11  # Not just "python"
+```
+
+### Update Regularly (But Carefully)
+
+```bash
+# Update all packages
+conda update --all
+
+# Update specific package
+conda update pandas
+```
+
+Test after updating to ensure nothing breaks.
+
+## Conda vs pip
+
+Both install Python packages. General rule:
+
+- **Use conda first** for scientific packages (pandas, numpy, scipy)
+- **Use pip** for packages not available in conda
+
+```bash
+# Prefer
+conda install pandas
+
+# If not available in conda
+pip install some-other-package
+```
+
+::: {.callout-warning}
+## Mixing conda and pip
+When using both, install conda packages first, then pip packages. This avoids dependency conflicts.
+:::
+
+## Channels
+
+Channels are package repositories. The main ones:
+
+- **conda-forge**: Community-maintained, most packages
+- **defaults**: Anaconda's default channel
+
+We use Miniforge which defaults to conda-forge:
+
+```bash
+# Explicitly specify channel if needed
+conda install -c conda-forge package-name
+```
+
+## Troubleshooting
+
+### "Solving environment" takes forever
+
+This happens with complex dependency trees. Try:
+
+```bash
+# Use mamba (faster solver)
+conda install mamba
+mamba install package-name
+```
+
+### Package not found
+
+1. Check spelling
+2. Try conda-forge channel explicitly
+3. Fall back to pip
+
+### Environment corrupted
+
+Remove and recreate:
+
+```bash
+conda deactivate
+conda env remove -n my-project
+conda env create -f environment.yml
+```
+
+## Integration with Positron
+
+1. Activate your environment in the terminal
+2. In Positron, open Command Palette (Cmd/Ctrl+Shift+P)
+3. Type "Python: Select Interpreter"
+4. Choose the environment
+
+The environment's Python will be used for running scripts and notebooks.
+
+## Quick Reference
+
+| Task | Command |
+|------|---------|
+| Create environment | `conda create -n NAME python=3.11` |
+| Activate | `conda activate NAME` |
+| Deactivate | `conda deactivate` |
+| Install package | `conda install PACKAGE` |
+| Export environment | `conda env export > environment.yml` |
+| Create from file | `conda env create -f environment.yml` |
+| List environments | `conda env list` |
+| Remove environment | `conda env remove -n NAME` |

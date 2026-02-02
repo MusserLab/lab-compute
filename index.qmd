@@ -1,0 +1,32 @@
+# Welcome {.unnumbered}
+
+This guide teaches you how to perform computational analysis using a modern, reproducible workflow. You'll learn to use:
+
+- **Positron** — A powerful IDE designed for data science
+- **Conda** — Environment management for Python
+- **renv** — Package management for R
+- **Git & GitHub** — Version control and collaboration
+- **Claude Code** — AI-assisted coding
+
+## Who This Guide Is For
+
+This guide is written for students and researchers who have some programming experience but want to learn professional workflows for computational analysis. You should be comfortable with basic R or Python syntax, but don't need prior experience with the specific tools covered here.
+
+## How to Use This Guide
+
+**If you're new**, start with [Part 1: Quick Start](part1/intro.qmd). You'll install all the tools and create your first project in about 30 minutes.
+
+**If you need a reference**, jump to [Part 2: Core Tools](part2/positron.qmd) for detailed coverage of each tool.
+
+**If you're looking for workflows**, see [Part 3: Workflows](part3/starting-project.qmd) for task-oriented guides.
+
+## The Philosophy
+
+We emphasize:
+
+1. **Reproducibility** — Your analyses should run on any machine
+2. **Version control** — Track changes and collaborate effectively
+3. **Environment isolation** — Each project has its own dependencies
+4. **AI assistance** — Use modern tools to accelerate your work
+
+Let's get started.

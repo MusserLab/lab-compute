@@ -1,0 +1,20 @@
+# Quarto output
+_book/
+_site/
+*_files/
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.positron/
+
+/.quarto/
+**/*.quarto_ipynb

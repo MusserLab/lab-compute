@@ -1,0 +1,314 @@
+# Command Reference {#sec-commands}
+
+Quick reference for essential commands.
+
+## Conda
+
+### Environment Management
+
+```bash
+# Create environment
+conda create -n ENV_NAME python=3.11
+
+# Create with packages
+conda create -n ENV_NAME python=3.11 pandas numpy
+
+# Activate
+conda activate ENV_NAME
+
+# Deactivate
+conda deactivate
+
+# List environments
+conda env list
+
+# Remove environment
+conda env remove -n ENV_NAME
+
+# Export environment
+conda env export > environment.yml
+
+# Create from file
+conda env create -f environment.yml
+
+# Update from file
+conda env update -f environment.yml
+```
+
+### Package Management
+
+```bash
+# Install package
+conda install PACKAGE
+
+# Install specific version
+conda install PACKAGE=1.2.3
+
+# Update package
+conda update PACKAGE
+
+# Update all
+conda update --all
+
+# List installed
+conda list
+
+# Search for package
+conda search PACKAGE
+```
+
+## renv (R)
+
+```r
+# Initialize renv
+renv::init()
+
+# Install package
+install.packages("package")
+renv::install("package")
+
+# Snapshot (save state)
+renv::snapshot()
+
+# Restore (load state)
+renv::restore()
+
+# Check status
+renv::status()
+
+# Update packages
+renv::update()
+renv::update("package")
+
+# Deactivate renv
+renv::deactivate()
+```
+
+## Git
+
+### Setup
+
+```bash
+# Initialize repo
+git init
+
+# Clone repo
+git clone URL
+
+# Configure identity
+git config --global user.name "Name"
+git config --global user.email "email@example.com"
+
+# Add remote
+git remote add origin URL
+```
+
+### Daily Workflow
+
+```bash
+# Check status
+git status
+
+# View changes
+git diff
+git diff --staged
+
+# Stage files
+git add FILE
+git add .
+
+# Commit
+git commit -m "message"
+
+# Push
+git push
+
+# Pull
+git pull
+```
+
+### Branches
+
+```bash
+# List branches
+git branch
+
+# Create and switch
+git checkout -b BRANCH
+
+# Switch branch
+git checkout BRANCH
+
+# Merge branch
+git merge BRANCH
+
+# Delete branch
+git branch -d BRANCH
+```
+
+### History
+
+```bash
+# View log
+git log
+git log --oneline
+git log --oneline -n 10
+
+# View specific commit
+git show COMMIT_HASH
+
+# View file history
+git log -p FILE
+```
+
+### Undoing
+
+```bash
+# Unstage file
+git reset HEAD FILE
+
+# Discard changes to file
+git checkout -- FILE
+
+# Undo last commit (keep changes)
+git reset --soft HEAD~1
+
+# Amend last commit
+git commit --amend
+```
+
+## GitHub CLI (gh)
+
+```bash
+# Authenticate
+gh auth login
+
+# Create repo
+gh repo create NAME --private
+
+# Clone repo
+gh repo clone OWNER/REPO
+
+# Create PR
+gh pr create --title "Title" --body "Description"
+
+# View PR
+gh pr view NUMBER
+
+# List issues
+gh issue list
+
+# Create issue
+gh issue create --title "Title" --body "Description"
+```
+
+## Quarto
+
+```bash
+# Create project
+quarto create project book NAME
+
+# Render document
+quarto render FILE.qmd
+
+# Render project
+quarto render
+
+# Preview (live reload)
+quarto preview
+
+# Publish to GitHub Pages
+quarto publish gh-pages
+```
+
+## File Operations (Bash)
+
+```bash
+# Create directory
+mkdir DIRNAME
+mkdir -p path/to/nested/dir
+
+# List files
+ls
+ls -la
+
+# Change directory
+cd DIRNAME
+cd ..
+cd ~
+
+# Copy file
+cp SOURCE DEST
+
+# Move/rename
+mv SOURCE DEST
+
+# Remove file
+rm FILE
+
+# Remove directory
+rm -r DIRNAME
+
+# View file
+cat FILE
+less FILE
+head FILE
+tail FILE
+```
+
+## Python Quick Reference
+
+```python
+# Virtual environment (alternative to conda)
+python -m venv .venv
+source .venv/bin/activate  # macOS/Linux
+.venv\Scripts\activate     # Windows
+
+# Install from requirements
+pip install -r requirements.txt
+
+# Save requirements
+pip freeze > requirements.txt
+
+# Run script
+python script.py
+
+# Run module
+python -m module_name
+
+# Interactive Python
+python
+ipython
+```
+
+## R Quick Reference
+
+```r
+# Run script from command line
+Rscript script.R
+
+# Install package
+install.packages("package")
+
+# Load package
+library(package)
+
+# Get help
+?function
+help(function)
+
+# Set working directory
+setwd("path")
+
+# Get working directory
+getwd()
+
+# List objects
+ls()
+
+# Remove object
+rm(object)
+
+# Clear environment
+rm(list = ls())
+```

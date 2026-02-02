@@ -1,0 +1,218 @@
+# Installation
+
+This chapter walks you through installing all the tools you need. Follow the sections in order.
+
+## 1. Positron
+
+Positron is a data science IDE built on VS Code, designed specifically for R and Python work.
+
+### macOS
+
+1. Download Positron from [https://positron.posit.co](https://positron.posit.co)
+2. Open the `.dmg` file and drag Positron to your Applications folder
+3. Open Positron from Applications
+
+### Windows
+
+1. Download Positron from [https://positron.posit.co](https://positron.posit.co)
+2. Run the installer (`.exe` file)
+3. Follow the installation prompts
+4. Launch Positron from the Start menu
+
+::: {.callout-tip}
+## First Launch
+When you first open Positron, it may ask to install recommended extensions. Accept these defaults.
+:::
+
+## 2. Conda (Miniforge)
+
+We use Miniforge, a minimal conda installer that defaults to the conda-forge channel.
+
+### macOS
+
+Open Terminal and run:
+
+```bash
+# Download the installer
+curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-$(uname -m).sh"
+
+# Run the installer
+bash Miniforge3-MacOSX-$(uname -m).sh
+```
+
+Follow the prompts, accepting the defaults. When asked about initializing conda, say **yes**.
+
+After installation, restart your terminal or run:
+
+```bash
+source ~/.zshrc
+```
+
+Verify the installation:
+
+```bash
+conda --version
+```
+
+### Windows
+
+1. Download the Miniforge installer from [https://github.com/conda-forge/miniforge/releases](https://github.com/conda-forge/miniforge/releases)
+   - Choose `Miniforge3-Windows-x86_64.exe`
+2. Run the installer
+3. Check "Add Miniforge3 to my PATH environment variable" during installation
+4. Complete the installation
+
+Open a new PowerShell or Command Prompt and verify:
+
+```powershell
+conda --version
+```
+
+## 3. R
+
+### macOS
+
+1. Download R from [https://cran.r-project.org/bin/macosx/](https://cran.r-project.org/bin/macosx/)
+2. Open the `.pkg` file and follow the installer
+3. Verify in Terminal:
+
+```bash
+R --version
+```
+
+### Windows
+
+1. Download R from [https://cran.r-project.org/bin/windows/base/](https://cran.r-project.org/bin/windows/base/)
+2. Run the installer with default settings
+3. Verify in Command Prompt:
+
+```powershell
+R --version
+```
+
+## 4. Git
+
+### macOS
+
+Git may already be installed. Check by running:
+
+```bash
+git --version
+```
+
+If not installed, you'll be prompted to install the Xcode Command Line Tools. Accept the prompt.
+
+Alternatively, install via Homebrew:
+
+```bash
+brew install git
+```
+
+### Windows
+
+1. Download Git from [https://git-scm.com/download/win](https://git-scm.com/download/win)
+2. Run the installer
+3. Accept the default options (the defaults are good)
+4. Verify in a new terminal:
+
+```powershell
+git --version
+```
+
+### Configure Git (Both Platforms)
+
+Set your identity (use your real name and email):
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+```
+
+## 5. GitHub Account
+
+1. Go to [https://github.com](https://github.com) and create an account if you don't have one
+2. We'll set up authentication in @sec-github-auth
+
+## 6. Claude Code
+
+Claude Code is an AI coding assistant that runs in your terminal.
+
+### Prerequisites
+
+You need Node.js 18+ installed:
+
+**macOS:**
+```bash
+brew install node
+```
+
+**Windows:**
+Download and install from [https://nodejs.org](https://nodejs.org) (LTS version).
+
+### Install Claude Code
+
+```bash
+npm install -g @anthropic-ai/claude-code
+```
+
+### Authenticate
+
+Run Claude Code once to authenticate:
+
+```bash
+claude
+```
+
+Follow the prompts to log in with your Anthropic account.
+
+::: {.callout-note}
+## Anthropic Account
+You'll need an Anthropic account with API access. If you're a lab member, ask for credentials.
+:::
+
+## 7. Quarto (Optional)
+
+Quarto is useful for creating reports and documents. This book was built with Quarto.
+
+### macOS
+
+```bash
+brew install quarto
+```
+
+Or download from [https://quarto.org/docs/get-started/](https://quarto.org/docs/get-started/)
+
+### Windows
+
+Download and run the installer from [https://quarto.org/docs/get-started/](https://quarto.org/docs/get-started/)
+
+## Verification Checklist
+
+Run these commands to verify everything is installed:
+
+```bash
+# Check each tool
+positron --version  # Or just open Positron
+conda --version
+R --version
+git --version
+claude --version
+quarto --version    # If installed
+```
+
+All commands should return version numbers without errors.
+
+::: {.callout-tip}
+## Troubleshooting
+If any command fails with "command not found":
+
+- **macOS**: Try opening a new terminal window
+- **Windows**: Try opening a new PowerShell window
+- Check that the tool's install directory is in your PATH
+
+See [Troubleshooting](../part3/troubleshooting.qmd) for common issues.
+:::
+
+## Next Steps
+
+Now that everything is installed, let's create your first project.

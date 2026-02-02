@@ -1,0 +1,306 @@
+# Common Tasks & Troubleshooting
+
+This chapter covers frequently asked questions and common problems.
+
+## Conda
+
+### "command not found: conda"
+
+**macOS/Linux**: Conda isn't initialized in this shell session.
+
+```bash
+source ~/miniforge3/etc/profile.d/conda.sh
+# Or for miniconda:
+source ~/miniconda3/etc/profile.d/conda.sh
+```
+
+Add this to your `~/.zshrc` or `~/.bashrc` to make it permanent.
+
+**Windows**: Open "Anaconda Prompt" or "Miniforge Prompt" instead of regular Command Prompt.
+
+### "Solving environment" is very slow
+
+Conda's dependency resolver can be slow with complex environments.
+
+**Solutions:**
+
+1. Use mamba (faster drop-in replacement):
+   ```bash
+   conda install mamba -n base
+   mamba install package-name
+   ```
+
+2. Create minimal environments:
+   ```bash
+   conda create -n project python=3.11 pandas numpy
+   # Instead of installing everything at once
+   ```
+
+3. Use conda-forge channel consistently:
+   ```bash
+   conda config --add channels conda-forge
+   conda config --set channel_priority strict
+   ```
+
+### Environment not activating in Positron
+
+1. Open Positron's integrated terminal
+2. Manually activate: `conda activate my-env`
+3. Use Command Palette: "Python: Select Interpreter" → choose the environment
+
+### Recreating a broken environment
+
+```bash
+conda deactivate
+conda env remove -n broken-env
+conda env create -f environment.yml
+```
+
+## renv
+
+### "The project is out-of-sync"
+
+This warning means packages in your library don't match `renv.lock`.
+
+**To see what's different:**
+```r
+renv::status()
+```
+
+**To sync library to lockfile (recommended):**
+```r
+renv::restore()
+```
+
+**To update lockfile to match library:**
+```r
+renv::snapshot()
+```
+
+### Package installation fails
+
+Try clearing the cache and rebuilding:
+
+```r
+renv::install("package-name", rebuild = TRUE)
+```
+
+For persistent issues:
+
+```r
+# Check for system dependencies
+renv::diagnostics()
+
+# Install from a different repository
+renv::install("package-name", repos = "https://cloud.r-project.org")
+```
+
+### Starting fresh with renv
+
+```r
+renv::deactivate()
+```
+
+```bash
+rm -rf renv renv.lock .Rprofile
+```
+
+```r
+renv::init()
+```
+
+## Git
+
+### "Updates were rejected because the remote contains work..."
+
+Someone pushed while you were working.
+
+```bash
+git pull
+# Resolve any conflicts if needed
+git push
+```
+
+### Accidentally committed large files
+
+Remove from history (if not yet pushed):
+
+```bash
+git reset --soft HEAD~1
+# Edit .gitignore to exclude the file
+git add .gitignore
+git commit -m "Fix gitignore"
+```
+
+If already pushed, use BFG or git-filter-branch (more complex).
+
+### Undo the last commit (keep changes)
+
+```bash
+git reset --soft HEAD~1
+```
+
+### See what changed in a file
+
+```bash
+git log -p filename.R
+```
+
+### Discard all uncommitted changes
+
+```bash
+git checkout -- .
+# Or for all files including untracked:
+git clean -fd
+```
+
+⚠️ This permanently deletes uncommitted work!
+
+## Claude Code
+
+### "Command not found" for conda in Claude Code
+
+Claude Code runs in a non-interactive shell. Always source conda first:
+
+```bash
+source ~/miniforge3/etc/profile.d/conda.sh && conda activate my-env && python script.py
+```
+
+Document this pattern in your `.claude/CLAUDE.md`.
+
+### Claude doesn't understand my project
+
+Ensure `.claude/CLAUDE.md` exists and contains:
+
+- Project overview
+- Environment setup commands
+- Key file locations
+- Common workflows
+
+### Responses are generic or unhelpful
+
+Provide more context:
+
+- Show the specific file or code
+- Explain what you're trying to accomplish
+- Share error messages in full
+
+Instead of: "Fix the bug"
+
+Try: "In analysis.R line 45, I get 'object x not found'. Here's the relevant code: [paste code]. The data is loaded from data/raw/data.csv."
+
+## Positron
+
+### R not detected
+
+1. Check R is installed: `R --version` in terminal
+2. In Positron settings, search for "R Path" and set it explicitly
+3. Restart Positron
+
+### Python interpreter not showing
+
+1. Activate conda environment in terminal
+2. Command Palette → "Python: Select Interpreter"
+3. Click "Enter interpreter path" and navigate to the environment's Python
+
+### Slow or unresponsive
+
+1. Close unused tabs
+2. Restart Positron
+3. Check if large objects are in memory (clear R/Python session)
+4. Check system memory usage
+
+## Quarto
+
+### "quarto: command not found"
+
+**macOS:**
+```bash
+brew install quarto
+# Or use full path:
+/usr/local/bin/quarto render document.qmd
+```
+
+**Windows:** Ensure Quarto installer added it to PATH. Restart terminal.
+
+### Render fails with R errors
+
+1. Run the R code chunks manually to find the error
+2. Check that all packages are installed
+3. Ensure working directory is correct (use `here` package)
+
+### Render fails with Python errors
+
+1. Ensure correct conda environment is active
+2. Check Python interpreter in document YAML:
+   ```yaml
+   jupyter: python3
+   ```
+
+## General Workflow
+
+### How do I start working on a project?
+
+```bash
+cd project-directory
+conda activate project-env  # if Python
+positron .
+# R activates renv automatically via .Rprofile
+```
+
+### How do I end a work session?
+
+```bash
+git status                    # See what changed
+git add .                     # Stage changes
+git commit -m "Description"   # Commit
+git push                      # Push to GitHub
+```
+
+### How do I update all packages?
+
+**Python:**
+```bash
+conda update --all
+conda env export > environment.yml
+git add environment.yml && git commit -m "Update packages"
+```
+
+**R:**
+```r
+renv::update()
+renv::snapshot()
+```
+```bash
+git add renv.lock && git commit -m "Update R packages"
+```
+
+### How do I share my project?
+
+1. Ensure `environment.yml` and `renv.lock` are up to date
+2. Write clear README with setup instructions
+3. Push to GitHub
+4. Share the repository URL
+
+The collaborator then:
+```bash
+git clone https://github.com/user/project.git
+cd project
+conda env create -f environment.yml
+# In R: renv::restore()
+```
+
+## Getting Help
+
+### For tool-specific issues:
+
+- **Conda**: [docs.conda.io](https://docs.conda.io)
+- **renv**: [rstudio.github.io/renv](https://rstudio.github.io/renv)
+- **Git**: [git-scm.com/doc](https://git-scm.com/doc)
+- **Positron**: [positron.posit.co](https://positron.posit.co)
+- **Claude Code**: [claude.com/claude-code](https://claude.com/claude-code)
+- **Quarto**: [quarto.org](https://quarto.org)
+
+### In Claude Code:
+
+Just ask! Describe your problem with as much detail as possible.

@@ -1,0 +1,300 @@
+# Claude Code
+
+Claude Code is an AI assistant that runs in your terminal and helps you write, debug, and understand code. Unlike web-based AI tools, Claude Code works directly with your files and can execute commands.
+
+## What Claude Code Can Do
+
+- **Write code** — Generate scripts, functions, and analyses
+- **Edit files** — Modify existing code based on your instructions
+- **Run commands** — Execute shell commands and see output
+- **Search codebases** — Find files and patterns across projects
+- **Explain code** — Help you understand complex code
+- **Debug** — Identify and fix errors
+
+## Installation
+
+See [Installation](../part1/installation.qmd#claude-code) for setup instructions.
+
+## Basic Usage
+
+### Starting a Session
+
+In your project directory:
+
+```bash
+claude
+```
+
+This opens an interactive session where you can type requests.
+
+### Example Prompts
+
+**Writing code:**
+> "Create a Python script that loads data.csv and plots a histogram of the 'value' column"
+
+**Editing files:**
+> "In analysis.R, add a log transformation step after loading the data"
+
+**Running commands:**
+> "Run the tests and show me any failures"
+
+**Understanding code:**
+> "Explain what the normalize_counts function does"
+
+### Exiting
+
+Type `/exit` or press Ctrl+C to end the session.
+
+## Configuring Claude Code
+
+### The CLAUDE.md File
+
+Claude Code reads instructions from `CLAUDE.md` files. This is how you teach it about your project.
+
+**Global instructions** go in `~/.claude/CLAUDE.md` — these apply to all projects.
+
+**Project-specific instructions** go in `<project>/.claude/CLAUDE.md` — these apply only to that project.
+
+### What to Put in Project CLAUDE.md
+
+Create `.claude/CLAUDE.md` in your project root:
+
+```markdown
+# Project: My Analysis
+
+## Overview
+This project analyzes gene expression data from [experiment description].
+
+## Environment
+- Python: conda activate my-analysis-env
+- R: Uses renv (auto-activates)
+
+## Key Files
+- `data/raw/` — Original data files (do not modify)
+- `scripts/` — Analysis scripts
+- `output/` — Results and figures
+
+## Workflows
+- Run full analysis: `quarto render analysis.qmd`
+- Run tests: `pytest tests/`
+
+## Conventions
+- Use tidyverse style for R
+- Functions should have docstrings
+- Commit after completing each analysis step
+```
+
+Claude Code reads this at the start of each session, giving it context about your project.
+
+### Skills
+
+Skills are reusable instructions for specific tasks. They live in `~/.claude/skills/` and load automatically when relevant.
+
+Example skill structure:
+```
+~/.claude/skills/
+├── data-handling/
+│   └── SKILL.md
+├── r-plotting-style/
+│   └── SKILL.md
+└── git-conventions/
+    └── SKILL.md
+```
+
+Skills are triggered by keywords in your requests. For example, a "data-handling" skill might activate when you ask Claude to write data analysis code.
+
+#### Example: Data Handling Skill
+
+A data handling skill might instruct Claude to:
+
+- Show data summaries after major transformations
+- Annotate analytical decisions with comments
+- Validate joins and report row counts
+- Ask before making important analytical choices
+
+```markdown
+# Data Handling Best Practices
+
+## Show Data at Key Steps
+
+Include `glimpse()` or summaries whenever datasets are created or altered:
+
+\```r
+data <- read_csv("data.csv")
+cat("Loaded", nrow(data), "rows,", ncol(data), "columns\n")
+glimpse(data)
+\```
+
+## Annotate Analytical Decisions
+
+Document the "why" directly in code comments:
+
+\```r
+# Normalize by library size using TMM (Robinson & Oshlack 2010)
+# TMM chosen over RLE because of high proportion of zeros
+norm_factors <- calcNormFactors(dge, method = "TMM")
+\```
+```
+
+#### Example: Git Conventions Skill
+
+A git skill might instruct Claude to:
+
+- Include co-author attribution in commits
+- Check status before committing
+- Prompt you about commits at appropriate times
+
+## Working Effectively with Claude Code
+
+### Be Specific
+
+**Vague:**
+> "Make the plot better"
+
+**Specific:**
+> "In figure1.R, change the plot colors to a colorblind-friendly palette and increase the axis label font size to 14pt"
+
+### Provide Context
+
+**Without context:**
+> "Fix the error"
+
+**With context:**
+> "The script throws 'object not found' on line 45. I think it's because the data loading step failed."
+
+### Ask for Explanations
+
+Don't just accept code — understand it:
+
+> "Explain why you chose that normalization method"
+
+> "What are the trade-offs of this approach?"
+
+### Review Before Accepting
+
+Claude Code shows you changes before applying them. Review:
+
+- Does the code do what you asked?
+- Are there any obvious errors?
+- Does it follow your project conventions?
+
+## Integration with Other Tools
+
+### With Git
+
+Claude Code can commit changes for you:
+
+> "Commit these changes with a descriptive message"
+
+It will show you the diff and proposed message before committing.
+
+### With Conda
+
+For Python work, Claude Code can activate your environment:
+
+```bash
+source ~/miniforge3/etc/profile.d/conda.sh && conda activate my-env && python script.py
+```
+
+Document your conda environment in `.claude/CLAUDE.md` so Claude knows which one to use.
+
+### With renv
+
+R environments activate automatically via `.Rprofile`. Just tell Claude Code your project uses renv and it will respect package versions.
+
+### With Quarto
+
+Claude Code can render Quarto documents:
+
+> "Render analysis.qmd and show me any errors"
+
+## Common Workflows
+
+### Starting a New Analysis
+
+1. Open Claude Code in your project
+2. Describe what you want to analyze
+3. Let it scaffold the initial structure
+4. Review and refine iteratively
+
+**Example:**
+> "I have RNA-seq count data in data/counts.csv. Help me set up a differential expression analysis using DESeq2. Start by creating a script that loads the data and does quality control."
+
+### Debugging
+
+1. Describe the error
+2. Show the relevant code or file
+3. Ask for diagnosis and fix
+
+**Example:**
+> "Running analysis.R gives this error: [paste error]. The relevant code is in the normalize_data function. What's wrong?"
+
+### Code Review
+
+> "Review scripts/analysis.R. Are there any bugs, style issues, or ways to improve it?"
+
+### Documentation
+
+> "Add comments explaining the key steps in analysis.R"
+
+## Tips for Success
+
+### Start Small
+
+Don't ask Claude to build an entire analysis at once. Build incrementally:
+
+1. Load and inspect data
+2. Clean and transform
+3. Analyze
+4. Visualize
+5. Document
+
+### Trust but Verify
+
+Claude Code is helpful but not infallible:
+
+- Review generated code before running
+- Test with small datasets first
+- Check that results make scientific sense
+
+### Save Your Prompts
+
+If you find prompts that work well, save them:
+
+- In your CLAUDE.md file
+- As skills for reuse
+- In project documentation
+
+## Troubleshooting
+
+### "Command not found" for conda
+
+Claude Code runs in a non-interactive shell. Source conda explicitly:
+
+```bash
+source ~/miniforge3/etc/profile.d/conda.sh && conda activate ENV && command
+```
+
+### Claude doesn't know about my project
+
+Check that your `.claude/CLAUDE.md` exists and contains relevant information. Claude reads this at session start.
+
+### Responses are too generic
+
+Provide more context:
+
+- Describe your data
+- Explain your goals
+- Point to relevant files
+- Share error messages in full
+
+## Quick Reference
+
+| Task | Example Prompt |
+|------|----------------|
+| Write code | "Create a script that..." |
+| Edit file | "In file.R, change X to Y" |
+| Run command | "Run pytest and show failures" |
+| Explain code | "Explain the normalize function" |
+| Debug | "This error occurs: [error]. Why?" |
+| Commit | "Commit with message describing changes" |

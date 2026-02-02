@@ -1,0 +1,246 @@
+# Your First Project
+
+Let's create a complete project that uses all the tools together. By the end, you'll have:
+
+- A project folder with organized structure
+- A conda environment for Python
+- An R project with renv
+- Git version control
+- Code you wrote with Claude Code's help
+
+## Step 1: Create the Project Folder
+
+Open your terminal and create a new project:
+
+```bash
+# Navigate to where you keep projects
+cd ~/Documents  # or wherever you prefer
+
+# Create and enter the project folder
+mkdir my-first-analysis
+cd my-first-analysis
+```
+
+## Step 2: Open in Positron
+
+Open Positron and use **File → Open Folder** to open `my-first-analysis`.
+
+[TODO: screenshot of Positron with empty folder open]
+
+## Step 3: Initialize Git
+
+In Positron's terminal (View → Terminal), initialize a Git repository:
+
+```bash
+git init
+```
+
+Create a `.gitignore` file to exclude files that shouldn't be tracked:
+
+```bash
+# Create .gitignore
+cat > .gitignore << 'EOF'
+# R
+.Rhistory
+.RData
+.Rproj.user/
+renv/library/
+renv/staging/
+
+# Python
+__pycache__/
+*.pyc
+.conda/
+.venv/
+
+# Data (large files)
+data/raw/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.positron/
+EOF
+```
+
+## Step 4: Set Up Conda Environment
+
+Create a conda environment for this project:
+
+```bash
+conda create -n my-first-analysis python=3.11 -y
+conda activate my-first-analysis
+```
+
+Install some basic packages:
+
+```bash
+conda install pandas numpy matplotlib -y
+```
+
+Save the environment specification:
+
+```bash
+conda env export > environment.yml
+```
+
+::: {.callout-tip}
+## Environment Activation
+Every time you work on this project, activate the environment first:
+```bash
+conda activate my-first-analysis
+```
+:::
+
+## Step 5: Set Up R with renv
+
+In Positron's R console (or terminal running R), initialize renv:
+
+```r
+# Install renv if needed
+install.packages("renv")
+
+# Initialize renv for this project
+renv::init()
+```
+
+This creates:
+- `renv/` folder for package library
+- `renv.lock` file tracking package versions
+- `.Rprofile` to auto-activate renv
+
+Install a package to test:
+
+```r
+install.packages("ggplot2")
+renv::snapshot()  # Save the state
+```
+
+## Step 6: Create Project Structure
+
+Create a standard folder structure:
+
+```bash
+mkdir -p data/raw data/processed scripts output
+```
+
+Your project now looks like:
+
+```
+my-first-analysis/
+├── .git/
+├── .gitignore
+├── data/
+│   ├── raw/          # Original data (not tracked)
+│   └── processed/    # Cleaned data
+├── scripts/          # Analysis scripts
+├── output/           # Results, figures
+├── environment.yml   # Conda environment
+├── renv/             # R packages
+└── renv.lock         # R package versions
+```
+
+## Step 7: Write Code with Claude Code
+
+Now let's use Claude Code to help write some analysis code.
+
+In the terminal, start Claude Code:
+
+```bash
+claude
+```
+
+Try asking it to create a simple analysis script:
+
+> "Create a Python script in scripts/ that loads a CSV file, calculates summary statistics, and saves a plot"
+
+Claude Code will:
+1. Ask clarifying questions if needed
+2. Write the code for you
+3. Save it to the file
+
+[TODO: screenshot of Claude Code interaction]
+
+Do the same for R:
+
+> "Create an R script in scripts/ that does similar analysis using tidyverse and ggplot2"
+
+## Step 8: Make Your First Commit
+
+Stage and commit your work:
+
+```bash
+# See what files are ready to commit
+git status
+
+# Add all files (except those in .gitignore)
+git add .
+
+# Make your first commit
+git commit -m "Initial project setup with conda and renv"
+```
+
+## Step 9: Push to GitHub {#sec-github-auth}
+
+### Create a GitHub Repository
+
+1. Go to [github.com](https://github.com) and click **New repository**
+2. Name it `my-first-analysis`
+3. Keep it private (or public if you prefer)
+4. **Don't** initialize with README (we already have files)
+5. Click **Create repository**
+
+### Authenticate with GitHub
+
+The easiest method is using the GitHub CLI:
+
+```bash
+# Install GitHub CLI
+# macOS:
+brew install gh
+
+# Windows: Download from https://cli.github.com/
+
+# Authenticate
+gh auth login
+```
+
+Follow the prompts to authenticate via browser.
+
+### Push Your Code
+
+```bash
+# Add the remote repository
+git remote add origin https://github.com/YOUR-USERNAME/my-first-analysis.git
+
+# Push your code
+git push -u origin main
+```
+
+## Congratulations!
+
+You've created a complete project with:
+
+- ✅ Organized folder structure
+- ✅ Python environment (conda)
+- ✅ R package management (renv)
+- ✅ Version control (Git)
+- ✅ Cloud backup (GitHub)
+- ✅ AI-assisted code (Claude Code)
+
+## What's Next?
+
+- **Part 2** dives deeper into each tool
+- **Part 3** covers common workflows like collaboration and reproducibility
+
+When you return to this project later:
+
+```bash
+cd my-first-analysis
+conda activate my-first-analysis
+# R will auto-activate renv when you start it
+positron .  # Or open Positron and navigate to the folder
+```

@@ -1,0 +1,294 @@
+# Collaborating with Others
+
+This chapter covers how to work on projects with collaborators using Git and GitHub.
+
+## Sharing a Project
+
+### Giving Access
+
+On GitHub:
+
+1. Go to repository **Settings** → **Collaborators**
+2. Click **Add people**
+3. Enter collaborator's GitHub username or email
+4. They'll receive an invitation
+
+### Collaborator Setup
+
+Your collaborator clones the repo:
+
+```bash
+git clone https://github.com/USERNAME/project-name.git
+cd project-name
+```
+
+Then sets up environments:
+
+```bash
+# Python
+conda env create -f environment.yml
+conda activate project-name
+
+# R (in R console)
+renv::restore()
+```
+
+## The Collaboration Workflow
+
+### Before Starting Work
+
+Always pull the latest changes:
+
+```bash
+git pull
+```
+
+Check for environment updates:
+
+```bash
+# Python - check if environment.yml changed
+conda env update -f environment.yml
+
+# R - check renv status
+# renv::status()
+# renv::restore()
+```
+
+### Making Changes
+
+1. Pull latest changes
+2. Do your work
+3. Stage and commit
+4. Push
+
+```bash
+git pull
+# ... make changes ...
+git add .
+git commit -m "Add analysis for condition B"
+git push
+```
+
+### When Collaborators Push
+
+If someone pushed while you were working:
+
+```bash
+git pull
+# May need to resolve conflicts (see below)
+git push
+```
+
+## Branching Workflow
+
+For larger changes, use branches:
+
+### Create a Branch
+
+```bash
+git checkout -b my-feature
+```
+
+### Work on the Branch
+
+```bash
+# Make changes, commit as usual
+git add .
+git commit -m "Add new analysis"
+```
+
+### Push the Branch
+
+```bash
+git push -u origin my-feature
+```
+
+### Create a Pull Request
+
+1. Go to the repository on GitHub
+2. Click **Compare & pull request**
+3. Add description of changes
+4. Request review from collaborator
+5. Merge when approved
+
+### After Merging
+
+```bash
+git checkout main
+git pull
+git branch -d my-feature  # Delete local branch
+```
+
+## Handling Merge Conflicts
+
+Conflicts happen when two people change the same lines.
+
+### Recognizing a Conflict
+
+```bash
+git pull
+# CONFLICT (content): Merge conflict in analysis.R
+# Automatic merge failed; fix conflicts and then commit.
+```
+
+### Resolving Conflicts
+
+Open the conflicted file. You'll see markers:
+
+```r
+<<<<<<< HEAD
+# Your version
+result <- calculate_mean(data)
+=======
+# Their version
+result <- calculate_median(data)
+>>>>>>> origin/main
+```
+
+Edit to keep what you want:
+
+```r
+# Keep both approaches, or choose one
+result_mean <- calculate_mean(data)
+result_median <- calculate_median(data)
+```
+
+Remove the conflict markers, then:
+
+```bash
+git add analysis.R
+git commit -m "Resolve merge conflict in analysis.R"
+git push
+```
+
+## Environment Synchronization
+
+### When You Add Packages
+
+**Python:**
+
+```bash
+conda install new-package
+conda env export > environment.yml
+git add environment.yml
+git commit -m "Add new-package to environment"
+git push
+```
+
+**R:**
+
+```r
+install.packages("new-package")
+renv::snapshot()
+```
+
+```bash
+git add renv.lock
+git commit -m "Add new-package to renv"
+git push
+```
+
+### When Collaborator Adds Packages
+
+After pulling:
+
+**Python:**
+
+```bash
+conda env update -f environment.yml
+```
+
+**R:**
+
+```r
+renv::restore()
+```
+
+## Best Practices
+
+### Communicate
+
+- Tell collaborators what you're working on
+- Avoid working on the same files simultaneously
+- Use issues to track tasks
+
+### Commit Often
+
+Small, frequent commits are easier to merge than large changes.
+
+### Pull Before Push
+
+```bash
+git pull
+git push
+```
+
+This catches conflicts early.
+
+### Use .gitignore
+
+Ensure everyone has the same `.gitignore` to avoid committing:
+
+- Large data files
+- Personal IDE settings
+- System files
+
+### Document Changes
+
+Update README and documentation when you change:
+
+- How to run the analysis
+- Environment dependencies
+- Data requirements
+
+## Working with GitHub Issues
+
+### Creating Issues
+
+Use issues to track:
+
+- Bugs to fix
+- Features to add
+- Questions to resolve
+
+Click **New Issue** on GitHub and describe the task.
+
+### Referencing Issues in Commits
+
+Link commits to issues:
+
+```bash
+git commit -m "Fix normalization bug (closes #12)"
+```
+
+This automatically closes the issue when merged.
+
+## Forking (For External Collaborators)
+
+If someone isn't a direct collaborator:
+
+1. They **fork** the repo (creates their copy)
+2. They make changes in their fork
+3. They open a **pull request** to your repo
+4. You review and merge
+
+This is common for open-source contributions.
+
+## Checklist for Collaboration
+
+Starting a collaborative project:
+
+- [ ] Repository on GitHub with collaborators added
+- [ ] Clear README with setup instructions
+- [ ] `.gitignore` preventing large/personal files
+- [ ] `environment.yml` (Python) and `renv.lock` (R) committed
+- [ ] Agreed workflow (branches vs direct commits)
+- [ ] Communication channel established
+
+Daily workflow:
+
+- [ ] Pull before starting work
+- [ ] Update environments if needed
+- [ ] Commit small, focused changes
+- [ ] Push when done
+- [ ] Communicate about what you changed

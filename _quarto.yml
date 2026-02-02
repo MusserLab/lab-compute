@@ -1,0 +1,51 @@
+project:
+  type: book
+  output-dir: _book
+
+# GitHub Pages deployment
+execute:
+  freeze: auto
+
+book:
+  title: "Lab Compute Guide"
+  subtitle: "A Practical Guide to Computational Analysis"
+  author: "Bhagwat Lab"
+  date: today
+  date-format: "MMMM YYYY"
+
+  chapters:
+    - index.qmd
+    - part: "Quick Start"
+      chapters:
+        - part1/intro.qmd
+        - part1/installation.qmd
+        - part1/first-project.qmd
+    - part: "Core Tools"
+      chapters:
+        - part2/positron.qmd
+        - part2/conda.qmd
+        - part2/renv.qmd
+        - part2/git-github.qmd
+        - part2/claude-code.qmd
+    - part: "Workflows"
+      chapters:
+        - part3/starting-project.qmd
+        - part3/collaborating.qmd
+        - part3/reproducibility.qmd
+        - part3/troubleshooting.qmd
+  appendices:
+    - appendices/shortcuts.qmd
+    - appendices/commands.qmd
+    - appendices/templates.qmd
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: darkly
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-copy: true
+    code-overflow: wrap
+    highlight-style: github

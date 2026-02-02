@@ -1,0 +1,282 @@
+# Reproducible Analysis
+
+Reproducibility means others (including future you) can run your analysis and get the same results. This chapter covers practices that ensure reproducibility.
+
+## Why Reproducibility Matters
+
+- **Verification**: Others can check your work
+- **Building on work**: You or others can extend the analysis
+- **Debugging**: Easier to find and fix problems
+- **Publication**: Increasingly required by journals
+- **Future you**: Six months from now, you'll thank yourself
+
+## The Three Pillars
+
+### 1. Version Control (Git)
+
+Track every change to your code:
+
+- What changed
+- When it changed
+- Why it changed
+
+With Git, you can always return to a working state.
+
+### 2. Environment Management (Conda + renv)
+
+Lock down exact package versions:
+
+```yaml
+# environment.yml
+dependencies:
+  - python=3.11.5
+  - pandas=2.0.3
+  - numpy=1.24.3
+```
+
+```json
+// renv.lock
+"ggplot2": {
+  "Version": "3.4.2"
+}
+```
+
+Different package versions can give different results.
+
+### 3. Documentation
+
+Explain:
+
+- How to set up the environment
+- How to run the analysis
+- What the data looks like
+- What decisions you made and why
+
+## Reproducibility Checklist
+
+### Environment
+
+- [ ] All dependencies listed in `environment.yml` (Python) or `renv.lock` (R)
+- [ ] Specific versions pinned, not just package names
+- [ ] Instructions for environment setup in README
+
+### Data
+
+- [ ] Raw data preserved unchanged
+- [ ] Data processing steps documented and scripted
+- [ ] Data sources documented
+- [ ] If data can't be shared, describe format and structure
+
+### Code
+
+- [ ] Analysis runs from start to finish without manual intervention
+- [ ] File paths are relative, not absolute
+- [ ] No hardcoded paths like `/Users/myname/...`
+- [ ] Random seeds set for stochastic processes
+- [ ] Intermediate results can be regenerated from code
+
+### Documentation
+
+- [ ] README explains setup and execution
+- [ ] Analysis steps documented in code comments or notebooks
+- [ ] Key decisions annotated with rationale
+
+## Using Relative Paths
+
+**Bad** — hardcoded absolute paths:
+
+```r
+data <- read_csv("/Users/jm284/projects/analysis/data/raw/data.csv")
+```
+
+**Good** — relative paths with `here`:
+
+```r
+library(here)
+data <- read_csv(here("data/raw/data.csv"))
+```
+
+**Python** — use `pathlib`:
+
+```python
+from pathlib import Path
+
+data_dir = Path(__file__).parent.parent / "data" / "raw"
+data = pd.read_csv(data_dir / "data.csv")
+```
+
+The `here` package (R) and `pathlib` (Python) find paths relative to the project root, regardless of where scripts are run from.
+
+## Setting Random Seeds
+
+Many analyses involve randomness (bootstrapping, sampling, train/test splits). Set seeds for reproducibility:
+
+**R:**
+
+```r
+set.seed(42)
+result <- sample(data, 100)
+```
+
+**Python:**
+
+```python
+import random
+import numpy as np
+
+random.seed(42)
+np.random.seed(42)
+result = np.random.choice(data, 100)
+```
+
+Document why you chose that seed (or just pick a number consistently).
+
+## Documenting Data
+
+In your README or a separate `DATA.md`:
+
+```markdown
+# Data Description
+
+## Raw Data
+
+### data/raw/counts.csv
+- Source: GEO accession GSE12345
+- Downloaded: 2024-01-15
+- Format: CSV, 20,000 genes × 12 samples
+- Columns: gene_id, sample1, sample2, ...
+
+### data/raw/metadata.csv
+- Source: Provided by collaborator
+- Format: CSV, 12 rows
+- Columns: sample_id, condition, batch, replicate
+```
+
+## Running the Full Analysis
+
+Create a master script or Makefile that runs everything:
+
+**Shell script** (`run_analysis.sh`):
+
+```bash
+#!/bin/bash
+set -e  # Exit on error
+
+echo "Setting up environment..."
+conda activate my-analysis
+
+echo "Step 1: Cleaning data..."
+Rscript scripts/01_clean_data.R
+
+echo "Step 2: Analysis..."
+python scripts/02_analyze.py
+
+echo "Step 3: Figures..."
+Rscript scripts/03_figures.R
+
+echo "Done!"
+```
+
+**Quarto** (`analysis.qmd`):
+
+A Quarto document that runs all code chunks in order is inherently reproducible — rendering the document runs the full analysis.
+
+**Make** (`Makefile`):
+
+```makefile
+all: output/figures/figure1.pdf output/results.csv
+
+output/figures/figure1.pdf: scripts/03_figures.R data/processed/clean.csv
+	Rscript scripts/03_figures.R
+
+data/processed/clean.csv: scripts/01_clean_data.R data/raw/data.csv
+	Rscript scripts/01_clean_data.R
+```
+
+## Testing Reproducibility
+
+### Fresh Environment Test
+
+1. Clone your repo to a new location
+2. Create environment from scratch
+3. Run the full analysis
+4. Compare results
+
+```bash
+# In a temporary directory
+git clone https://github.com/user/project.git test-project
+cd test-project
+conda env create -f environment.yml
+conda activate project-name
+./run_analysis.sh
+```
+
+### Docker (Advanced)
+
+For maximum reproducibility, package everything in a Docker container:
+
+```dockerfile
+FROM rocker/tidyverse:4.3.1
+
+COPY . /analysis
+WORKDIR /analysis
+
+RUN R -e "renv::restore()"
+
+CMD ["Rscript", "run_all.R"]
+```
+
+This captures:
+
+- Operating system
+- R version
+- All packages
+
+## Common Reproducibility Problems
+
+### "It works on my machine"
+
+**Cause**: Different package versions, OS differences, or missing dependencies.
+
+**Solution**: Use conda/renv, test in fresh environment.
+
+### Missing files
+
+**Cause**: Data files not included or paths are wrong.
+
+**Solution**: Document data sources, use relative paths.
+
+### Different results each run
+
+**Cause**: Unseeded random number generation.
+
+**Solution**: Set random seeds.
+
+### Manual steps
+
+**Cause**: Analysis requires clicking buttons or manual edits.
+
+**Solution**: Script everything. If you must have manual steps, document them precisely.
+
+## Tools That Help
+
+| Tool | Purpose |
+|------|---------|
+| `here` (R) | Reliable relative paths |
+| `pathlib` (Python) | Path handling |
+| `renv` | R package management |
+| `conda` | Python environment management |
+| Quarto | Literate programming |
+| Git | Version control |
+| Docker | Full environment capture |
+
+## Quick Reference
+
+**For every project:**
+
+1. Use Git for version control
+2. Lock environments with conda/renv
+3. Use relative paths
+4. Set random seeds
+5. Document everything
+6. Test in a fresh environment before sharing
