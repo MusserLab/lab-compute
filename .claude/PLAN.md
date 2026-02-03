@@ -1,7 +1,7 @@
 # Lab Compute Guide — Planning Document
 
 > This document tracks next steps and improvements for the book.
-> Last updated: 2026-02-01
+> Last updated: 2026-02-02
 
 ## Immediate Next Steps
 
@@ -16,7 +16,7 @@
 - [ ] Review `first-project.qmd` — ensure all steps work end-to-end
 
 ### Part 2: Core Tools
-- [ ] **Positron**: Add more screenshots of key features
+- [x] **Positron**: Expand chapter with workflow details (screenshots still needed)
 - [ ] **Conda**: Consider adding section on mamba for faster installs
 - [ ] **renv**: Add troubleshooting for common Bioconductor issues
 - [ ] **Git/GitHub**: Add section on GitHub Classroom (if using for courses)
@@ -75,6 +75,12 @@
 ## Session Notes
 
 _Add notes here during working sessions_
+
+### 2026-02-02 (session 3)
+- Rewrote Positron chapter (136→365 lines) with "Positron is your home base" framing
+- Added sections: Explorer/Outline, Search (regex), Working with Quarto, Source Control Basics
+- Expanded Data Viewer, simplified keyboard shortcuts, streamlined extensions
+- Added cross-reference anchor to index.qmd
 
 ### 2026-02-02 (session 2)
 - Added Windows platform coverage to conda chapter:

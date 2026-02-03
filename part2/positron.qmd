@@ -1,81 +1,196 @@
 # Positron
 
-Positron is a data science IDE built by Posit (formerly RStudio) on top of VS Code. It combines the power of VS Code with native support for R and Python data science workflows.
+Positron is your home base. It's where you write code, explore data, run analyses, and manage your project—all in one window. Built by Posit (the company behind RStudio) on top of VS Code, Positron combines the familiarity of RStudio with the power and extensibility of a modern code editor.
 
 ## Why Positron?
 
-- **Dual language support**: First-class support for both R and Python
-- **Data viewer**: Inspect dataframes and tibbles interactively
-- **Variable explorer**: See all objects in your environment
-- **Integrated terminal**: Run shell commands without leaving the IDE
-- **Extensions**: Access the VS Code extension ecosystem
+If you're coming from RStudio, Positron will feel familiar: there's an R console, a variable explorer, a data viewer, and a file browser. But Positron adds capabilities that matter for modern data science workflows:
+
+**First-class support for both R and Python.** Most lab projects use both languages. In RStudio, Python support is an afterthought. In Positron, both languages are treated equally—you can have R and Python sessions running side by side, each with its own console and environment viewer. In practice, we usually write one language per script (`.qmd` file), and Positron handles switching between them seamlessly.
+
+**A superior Data Viewer.** Click any dataframe in the Variables pane and it opens in a fast, interactive viewer. You can sort columns, filter rows, and search for values. For large datasets, it handles millions of rows smoothly. The Data Viewer is central to exploratory analysis—you'll use it constantly.
+
+**The VS Code extension ecosystem.** Positron inherits thousands of extensions: linters, formatters, Git tools, AI coding assistants. Unlike RStudio, which exists in its own world, Positron connects you to the broader developer tooling ecosystem.
+
+If you've used RStudio before, see the [RStudio → Positron translation table](../index.qmd#rstudio-positron-translation) on the Welcome page for a quick mapping of concepts.
 
 [TODO: screenshot of Positron interface with labeled panes]
 
-## Key Interface Elements
+## The Interface
+
+Positron's default layout will feel familiar if you've used RStudio: the editor sits in the main area, with supporting panels around it.
+
+### Layout Overview
+
+The typical arrangement is:
+
+- **Editor** (center): Where you write and edit `.qmd` files, R scripts, Python scripts, and other documents
+- **Console** (bottom): Your R or Python session—run code interactively here
+- **Terminal** (bottom, tabbed with Console): For shell commands, git, conda, quarto
+- **Variables/Environment** (right or bottom): Shows objects in your current session
+- **Explorer** (left sidebar): Browse files, see document outline, and navigate your project
+- **Search** (left sidebar): Find text across your entire project
+- **Source Control** (left sidebar): Stage and commit changes with Git
+
+You can rearrange panels by dragging them, but the default layout works well for most workflows.
 
 ### The Console
 
-The console at the bottom shows your R or Python session. You can:
+The console shows your active R or Python session. When you run code from the editor (with Cmd+Enter or Ctrl+Enter), the output appears here. You can also type commands directly into the console for quick exploration.
 
-- Run code interactively
-- See output and errors
-- Switch between R and Python sessions
+Key points:
 
-### The Environment Pane
+- You can have both an R console and a Python console open simultaneously
+- Each console shows the active interpreter/environment in the prompt
+- The console is where you see errors, warnings, and printed output
 
-Shows all variables in your current session:
+### The Variables Pane
 
-- Dataframes with row/column counts
-- Click to view data in the Data Viewer
-- See memory usage
+Shows all objects in your current R or Python session:
+
+- Dataframes display with row and column counts
+- Click any dataframe to open it in the Data Viewer
+- Vectors, lists, and other objects show their type and size
+
+This pane is essential for keeping track of what's in memory during interactive development.
 
 ### The Data Viewer
 
-Click any dataframe to open it in a spreadsheet-like viewer:
+The Data Viewer is one of Positron's standout features. Click any dataframe in the Variables pane to open it in a spreadsheet-like view where you can:
 
-- Sort by columns
-- Filter rows
-- Search for values
+- **Sort** by clicking column headers
+- **Filter** rows by typing conditions
+- **Search** for specific values
+- **Navigate** large datasets smoothly (it handles millions of rows)
 
-[TODO: screenshot of Data Viewer]
+During exploratory analysis, you'll have the Data Viewer open constantly—checking data after each transformation, looking for unexpected values, verifying that joins worked correctly.
+
+[TODO: screenshot of Data Viewer with a dataframe open]
+
+### The Terminal
+
+The integrated terminal gives you a command line inside Positron. Use it for:
+
+- Running `quarto render` or `quarto preview`
+- Git commands (though the Source Control panel is often easier)
+- Conda environment management
+- Any shell command you'd normally run in Terminal.app or Command Prompt
+
+Toggle the terminal with **Cmd+`** (macOS) or **Ctrl+`** (Windows).
+
+### The Explorer
+
+The Explorer panel (left sidebar) is your file browser and navigation hub. Click the file icon at the top of the sidebar to open it. It has several sections:
+
+**Files**: Shows all files and folders in your project. Click to open, right-click for options (rename, delete, new file).
+
+**Outline**: This is especially useful for longer scripts. The Outline section shows the structure of your current document:
+
+- For `.qmd` files: headings, code chunks, and sections
+- For R/Python files: functions and class definitions
+
+Click any item in the Outline to jump directly to that section. When you're working on a longer analysis script, the Outline makes it easy to navigate between sections without scrolling.
+
+### Search
+
+The Search panel (Cmd/Ctrl+Shift+F) finds text across your entire project. Useful for:
+
+- Finding where a function is defined or used
+- Searching for variable names across files
+- Locating specific text in your project
+
+Click the `.*` button to enable **regular expressions** for more powerful pattern matching. While not as full-featured as dedicated text editors like BBEdit, regex search handles most common patterns.
+
+### Source Control
+
+The Source Control panel in the left sidebar handles Git operations visually:
+
+- See which files have changed (modified, added, deleted)
+- Stage files for commit by clicking the `+` icon
+- Write a commit message and commit with one click
+- Push and pull from GitHub
+
+Even if you end up using Claude Code for most git operations, understanding the Source Control panel is foundational. It shows you what's happening with your repository at a glance.
 
 ## Essential Keyboard Shortcuts
 
+You don't need many shortcuts to be productive. These are the ones that matter:
+
 | Action | macOS | Windows |
 |--------|-------|---------|
-| Run current line | Cmd+Enter | Ctrl+Enter |
-| Run selection | Cmd+Enter | Ctrl+Enter |
-| Open command palette | Cmd+Shift+P | Ctrl+Shift+P |
-| Toggle terminal | Cmd+` | Ctrl+` |
+| Run current line/selection | Cmd+Enter | Ctrl+Enter |
+| Run current chunk | Cmd+Shift+Enter | Ctrl+Shift+Enter |
+| Open Command Palette | Cmd+Shift+P | Ctrl+Shift+P |
 | Quick file open | Cmd+P | Ctrl+P |
+| Toggle terminal | Cmd+` | Ctrl+` |
 | Save file | Cmd+S | Ctrl+S |
+
+The most important is **Cmd+Enter** (or Ctrl+Enter)—you'll use it constantly to run code. The **Command Palette** (Cmd+Shift+P) is how you access any command in Positron; if you're not sure how to do something, open the Command Palette and start typing.
+
+::: {.callout-tip}
+## Just These Shortcuts
+Some people learn dozens of keyboard shortcuts. That's fine, but not necessary. The shortcuts above cover 90% of what you need. Add more only if you find yourself doing something repeatedly.
+:::
 
 ## Working with R
 
-Positron detects R automatically. Start an R session by:
+Positron detects R automatically. When you open a project with R files or an `renv.lock`, it knows you're working with R.
 
-1. Opening an `.R` file
-2. Clicking "Start R" in the status bar
-3. Running R code in the terminal
+### Starting an R Session
 
-### Sending Code to Console
+An R session starts automatically when you:
 
-Select code and press **Cmd+Enter** (macOS) or **Ctrl+Enter** (Windows) to run it.
+- Open an `.R` or `.qmd` file and run code
+- Click "Start R Session" in the status bar
+- Run R code in a Quarto document
+
+If the project has renv set up, you'll see `[renv]` in the R console prompt, confirming that project-specific packages are active.
+
+### Running Code
+
+Select code in the editor and press **Cmd+Enter** (macOS) or **Ctrl+Enter** (Windows) to run it in the console. For Quarto documents, you can also run entire chunks with **Cmd+Shift+Enter**.
+
+### Setting the R Version
+
+If you have multiple R versions installed (via rig), you can specify which one to use:
+
+1. Open Command Palette → "R: Select R Binary"
+2. Choose the version you want
+
+To make this permanent for a project, add it to `.vscode/settings.json`:
+
+```json
+{
+  "r.rpath.mac": "/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/bin/R"
+}
+```
+
+See the [renv chapter](renv.qmd) for more on managing R environments.
 
 ## Working with Python
 
 ### Selecting an Interpreter
 
+When you first open a project with Python files:
+
 1. Open Command Palette (Cmd/Ctrl+Shift+P)
 2. Type "Python: Select Interpreter"
-3. Choose your conda environment
+3. Choose your conda environment from the list
 
-NOTE: if you just initalized your conda environment you will need to restart Positron to see it as an option.
+Positron remembers this choice for the project. When you open the project again, it automatically uses the same interpreter.
 
-### Jupyter-style Execution
+::: {.callout-note}
+## Environment Not Showing?
+If you just created a new conda environment, you may need to restart Positron for it to detect the new environment. This is a common gotcha—restart and try again.
+:::
 
-Python files support `# %%` cell markers for interactive execution:
+### Seamless Environment Switching
+
+One of Positron's strengths: when you switch between projects, environments switch automatically. If Project A uses `conda-env-a` and Project B uses `conda-env-b`, opening each project activates the correct environment without manual intervention.
+
+### Cell-Based Execution
+
+Python files support `# %%` markers for Jupyter-style cell execution:
 
 ```python
 # %%
@@ -86,51 +201,164 @@ df = pd.read_csv("data.csv")
 df.describe()
 ```
 
-Run cells with Shift+Enter.
+Run cells with **Shift+Enter**. This is useful for interactive development in `.py` files (though for analyses, we typically use `.qmd` files instead).
 
-## Recommended Extensions
+See the [Conda chapter](conda.qmd) for more on managing Python environments.
 
-Positron comes with many extensions pre-installed. Consider adding:
+## Working with Quarto
 
-- **GitLens**: Enhanced Git integration
-- **Rainbow CSV**: Color-code CSV columns
-- **Quarto**: If you use Quarto documents
+Quarto documents (`.qmd` files) are central to lab workflows. The Quarto extension adds:
 
-Install extensions via the Extensions panel (Cmd/Ctrl+Shift+X).
+- Syntax highlighting for YAML headers and code chunks
+- A **Render** button in the editor toolbar
+- A **Preview** pane for live document preview
+
+### The Development Workflow
+
+The typical workflow when writing a `.qmd` analysis:
+
+1. **Develop interactively**: Run chunks one at a time with Cmd+Enter, inspecting results in the console and Data Viewer
+2. **Iterate**: Modify code, re-run chunks, check outputs
+3. **Render**: When the analysis is complete, render the full document to HTML
+
+This interactive-then-render workflow catches errors early (you see problems as you develop) while still producing a clean, reproducible final document.
+
+### Rendering
+
+You can render a Quarto document in two ways:
+
+- **Render button**: Click the Render button in the editor toolbar
+- **Terminal**: Run `quarto render filename.qmd`
+
+For live preview during development:
+
+```bash
+quarto preview filename.qmd
+```
+
+This opens a browser window that updates automatically when you save changes.
+
+See the [Quarto chapter](quarto.qmd) for complete documentation on Quarto syntax, chunk options, and output formats.
+
+## Source Control Basics
+
+Understanding Git basics in Positron is important, even if you later use Claude Code for commits. The Source Control panel (click the branch icon in the left sidebar) shows:
+
+- **Changes**: Files that have been modified since the last commit
+- **Staged Changes**: Files ready to be committed
+
+### Basic Workflow
+
+1. Make changes to your files
+2. Open Source Control panel (Cmd/Ctrl+Shift+G)
+3. Review changed files—click a file to see the diff
+4. Stage files by clicking the `+` icon next to each file
+5. Type a commit message in the text box
+6. Click the checkmark to commit
+
+### Pushing to GitHub
+
+After committing, click the three-dot menu (⋯) → Push to upload your commits to GitHub.
+
+::: {.callout-note}
+## Claude Code and Git
+Once you're comfortable with Git basics, you may use Claude Code to handle commits. The `/done` command commits your work and can publish Quarto books. But understanding what's happening in the Source Control panel helps you verify that commits are correct and troubleshoot when things go wrong.
+:::
+
+See the [Git & GitHub chapter](git-github.qmd) for more on version control workflows.
+
+## Extensions
+
+Positron comes with most of what you need pre-installed. A few additions are worth considering:
+
+### Essential
+
+- **Quarto**: For `.qmd` file support (may already be installed)
+- **Claude Code**: AI-assisted coding, if you're using it
+
+### Optional
+
+- **GitHub Pull Requests**: Review and manage pull requests without leaving Positron
+- **Ruff**: Fast Python linter and formatter
+
+### Installing Extensions
+
+1. Open Extensions panel: Cmd/Ctrl+Shift+X
+2. Search for the extension name
+3. Click Install
+
+::: {.callout-tip}
+## Start Minimal
+Don't install a dozen extensions on day one. Start with the essentials and add more only when you encounter a specific need. Too many extensions can slow things down and add complexity.
+:::
 
 ## Project Settings
 
-Create a `.vscode/settings.json` file for project-specific settings:
+Positron stores project-specific settings in `.vscode/settings.json`. This file is created automatically when you select interpreters via the Command Palette, but you can also edit it directly.
+
+### Common Settings
 
 ```json
 {
-  "python.defaultInterpreterPath": "~/miniforge3/envs/my-project/bin/python",
-  "r.rpath.mac": "/usr/local/bin/R",
-  "files.autoSave": "afterDelay"
+  "r.rpath.mac": "/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/bin/R",
+  "python.defaultInterpreterPath": "~/miniconda3/envs/my-project/bin/python"
 }
 ```
 
-## Tips for Effective Use
+- **`r.rpath.mac`** / **`r.rpath.windows`**: Lock the R version for this project
+- **`python.defaultInterpreterPath`**: Lock the Python interpreter
 
-1. **Use the Command Palette**: Press Cmd/Ctrl+Shift+P to access any command
-2. **Learn keyboard shortcuts**: They significantly speed up your workflow
-3. **Split the editor**: View multiple files side by side
-4. **Use integrated terminal**: Keep everything in one window
+### When to Use Settings
+
+Most of the time, using the Command Palette to select interpreters is sufficient—Positron remembers your choices. Explicit settings are useful when:
+
+- You want to guarantee a specific R version (especially with multiple versions via rig)
+- You're sharing the project and want collaborators to use the same interpreter
+- Something isn't being auto-detected correctly
+
+The `.vscode/` folder is typically in `.gitignore`, so these settings stay local.
 
 ## Troubleshooting
 
-### R not detected
+### Environment Not Detected
 
-- Ensure R is installed and in your PATH
-- Check Positron settings for R path configuration
+**Symptoms**: Your conda environment doesn't appear in "Python: Select Interpreter", or Positron uses the wrong Python.
 
-### Python environment not showing
+**Solutions**:
 
-- Activate the conda environment in the terminal first
-- Use "Python: Select Interpreter" to manually choose it
+1. **Restart Positron** after creating a new conda environment—it needs to re-scan
+2. Use Command Palette → "Python: Select Interpreter" and look for the environment
+3. Check that conda is properly initialized in your shell (see [Conda chapter](conda.qmd#troubleshooting))
 
-### Slow performance
+### Console Not Starting
 
-- Close unused tabs
-- Restart Positron
-- Check if large data is loaded in memory
+**Symptoms**: The R or Python console fails to launch, shows errors, or hangs.
+
+**Solutions**:
+
+1. Check the **Output** panel (View → Output) and select "R" or "Python" from the dropdown—this often shows the actual error
+2. Verify the interpreter path in settings is correct
+3. Try restarting Positron
+4. For R: ensure R is installed and the path is correct (check with `which R` in terminal)
+5. For Python: ensure the conda environment exists and is not corrupted
+
+### Wrong Interpreter Running
+
+**Symptoms**: Code runs, but uses unexpected package versions or the wrong Python/R.
+
+**Solutions**:
+
+1. Check the **status bar** at the bottom—it shows which R and Python are active
+2. Use Command Palette → "Python: Select Interpreter" or "R: Select R Binary" to change
+3. Look at `.vscode/settings.json` for hardcoded paths that might be overriding your selection
+
+### Slow Performance
+
+**Symptoms**: Positron feels sluggish, especially with large projects.
+
+**Solutions**:
+
+1. Close unused editor tabs
+2. Restart Positron (this clears memory)
+3. Check if large objects are loaded in your R/Python session—clear unnecessary data
+4. Disable extensions you're not using

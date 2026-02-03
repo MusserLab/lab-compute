@@ -27,7 +27,7 @@ We treat an analysis as a portable object:
 A collaborator should be able to clone the repo, recreate the environments, and reproduce outputs.
 :::
 
-## RStudio → Positron translation
+## RStudio → Positron translation {#rstudio-positron-translation}
 
 If you're used to RStudio, here are the key conceptual shifts:
 
