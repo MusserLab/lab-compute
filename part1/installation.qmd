@@ -62,11 +62,24 @@ conda --version
 3. Check "Add Miniforge3 to my PATH environment variable" during installation
 4. Complete the installation
 
-Open a new PowerShell or Command Prompt and verify:
+Open a **new** PowerShell window and verify:
 
 ```powershell
 conda --version
 ```
+
+Then initialize conda for your shell (this is required to make `conda activate` work):
+
+```powershell
+conda init powershell
+```
+
+**Close and reopen PowerShell** after running this command. You only need to do this once.
+
+::: {.callout-note}
+## Command Prompt Users
+If you use Command Prompt instead of PowerShell, run `conda init cmd.exe` instead.
+:::
 
 ## 3. R (using rig)
 
