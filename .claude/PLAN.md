@@ -76,6 +76,13 @@
 
 _Add notes here during working sessions_
 
+### 2026-02-02 (session 2)
+- Added Windows platform coverage to conda chapter:
+  - Shell initialization callout (conda init for PowerShell/CMD)
+  - Platform-specific prompt examples via tabset
+  - Windows troubleshooting sections ("conda not recognized", activation issues)
+- Discussed and decided against separate starter-project example (first-project.qmd is sufficient)
+
 ### 2026-02-02
 - Major restructure: ".qmd as unit of analysis" is now the central framing
 - Part 1 intro and first-project rewritten to match this framing

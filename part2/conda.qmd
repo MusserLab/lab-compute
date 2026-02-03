@@ -24,6 +24,24 @@ Each project has exactly what it needs.
 
 ## Basic Commands
 
+::: {.callout-note}
+## Windows Users: Initialize Your Shell First
+
+After installing Miniforge/conda on Windows, you must initialize your shell before `conda activate` will work. Open your terminal and run:
+
+**PowerShell:**
+```powershell
+conda init powershell
+```
+
+**Command Prompt:**
+```cmd
+conda init cmd.exe
+```
+
+Then **close and reopen your terminal**. You only need to do this once.
+:::
+
 ### Create an Environment
 
 ```bash
@@ -46,9 +64,19 @@ conda deactivate
 
 When activated, your prompt shows the environment name:
 
+::: {.panel-tabset}
+
+### macOS / Linux
 ```bash
 (my-project) $
 ```
+
+### Windows
+```
+(my-project) C:\Users\yourname>
+```
+
+:::
 
 ### Install Packages
 
@@ -215,6 +243,18 @@ mamba install package-name
 2. Try conda-forge channel explicitly
 3. Fall back to pip
 
+### macOS/Linux: "conda: command not found"
+
+Your shell isn't configured for conda. Run:
+
+```bash
+source ~/miniconda3/etc/profile.d/conda.sh
+# or if using Miniforge:
+source ~/miniforge3/etc/profile.d/conda.sh
+```
+
+To make this permanent, add that line to your `~/.bashrc` or `~/.zshrc` file.
+
 ### Environment corrupted
 
 Remove and recreate:
@@ -224,6 +264,29 @@ conda deactivate
 conda env remove -n my-project
 conda env create -f environment.yml
 ```
+
+### Windows: "conda activate" does nothing or errors
+
+This usually means conda isn't initialized for your shell. Run:
+
+```powershell
+# For PowerShell
+conda init powershell
+
+# For Command Prompt
+conda init cmd.exe
+```
+
+Then restart your terminal. If you're using VS Code or Positron's integrated terminal, close and reopen the entire application.
+
+### Windows: "conda is not recognized"
+
+The Miniforge installer may not have added conda to your PATH. Either:
+
+1. Use the "Miniforge Prompt" from the Start menu (this has conda pre-configured)
+2. Or add Miniforge to your PATH manually:
+   - Search "Environment Variables" in Windows Settings
+   - Add `C:\Users\YourName\miniforge3\Scripts` to your PATH
 
 ## Integration with Positron
 
