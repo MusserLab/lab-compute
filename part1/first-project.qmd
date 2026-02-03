@@ -1,14 +1,18 @@
 # Your First Project
 
-Let's create a complete project that demonstrates the full workflow. By the end, you'll have:
+Let's create a complete project that demonstrates the full workflow. This is a practice run—the structure and tools may feel like overkill for a simple example, but they pay off immediately when projects grow. In the lab, we treat each analysis project as the computational infrastructure for a publication: well-organized, reproducible, and easy to share.
+
+By the end, you'll have:
 
 - A project folder with organized structure
-- A conda environment (Python)
-- An R project with renv
+- A conda environment for Python
+- An R environment managed by renv
 - A Quarto analysis script that renders to HTML
-- Everything under Git version control
+- Everything under Git version control and backed up to GitHub
 
 ## Step 1: Create the Project Folder
+
+In Positron (and VS Code), a **project** is simply a folder. When you open a folder as your workspace, all of Positron's tools—the terminal, file browser, R console, Python interpreter—work relative to that folder. The top-level folder will contain important configuration files: `.git/` for version control, `renv.lock` for R packages, `environment.yml` for Python packages, and optionally `.claude/` for Claude Code instructions or `.vscode/settings.json` for editor settings.
 
 Open your terminal and create a new project:
 
@@ -21,21 +25,23 @@ mkdir my-first-analysis
 cd my-first-analysis
 ```
 
+Use lowercase with hyphens for project names—avoid spaces and special characters.
+
 ## Step 2: Open in Positron
 
-Open Positron and use **File → Open Folder** to open `my-first-analysis`.
+Open Positron and use **File → Open Folder** to open `my-first-analysis`. This sets the folder as your workspace. From now on, the integrated terminal, file browser, and language consoles all operate within this project folder.
 
 [TODO: screenshot of Positron with empty folder open]
 
 ## Step 3: Initialize Git
 
-In Positron's terminal (View → Terminal), initialize a Git repository:
+We initialize Git first so that every change from here on is tracked. In Positron's terminal (**View → Terminal**), initialize a Git repository:
 
 ```bash
 git init
 ```
 
-Create a `.gitignore` file to exclude files that shouldn't be tracked:
+Next, create a `.gitignore` file to tell Git which files to skip—large data files, generated outputs, and system files don't belong in version control. See the [Git & GitHub](../part2/git-github.qmd) chapter for details on what each line means.
 
 ```bash
 # Create .gitignore
@@ -57,8 +63,8 @@ __pycache__/
 *_files/
 .quarto/
 
-# Data (large files)
-data/raw/
+# Generated outputs (can be reproduced from scripts)
+outs/
 
 # OS files
 .DS_Store
@@ -72,14 +78,14 @@ EOF
 
 ## Step 4: Set Up Conda Environment
 
-Every project gets a conda environment, even if you're primarily using R. This keeps Python dependencies isolated and establishes good habits for mixed-language projects.
+Every project gets its own conda environment, even if you're primarily using R. This isolation prevents a common problem: updating a package for one project and accidentally breaking another. It also establishes good habits for mixed-language work.
 
 ```bash
 conda create -n my-first-analysis python=3.11 -y
 conda activate my-first-analysis
 ```
 
-Save the environment specification:
+Save the environment specification so collaborators (or future you) can recreate it exactly:
 
 ```bash
 conda env export > environment.yml
@@ -95,6 +101,8 @@ conda activate my-first-analysis
 
 ## Step 5: Set Up R with renv
 
+Just as conda isolates Python packages, renv isolates R packages. Each project gets its own library, and the `renv.lock` file records exact package versions so anyone can recreate your R environment with `renv::restore()`.
+
 In Positron's R console, initialize renv:
 
 ```r
@@ -107,23 +115,56 @@ renv::init()
 
 This creates:
 
-- `renv/` folder for the package library
-- `renv.lock` file tracking package versions
-- `.Rprofile` to auto-activate renv
+- `renv/` folder for the project's package library
+- `renv.lock` file recording package versions
+- `.Rprofile` to auto-activate renv when R starts
 
 Install the packages we'll need for our analysis:
 
 ```r
-install.packages(c("ggplot2", "dplyr", "palmerpenguins"))
+install.packages(c("ggplot2", "dplyr", "palmerpenguins", "here"))
 renv::snapshot()  # Save the state
 ```
 
-## Step 6: Create Project Structure
+## Step 6: Configure Positron for This Project
 
-Create a standard folder structure:
+Now that the conda environment and R packages exist, tell Positron which interpreters to use. You only need to do this once per project.
+
+### Select the Python Interpreter
+
+1. Open the Command Palette: **Cmd+Shift+P** (macOS) or **Ctrl+Shift+P** (Windows)
+2. Type "Python: Select Interpreter" and select it
+3. Choose the `my-first-analysis` conda environment from the list
+
+If the environment doesn't appear, restart Positron—it needs to detect newly created environments.
+
+### Select the R Version
+
+If you have multiple R versions installed via rig, you can set the default for this project:
+
+1. Open Command Palette → "R: Select R Binary"
+2. Choose the version you want (usually the latest stable release)
+
+Alternatively, set it permanently in `.vscode/settings.json` (covered in the [Positron](../part2/positron.qmd) chapter).
+
+### Restart and Verify
+
+Restart Positron to ensure settings take effect. Then verify by opening both consoles:
+
+1. **R Console**: View → Console, or click "Start R Session" in the status bar. You should see `[renv]` indicating renv is active.
+2. **Python Console**: Open a `.py` file and run a line, or use the terminal to run `python --version`. Confirm it shows the conda environment's Python.
+
+::: {.callout-note}
+## One-Time Setup
+You only configure interpreters once per project. Positron remembers your choices in `.vscode/settings.json`, which is stored in the project folder.
+:::
+
+## Step 7: Create Project Structure
+
+Create the lab's standard folder structure:
 
 ```bash
-mkdir -p data/raw data/processed analysis output
+mkdir -p data scripts outs
 ```
 
 Your project now looks like:
@@ -132,19 +173,21 @@ Your project now looks like:
 my-first-analysis/
 ├── .git/
 ├── .gitignore
-├── analysis/          # Quarto analysis scripts
-├── data/
-│   ├── raw/           # Original data (not tracked)
-│   └── processed/     # Cleaned data
-├── output/            # Final results, figures
-├── environment.yml    # Conda environment
-├── renv/              # R packages
-└── renv.lock          # R package versions
+├── data/              # External inputs only (raw data, metadata)
+├── scripts/           # Quarto analysis scripts (.qmd files)
+├── outs/              # All generated outputs (figures, tables, processed data)
+├── environment.yml    # Conda environment specification
+├── renv/              # R package library (not tracked in git)
+└── renv.lock          # R package versions (tracked in git)
 ```
 
-## Step 7: Write a Quarto Analysis Script
+This structure separates **inputs** (`data/`) from **outputs** (`outs/`), with scripts in the middle. Each script writes to a corresponding subfolder in `outs/`, making it easy to trace which script produced which files. See the [Project Organization](../part2/project-organization.qmd) chapter for the full rationale and conventions.
 
-Now we'll create a Quarto analysis script—the main artifact in our workflow. Create a new file at `analysis/penguin_summary.qmd`:
+## Step 8: Write a Quarto Analysis Script
+
+Quarto documents (`.qmd` files) mix code and narrative text. When you **render** a `.qmd`, Quarto executes all the code in a fresh R or Python session and weaves the results into a polished output document—typically HTML, but also PDF or Word. This is how we create reproducible, shareable analysis reports.
+
+Create a new file at `scripts/01_penguin_summary.qmd`:
 
 ````markdown
 ---
@@ -157,14 +200,20 @@ format: html
 
 This analysis summarizes body size measurements from the Palmer Penguins dataset.
 
-**Input:** `palmerpenguins` package (built-in dataset)
-**Output:** Summary statistics and a figure saved to `output/`
+**Inputs:** `palmerpenguins` package (built-in dataset)
+
+**Outputs:** `outs/01_penguin_summary/penguin_mass.png`
 
 ```{{r}}
 #| label: setup
 library(palmerpenguins)
 library(dplyr)
 library(ggplot2)
+library(here)
+
+# Create output directory for this script
+dir_out <- here::here("outs", "01_penguin_summary")
+dir.create(dir_out, recursive = TRUE, showWarnings = FALSE)
 ```
 
 ## Data summary
@@ -194,48 +243,63 @@ p <- ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +
 
 print(p)
 
-# Save to output folder
-ggsave("../output/penguin_mass.png", p, width = 6, height = 4)
+# Save to this script's output folder
+ggsave(file.path(dir_out, "penguin_mass.png"), p, width = 6, height = 4)
 ```
 
 ## Summary
 
-We summarized body mass across three penguin species. The figure has been saved to `output/penguin_mass.png`.
+We summarized body mass across three penguin species. The figure has been saved to `outs/01_penguin_summary/penguin_mass.png`.
 ````
 
 ::: {.callout-note}
 ## What makes this a "lab-style" analysis script?
 
 1. **Self-contained** — All code needed to run is in the file
-2. **Documents what it does** — States its input and output clearly
-3. **Produces a shareable result** — Renders to HTML; exports figures
+2. **Documents inputs and outputs** — States what it reads and what it produces
+3. **Writes outputs to a dedicated folder** — `outs/01_penguin_summary/` corresponds to script `01_penguin_summary.qmd`
+4. **Uses `here::here()`** — Paths are relative to the project root, not the script location
 :::
 
-## Step 8: Render the Analysis
+### Interactive vs. Rendering
 
-Run Quarto to execute the code and produce an HTML report:
+There are two ways to run code in a `.qmd` file:
+
+**Interactive execution** (Cmd+Enter / Ctrl+Enter): Runs the current line or selection in your R console. Use this while developing—you can inspect objects, test code, and debug interactively. The results appear in the console and plots pane.
+
+**Rendering** (`quarto render`): Runs the entire document in a fresh R session and produces an HTML (or PDF/Word) output. Use this when you want a polished, shareable report. Because rendering starts fresh, it catches errors that might not appear interactively (like relying on objects you created earlier but forgot to include in the script).
+
+During development, work interactively. When you're ready to share or commit, render the full document to ensure it runs cleanly from start to finish.
+
+## Step 9: Render the Analysis
+
+In Positron's terminal (**View → Terminal**), render the document:
 
 ```bash
-quarto render analysis/penguin_summary.qmd
+quarto render scripts/01_penguin_summary.qmd
 ```
 
-This creates `analysis/penguin_summary.html`. Open it in a browser to see your rendered analysis.
+Quarto executes every code chunk in a fresh R session and weaves the output into an HTML report. This creates:
+
+- `scripts/01_penguin_summary.html` — the rendered report (open in a browser to view)
+- `outs/01_penguin_summary/penguin_mass.png` — the exported figure
 
 [TODO: screenshot of rendered HTML]
 
-You should also see `output/penguin_mass.png` — the figure exported by the script.
-
 ::: {.callout-tip}
-## Preview mode
-During development, use `quarto preview` to see live updates as you edit:
+## Preview Mode
+During development, use `quarto preview` for live updates as you edit:
 ```bash
-quarto preview analysis/penguin_summary.qmd
+quarto preview scripts/01_penguin_summary.qmd
 ```
+This opens a browser window that refreshes automatically when you save changes.
 :::
 
-## Step 9: Commit Your Work
+## Step 10: Commit Your Work
 
-Stage and commit everything:
+A **commit** is a snapshot of your project at this moment. From now on, every significant change should get its own commit—this builds a history you can review, share, or revert to if something breaks.
+
+Stage and commit your work:
 
 ```bash
 # See what's ready to commit
@@ -244,19 +308,24 @@ git status
 # Add files
 git add .
 
-# Commit
+# Commit with a descriptive message
 git commit -m "Initial project setup with penguin analysis"
 ```
 
-## Step 10: Push to GitHub {#sec-github-auth}
+## Step 11: Push to GitHub {#sec-github-auth}
 
-### Create a GitHub Repository
+Pushing to GitHub backs up your work in the cloud and enables collaboration. Once pushed, your project is safe even if your laptop dies.
 
-1. Go to [github.com](https://github.com) and click **New repository**
-2. Name it `my-first-analysis`
-3. Keep it private (or public if you prefer)
-4. **Don't** initialize with README (we already have files)
-5. Click **Create repository**
+::: {.callout-important}
+## Personal vs. Lab GitHub
+
+GitHub can host repositories on your personal account or on the [lab's GitHub organization (MusserLab)](https://github.com/MusserLab).
+
+- **Lab organization**: All analysis and coding projects for lab work go here. This ensures continuity when people leave and makes collaboration easier.
+- **Personal account**: Use for personal configuration folders (like your Claude Code settings), side projects, or practice repositories.
+
+For this tutorial, you can use either. For real lab projects, create the repository under the MusserLab organization.
+:::
 
 ### Authenticate with GitHub
 
@@ -272,15 +341,24 @@ brew install gh
 gh auth login
 ```
 
-Follow the prompts to authenticate via browser.
+When prompted, choose **"Login with a web browser"** and follow the prompts.
 
-### Push Your Code
+### Create and Push to GitHub
+
+The easiest way to create a repository and push in one step:
 
 ```bash
-# Add the remote repository
-git remote add origin https://github.com/YOUR-USERNAME/my-first-analysis.git
+# Create a private repo and push (on your personal account)
+gh repo create my-first-analysis --private --source=. --push
 
-# Push your code
+# Or for the lab organization:
+# gh repo create MusserLab/my-first-analysis --private --source=. --push
+```
+
+Alternatively, create the repository manually on github.com, then:
+
+```bash
+git remote add origin https://github.com/YOUR-USERNAME/my-first-analysis.git
 git push -u origin main
 ```
 
@@ -288,24 +366,25 @@ git push -u origin main
 
 You now have a complete project with:
 
-- ✅ Organized folder structure
-- ✅ Python environment (conda) — ready for mixed-language work
-- ✅ R package management (renv)
+- ✅ Organized folder structure (`data/`, `scripts/`, `outs/`)
+- ✅ Python environment (conda) — isolated and reproducible
+- ✅ R package management (renv) — isolated and reproducible
+- ✅ Positron configured for both languages
 - ✅ A Quarto analysis script that renders to HTML
-- ✅ Exported figures in `output/`
+- ✅ Exported figures in `outs/01_penguin_summary/`
 - ✅ Version control (Git) and cloud backup (GitHub)
 
-This is the pattern you'll use for every analysis in the lab.
+This is the pattern you'll use for every analysis in the lab. The setup may feel like a lot of steps the first time, but it becomes second nature quickly—after a few projects, you'll have it done in minutes.
 
 ## What's Next
 
-- **Part 2** dives deeper into each tool
-- **Part 3** covers workflows like collaboration and troubleshooting
+- **Part 2** dives deeper into each tool (Positron, Conda, renv, Git, Quarto, Project Organization)
+- **Part 3** covers workflows like starting new projects, collaboration, and troubleshooting
 
 When you return to this project:
 
 ```bash
 cd my-first-analysis
 conda activate my-first-analysis
-# R will auto-activate renv when you start it
+# Open in Positron — renv will auto-activate when R starts
 ```

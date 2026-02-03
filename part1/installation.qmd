@@ -4,7 +4,7 @@ This chapter walks you through installing all the tools you need. Follow the sec
 
 ## 1. Positron
 
-Positron is a data science IDE built on VS Code, designed specifically for R and Python work.
+Positron is a data science IDE (integrated development environment) built by the makers of RStudio. It combines the best features of RStudio—like an integrated data viewer, variable explorer, and plot pane—with the modern editing experience of VS Code. Unlike RStudio, Positron treats both R and Python equally, making it ideal for labs that work in both languages. It's also highly extensible, with access to the full set of VS Code extensions, including claude code.
 
 ### macOS
 
@@ -26,7 +26,7 @@ When you first open Positron, it may ask to install recommended extensions. Acce
 
 ## 2. Conda (Miniforge)
 
-We use Miniforge, a minimal conda installer that defaults to the conda-forge channel.
+Conda is a package and environment manager that handles Python installations and their dependencies. The key feature is *environments*: isolated spaces where you can install specific versions of Python and packages for a specific project without affecting other projects. This prevents the common problem of upgrading a package for one project and breaking another. We use Miniforge, a community-driven conda distribution that defaults to the conda-forge channel—a large, well-maintained repository of python packages. Miniforge is lightweight and free to use in any context, unlike some commercial conda distributions.
 
 ### macOS
 
@@ -70,7 +70,7 @@ conda --version
 
 ## 3. R (using rig)
 
-We use **rig** (R Installation Manager) to install and manage R versions. This makes it easy to install R, switch between versions, and keep R updated.
+We install R using **rig** (R Installation Manager) rather than downloading directly from CRAN. Rig makes it easy to install R, switch between R versions, and keep R updated, all from the command line. Most importantly, it installs new R versions without overwriting or deleting previous versions, a common problem encountered when installing precompiled packages from the main R website. This is especially useful when you want to install the newest version of R to use with a new project while still maintaining older versions associated with older projects.
 
 ### macOS
 
@@ -123,6 +123,8 @@ R --version
 
 ## 4. Git
 
+Git is a version control system that tracks changes to your code over time. Think of it as an unlimited undo history that also lets you see *what* changed, *when*, and *why*. More importantly, Git enables collaboration - multiple people can work on the same project without overwriting each other's work. Every serious software project uses Git, and increasingly, so do data analysis projects. Learning Git is an investment that pays off throughout your career.
+
 ### macOS
 
 Git may already be installed. Check by running:
@@ -161,12 +163,15 @@ git config --global user.email "your.email@example.com"
 
 ## 5. GitHub Account
 
+GitHub is a web platform that hosts Git repositories in the cloud. It's where you'll store your code, collaborate with others, and share your work publicly or privately. GitHub adds features on top of Git—like issue tracking, pull requests for code review, and GitHub Pages for hosting websites. Most open-source software lives on GitHub, including the R and Python packages you use daily. If you don't have an individual GitHub account, please make one for yourself. We also maintain a [Lab Github Team](https://github.com/MusserLab) where we keep all lab code projects (including individual student projects). 
+
 1. Go to [https://github.com](https://github.com) and create an account if you don't have one
 2. We'll set up authentication in @sec-github-auth
+3. Give Jake your account username so he can give you access to the Lab Github organization.
 
 ## 6. Claude Code
 
-Claude Code is an AI coding assistant that runs in your terminal.
+Claude Code is an AI coding assistant that runs in your terminal or integrates into Positron. Unlike chat-based AI tools, Claude Code can read and write files in your project, run commands, and help you build and debug code interactively. It understands context from your entire codebase, making it useful for everything from writing code, explaining unfamiliar code, debugging errors, and planning and tracking larger projects. Think of it as a knowledgeable collaborator who's always available and can work in the background.
 
 ### Prerequisites
 
@@ -203,7 +208,7 @@ You'll need an Anthropic account with API access. If you're a lab member, ask fo
 
 ## 7. Quarto (Optional)
 
-Quarto is useful for creating reports and documents. This book was built with Quarto.
+Quarto is a scientific publishing system that lets you combine code, results, and narrative text in a single document. You write in Markdown with embedded R or Python code chunks, and Quarto renders it to HTML, PDF, Word, or other formats—with your code output automatically included. This is the modern approach to reproducible research: your analysis and your report are the same document, so results stay in sync with the code that produced them. Quarto can also make books, websites, presentations, and other types of documents. In fact, this book was built with Quarto!
 
 ### macOS
 
