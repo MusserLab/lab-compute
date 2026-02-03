@@ -568,7 +568,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This chapter walks you through installing all the tools you need. Follow the sections in order.</p>
 <section id="positron" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="positron"><span class="header-section-number">2.1</span> 1. Positron</h2>
-<p>Positron is a data science IDE built on VS Code, designed specifically for R and Python work.</p>
+<p>Positron is a data science IDE (integrated development environment) built by the makers of RStudio. It combines the best features of RStudio—like an integrated data viewer, variable explorer, and plot pane—with the modern editing experience of VS Code. Unlike RStudio, Positron treats both R and Python equally, making it ideal for labs that work in both languages. It’s also highly extensible, with access to the full set of VS Code extensions, including claude code.</p>
 <section id="macos" class="level3" data-number="2.1.1">
 <h3 data-number="2.1.1" class="anchored" data-anchor-id="macos"><span class="header-section-number">2.1.1</span> macOS</h3>
 <ol type="1">
@@ -602,7 +602,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="conda-miniforge" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="conda-miniforge"><span class="header-section-number">2.2</span> 2. Conda (Miniforge)</h2>
-<p>We use Miniforge, a minimal conda installer that defaults to the conda-forge channel.</p>
+<p>Conda is a package and environment manager that handles Python installations and their dependencies. The key feature is <em>environments</em>: isolated spaces where you can install specific versions of Python and packages for a specific project without affecting other projects. This prevents the common problem of upgrading a package for one project and breaking another. We use Miniforge, a community-driven conda distribution that defaults to the conda-forge channel—a large, well-maintained repository of python packages. Miniforge is lightweight and free to use in any context, unlike some commercial conda distributions.</p>
 <section id="macos-1" class="level3" data-number="2.2.1">
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="macos-1"><span class="header-section-number">2.2.1</span> macOS</h3>
 <p>Open Terminal and run:</p>
@@ -634,7 +634,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="r-using-rig" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="r-using-rig"><span class="header-section-number">2.3</span> 3. R (using rig)</h2>
-<p>We use <strong>rig</strong> (R Installation Manager) to install and manage R versions. This makes it easy to install R, switch between versions, and keep R updated.</p>
+<p>We install R using <strong>rig</strong> (R Installation Manager) rather than downloading directly from CRAN. Rig makes it easy to install R, switch between R versions, and keep R updated, all from the command line. Most importantly, it installs new R versions without overwriting or deleting previous versions, a common problem encountered when installing precompiled packages from the main R website. This is especially useful when you want to install the newest version of R to use with a new project while still maintaining older versions associated with older projects.</p>
 <section id="macos-2" class="level3" data-number="2.3.1">
 <h3 data-number="2.3.1" class="anchored" data-anchor-id="macos-2"><span class="header-section-number">2.3.1</span> macOS</h3>
 <ol type="1">
@@ -694,6 +694,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="git" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="git"><span class="header-section-number">2.4</span> 4. Git</h2>
+<p>Git is a version control system that tracks changes to your code over time. Think of it as an unlimited undo history that also lets you see <em>what</em> changed, <em>when</em>, and <em>why</em>. More importantly, Git enables collaboration - multiple people can work on the same project without overwriting each other’s work. Every serious software project uses Git, and increasingly, so do data analysis projects. Learning Git is an investment that pays off throughout your career.</p>
 <section id="macos-3" class="level3" data-number="2.4.1">
 <h3 data-number="2.4.1" class="anchored" data-anchor-id="macos-3"><span class="header-section-number">2.4.1</span> macOS</h3>
 <p>Git may already be installed. Check by running:</p>
@@ -721,14 +722,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="github-account" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="github-account"><span class="header-section-number">2.5</span> 5. GitHub Account</h2>
+<p>GitHub is a web platform that hosts Git repositories in the cloud. It’s where you’ll store your code, collaborate with others, and share your work publicly or privately. GitHub adds features on top of Git—like issue tracking, pull requests for code review, and GitHub Pages for hosting websites. Most open-source software lives on GitHub, including the R and Python packages you use daily. If you don’t have an individual GitHub account, please make one for yourself. We also maintain a <a href="https://github.com/MusserLab">Lab Github Team</a> where we keep all lab code projects (including individual student projects).</p>
 <ol type="1">
 <li>Go to <a href="https://github.com">https://github.com</a> and create an account if you don’t have one</li>
-<li>We’ll set up authentication in <a href="first-project.html#sec-github-auth" class="quarto-xref"><span>Section 3.10</span></a></li>
+<li>We’ll set up authentication in <a href="first-project.html#sec-github-auth" class="quarto-xref"><span>Section 3.11</span></a></li>
+<li>Give Jake your account username so he can give you access to the Lab Github organization.</li>
 </ol>
 </section>
 <section id="claude-code" class="level2" data-number="2.6">
 <h2 data-number="2.6" class="anchored" data-anchor-id="claude-code"><span class="header-section-number">2.6</span> 6. Claude Code</h2>
-<p>Claude Code is an AI coding assistant that runs in your terminal.</p>
+<p>Claude Code is an AI coding assistant that runs in your terminal or integrates into Positron. Unlike chat-based AI tools, Claude Code can read and write files in your project, run commands, and help you build and debug code interactively. It understands context from your entire codebase, making it useful for everything from writing code, explaining unfamiliar code, debugging errors, and planning and tracking larger projects. Think of it as a knowledgeable collaborator who’s always available and can work in the background.</p>
 <section id="prerequisites" class="level3" data-number="2.6.1">
 <h3 data-number="2.6.1" class="anchored" data-anchor-id="prerequisites"><span class="header-section-number">2.6.1</span> Prerequisites</h3>
 <p>You need Node.js 18+ installed:</p>
@@ -762,7 +765,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="quarto-optional" class="level2" data-number="2.7">
 <h2 data-number="2.7" class="anchored" data-anchor-id="quarto-optional"><span class="header-section-number">2.7</span> 7. Quarto (Optional)</h2>
-<p>Quarto is useful for creating reports and documents. This book was built with Quarto.</p>
+<p>Quarto is a scientific publishing system that lets you combine code, results, and narrative text in a single document. You write in Markdown with embedded R or Python code chunks, and Quarto renders it to HTML, PDF, Word, or other formats—with your code output automatically included. This is the modern approach to reproducible research: your analysis and your report are the same document, so results stay in sync with the code that produced them. Quarto can also make books, websites, presentations, and other types of documents. In fact, this book was built with Quarto!</p>
 <section id="macos-4" class="level3" data-number="2.7.1">
 <h3 data-number="2.7.1" class="anchored" data-anchor-id="macos-4"><span class="header-section-number">2.7.1</span> macOS</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install quarto</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>

@@ -118,7 +118,7 @@
     "href": "part1/installation.html",
     "title": "2  Installation",
     "section": "",
-    "text": "2.1 1. Positron\nThis chapter walks you through installing all the tools you need. Follow the sections in order.\nPositron is a data science IDE built on VS Code, designed specifically for R and Python work.",
+    "text": "2.1 1. Positron\nThis chapter walks you through installing all the tools you need. Follow the sections in order.\nPositron is a data science IDE (integrated development environment) built by the makers of RStudio. It combines the best features of RStudio—like an integrated data viewer, variable explorer, and plot pane—with the modern editing experience of VS Code. Unlike RStudio, Positron treats both R and Python equally, making it ideal for labs that work in both languages. It’s also highly extensible, with access to the full set of VS Code extensions, including claude code.",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Installation</span>"
@@ -140,7 +140,7 @@
     "href": "part1/installation.html#conda-miniforge",
     "title": "2  Installation",
     "section": "2.2 2. Conda (Miniforge)",
-    "text": "2.2 2. Conda (Miniforge)\nWe use Miniforge, a minimal conda installer that defaults to the conda-forge channel.\n\n2.2.1 macOS\nOpen Terminal and run:\n# Download the installer\ncurl -L -O \"https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-$(uname -m).sh\"\n\n# Run the installer\nbash Miniforge3-MacOSX-$(uname -m).sh\nFollow the prompts, accepting the defaults. When asked about initializing conda, say yes.\nAfter installation, restart your terminal or run:\nsource ~/.zshrc\nVerify the installation:\nconda --version\n\n\n2.2.2 Windows\n\nDownload the Miniforge installer from https://github.com/conda-forge/miniforge/releases\n\nChoose Miniforge3-Windows-x86_64.exe\n\nRun the installer\nCheck “Add Miniforge3 to my PATH environment variable” during installation\nComplete the installation\n\nOpen a new PowerShell or Command Prompt and verify:\nconda --version",
+    "text": "2.2 2. Conda (Miniforge)\nConda is a package and environment manager that handles Python installations and their dependencies. The key feature is environments: isolated spaces where you can install specific versions of Python and packages for a specific project without affecting other projects. This prevents the common problem of upgrading a package for one project and breaking another. We use Miniforge, a community-driven conda distribution that defaults to the conda-forge channel—a large, well-maintained repository of python packages. Miniforge is lightweight and free to use in any context, unlike some commercial conda distributions.\n\n2.2.1 macOS\nOpen Terminal and run:\n# Download the installer\ncurl -L -O \"https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-$(uname -m).sh\"\n\n# Run the installer\nbash Miniforge3-MacOSX-$(uname -m).sh\nFollow the prompts, accepting the defaults. When asked about initializing conda, say yes.\nAfter installation, restart your terminal or run:\nsource ~/.zshrc\nVerify the installation:\nconda --version\n\n\n2.2.2 Windows\n\nDownload the Miniforge installer from https://github.com/conda-forge/miniforge/releases\n\nChoose Miniforge3-Windows-x86_64.exe\n\nRun the installer\nCheck “Add Miniforge3 to my PATH environment variable” during installation\nComplete the installation\n\nOpen a new PowerShell or Command Prompt and verify:\nconda --version",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Installation</span>"
@@ -151,7 +151,7 @@
     "href": "part1/installation.html#r-using-rig",
     "title": "2  Installation",
     "section": "2.3 3. R (using rig)",
-    "text": "2.3 3. R (using rig)\nWe use rig (R Installation Manager) to install and manage R versions. This makes it easy to install R, switch between versions, and keep R updated.\n\n2.3.1 macOS\n\nDownload the latest rig installer from https://github.com/r-lib/rig/releases\n\nChoose the .pkg file (e.g., rig-macos-arm64.pkg for Apple Silicon or rig-macos-x86_64.pkg for Intel Macs)\n\nDouble-click the .pkg file and follow the installation prompts\n\nThen install the latest R version:\nrig add release\nVerify the installation:\nR --version\n\n\n\n\n\n\nTiprig Commands\n\n\n\n\nrig list — See installed R versions\nrig add release — Install latest stable R\nrig add devel — Install development version\nrig default &lt;version&gt; — Set default R version\n\n\n\n\n\n2.3.2 Windows\n\nDownload the rig installer from https://github.com/r-lib/rig/releases\n\nChoose rig-windows-latest.exe\n\nRun the installer\nOpen a new PowerShell window and install R:\n\nrig add release\n\nVerify:\n\nR --version\n\n\n2.3.3 Why rig?\n\nEasy updates: rig add release always gets the latest version\nMultiple versions: Install R 4.3 and R 4.4 side by side for testing\nConsistent: Same commands on macOS and Windows",
+    "text": "2.3 3. R (using rig)\nWe install R using rig (R Installation Manager) rather than downloading directly from CRAN. Rig makes it easy to install R, switch between R versions, and keep R updated, all from the command line. Most importantly, it installs new R versions without overwriting or deleting previous versions, a common problem encountered when installing precompiled packages from the main R website. This is especially useful when you want to install the newest version of R to use with a new project while still maintaining older versions associated with older projects.\n\n2.3.1 macOS\n\nDownload the latest rig installer from https://github.com/r-lib/rig/releases\n\nChoose the .pkg file (e.g., rig-macos-arm64.pkg for Apple Silicon or rig-macos-x86_64.pkg for Intel Macs)\n\nDouble-click the .pkg file and follow the installation prompts\n\nThen install the latest R version:\nrig add release\nVerify the installation:\nR --version\n\n\n\n\n\n\nTiprig Commands\n\n\n\n\nrig list — See installed R versions\nrig add release — Install latest stable R\nrig add devel — Install development version\nrig default &lt;version&gt; — Set default R version\n\n\n\n\n\n2.3.2 Windows\n\nDownload the rig installer from https://github.com/r-lib/rig/releases\n\nChoose rig-windows-latest.exe\n\nRun the installer\nOpen a new PowerShell window and install R:\n\nrig add release\n\nVerify:\n\nR --version\n\n\n2.3.3 Why rig?\n\nEasy updates: rig add release always gets the latest version\nMultiple versions: Install R 4.3 and R 4.4 side by side for testing\nConsistent: Same commands on macOS and Windows",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Installation</span>"
@@ -162,7 +162,7 @@
     "href": "part1/installation.html#git",
     "title": "2  Installation",
     "section": "2.4 4. Git",
-    "text": "2.4 4. Git\n\n2.4.1 macOS\nGit may already be installed. Check by running:\ngit --version\nIf not installed, you’ll be prompted to install the Xcode Command Line Tools. Accept the prompt.\nAlternatively, install via Homebrew:\nbrew install git\n\n\n2.4.2 Windows\n\nDownload Git from https://git-scm.com/download/win\nRun the installer\nAccept the default options (the defaults are good)\nVerify in a new terminal:\n\ngit --version\n\n\n2.4.3 Configure Git (Both Platforms)\nSet your identity (use your real name and email):\ngit config --global user.name \"Your Name\"\ngit config --global user.email \"your.email@example.com\"",
+    "text": "2.4 4. Git\nGit is a version control system that tracks changes to your code over time. Think of it as an unlimited undo history that also lets you see what changed, when, and why. More importantly, Git enables collaboration - multiple people can work on the same project without overwriting each other’s work. Every serious software project uses Git, and increasingly, so do data analysis projects. Learning Git is an investment that pays off throughout your career.\n\n2.4.1 macOS\nGit may already be installed. Check by running:\ngit --version\nIf not installed, you’ll be prompted to install the Xcode Command Line Tools. Accept the prompt.\nAlternatively, install via Homebrew:\nbrew install git\n\n\n2.4.2 Windows\n\nDownload Git from https://git-scm.com/download/win\nRun the installer\nAccept the default options (the defaults are good)\nVerify in a new terminal:\n\ngit --version\n\n\n2.4.3 Configure Git (Both Platforms)\nSet your identity (use your real name and email):\ngit config --global user.name \"Your Name\"\ngit config --global user.email \"your.email@example.com\"",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Installation</span>"
@@ -173,7 +173,7 @@
     "href": "part1/installation.html#github-account",
     "title": "2  Installation",
     "section": "2.5 5. GitHub Account",
-    "text": "2.5 5. GitHub Account\n\nGo to https://github.com and create an account if you don’t have one\nWe’ll set up authentication in Section 3.10",
+    "text": "2.5 5. GitHub Account\nGitHub is a web platform that hosts Git repositories in the cloud. It’s where you’ll store your code, collaborate with others, and share your work publicly or privately. GitHub adds features on top of Git—like issue tracking, pull requests for code review, and GitHub Pages for hosting websites. Most open-source software lives on GitHub, including the R and Python packages you use daily. If you don’t have an individual GitHub account, please make one for yourself. We also maintain a Lab Github Team where we keep all lab code projects (including individual student projects).\n\nGo to https://github.com and create an account if you don’t have one\nWe’ll set up authentication in Section 3.11\nGive Jake your account username so he can give you access to the Lab Github organization.",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Installation</span>"
@@ -184,7 +184,7 @@
     "href": "part1/installation.html#claude-code",
     "title": "2  Installation",
     "section": "2.6 6. Claude Code",
-    "text": "2.6 6. Claude Code\nClaude Code is an AI coding assistant that runs in your terminal.\n\n2.6.1 Prerequisites\nYou need Node.js 18+ installed:\nmacOS:\nbrew install node\nWindows: Download and install from https://nodejs.org (LTS version).\n\n\n2.6.2 Install Claude Code\nnpm install -g @anthropic-ai/claude-code\n\n\n2.6.3 Authenticate\nRun Claude Code once to authenticate:\nclaude\nFollow the prompts to log in with your Anthropic account.\n\n\n\n\n\n\nNoteAnthropic Account\n\n\n\nYou’ll need an Anthropic account with API access. If you’re a lab member, ask for credentials.",
+    "text": "2.6 6. Claude Code\nClaude Code is an AI coding assistant that runs in your terminal or integrates into Positron. Unlike chat-based AI tools, Claude Code can read and write files in your project, run commands, and help you build and debug code interactively. It understands context from your entire codebase, making it useful for everything from writing code, explaining unfamiliar code, debugging errors, and planning and tracking larger projects. Think of it as a knowledgeable collaborator who’s always available and can work in the background.\n\n2.6.1 Prerequisites\nYou need Node.js 18+ installed:\nmacOS:\nbrew install node\nWindows: Download and install from https://nodejs.org (LTS version).\n\n\n2.6.2 Install Claude Code\nnpm install -g @anthropic-ai/claude-code\n\n\n2.6.3 Authenticate\nRun Claude Code once to authenticate:\nclaude\nFollow the prompts to log in with your Anthropic account.\n\n\n\n\n\n\nNoteAnthropic Account\n\n\n\nYou’ll need an Anthropic account with API access. If you’re a lab member, ask for credentials.",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Installation</span>"
@@ -195,7 +195,7 @@
     "href": "part1/installation.html#quarto-optional",
     "title": "2  Installation",
     "section": "2.7 7. Quarto (Optional)",
-    "text": "2.7 7. Quarto (Optional)\nQuarto is useful for creating reports and documents. This book was built with Quarto.\n\n2.7.1 macOS\nbrew install quarto\nOr download from https://quarto.org/docs/get-started/\n\n\n2.7.2 Windows\nDownload and run the installer from https://quarto.org/docs/get-started/",
+    "text": "2.7 7. Quarto (Optional)\nQuarto is a scientific publishing system that lets you combine code, results, and narrative text in a single document. You write in Markdown with embedded R or Python code chunks, and Quarto renders it to HTML, PDF, Word, or other formats—with your code output automatically included. This is the modern approach to reproducible research: your analysis and your report are the same document, so results stay in sync with the code that produced them. Quarto can also make books, websites, presentations, and other types of documents. In fact, this book was built with Quarto!\n\n2.7.1 macOS\nbrew install quarto\nOr download from https://quarto.org/docs/get-started/\n\n\n2.7.2 Windows\nDownload and run the installer from https://quarto.org/docs/get-started/",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Installation</span>"
@@ -228,7 +228,7 @@
     "href": "part1/first-project.html",
     "title": "3  Your First Project",
     "section": "",
-    "text": "3.1 Step 1: Create the Project Folder\nLet’s create a complete project that demonstrates the full workflow. By the end, you’ll have:\nOpen your terminal and create a new project:",
+    "text": "3.1 Step 1: Create the Project Folder\nLet’s create a complete project that demonstrates the full workflow. This is a practice run—the structure and tools may feel like overkill for a simple example, but they pay off immediately when projects grow. In the lab, we treat each analysis project as the computational infrastructure for a publication: well-organized, reproducible, and easy to share.\nBy the end, you’ll have:\nIn Positron (and VS Code), a project is simply a folder. When you open a folder as your workspace, all of Positron’s tools—the terminal, file browser, R console, Python interpreter—work relative to that folder. The top-level folder will contain important configuration files: .git/ for version control, renv.lock for R packages, environment.yml for Python packages, and optionally .claude/ for Claude Code instructions or .vscode/settings.json for editor settings.\nOpen your terminal and create a new project:\nUse lowercase with hyphens for project names—avoid spaces and special characters.",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Your First Project</span>"
@@ -250,7 +250,7 @@
     "href": "part1/first-project.html#step-2-open-in-positron",
     "title": "3  Your First Project",
     "section": "3.2 Step 2: Open in Positron",
-    "text": "3.2 Step 2: Open in Positron\nOpen Positron and use File → Open Folder to open my-first-analysis.\n[TODO: screenshot of Positron with empty folder open]",
+    "text": "3.2 Step 2: Open in Positron\nOpen Positron and use File → Open Folder to open my-first-analysis. This sets the folder as your workspace. From now on, the integrated terminal, file browser, and language consoles all operate within this project folder.\n[TODO: screenshot of Positron with empty folder open]",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Your First Project</span>"
@@ -261,7 +261,7 @@
     "href": "part1/first-project.html#step-3-initialize-git",
     "title": "3  Your First Project",
     "section": "3.3 Step 3: Initialize Git",
-    "text": "3.3 Step 3: Initialize Git\nIn Positron’s terminal (View → Terminal), initialize a Git repository:\ngit init\nCreate a .gitignore file to exclude files that shouldn’t be tracked:\n# Create .gitignore\ncat &gt; .gitignore &lt;&lt; 'EOF'\n# R\n.Rhistory\n.RData\n.Rproj.user/\nrenv/library/\nrenv/staging/\n\n# Python\n__pycache__/\n*.pyc\n.conda/\n.venv/\n\n# Quarto\n*_files/\n.quarto/\n\n# Data (large files)\ndata/raw/\n\n# OS files\n.DS_Store\nThumbs.db\n\n# IDE\n.vscode/\n.positron/\nEOF",
+    "text": "3.3 Step 3: Initialize Git\nWe initialize Git first so that every change from here on is tracked. In Positron’s terminal (View → Terminal), initialize a Git repository:\ngit init\nNext, create a .gitignore file to tell Git which files to skip—large data files, generated outputs, and system files don’t belong in version control. See the Git & GitHub chapter for details on what each line means.\n# Create .gitignore\ncat &gt; .gitignore &lt;&lt; 'EOF'\n# R\n.Rhistory\n.RData\n.Rproj.user/\nrenv/library/\nrenv/staging/\n\n# Python\n__pycache__/\n*.pyc\n.conda/\n.venv/\n\n# Quarto\n*_files/\n.quarto/\n\n# Generated outputs (can be reproduced from scripts)\nouts/\n\n# OS files\n.DS_Store\nThumbs.db\n\n# IDE\n.vscode/\n.positron/\nEOF",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Your First Project</span>"
@@ -272,7 +272,7 @@
     "href": "part1/first-project.html#step-4-set-up-conda-environment",
     "title": "3  Your First Project",
     "section": "3.4 Step 4: Set Up Conda Environment",
-    "text": "3.4 Step 4: Set Up Conda Environment\nEvery project gets a conda environment, even if you’re primarily using R. This keeps Python dependencies isolated and establishes good habits for mixed-language projects.\nconda create -n my-first-analysis python=3.11 -y\nconda activate my-first-analysis\nSave the environment specification:\nconda env export &gt; environment.yml\n\n\n\n\n\n\nTipEnvironment Activation\n\n\n\nEvery time you work on this project, activate the environment first:\nconda activate my-first-analysis",
+    "text": "3.4 Step 4: Set Up Conda Environment\nEvery project gets its own conda environment, even if you’re primarily using R. This isolation prevents a common problem: updating a package for one project and accidentally breaking another. It also establishes good habits for mixed-language work.\nconda create -n my-first-analysis python=3.11 -y\nconda activate my-first-analysis\nSave the environment specification so collaborators (or future you) can recreate it exactly:\nconda env export &gt; environment.yml\n\n\n\n\n\n\nTipEnvironment Activation\n\n\n\nEvery time you work on this project, activate the environment first:\nconda activate my-first-analysis",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Your First Project</span>"
@@ -283,51 +283,62 @@
     "href": "part1/first-project.html#step-5-set-up-r-with-renv",
     "title": "3  Your First Project",
     "section": "3.5 Step 5: Set Up R with renv",
-    "text": "3.5 Step 5: Set Up R with renv\nIn Positron’s R console, initialize renv:\n# Install renv if needed\ninstall.packages(\"renv\")\n\n# Initialize renv for this project\nrenv::init()\nThis creates:\n\nrenv/ folder for the package library\nrenv.lock file tracking package versions\n.Rprofile to auto-activate renv\n\nInstall the packages we’ll need for our analysis:\ninstall.packages(c(\"ggplot2\", \"dplyr\", \"palmerpenguins\"))\nrenv::snapshot()  # Save the state",
+    "text": "3.5 Step 5: Set Up R with renv\nJust as conda isolates Python packages, renv isolates R packages. Each project gets its own library, and the renv.lock file records exact package versions so anyone can recreate your R environment with renv::restore().\nIn Positron’s R console, initialize renv:\n# Install renv if needed\ninstall.packages(\"renv\")\n\n# Initialize renv for this project\nrenv::init()\nThis creates:\n\nrenv/ folder for the project’s package library\nrenv.lock file recording package versions\n.Rprofile to auto-activate renv when R starts\n\nInstall the packages we’ll need for our analysis:\ninstall.packages(c(\"ggplot2\", \"dplyr\", \"palmerpenguins\", \"here\"))\nrenv::snapshot()  # Save the state",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Your First Project</span>"
     ]
   },
   {
-    "objectID": "part1/first-project.html#step-6-create-project-structure",
-    "href": "part1/first-project.html#step-6-create-project-structure",
+    "objectID": "part1/first-project.html#step-6-configure-positron-for-this-project",
+    "href": "part1/first-project.html#step-6-configure-positron-for-this-project",
     "title": "3  Your First Project",
-    "section": "3.6 Step 6: Create Project Structure",
-    "text": "3.6 Step 6: Create Project Structure\nCreate a standard folder structure:\nmkdir -p data/raw data/processed analysis output\nYour project now looks like:\nmy-first-analysis/\n├── .git/\n├── .gitignore\n├── analysis/          # Quarto analysis scripts\n├── data/\n│   ├── raw/           # Original data (not tracked)\n│   └── processed/     # Cleaned data\n├── output/            # Final results, figures\n├── environment.yml    # Conda environment\n├── renv/              # R packages\n└── renv.lock          # R package versions",
+    "section": "3.6 Step 6: Configure Positron for This Project",
+    "text": "3.6 Step 6: Configure Positron for This Project\nNow that the conda environment and R packages exist, tell Positron which interpreters to use. You only need to do this once per project.\n\n3.6.1 Select the Python Interpreter\n\nOpen the Command Palette: Cmd+Shift+P (macOS) or Ctrl+Shift+P (Windows)\nType “Python: Select Interpreter” and select it\nChoose the my-first-analysis conda environment from the list\n\nIf the environment doesn’t appear, restart Positron—it needs to detect newly created environments.\n\n\n3.6.2 Select the R Version\nIf you have multiple R versions installed via rig, you can set the default for this project:\n\nOpen Command Palette → “R: Select R Binary”\nChoose the version you want (usually the latest stable release)\n\nAlternatively, set it permanently in .vscode/settings.json (covered in the Positron chapter).\n\n\n3.6.3 Restart and Verify\nRestart Positron to ensure settings take effect. Then verify by opening both consoles:\n\nR Console: View → Console, or click “Start R Session” in the status bar. You should see [renv] indicating renv is active.\nPython Console: Open a .py file and run a line, or use the terminal to run python --version. Confirm it shows the conda environment’s Python.\n\n\n\n\n\n\n\nNoteOne-Time Setup\n\n\n\nYou only configure interpreters once per project. Positron remembers your choices in .vscode/settings.json, which is stored in the project folder.",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Your First Project</span>"
     ]
   },
   {
-    "objectID": "part1/first-project.html#step-7-write-a-quarto-analysis-script",
-    "href": "part1/first-project.html#step-7-write-a-quarto-analysis-script",
+    "objectID": "part1/first-project.html#step-7-create-project-structure",
+    "href": "part1/first-project.html#step-7-create-project-structure",
     "title": "3  Your First Project",
-    "section": "3.7 Step 7: Write a Quarto Analysis Script",
-    "text": "3.7 Step 7: Write a Quarto Analysis Script\nNow we’ll create a Quarto analysis script—the main artifact in our workflow. Create a new file at analysis/penguin_summary.qmd:\n---\ntitle: \"Penguin Size Summary\"\nauthor: \"Your Name\"\nformat: html\n---\n\n## Overview\n\nThis analysis summarizes body size measurements from the Palmer Penguins dataset.\n\n**Input:** `palmerpenguins` package (built-in dataset)\n**Output:** Summary statistics and a figure saved to `output/`\n\n```{r}\n#| label: setup\nlibrary(palmerpenguins)\nlibrary(dplyr)\nlibrary(ggplot2)\n```\n\n## Data summary\n\n```{r}\n#| label: summary\npenguins |&gt;\n  group_by(species) |&gt;\n  summarise(\n    n = n(),\n    mean_mass_g = mean(body_mass_g, na.rm = TRUE),\n    mean_flipper_mm = mean(flipper_length_mm, na.rm = TRUE)\n  )\n```\n\n## Body mass by species\n\n```{r}\n#| label: fig-mass\n#| fig-cap: \"Body mass distribution by penguin species\"\n\np &lt;- ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +\n  geom_boxplot() +\n  labs(x = \"Species\", y = \"Body mass (g)\") +\n  theme_minimal() +\n  theme(legend.position = \"none\")\n\nprint(p)\n\n# Save to output folder\nggsave(\"../output/penguin_mass.png\", p, width = 6, height = 4)\n```\n\n## Summary\n\nWe summarized body mass across three penguin species. The figure has been saved to `output/penguin_mass.png`.\n\n\n\n\n\n\nNoteWhat makes this a “lab-style” analysis script?\n\n\n\n\nSelf-contained — All code needed to run is in the file\nDocuments what it does — States its input and output clearly\nProduces a shareable result — Renders to HTML; exports figures",
+    "section": "3.7 Step 7: Create Project Structure",
+    "text": "3.7 Step 7: Create Project Structure\nCreate the lab’s standard folder structure:\nmkdir -p data scripts outs\nYour project now looks like:\nmy-first-analysis/\n├── .git/\n├── .gitignore\n├── data/              # External inputs only (raw data, metadata)\n├── scripts/           # Quarto analysis scripts (.qmd files)\n├── outs/              # All generated outputs (figures, tables, processed data)\n├── environment.yml    # Conda environment specification\n├── renv/              # R package library (not tracked in git)\n└── renv.lock          # R package versions (tracked in git)\nThis structure separates inputs (data/) from outputs (outs/), with scripts in the middle. Each script writes to a corresponding subfolder in outs/, making it easy to trace which script produced which files. See the Project Organization chapter for the full rationale and conventions.",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Your First Project</span>"
     ]
   },
   {
-    "objectID": "part1/first-project.html#step-8-render-the-analysis",
-    "href": "part1/first-project.html#step-8-render-the-analysis",
+    "objectID": "part1/first-project.html#step-8-write-a-quarto-analysis-script",
+    "href": "part1/first-project.html#step-8-write-a-quarto-analysis-script",
     "title": "3  Your First Project",
-    "section": "3.8 Step 8: Render the Analysis",
-    "text": "3.8 Step 8: Render the Analysis\nRun Quarto to execute the code and produce an HTML report:\nquarto render analysis/penguin_summary.qmd\nThis creates analysis/penguin_summary.html. Open it in a browser to see your rendered analysis.\n[TODO: screenshot of rendered HTML]\nYou should also see output/penguin_mass.png — the figure exported by the script.\n\n\n\n\n\n\nTipPreview mode\n\n\n\nDuring development, use quarto preview to see live updates as you edit:\nquarto preview analysis/penguin_summary.qmd",
+    "section": "3.8 Step 8: Write a Quarto Analysis Script",
+    "text": "3.8 Step 8: Write a Quarto Analysis Script\nQuarto documents (.qmd files) mix code and narrative text. When you render a .qmd, Quarto executes all the code in a fresh R or Python session and weaves the results into a polished output document—typically HTML, but also PDF or Word. This is how we create reproducible, shareable analysis reports.\nCreate a new file at scripts/01_penguin_summary.qmd:\n---\ntitle: \"Penguin Size Summary\"\nauthor: \"Your Name\"\nformat: html\n---\n\n## Overview\n\nThis analysis summarizes body size measurements from the Palmer Penguins dataset.\n\n**Inputs:** `palmerpenguins` package (built-in dataset)\n\n**Outputs:** `outs/01_penguin_summary/penguin_mass.png`\n\n```{r}\n#| label: setup\nlibrary(palmerpenguins)\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(here)\n\n# Create output directory for this script\ndir_out &lt;- here::here(\"outs\", \"01_penguin_summary\")\ndir.create(dir_out, recursive = TRUE, showWarnings = FALSE)\n```\n\n## Data summary\n\n```{r}\n#| label: summary\npenguins |&gt;\n  group_by(species) |&gt;\n  summarise(\n    n = n(),\n    mean_mass_g = mean(body_mass_g, na.rm = TRUE),\n    mean_flipper_mm = mean(flipper_length_mm, na.rm = TRUE)\n  )\n```\n\n## Body mass by species\n\n```{r}\n#| label: fig-mass\n#| fig-cap: \"Body mass distribution by penguin species\"\n\np &lt;- ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +\n  geom_boxplot() +\n  labs(x = \"Species\", y = \"Body mass (g)\") +\n  theme_minimal() +\n  theme(legend.position = \"none\")\n\nprint(p)\n\n# Save to this script's output folder\nggsave(file.path(dir_out, \"penguin_mass.png\"), p, width = 6, height = 4)\n```\n\n## Summary\n\nWe summarized body mass across three penguin species. The figure has been saved to `outs/01_penguin_summary/penguin_mass.png`.\n\n\n\n\n\n\nNoteWhat makes this a “lab-style” analysis script?\n\n\n\n\nSelf-contained — All code needed to run is in the file\nDocuments inputs and outputs — States what it reads and what it produces\nWrites outputs to a dedicated folder — outs/01_penguin_summary/ corresponds to script 01_penguin_summary.qmd\nUses here::here() — Paths are relative to the project root, not the script location\n\n\n\n\n3.8.1 Interactive vs. Rendering\nThere are two ways to run code in a .qmd file:\nInteractive execution (Cmd+Enter / Ctrl+Enter): Runs the current line or selection in your R console. Use this while developing—you can inspect objects, test code, and debug interactively. The results appear in the console and plots pane.\nRendering (quarto render): Runs the entire document in a fresh R session and produces an HTML (or PDF/Word) output. Use this when you want a polished, shareable report. Because rendering starts fresh, it catches errors that might not appear interactively (like relying on objects you created earlier but forgot to include in the script).\nDuring development, work interactively. When you’re ready to share or commit, render the full document to ensure it runs cleanly from start to finish.",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Your First Project</span>"
     ]
   },
   {
-    "objectID": "part1/first-project.html#step-9-commit-your-work",
-    "href": "part1/first-project.html#step-9-commit-your-work",
+    "objectID": "part1/first-project.html#step-9-render-the-analysis",
+    "href": "part1/first-project.html#step-9-render-the-analysis",
     "title": "3  Your First Project",
-    "section": "3.9 Step 9: Commit Your Work",
-    "text": "3.9 Step 9: Commit Your Work\nStage and commit everything:\n# See what's ready to commit\ngit status\n\n# Add files\ngit add .\n\n# Commit\ngit commit -m \"Initial project setup with penguin analysis\"",
+    "section": "3.9 Step 9: Render the Analysis",
+    "text": "3.9 Step 9: Render the Analysis\nIn Positron’s terminal (View → Terminal), render the document:\nquarto render scripts/01_penguin_summary.qmd\nQuarto executes every code chunk in a fresh R session and weaves the output into an HTML report. This creates:\n\nscripts/01_penguin_summary.html — the rendered report (open in a browser to view)\nouts/01_penguin_summary/penguin_mass.png — the exported figure\n\n[TODO: screenshot of rendered HTML]\n\n\n\n\n\n\nTipPreview Mode\n\n\n\nDuring development, use quarto preview for live updates as you edit:\nquarto preview scripts/01_penguin_summary.qmd\nThis opens a browser window that refreshes automatically when you save changes.",
+    "crumbs": [
+      "Quick Start",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Your First Project</span>"
+    ]
+  },
+  {
+    "objectID": "part1/first-project.html#step-10-commit-your-work",
+    "href": "part1/first-project.html#step-10-commit-your-work",
+    "title": "3  Your First Project",
+    "section": "3.10 Step 10: Commit Your Work",
+    "text": "3.10 Step 10: Commit Your Work\nA commit is a snapshot of your project at this moment. From now on, every significant change should get its own commit—this builds a history you can review, share, or revert to if something breaks.\nStage and commit your work:\n# See what's ready to commit\ngit status\n\n# Add files\ngit add .\n\n# Commit with a descriptive message\ngit commit -m \"Initial project setup with penguin analysis\"",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Your First Project</span>"
@@ -337,8 +348,8 @@
     "objectID": "part1/first-project.html#sec-github-auth",
     "href": "part1/first-project.html#sec-github-auth",
     "title": "3  Your First Project",
-    "section": "3.10 Step 10: Push to GitHub",
-    "text": "3.10 Step 10: Push to GitHub\n\n3.10.1 Create a GitHub Repository\n\nGo to github.com and click New repository\nName it my-first-analysis\nKeep it private (or public if you prefer)\nDon’t initialize with README (we already have files)\nClick Create repository\n\n\n\n3.10.2 Authenticate with GitHub\nIf you haven’t already, install and authenticate the GitHub CLI:\n# macOS\nbrew install gh\n\n# Windows: Download from https://cli.github.com/\n\n# Authenticate\ngh auth login\nFollow the prompts to authenticate via browser.\n\n\n3.10.3 Push Your Code\n# Add the remote repository\ngit remote add origin https://github.com/YOUR-USERNAME/my-first-analysis.git\n\n# Push your code\ngit push -u origin main",
+    "section": "3.11 Step 11: Push to GitHub",
+    "text": "3.11 Step 11: Push to GitHub\nPushing to GitHub backs up your work in the cloud and enables collaboration. Once pushed, your project is safe even if your laptop dies.\n\n\n\n\n\n\nImportantPersonal vs. Lab GitHub\n\n\n\nGitHub can host repositories on your personal account or on the lab’s GitHub organization (MusserLab).\n\nLab organization: All analysis and coding projects for lab work go here. This ensures continuity when people leave and makes collaboration easier.\nPersonal account: Use for personal configuration folders (like your Claude Code settings), side projects, or practice repositories.\n\nFor this tutorial, you can use either. For real lab projects, create the repository under the MusserLab organization.\n\n\n\n3.11.1 Authenticate with GitHub\nIf you haven’t already, install and authenticate the GitHub CLI:\n# macOS\nbrew install gh\n\n# Windows: Download from https://cli.github.com/\n\n# Authenticate\ngh auth login\nWhen prompted, choose “Login with a web browser” and follow the prompts.\n\n\n3.11.2 Create and Push to GitHub\nThe easiest way to create a repository and push in one step:\n# Create a private repo and push (on your personal account)\ngh repo create my-first-analysis --private --source=. --push\n\n# Or for the lab organization:\n# gh repo create MusserLab/my-first-analysis --private --source=. --push\nAlternatively, create the repository manually on github.com, then:\ngit remote add origin https://github.com/YOUR-USERNAME/my-first-analysis.git\ngit push -u origin main",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Your First Project</span>"
@@ -348,8 +359,8 @@
     "objectID": "part1/first-project.html#what-youve-built",
     "href": "part1/first-project.html#what-youve-built",
     "title": "3  Your First Project",
-    "section": "3.11 What You’ve Built",
-    "text": "3.11 What You’ve Built\nYou now have a complete project with:\n\n✅ Organized folder structure\n✅ Python environment (conda) — ready for mixed-language work\n✅ R package management (renv)\n✅ A Quarto analysis script that renders to HTML\n✅ Exported figures in output/\n✅ Version control (Git) and cloud backup (GitHub)\n\nThis is the pattern you’ll use for every analysis in the lab.",
+    "section": "3.12 What You’ve Built",
+    "text": "3.12 What You’ve Built\nYou now have a complete project with:\n\n✅ Organized folder structure (data/, scripts/, outs/)\n✅ Python environment (conda) — isolated and reproducible\n✅ R package management (renv) — isolated and reproducible\n✅ Positron configured for both languages\n✅ A Quarto analysis script that renders to HTML\n✅ Exported figures in outs/01_penguin_summary/\n✅ Version control (Git) and cloud backup (GitHub)\n\nThis is the pattern you’ll use for every analysis in the lab. The setup may feel like a lot of steps the first time, but it becomes second nature quickly—after a few projects, you’ll have it done in minutes.",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Your First Project</span>"
@@ -359,8 +370,8 @@
     "objectID": "part1/first-project.html#whats-next",
     "href": "part1/first-project.html#whats-next",
     "title": "3  Your First Project",
-    "section": "3.12 What’s Next",
-    "text": "3.12 What’s Next\n\nPart 2 dives deeper into each tool\nPart 3 covers workflows like collaboration and troubleshooting\n\nWhen you return to this project:\ncd my-first-analysis\nconda activate my-first-analysis\n# R will auto-activate renv when you start it",
+    "section": "3.13 What’s Next",
+    "text": "3.13 What’s Next\n\nPart 2 dives deeper into each tool (Positron, Conda, renv, Git, Quarto, Project Organization)\nPart 3 covers workflows like starting new projects, collaboration, and troubleshooting\n\nWhen you return to this project:\ncd my-first-analysis\nconda activate my-first-analysis\n# Open in Positron — renv will auto-activate when R starts",
     "crumbs": [
       "Quick Start",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Your First Project</span>"
