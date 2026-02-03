@@ -17,7 +17,7 @@
 
 ### Part 2: Core Tools
 - [x] **Positron**: Expand chapter with workflow details (screenshots still needed)
-- [ ] **Conda**: Consider adding section on mamba for faster installs
+- [x] **Conda**: Expanded with core packages, channels, libmamba solver, lab policies
 - [ ] **renv**: Add troubleshooting for common Bioconductor issues
 - [ ] **Git/GitHub**: Add section on GitHub Classroom (if using for courses)
 
@@ -75,6 +75,14 @@
 ## Session Notes
 
 _Add notes here during working sessions_
+
+### 2026-02-02 (session 4)
+- Expanded Conda chapter (311→456 lines):
+  - Core data science packages section (numpy, pandas, matplotlib, ipykernel)
+  - Expanded channels (priority, bioconda, .condarc configuration)
+  - Libmamba solver setup
+  - Lab policies (never use base, both conda+renv)
+  - Dependency conflicts troubleshooting
 
 ### 2026-02-02 (session 3)
 - Rewrote Positron chapter (136→365 lines) with "Positron is your home base" framing

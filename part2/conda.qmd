@@ -44,13 +44,37 @@ Then **close and reopen your terminal**. You only need to do this once.
 
 ### Create an Environment
 
+You can create an environment with just Python, or include packages from the start:
+
 ```bash
-# Create with specific Python version
+# Create with just Python
 conda create -n my-project python=3.11
 
-# Create with packages included
-conda create -n my-project python=3.11 pandas numpy matplotlib
+# Create with core data science packages (recommended)
+conda create -n my-project python=3.11 numpy pandas matplotlib ipykernel
 ```
+
+### Core Data Science Packages
+
+When setting up a new project environment, these packages cover most data science needs:
+
+| Package | Purpose |
+|---------|---------|
+| `numpy` | Numerical computing with arrays and matrices |
+| `pandas` | Data manipulation and analysis (dataframes) |
+| `matplotlib` | Plotting and visualization |
+| `ipykernel` | Required for Quarto to execute Python code |
+
+A typical environment creation command:
+
+```bash
+conda create -n my-project python=3.11 numpy pandas matplotlib ipykernel
+```
+
+::: {.callout-note}
+## What about Jupyter?
+You don't need `jupyter` or `jupyterlab` for our workflow—Quarto handles document rendering directly. Only install them if you receive `.ipynb` notebook files from collaborators and want to open them in the traditional notebook interface.
+:::
 
 ### Activate/Deactivate
 
@@ -109,15 +133,18 @@ conda env remove -n my-project
 
 ## Environment Files
 
+Environment files (`environment.yml`) let collaborators recreate your exact Python setup.
+
 ### Export Your Environment
 
-Save your environment to a file so others can recreate it:
+We recommend using `--from-history` for most cases:
 
 ```bash
-conda env export > environment.yml
+# Recommended: exports only packages you explicitly installed
+conda env export --from-history > environment.yml
 ```
 
-This creates:
+This creates a portable file that works across platforms:
 
 ```yaml
 name: my-project
@@ -125,12 +152,22 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python=3.11.5
-  - pandas=2.0.3
-  - numpy=1.24.3
-  - pip:
-    - some-pip-package==1.0.0
+  - python=3.11
+  - pandas
+  - numpy
+  - matplotlib
+  - ipykernel
 ```
+
+### Full Export (When Needed)
+
+For exact reproducibility on the same platform, use the full export:
+
+```bash
+conda env export > environment.yml
+```
+
+This includes exact versions and platform-specific builds—useful for debugging or archiving a precise state, but less portable.
 
 ### Recreate from File
 
@@ -138,30 +175,35 @@ dependencies:
 conda env create -f environment.yml
 ```
 
-### Cross-Platform Files
-
-The default export includes platform-specific builds. For cross-platform sharing:
-
-```bash
-conda env export --from-history > environment.yml
-```
-
-This exports only packages you explicitly installed.
+::: {.callout-tip}
+## Keep environment.yml Updated
+When you install new packages, update your environment file. The Claude Code `/done` command can help manage this as part of your commit workflow.
+:::
 
 ## Best Practices
+
+::: {.callout-important}
+## Lab Policy: Never Use the Base Environment
+Always create a project-specific environment. Never install packages into the `base` environment—keep it minimal with just your conda configuration. This prevents conflicts and ensures each project is self-contained.
+:::
 
 ### One Environment Per Project
 
 Create a dedicated environment for each project:
 
 ```bash
-conda create -n genomics-project python=3.11
-conda create -n imaging-analysis python=3.10
+conda create -n genomics-project python=3.11 numpy pandas matplotlib ipykernel
+conda create -n imaging-analysis python=3.10 numpy pandas matplotlib ipykernel
 ```
+
+::: {.callout-note}
+## Both Conda and renv
+In the lab, every project has both an `environment.yml` (for Python) and an `renv.lock` (for R), even if the project primarily uses one language. This ensures complete reproducibility.
+:::
 
 ### Name Environments Meaningfully
 
-Use descriptive names:
+Use short, descriptive names:
 
 ```bash
 # Good
@@ -179,6 +221,8 @@ Specify Python version when creating:
 conda create -n my-project python=3.11  # Not just "python"
 ```
 
+The specific minor version (3.11.x) will be the latest available; pinning the major version ensures compatibility.
+
 ### Update Regularly (But Carefully)
 
 ```bash
@@ -189,7 +233,7 @@ conda update --all
 conda update pandas
 ```
 
-Test after updating to ensure nothing breaks.
+Test after updating to ensure nothing breaks. Update your `environment.yml` afterward.
 
 ## Conda vs pip
 
@@ -213,35 +257,135 @@ When using both, install conda packages first, then pip packages. This avoids de
 
 ## Channels
 
-Channels are package repositories. The main ones:
+Channels are package repositories where conda looks for packages. Understanding channels matters because the same package can exist in multiple channels with different versions or builds.
 
-- **conda-forge**: Community-maintained, most packages
-- **defaults**: Anaconda's default channel
+### Main Channels
 
-We use Miniforge which defaults to conda-forge:
+- **conda-forge**: Community-maintained, comprehensive, well-tested. This is the primary channel for most scientific packages.
+- **bioconda**: Bioinformatics tools (samtools, bedtools, bwa, etc.). Essential for genomics work.
+- **defaults**: Anaconda's default channel. We generally avoid this in favor of conda-forge.
+
+### Channel Priority
+
+When a package exists in multiple channels, conda uses **channel priority** to decide which version to install. We recommend **strict priority** with conda-forge first:
 
 ```bash
-# Explicitly specify channel if needed
-conda install -c conda-forge package-name
+# Configure strict channel priority (one-time setup)
+conda config --set channel_priority strict
 ```
+
+This ensures conda-forge packages are always preferred, avoiding subtle version mismatches.
+
+### Using Bioconda
+
+For bioinformatics tools, add bioconda to your channels. The recommended order is:
+
+```bash
+# Add channels in priority order (highest priority last)
+conda config --add channels defaults
+conda config --add channels bioconda
+conda config --add channels conda-forge
+```
+
+Then install bioinformatics tools normally:
+
+```bash
+conda install samtools bedtools
+```
+
+### Specifying Channels in environment.yml
+
+For reproducibility, specify channels in your environment file:
+
+```yaml
+name: genomics-project
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.11
+  - pandas
+  - samtools
+  - bedtools
+```
+
+The order matters—channels listed first have higher priority.
+
+## Configuring Conda
+
+A few one-time configuration changes make conda faster and more reliable.
+
+### Use the Libmamba Solver
+
+The default conda solver can be slow, especially with complex environments. The **libmamba** solver is much faster and is now built into conda:
+
+```bash
+# Set libmamba as the default solver (one-time, global)
+conda config --set solver libmamba
+```
+
+This dramatically speeds up environment creation and package installation. You only need to run this once—it applies to all environments.
+
+### Recommended .condarc Configuration
+
+Your conda configuration lives in `~/.condarc`. After the setup commands above, it should look something like:
+
+```yaml
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+channel_priority: strict
+solver: libmamba
+```
+
+You can edit this file directly or use `conda config` commands.
 
 ## Troubleshooting
 
 ### "Solving environment" takes forever
 
-This happens with complex dependency trees. Try:
+This usually means you haven't configured the fast solver. Set libmamba as your default:
 
 ```bash
-# Use mamba (faster solver)
-conda install mamba
-mamba install package-name
+conda config --set solver libmamba
 ```
+
+Then try again. If you've already configured libmamba and it's still slow, you may have conflicting package requirements.
+
+### Dependency Conflicts
+
+**Symptoms**: Conda reports "conflict" or can't find a solution when installing a package.
+
+**Solutions**:
+
+1. **Check channel mixing**: Packages from different channels may conflict. Use strict channel priority with conda-forge first.
+
+2. **Loosen version constraints**: If you're requesting specific versions, try letting conda choose:
+   ```bash
+   # Instead of
+   conda install pandas=1.5 numpy=1.24
+   # Try
+   conda install pandas numpy
+   ```
+
+3. **Start fresh**: Sometimes it's easier to recreate the environment:
+   ```bash
+   conda deactivate
+   conda env remove -n my-project
+   conda create -n my-project python=3.11 numpy pandas matplotlib ipykernel
+   # Add other packages one at a time
+   ```
+
+4. **Check bioconda compatibility**: Some bioinformatics packages have strict dependencies. Check the package's documentation for known issues.
 
 ### Package not found
 
 1. Check spelling
-2. Try conda-forge channel explicitly
-3. Fall back to pip
+2. Ensure you have the right channels configured (conda-forge, bioconda)
+3. Search for the package: `conda search package-name`
+4. Fall back to pip if it's not in conda
 
 ### macOS/Linux: "conda: command not found"
 
@@ -301,11 +445,13 @@ The environment's Python will be used for running scripts and notebooks.
 
 | Task | Command |
 |------|---------|
-| Create environment | `conda create -n NAME python=3.11` |
+| Create environment | `conda create -n NAME python=3.11 numpy pandas matplotlib ipykernel` |
 | Activate | `conda activate NAME` |
 | Deactivate | `conda deactivate` |
 | Install package | `conda install PACKAGE` |
-| Export environment | `conda env export > environment.yml` |
+| Export environment | `conda env export --from-history > environment.yml` |
 | Create from file | `conda env create -f environment.yml` |
 | List environments | `conda env list` |
 | Remove environment | `conda env remove -n NAME` |
+| Set fast solver | `conda config --set solver libmamba` |
+| Set channel priority | `conda config --set channel_priority strict` |
