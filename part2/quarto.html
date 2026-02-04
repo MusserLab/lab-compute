@@ -111,6 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -405,14 +406,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../claude-code/intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Introduction to Claude Code</span></span></a>
+  <a href="../claude-code/getting-started.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Getting Started with Claude Code</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../claude-code/project-files.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Project and User Files</span></span></a>
+  <a href="../claude-code/configuring-projects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Configuring Your Project for Claude</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -423,8 +424,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../claude-code/session-walkthrough.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session Walkthrough</span></span></a>
+  <a href="../claude-code/working-effectively.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Working Effectively with Claude</span></span></a>
   </div>
 </li>
       </ul>
@@ -1230,6 +1231,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="common-issues" class="level2" data-number="6.14">
 <h2 data-number="6.14" class="anchored" data-anchor-id="common-issues"><span class="header-section-number">6.14</span> Common Issues</h2>
+<div class="callout-claude" title="Ask Claude">
+<p><strong>Debug a render error:</strong></p>
+<blockquote class="blockquote">
+<p>When I run <code>quarto render analysis.qmd</code>, I get this error:</p>
+<p>[paste the full error message]</p>
+<p>The code runs fine when I execute it interactively in the console. What’s going wrong?</p>
+</blockquote>
+<p><em>Include the exact error. Mention if it works interactively—that’s an important clue that often points to missing objects or path issues.</em></p>
+</div>
 <section id="object-not-found-during-render" class="level3" data-number="6.14.1">
 <h3 data-number="6.14.1" class="anchored" data-anchor-id="object-not-found-during-render"><span class="header-section-number">6.14.1</span> “Object not found” During Render</h3>
 <p>Code that works interactively may fail during render if you rely on objects not created in the script.</p>

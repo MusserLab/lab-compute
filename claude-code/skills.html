@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../claude-code/session-walkthrough.html" rel="next">
-<link href="../claude-code/project-files.html" rel="prev">
+<link href="../claude-code/working-effectively.html" rel="next">
+<link href="../claude-code/configuring-projects.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -111,6 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -284,7 +285,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../claude-code/intro.html">Claude Code</a></li><li class="breadcrumb-item"><a href="../claude-code/skills.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Skills</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../claude-code/getting-started.html">Claude Code</a></li><li class="breadcrumb-item"><a href="../claude-code/skills.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Skills</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -405,14 +406,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../claude-code/intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Introduction to Claude Code</span></span></a>
+  <a href="../claude-code/getting-started.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Getting Started with Claude Code</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../claude-code/project-files.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Project and User Files</span></span></a>
+  <a href="../claude-code/configuring-projects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Configuring Your Project for Claude</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -423,8 +424,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../claude-code/session-walkthrough.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session Walkthrough</span></span></a>
+  <a href="../claude-code/working-effectively.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Working Effectively with Claude</span></span></a>
   </div>
 </li>
       </ul>
@@ -503,24 +504,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#why-skills" id="toc-why-skills" class="nav-link active" data-scroll-target="#why-skills"><span class="header-section-number">12.1</span> Why Skills?</a></li>
-  <li><a href="#how-skills-work" id="toc-how-skills-work" class="nav-link" data-scroll-target="#how-skills-work"><span class="header-section-number">12.2</span> How Skills Work</a></li>
+  <li><a href="#how-skills-work" id="toc-how-skills-work" class="nav-link active" data-scroll-target="#how-skills-work"><span class="header-section-number">12.1</span> How Skills Work</a></li>
+  <li><a href="#types-of-skills" id="toc-types-of-skills" class="nav-link" data-scroll-target="#types-of-skills"><span class="header-section-number">12.2</span> Types of Skills</a>
+  <ul class="collapse">
+  <li><a href="#background-skills" id="toc-background-skills" class="nav-link" data-scroll-target="#background-skills"><span class="header-section-number">12.2.1</span> Background Skills</a></li>
+  <li><a href="#user-invocable-skills-slash-commands" id="toc-user-invocable-skills-slash-commands" class="nav-link" data-scroll-target="#user-invocable-skills-slash-commands"><span class="header-section-number">12.2.2</span> User-Invocable Skills (Slash Commands)</a></li>
+  </ul></li>
   <li><a href="#anatomy-of-a-skill" id="toc-anatomy-of-a-skill" class="nav-link" data-scroll-target="#anatomy-of-a-skill"><span class="header-section-number">12.3</span> Anatomy of a Skill</a></li>
-  <li><a href="#example-skills" id="toc-example-skills" class="nav-link" data-scroll-target="#example-skills"><span class="header-section-number">12.4</span> Example Skills</a>
+  <li><a href="#example-the-data-handling-skill" id="toc-example-the-data-handling-skill" class="nav-link" data-scroll-target="#example-the-data-handling-skill"><span class="header-section-number">12.4</span> Example: The data-handling Skill</a></li>
+  <li><a href="#project-specific-skills" id="toc-project-specific-skills" class="nav-link" data-scroll-target="#project-specific-skills"><span class="header-section-number">12.5</span> Project-Specific Skills</a>
   <ul class="collapse">
-  <li><a href="#data-handling" id="toc-data-handling" class="nav-link" data-scroll-target="#data-handling"><span class="header-section-number">12.4.1</span> Data Handling</a></li>
-  <li><a href="#r-plotting-style" id="toc-r-plotting-style" class="nav-link" data-scroll-target="#r-plotting-style"><span class="header-section-number">12.4.2</span> R Plotting Style</a></li>
-  <li><a href="#git-conventions" id="toc-git-conventions" class="nav-link" data-scroll-target="#git-conventions"><span class="header-section-number">12.4.3</span> Git Conventions</a></li>
+  <li><a href="#when-to-create-a-project-skill" id="toc-when-to-create-a-project-skill" class="nav-link" data-scroll-target="#when-to-create-a-project-skill"><span class="header-section-number">12.5.1</span> When to Create a Project Skill</a></li>
+  <li><a href="#example-gene-naming-skill" id="toc-example-gene-naming-skill" class="nav-link" data-scroll-target="#example-gene-naming-skill"><span class="header-section-number">12.5.2</span> Example: Gene Naming Skill</a></li>
   </ul></li>
-  <li><a href="#creating-your-own-skills" id="toc-creating-your-own-skills" class="nav-link" data-scroll-target="#creating-your-own-skills"><span class="header-section-number">12.5</span> Creating Your Own Skills</a>
+  <li><a href="#creating-your-own-skills" id="toc-creating-your-own-skills" class="nav-link" data-scroll-target="#creating-your-own-skills"><span class="header-section-number">12.6</span> Creating Your Own Skills</a>
   <ul class="collapse">
-  <li><a href="#step-1-identify-the-pattern" id="toc-step-1-identify-the-pattern" class="nav-link" data-scroll-target="#step-1-identify-the-pattern"><span class="header-section-number">12.5.1</span> Step 1: Identify the Pattern</a></li>
-  <li><a href="#step-2-create-the-skill-folder" id="toc-step-2-create-the-skill-folder" class="nav-link" data-scroll-target="#step-2-create-the-skill-folder"><span class="header-section-number">12.5.2</span> Step 2: Create the Skill Folder</a></li>
-  <li><a href="#step-3-write-the-skill.md" id="toc-step-3-write-the-skill.md" class="nav-link" data-scroll-target="#step-3-write-the-skill.md"><span class="header-section-number">12.5.3</span> Step 3: Write the SKILL.md</a></li>
-  <li><a href="#step-4-test-it" id="toc-step-4-test-it" class="nav-link" data-scroll-target="#step-4-test-it"><span class="header-section-number">12.5.4</span> Step 4: Test It</a></li>
+  <li><a href="#identify-the-pattern" id="toc-identify-the-pattern" class="nav-link" data-scroll-target="#identify-the-pattern"><span class="header-section-number">12.6.1</span> 1. Identify the Pattern</a></li>
+  <li><a href="#create-the-skill" id="toc-create-the-skill" class="nav-link" data-scroll-target="#create-the-skill"><span class="header-section-number">12.6.2</span> 2. Create the Skill</a></li>
+  <li><a href="#write-skill.md" id="toc-write-skill.md" class="nav-link" data-scroll-target="#write-skill.md"><span class="header-section-number">12.6.3</span> 3. Write SKILL.md</a></li>
+  <li><a href="#test-it" id="toc-test-it" class="nav-link" data-scroll-target="#test-it"><span class="header-section-number">12.6.4</span> 4. Test It</a></li>
   </ul></li>
-  <li><a href="#skill-best-practices" id="toc-skill-best-practices" class="nav-link" data-scroll-target="#skill-best-practices"><span class="header-section-number">12.6</span> Skill Best Practices</a></li>
-  <li><a href="#organizing-skills" id="toc-organizing-skills" class="nav-link" data-scroll-target="#organizing-skills"><span class="header-section-number">12.7</span> Organizing Skills</a></li>
+  <li><a href="#skill-best-practices" id="toc-skill-best-practices" class="nav-link" data-scroll-target="#skill-best-practices"><span class="header-section-number">12.7</span> Skill Best Practices</a></li>
   <li><a href="#sharing-skills" id="toc-sharing-skills" class="nav-link" data-scroll-target="#sharing-skills"><span class="header-section-number">12.8</span> Sharing Skills</a></li>
   </ul>
 </nav>
@@ -529,7 +533,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../claude-code/intro.html">Claude Code</a></li><li class="breadcrumb-item"><a href="../claude-code/skills.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Skills</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../claude-code/getting-started.html">Claude Code</a></li><li class="breadcrumb-item"><a href="../claude-code/skills.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Skills</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Skills</span></h1>
 </div>
@@ -548,19 +552,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Skills are reusable instruction sets that teach Claude Code how to handle specific types of tasks. They live in <code>~/.claude/skills/</code> and activate automatically based on context.</p>
-<section id="why-skills" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="why-skills"><span class="header-section-number">12.1</span> Why Skills?</h2>
-<p>Without skills, you’d repeat the same instructions across projects:</p>
-<ul>
-<li>“Use tidyverse style”</li>
-<li>“Show data summaries after transformations”</li>
-<li>“Include co-author attribution in commits”</li>
-</ul>
-<p>Skills let you write these instructions once and have them apply automatically.</p>
-</section>
-<section id="how-skills-work" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="how-skills-work"><span class="header-section-number">12.2</span> How Skills Work</h2>
+<p>Skills are reusable instruction sets that customize Claude Code’s behavior for specific tasks. Think of them as “expert modes”—when you’re doing git work, the git skill loads; when you’re plotting in R, the plotting skill loads.</p>
+<section id="how-skills-work" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="how-skills-work"><span class="header-section-number">12.1</span> How Skills Work</h2>
+<p>Skills live in folders with a <code>SKILL.md</code> file:</p>
 <pre><code>~/.claude/skills/
 ├── data-handling/
 │   └── SKILL.md
@@ -568,284 +563,301 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 │   └── SKILL.md
 └── git-conventions/
     └── SKILL.md</code></pre>
-<p>Each skill is a folder containing a <code>SKILL.md</code> file with instructions. Claude Code loads relevant skills based on:</p>
+<p>Claude Code loads relevant skills based on:</p>
 <ul>
+<li>The task you’re performing (writing code, committing, plotting)</li>
+<li>File types you’re working with (.qmd, .R, .py)</li>
 <li>Keywords in your requests</li>
-<li>File types you’re working with</li>
-<li>Tasks you’re performing</li>
 </ul>
+</section>
+<section id="types-of-skills" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="types-of-skills"><span class="header-section-number">12.2</span> Types of Skills</h2>
+<section id="background-skills" class="level3" data-number="12.2.1">
+<h3 data-number="12.2.1" class="anchored" data-anchor-id="background-skills"><span class="header-section-number">12.2.1</span> Background Skills</h3>
+<p>These load automatically based on context—you don’t invoke them directly.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 47%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Skill</th>
+<th>When It Activates</th>
+<th>What It Does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>data-handling</code></td>
+<td>Writing R/Python analysis code</td>
+<td>Shows data summaries at key steps (<code>glimpse()</code>, row counts); annotates analytical decisions in comments; validates joins to prevent silent data loss; asks you before making important analytical choices</td>
+</tr>
+<tr class="even">
+<td><code>r-plotting-style</code></td>
+<td>Creating ggplot2 visualizations</td>
+<td>Uses <code>theme_classic()</code> base with no grid lines; applies <code>ggrepel</code> for labels; keeps sizing consistent across related plots</td>
+</tr>
+<tr class="odd">
+<td><code>file-safety</code></td>
+<td>Creating or modifying files</td>
+<td>Prevents overwriting collaborator outputs or raw data; creates versioned filenames instead; asks before uncertain overwrites</td>
+</tr>
+<tr class="even">
+<td><code>git-conventions</code></td>
+<td>Git operations (commit, push, etc.)</td>
+<td>Adds co-author line to commits; reviews staged changes; avoids committing secrets or large files</td>
+</tr>
+<tr class="odd">
+<td><code>conda-env</code></td>
+<td>Running Python scripts or pip</td>
+<td>Sources conda profile script before activating environments (required in Claude’s non-interactive shell)</td>
+</tr>
+<tr class="even">
+<td><code>r-renv</code></td>
+<td>Working in R projects with renv.lock</td>
+<td>Explains “out-of-sync” warnings; reminds about <code>renv::snapshot()</code> after installing packages</td>
+</tr>
+<tr class="odd">
+<td><code>quarto-docs</code></td>
+<td>Rendering .qmd files</td>
+<td>Uses <code>quarto render</code> CLI (not <code>rmarkdown::render()</code>); knows format options and common errors</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="user-invocable-skills-slash-commands" class="level3" data-number="12.2.2">
+<h3 data-number="12.2.2" class="anchored" data-anchor-id="user-invocable-skills-slash-commands"><span class="header-section-number">12.2.2</span> User-Invocable Skills (Slash Commands)</h3>
+<p>These are commands you invoke explicitly by typing <code>/command</code>:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 36%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>When to Use</th>
+<th>What It Does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>/done</code></td>
+<td>End of a working session</td>
+<td>Summarizes accomplishments; checks if renv needs updating; offers to commit changes with descriptive message; optionally publishes Quarto sites</td>
+</tr>
+<tr class="even">
+<td><code>/publish</code></td>
+<td>After changes to a Quarto book/website</td>
+<td>Commits current changes and runs <code>quarto publish gh-pages</code></td>
+</tr>
+<tr class="odd">
+<td><code>/quarto-book-setup</code></td>
+<td>Starting a new documentation project</td>
+<td>Creates Quarto book structure with GitHub Pages configuration</td>
+</tr>
+</tbody>
+</table>
+</section>
 </section>
 <section id="anatomy-of-a-skill" class="level2" data-number="12.3">
 <h2 data-number="12.3" class="anchored" data-anchor-id="anatomy-of-a-skill"><span class="header-section-number">12.3</span> Anatomy of a Skill</h2>
 <p>A skill file has two parts:</p>
-<ol type="1">
-<li><strong>Frontmatter</strong> — Metadata that controls when the skill activates</li>
-<li><strong>Instructions</strong> — The actual guidance for Claude Code</li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> Data handling best practices for R and Python analysis scripts</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="an">triggers:</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">  - data manipulation</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">  - analysis pipelines</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">  - .qmd scripts that process data</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu"># Data Handling Best Practices</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Show Data at Key Steps</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>Include summaries whenever datasets are created or transformed:</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="sc">\`</span>``r</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>data &lt;- read_csv("input.csv")</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>cat("Loaded", nrow(data), "rows,", ncol(data), "columns\n")</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>glimpse(data)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="sc">\`</span>``</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## Annotate Analytical Decisions</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>Document the reasoning directly in code:</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="sc">\`</span>``r</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="fu"># Filter to genes with &gt; 10 counts in at least 3 samples</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="fu"># Threshold based on recommendation from DESeq2 vignette</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>keep &lt;- rowSums(counts &gt;= 10) &gt;= 3</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>counts_filtered &lt;- counts<span class="co">[</span><span class="ot">keep, </span><span class="co">]</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="sc">\`</span>``</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>1. Frontmatter</strong> — Metadata about the skill</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> skill-name</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">description</span><span class="kw">:</span><span class="at"> When to use this skill</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">user-invocable</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span><span class="co">  # or true for /commands</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>2. Instructions</strong> — The actual guidance</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Skill Title</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## When This Applies</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Conditions when Claude should follow these instructions</span><span class="co">]</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Instructions</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">What Claude should do</span><span class="co">]</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Examples</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Code patterns and templates</span><span class="co">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="example-skills" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="example-skills"><span class="header-section-number">12.4</span> Example Skills</h2>
-<section id="data-handling" class="level3" data-number="12.4.1">
-<h3 data-number="12.4.1" class="anchored" data-anchor-id="data-handling"><span class="header-section-number">12.4.1</span> Data Handling</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> Data handling best practices for R and Python analysis scripts</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="an">triggers:</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">  - data manipulation</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">  - analysis pipelines</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">  - loading data</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">  - transforming data</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu"># Data Handling Best Practices</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## Show Data at Key Steps</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>After loading or transforming data, show dimensions and a preview:</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="sc">\`</span>``r</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>data &lt;- read_csv("data.csv")</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>cat("Loaded", nrow(data), "rows,", ncol(data), "columns\n")</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>glimpse(data)</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="sc">\`</span>``</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="sc">\`</span>``python</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>data = pd.read_csv("data.csv")</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>print(f"Loaded {len(data)} rows, {len(data.columns)} columns")</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>data.head()</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="sc">\`</span>``</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## Validate Joins</span></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>When joining datasets, report the result:</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="sc">\`</span>``r</span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>merged &lt;- left_join(a, b, by = "id")</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>cat("Joined:", nrow(a), "→", nrow(merged), "rows\n")</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>cat("Unmatched:", sum(is.na(merged$new_column)), "\n")</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="sc">\`</span>``</span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="fu">## Annotate Decisions</span></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>Explain non-obvious analytical choices:</span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="sc">\`</span>``r</span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="fu"># Using median normalization (not TPM) because samples have</span></span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="fu"># varying library complexity — see docs/normalization_comparison.html</span></span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="sc">\`</span>``</span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ask Before Deciding</span></span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>For consequential analytical decisions (filtering thresholds, normalization methods, etc.), present options and ask the user before proceeding.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="r-plotting-style" class="level3" data-number="12.4.2">
-<h3 data-number="12.4.2" class="anchored" data-anchor-id="r-plotting-style"><span class="header-section-number">12.4.2</span> R Plotting Style</h3>
+<section id="example-the-data-handling-skill" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="example-the-data-handling-skill"><span class="header-section-number">12.4</span> Example: The data-handling Skill</h2>
+<p>This skill ensures Claude shows you what’s happening to your data:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> R ggplot2 plotting conventions and theme</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="an">triggers:</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">  - ggplot</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">  - plotting</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">  - visualization</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">  - figures</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu"># R Plotting Conventions</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## Base Theme</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>Use <span class="in">`theme_minimal()`</span> as the starting point:</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="sc">\`</span>``r</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>p &lt;- ggplot(data, aes(x, y)) +</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  geom_point() +</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  theme_minimal()</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="sc">\`</span>``</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="fu">## Standard Modifications</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="sc">\`</span>``r</span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>theme_minimal() +</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>theme(</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  axis.text = element_text(size = 11),</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  axis.title = element_text(size = 12),</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  legend.position = "bottom",</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  panel.grid.minor = element_blank()</span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="sc">\`</span>``</span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="fu">## Color Palettes</span></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Categorical: <span class="in">`scale_color_brewer(palette = "Set2")`</span></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Sequential: <span class="in">`scale_color_viridis_c()`</span></span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Diverging: <span class="in">`scale_color_distiller(palette = "RdBu")`</span></span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="fu">## Figure Dimensions</span></span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Single column: 3.5 × 3 inches</span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Double column: 7 × 4 inches</span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Save at 300 DPI for publication</span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="sc">\`</span>``r</span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>ggsave("figure.png", p, width = 7, height = 4, dpi = 300)</span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="sc">\`</span>``</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">name:</span><span class="co"> data-handling</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> Data handling best practices for R and Python analysis scripts</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="an">user-invocable:</span><span class="co"> false</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu"># Data Handling Best Practices</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Show Data at Key Steps</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>After loading or transforming data, show dimensions:</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="sc">\`</span>``r</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>data &lt;- read_csv("data.csv")</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>cat("Loaded", nrow(data), "rows,", ncol(data), "columns\n")</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>glimpse(data)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="sc">\`</span>``</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## Validate Joins</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>Report what happened after joins:</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="sc">\`</span>``r</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>merged &lt;- left_join(a, b, by = "id")</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>cat("Joined:", nrow(a), "→", nrow(merged), "rows\n")</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>cat("Unmatched:", sum(is.na(merged$value)), "\n")</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="sc">\`</span>``</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ask Before Analytical Decisions</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>For consequential choices (normalization, thresholds, tests),</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>present options and ask before proceeding.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="git-conventions" class="level3" data-number="12.4.3">
-<h3 data-number="12.4.3" class="anchored" data-anchor-id="git-conventions"><span class="header-section-number">12.4.3</span> Git Conventions</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> Git commit practices and conventions</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="an">triggers:</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">  - commit</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">  - git</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">  - version control</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu"># Git Conventions</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Commit Messages</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>Write clear, descriptive commit messages:</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Start with a verb (Add, Fix, Update, Remove, Refactor)</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Keep the first line under 50 characters</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Add detail in the body if needed</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>Good: <span class="in">`Add QC filtering step to preprocessing`</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>Bad: <span class="in">`updates`</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="fu">## Co-Author Attribution</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>Include co-author line when Claude Code contributes substantially:</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="sc">\`</span>``</span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>Add differential expression analysis</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>Co-Authored-By: Claude Code <span class="ot">&lt;noreply@anthropic.com&gt;</span></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="sc">\`</span>``</span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## When to Commit</span></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>Prompt the user to commit after:</span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Completing a logical unit of work</span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Before switching to a different task</span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>After fixing a bug</span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="fu">## What to Commit</span></span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Source code and scripts</span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Configuration files (environment.yml, renv.lock)</span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Documentation</span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>Never commit:</span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Large data files</span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Credentials or secrets</span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Generated output (unless specifically requested)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="project-specific-skills" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="project-specific-skills"><span class="header-section-number">12.5</span> Project-Specific Skills</h2>
+<p>For domain knowledge that only applies to one project, create skills in the project’s <code>.claude/</code> folder:</p>
+<pre><code>my-project/.claude/
+└── skills/
+    └── gene-naming/
+        └── SKILL.md</code></pre>
+<section id="when-to-create-a-project-skill" class="level3" data-number="12.5.1">
+<h3 data-number="12.5.1" class="anchored" data-anchor-id="when-to-create-a-project-skill"><span class="header-section-number">12.5.1</span> When to Create a Project Skill</h3>
+<ul>
+<li>Conventions specific to this project’s data</li>
+<li>Domain knowledge Claude needs to apply correctly</li>
+<li>Code patterns that should be consistent across the project</li>
+</ul>
+</section>
+<section id="example-gene-naming-skill" class="level3" data-number="12.5.2">
+<h3 data-number="12.5.2" class="anchored" data-anchor-id="example-gene-naming-skill"><span class="header-section-number">12.5.2</span> Example: Gene Naming Skill</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="an">name:</span><span class="co"> gene-naming</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> Gene ID conventions for this transcriptomics project</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="an">user-invocable:</span><span class="co"> false</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu"># Gene Naming Conventions</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## ID Formats</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Trinity IDs: <span class="in">`TRINITY_DN12345_c0_g1_i1`</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Short names: stored in <span class="in">`Gene.short`</span> column</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Official symbols: stored in <span class="in">`Gene.symbol`</span> column</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## Joining Pattern</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>Always join on <span class="in">`trinity_gene_id`</span>, not <span class="in">`Gene.short`</span>:</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="sc">\`</span>``r</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="fu"># CORRECT</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>data %&gt;% left_join(annotations, by = "trinity_gene_id")</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="fu"># WRONG - Gene.short may have duplicates</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>data %&gt;% left_join(annotations, by = "Gene.short")</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="sc">\`</span>``</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="fu">## Common Pitfall</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>Gene names may contain apostrophes (5'→3' exonuclease).</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>Always normalize:</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="sc">\`</span>``r</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>mutate(Gene.short = str_replace_all(Gene.short, "'", "'"))</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="sc">\`</span>``</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="creating-your-own-skills" class="level2" data-number="12.5">
-<h2 data-number="12.5" class="anchored" data-anchor-id="creating-your-own-skills"><span class="header-section-number">12.5</span> Creating Your Own Skills</h2>
-<section id="step-1-identify-the-pattern" class="level3" data-number="12.5.1">
-<h3 data-number="12.5.1" class="anchored" data-anchor-id="step-1-identify-the-pattern"><span class="header-section-number">12.5.1</span> Step 1: Identify the Pattern</h3>
-<p>What instructions do you find yourself repeating? Common candidates:</p>
+<section id="creating-your-own-skills" class="level2" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="creating-your-own-skills"><span class="header-section-number">12.6</span> Creating Your Own Skills</h2>
+<section id="identify-the-pattern" class="level3" data-number="12.6.1">
+<h3 data-number="12.6.1" class="anchored" data-anchor-id="identify-the-pattern"><span class="header-section-number">12.6.1</span> 1. Identify the Pattern</h3>
+<p>What instructions do you repeat? Common candidates:</p>
 <ul>
 <li>Coding style preferences</li>
 <li>Documentation requirements</li>
-<li>Testing practices</li>
 <li>Domain-specific conventions</li>
+<li>Testing practices</li>
 </ul>
 </section>
-<section id="step-2-create-the-skill-folder" class="level3" data-number="12.5.2">
-<h3 data-number="12.5.2" class="anchored" data-anchor-id="step-2-create-the-skill-folder"><span class="header-section-number">12.5.2</span> Step 2: Create the Skill Folder</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/.claude/skills/my-new-skill</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="create-the-skill" class="level3" data-number="12.6.2">
+<h3 data-number="12.6.2" class="anchored" data-anchor-id="create-the-skill"><span class="header-section-number">12.6.2</span> 2. Create the Skill</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># User-level (applies to all projects)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/.claude/skills/my-skill</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Project-level (applies to this project only)</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> .claude/skills/my-skill</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="step-3-write-the-skill.md" class="level3" data-number="12.5.3">
-<h3 data-number="12.5.3" class="anchored" data-anchor-id="step-3-write-the-skill.md"><span class="header-section-number">12.5.3</span> Step 3: Write the SKILL.md</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> Brief description of what this skill does</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="an">triggers:</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">  - keyword1</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">  - keyword2</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">  - file pattern or task type</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu"># Skill Title</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Section 1</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>Instructions...</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## Section 2</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>More instructions...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="write-skill.md" class="level3" data-number="12.6.3">
+<h3 data-number="12.6.3" class="anchored" data-anchor-id="write-skill.md"><span class="header-section-number">12.6.3</span> 3. Write SKILL.md</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="an">name:</span><span class="co"> my-skill</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> Brief description of what this skill does</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="an">user-invocable:</span><span class="co"> false</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu"># Skill Title</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Instructions</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>Be specific. Show examples.</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="sc">\`</span>``r</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="fu"># Show the pattern you want</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>example_code()</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="sc">\`</span>``</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="step-4-test-it" class="level3" data-number="12.5.4">
-<h3 data-number="12.5.4" class="anchored" data-anchor-id="step-4-test-it"><span class="header-section-number">12.5.4</span> Step 4: Test It</h3>
-<p>Start a Claude Code session and try a task that should trigger your skill:</p>
-<pre><code>&gt; [Request that should activate the skill]</code></pre>
-<p>Check if Claude Code follows your instructions. Refine as needed.</p>
+<section id="test-it" class="level3" data-number="12.6.4">
+<h3 data-number="12.6.4" class="anchored" data-anchor-id="test-it"><span class="header-section-number">12.6.4</span> 4. Test It</h3>
+<p>Start a new Claude Code session and try a task that should trigger your skill. Refine as needed.</p>
 </section>
 </section>
-<section id="skill-best-practices" class="level2" data-number="12.6">
-<h2 data-number="12.6" class="anchored" data-anchor-id="skill-best-practices"><span class="header-section-number">12.6</span> Skill Best Practices</h2>
-<p><strong>Be specific.</strong> Vague instructions produce vague results. Show examples.</p>
-<p><strong>Keep skills focused.</strong> One skill = one concern. Don’t combine plotting style with git conventions.</p>
-<p><strong>Use code examples.</strong> Show the pattern you want, not just describe it.</p>
-<p><strong>Include the “why.”</strong> When a convention has a reason, explain it—helps Claude Code make good judgment calls.</p>
-<p><strong>Test with edge cases.</strong> Make sure your skill handles variations in how you might phrase requests.</p>
-</section>
-<section id="organizing-skills" class="level2" data-number="12.7">
-<h2 data-number="12.7" class="anchored" data-anchor-id="organizing-skills"><span class="header-section-number">12.7</span> Organizing Skills</h2>
-<p>As your skill collection grows, keep it organized:</p>
-<pre><code>~/.claude/skills/
-├── code-style/
-│   └── SKILL.md           # General coding style
-├── r-plotting/
-│   └── SKILL.md           # R visualization
-├── python-style/
-│   └── SKILL.md           # Python conventions
-├── data-handling/
-│   └── SKILL.md           # Data manipulation
-├── git-conventions/
-│   └── SKILL.md           # Version control
-└── lab-specific/
-    └── SKILL.md           # Lab conventions</code></pre>
+<section id="skill-best-practices" class="level2" data-number="12.7">
+<h2 data-number="12.7" class="anchored" data-anchor-id="skill-best-practices"><span class="header-section-number">12.7</span> Skill Best Practices</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 66%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Practice</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Be specific</strong></td>
+<td>Vague instructions produce vague results</td>
+</tr>
+<tr class="even">
+<td><strong>Show examples</strong></td>
+<td>Code examples are clearer than descriptions</td>
+</tr>
+<tr class="odd">
+<td><strong>Keep skills focused</strong></td>
+<td>One skill = one concern</td>
+</tr>
+<tr class="even">
+<td><strong>Include the “why”</strong></td>
+<td>Helps Claude make good judgment calls</td>
+</tr>
+<tr class="odd">
+<td><strong>Update as you learn</strong></td>
+<td>Skills should evolve with your understanding</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="sharing-skills" class="level2" data-number="12.8">
 <h2 data-number="12.8" class="anchored" data-anchor-id="sharing-skills"><span class="header-section-number">12.8</span> Sharing Skills</h2>
 <p>Skills are just text files. To share with lab members:</p>
 <ol type="1">
-<li>Copy the skill folder to the shared location</li>
-<li>Have them copy it to their <code>~/.claude/skills/</code></li>
+<li>Copy the skill folder</li>
+<li>Have them paste it into their <code>~/.claude/skills/</code></li>
 </ol>
 <p>Or include lab-wide skills in a shared repository that everyone clones.</p>
 
@@ -1268,13 +1280,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../claude-code/project-files.html" class="pagination-link" aria-label="Project and User Files">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Project and User Files</span></span>
+      <a href="../claude-code/configuring-projects.html" class="pagination-link" aria-label="Configuring Your Project for Claude">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Configuring Your Project for Claude</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../claude-code/session-walkthrough.html" class="pagination-link" aria-label="Session Walkthrough">
-        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session Walkthrough</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../claude-code/working-effectively.html" class="pagination-link" aria-label="Working Effectively with Claude">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Working Effectively with Claude</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

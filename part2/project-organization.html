@@ -114,6 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -408,14 +409,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../claude-code/intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Introduction to Claude Code</span></span></a>
+  <a href="../claude-code/getting-started.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Getting Started with Claude Code</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../claude-code/project-files.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Project and User Files</span></span></a>
+  <a href="../claude-code/configuring-projects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Configuring Your Project for Claude</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -426,8 +427,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../claude-code/session-walkthrough.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session Walkthrough</span></span></a>
+  <a href="../claude-code/working-effectively.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Working Effectively with Claude</span></span></a>
   </div>
 </li>
       </ul>
@@ -627,6 +628,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 └── 05_heatmaps/
     └── cluster_heatmap.pdf</code></pre>
 <p><strong>This structure encodes provenance.</strong> When you see a file in <code>outs/03_differential/</code>, you know exactly which script created it.</p>
+<div class="callout-claude" title="Ask Claude">
+<p><strong>Review your project structure:</strong></p>
+<blockquote class="blockquote">
+<p>Here’s my project folder structure:</p>
+<p>[paste output of <code>ls -R</code> or describe your layout]</p>
+<p>I’m analyzing RNA-seq data from three conditions with time points. Does this organization make sense, or should I restructure anything?</p>
+</blockquote>
+<p><em>Describe what type of analysis you’re doing. Claude can suggest improvements based on your specific project needs.</em></p>
+</div>
 </section>
 </section>
 <section id="how-dependencies-work" class="level2" data-number="5.3">

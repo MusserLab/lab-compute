@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Git &amp; GitHub – Data Analysis in the Musser Lab</title>
+<title>10&nbsp; Getting Started with Claude Code – Data Analysis in the Musser Lab</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../claude-code/getting-started.html" rel="next">
-<link href="../part2/conda.html" rel="prev">
+<link href="../claude-code/configuring-projects.html" rel="next">
+<link href="../part2/git-github.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -250,7 +250,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part2/positron.html">Core Tools</a></li><li class="breadcrumb-item"><a href="../part2/git-github.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Git &amp; GitHub</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../claude-code/getting-started.html">Claude Code</a></li><li class="breadcrumb-item"><a href="../claude-code/getting-started.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Getting Started with Claude Code</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -354,7 +354,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../part2/git-github.html" class="sidebar-item-text sidebar-link active">
+  <a href="../part2/git-github.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Git &amp; GitHub</span></span></a>
   </div>
 </li>
@@ -371,7 +371,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../claude-code/getting-started.html" class="sidebar-item-text sidebar-link">
+  <a href="../claude-code/getting-started.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Getting Started with Claude Code</span></span></a>
   </div>
 </li>
@@ -469,43 +469,22 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-is-git" id="toc-what-is-git" class="nav-link active" data-scroll-target="#what-is-git">What is Git?</a></li>
-  <li><a href="#what-is-github" id="toc-what-is-github" class="nav-link" data-scroll-target="#what-is-github">What is GitHub?</a></li>
-  <li><a href="#personal-accounts-vs.-the-lab-organization" id="toc-personal-accounts-vs.-the-lab-organization" class="nav-link" data-scroll-target="#personal-accounts-vs.-the-lab-organization">Personal Accounts vs.&nbsp;the Lab Organization</a>
+  <li><a href="#accessing-claude-code" id="toc-accessing-claude-code" class="nav-link active" data-scroll-target="#accessing-claude-code"><span class="header-section-number">10.1</span> Accessing Claude Code</a>
   <ul class="collapse">
-  <li><a href="#visibility-public-vs.-private" id="toc-visibility-public-vs.-private" class="nav-link" data-scroll-target="#visibility-public-vs.-private">Visibility: Public vs.&nbsp;Private</a></li>
-  <li><a href="#adding-collaborators" id="toc-adding-collaborators" class="nav-link" data-scroll-target="#adding-collaborators">Adding Collaborators</a></li>
+  <li><a href="#positron-extension-recommended" id="toc-positron-extension-recommended" class="nav-link" data-scroll-target="#positron-extension-recommended"><span class="header-section-number">10.1.1</span> Positron Extension (Recommended)</a></li>
+  <li><a href="#other-ways-to-access-claude-code" id="toc-other-ways-to-access-claude-code" class="nav-link" data-scroll-target="#other-ways-to-access-claude-code"><span class="header-section-number">10.1.2</span> Other Ways to Access Claude Code</a></li>
   </ul></li>
-  <li><a href="#why-we-use-git-for-all-research" id="toc-why-we-use-git-for-all-research" class="nav-link" data-scroll-target="#why-we-use-git-for-all-research">Why We Use Git for All Research</a></li>
-  <li><a href="#key-concepts" id="toc-key-concepts" class="nav-link" data-scroll-target="#key-concepts">Key Concepts</a></li>
-  <li><a href="#the-daily-workflow-in-positron" id="toc-the-daily-workflow-in-positron" class="nav-link" data-scroll-target="#the-daily-workflow-in-positron">The Daily Workflow in Positron</a>
+  <li><a href="#what-claude-code-can-do" id="toc-what-claude-code-can-do" class="nav-link" data-scroll-target="#what-claude-code-can-do"><span class="header-section-number">10.2</span> What Claude Code Can Do</a></li>
+  <li><a href="#when-to-use-claude-code" id="toc-when-to-use-claude-code" class="nav-link" data-scroll-target="#when-to-use-claude-code"><span class="header-section-number">10.3</span> When to Use Claude Code</a></li>
+  <li><a href="#the-mental-model" id="toc-the-mental-model" class="nav-link" data-scroll-target="#the-mental-model"><span class="header-section-number">10.4</span> The Mental Model</a>
   <ul class="collapse">
-  <li><a href="#opening-source-control" id="toc-opening-source-control" class="nav-link" data-scroll-target="#opening-source-control">Opening Source Control</a></li>
-  <li><a href="#the-basic-cycle" id="toc-the-basic-cycle" class="nav-link" data-scroll-target="#the-basic-cycle">The Basic Cycle</a></li>
-  <li><a href="#what-the-icons-mean" id="toc-what-the-icons-mean" class="nav-link" data-scroll-target="#what-the-icons-mean">What the Icons Mean</a></li>
+  <li><a href="#capable-but-not-omniscient" id="toc-capable-but-not-omniscient" class="nav-link" data-scroll-target="#capable-but-not-omniscient"><span class="header-section-number">10.4.1</span> 1. Capable but not omniscient</a></li>
+  <li><a href="#context-matters" id="toc-context-matters" class="nav-link" data-scroll-target="#context-matters"><span class="header-section-number">10.4.2</span> 2. Context matters</a></li>
+  <li><a href="#verify-then-trust" id="toc-verify-then-trust" class="nav-link" data-scroll-target="#verify-then-trust"><span class="header-section-number">10.4.3</span> 3. Verify, then trust</a></li>
   </ul></li>
-  <li><a href="#writing-good-commit-messages" id="toc-writing-good-commit-messages" class="nav-link" data-scroll-target="#writing-good-commit-messages">Writing Good Commit Messages</a>
-  <ul class="collapse">
-  <li><a href="#when-to-commit" id="toc-when-to-commit" class="nav-link" data-scroll-target="#when-to-commit">When to Commit</a></li>
-  </ul></li>
-  <li><a href="#setting-up-.gitignore" id="toc-setting-up-.gitignore" class="nav-link" data-scroll-target="#setting-up-.gitignore">Setting Up .gitignore</a>
-  <ul class="collapse">
-  <li><a href="#standard-.gitignore-for-lab-projects" id="toc-standard-.gitignore-for-lab-projects" class="nav-link" data-scroll-target="#standard-.gitignore-for-lab-projects">Standard .gitignore for Lab Projects</a></li>
-  </ul></li>
-  <li><a href="#getting-a-repository" id="toc-getting-a-repository" class="nav-link" data-scroll-target="#getting-a-repository">Getting a Repository</a>
-  <ul class="collapse">
-  <li><a href="#cloning-an-existing-repo" id="toc-cloning-an-existing-repo" class="nav-link" data-scroll-target="#cloning-an-existing-repo">Cloning an Existing Repo</a></li>
-  <li><a href="#creating-a-new-repo" id="toc-creating-a-new-repo" class="nav-link" data-scroll-target="#creating-a-new-repo">Creating a New Repo</a></li>
-  </ul></li>
-  <li><a href="#beyond-the-basics" id="toc-beyond-the-basics" class="nav-link" data-scroll-target="#beyond-the-basics">Beyond the Basics</a>
-  <ul class="collapse">
-  <li><a href="#branches" id="toc-branches" class="nav-link" data-scroll-target="#branches">Branches</a></li>
-  <li><a href="#merge-conflicts" id="toc-merge-conflicts" class="nav-link" data-scroll-target="#merge-conflicts">Merge Conflicts</a></li>
-  <li><a href="#undoing-mistakes" id="toc-undoing-mistakes" class="nav-link" data-scroll-target="#undoing-mistakes">Undoing Mistakes</a></li>
-  <li><a href="#pull-requests" id="toc-pull-requests" class="nav-link" data-scroll-target="#pull-requests">Pull Requests</a></li>
-  </ul></li>
-  <li><a href="#learning-more" id="toc-learning-more" class="nav-link" data-scroll-target="#learning-more">Learning More</a></li>
-  <li><a href="#best-practices-summary" id="toc-best-practices-summary" class="nav-link" data-scroll-target="#best-practices-summary">Best Practices Summary</a></li>
+  <li><a href="#a-quick-example" id="toc-a-quick-example" class="nav-link" data-scroll-target="#a-quick-example"><span class="header-section-number">10.5</span> A Quick Example</a></li>
+  <li><a href="#reviewing-changes" id="toc-reviewing-changes" class="nav-link" data-scroll-target="#reviewing-changes"><span class="header-section-number">10.6</span> Reviewing Changes</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">10.7</span> Next Steps</a></li>
   </ul>
 </nav>
     </div>
@@ -513,9 +492,9 @@ ul.task-list li input[type="checkbox"] {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part2/positron.html">Core Tools</a></li><li class="breadcrumb-item"><a href="../part2/git-github.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Git &amp; GitHub</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../claude-code/getting-started.html">Claude Code</a></li><li class="breadcrumb-item"><a href="../claude-code/getting-started.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Getting Started with Claude Code</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Git &amp; GitHub</span></h1>
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Getting Started with Claude Code</span></h1>
 </div>
 
 
@@ -532,410 +511,186 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="what-is-git" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-git">What is Git?</h2>
-<p>Git is a <strong>version control system</strong>—software that tracks every change you make to your files over time. Think of it as an unlimited undo history for your entire project, with the ability to see exactly what changed, when, and why.</p>
-<p>Without version control, projects tend to accumulate files like this:</p>
-<pre><code>analysis_v1.R
-analysis_v2.R
-analysis_v2_final.R
-analysis_v2_final_FINAL.R
-analysis_v2_final_FINAL_fixed.R</code></pre>
-<p>With Git, you have one file (<code>analysis.R</code>) and a complete history of every version. You can:</p>
-<ul>
-<li><strong>See what changed</strong>: Compare any two versions to see exactly which lines were added, removed, or modified</li>
-<li><strong>Understand why</strong>: Each saved version includes a message explaining the change</li>
-<li><strong>Go back in time</strong>: Restore any previous version if something breaks</li>
-<li><strong>Work in parallel</strong>: Create “branches” to experiment without affecting your main code</li>
-<li><strong>Collaborate safely</strong>: Multiple people can work on the same project without overwriting each other</li>
-</ul>
-<p>Git runs locally on your computer. Every project folder that Git tracks is called a <strong>repository</strong> (or “repo”). The history lives in a hidden <code>.git</code> folder inside your project.</p>
-</section>
-<section id="what-is-github" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-github">What is GitHub?</h2>
-<p>GitHub is a <strong>website that hosts Git repositories online</strong>. Git and GitHub are related but different:</p>
+<p>Claude Code is an AI assistant that works directly with your project files. Unlike web-based AI chat, it can read your code, edit files, run commands, and search across your codebase—all within the context of your project.</p>
+<section id="accessing-claude-code" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="accessing-claude-code"><span class="header-section-number">10.1</span> Accessing Claude Code</h2>
+<section id="positron-extension-recommended" class="level3" data-number="10.1.1">
+<h3 data-number="10.1.1" class="anchored" data-anchor-id="positron-extension-recommended"><span class="header-section-number">10.1.1</span> Positron Extension (Recommended)</h3>
+<p>The easiest way to use Claude Code is through the Positron extension. This keeps your code, terminal, and AI assistant in one window.</p>
+<p><strong>To open Claude Code in Positron:</strong></p>
+<ol type="1">
+<li>Open your project folder in Positron</li>
+<li>Click the Claude Code icon in the left sidebar (or use <code>Cmd+Shift+P</code> → “Claude Code: Open”)</li>
+<li>Start typing in the chat panel</li>
+</ol>
+<p>The extension automatically knows which project you’re working in and can see your files.</p>
+<p><strong>Key shortcuts:</strong></p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th>Git</th>
-<th>GitHub</th>
+<th>Action</th>
+<th>Shortcut</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Software on your computer</td>
-<td>Website (github.com)</td>
+<td>Submit message</td>
+<td><code>Enter</code> (or <code>Cmd+Enter</code> depending on settings)</td>
 </tr>
 <tr class="even">
-<td>Tracks file history locally</td>
-<td>Stores repos in the cloud</td>
+<td>New conversation</td>
+<td>Click “+” or <code>Cmd+N</code> in the Claude panel</td>
 </tr>
 <tr class="odd">
-<td>Works offline</td>
-<td>Requires internet</td>
-</tr>
-<tr class="even">
-<td>Free, open-source tool</td>
-<td>Company (owned by Microsoft)</td>
+<td>Reference a file</td>
+<td>Type <code>@</code> and start typing the filename</td>
 </tr>
 </tbody>
 </table>
-<p>You can use Git without GitHub—the history stays on your computer. But GitHub adds important capabilities:</p>
-<ul>
-<li><strong>Backup</strong>: Your code is safe even if your laptop dies</li>
-<li><strong>Collaboration</strong>: Others can access, download, and contribute to your project</li>
-<li><strong>Visibility</strong>: Share your work publicly or keep it private</li>
-<li><strong>Project management</strong>: Issues, pull requests, and documentation</li>
-</ul>
-<p>Other Git hosting services exist (GitLab, Bitbucket), but GitHub is the most common in science and the one we use in the lab.</p>
 </section>
-<section id="personal-accounts-vs.-the-lab-organization" class="level2">
-<h2 class="anchored" data-anchor-id="personal-accounts-vs.-the-lab-organization">Personal Accounts vs.&nbsp;the Lab Organization</h2>
-<p>On GitHub, you have a <strong>personal account</strong> (your username), and you can also belong to <strong>organizations</strong> (shared accounts for teams).</p>
-<p>The lab uses the <strong>MusserLab</strong> organization for all research projects. Here’s how to think about where your repos should live:</p>
+<section id="other-ways-to-access-claude-code" class="level3" data-number="10.1.2">
+<h3 data-number="10.1.2" class="anchored" data-anchor-id="other-ways-to-access-claude-code"><span class="header-section-number">10.1.2</span> Other Ways to Access Claude Code</h3>
+<p>You can also use Claude Code through:</p>
+<ul>
+<li><strong>Terminal/CLI</strong> — Run <code>claude</code> from your project directory (<a href="https://docs.anthropic.com/en/docs/claude-code">Anthropic docs</a>)</li>
+<li><strong>Desktop app</strong> — Claude for Mac or claude.app</li>
+<li><strong>Web</strong> — claude.ai (no file access, but useful for general questions)</li>
+</ul>
+<p>This guide focuses on the Positron extension since it integrates with your development workflow.</p>
+</section>
+</section>
+<section id="what-claude-code-can-do" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="what-claude-code-can-do"><span class="header-section-number">10.2</span> What Claude Code Can Do</h2>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 23%">
-<col style="width: 43%">
-<col style="width: 33%">
+<col style="width: 54%">
+<col style="width: 45%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Where</th>
-<th>When to use</th>
+<th>Capability</th>
 <th>Examples</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Your personal account</strong></td>
-<td>Personal projects only: coursework, side projects, learning exercises</td>
-<td><code>jsmith/practice-git</code>, <code>jsmith/coursework</code></td>
+<td><strong>Understand code</strong></td>
+<td>Explain functions, trace data flow, find patterns</td>
 </tr>
 <tr class="even">
-<td><strong>MusserLab organization</strong></td>
-<td>All lab research—no exceptions</td>
-<td><code>MusserLab/tryptamine-phospho</code>, <code>MusserLab/rnaseq-pipeline</code></td>
+<td><strong>Write code</strong></td>
+<td>Create scripts, write functions, generate boilerplate</td>
+</tr>
+<tr class="odd">
+<td><strong>Edit files</strong></td>
+<td>Fix bugs, refactor, add features to existing files</td>
+</tr>
+<tr class="even">
+<td><strong>Run commands</strong></td>
+<td>Execute R/Python scripts, git operations, quarto render</td>
+</tr>
+<tr class="odd">
+<td><strong>Search</strong></td>
+<td>Find where things are defined, grep for patterns</td>
+</tr>
+<tr class="even">
+<td><strong>Debug</strong></td>
+<td>Trace errors, explain stack traces, suggest fixes</td>
 </tr>
 </tbody>
 </table>
-<div class="callout callout-style-default callout-important callout-titled">
+</section>
+<section id="when-to-use-claude-code" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="when-to-use-claude-code"><span class="header-section-number">10.3</span> When to Use Claude Code</h2>
+<p><strong>Claude Code is helpful for:</strong></p>
+<ul>
+<li>Setting up project structure and boilerplate</li>
+<li>Debugging cryptic error messages</li>
+<li>Understanding unfamiliar code in a project</li>
+<li>Writing repetitive code (data loading, plotting templates)</li>
+<li>Troubleshooting environment issues (conda, renv, paths)</li>
+<li>Explaining what code does and how components connect</li>
+</ul>
+<p><strong>Claude Code is not a replacement for:</strong></p>
+<ul>
+<li>Your analytical judgment (you decide normalization methods, thresholds, interpretations)</li>
+<li>Your domain expertise (you know biology, Claude knows code)</li>
+<li>Careful code review (always verify outputs, especially for statistics)</li>
+<li>Understanding methods you’ll use repeatedly (learn them, don’t just copy-paste)</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Lab research belongs on the organization
+<span class="screen-reader-only">Note</span>The division of labor
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If a project involves lab research, it must be on the MusserLab organization—not your personal account. This ensures continuity when people leave, makes collaboration possible, and keeps lab work in one place.</p>
+<p>You bring the scientific knowledge and analytical decisions. Claude Code brings coding speed and pattern recognition. The combination is powerful, but you’re always the one making the calls.</p>
 </div>
 </div>
-<section id="visibility-public-vs.-private" class="level3">
-<h3 class="anchored" data-anchor-id="visibility-public-vs.-private">Visibility: Public vs.&nbsp;Private</h3>
-<p>Both personal accounts and organizations can have public or private repos:</p>
+</section>
+<section id="the-mental-model" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="the-mental-model"><span class="header-section-number">10.4</span> The Mental Model</h2>
+<p>Three concepts help you work effectively with Claude Code:</p>
+<section id="capable-but-not-omniscient" class="level3" data-number="10.4.1">
+<h3 data-number="10.4.1" class="anchored" data-anchor-id="capable-but-not-omniscient"><span class="header-section-number">10.4.1</span> 1. Capable but not omniscient</h3>
+<p>Claude can write sophisticated code, but it doesn’t automatically know:</p>
 <ul>
-<li><strong>Private</strong>: Only you (or organization members) can see it</li>
-<li><strong>Public</strong>: Anyone on the internet can see it</li>
+<li>Your specific data structures and conventions</li>
+<li>Your project’s history and past decisions</li>
+<li>What you’ve tried before and why it didn’t work</li>
 </ul>
-<p>Lab research repos are typically kept <strong>private</strong>. When a paper is published, we usually create a separate, curated public repository with cleaned-up code and documentation—rather than making the working repo public. This lets you work freely during research without worrying about how messy your commit history looks.</p>
+<p><strong>Solution:</strong> Tell Claude what it needs to know. Be specific about your data, your goals, and any constraints.</p>
 </section>
-<section id="adding-collaborators" class="level3">
-<h3 class="anchored" data-anchor-id="adding-collaborators">Adding Collaborators</h3>
-<p>To give someone access to your repo:</p>
-<ol type="1">
-<li>Go to your repo on GitHub</li>
-<li><strong>Settings</strong> → <strong>Collaborators and teams</strong></li>
-<li>Click <strong>Add people</strong></li>
-<li>Enter their GitHub username</li>
-<li>Choose their permission level:
+<section id="context-matters" class="level3" data-number="10.4.2">
+<h3 data-number="10.4.2" class="anchored" data-anchor-id="context-matters"><span class="header-section-number">10.4.2</span> 2. Context matters</h3>
+<p>Claude only knows what’s in your project folder and what you tell it. Each new conversation starts fresh—it doesn’t remember yesterday’s session.</p>
+<p><strong>Solution:</strong> Use project configuration files (covered in the next chapter) to give Claude persistent context about your project.</p>
+</section>
+<section id="verify-then-trust" class="level3" data-number="10.4.3">
+<h3 data-number="10.4.3" class="anchored" data-anchor-id="verify-then-trust"><span class="header-section-number">10.4.3</span> 3. Verify, then trust</h3>
+<p>Claude often gets things right, but sometimes produces plausible-looking code with subtle bugs, especially for:</p>
 <ul>
-<li><strong>Read</strong>: Can view and clone, but not push changes</li>
-<li><strong>Write</strong>: Can push changes (use this for active collaborators)</li>
-<li><strong>Admin</strong>: Full control including settings (rarely needed)</li>
-</ul></li>
-</ol>
+<li>Statistical methods it doesn’t fully understand</li>
+<li>Edge cases in your specific data</li>
+<li>Domain-specific conventions it guesses at</li>
+</ul>
+<p><strong>Solution:</strong> Run the code and check the outputs. For analytical code, verify counts at each step and spot-check results.</p>
 </section>
 </section>
-<section id="why-we-use-git-for-all-research" class="level2">
-<h2 class="anchored" data-anchor-id="why-we-use-git-for-all-research">Why We Use Git for All Research</h2>
-<p>In the lab, we use Git for all research projects—think of it as the computational equivalent of a lab notebook. Your commit history becomes a record of how your analysis evolved: what you tried, what you changed, and why.</p>
-<p>This practice pays off in several ways:</p>
-<ol type="1">
-<li><strong>A record of your work</strong>: Every commit documents what you did and when, which helps with scientific integrity and your own memory</li>
-<li><strong>Safety net</strong>: Experiment freely knowing you can always go back if something breaks</li>
-<li><strong>Backup</strong>: Combined with GitHub, your work survives laptop failures and accidental deletions</li>
-<li><strong>Reproducibility</strong>: Collaborators (and future you) can trace exactly what code produced which results</li>
-</ol>
-<p>You don’t need to master every Git feature—the basics go a long way. The next sections cover what you need for daily work.</p>
+<section id="a-quick-example" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="a-quick-example"><span class="header-section-number">10.5</span> A Quick Example</h2>
+<p>Here’s what a typical interaction looks like in Positron:</p>
+<p><strong>You type:</strong> &gt; I’m getting this error when I run the script: &gt; &gt; Error in <code>left_join()</code>: ! <code>by</code> must be supplied when <code>x</code> and <code>y</code> have no common variables. &gt; &gt; The join is on line 45 of analysis.qmd</p>
+<p><strong>Claude responds:</strong> - Reads the relevant section of <code>analysis.qmd</code> - Explains that the column names don’t match between the two dataframes - Shows you the column names in each - Proposes a fix with the correct <code>by =</code> argument - Asks if you want to apply the edit</p>
+<p>You review the proposed change, accept it, and the file is updated.</p>
 </section>
-<section id="key-concepts" class="level2">
-<h2 class="anchored" data-anchor-id="key-concepts">Key Concepts</h2>
-<p>Before using Git, understand these core ideas:</p>
-<dl>
-<dt><strong>Repository (repo)</strong></dt>
-<dd>
-A project folder that Git is tracking. Contains a hidden <code>.git</code> folder that stores the entire history.
-</dd>
-<dt><strong>Commit</strong></dt>
-<dd>
-A snapshot of your project at a moment in time. Each commit has a unique ID (like <code>a1b2c3d</code>), a message describing what changed, and a pointer to the previous commit. Commits form a chain—your project’s history.
-</dd>
-<dt><strong>Staging area</strong></dt>
-<dd>
-A holding area for changes you want to include in your next commit. You “stage” files first, then “commit” them. This two-step process lets you commit only some of your changes.
-</dd>
-<dt><strong>Branch</strong></dt>
-<dd>
-A parallel version of your project. The default branch is called <code>main</code>. You can create other branches to experiment without affecting <code>main</code>, then merge them back when ready.
-</dd>
-<dt><strong>Remote</strong></dt>
-<dd>
-A copy of your repository on another server—typically GitHub. Your local repo and the remote stay in sync through pushing (uploading your commits) and pulling (downloading others’ commits).
-</dd>
-</dl>
-</section>
-<section id="the-daily-workflow-in-positron" class="level2">
-<h2 class="anchored" data-anchor-id="the-daily-workflow-in-positron">The Daily Workflow in Positron</h2>
-<p>Most of your Git usage follows this pattern: edit files, stage changes, commit with a message, and push to GitHub. Positron’s <strong>Source Control panel</strong> makes this straightforward without needing to use the command line.</p>
-<section id="opening-source-control" class="level3">
-<h3 class="anchored" data-anchor-id="opening-source-control">Opening Source Control</h3>
-<p>Click the <strong>branch icon</strong> in the left sidebar, or use <strong>Cmd+Shift+G</strong> (macOS) / <strong>Ctrl+Shift+G</strong> (Windows). You’ll see:</p>
+<section id="reviewing-changes" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="reviewing-changes"><span class="header-section-number">10.6</span> Reviewing Changes</h2>
+<p>Claude always shows you what it plans to do:</p>
 <ul>
-<li><strong>Changes</strong>: Files you’ve modified since the last commit</li>
-<li><strong>Staged Changes</strong>: Files ready to be committed</li>
+<li><strong>File edits</strong> — Shows a diff with the proposed changes highlighted</li>
+<li><strong>New files</strong> — Shows the full content before writing</li>
+<li><strong>Commands</strong> — Shows the command before running it</li>
+</ul>
+<p>You can:</p>
+<ul>
+<li><strong>Accept</strong> the change</li>
+<li><strong>Ask for modifications</strong> (“Can you also add error handling for empty files?”)</li>
+<li><strong>Reject</strong> and try a different approach (“Actually, let’s do this a different way”)</li>
 </ul>
 </section>
-<section id="the-basic-cycle" class="level3">
-<h3 class="anchored" data-anchor-id="the-basic-cycle">The Basic Cycle</h3>
-<p><strong>1. Make changes to your files</strong></p>
-<p>Work normally—edit scripts, add new files, delete things you don’t need. Git tracks everything automatically.</p>
-<p><strong>2. Review what changed</strong></p>
-<p>Open the Source Control panel. You’ll see a list of changed files under “Changes.” Click any file to see a <strong>diff view</strong> showing exactly what lines were added (green) or removed (red).</p>
-<p><strong>3. Stage files for commit</strong></p>
-<p>Click the <strong>+</strong> icon next to each file you want to include in your commit. The file moves from “Changes” to “Staged Changes.”</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Be intentional about staging
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>You don’t have to stage everything at once. If you made unrelated changes to several files, you can commit them separately with different messages. This keeps your history cleaner and easier to understand.</p>
-</div>
-</div>
-<p><strong>4. Write a commit message and commit</strong></p>
-<p>Type a message in the text box at the top of the Source Control panel. Then click the <strong>checkmark</strong> (✓) to commit.</p>
-<p><strong>5. Push to GitHub</strong></p>
-<p>Click the <strong>three-dot menu</strong> (⋯) and select <strong>Push</strong>, or click the sync icon in the status bar. Until you push, your commits exist only on your computer.</p>
-<p><strong>6. Pull before starting work</strong></p>
-<p>If you’re collaborating or working from multiple computers, always pull before you start making changes. Click the three-dot menu → <strong>Pull</strong> to download any new commits from GitHub.</p>
-</section>
-<section id="what-the-icons-mean" class="level3">
-<h3 class="anchored" data-anchor-id="what-the-icons-mean">What the Icons Mean</h3>
-<p>In the Source Control panel, you’ll see letters next to changed files:</p>
+<section id="next-steps" class="level2" data-number="10.7">
+<h2 data-number="10.7" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">10.7</span> Next Steps</h2>
+<p>Now that you understand what Claude Code can do, the following chapters cover:</p>
 <ul>
-<li><strong>M</strong> (Modified): An existing file was changed</li>
-<li><strong>U</strong> (Untracked): A new file Git hasn’t seen before</li>
-<li><strong>D</strong> (Deleted): A file was removed</li>
-<li><strong>A</strong> (Added): A new file that’s been staged</li>
+<li><strong>Configuring Projects</strong> — How to give Claude persistent context about your project</li>
+<li><strong>Skills</strong> — Reusable instruction sets for common tasks</li>
+<li><strong>Working Effectively</strong> — Patterns for productive Claude Code sessions</li>
 </ul>
-</section>
-</section>
-<section id="writing-good-commit-messages" class="level2">
-<h2 class="anchored" data-anchor-id="writing-good-commit-messages">Writing Good Commit Messages</h2>
-<p>Commit messages are part of your scientific record. Write them for future-you (and collaborators) who need to understand what changed and why.</p>
-<p><strong>Bad messages:</strong></p>
-<pre><code>update
-fix
-changes
-asdf</code></pre>
-<p>These tell you nothing. Six months later, you won’t remember what “update” meant.</p>
-<p><strong>Good messages:</strong></p>
-<pre><code>Add QC step to filter samples with &lt;1000 genes detected
-Fix off-by-one error causing last sample to be dropped
-Update normalization to use SCTransform instead of LogNormalize
-Remove outlier samples identified in PCA (samples 12, 47)</code></pre>
-<p>These explain <em>what</em> changed and often <em>why</em>. When you look at the history, you can understand the evolution of your analysis.</p>
-<section id="when-to-commit" class="level3">
-<h3 class="anchored" data-anchor-id="when-to-commit">When to Commit</h3>
-<p>Commit when you’ve completed a logical unit of work:</p>
-<ul>
-<li>Finished a new analysis step</li>
-<li>Fixed a bug</li>
-<li>Added a new figure</li>
-<li>Made a decision you want to record</li>
-</ul>
-<p>Don’t wait until the end of the day to make one giant commit. Small, focused commits are easier to understand and easier to undo if needed.</p>
-</section>
-</section>
-<section id="setting-up-.gitignore" class="level2">
-<h2 class="anchored" data-anchor-id="setting-up-.gitignore">Setting Up .gitignore</h2>
-<p>The <code>.gitignore</code> file tells Git which files to ignore—they won’t be tracked or committed. This is essential for:</p>
-<ul>
-<li><strong>Large files</strong>: Data files that are too big for Git</li>
-<li><strong>Generated files</strong>: Outputs that can be recreated from code</li>
-<li><strong>Secrets</strong>: Credentials that should never be shared</li>
-<li><strong>System junk</strong>: OS and IDE files that aren’t part of your project</li>
-</ul>
-<section id="standard-.gitignore-for-lab-projects" class="level3">
-<h3 class="anchored" data-anchor-id="standard-.gitignore-for-lab-projects">Standard .gitignore for Lab Projects</h3>
-<pre><code># Large data files
-data/raw/
-*.h5ad
-*.rds
-*.csv
-
-# Generated outputs (reproducible from code)
-outs/
-
-# R artifacts
-.Rhistory
-.RData
-.Rproj.user/
-renv/library/
-
-# Python artifacts
-__pycache__/
-*.pyc
-.venv/
-
-# Quarto rendering
-*_files/
-*_cache/
-.quarto/
-
-# Secrets - NEVER commit these
-.env
-*credentials*
-*secret*
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# IDE settings (optional - some teams share these)
-.vscode/
-.positron/</code></pre>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Create .gitignore first
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Set up <code>.gitignore</code> before your first commit. Once a file is committed, adding it to <code>.gitignore</code> won’t remove it from history—it’s already tracked.</p>
-</div>
-</div>
-</section>
-</section>
-<section id="getting-a-repository" class="level2">
-<h2 class="anchored" data-anchor-id="getting-a-repository">Getting a Repository</h2>
-<section id="cloning-an-existing-repo" class="level3">
-<h3 class="anchored" data-anchor-id="cloning-an-existing-repo">Cloning an Existing Repo</h3>
-<p>If a repository already exists on GitHub and you want to work on it:</p>
-<ol type="1">
-<li>Go to the repo on GitHub</li>
-<li>Click the green <strong>Code</strong> button</li>
-<li>Copy the HTTPS URL</li>
-<li>In Positron, open the Command Palette (Cmd/Ctrl+Shift+P)</li>
-<li>Type “Git: Clone” and paste the URL</li>
-<li>Choose where to save it</li>
-</ol>
-<p>Positron downloads the repository and opens it. You can immediately start working, committing, and pushing.</p>
-</section>
-<section id="creating-a-new-repo" class="level3">
-<h3 class="anchored" data-anchor-id="creating-a-new-repo">Creating a New Repo</h3>
-<p>For a brand new project, the easiest approach is to create the repo on GitHub first:</p>
-<ol type="1">
-<li>Go to github.com and click <strong>New repository</strong></li>
-<li>Choose the MusserLab organization (for lab projects)</li>
-<li>Name it, set visibility to Private, and check “Add a README”</li>
-<li>Clone it to your computer using the steps above</li>
-</ol>
-<p>This sets everything up correctly from the start.</p>
-</section>
-</section>
-<section id="beyond-the-basics" class="level2">
-<h2 class="anchored" data-anchor-id="beyond-the-basics">Beyond the Basics</h2>
-<p>The workflow above covers 90% of what you’ll do with Git. But Git has powerful features for more complex situations. Here’s what they are and when you might need them—you don’t need to learn these now, but it helps to know they exist.</p>
-<section id="branches" class="level3">
-<h3 class="anchored" data-anchor-id="branches">Branches</h3>
-<p>A branch is a parallel version of your project. The main use case: you want to try something experimental without risking your working code. You create a branch, make changes there, and if it works, you merge it back into <code>main</code>. If it doesn’t, you delete the branch and <code>main</code> is untouched.</p>
-<p>Positron’s Source Control panel shows your current branch in the status bar and lets you create and switch branches through the branch menu. For solo analysis work, you often don’t need branches—committing directly to <code>main</code> is fine. Branches become more useful when collaborating or when you want to experiment with major changes.</p>
-</section>
-<section id="merge-conflicts" class="level3">
-<h3 class="anchored" data-anchor-id="merge-conflicts">Merge Conflicts</h3>
-<p>Conflicts happen when two people change the same lines in a file, or when you have changes on two different computers that overlap. Git can’t automatically decide which version to keep, so it asks you to resolve it manually.</p>
-<p>When this happens, the conflicting file will show both versions with special markers. You edit the file to keep the version you want (or combine them), then commit the resolution. Positron highlights conflicts and provides tools to help resolve them.</p>
-<p>Conflicts are less common than you might fear, especially on solo projects. Pull before you start working, and you’ll rarely encounter them.</p>
-<div class="callout-claude" title="Ask Claude">
-<p><strong>Understand a git message:</strong></p>
-<blockquote class="blockquote">
-<p>Git is showing me this message and I’m not sure what to do:</p>
-<pre><code>Your branch and 'origin/main' have diverged,
-and have 2 and 3 different commits each, respectively.</code></pre>
-<p>What does this mean and how do I fix it?</p>
-</blockquote>
-<p><em>Paste the exact git output. Claude can explain what happened and suggest safe next steps.</em></p>
-</div>
-</section>
-<section id="undoing-mistakes" class="level3">
-<h3 class="anchored" data-anchor-id="undoing-mistakes">Undoing Mistakes</h3>
-<p>Git provides ways to undo changes at every stage:</p>
-<ul>
-<li><strong>Before staging</strong>: Discard changes to a file, reverting to the last committed version</li>
-<li><strong>After staging but before committing</strong>: Unstage files while keeping your changes</li>
-<li><strong>After committing</strong>: Undo the last commit (keeping the changes) or amend it with corrections</li>
-<li><strong>After pushing</strong>: This is trickier—changes are on the server. Usually you make a new commit that reverses the problematic one.</li>
-</ul>
-<p>The Source Control panel provides options for discarding and unstaging changes. More complex undo operations (like reverting commits) are available through the Command Palette or by asking for help.</p>
-</section>
-<section id="pull-requests" class="level3">
-<h3 class="anchored" data-anchor-id="pull-requests">Pull Requests</h3>
-<p>Pull requests (PRs) are GitHub’s way of proposing changes for review before merging them. Instead of committing directly to <code>main</code>, you create a branch, push it to GitHub, and open a PR. Others can review the changes and discuss before merging.</p>
-<p>For solo work, PRs are optional. They’re most valuable when you want someone else to review your code before it becomes part of the main project, or when you want a clear record of when and why a set of changes was merged.</p>
-</section>
-</section>
-<section id="learning-more" class="level2">
-<h2 class="anchored" data-anchor-id="learning-more">Learning More</h2>
-<p>This chapter covers what you need to use Git effectively in your daily work. If you want to go deeper—learning command-line Git, understanding how Git works internally, or mastering advanced workflows—these resources are excellent:</p>
-<ul>
-<li><strong><a href="https://git-scm.com/book/en/v2">Pro Git Book</a></strong>: The comprehensive, free reference. Covers everything from basics to internals.</li>
-<li><strong><a href="https://docs.github.com/en/get-started/using-git">GitHub Docs: Using Git</a></strong>: Practical guides focused on common tasks.</li>
-</ul>
-</section>
-<section id="best-practices-summary" class="level2">
-<h2 class="anchored" data-anchor-id="best-practices-summary">Best Practices Summary</h2>
-<dl>
-<dt><strong>Commit often, push regularly</strong></dt>
-<dd>
-Small commits are easier to understand. Pushing backs up your work.
-</dd>
-<dt><strong>Pull before you start working</strong></dt>
-<dd>
-Especially on shared projects—get others’ changes before you start.
-</dd>
-<dt><strong>Write meaningful commit messages</strong></dt>
-<dd>
-Future-you will thank present-you.
-</dd>
-<dt><strong>Use .gitignore from the start</strong></dt>
-<dd>
-Prevent large files and secrets from ever entering the repo.
-</dd>
-<dt><strong>Don’t panic</strong></dt>
-<dd>
-Git rarely loses data. Most mistakes are recoverable—ask for help if you get stuck.
-</dd>
-</dl>
 
 
 </section>
@@ -1356,13 +1111,13 @@ Git rarely loses data. Most mistakes are recoverable—ask for help if you get s
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../part2/conda.html" class="pagination-link" aria-label="Conda">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Conda</span></span>
+      <a href="../part2/git-github.html" class="pagination-link" aria-label="Git &amp; GitHub">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Git &amp; GitHub</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../claude-code/getting-started.html" class="pagination-link" aria-label="Getting Started with Claude Code">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Getting Started with Claude Code</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../claude-code/configuring-projects.html" class="pagination-link" aria-label="Configuring Your Project for Claude">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Configuring Your Project for Claude</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
