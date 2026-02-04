@@ -1,10 +1,11 @@
 # Git & GitHub
 
-Git tracks changes to your code over time. GitHub hosts your Git repositories online for backup and collaboration.
+## What is Git?
 
-## Why Version Control?
+Git is a **version control system**—software that tracks every change you make to your files over time. Think of it as an unlimited undo history for your entire project, with the ability to see exactly what changed, when, and why.
 
-Without version control:
+Without version control, projects tend to accumulate files like this:
+
 ```
 analysis_v1.R
 analysis_v2.R
@@ -13,281 +14,603 @@ analysis_v2_final_FINAL.R
 analysis_v2_final_FINAL_fixed.R
 ```
 
-With Git:
-- One file, complete history
-- See what changed, when, and why
-- Revert mistakes
-- Collaborate without overwriting each other
+With Git, you have one file (`analysis.R`) and a complete history of every version. You can:
 
-## Git Basics
+- **See what changed**: Compare any two versions to see exactly which lines were added, removed, or modified
+- **Understand why**: Each saved version includes a message explaining the change
+- **Go back in time**: Restore any previous version if something breaks
+- **Work in parallel**: Create "branches" to experiment without affecting your main code
+- **Collaborate safely**: Multiple people can work on the same project without overwriting each other
 
-### Key Concepts
+Git runs locally on your computer. Every project folder that Git tracks is called a **repository** (or "repo"). The history lives in a hidden `.git` folder inside your project.
 
-- **Repository (repo)**: A project folder tracked by Git
-- **Commit**: A snapshot of your project at a point in time
-- **Stage**: Mark files to include in the next commit
-- **Branch**: A parallel version of your project
-- **Remote**: A copy of your repo on another server (like GitHub)
+## What is GitHub?
 
-### The Basic Workflow
+GitHub is a **website that hosts Git repositories online**. Git and GitHub are related but different:
+
+| Git | GitHub |
+|-----|--------|
+| Software on your computer | Website (github.com) |
+| Tracks file history locally | Stores repos in the cloud |
+| Works offline | Requires internet |
+| Free, open-source tool | Company (owned by Microsoft) |
+
+You can use Git without GitHub—the history stays on your computer. But GitHub adds important capabilities:
+
+- **Backup**: Your code is safe even if your laptop dies
+- **Collaboration**: Others can access, download, and contribute to your project
+- **Visibility**: Share your work publicly or keep it private
+- **Project management**: Issues, pull requests, and documentation
+
+Other Git hosting services exist (GitLab, Bitbucket), but GitHub is the most common in science and the one we use in the lab.
+
+## Personal Accounts vs. the Lab Organization
+
+On GitHub, you have a **personal account** (your username), and you can also belong to **organizations** (shared accounts for teams).
+
+The lab uses the **MusserLab** organization for all research projects. Here's how to think about where your repos should live:
+
+| Where | When to use | Examples |
+|-------|-------------|----------|
+| **Your personal account** | Personal projects only: coursework, side projects, learning exercises | `jsmith/practice-git`, `jsmith/coursework` |
+| **MusserLab organization** | All lab research—no exceptions | `MusserLab/tryptamine-phospho`, `MusserLab/rnaseq-pipeline` |
+
+::: {.callout-important}
+### Lab research belongs on the organization
+If a project involves lab research, it must be on the MusserLab organization—not your personal account. This ensures continuity when people leave, makes collaboration possible, and keeps lab work in one place.
+:::
+
+### Visibility: Public vs. Private
+
+Both personal accounts and organizations can have public or private repos:
+
+- **Private**: Only you (or organization members) can see it
+- **Public**: Anyone on the internet can see it
+
+Lab research repos are typically kept **private**. When a paper is published, we usually create a separate, curated public repository with cleaned-up code and documentation—rather than making the working repo public. This lets you work freely during research without worrying about how messy your commit history looks.
+
+### Adding Collaborators
+
+To give someone access to your repo:
+
+1. Go to your repo on GitHub
+2. **Settings** → **Collaborators and teams**
+3. Click **Add people**
+4. Enter their GitHub username
+5. Choose their permission level:
+   - **Read**: Can view and clone, but not push changes
+   - **Write**: Can push changes (use this for active collaborators)
+   - **Admin**: Full control including settings (rarely needed)
+
+## Why We Use Git for All Research
+
+In the lab, we use Git for all research projects—think of it as the computational equivalent of a lab notebook. Your commit history becomes a record of how your analysis evolved: what you tried, what you changed, and why.
+
+This practice pays off in several ways:
+
+1. **A record of your work**: Every commit documents what you did and when, which helps with scientific integrity and your own memory
+2. **Safety net**: Experiment freely knowing you can always go back if something breaks
+3. **Backup**: Combined with GitHub, your work survives laptop failures and accidental deletions
+4. **Reproducibility**: Collaborators (and future you) can trace exactly what code produced which results
+
+You don't need to master every Git feature—the basics go a long way. The next sections cover the essential commands for daily work.
+
+## Key Concepts
+
+Before diving into commands, understand these core ideas:
+
+**Repository (repo)**
+: A project folder that Git is tracking. When you run `git init` in a folder, it becomes a repository. Git creates a hidden `.git` folder that stores the entire history.
+
+**Commit**
+: A snapshot of your project at a moment in time. Each commit has a unique ID (like `a1b2c3d`), a message describing what changed, and a pointer to the previous commit. Commits form a chain—your project's history.
+
+**Staging area**
+: A holding area for changes you want to include in your next commit. You "stage" files with `git add`, then "commit" them with `git commit`. This two-step process lets you commit only some of your changes.
+
+**Branch**
+: A parallel version of your project. The default branch is called `main`. You can create other branches to experiment without affecting `main`, then merge them back when ready.
+
+**Remote**
+: A copy of your repository on another server—typically GitHub. Your local repo and the remote stay in sync through `push` (upload your commits) and `pull` (download others' commits).
+
+## The Daily Workflow
+
+Most of your Git usage follows this pattern:
+
+```{mermaid}
+flowchart LR
+    edit["Edit files"] --> status["git status"]
+    status --> add["git add"]
+    add --> commit["git commit"]
+    commit --> push["git push"]
+```
+
+### 1. Check what's changed: `git status`
+
+Run this constantly. It shows:
+- Which files you've modified
+- Which files are staged for commit
+- Which files Git isn't tracking
 
 ```bash
-# 1. Make changes to files
-
-# 2. See what changed
 git status
-
-# 3. Stage changes
-git add filename.R
-# Or stage everything:
-git add .
-
-# 4. Commit with a message
-git commit -m "Add analysis script"
 ```
 
-### Viewing History
+Example output:
+```
+On branch main
+Changes not staged for commit:
+  modified:   scripts/01_import_qc.qmd
 
-```bash
-# See commit history
-git log
-
-# See compact history
-git log --oneline
-
-# See what changed in a commit
-git show abc123
+Untracked files:
+  scripts/02_normalize.qmd
 ```
 
-## Essential Commands
+This tells you: you modified one file and created a new one. Neither is staged yet.
 
-### Starting a Repo
+### 2. See exactly what changed: `git diff`
+
+Before committing, review your changes:
 
 ```bash
-# Initialize new repo
-git init
-
-# Clone existing repo
-git clone https://github.com/user/repo.git
+git diff                    # Show unstaged changes
+git diff --staged           # Show staged changes (what will be committed)
+git diff scripts/01_qc.qmd  # Show changes in a specific file
 ```
 
-### Daily Work
+Lines starting with `+` were added; lines starting with `-` were removed.
+
+### 3. Stage changes: `git add`
+
+Staging tells Git "include these changes in my next commit."
 
 ```bash
-# Check status
-git status
+git add scripts/01_import_qc.qmd    # Stage one file
+git add scripts/                     # Stage all changes in a folder
+git add .                            # Stage everything (use carefully)
+```
 
-# See changes
-git diff
+::: {.callout-tip}
+### Be intentional about what you stage
+`git add .` stages everything, which is convenient but can accidentally include files you didn't mean to commit. For important commits, stage files individually so you know exactly what's included.
+:::
 
-# Stage files
-git add file.R
-git add .  # All files
+### 4. Commit: `git commit`
 
-# Commit
-git commit -m "Your message"
+A commit saves your staged changes with a message explaining what you did:
 
-# Push to GitHub
+```bash
+git commit -m "Add QC filtering step to remove low-quality samples"
+```
+
+The message is important—it's the record of what you did and why. Write messages that help future-you understand the change.
+
+### 5. Push to GitHub: `git push`
+
+Upload your commits to GitHub:
+
+```bash
 git push
 ```
 
-### Undoing Things
+Until you push, your commits exist only on your computer. Push regularly to back up your work.
+
+### 6. Pull others' changes: `git pull`
+
+If collaborators pushed changes (or you worked from another computer), download them:
 
 ```bash
-# Unstage a file
-git reset HEAD file.R
+git pull
+```
 
-# Discard changes to a file
-git checkout -- file.R
+**Always pull before you start working** to avoid conflicts.
 
-# Undo last commit (keep changes)
+## Starting and Cloning Repos
+
+### Creating a new repository
+
+For a new project:
+
+```bash
+cd my-project
+git init
+```
+
+This creates the `.git` folder and starts tracking. Your first commit usually includes the initial project structure.
+
+### Cloning an existing repository
+
+To get a copy of a repo from GitHub:
+
+```bash
+git clone https://github.com/MusserLab/project-name.git
+cd project-name
+```
+
+This downloads the entire repository including all history. You can immediately start working, committing, and pushing.
+
+## Viewing History
+
+### See the commit log
+
+```bash
+git log              # Full details
+git log --oneline    # Compact: one line per commit
+git log -5           # Last 5 commits
+```
+
+Example `git log --oneline` output:
+```
+a1b2c3d Add volcano plot script
+e4f5g6h Fix sample filtering bug
+i7j8k9l Initial project setup
+```
+
+### See what changed in a specific commit
+
+```bash
+git show a1b2c3d
+```
+
+This shows the commit message and all the changes (diff) from that commit.
+
+### See the history of a specific file
+
+```bash
+git log --oneline scripts/01_import_qc.qmd
+```
+
+## Undoing Mistakes
+
+Git's safety net—ways to undo changes at different stages.
+
+### Unstage a file (before committing)
+
+If you staged something by mistake:
+
+```bash
+git reset HEAD scripts/02_normalize.qmd
+```
+
+The file stays modified, just not staged.
+
+### Discard changes to a file (before committing)
+
+To throw away your changes and revert to the last committed version:
+
+```bash
+git checkout -- scripts/02_normalize.qmd
+```
+
+::: {.callout-warning}
+This permanently discards your changes. Make sure you really want to lose them.
+:::
+
+### Undo the last commit (keep the changes)
+
+If you committed too soon or with the wrong message:
+
+```bash
 git reset --soft HEAD~1
+```
+
+This "uncommits" but keeps your changes staged so you can commit again.
+
+### Amend the last commit
+
+To add a forgotten file or fix the message (only if you haven't pushed yet):
+
+```bash
+git add forgotten-file.R
+git commit --amend -m "Better commit message"
 ```
 
 ## Writing Good Commit Messages
 
-**Bad:**
-- "update"
-- "fix"
-- "changes"
+Commit messages are part of your scientific record. Write them for future-you (and collaborators) who need to understand what changed and why.
 
-**Good:**
-- "Add function to normalize expression data"
-- "Fix off-by-one error in loop index"
-- "Update README with installation instructions"
+**Bad messages:**
+```
+update
+fix
+changes
+asdf
+```
 
-Format:
-- Short summary (50 chars or less)
-- Blank line
-- Detailed description if needed
+These tell you nothing. Six months later, you won't remember what "update" meant.
+
+**Good messages:**
+```
+Add QC step to filter samples with <1000 genes detected
+Fix off-by-one error causing last sample to be dropped
+Update normalization to use SCTransform instead of LogNormalize
+Remove outlier samples identified in PCA (samples 12, 47)
+```
+
+These explain *what* changed and often *why*. When you look at the history, you can understand the evolution of your analysis.
+
+### Message format
+
+Keep the first line short (under 50 characters if possible). If you need more detail, add a blank line and then a longer explanation:
+
+```bash
+git commit -m "Switch to more stringent QC thresholds
+
+After reviewing the PCA, samples with fewer than 2000 genes detected
+were clustering separately. Increased threshold from 1000 to 2000.
+See issue #15 for discussion."
+```
+
+### When to commit
+
+Commit when you've completed a logical unit of work:
+- Finished a new analysis step
+- Fixed a bug
+- Added a new figure
+- Made a decision you want to record
+
+Don't wait until the end of the day to make one giant commit. Small, focused commits are easier to understand and easier to undo if needed.
 
 ## Branching
 
-Branches let you work on features without affecting the main code.
+Branches let you work on something without affecting the main code. Think of `main` as the stable, working version of your project. When you want to try something new—a different analysis approach, a new figure, an experimental feature—create a branch.
+
+### Why branch?
+
+Without branches, every change goes directly into `main`. If something breaks, your main code is broken. With branches:
+
+1. Create a branch for your experiment
+2. Make changes freely—`main` stays untouched
+3. If it works, merge it into `main`
+4. If it doesn't, delete the branch and `main` is still fine
+
+### Basic branching workflow
 
 ```bash
-# Create and switch to new branch
-git checkout -b feature-name
+# See what branch you're on
+git branch
 
-# Work, commit, etc...
+# Create and switch to a new branch
+git checkout -b try-new-clustering
 
-# Switch back to main
+# Work normally: edit, add, commit
+git add .
+git commit -m "Try UMAP instead of tSNE for visualization"
+
+# When ready, switch back to main
 git checkout main
 
-# Merge feature into main
-git merge feature-name
+# Merge your branch into main
+git merge try-new-clustering
+
+# Delete the branch (optional, keeps things tidy)
+git branch -d try-new-clustering
 ```
 
-### When to Branch
+### When to branch
 
-- Adding a new feature
-- Fixing a bug
-- Experimenting
+For most solo analysis work, you can commit directly to `main`. Branches are most useful when:
 
-Keep `main` stable. Do work in branches.
+- **Experimenting**: You want to try something that might not work
+- **Major changes**: You're restructuring code and want a safe fallback
+- **Collaboration**: Multiple people working on the same project
+- **Code review**: You want someone to review changes before merging
 
-## GitHub
+::: {.callout-note}
+### Don't overcomplicate it
+If you're working alone on an analysis and making incremental progress, committing to `main` is fine. Branches are a tool—use them when they help, skip them when they don't.
+:::
 
-GitHub hosts your repositories online, enabling:
+## Connecting Local Repos to GitHub
 
-- Backup of your code
-- Collaboration with others
-- Issue tracking
-- Pull requests for code review
+When you create a repo locally with `git init`, it's not connected to GitHub. You need to:
 
-### Connecting to GitHub
+1. Create a repo on GitHub (or use `gh repo create`)
+2. Tell your local repo where the remote is
+3. Push your commits
+
+### Using the GitHub CLI (recommended)
+
+The `gh` command handles everything in one step:
 
 ```bash
-# Add remote
-git remote add origin https://github.com/user/repo.git
+# Create repo on MusserLab and push
+gh repo create MusserLab/my-project --private --source=. --push
+```
 
-# Push (first time)
+This creates the GitHub repo, connects it, and pushes your commits.
+
+### Manual setup
+
+If you created the repo on github.com first:
+
+```bash
+# Connect local repo to GitHub (one time)
+git remote add origin https://github.com/MusserLab/my-project.git
+
+# First push (sets up tracking)
 git push -u origin main
 
-# Push (after first time)
+# Future pushes (just this)
 git push
 ```
 
-### Pull Changes
+### Checking your remote
 
-If someone else pushed changes:
-
-```bash
-git pull
-```
-
-### Cloning a Repo
+To see what remote is configured:
 
 ```bash
-git clone https://github.com/user/repo.git
-cd repo
+git remote -v
 ```
+
+This shows the GitHub URL your repo is connected to.
 
 ## Pull Requests
 
-Pull requests (PRs) let you propose changes and get feedback.
+Pull requests (PRs) are GitHub's way of proposing changes for review before merging them into `main`. Even if you're working alone, PRs can be useful for reviewing your own work before it becomes part of the main codebase.
 
-1. Create a branch
-2. Make changes and push
-3. Open PR on GitHub
-4. Get review/feedback
-5. Merge when approved
+### The PR workflow
 
-This is standard for collaboration, even on solo projects (to review your own work).
+1. Create a branch and make your changes
+2. Push the branch to GitHub
+3. Open a PR on github.com (GitHub will prompt you)
+4. Review the changes (or have a collaborator review)
+5. Merge when satisfied
+6. Delete the branch
+
+```bash
+# Create branch and work
+git checkout -b add-volcano-plots
+# ... make changes, commit ...
+
+# Push branch to GitHub
+git push -u origin add-volcano-plots
+```
+
+Then go to GitHub—you'll see a prompt to create a PR.
+
+### When to use PRs
+
+For solo analysis work, PRs are optional. They're most useful when:
+
+- You want to review your own changes before merging
+- Someone else should review the code
+- You want a clear record of when and why a set of changes was merged
+
+See the [Collaborating](../part3/collaborating.qmd) chapter for more on team workflows.
 
 ## .gitignore
 
-List files Git should ignore:
+The `.gitignore` file tells Git which files to ignore—they won't be tracked or committed. This is essential for:
+
+- **Large files**: Data files that are too big for Git
+- **Generated files**: Outputs that can be recreated from code
+- **Secrets**: Credentials that should never be shared
+- **System junk**: OS and IDE files that aren't part of your project
+
+### Standard .gitignore for lab projects
 
 ```
-# Data files (too large)
+# Large data files
 data/raw/
+*.h5ad
+*.rds
 *.csv
 
-# R
+# Generated outputs (reproducible from code)
+outs/
+
+# R artifacts
 .Rhistory
 .RData
 .Rproj.user/
+renv/library/
 
-# Python
+# Python artifacts
 __pycache__/
 *.pyc
+.venv/
 
-# Secrets
+# Quarto rendering
+*_files/
+*_cache/
+.quarto/
+
+# Secrets - NEVER commit these
 .env
-credentials.json
+*credentials*
+*secret*
 
 # OS files
 .DS_Store
+Thumbs.db
+
+# IDE settings (optional - some teams share these)
+.vscode/
+.positron/
 ```
 
-Create `.gitignore` before your first commit.
+::: {.callout-important}
+### Create .gitignore first
+Set up `.gitignore` before your first commit. Once a file is committed, adding it to `.gitignore` won't remove it from history—it's already tracked.
+:::
+
+### Checking if something is ignored
+
+```bash
+git status --ignored
+```
 
 ## Common Scenarios
 
-### "I committed but haven't pushed"
+### "I want to see what a file looked like before"
 
-You can still modify:
+To view an old version without changing anything:
 
 ```bash
-# Amend the last commit
-git commit --amend -m "New message"
-
-# Add forgotten file to last commit
-git add forgotten-file.R
-git commit --amend --no-edit
+git show abc123:scripts/01_import_qc.qmd
 ```
 
-### "I want to see an old version"
+Replace `abc123` with the commit hash (find it with `git log --oneline`).
+
+### "I want to go back to an old version"
+
+To temporarily check out an old commit (read-only exploration):
 
 ```bash
-# View old version of file
-git show abc123:path/to/file.R
-
-# Temporarily go back to old commit
 git checkout abc123
+# Look around...
 git checkout main  # Return to present
+```
+
+To actually restore a file to an old version:
+
+```bash
+git checkout abc123 -- scripts/01_import_qc.qmd
+git add scripts/01_import_qc.qmd
+git commit -m "Restore old version of import script"
 ```
 
 ### "I have merge conflicts"
 
-When the same lines changed in both branches:
+Conflicts happen when you and someone else changed the same lines. Git can't automatically decide which version to keep.
 
-1. Open the conflicted file
-2. Look for conflict markers:
-   ```
-   <<<<<<< HEAD
-   your changes
-   =======
-   their changes
-   >>>>>>> branch-name
-   ```
-3. Edit to resolve (keep what you want)
-4. Remove the markers
-5. Stage and commit
+When you see conflict markers in a file:
 
-## Best Practices
-
-### Commit Often
-
-Small, focused commits are easier to understand and revert.
-
-### Pull Before Push
-
-```bash
-git pull
-git push
+```
+<<<<<<< HEAD
+# Your version
+result <- calculate_mean(data)
+=======
+# Their version
+result <- calculate_median(data)
+>>>>>>> origin/main
 ```
 
-Avoid conflicts by syncing first.
+Edit the file to resolve—keep one version, combine them, or write something new. Remove all the marker lines (`<<<<<<<`, `=======`, `>>>>>>>`), then:
 
-### Don't Commit Secrets
+```bash
+git add resolved-file.R
+git commit -m "Resolve merge conflict in analysis script"
+```
 
-Never commit passwords, API keys, or credentials. Use `.gitignore`.
+## Best Practices Summary
 
-### Don't Commit Large Data
+**Commit often, push regularly**
+: Small commits are easier to understand. Pushing backs up your work.
 
-Git struggles with large files. Keep data separate or use Git LFS.
+**Pull before you start working**
+: Especially on shared projects—get others' changes before you start.
+
+**Write meaningful commit messages**
+: Future-you will thank present-you.
+
+**Use .gitignore from the start**
+: Prevent large files and secrets from ever entering the repo.
+
+**Don't panic**
+: Git rarely loses data. Most mistakes are recoverable with the right commands (or ask for help).
 
 ## Quick Reference
 

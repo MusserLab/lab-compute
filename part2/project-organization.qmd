@@ -96,25 +96,19 @@ Scripts read from two places:
 
 Dependencies don't have to be strictly linear. Here's an example dependency graph:
 
-```
-data/counts.csv ──────────────────────────────┐
-                                              │
-01_import_qc.qmd ─────► outs/01_import_qc/    │
-        │                      │              │
-        │                      ▼              │
-        │              02_normalize.qmd ──► outs/02_normalize/
-        │                      │
-        │                      ▼
-        │              03_differential.qmd ──► outs/03_differential/
-        │                      │                      │
-        ▼                      ▼                      │
-05_heatmaps.qmd ◄──────────────┴──────────────────────┘
-        │
-        ▼
-  outs/05_heatmaps/
+```{mermaid}
+flowchart LR
+    data["data/*"] --> s01["01_import_qc"]
+    s01 --> s02["02_normalize"]
+    s02 --> s03["03_differential"]
+
+    s01 --> s05["05_heatmaps"]
+    s03 --> s05
+    data --> s05
 ```
 
 In this example:
+
 - Scripts 01 → 02 → 03 form a linear chain
 - Script 05 reads from 01, 03, AND the original data
 - The numbering reflects the logical order, not strict dependencies
@@ -331,12 +325,16 @@ tryptamine_phospho/
 
 **Dependency flow:**
 
-```
-data/* ──► 01 ──► 02 ──► 03 ──► 04
-                   │      │
-                   │      └──► 05 ──► 06
-                   │            │
-                   └────────────┘
+```{mermaid}
+flowchart LR
+    data["data/*"] --> s01["01"]
+    s01 --> s02["02"]
+    s02 --> s03["03"]
+    s03 --> s04["04"]
+
+    s02 --> s05["05"]
+    s03 --> s05
+    s05 --> s06["06"]
 ```
 
 From this structure, anyone can understand:
