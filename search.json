@@ -492,7 +492,7 @@
     "href": "part2/conda.html",
     "title": "5  Conda",
     "section": "",
-    "text": "5.1 Why Use Environments?\nConda is an environment and package manager that creates isolated spaces for your Python projects. Each environment has its own Python version and packages, preventing conflicts between projects.\nWithout environments:\nWith environments:\nEach project has exactly what it needs.",
+    "text": "5.1 Why Use Environments?\nConda is an environment and package manager that creates isolated spaces for your Python projects. Each environment has its own Python version and packages, preventing conflicts between projects.\nWithout environments:\nWith environments:\nEach project has its own libraries specific to its needs. Updates to libraries or the addition of new libraries in one project are isolated from other projects.",
     "crumbs": [
       "Core Tools",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Conda</span>"
@@ -514,7 +514,7 @@
     "href": "part2/conda.html#basic-commands",
     "title": "5  Conda",
     "section": "5.2 Basic Commands",
-    "text": "5.2 Basic Commands\n\n\n\n\n\n\nNoteWindows Users: Initialize Your Shell First\n\n\n\nAfter installing Miniforge/conda on Windows, you must initialize your shell before conda activate will work. Open your terminal and run:\nPowerShell:\nconda init powershell\nCommand Prompt:\nconda init cmd.exe\nThen close and reopen your terminal. You only need to do this once.\n\n\n\n5.2.1 Create an Environment\nYou can create an environment with just Python, or include packages from the start:\n# Create with just Python\nconda create -n my-project python=3.11\n\n# Create with core data science packages (recommended)\nconda create -n my-project python=3.11 numpy pandas matplotlib ipykernel\n\n\n5.2.2 Core Data Science Packages\nWhen setting up a new project environment, these packages cover most data science needs:\n\n\n\nPackage\nPurpose\n\n\n\n\nnumpy\nNumerical computing with arrays and matrices\n\n\npandas\nData manipulation and analysis (dataframes)\n\n\nmatplotlib\nPlotting and visualization\n\n\nipykernel\nRequired for Quarto to execute Python code\n\n\n\nA typical environment creation command:\nconda create -n my-project python=3.11 numpy pandas matplotlib ipykernel\n\n\n\n\n\n\nNoteWhat about Jupyter?\n\n\n\nYou don’t need jupyter or jupyterlab for our workflow—Quarto handles document rendering directly. Only install them if you receive .ipynb notebook files from collaborators and want to open them in the traditional notebook interface.\n\n\n\n\n5.2.3 Activate/Deactivate\n# Activate (start using the environment)\nconda activate my-project\n\n# Deactivate (return to base)\nconda deactivate\nWhen activated, your prompt shows the environment name:\n\nmacOS / LinuxWindows\n\n\n(my-project) $\n\n\n(my-project) C:\\Users\\yourname&gt;\n\n\n\n\n\n5.2.4 Install Packages\n# Install a package\nconda install pandas\n\n# Install specific version\nconda install pandas=2.0\n\n# Install multiple packages\nconda install pandas numpy matplotlib seaborn\n\n\n5.2.5 List Environments\n# See all environments\nconda env list\n\n# See packages in current environment\nconda list\n\n\n5.2.6 Remove Environment\nconda env remove -n my-project",
+    "text": "5.2 Basic Commands\n\n\n\n\n\n\nNoteWindows Users: Initialize Your Shell First\n\n\n\nAfter installing Miniforge/conda on Windows, you must initialize your shell before conda activate will work. Open your terminal and run:\nPowerShell:\nconda init powershell\nCommand Prompt:\nconda init cmd.exe\nThen close and reopen your terminal. You only need to do this once.\n\n\n\n5.2.1 Create an Environment\nYou only need to create the environment once. New environments can be initiated with just a python installation, or include additional packages from the start. The option -n project_name specifies the name of the environment, and is followed by an initial list of packages to install:\n# Create with just Python\nconda create -n my-project python=3.11\n\n# Create with core data science packages (recommended)\nconda create -n my-project python=3.11 numpy pandas matplotlib ipykernel\n\n\n5.2.2 Core Data Science Packages\nWhen setting up a new project environment, common data science packages you might include are:\n\n\n\nPackage\nPurpose\n\n\n\n\nnumpy\nNumerical computing with arrays and matrices\n\n\npandas\nData manipulation and analysis (dataframes)\n\n\nmatplotlib\nPlotting and visualization\n\n\nipykernel\nRequired for Quarto to execute Python code\n\n\n\nA typical environment creation command:\nconda create -n my-project python=3.11 numpy pandas matplotlib ipykernel\n\n\n\n\n\n\nNoteWhat about Jupyter?\n\n\n\nYou don’t need jupyter or jupyterlab for our workflow—Quarto handles document rendering directly. Only install them if you receive .ipynb notebook files from collaborators and want to open them in the traditional notebook interface.\n\n\n\n\n5.2.3 Activate/Deactivate\n# Activate (start using the environment)\nconda activate my-project\n\n# Deactivate (return to base)\nconda deactivate\nWhen activated, your prompt shows the environment name:\n\nmacOS / LinuxWindows\n\n\n(my-project) $\n\n\n(my-project) C:\\Users\\yourname&gt;\n\n\n\n\n\n5.2.4 Install Packages\n# Install a package\nconda install pandas\n\n# Install specific version\nconda install pandas=2.0\n\n# Install multiple packages\nconda install pandas numpy matplotlib seaborn\n\n\n5.2.5 List Environments\n# See all environments\nconda env list\n\n# See packages in current environment\nconda list\n\n\n5.2.6 Remove Environment\nconda env remove -n my-project",
     "crumbs": [
       "Core Tools",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Conda</span>"
@@ -611,232 +611,309 @@
   {
     "objectID": "part2/renv.html",
     "href": "part2/renv.html",
-    "title": "6  renv",
+    "title": "6  R: rig & renv",
     "section": "",
-    "text": "6.1 Why renv?\nrenv is R’s package management system. Like conda for Python, it creates isolated package libraries for each project, ensuring reproducibility.\nWithout renv: - All projects share one R package library - Updating a package for one project might break another - Hard to know which packages a project needs\nWith renv: - Each project has its own package library - Package versions are locked in renv.lock - Anyone can recreate your exact environment",
+    "text": "6.1 Why This Matters\nManaging R effectively requires two things: controlling which version of R you’re running, and controlling which packages are installed for each project. We use rig for the former and renv for the latter. Together, they give you the same isolation and reproducibility that conda provides for Python.\nWithout version management:\nWith rig + renv:",
     "crumbs": [
       "Core Tools",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>renv</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>R: rig & renv</span>"
     ]
   },
   {
-    "objectID": "part2/renv.html#getting-started",
-    "href": "part2/renv.html#getting-started",
-    "title": "6  renv",
-    "section": "6.2 Getting Started",
-    "text": "6.2 Getting Started\n\n6.2.1 Initialize renv\nIn a new or existing R project:\n# Install renv if needed\ninstall.packages(\"renv\")\n\n# Initialize renv for this project\nrenv::init()\nThis creates: - renv/ — Local package library - renv.lock — Lockfile recording package versions - .Rprofile — Activates renv when R starts\n\n\n6.2.2 The Workflow\n\nInstall packages as normal with install.packages()\nSnapshot to record what you installed: renv::snapshot()\nShare your project (including renv.lock)\nRestore on another machine: renv::restore()",
+    "objectID": "part2/renv.html#why-this-matters",
+    "href": "part2/renv.html#why-this-matters",
+    "title": "6  R: rig & renv",
+    "section": "",
+    "text": "You update R for one project and break another that depended on the old version\nA collaborator has R 4.3 while you have R 4.4, and Bioconductor packages behave differently\nAll your projects share one package library—updating ggplot2 for Project A might break Project B\n\n\n\nMultiple R versions coexist on your machine\nEach project specifies which R version it needs\nEach project has its own package library with versions locked in renv.lock\nAnyone can recreate your exact environment",
     "crumbs": [
       "Core Tools",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>renv</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>R: rig & renv</span>"
     ]
   },
   {
-    "objectID": "part2/renv.html#essential-commands",
-    "href": "part2/renv.html#essential-commands",
-    "title": "6  renv",
-    "section": "6.3 Essential Commands",
-    "text": "6.3 Essential Commands\n\n6.3.1 Installing Packages\n# Install from CRAN\ninstall.packages(\"ggplot2\")\n\n# Install from GitHub\nrenv::install(\"tidyverse/ggplot2\")\n\n# Install specific version\nrenv::install(\"ggplot2@3.4.0\")\n\n\n6.3.2 Snapshot\nAfter installing packages, save the state:\nrenv::snapshot()\nThis updates renv.lock with current package versions.\n\n\n6.3.3 Restore\nWhen you clone a project or switch machines:\nrenv::restore()\nThis installs all packages recorded in renv.lock.\n\n\n6.3.4 Status\nCheck if your library matches the lockfile:\nrenv::status()\nOutputs tell you if packages are: - Missing from the library - Not recorded in the lockfile - Different versions than the lockfile",
+    "objectID": "part2/renv.html#rig-managing-r-versions",
+    "href": "part2/renv.html#rig-managing-r-versions",
+    "title": "6  R: rig & renv",
+    "section": "6.2 rig: Managing R Versions",
+    "text": "6.2 rig: Managing R Versions\nrig (R Installation Manager) lets you install, switch between, and manage multiple R versions from the command line. The Installation chapter covers how to install rig itself; this section covers day-to-day usage.\n\n6.2.1 Why Multiple R Versions?\nYou might need multiple R versions when:\n\nCollaborating: A collaborator’s project uses R 4.3, but your default is R 4.4\nBioconductor compatibility: Bioconductor versions are tied to specific R versions (see Bioconductor section below)\nLegacy projects: An older analysis needs to run exactly as it did originally\nTesting: You want to verify code works across R versions before sharing\n\n\n\n6.2.2 Essential rig Commands\n# List installed R versions\nrig list\n\n# Install the latest stable R\nrig add release\n\n# Install a specific version\nrig add 4.3\n\n# Set the system default\nrig default 4.4\n\n# See which version is default\nrig default\n\n\n\n\n\n\nNoterig add vs. CRAN installers\n\n\n\nWhen you run rig add, it downloads and installs R without removing previous versions. This is different from downloading R directly from CRAN, which typically overwrites your existing installation.\n\n\n\n\n6.2.3 Setting R Version Per Project\nFor reproducibility, you can lock a specific R version to a project so that Positron always uses it, regardless of your system default. Add this to .vscode/settings.json in your project:\n\nmacOS (Apple Silicon)macOS (Intel)Windows\n\n\n{\n  \"r.rpath.mac\": \"/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/bin/R\"\n}\n\n\n{\n  \"r.rpath.mac\": \"/Library/Frameworks/R.framework/Versions/4.4-x86_64/Resources/bin/R\"\n}\n\n\n{\n  \"r.rpath.windows\": \"C:\\\\Program Files\\\\R\\\\R-4.4.0\\\\bin\\\\R.exe\"\n}\n\n\n\nYou can also set this interactively: open the Command Palette in Positron (Cmd+Shift+P / Ctrl+Shift+P) and select R: Select R Binary. See the Positron chapter for more details.",
     "crumbs": [
       "Core Tools",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>renv</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>R: rig & renv</span>"
+    ]
+  },
+  {
+    "objectID": "part2/renv.html#renv-project-package-libraries",
+    "href": "part2/renv.html#renv-project-package-libraries",
+    "title": "6  R: rig & renv",
+    "section": "6.3 renv: Project Package Libraries",
+    "text": "6.3 renv: Project Package Libraries\nrenv creates isolated package libraries for each project. Instead of all projects sharing your user library, each project gets its own renv/library/ folder with exactly the packages it needs.\n\n6.3.1 The Workflow\nThe renv workflow has four steps:\n\nInitialize renv in your project (renv::init())\nInstall packages as you work (install.packages() or renv::install())\nSnapshot to record what you installed (renv::snapshot())\nRestore on another machine or after cloning (renv::restore())\n\n\n\n6.3.2 Initialize renv\nIn a new or existing R project:\n# Install renv if needed (only once per R installation)\ninstall.packages(\"renv\")\n\n# Initialize renv for this project\nrenv::init()\nThis creates:\n\n\n\nFile/Folder\nPurpose\n\n\n\n\nrenv/\nLocal package library (packages installed here)\n\n\nrenv.lock\nLockfile recording exact package versions\n\n\n.Rprofile\nActivates renv automatically when R starts\n\n\nrenv/activate.R\nThe activation script\n\n\n\nWhen you open the project in Positron and start R, you’ll see:\n- Project '/path/to/project' loaded. [renv 1.0.0]\nThis confirms renv is active.\n\n\n6.3.3 Installing Packages\nWith renv active, install packages as usual:\n# Install from CRAN\ninstall.packages(\"ggplot2\")\n\n# Install multiple packages\ninstall.packages(c(\"dplyr\", \"tidyr\", \"readr\"))\nFor more control, use renv::install():\n# Install from GitHub\nrenv::install(\"tidyverse/ggplot2\")\n\n# Install a specific version\nrenv::install(\"ggplot2@3.4.0\")\n\n# Install from Bioconductor (after setting up BiocManager)\nrenv::install(\"bioc::DESeq2\")\n\n\n6.3.4 Snapshot\nAfter installing or updating packages, save the current state:\nrenv::snapshot()\nThis updates renv.lock with the exact versions of all packages in your project library. Always snapshot after installing packages, and commit the updated renv.lock to Git.\n\n\n6.3.5 Restore\nWhen you clone a project or set it up on a new machine:\nrenv::restore()\nThis reads renv.lock and installs every package at the exact version recorded. This is how collaborators reproduce your environment.\n\n\n6.3.6 Status\nCheck whether your library matches the lockfile:\nrenv::status()\nThis tells you if packages are:\n\nMissing from the library (need renv::restore())\nInstalled but not in the lockfile (need renv::snapshot())\nDifferent versions than the lockfile\n\nRun renv::status() before committing to ensure your lockfile is current.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>R: rig & renv</span>"
+    ]
+  },
+  {
+    "objectID": "part2/renv.html#core-r-packages",
+    "href": "part2/renv.html#core-r-packages",
+    "title": "6  R: rig & renv",
+    "section": "6.4 Core R Packages",
+    "text": "6.4 Core R Packages\n\n6.4.1 The tidyverse\nThe tidyverse is a collection of R packages that share a common design philosophy centered on “tidy data”—rectangular data where each variable is a column, each observation is a row, and each value is a cell. This simple principle, combined with a consistent and expressive syntax, has made the tidyverse the standard toolkit for data analysis in R.\nWhat makes the tidyverse transformative is that it provides a unified grammar for the entire data analysis pipeline: importing data, reshaping it, transforming it, visualizing it, and communicating results. The packages are designed to work together seamlessly, with consistent naming conventions and compatible data structures. Code written in tidyverse style tends to be readable and self-documenting—you can often understand what a pipeline does just by reading it.\nThe tidyverse occupies the same role in R that pandas does in Python: both represent the modern, dataframe-centric approach to data manipulation. While they developed somewhat independently (pandas emerged around 2008, dplyr in 2014), they share the philosophy that most data analysis tasks involve filtering rows, selecting columns, creating new variables, grouping, and summarizing. If you learn one well, the concepts transfer to the other.\nThe core tidyverse packages are:\n\n\n\n\n\n\n\nPackage\nPurpose\n\n\n\n\ndplyr\nData manipulation: filter rows, select columns, create new variables, summarize, join tables\n\n\nggplot2\nVisualization using the grammar of graphics\n\n\ntidyr\nReshape data: pivot between wide and long formats\n\n\nreadr\nFast, consistent data import (read_csv, read_tsv, etc.)\n\n\npurrr\nFunctional programming: apply functions across lists and vectors\n\n\nstringr\nString manipulation with consistent syntax\n\n\n\nLoading the tidyverse meta-package loads all of these at once:\nlibrary(tidyverse)\n\n\n\n\n\n\nTipLearning the tidyverse\n\n\n\nThis guide assumes basic familiarity with tidyverse syntax. If you’re new to R or transitioning from base R, work through R for Data Science by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund. It’s the definitive resource for learning modern R workflows.\n\n\n\n\n6.4.2 Other Essential Packages\n\n\n\n\n\n\n\nPackage\nPurpose\n\n\n\n\nhere\nBuild file paths relative to the project root—essential for reproducible scripts\n\n\nknitr\nRequired for rendering Quarto documents with R code",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>R: rig & renv</span>"
+    ]
+  },
+  {
+    "objectID": "part2/renv.html#bioconductor",
+    "href": "part2/renv.html#bioconductor",
+    "title": "6  R: rig & renv",
+    "section": "6.5 Bioconductor",
+    "text": "6.5 Bioconductor\nBioconductor is a specialized repository of R packages for bioinformatics and computational biology. It’s separate from CRAN and has its own installation system, release schedule, and quality standards. If you’re doing genomics, transcriptomics, or single-cell analysis in R, you’ll use Bioconductor packages extensively.\n\n6.5.1 What Makes Bioconductor Different\nCurated and reviewed: Packages undergo technical review before acceptance and must meet documentation and testing standards.\nCoordinated releases: All Bioconductor packages are released together twice per year, tested against each other for compatibility.\nSpecialized data structures: Bioconductor defines standard classes for genomic data (SummarizedExperiment, SingleCellExperiment, etc.) that packages use consistently.\nTied to R versions: Each Bioconductor release requires a specific R version. This is important for reproducibility.\n\n\n6.5.2 Installing Bioconductor Packages\nBioconductor packages are installed via BiocManager, not install.packages():\n# First, install BiocManager (only once)\ninstall.packages(\"BiocManager\")\n\n# Then install Bioconductor packages\nBiocManager::install(\"DESeq2\")\nBiocManager::install(c(\"limma\", \"edgeR\", \"tximport\"))\n\n# Don't forget to snapshot\nrenv::snapshot()\nrenv automatically detects Bioconductor packages and records them correctly in the lockfile.\n\n\n6.5.3 Bioconductor Version Synchronization\nBioconductor versions are tied to R versions:\n\n\n\nBioconductor\nR Version\nRelease Date\n\n\n\n\n3.18\nR 4.3.x\nOct 2023\n\n\n3.19\nR 4.4.x\nMay 2024\n\n\n3.20\nR 4.4.x\nOct 2024\n\n\n3.21\nR 4.5.x\nMay 2025\n\n\n\nWhy this matters: If you developed an analysis with R 4.3 and Bioconductor 3.18, a collaborator with R 4.4 will get Bioconductor 3.19 or 3.20—potentially with different package behaviors. For critical analyses, pin the R version in your project settings (see Setting R Version Per Project above).\nCheck your current Bioconductor version:\nBiocManager::version()\n\n\n\n\n\n\nNoteBioconductor and renv\n\n\n\nWhen you use renv, the Bioconductor version is recorded in renv.lock along with package versions. Running renv::restore() on a new machine will install packages from the same Bioconductor release, helping ensure reproducibility.\n\n\n\n\n6.5.4 RNA-seq Analysis Packages\nThese packages form the core toolkit for bulk RNA-seq differential expression analysis:\n\n\n\n\n\n\n\nPackage\nPurpose\n\n\n\n\nDESeq2\nDifferential expression using negative binomial generalized linear models. The most widely used method.\n\n\nlimma\nLinear models for differential expression. Includes voom for RNA-seq count data. Fast and flexible.\n\n\nedgeR\nDifferential expression using empirical Bayes estimation. Similar approach to DESeq2.\n\n\ntximport\nImport transcript-level quantifications from Salmon, kallisto, or RSEM into gene-level counts.\n\n\ntximeta\nLike tximport but automatically attaches metadata about the reference transcriptome.\n\n\ngoseq\nGene Ontology enrichment analysis that accounts for gene length bias in RNA-seq data.\n\n\n\nA typical RNA-seq analysis workflow uses tximport or tximeta to import quantifications, then DESeq2 (or limma/edgeR) for differential expression, then goseq for pathway analysis.\n\n\n6.5.5 Single-Cell Analysis Packages\nSingle-cell RNA-seq requires specialized methods. These are the main packages:\n\n\n\n\n\n\n\nPackage\nPurpose\n\n\n\n\nSeurat\nComprehensive toolkit for single-cell analysis: QC, normalization, clustering, visualization, integration across datasets. The most popular choice.\n\n\nSingleCellExperiment\nBioconductor’s standard data structure for single-cell data. Many packages use this format.\n\n\nscran\nNormalization (pooling-based), feature selection, and clustering methods from the Bioconductor ecosystem.\n\n\nscater\nQuality control, visualization, and preprocessing. Works with SingleCellExperiment objects.\n\n\nMonocle3\nTrajectory analysis and pseudotime inference—modeling how cells transition between states.\n\n\n\n\n\n\n\n\n\nNoteSeurat vs. Bioconductor ecosystem\n\n\n\nSeurat is the most popular single-cell package but isn’t part of Bioconductor—it’s on CRAN (and GitHub). The Bioconductor single-cell packages (SingleCellExperiment, scran, scater) form an alternative ecosystem. Many workflows use both: Seurat for analysis and visualization, with conversion to SingleCellExperiment when needed for specific Bioconductor tools.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>R: rig & renv</span>"
+    ]
+  },
+  {
+    "objectID": "part2/renv.html#installing-from-other-sources",
+    "href": "part2/renv.html#installing-from-other-sources",
+    "title": "6  R: rig & renv",
+    "section": "6.6 Installing from Other Sources",
+    "text": "6.6 Installing from Other Sources\n\n6.6.1 GitHub Packages\nFor development versions or packages not on CRAN:\n# Install from GitHub\nrenv::install(\"satijalab/seurat\")\n\n# Install a specific branch\nrenv::install(\"satijalab/seurat@develop\")\n\n# Install a specific commit\nrenv::install(\"satijalab/seurat@abc1234\")\n\n\n6.6.2 Specific Versions\n# Install exact version from CRAN\nrenv::install(\"dplyr@1.1.0\")\n\n# Install exact version from Bioconductor\nrenv::install(\"bioc::DESeq2@1.40.0\")\n\n\n6.6.3 Local Packages\n# Install from a local directory\nrenv::install(\"/path/to/local/package\")",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>R: rig & renv</span>"
     ]
   },
   {
     "objectID": "part2/renv.html#the-lockfile",
     "href": "part2/renv.html#the-lockfile",
-    "title": "6  renv",
-    "section": "6.4 The Lockfile",
-    "text": "6.4 The Lockfile\nrenv.lock is a JSON file recording every package:\n{\n  \"R\": {\n    \"Version\": \"4.3.1\",\n    \"Repositories\": [...]\n  },\n  \"Packages\": {\n    \"ggplot2\": {\n      \"Package\": \"ggplot2\",\n      \"Version\": \"3.4.2\",\n      \"Source\": \"Repository\"\n    }\n  }\n}\nAlways commit renv.lock to Git. This is how others reproduce your environment.",
+    "title": "6  R: rig & renv",
+    "section": "6.7 The Lockfile",
+    "text": "6.7 The Lockfile\nrenv.lock is a JSON file that records every package, its version, and its source:\n{\n  \"R\": {\n    \"Version\": \"4.4.1\",\n    \"Repositories\": [\n      {\n        \"Name\": \"CRAN\",\n        \"URL\": \"https://cloud.r-project.org\"\n      }\n    ]\n  },\n  \"Bioconductor\": {\n    \"Version\": \"3.19\"\n  },\n  \"Packages\": {\n    \"DESeq2\": {\n      \"Package\": \"DESeq2\",\n      \"Version\": \"1.44.0\",\n      \"Source\": \"Bioconductor\"\n    },\n    \"ggplot2\": {\n      \"Package\": \"ggplot2\",\n      \"Version\": \"3.5.0\",\n      \"Source\": \"Repository\"\n    }\n  }\n}\nThe lockfile records:\n\nR version used\nBioconductor version (if applicable)\nEvery package with exact version and source\n\nAlways commit renv.lock to Git. This is how collaborators (and future you) reproduce your environment.",
     "crumbs": [
       "Core Tools",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>renv</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>R: rig & renv</span>"
     ]
   },
   {
     "objectID": "part2/renv.html#what-to-commit-to-git",
     "href": "part2/renv.html#what-to-commit-to-git",
-    "title": "6  renv",
-    "section": "6.5 What to Commit to Git",
-    "text": "6.5 What to Commit to Git\nInclude: - renv.lock — Package versions - renv/activate.R — Activation script - .Rprofile — Auto-activation\nExclude (in .gitignore): - renv/library/ — Actual packages (too large) - renv/staging/ — Temporary files",
+    "title": "6  R: rig & renv",
+    "section": "6.8 What to Commit to Git",
+    "text": "6.8 What to Commit to Git\nInclude in Git:\n\nrenv.lock — Package versions (this is the important one)\nrenv/activate.R — Activation script\n.Rprofile — Auto-activation on R startup\n\nExclude from Git (add to .gitignore):\n\nrenv/library/ — The actual installed packages (too large, platform-specific)\nrenv/staging/ — Temporary files during installation\n\nThe default renv setup handles this correctly. If you used the .gitignore from the first project chapter, these exclusions are already in place.",
     "crumbs": [
       "Core Tools",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>renv</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>R: rig & renv</span>"
     ]
   },
   {
     "objectID": "part2/renv.html#updating-packages",
     "href": "part2/renv.html#updating-packages",
-    "title": "6  renv",
-    "section": "6.6 Updating Packages",
-    "text": "6.6 Updating Packages\n\n6.6.1 Update All\nrenv::update()\nrenv::snapshot()  # Don't forget to snapshot!\n\n\n6.6.2 Update Specific Package\nrenv::update(\"ggplot2\")\nrenv::snapshot()\n\n\n6.6.3 Revert an Update\nIf something breaks, restore the previous state:\nrenv::restore()",
+    "title": "6  R: rig & renv",
+    "section": "6.9 Updating Packages",
+    "text": "6.9 Updating Packages\n\n6.9.1 Update All Packages\nrenv::update()\nrenv::snapshot()  # Don't forget!\n\n\n6.9.2 Update Specific Package\nrenv::update(\"ggplot2\")\nrenv::snapshot()\n\n\n6.9.3 Revert After a Bad Update\nIf an update breaks something, restore the previous state:\nrenv::restore()\nThis reinstalls packages at the versions in renv.lock, effectively undoing the update. (This is why we snapshot and commit before updating.)",
     "crumbs": [
       "Core Tools",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>renv</span>"
-    ]
-  },
-  {
-    "objectID": "part2/renv.html#common-issues",
-    "href": "part2/renv.html#common-issues",
-    "title": "6  renv",
-    "section": "6.7 Common Issues",
-    "text": "6.7 Common Issues\n\n6.7.1 “The project is out-of-sync”\nThis means packages in your library don’t match renv.lock:\n# See what's different\nrenv::status()\n\n# Sync library to lockfile\nrenv::restore()\n\n# Or update lockfile to match library\nrenv::snapshot()\n\n\n6.7.2 Package Installation Fails\nTry:\n# Clear cache and reinstall\nrenv::install(\"package-name\", rebuild = TRUE)\n\n\n6.7.3 Starting Fresh\nIf things are really broken:\n# Remove renv from project\nrenv::deactivate()\nunlink(\"renv\", recursive = TRUE)\nfile.remove(\"renv.lock\")\n\n# Reinitialize\nrenv::init()",
-    "crumbs": [
-      "Core Tools",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>renv</span>"
-    ]
-  },
-  {
-    "objectID": "part2/renv.html#working-with-bioconductor",
-    "href": "part2/renv.html#working-with-bioconductor",
-    "title": "6  renv",
-    "section": "6.8 Working with Bioconductor",
-    "text": "6.8 Working with Bioconductor\nFor bioinformatics packages:\n# Set up Bioconductor\nrenv::install(\"BiocManager\")\nBiocManager::install(\"DESeq2\")\nrenv::snapshot()\nrenv automatically detects Bioconductor packages.",
-    "crumbs": [
-      "Core Tools",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>renv</span>"
-    ]
-  },
-  {
-    "objectID": "part2/renv.html#integration-with-positron",
-    "href": "part2/renv.html#integration-with-positron",
-    "title": "6  renv",
-    "section": "6.9 Integration with Positron",
-    "text": "6.9 Integration with Positron\nrenv works automatically with Positron:\n\nOpen a project with renv\nR automatically activates renv (via .Rprofile)\nInstall packages as normal\nRun renv::snapshot() to save\n\nThe R console should show:\n- Project '/path/to/project' loaded. [renv 1.0.0]",
-    "crumbs": [
-      "Core Tools",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>renv</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>R: rig & renv</span>"
     ]
   },
   {
     "objectID": "part2/renv.html#best-practices",
     "href": "part2/renv.html#best-practices",
-    "title": "6  renv",
+    "title": "6  R: rig & renv",
     "section": "6.10 Best Practices",
-    "text": "6.10 Best Practices\n\n6.10.1 Snapshot Regularly\nAfter installing or updating packages:\nrenv::snapshot()\ngit add renv.lock\ngit commit -m \"Update package dependencies\"\n\n\n6.10.2 Check Status Before Committing\nrenv::status()\nEnsure the lockfile reflects your actual packages.\n\n\n6.10.3 Document Special Packages\nIf packages need special installation (GitHub, local, etc.), document it:\n# Install custom packages:\n# renv::install(\"github-user/custom-package\")",
+    "text": "6.10 Best Practices\n\n6.10.1 Snapshot After Installing\nEvery time you install or update packages:\nrenv::snapshot()\nThen commit the updated renv.lock:\ngit add renv.lock\ngit commit -m \"Add ggplot2 package\"\n\n\n6.10.2 Check Status Before Committing\nrenv::status()\nEnsure your lockfile reflects your actual installed packages before pushing to GitHub.\n\n\n6.10.3 Document Non-Standard Installations\nIf packages require special installation steps (GitHub, specific versions, etc.), document them in your README:\n## Setup\n\nAfter cloning, restore the R environment:\n\n```r\nrenv::restore()\nNote: custompackage is installed from GitHub:\nrenv::install(\"username/custompackage\")\n\n### Pin R Version for Critical Projects\n\nFor analyses that need to be reproducible long-term (publication-associated code), pin the R version in `.vscode/settings.json` and document it in your README.\n\n## Troubleshooting\n\n### \"The project is out-of-sync\"\n\nThis warning means packages in your library don't match `renv.lock`:\n\n```r\n# See what's different\nrenv::status()\n\n# Option 1: Sync library to lockfile (discard local changes)\nrenv::restore()\n\n# Option 2: Update lockfile to match library (keep local changes)\nrenv::snapshot()\n\n\n6.10.4 Package Installation Fails\nTry rebuilding from source:\nrenv::install(\"package-name\", rebuild = TRUE)\nFor Bioconductor packages, ensure BiocManager is installed and your R version is compatible.\n\n\n6.10.5 Bioconductor Version Mismatch\nIf you see warnings about Bioconductor version mismatches:\n# Check your Bioconductor version\nBiocManager::version()\n\n# Check what version renv expects\nrenv::lockfile_read()$Bioconductor$Version\nIf they differ, you may need to update your R version to match, or update the lockfile to use the Bioconductor version for your current R.\n\n\n6.10.6 renv is Slow\nThe first renv::restore() on a new machine downloads all packages, which takes time. Subsequent operations use a global cache, so packages shared across projects only download once.\n\n\n6.10.7 Starting Fresh\nIf things are really broken:\n# Deactivate renv\nrenv::deactivate()\n\n# Remove renv files (in terminal)\n# rm -rf renv renv.lock .Rprofile\n\n# Reinitialize\nrenv::init()\n\n\n\n\n\n\nWarning\n\n\n\nThis removes your lockfile. If you need to preserve the package versions, copy renv.lock somewhere safe before deleting.",
     "crumbs": [
       "Core Tools",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>renv</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>R: rig & renv</span>"
     ]
   },
   {
     "objectID": "part2/renv.html#quick-reference",
     "href": "part2/renv.html#quick-reference",
-    "title": "6  renv",
+    "title": "6  R: rig & renv",
     "section": "6.11 Quick Reference",
-    "text": "6.11 Quick Reference\n\n\n\nTask\nCommand\n\n\n\n\nInitialize\nrenv::init()\n\n\nInstall package\ninstall.packages(\"pkg\")\n\n\nSnapshot\nrenv::snapshot()\n\n\nRestore\nrenv::restore()\n\n\nCheck status\nrenv::status()\n\n\nUpdate all\nrenv::update()\n\n\nUpdate one\nrenv::update(\"pkg\")",
+    "text": "6.11 Quick Reference\n\n6.11.1 rig Commands\n\n\n\nTask\nCommand\n\n\n\n\nList installed R versions\nrig list\n\n\nInstall latest R\nrig add release\n\n\nInstall specific version\nrig add 4.3\n\n\nSet default R\nrig default 4.4\n\n\nShow default R\nrig default\n\n\n\n\n\n6.11.2 renv Commands\n\n\n\nTask\nCommand\n\n\n\n\nInitialize renv\nrenv::init()\n\n\nInstall from CRAN\ninstall.packages(\"pkg\")\n\n\nInstall from GitHub\nrenv::install(\"user/repo\")\n\n\nInstall from Bioconductor\nBiocManager::install(\"pkg\")\n\n\nSnapshot\nrenv::snapshot()\n\n\nRestore\nrenv::restore()\n\n\nCheck status\nrenv::status()\n\n\nUpdate all packages\nrenv::update()\n\n\nUpdate one package\nrenv::update(\"pkg\")",
     "crumbs": [
       "Core Tools",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>renv</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>R: rig & renv</span>"
     ]
   },
   {
     "objectID": "part2/quarto.html",
     "href": "part2/quarto.html",
-    "title": "7  Quarto Documents",
+    "title": "7  Quarto",
     "section": "",
-    "text": "7.1 Quarto vs R Markdown\nA Quarto document is a plain-text file (.qmd) that combines:\nWhen you render a Quarto document, Quarto executes the code and produces a publishable output—typically HTML, but also PDF or Word.\nIn the Musser Lab, .qmd files are the standard format for data analysis because they are:\nIf you’ve used R Markdown (.Rmd), Quarto will feel familiar. The core idea—mixing code, results, and narrative—is the same.\nKey differences:\nYou don’t need to memorize the differences—just know that Quarto is the modern successor and works similarly.",
+    "text": "7.1 Why Quarto?\nQuarto is a scientific publishing system that lets you combine code, results, and narrative text in a single document. You write analysis scripts as .qmd files—plain text with embedded R or Python code—and Quarto renders them into polished HTML reports with your outputs automatically included.\nIn the Musser Lab, Quarto documents are the standard format for data analysis because they solve a fundamental problem: keeping your code, your results, and your explanation of those results in sync. When you render a .qmd file, Quarto executes the code fresh and weaves the outputs into the document, so the report always reflects the actual analysis.",
     "crumbs": [
       "Core Tools",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto Documents</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto</span>"
     ]
   },
   {
-    "objectID": "part2/quarto.html#quarto-vs-r-markdown",
-    "href": "part2/quarto.html#quarto-vs-r-markdown",
-    "title": "7  Quarto Documents",
+    "objectID": "part2/quarto.html#why-quarto",
+    "href": "part2/quarto.html#why-quarto",
+    "title": "7  Quarto",
     "section": "",
-    "text": "R Markdown\nQuarto\n\n\n\n\nFile extension\n.Rmd\n.qmd\n\n\nLanguage focus\nR-centric\nMulti-language (R, Python, Julia)\n\n\nProject types\nDocuments, some websites\nDocuments, websites, books, slides\n\n\nChunk options\n{r, echo=FALSE}\n#| echo: false (YAML-style)",
+    "text": "7.1.1 Compared to Plain R Scripts\nA plain .R script is just code. It can produce outputs, but there’s no built-in way to document what the code does, why you made certain choices, or what the results mean. When you share a script, collaborators see the code but not your interpretation.\nWith Quarto:\n\nCode and narrative live together — explain what you’re doing as you do it\nResults are embedded — figures and tables appear in the document\nOutput is shareable — render to HTML that anyone can open in a browser\n\n\n\n7.1.2 Compared to R Markdown\nIf you’ve used R Markdown (.Rmd), Quarto will feel familiar. The core idea—mixing code, results, and narrative—is the same. Quarto is R Markdown’s successor, developed by Posit (the company behind RStudio) as a unified system that works equally well with R, Python, Julia, and other languages.\n\n\n\n\n\n\n\n\n\nR Markdown\nQuarto\n\n\n\n\nFile extension\n.Rmd\n.qmd\n\n\nLanguage support\nR-centric (Python possible but awkward)\nMulti-language by design\n\n\nChunk options\n{r, echo=FALSE}\n#| echo: false (YAML-style)\n\n\nOutput formats\nDocuments, some websites\nDocuments, websites, books, slides, dashboards\n\n\n\nYou don’t need to memorize the differences. If you know R Markdown, Quarto works similarly. If you’re new to both, just learn Quarto—it’s the modern standard.\n\n\n7.1.3 What Else Can Quarto Do?\nWhile we primarily use Quarto for analysis scripts, it’s a general-purpose publishing system. This book was built with Quarto. You can also create:\n\nWebsites — project documentation, lab websites\nPresentations — slides rendered from code (RevealJS format)\nDashboards — interactive displays of data\n\nSee the Quarto documentation if you want to explore these formats.",
     "crumbs": [
       "Core Tools",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto Documents</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "part2/quarto.html#the-interactive-development-workflow",
+    "href": "part2/quarto.html#the-interactive-development-workflow",
+    "title": "7  Quarto",
+    "section": "7.2 The Interactive Development Workflow",
+    "text": "7.2 The Interactive Development Workflow\nBefore diving into syntax, understand how you’ll actually work with Quarto documents. The workflow has two modes:\n\n7.2.1 Interactive Development\nMost of your time is spent running code interactively—executing chunks one at a time, inspecting results, and iterating. This is exploratory work:\n\nWrite a chunk of code in your .qmd file\nRun it with Cmd+Enter (macOS) or Ctrl+Enter (Windows)\nInspect the output in the Console, Variables pane, or Data Viewer\nIterate — modify the code, run again, check results\nMove on to the next chunk when satisfied\n\nDuring interactive development, you’re using Positron like an enhanced REPL. The .qmd file is your scratch pad. Objects you create persist in your R or Python session, so you can build on previous chunks.\n[TODO: screenshot of Positron with .qmd open, console showing output, Data Viewer with dataframe]\n\n\n7.2.2 Rendering\nWhen the analysis is complete—or when you want to share it—you render the document:\nquarto render my_analysis.qmd\nRendering executes every code chunk in a fresh session (no leftover objects from interactive work) and produces a standalone HTML file. This catches errors you might miss interactively, like relying on an object you created manually but forgot to include in the script.\nThe key insight: Interactive mode is for development. Rendering is for validation and sharing. Always render before committing or sending a report to someone.\n\n\n7.2.3 A Typical Session\nHere’s what a working session looks like:\n\nOpen your project in Positron\nOpen or create a .qmd file\nWrite the setup chunk (libraries, paths)\nRun it interactively to confirm packages load\nWrite a data-loading chunk, run it, inspect the data in Data Viewer\nWrite analysis chunks one at a time, running and checking each\nWhen complete, render the full document\nFix any errors that appear during render (usually missing objects or packages)\nCommit the .qmd file (and optionally the rendered HTML)\n\nThis interactive-then-render workflow is why Quarto documents are more reliable than scripts you only ever run interactively.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto</span>"
     ]
   },
   {
     "objectID": "part2/quarto.html#document-structure",
     "href": "part2/quarto.html#document-structure",
-    "title": "7  Quarto Documents",
-    "section": "7.2 Document Structure",
-    "text": "7.2 Document Structure\nA Quarto document has two parts:\n\nYAML header — metadata and rendering options (at the top, between --- markers)\nBody — Markdown text interspersed with code chunks\n\n\n7.2.1 Minimal Example\n---\ntitle: \"My Analysis\"\nformat: html\n---\n\n## Introduction\n\nThis analysis examines...\n\n```{r}\nlibrary(tidyverse)\ndata &lt;- read_csv(\"data/input.csv\")\nglimpse(data)\n```",
+    "title": "7  Quarto",
+    "section": "7.3 Document Structure",
+    "text": "7.3 Document Structure\nA Quarto document has two parts:\n\nYAML header — metadata and rendering options (between --- markers at the top)\nBody — Markdown text interspersed with code chunks\n\n\n7.3.1 Minimal Example\n---\ntitle: \"My Analysis\"\nformat: html\n---\n\n## Introduction\n\nThis analysis examines the relationship between X and Y.\n\n```{r}\nlibrary(tidyverse)\ndata &lt;- read_csv(\"data/input.csv\")\nglimpse(data)\n```\n\n## Results\n\n```{r}\nggplot(data, aes(x = x, y = y)) +\n  geom_point()\n```\nWhen rendered, this produces an HTML file with the title, your text, and the code outputs (the glimpse() output and the plot) embedded.",
     "crumbs": [
       "Core Tools",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto Documents</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto</span>"
     ]
   },
   {
     "objectID": "part2/quarto.html#the-yaml-header",
     "href": "part2/quarto.html#the-yaml-header",
-    "title": "7  Quarto Documents",
-    "section": "7.3 The YAML Header",
-    "text": "7.3 The YAML Header\nThe YAML header controls how your document renders. Here’s a typical header for a lab analysis:\n---\ntitle: \"Phosphoproteomics Volcano Plots\"\nsubtitle: \"Tryptamine treatment time course\"\nauthor: \"Your Name\"\ndate: today\nformat:\n  html:\n    toc: true\n    toc-depth: 2\n    number-sections: true\n    code-fold: false\n    code-tools: true\n    self-contained: true\nexecute:\n  echo: true\n  message: false\n  warning: false\n---\n\n7.3.1 Common Options\nDocument metadata:\n\n\n\nOption\nPurpose\nExample\n\n\n\n\ntitle\nDocument title\n\"My Analysis\"\n\n\nsubtitle\nSecondary title\n\"Version 2\"\n\n\nauthor\nYour name\n\"Jane Doe\"\n\n\ndate\nDate (use today for auto)\ntoday\n\n\n\nFormat options (under format: html:):\n\n\n\nOption\nPurpose\nExample\n\n\n\n\ntoc\nTable of contents\ntrue\n\n\ntoc-depth\nHeading levels in TOC\n2\n\n\nnumber-sections\nNumbered headings\ntrue\n\n\ncode-fold\nCollapsible code blocks\ntrue or false\n\n\ncode-tools\nShow/hide all code button\ntrue\n\n\nself-contained\nSingle HTML file (no dependencies)\ntrue\n\n\n\nExecute options (under execute:):\n\n\n\nOption\nPurpose\nExample\n\n\n\n\necho\nShow code in output\ntrue\n\n\nmessage\nShow package messages\nfalse\n\n\nwarning\nShow warnings\nfalse\n\n\ncache\nCache chunk results\nfalse",
+    "title": "7  Quarto",
+    "section": "7.4 The YAML Header",
+    "text": "7.4 The YAML Header\nThe YAML header controls document metadata and rendering behavior. Here’s a typical header for a lab analysis script:\n---\ntitle: \"Phosphoproteomics Volcano Plots\"\nsubtitle: \"Tryptamine treatment time course\"\nauthor: \"Your Name\"\ndate: today\nformat:\n  html:\n    toc: true\n    toc-depth: 2\n    number-sections: true\n    code-fold: false\n    code-tools: true\n    self-contained: true\nexecute:\n  echo: true\n  message: false\n  warning: false\n---\n\n7.4.1 Document Metadata\n\n\n\nOption\nPurpose\nExample\n\n\n\n\ntitle\nDocument title (appears at top)\n\"My Analysis\"\n\n\nsubtitle\nSecondary title\n\"Version 2\"\n\n\nauthor\nYour name\n\"Jane Doe\"\n\n\ndate\nDate; use today for automatic\ntoday\n\n\n\n\n\n7.4.2 Format Options\nThese go under format: html: and control the HTML output:\n\n\n\n\n\n\n\n\nOption\nPurpose\nRecommended\n\n\n\n\ntoc\nInclude table of contents\ntrue\n\n\ntoc-depth\nHow many heading levels in TOC\n2\n\n\nnumber-sections\nNumber your headings\ntrue\n\n\ncode-fold\nCollapse code blocks by default\nfalse for analysis scripts\n\n\ncode-tools\nAdd show/hide all code button\ntrue\n\n\nself-contained\nSingle HTML file (no external dependencies)\ntrue\n\n\n\n\n\n7.4.3 Execute Options\nThese go under execute: and control code execution:\n\n\n\nOption\nPurpose\nRecommended\n\n\n\n\necho\nShow code in output\ntrue for analysis scripts\n\n\nmessage\nShow package messages\nfalse\n\n\nwarning\nShow warnings\nfalse\n\n\ncache\nCache chunk results\nfalse (usually)\n\n\n\nSetting message: false and warning: false globally keeps your rendered output clean. You can override these per-chunk when you need to see specific messages.",
     "crumbs": [
       "Core Tools",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto Documents</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "part2/quarto.html#the-setup-chunk",
+    "href": "part2/quarto.html#the-setup-chunk",
+    "title": "7  Quarto",
+    "section": "7.5 The Setup Chunk",
+    "text": "7.5 The Setup Chunk\nEvery analysis script should start with a setup chunk that loads packages, defines paths, and sets options. This establishes the foundation for everything that follows.\n#| label: setup\n#| include: false\n\n# ---- Libraries ----\nsuppressPackageStartupMessages({\n  library(tidyverse)\n  library(here)\n  library(scales)\n})\n\n# ---- Paths ----\ndir_data &lt;- here::here(\"data\", \"processed\")\ndir_out &lt;- here::here(\"outs\", \"01_my_analysis\")\n\n# Create output directory if needed\ndir.create(dir_out, recursive = TRUE, showWarnings = FALSE)\n\n# ---- Options ----\noptions(stringsAsFactors = FALSE)\nset.seed(42)\n\n7.5.1 Key Patterns\n#| include: false — The chunk runs but doesn’t appear in the rendered output. Use this for setup code that readers don’t need to see.\nsuppressPackageStartupMessages() — Prevents the startup messages that packages print when loaded. This keeps your console (and rendered output) clean.\nhere::here() — Builds file paths relative to the project root, not the script location. Essential for reproducibility. See Working Directory and Paths below.\ndir.create(..., showWarnings = FALSE) — Ensures output directories exist. The showWarnings = FALSE prevents errors if the directory already exists.\nset.seed() — Makes random operations reproducible. Use a fixed seed when your analysis involves any randomness (sampling, clustering, etc.).",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "part2/quarto.html#documenting-inputs-and-outputs",
+    "href": "part2/quarto.html#documenting-inputs-and-outputs",
+    "title": "7  Quarto",
+    "section": "7.6 Documenting Inputs and Outputs",
+    "text": "7.6 Documenting Inputs and Outputs\nAfter the YAML header and before the setup chunk, document what the script reads and produces:\n# Introduction\n\nThis script generates volcano plots for the phosphoproteomics time course,\nvisualizing differential phosphorylation between treated and control samples.\n\n**Inputs:**\n\n- `data/processed/limma_results.rds` — differential expression results\n- `data/processed/metadata.csv` — sample metadata\n\n**Outputs:**\n\n- `outs/01_volcano_plots/volcano_*.pdf` — volcano plots per comparison\n- `outs/01_volcano_plots/significant_hits.csv` — filtered results table\nThis practice:\n\nMakes the script’s purpose immediately clear\nDocuments dependencies (what must exist before this runs)\nDocuments products (what other scripts can use as inputs)\nHelps you and collaborators understand the analysis pipeline\n\nSee the Project Organization chapter for how this fits into the larger project structure.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto</span>"
     ]
   },
   {
     "objectID": "part2/quarto.html#code-chunks",
     "href": "part2/quarto.html#code-chunks",
-    "title": "7  Quarto Documents",
-    "section": "7.4 Code Chunks",
-    "text": "7.4 Code Chunks\nCode chunks are fenced with triple backticks and a language identifier:\n```{r}\n# R code here\n```\n\n```{python}\n# Python code here\n```\n\n7.4.1 Chunk Options\nUse the #| syntax to set options for individual chunks:\n#| label: load-data\n#| message: false\n#| warning: false\n\ndata &lt;- read_csv(\"data/input.csv\")\nCommon chunk options:\n\n\n\nOption\nPurpose\nValues\n\n\n\n\nlabel\nChunk identifier (for cross-refs, debugging)\nload-data\n\n\necho\nShow this chunk’s code\ntrue, false\n\n\neval\nRun this chunk\ntrue, false\n\n\ninclude\nInclude chunk in output at all\ntrue, false\n\n\nmessage\nShow messages\ntrue, false\n\n\nwarning\nShow warnings\ntrue, false\n\n\nfig-cap\nFigure caption\n\"My figure\"\n\n\nfig-width\nFigure width (inches)\n6\n\n\nfig-height\nFigure height (inches)\n4\n\n\n\n\n\n7.4.2 The Setup Chunk\nMost analysis scripts start with a setup chunk that loads packages, defines paths, and sets options. Use #| include: false to run it without showing it in the output:\n#| label: setup\n#| include: false\n\n# ---- Libraries ----\nsuppressPackageStartupMessages({\n  library(tidyverse)\n  library(here)\n  library(scales)\n})\n\n# ---- Paths ----\ndir_data &lt;- here::here(\"data\", \"processed\")\ndir_out &lt;- here::here(\"output\", \"figures\")\n\n# Create output directory if needed\ndir.create(dir_out, recursive = TRUE, showWarnings = FALSE)\n\n# ---- Options ----\noptions(stringsAsFactors = FALSE)\nset.seed(42)\nKey patterns:\n\nsuppressPackageStartupMessages() keeps the output clean\nhere::here() builds paths relative to the project root\ndir.create(..., showWarnings = FALSE) ensures output folders exist",
+    "title": "7  Quarto",
+    "section": "7.7 Code Chunks",
+    "text": "7.7 Code Chunks\nCode chunks are fenced with triple backticks and a language identifier:\n```{r}\n# R code here\n```\n\n```{python}\n# Python code here\n```\n\n7.7.1 Chunk Options\nUse the #| syntax to set options for individual chunks:\n#| label: load-data\n#| message: false\n#| warning: false\n\ndata &lt;- read_csv(here::here(\"data\", \"input.csv\"))\nThe label option names the chunk. This is useful for:\n\nDebugging (error messages reference the chunk label)\nCross-references (linking to figures)\nCaching (cached chunks are identified by label)\n\n\n\n7.7.2 Common Chunk Options\n\n\n\nOption\nPurpose\nValues\n\n\n\n\nlabel\nChunk identifier\nload-data, fig-volcano\n\n\necho\nShow this chunk’s code\ntrue, false\n\n\neval\nRun this chunk\ntrue, false\n\n\ninclude\nInclude in output at all\ntrue, false\n\n\nmessage\nShow messages\ntrue, false\n\n\nwarning\nShow warnings\ntrue, false\n\n\nfig-cap\nFigure caption\n\"My figure title\"\n\n\nfig-width\nFigure width (inches)\n6\n\n\nfig-height\nFigure height (inches)\n4\n\n\n\n\n\n7.7.3 Chunk Patterns\nHidden setup — runs but doesn’t appear in output:\n#| label: setup\n#| include: false\n\nlibrary(tidyverse)\nVisible code with clean output — shows code, hides messages:\n#| label: load-data\n#| message: false\n#| warning: false\n\ndata &lt;- read_csv(\"data.csv\")\nFigure with caption — for publication-ready figures:\n#| label: fig-volcano\n#| fig-cap: \"Volcano plot showing differential expression\"\n#| fig-width: 6\n#| fig-height: 4\n\nggplot(results, aes(x = logFC, y = -log10(pvalue))) +\n  geom_point()\nCode shown but not run — for demonstrating syntax:\n#| label: example-syntax\n#| eval: false\n\n# This code is displayed but not executed\nhypothetical_function()",
     "crumbs": [
       "Core Tools",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto Documents</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto</span>"
     ]
   },
   {
-    "objectID": "part2/quarto.html#lab-guidelines-for-analysis-scripts",
-    "href": "part2/quarto.html#lab-guidelines-for-analysis-scripts",
-    "title": "7  Quarto Documents",
-    "section": "7.5 Lab Guidelines for Analysis Scripts",
-    "text": "7.5 Lab Guidelines for Analysis Scripts\n\n7.5.1 State Inputs and Outputs\nAt the top of your document (after the YAML, before the setup chunk), clearly state what the script reads and produces:\n# Introduction\n\nThis script generates volcano plots for the phosphoproteomics time course.\n\n**Inputs:**\n\n- `data/processed/limma_results.rds` — differential expression results\n- `data/processed/metadata.csv` — sample metadata\n\n**Outputs:**\n\n- `output/figures/volcano_*.pdf` — volcano plots per timepoint\n- `output/tables/significant_hits.csv` — filtered results table\n\n\n7.5.2 One Script, One Purpose\nEach .qmd should do one coherent thing:\n\n01_qc.qmd — quality control and filtering\n02_differential_expression.qmd — statistical analysis\n03_volcano_plots.qmd — visualization\n\nAvoid giant all-purpose notebooks.\n\n\n7.5.3 Save Outputs Explicitly\nDon’t rely on the Plots pane or copy-paste. Save figures and tables to files:\n#| label: fig-volcano\n#| fig-cap: \"Volcano plot showing differential phosphorylation\"\n\np &lt;- ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +\n  geom_point() +\n  theme_minimal()\n\nprint(p)\n\n# Save to output folder\nggsave(\n  file.path(dir_out, \"volcano_plot.pdf\"),\n  plot = p,\n  width = 6,\n  height = 4\n)\n\n\n7.5.4 Render Before Sharing\nBefore sending a report or committing, render the full document to ensure it runs cleanly:\nquarto render analysis/my_analysis.qmd\nThis catches errors that might not appear when running chunks interactively.\n\n\n\n\n\n\nTipProject Organization\n\n\n\nFor how to structure your project folders and track which scripts produce which outputs, see the Project Organization chapter.",
+    "objectID": "part2/quarto.html#working-with-r",
+    "href": "part2/quarto.html#working-with-r",
+    "title": "7  Quarto",
+    "section": "7.8 Working with R",
+    "text": "7.8 Working with R\n\n7.8.1 Running Code\nSelect code in the editor and press Cmd+Enter (macOS) or Ctrl+Enter (Windows) to run it in the R console. For entire chunks, use Cmd+Shift+Enter.\nWhen you run R code:\n\nOutput appears in the Console\nPlots appear in the Plots pane (and can be viewed in Data Viewer for inspection)\nObjects are created in your R session (visible in Variables pane)\n\n\n\n7.8.2 The Data Viewer\nClick any dataframe in the Variables pane to open it in Positron’s Data Viewer. This is essential for exploratory work—you’ll constantly check data after transformations to verify they worked correctly.\n\n\n7.8.3 renv Integration\nIf your project uses renv (and it should), the R console automatically activates it. You’ll see:\n- Project '/path/to/project' loaded. [renv 1.0.0]\nThis confirms you’re using the project’s package library, not your global library.",
     "crumbs": [
       "Core Tools",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto Documents</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto</span>"
     ]
   },
   {
-    "objectID": "part2/quarto.html#rendering",
-    "href": "part2/quarto.html#rendering",
-    "title": "7  Quarto Documents",
-    "section": "7.6 Rendering",
-    "text": "7.6 Rendering\n\n7.6.1 From the Terminal\n# Render a single document\nquarto render analysis/01_qc.qmd\n\n# Render all .qmd files in a directory\nquarto render analysis/\n\n\n7.6.2 From Positron\n\nClick the Render button in the editor toolbar\nOr use the keyboard shortcut (Cmd+Shift+K on macOS)\n\n\n\n7.6.3 Preview Mode\nFor interactive development, use preview mode—it re-renders automatically when you save:\nquarto preview analysis/01_qc.qmd",
+    "objectID": "part2/quarto.html#working-with-python",
+    "href": "part2/quarto.html#working-with-python",
+    "title": "7  Quarto",
+    "section": "7.9 Working with Python",
+    "text": "7.9 Working with Python\n\n7.9.1 Running Code\nThe same shortcuts work for Python: Cmd+Enter to run the current line or selection.\nFor Python chunks to execute during render, you need ipykernel installed in your conda environment:\nconda install ipykernel\n\n\n7.9.2 Selecting the Interpreter\nEnsure Positron is using the correct conda environment:\n\nOpen Command Palette (Cmd/Ctrl+Shift+P)\nType “Python: Select Interpreter”\nChoose your project’s conda environment",
     "crumbs": [
       "Core Tools",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto Documents</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto</span>"
     ]
   },
   {
-    "objectID": "part2/quarto.html#working-directory",
-    "href": "part2/quarto.html#working-directory",
-    "title": "7  Quarto Documents",
-    "section": "7.7 Working Directory",
-    "text": "7.7 Working Directory\nWhen Quarto renders a .qmd, the working directory is the folder containing the .qmd file—not the project root.\nThis means relative paths in your code are relative to the .qmd location:\nproject/\n├── analysis/\n│   └── 01_qc.qmd      ← working directory when rendering\n├── data/\n│   └── input.csv\n└── output/\nFrom analysis/01_qc.qmd, you’d write:\n# Relative path (works, but fragile)\ndata &lt;- read_csv(\"../data/input.csv\")\n\n# Better: use here::here() for project-relative paths\ndata &lt;- read_csv(here::here(\"data\", \"input.csv\"))\nThe here package finds the project root (by looking for .git, .Rproj, etc.) and builds paths from there. This makes your code work regardless of where the .qmd lives.",
+    "objectID": "part2/quarto.html#saving-outputs",
+    "href": "part2/quarto.html#saving-outputs",
+    "title": "7  Quarto",
+    "section": "7.10 Saving Outputs",
+    "text": "7.10 Saving Outputs\nDon’t rely on the Plots pane or copy-paste. Save figures and tables to files explicitly:\n#| label: fig-volcano\n#| fig-cap: \"Volcano plot showing differential phosphorylation\"\n\np &lt;- ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +\n  geom_point() +\n  theme_minimal()\n\n# Display in rendered document\nprint(p)\n\n# Save to output folder\nggsave(\n  file.path(dir_out, \"volcano_plot.pdf\"),\n  plot = p,\n  width = 6,\n  height = 4\n)\nThis approach:\n\nEmbeds the figure in the rendered HTML (via print(p))\nSaves a high-quality PDF for publication or further use\nMakes the output traceable (the file exists in outs/)\n\nFor tables:\n# Save results table\nwrite_csv(significant_hits, file.path(dir_out, \"significant_hits.csv\"))",
     "crumbs": [
       "Core Tools",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto Documents</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "part2/quarto.html#working-directory-and-paths",
+    "href": "part2/quarto.html#working-directory-and-paths",
+    "title": "7  Quarto",
+    "section": "7.11 Working Directory and Paths",
+    "text": "7.11 Working Directory and Paths\nWhen Quarto renders a .qmd, the working directory is the folder containing the .qmd file—not the project root. This can cause path confusion.\nproject/\n├── scripts/\n│   └── 01_analysis.qmd    ← Working directory during render\n├── data/\n│   └── input.csv\n└── outs/\nFrom scripts/01_analysis.qmd, a relative path to the data would be ../data/input.csv. But this breaks if you move the script or run it from a different location.\n\n7.11.1 The Solution: here::here()\nThe here package finds the project root (by looking for .git, .Rproj, etc.) and builds paths from there:\n# Always works, regardless of working directory\ndata &lt;- read_csv(here::here(\"data\", \"input.csv\"))\n\n# Instead of fragile relative paths\ndata &lt;- read_csv(\"../data/input.csv\")  # Don't do this\nUse here::here() for all file paths in your scripts. It makes your code portable and reproducible.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "part2/quarto.html#rendering-1",
+    "href": "part2/quarto.html#rendering-1",
+    "title": "7  Quarto",
+    "section": "7.12 Rendering",
+    "text": "7.12 Rendering\n\n7.12.1 From the Terminal\n# Render a single document\nquarto render scripts/01_analysis.qmd\n\n# Render all .qmd files in a directory\nquarto render scripts/\n\n\n7.12.2 From Positron\n\nClick the Render button in the editor toolbar\nOr use Cmd+Shift+K (macOS) / Ctrl+Shift+K (Windows)\n\n\n\n7.12.3 Preview Mode\nFor live feedback during development, use preview mode:\nquarto preview scripts/01_analysis.qmd\nThis opens a browser window that automatically refreshes when you save changes. Useful for tuning formatting, but remember that preview still renders in a fresh session—it’s not the same as interactive execution.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "part2/quarto.html#best-practices",
+    "href": "part2/quarto.html#best-practices",
+    "title": "7  Quarto",
+    "section": "7.13 Best Practices",
+    "text": "7.13 Best Practices\n\n7.13.1 Render Before Committing\nAlways render the full document before committing to Git. This catches:\n\nMissing packages (installed interactively but not in lockfile)\nMissing objects (created interactively but not in the script)\nOrder dependencies (chunks that depend on earlier chunks you modified)\n\n\n\n7.13.2 Self-Contained Scripts\nEvery .qmd should run successfully from a fresh R session. Don’t assume objects exist from previous interactive work. If render fails, your script isn’t self-contained.\n\n\n7.13.3 Clear Section Structure\nOrganize your script with clear headings:\n# Introduction\n# Setup\n# Load Data\n# Analysis\n# Results\n# Summary\nThis makes the script navigable (via Positron’s Outline panel) and the rendered document readable.\n\n\n7.13.4 Validation Chunks\nFor complex analyses, add validation chunks that verify data integrity:\n#| label: validate-data\n#| include: false\n\n# Check required columns exist\nrequired_cols &lt;- c(\"sample_id\", \"condition\", \"value\")\nmissing_cols &lt;- setdiff(required_cols, names(data))\nif (length(missing_cols) &gt; 0) {\n  stop(\"Missing required columns: \", paste(missing_cols, collapse = \", \"))\n}\n\n# Check for expected conditions\nstopifnot(\"No data loaded\" = nrow(data) &gt; 0)\nThese chunks catch problems early and provide clear error messages.\n\n\n7.13.5 Session Info\nEnd your script with session information for reproducibility:\n#| label: session-info\n\nsessionInfo()\nThis records R version, package versions, and platform information in the rendered output.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto</span>"
     ]
   },
   {
     "objectID": "part2/quarto.html#common-issues",
     "href": "part2/quarto.html#common-issues",
-    "title": "7  Quarto Documents",
-    "section": "7.8 Common Issues",
-    "text": "7.8 Common Issues\n\n7.8.1 “Object not found” errors during render\nCode that works interactively may fail during render if you rely on objects in your R environment that aren’t created in the script. The rendered document starts with a fresh environment.\nFix: Ensure your .qmd is self-contained—all objects must be created within the script.\n\n\n7.8.2 Figures not appearing\nIf a plot doesn’t show up, make sure you’re printing it:\np &lt;- ggplot(data, aes(x, y)) + geom_point()\nprint(p)  # Required inside functions or complex chunks\n\n\n7.8.3 Package messages cluttering output\nSet message: false and warning: false in the execute: block or per-chunk.\n\n\n7.8.4 Output file is huge\nIf your HTML is very large, it might be embedding high-resolution images. Options:\n\nUse self-contained: false (creates a _files folder for assets)\nReduce figure resolution with fig-dpi: 150\nUse fig-format: png instead of svg",
+    "title": "7  Quarto",
+    "section": "7.14 Common Issues",
+    "text": "7.14 Common Issues\n\n7.14.1 “Object not found” During Render\nCode that works interactively may fail during render if you rely on objects not created in the script.\nCause: You created an object manually in the console, then used it in a chunk without creating it in the script.\nFix: Ensure all objects are created within the .qmd. Render frequently to catch this early.\n\n\n7.14.2 Figures Not Appearing\nIf a plot doesn’t show up in the rendered output:\np &lt;- ggplot(data, aes(x, y)) + geom_point()\nprint(p)  # Required inside loops or complex chunks\nThe explicit print() is needed when the plot is the result of an assignment or is inside a loop/function.\n\n\n7.14.3 Package Messages Cluttering Output\nSet message: false and warning: false in the execute: block:\nexecute:\n  message: false\n  warning: false\nOr per-chunk for specific chunks.\n\n\n7.14.4 Output File Is Huge\nIf your HTML is very large:\n\nEmbedded images: Use self-contained: false to keep images in a separate _files folder\nHigh resolution: Add fig-dpi: 150 to reduce figure resolution\nSVG format: Use fig-format: png instead of SVG for complex plots\n\n\n\n7.14.5 Chunk Takes Forever\nFor long-running chunks during development, consider:\n#| cache: true\nThis caches the chunk’s results. Subsequent renders skip execution if the code hasn’t changed. Use sparingly—caching can cause subtle bugs if dependencies change.",
     "crumbs": [
       "Core Tools",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto Documents</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto</span>"
     ]
   },
   {
     "objectID": "part2/quarto.html#quick-reference",
     "href": "part2/quarto.html#quick-reference",
-    "title": "7  Quarto Documents",
-    "section": "7.9 Quick Reference",
-    "text": "7.9 Quick Reference\n\n7.9.1 Typical YAML Header\n---\ntitle: \"Analysis Title\"\nauthor: \"Your Name\"\ndate: today\nformat:\n  html:\n    toc: true\n    number-sections: true\n    code-tools: true\n    self-contained: true\nexecute:\n  echo: true\n  message: false\n  warning: false\n---\n\n\n7.9.2 Chunk Option Syntax\n#| label: my-chunk\n#| echo: false\n#| fig-cap: \"My figure caption\"\n#| fig-width: 8\n#| fig-height: 6\n\n\n7.9.3 Useful Commands\nquarto render file.qmd      # Render once\nquarto preview file.qmd     # Live preview\nquarto render analysis/     # Render all in folder",
+    "title": "7  Quarto",
+    "section": "7.15 Quick Reference",
+    "text": "7.15 Quick Reference\n\n7.15.1 Typical YAML Header\n---\ntitle: \"Analysis Title\"\nsubtitle: \"Project context\"\nauthor: \"Your Name\"\ndate: today\nformat:\n  html:\n    toc: true\n    toc-depth: 2\n    number-sections: true\n    code-fold: false\n    code-tools: true\n    self-contained: true\nexecute:\n  echo: true\n  message: false\n  warning: false\n---\n\n\n7.15.2 Setup Chunk Template\n#| label: setup\n#| include: false\n\n# ---- Libraries ----\nsuppressPackageStartupMessages({\n  library(tidyverse)\n  library(here)\n})\n\n# ---- Paths ----\ndir_data &lt;- here::here(\"data\")\ndir_out &lt;- here::here(\"outs\", \"script_name\")\ndir.create(dir_out, recursive = TRUE, showWarnings = FALSE)\n\n# ---- Options ----\noptions(stringsAsFactors = FALSE)\nset.seed(42)\n\n\n7.15.3 Chunk Options Reference\n\n\n\nOption\nPurpose\nValues\n\n\n\n\nlabel\nChunk name\nAny string\n\n\necho\nShow code\ntrue / false\n\n\neval\nRun code\ntrue / false\n\n\ninclude\nInclude in output\ntrue / false\n\n\nmessage\nShow messages\ntrue / false\n\n\nwarning\nShow warnings\ntrue / false\n\n\nerror\nContinue on error\ntrue / false\n\n\ncache\nCache results\ntrue / false\n\n\nfig-cap\nFigure caption\nString\n\n\nfig-width\nWidth in inches\nNumber\n\n\nfig-height\nHeight in inches\nNumber\n\n\nfig-dpi\nResolution\nNumber (default 72)\n\n\nfig-format\nOutput format\npng / svg / pdf\n\n\ntbl-cap\nTable caption\nString\n\n\n\n\n\n7.15.4 Quarto Commands\n\n\n\nCommand\nPurpose\n\n\n\n\nquarto render file.qmd\nRender to HTML\n\n\nquarto render file.qmd --to pdf\nRender to PDF\n\n\nquarto preview file.qmd\nLive preview in browser\n\n\nquarto render directory/\nRender all .qmd in directory\n\n\nquarto check\nVerify Quarto installation\n\n\n\n\n\n7.15.5 Keyboard Shortcuts (Positron)\n\n\n\nAction\nmacOS\nWindows\n\n\n\n\nRun line/selection\nCmd+Enter\nCtrl+Enter\n\n\nRun chunk\nCmd+Shift+Enter\nCtrl+Shift+Enter\n\n\nRender document\nCmd+Shift+K\nCtrl+Shift+K\n\n\nInsert R chunk\nCmd+Option+I\nCtrl+Alt+I",
     "crumbs": [
       "Core Tools",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto Documents</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quarto</span>"
     ]
   },
   {
