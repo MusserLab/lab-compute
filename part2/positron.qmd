@@ -184,6 +184,14 @@ Positron remembers this choice for the project. When you open the project again,
 If you just created a new conda environment, you may need to restart Positron for it to detect the new environment. This is a common gotcha—restart and try again.
 :::
 
+::: {.callout-claude title="Ask Claude"}
+**Fix interpreter or environment issues:**
+
+> Positron isn't finding my conda environment "my-project". When I open the interpreter selector, it's not in the list. I created it with `conda create -n my-project python=3.11` and it shows up when I run `conda env list` in the terminal. What should I check?
+
+*Describe what you expected, what happened, and what you've already checked.*
+:::
+
 ### Seamless Environment Switching
 
 One of Positron's strengths: when you switch between projects, environments switch automatically. If Project A uses `conda-env-a` and Project B uses `conda-env-b`, opening each project activates the correct environment without manual intervention.

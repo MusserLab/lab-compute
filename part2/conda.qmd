@@ -175,6 +175,18 @@ This includes exact versions and platform-specific builds—useful for debugging
 conda env create -f environment.yml
 ```
 
+::: {.callout-claude title="Ask Claude"}
+**Fix conda environment issues:**
+
+> I'm getting `ModuleNotFoundError: No module named 'pandas'` when I run my script, but I thought I installed it. The environment is `my-project` and here's what `conda list` shows:
+>
+> [paste output]
+>
+> What's wrong?
+
+*Include the environment name and the output of `conda list`. Claude can spot if the package is missing or if you're in the wrong environment.*
+:::
+
 ::: {.callout-tip}
 ## Keep environment.yml Updated
 When you install new packages, update your environment file. The Claude Code `/done` command can help manage this as part of your commit workflow.

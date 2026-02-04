@@ -188,6 +188,22 @@ This tells you if packages are:
 
 Run `renv::status()` before committing to ensure your lockfile is current.
 
+::: {.callout-claude title="Ask Claude"}
+**Fix renv sync issues:**
+
+> I'm getting this warning when I start R:
+>
+> `* Project 'my-project' is out-of-sync -- use renv::status() for details`
+>
+> I ran `renv::status()` and it shows:
+>
+> [paste the output]
+>
+> What should I do—restore or snapshot?
+
+*Include the actual `renv::status()` output. It tells Claude exactly what's out of sync.*
+:::
+
 ## Core R Packages
 
 ### The tidyverse {#tidyverse}

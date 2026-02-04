@@ -79,6 +79,14 @@ Thumbs.db
 mkdir -p data/raw data/processed scripts output .claude
 ```
 
+::: {.callout-claude title="Ask Claude"}
+**Set up your CLAUDE.md:**
+
+> I'm starting a new project analyzing proteomics data from cell cultures. The data is in `data/raw/`, I'm using R with renv, and I'll render with Quarto. Can you create a starter `.claude/CLAUDE.md` for this project?
+
+*Tell Claude the project type, data location, and tools you're using. It'll create a tailored template.*
+:::
+
 ### 4. Set Up Python Environment (if using Python)
 
 ```bash

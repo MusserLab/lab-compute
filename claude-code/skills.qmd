@@ -1,18 +1,10 @@
 # Skills
 
-Skills are reusable instruction sets that teach Claude Code how to handle specific types of tasks. They live in `~/.claude/skills/` and activate automatically based on context.
-
-## Why Skills?
-
-Without skills, you'd repeat the same instructions across projects:
-
-- "Use tidyverse style"
-- "Show data summaries after transformations"
-- "Include co-author attribution in commits"
-
-Skills let you write these instructions once and have them apply automatically.
+Skills are reusable instruction sets that customize Claude Code's behavior for specific tasks. Think of them as "expert modes"—when you're doing git work, the git skill loads; when you're plotting in R, the plotting skill loads.
 
 ## How Skills Work
+
+Skills live in folders with a `SKILL.md` file:
 
 ```
 ~/.claude/skills/
@@ -24,71 +16,83 @@ Skills let you write these instructions once and have them apply automatically.
     └── SKILL.md
 ```
 
-Each skill is a folder containing a `SKILL.md` file with instructions. Claude Code loads relevant skills based on:
+Claude Code loads relevant skills based on:
 
+- The task you're performing (writing code, committing, plotting)
+- File types you're working with (.qmd, .R, .py)
 - Keywords in your requests
-- File types you're working with
-- Tasks you're performing
+
+## Types of Skills
+
+### Background Skills
+
+These load automatically based on context—you don't invoke them directly.
+
+| Skill | When It Activates | What It Does |
+|-------|-------------------|--------------|
+| `data-handling` | Writing R/Python analysis code | Shows data summaries at key steps (`glimpse()`, row counts); annotates analytical decisions in comments; validates joins to prevent silent data loss; asks you before making important analytical choices |
+| `r-plotting-style` | Creating ggplot2 visualizations | Uses `theme_classic()` base with no grid lines; applies `ggrepel` for labels; keeps sizing consistent across related plots |
+| `file-safety` | Creating or modifying files | Prevents overwriting collaborator outputs or raw data; creates versioned filenames instead; asks before uncertain overwrites |
+| `git-conventions` | Git operations (commit, push, etc.) | Adds co-author line to commits; reviews staged changes; avoids committing secrets or large files |
+| `conda-env` | Running Python scripts or pip | Sources conda profile script before activating environments (required in Claude's non-interactive shell) |
+| `r-renv` | Working in R projects with renv.lock | Explains "out-of-sync" warnings; reminds about `renv::snapshot()` after installing packages |
+| `quarto-docs` | Rendering .qmd files | Uses `quarto render` CLI (not `rmarkdown::render()`); knows format options and common errors |
+
+### User-Invocable Skills (Slash Commands)
+
+These are commands you invoke explicitly by typing `/command`:
+
+| Command | When to Use | What It Does |
+|---------|-------------|--------------|
+| `/done` | End of a working session | Summarizes accomplishments; checks if renv needs updating; offers to commit changes with descriptive message; optionally publishes Quarto sites |
+| `/publish` | After changes to a Quarto book/website | Commits current changes and runs `quarto publish gh-pages` |
+| `/quarto-book-setup` | Starting a new documentation project | Creates Quarto book structure with GitHub Pages configuration |
 
 ## Anatomy of a Skill
 
 A skill file has two parts:
 
-1. **Frontmatter** — Metadata that controls when the skill activates
-2. **Instructions** — The actual guidance for Claude Code
+**1. Frontmatter** — Metadata about the skill
 
-```markdown
+```yaml
 ---
-description: Data handling best practices for R and Python analysis scripts
-triggers:
-  - data manipulation
-  - analysis pipelines
-  - .qmd scripts that process data
+name: skill-name
+description: When to use this skill
+user-invocable: false  # or true for /commands
 ---
-
-# Data Handling Best Practices
-
-## Show Data at Key Steps
-
-Include summaries whenever datasets are created or transformed:
-
-\```r
-data <- read_csv("input.csv")
-cat("Loaded", nrow(data), "rows,", ncol(data), "columns\n")
-glimpse(data)
-\```
-
-## Annotate Analytical Decisions
-
-Document the reasoning directly in code:
-
-\```r
-# Filter to genes with > 10 counts in at least 3 samples
-# Threshold based on recommendation from DESeq2 vignette
-keep <- rowSums(counts >= 10) >= 3
-counts_filtered <- counts[keep, ]
-\```
 ```
 
-## Example Skills
+**2. Instructions** — The actual guidance
 
-### Data Handling
+```markdown
+# Skill Title
+
+## When This Applies
+[Conditions when Claude should follow these instructions]
+
+## Instructions
+[What Claude should do]
+
+## Examples
+[Code patterns and templates]
+```
+
+## Example: The data-handling Skill
+
+This skill ensures Claude shows you what's happening to your data:
 
 ```markdown
 ---
+name: data-handling
 description: Data handling best practices for R and Python analysis scripts
-triggers:
-  - data manipulation
-  - analysis pipelines
-  - loading data
-  - transforming data
+user-invocable: false
 ---
 
 # Data Handling Best Practices
 
 ## Show Data at Key Steps
 
-After loading or transforming data, show dimensions and a preview:
+After loading or transforming data, show dimensions:
 
 \```r
 data <- read_csv("data.csv")
@@ -96,230 +100,137 @@ cat("Loaded", nrow(data), "rows,", ncol(data), "columns\n")
 glimpse(data)
 \```
 
-\```python
-data = pd.read_csv("data.csv")
-print(f"Loaded {len(data)} rows, {len(data.columns)} columns")
-data.head()
-\```
-
 ## Validate Joins
 
-When joining datasets, report the result:
+Report what happened after joins:
 
 \```r
 merged <- left_join(a, b, by = "id")
 cat("Joined:", nrow(a), "→", nrow(merged), "rows\n")
-cat("Unmatched:", sum(is.na(merged$new_column)), "\n")
+cat("Unmatched:", sum(is.na(merged$value)), "\n")
 \```
 
-## Annotate Decisions
+## Ask Before Analytical Decisions
 
-Explain non-obvious analytical choices:
-
-\```r
-# Using median normalization (not TPM) because samples have
-# varying library complexity — see docs/normalization_comparison.html
-\```
-
-## Ask Before Deciding
-
-For consequential analytical decisions (filtering thresholds, normalization methods, etc.), present options and ask the user before proceeding.
+For consequential choices (normalization, thresholds, tests),
+present options and ask before proceeding.
 ```
 
-### R Plotting Style
+## Project-Specific Skills
+
+For domain knowledge that only applies to one project, create skills in the project's `.claude/` folder:
+
+```
+my-project/.claude/
+└── skills/
+    └── gene-naming/
+        └── SKILL.md
+```
+
+### When to Create a Project Skill
+
+- Conventions specific to this project's data
+- Domain knowledge Claude needs to apply correctly
+- Code patterns that should be consistent across the project
+
+### Example: Gene Naming Skill
 
 ```markdown
 ---
-description: R ggplot2 plotting conventions and theme
-triggers:
-  - ggplot
-  - plotting
-  - visualization
-  - figures
+name: gene-naming
+description: Gene ID conventions for this transcriptomics project
+user-invocable: false
 ---
 
-# R Plotting Conventions
+# Gene Naming Conventions
 
-## Base Theme
+## ID Formats
+- Trinity IDs: `TRINITY_DN12345_c0_g1_i1`
+- Short names: stored in `Gene.short` column
+- Official symbols: stored in `Gene.symbol` column
 
-Use `theme_minimal()` as the starting point:
+## Joining Pattern
 
-\```r
-p <- ggplot(data, aes(x, y)) +
-  geom_point() +
-  theme_minimal()
-\```
-
-## Standard Modifications
+Always join on `trinity_gene_id`, not `Gene.short`:
 
 \```r
-theme_minimal() +
-theme(
-  axis.text = element_text(size = 11),
-  axis.title = element_text(size = 12),
-  legend.position = "bottom",
-  panel.grid.minor = element_blank()
-)
+# CORRECT
+data %>% left_join(annotations, by = "trinity_gene_id")
+
+# WRONG - Gene.short may have duplicates
+data %>% left_join(annotations, by = "Gene.short")
 \```
 
-## Color Palettes
+## Common Pitfall
 
-- Categorical: `scale_color_brewer(palette = "Set2")`
-- Sequential: `scale_color_viridis_c()`
-- Diverging: `scale_color_distiller(palette = "RdBu")`
-
-## Figure Dimensions
-
-- Single column: 3.5 × 3 inches
-- Double column: 7 × 4 inches
-- Save at 300 DPI for publication
-
+Gene names may contain apostrophes (5'→3' exonuclease).
+Always normalize:
 \```r
-ggsave("figure.png", p, width = 7, height = 4, dpi = 300)
+mutate(Gene.short = str_replace_all(Gene.short, "'", "'"))
 \```
-```
-
-### Git Conventions
-
-```markdown
----
-description: Git commit practices and conventions
-triggers:
-  - commit
-  - git
-  - version control
----
-
-# Git Conventions
-
-## Commit Messages
-
-Write clear, descriptive commit messages:
-
-- Start with a verb (Add, Fix, Update, Remove, Refactor)
-- Keep the first line under 50 characters
-- Add detail in the body if needed
-
-Good: `Add QC filtering step to preprocessing`
-Bad: `updates`
-
-## Co-Author Attribution
-
-Include co-author line when Claude Code contributes substantially:
-
-\```
-Add differential expression analysis
-
-Co-Authored-By: Claude Code <noreply@anthropic.com>
-\```
-
-## When to Commit
-
-Prompt the user to commit after:
-
-- Completing a logical unit of work
-- Before switching to a different task
-- After fixing a bug
-
-## What to Commit
-
-- Source code and scripts
-- Configuration files (environment.yml, renv.lock)
-- Documentation
-
-Never commit:
-
-- Large data files
-- Credentials or secrets
-- Generated output (unless specifically requested)
 ```
 
 ## Creating Your Own Skills
 
-### Step 1: Identify the Pattern
+### 1. Identify the Pattern
 
-What instructions do you find yourself repeating? Common candidates:
+What instructions do you repeat? Common candidates:
 
 - Coding style preferences
 - Documentation requirements
-- Testing practices
 - Domain-specific conventions
+- Testing practices
 
-### Step 2: Create the Skill Folder
+### 2. Create the Skill
 
 ```bash
-mkdir -p ~/.claude/skills/my-new-skill
+# User-level (applies to all projects)
+mkdir -p ~/.claude/skills/my-skill
+
+# Project-level (applies to this project only)
+mkdir -p .claude/skills/my-skill
 ```
 
-### Step 3: Write the SKILL.md
+### 3. Write SKILL.md
 
 ```markdown
 ---
+name: my-skill
 description: Brief description of what this skill does
-triggers:
-  - keyword1
-  - keyword2
-  - file pattern or task type
+user-invocable: false
 ---
 
 # Skill Title
 
-## Section 1
+## Instructions
 
-Instructions...
+Be specific. Show examples.
 
-## Section 2
-
-More instructions...
+\```r
+# Show the pattern you want
+example_code()
+\```
 ```
 
-### Step 4: Test It
+### 4. Test It
 
-Start a Claude Code session and try a task that should trigger your skill:
-
-```
-> [Request that should activate the skill]
-```
-
-Check if Claude Code follows your instructions. Refine as needed.
+Start a new Claude Code session and try a task that should trigger your skill. Refine as needed.
 
 ## Skill Best Practices
 
-**Be specific.** Vague instructions produce vague results. Show examples.
-
-**Keep skills focused.** One skill = one concern. Don't combine plotting style with git conventions.
-
-**Use code examples.** Show the pattern you want, not just describe it.
-
-**Include the "why."** When a convention has a reason, explain it—helps Claude Code make good judgment calls.
-
-**Test with edge cases.** Make sure your skill handles variations in how you might phrase requests.
-
-## Organizing Skills
-
-As your skill collection grows, keep it organized:
-
-```
-~/.claude/skills/
-├── code-style/
-│   └── SKILL.md           # General coding style
-├── r-plotting/
-│   └── SKILL.md           # R visualization
-├── python-style/
-│   └── SKILL.md           # Python conventions
-├── data-handling/
-│   └── SKILL.md           # Data manipulation
-├── git-conventions/
-│   └── SKILL.md           # Version control
-└── lab-specific/
-    └── SKILL.md           # Lab conventions
-```
+| Practice | Why |
+|----------|-----|
+| **Be specific** | Vague instructions produce vague results |
+| **Show examples** | Code examples are clearer than descriptions |
+| **Keep skills focused** | One skill = one concern |
+| **Include the "why"** | Helps Claude make good judgment calls |
+| **Update as you learn** | Skills should evolve with your understanding |
 
 ## Sharing Skills
 
 Skills are just text files. To share with lab members:
 
-1. Copy the skill folder to the shared location
-2. Have them copy it to their `~/.claude/skills/`
+1. Copy the skill folder
+2. Have them paste it into their `~/.claude/skills/`
 
 Or include lab-wide skills in a shared repository that everyone clones.

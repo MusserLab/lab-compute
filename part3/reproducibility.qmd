@@ -54,6 +54,14 @@ Explain:
 
 ## Reproducibility Checklist
 
+::: {.callout-claude title="Ask Claude"}
+**Audit your script for reproducibility:**
+
+> Can you check `analysis/01_qc.qmd` for reproducibility issues? Look for hardcoded paths, missing package declarations, missing seed settings, or code that might behave differently on another machine.
+
+*Ask Claude to review specific files for common reproducibility problems.*
+:::
+
 ### Environment
 
 - [ ] All dependencies listed in `environment.yml` (Python) or `renv.lock` (R)

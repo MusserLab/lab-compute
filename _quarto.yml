@@ -30,10 +30,10 @@ book:
         - part2/git-github.qmd
     - part: "Claude Code"
       chapters:
-        - claude-code/intro.qmd
-        - claude-code/project-files.qmd
+        - claude-code/getting-started.qmd
+        - claude-code/configuring-projects.qmd
         - claude-code/skills.qmd
-        - claude-code/session-walkthrough.qmd
+        - claude-code/working-effectively.qmd
     - part: "Workflows"
       chapters:
         - part3/starting-project.qmd
@@ -50,6 +50,7 @@ format:
     theme:
       light: cosmo
       dark: darkly
+    css: styles.css
     toc: true
     toc-depth: 3
     number-sections: true

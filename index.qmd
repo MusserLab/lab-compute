@@ -59,7 +59,16 @@ Start with **Part 1: Quick Start**. You'll install tools and build a small first
 Then:
 
 - Use **Part 2: Core Tools** as reference when you need to understand a tool or troubleshoot it.
-- Use **Part 3: Workflows** for checklists (starting a project, collaborating, reproducibility, troubleshooting).
+- Use **Part 3: Claude Code** to learn how AI can accelerate your workflow (optional but recommended).
+- Use **Part 4: Workflows** for checklists (starting a project, collaborating, reproducibility, troubleshooting).
+
+::: {.callout-claude title="Look for These Boxes"}
+Throughout this guide, you'll see orange boxes like this one. Each contains an example prompt you can use with Claude Code to get help with that chapter's topic.
+
+These aren't magic incantations—they're examples of how to ask for help effectively. The key is being **specific**: include the error message, the file name, or what you're trying to accomplish. Claude Code works best when you give it context.
+
+You'll learn more about Claude Code in Part 3, but you can start using these prompts right away if you have it installed.
+:::
 
 Suggested reading order for most new lab members:
 

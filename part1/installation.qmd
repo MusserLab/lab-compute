@@ -251,6 +251,18 @@ quarto --version    # If installed
 
 All commands should return version numbers without errors.
 
+::: {.callout-claude title="Ask Claude"}
+**Verify your setup:**
+
+> I just installed R, conda, and git. Here's what I get when I run the version commands:
+>
+> [paste your output]
+>
+> Does this look right, or is something misconfigured?
+
+*Claude can check that paths are correct, versions are compatible, and flag common installation issues.*
+:::
+
 ::: {.callout-tip}
 ## Troubleshooting
 If any command fails with "command not found":

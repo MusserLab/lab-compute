@@ -2,6 +2,26 @@
 
 This chapter covers frequently asked questions and common problems.
 
+::: {.callout-claude title="Ask Claude"}
+**Debug a cryptic error:**
+
+> I'm getting this error and don't understand it:
+>
+> [paste the full error message]
+>
+> This is the code that caused it: [paste relevant code or filename:line]. What's happening?
+
+*Include both the error AND the code. Claude can trace the issue much faster with context.*
+:::
+
+::: {.callout-claude title="Ask Claude"}
+**Figure out why code stopped working:**
+
+> This script was working yesterday and now fails with: [error]. I didn't change anything in the script. What could have changed?
+
+*Mention what changed (or didn't). Claude can help trace environment or dependency issues.*
+:::
+
 ## Conda
 
 ### "command not found: conda"

@@ -1,0 +1,248 @@
+# Configuring Your Project for Claude
+
+Claude Code reads configuration files to understand your project and work effectively. This chapter explains how to set up these files—from a simple project `CLAUDE.md` to plan files for tracking complex work.
+
+## The Two Levels of Configuration
+
+| Level | Location | Purpose |
+|-------|----------|---------|
+| **User** | `~/.claude/CLAUDE.md` | Preferences that apply to ALL your projects |
+| **Project** | `.claude/CLAUDE.md` | Context specific to THIS project |
+
+Claude reads both at session start. Project instructions take precedence when they conflict.
+
+## Creating Your Project CLAUDE.md
+
+Create a `.claude/` folder in your project root with a `CLAUDE.md` file inside. This file answers: "What does Claude need to know to work effectively here?"
+
+### Minimal Example (Course Project)
+
+```markdown
+# Stats 101 Final Project
+
+## Overview
+Analysis of penguin body measurements to predict species.
+
+## Data
+- Raw data: `data/penguins.csv` (from palmerpenguins package)
+- 344 observations, 8 variables
+
+## Workflows
+Render the analysis: `quarto render analysis.qmd`
+
+## Conventions
+- Use tidyverse style
+- theme_classic() for all plots
+```
+
+### Full Template (Research Project)
+
+```markdown
+# Project: [Name]
+
+## Overview
+[One paragraph: what does this project do? What's its current state?]
+
+## Environment
+- **Python**: `conda activate [env-name]`
+- **R**: Uses renv (auto-activates)
+
+## Repository Layout
+```
+project/
+├── data/
+│   ├── raw/           # Original data (DO NOT MODIFY)
+│   └── processed/     # Cleaned data
+├── analysis/          # Quarto analysis scripts
+├── output/            # Results, figures
+└── scripts/           # Utility functions
+```
+
+## Key Files
+- `analysis/main.qmd` — Primary analysis script
+- `data/raw/counts.csv` — Input data (10,000 genes × 50 samples)
+- `output/figures/` — Publication figures
+
+## Workflows
+
+### Run the analysis
+```bash
+quarto render analysis/main.qmd
+```
+
+## Conventions
+- Figures use the lab color palette (see `scripts/theme.R`)
+- Commit after each logical step
+- Descriptive variable names (no single letters)
+
+## Gotchas
+- Memory error with full dataset—use subset for testing
+- Sample IDs in data/ are 1-indexed, in metadata/ are 0-indexed
+```
+
+### What Makes a Good CLAUDE.md
+
+| Principle | Example |
+|-----------|---------|
+| **Be specific about data** | "10,000 genes × 50 samples, raw counts" not "gene expression data" |
+| **Document the non-obvious** | Quirks, conventions, known issues |
+| **Include actual commands** | `quarto render analysis.qmd` not "run the analysis" |
+| **Keep it current** | Update as the project evolves |
+
+## Evolving Your Project Documentation
+
+Your CLAUDE.md should grow with the project:
+
+| When | What to add |
+|------|-------------|
+| **After debugging** | Add the gotcha so future sessions don't hit it again |
+| **After decisions** | Document analytical choices and why you made them |
+| **After refactoring** | Update folder structure, rename files |
+| **After collaboration** | Note team conventions and workflows |
+
+**Good habit:** At the end of each session, ask yourself: "What did I learn that future sessions should know?" Then add it.
+
+## Plan Files for Complex Projects
+
+For projects with many tasks—multiple figures, several analyses, ongoing work—use dedicated **plan files** alongside your main CLAUDE.md.
+
+### When to Use Plan Files
+
+- Tracking multiple figures or outputs
+- Managing a multi-step analysis pipeline
+- Recording decisions that affect multiple parts of the project
+- Keeping a running status of what's done and what's pending
+
+### Example: PLOTTING_PLAN.md
+
+```markdown
+# Plotting Plan
+
+## Quick Reference
+- Input data: `output/results.rds`
+- Output directory: `figures/`
+- Standard dimensions: 8×6 inches (main), 4×4 (supplementary)
+
+## Technical Decisions
+
+| Decision | Resolution |
+|----------|------------|
+| Color palette | viridis for continuous, Set1 for categorical |
+| Font size | 12pt base, 10pt for legends |
+| Format | PDF for publication, PNG for presentations |
+
+## Figure Status
+
+### Figure 1: Sample Overview
+- **Status**: DONE
+- **Script**: `scripts/fig1_overview.R`
+- **Notes**: Log scale for y-axis; reviewer requested in revision
+
+### Figure 2: Differential Expression Volcano
+- **Status**: IN PROGRESS
+- **Script**: `scripts/fig2_volcano.R`
+- **Blocked**: Need to finalize FDR threshold with PI
+
+### Figure 3: Pathway Enrichment
+- **Status**: TODO
+- **Requirements**: Complete DE analysis first
+```
+
+### Example: DATA_NOTES.md
+
+```markdown
+# Data Documentation
+
+## Raw Data
+
+### counts.csv
+- Source: Core facility, batch 2024-01
+- Dimensions: 10,234 genes × 48 samples
+- Format: Raw counts (not normalized)
+- Known issues: Sample S23 failed QC, excluded
+
+### metadata.csv
+- Columns: sample_id, condition, batch, sex, age
+- Condition levels: control, treatment_low, treatment_high
+- Note: age is in weeks, not days
+
+## Processed Data
+
+### counts_normalized.rds
+- Created by: `analysis/01_normalization.qmd`
+- Method: TMM normalization via edgeR
+- Genes filtered: kept 8,456 with CPM > 1 in at least 3 samples
+```
+
+### Why Plan Files Help
+
+1. **Claude sees them** — Claude reads your `.claude/` folder and understands project status
+2. **Track decisions** — No repeating the same discussions across sessions
+3. **Review progress** — When you return after a break, you know what's done
+4. **Share status** — Collaborators can see what's pending
+
+## Multi-File .claude/ Structure
+
+As projects grow, organize your `.claude/` folder:
+
+```
+.claude/
+├── CLAUDE.md                  # Main project overview
+├── PLOTTING_PLAN.md           # Figure tracking
+├── DATA_NOTES.md              # Data documentation
+├── ANALYSIS_DECISIONS.md      # Analytical choices with rationale
+└── settings.local.json        # Claude Code settings (auto-generated)
+```
+
+Reference plan files from your main CLAUDE.md:
+
+```markdown
+## Documentation
+
+See also:
+- `PLOTTING_PLAN.md` — Figure status and conventions
+- `DATA_NOTES.md` — Data sources and processing
+```
+
+## User-Level Configuration
+
+Your `~/.claude/CLAUDE.md` contains preferences that apply across all projects:
+
+```markdown
+# User-Level Instructions
+
+## Environment
+- Conda must be sourced before activation:
+  `source ~/miniconda3/etc/profile.d/conda.sh`
+- Quarto is at `/usr/local/bin/quarto`
+
+## Preferences
+- Use tidyverse style for R code
+- Show data dimensions after loading
+- theme_classic() for all plots
+
+## Troubleshooting Notes
+- "renv out of sync" warnings can be ignored; run `renv::status()` if concerned
+
+## Available Skills
+See `~/.claude/skills/` for specialized instructions.
+```
+
+Keep user-level instructions general. Project-specific details go in the project file.
+
+## Checking Your Configuration
+
+Start a new Claude Code session and ask:
+
+```
+What do you know about this project?
+```
+
+Claude will summarize what it learned from your configuration. If something's missing or wrong, update your files.
+
+## What NOT to Include
+
+- **Sensitive data** — No API keys, passwords, or private information
+- **Obvious things** — No need to explain what `git commit` does
+- **Lengthy docs** — Link to documentation rather than copying it in
+- **Temporary notes** — Keep those in a separate scratch file

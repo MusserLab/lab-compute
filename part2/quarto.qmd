@@ -541,6 +541,18 @@ This records R version, package versions, and platform information in the render
 
 ## Common Issues
 
+::: {.callout-claude title="Ask Claude"}
+**Debug a render error:**
+
+> When I run `quarto render analysis.qmd`, I get this error:
+>
+> [paste the full error message]
+>
+> The code runs fine when I execute it interactively in the console. What's going wrong?
+
+*Include the exact error. Mention if it works interactively—that's an important clue that often points to missing objects or path issues.*
+:::
+
 ### "Object not found" During Render
 
 Code that works interactively may fail during render if you rely on objects not created in the script.

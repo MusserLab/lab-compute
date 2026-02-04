@@ -1,0 +1,69 @@
+/* Custom styles for Data Analysis in the Musser Lab */
+
+/* ============================================
+   Claude Orange Callout
+   Use with: ::: {.callout-claude title="Ask Claude"}
+   ============================================ */
+
+.callout-claude {
+  border-left: 4px solid #E87B35;  /* Claude/Anthropic orange */
+  background-color: #FEF3EB;       /* Light orange tint */
+  border-radius: 0.25rem;
+  margin: 1.5em 0;
+  padding: 0.5em 1em;
+}
+
+.callout-claude .callout-header {
+  background-color: transparent;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.callout-claude .callout-title-container {
+  display: flex;
+  align-items: center;
+}
+
+.callout-claude .callout-title {
+  color: #E87B35;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.callout-claude .callout-body {
+  padding-top: 0.5em;
+}
+
+.callout-claude .callout-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* Blockquote styling within Claude callouts (for example prompts) */
+.callout-claude blockquote {
+  background-color: rgba(255, 255, 255, 0.7);
+  border-left: 3px solid #E87B35;
+  padding: 0.75em 1em;
+  margin: 0.75em 0;
+  font-style: normal;
+}
+
+/* Italic text after prompts (for explanatory notes) */
+.callout-claude blockquote + p em {
+  color: #666;
+  font-size: 0.9em;
+}
+
+/* Dark mode support */
+.quarto-dark .callout-claude {
+  background-color: rgba(232, 123, 53, 0.15);
+  border-left-color: #E87B35;
+}
+
+.quarto-dark .callout-claude .callout-title {
+  color: #F5A266;  /* Slightly lighter orange for dark mode */
+}
+
+.quarto-dark .callout-claude blockquote {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-left-color: #F5A266;
+}

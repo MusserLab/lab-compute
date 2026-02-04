@@ -1,0 +1,254 @@
+# Working Effectively with Claude
+
+This chapter covers practical patterns for productive Claude Code sessions—how to write good prompts, manage context, and iterate effectively.
+
+## Prompt Patterns That Work
+
+The key to effective prompts is being **specific**. Compare:
+
+| Less Effective | More Effective |
+|----------------|----------------|
+| "Fix this error" | "I'm getting this error when I render: [paste error]. The issue seems to be in the data loading section around line 45." |
+| "Make a plot" | "Create a volcano plot of the DE results. X-axis: log2 fold change. Y-axis: -log10 adjusted p-value. Highlight genes with adjP < 0.05 and abs(log2FC) > 1." |
+| "Clean this up" | "Refactor this function to: 1) separate data loading from processing, 2) add input validation, 3) return a tibble instead of a list." |
+
+### What to Include in Prompts
+
+| Context Type | Example |
+|--------------|---------|
+| **The goal** | "I want to create a sample QC report" |
+| **The specific file/data** | "The data is in `data/counts.csv`, 10k genes × 48 samples" |
+| **Constraints** | "Use ggplot2, match the style in our other figures" |
+| **What you've tried** | "I tried using `left_join` but got duplicate rows" |
+
+### The Exploration-First Pattern
+
+For complex tasks, explore before implementing:
+
+```
+You: What does scripts/process_data.R do? Walk me through the main steps.
+
+Claude: [explains the script]
+
+You: I need to add a quality filter after the normalization step.
+     Before you write code, what's your approach?
+
+Claude: [describes approach]
+
+You: That sounds right. Go ahead and implement it.
+
+Claude: [makes the edit]
+
+You: Run the script and show me the output.
+```
+
+This catches misunderstandings before you've committed to an implementation.
+
+## Managing Session Context
+
+### When to Start a New Conversation
+
+- **Switching to unrelated work** — Moving from data analysis to writing documentation
+- **Context is cluttered** — The conversation has wandered through many topics
+- **Claude seems confused** — Stuck in a wrong direction, repeating mistakes
+- **After a natural break** — Coming back to work after lunch, next day
+
+### When to Continue the Current Conversation
+
+- **Building on recent work** — "Now add error handling to that function"
+- **Fixing issues** — "That plot has overlapping labels, fix it"
+- **Iterating on approach** — "Actually, let's use a different normalization method"
+
+### Keep Sessions Focused
+
+One main task per conversation works best. If you find yourself on a tangent that's becoming substantial, consider starting a new session for it.
+
+::: {.callout-tip}
+### Use plan files across sessions
+Since Claude doesn't remember previous conversations, use [plan files](configuring-projects.qmd#plan-files-for-complex-projects) to track what's done and what's pending. Claude reads these at session start.
+:::
+
+## Reviewing Claude's Work
+
+Always review before accepting:
+
+| What to Check | Why |
+|---------------|-----|
+| **The diff** | See exactly what changed |
+| **Run the code** | Verify it actually works |
+| **Check edge cases** | Empty data? Missing values? |
+| **Read the logic** | Does the approach make sense? |
+
+For analytical code, extra scrutiny:
+
+- Verify row counts at each step
+- Check that joins matched as expected
+- Confirm statistical methods are what you intended
+- Spot-check a few results manually
+
+## Common Session Patterns
+
+### Debugging
+
+```
+I'm getting this error when I run the script:
+
+Error in `mutate()`:
+! Problem while computing `ratio = count / total`.
+Caused by error in `count / total`:
+! non-conformable arrays
+
+The code is around line 67 of analysis.qmd. What's wrong?
+```
+
+*Include: the error message, where it happens, relevant code.*
+
+### Understanding Code
+
+```
+Explain what the normalize_counts() function does in scripts/utils.R.
+Walk through each step.
+```
+
+*Ask about specific functions or sections, not "explain the whole codebase."*
+
+### Building Something New
+
+```
+Create a function that:
+1. Takes a dataframe with columns 'gene_id' and 'count'
+2. Filters to genes with count > 10
+3. Adds a 'log_count' column (log2 with pseudocount of 1)
+4. Returns the filtered dataframe
+
+Put it in scripts/utils.R.
+```
+
+*Be specific about inputs, outputs, and where to put it.*
+
+### Extending Existing Code
+
+```
+In analysis/02_de.qmd, add a volcano plot after the results table.
+Use the same style as the plots in 01_qc.qmd.
+```
+
+*Reference existing patterns when you want consistency.*
+
+### Refactoring
+
+```
+The data loading code is duplicated in three scripts.
+Extract it into a load_counts() function in scripts/utils.R,
+then update the scripts to use it.
+```
+
+*State the goal and the approach you want.*
+
+## The /done Command
+
+End productive sessions with `/done`:
+
+```
+/done
+```
+
+This triggers the end-of-session skill which:
+
+1. **Summarizes** what was accomplished
+2. **Checks renv** — If you're in an R project, asks about updating the lockfile
+3. **Offers to commit** — Shows changed files and suggests a commit message
+4. **Publishes** (if applicable) — For Quarto books, offers to publish to GitHub Pages
+
+This ensures your work is saved and documented before you close the session.
+
+## Iterating Effectively
+
+### Start Small, Build Up
+
+Don't ask for an entire analysis at once. Build piece by piece:
+
+1. "Load the data and show me its structure"
+2. "Filter to high-confidence genes"
+3. "Calculate summary statistics by condition"
+4. "Create a comparison plot"
+
+Each step can be verified before moving on.
+
+### Correct Mistakes Immediately
+
+If something's wrong, say so directly:
+
+```
+That's not quite right—the grouping should be by 'condition',
+not 'sample'. Fix it.
+```
+
+Claude adjusts based on feedback within the session.
+
+### Ask "Why" Questions
+
+If Claude makes a choice you don't understand:
+
+```
+Why did you use median instead of mean for the normalization?
+```
+
+Understanding the reasoning helps you decide if it's appropriate for your use case.
+
+## Tips for Effective Sessions
+
+| Tip | Why |
+|-----|-----|
+| **Have your CLAUDE.md ready** | Better project docs = better context |
+| **Reference files by name** | "In `analysis.qmd`" not "in that file" |
+| **Paste actual error messages** | Don't paraphrase errors |
+| **State your goal** | What are you trying to accomplish? |
+| **Work incrementally** | One step at a time |
+| **Check outputs** | Don't assume it worked |
+
+## A Complete Session Example
+
+Here's a realistic session flow:
+
+```
+You: I have count data in data/raw/counts.csv. What does it look like?
+
+Claude: [reads file, reports dimensions, column names, value ranges]
+
+You: Create a Quarto script at analysis/01_qc.qmd that:
+     - Loads the data
+     - Shows a histogram of total counts per sample
+     - Flags any sample with unusually low counts
+
+Claude: [creates script, shows content]
+
+You: [reviews, accepts]
+     Render it and show me any errors.
+
+Claude: [runs quarto render, reports success]
+
+You: [opens HTML, notices an issue]
+     Sample_3 looks strange. Add a section that calculates
+     summary stats and explicitly flags outliers.
+
+Claude: [proposes edit]
+
+You: [accepts]
+     Render again.
+
+Claude: [renders]
+
+You: /done
+
+Claude: Session summary:
+        - Created analysis/01_qc.qmd with QC diagnostics
+        - Identified Sample_3 as potential outlier
+
+        Commit these changes?
+        "Add QC analysis with sample diagnostics"
+
+You: [accepts commit]
+```
+
+The key pattern: explore → create → verify → refine → commit.

@@ -87,6 +87,18 @@ outs/
 
 **This structure encodes provenance.** When you see a file in `outs/03_differential/`, you know exactly which script created it.
 
+::: {.callout-claude title="Ask Claude"}
+**Review your project structure:**
+
+> Here's my project folder structure:
+>
+> [paste output of `ls -R` or describe your layout]
+>
+> I'm analyzing RNA-seq data from three conditions with time points. Does this organization make sense, or should I restructure anything?
+
+*Describe what type of analysis you're doing. Claude can suggest improvements based on your specific project needs.*
+:::
+
 ## How Dependencies Work
 
 Scripts read from two places:
