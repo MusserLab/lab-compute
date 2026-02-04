@@ -1,39 +1,95 @@
-# Quarto Documents
+# Quarto
 
-A **Quarto document** is a plain-text file (`.qmd`) that combines:
+Quarto is a scientific publishing system that lets you combine code, results, and narrative text in a single document. You write analysis scripts as `.qmd` files—plain text with embedded R or Python code—and Quarto renders them into polished HTML reports with your outputs automatically included.
 
-- Narrative text (Markdown)
-- Code chunks (R, Python, or both)
-- Outputs from the code (figures, tables, printed results)
+In the Musser Lab, Quarto documents are the standard format for data analysis because they solve a fundamental problem: keeping your code, your results, and your explanation of those results in sync. When you render a `.qmd` file, Quarto executes the code fresh and weaves the outputs into the document, so the report always reflects the actual analysis.
 
-When you **render** a Quarto document, Quarto executes the code and produces a publishable output—typically HTML, but also PDF or Word.
+## Why Quarto?
 
-In the Musser Lab, `.qmd` files are the standard format for data analysis because they are:
+### Compared to Plain R Scripts
 
-- **Shareable** — one file contains the full analysis and explanation
-- **Publishable** — renders to a clean HTML report
-- **Reproducible** — when paired with proper environments and version control
+A plain `.R` script is just code. It can produce outputs, but there's no built-in way to document what the code does, why you made certain choices, or what the results mean. When you share a script, collaborators see the code but not your interpretation.
 
-## Quarto vs R Markdown
+With Quarto:
 
-If you've used R Markdown (`.Rmd`), Quarto will feel familiar. The core idea—mixing code, results, and narrative—is the same.
+- **Code and narrative live together** — explain what you're doing as you do it
+- **Results are embedded** — figures and tables appear in the document
+- **Output is shareable** — render to HTML that anyone can open in a browser
 
-Key differences:
+### Compared to R Markdown
+
+If you've used R Markdown (`.Rmd`), Quarto will feel familiar. The core idea—mixing code, results, and narrative—is the same. Quarto is R Markdown's successor, developed by Posit (the company behind RStudio) as a unified system that works equally well with R, Python, Julia, and other languages.
 
 | | R Markdown | Quarto |
 |---|---|---|
 | File extension | `.Rmd` | `.qmd` |
-| Language focus | R-centric | Multi-language (R, Python, Julia) |
-| Project types | Documents, some websites | Documents, websites, books, slides |
+| Language support | R-centric (Python possible but awkward) | Multi-language by design |
 | Chunk options | `{r, echo=FALSE}` | `#| echo: false` (YAML-style) |
+| Output formats | Documents, some websites | Documents, websites, books, slides, dashboards |
 
-You don't need to memorize the differences—just know that Quarto is the modern successor and works similarly.
+You don't need to memorize the differences. If you know R Markdown, Quarto works similarly. If you're new to both, just learn Quarto—it's the modern standard.
+
+### What Else Can Quarto Do?
+
+While we primarily use Quarto for analysis scripts, it's a general-purpose publishing system. This book was built with Quarto. You can also create:
+
+- **Websites** — project documentation, lab websites
+- **Presentations** — slides rendered from code (RevealJS format)
+- **Dashboards** — interactive displays of data
+
+See the [Quarto documentation](https://quarto.org/docs/guide/) if you want to explore these formats.
+
+## The Interactive Development Workflow
+
+Before diving into syntax, understand how you'll actually work with Quarto documents. The workflow has two modes:
+
+### Interactive Development
+
+Most of your time is spent running code **interactively**—executing chunks one at a time, inspecting results, and iterating. This is exploratory work:
+
+1. **Write a chunk** of code in your `.qmd` file
+2. **Run it** with Cmd+Enter (macOS) or Ctrl+Enter (Windows)
+3. **Inspect** the output in the Console, Variables pane, or Data Viewer
+4. **Iterate** — modify the code, run again, check results
+5. **Move on** to the next chunk when satisfied
+
+During interactive development, you're using Positron like an enhanced REPL. The `.qmd` file is your scratch pad. Objects you create persist in your R or Python session, so you can build on previous chunks.
+
+[TODO: screenshot of Positron with .qmd open, console showing output, Data Viewer with dataframe]
+
+### Rendering
+
+When the analysis is complete—or when you want to share it—you **render** the document:
+
+```bash
+quarto render my_analysis.qmd
+```
+
+Rendering executes every code chunk in a **fresh session** (no leftover objects from interactive work) and produces a standalone HTML file. This catches errors you might miss interactively, like relying on an object you created manually but forgot to include in the script.
+
+**The key insight**: Interactive mode is for development. Rendering is for validation and sharing. Always render before committing or sending a report to someone.
+
+### A Typical Session
+
+Here's what a working session looks like:
+
+1. Open your project in Positron
+2. Open or create a `.qmd` file
+3. Write the setup chunk (libraries, paths)
+4. Run it interactively to confirm packages load
+5. Write a data-loading chunk, run it, inspect the data in Data Viewer
+6. Write analysis chunks one at a time, running and checking each
+7. When complete, render the full document
+8. Fix any errors that appear during render (usually missing objects or packages)
+9. Commit the `.qmd` file (and optionally the rendered HTML)
+
+This interactive-then-render workflow is why Quarto documents are more reliable than scripts you only ever run interactively.
 
 ## Document Structure
 
 A Quarto document has two parts:
 
-1. **YAML header** — metadata and rendering options (at the top, between `---` markers)
+1. **YAML header** — metadata and rendering options (between `---` markers at the top)
 2. **Body** — Markdown text interspersed with code chunks
 
 ### Minimal Example
@@ -46,18 +102,27 @@ format: html
 
 ## Introduction
 
-This analysis examines...
+This analysis examines the relationship between X and Y.
 
 ```{{r}}
 library(tidyverse)
 data <- read_csv("data/input.csv")
 glimpse(data)
 ```
+
+## Results
+
+```{{r}}
+ggplot(data, aes(x = x, y = y)) +
+  geom_point()
+```
 ````
+
+When rendered, this produces an HTML file with the title, your text, and the code outputs (the `glimpse()` output and the plot) embedded.
 
 ## The YAML Header
 
-The YAML header controls how your document renders. Here's a typical header for a lab analysis:
+The YAML header controls document metadata and rendering behavior. Here's a typical header for a lab analysis script:
 
 ```yaml
 ---
@@ -80,36 +145,109 @@ execute:
 ---
 ```
 
-### Common Options
-
-**Document metadata:**
+### Document Metadata
 
 | Option | Purpose | Example |
 |--------|---------|---------|
-| `title` | Document title | `"My Analysis"` |
+| `title` | Document title (appears at top) | `"My Analysis"` |
 | `subtitle` | Secondary title | `"Version 2"` |
 | `author` | Your name | `"Jane Doe"` |
-| `date` | Date (use `today` for auto) | `today` |
+| `date` | Date; use `today` for automatic | `today` |
 
-**Format options** (under `format: html:`):
+### Format Options
 
-| Option | Purpose | Example |
-|--------|---------|---------|
-| `toc` | Table of contents | `true` |
-| `toc-depth` | Heading levels in TOC | `2` |
-| `number-sections` | Numbered headings | `true` |
-| `code-fold` | Collapsible code blocks | `true` or `false` |
-| `code-tools` | Show/hide all code button | `true` |
-| `self-contained` | Single HTML file (no dependencies) | `true` |
+These go under `format: html:` and control the HTML output:
 
-**Execute options** (under `execute:`):
+| Option | Purpose | Recommended |
+|--------|---------|-------------|
+| `toc` | Include table of contents | `true` |
+| `toc-depth` | How many heading levels in TOC | `2` |
+| `number-sections` | Number your headings | `true` |
+| `code-fold` | Collapse code blocks by default | `false` for analysis scripts |
+| `code-tools` | Add show/hide all code button | `true` |
+| `self-contained` | Single HTML file (no external dependencies) | `true` |
 
-| Option | Purpose | Example |
-|--------|---------|---------|
-| `echo` | Show code in output | `true` |
+### Execute Options
+
+These go under `execute:` and control code execution:
+
+| Option | Purpose | Recommended |
+|--------|---------|-------------|
+| `echo` | Show code in output | `true` for analysis scripts |
 | `message` | Show package messages | `false` |
 | `warning` | Show warnings | `false` |
-| `cache` | Cache chunk results | `false` |
+| `cache` | Cache chunk results | `false` (usually) |
+
+Setting `message: false` and `warning: false` globally keeps your rendered output clean. You can override these per-chunk when you need to see specific messages.
+
+## The Setup Chunk
+
+Every analysis script should start with a setup chunk that loads packages, defines paths, and sets options. This establishes the foundation for everything that follows.
+
+```r
+#| label: setup
+#| include: false
+
+# ---- Libraries ----
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(here)
+  library(scales)
+})
+
+# ---- Paths ----
+dir_data <- here::here("data", "processed")
+dir_out <- here::here("outs", "01_my_analysis")
+
+# Create output directory if needed
+dir.create(dir_out, recursive = TRUE, showWarnings = FALSE)
+
+# ---- Options ----
+options(stringsAsFactors = FALSE)
+set.seed(42)
+```
+
+### Key Patterns
+
+**`#| include: false`** — The chunk runs but doesn't appear in the rendered output. Use this for setup code that readers don't need to see.
+
+**`suppressPackageStartupMessages()`** — Prevents the startup messages that packages print when loaded. This keeps your console (and rendered output) clean.
+
+**`here::here()`** — Builds file paths relative to the project root, not the script location. Essential for reproducibility. See [Working Directory and Paths](#working-directory-and-paths) below.
+
+**`dir.create(..., showWarnings = FALSE)`** — Ensures output directories exist. The `showWarnings = FALSE` prevents errors if the directory already exists.
+
+**`set.seed()`** — Makes random operations reproducible. Use a fixed seed when your analysis involves any randomness (sampling, clustering, etc.).
+
+## Documenting Inputs and Outputs
+
+After the YAML header and before the setup chunk, document what the script reads and produces:
+
+```markdown
+# Introduction
+
+This script generates volcano plots for the phosphoproteomics time course,
+visualizing differential phosphorylation between treated and control samples.
+
+**Inputs:**
+
+- `data/processed/limma_results.rds` — differential expression results
+- `data/processed/metadata.csv` — sample metadata
+
+**Outputs:**
+
+- `outs/01_volcano_plots/volcano_*.pdf` — volcano plots per comparison
+- `outs/01_volcano_plots/significant_hits.csv` — filtered results table
+```
+
+This practice:
+
+- Makes the script's purpose immediately clear
+- Documents dependencies (what must exist before this runs)
+- Documents products (what other scripts can use as inputs)
+- Helps you and collaborators understand the analysis pipeline
+
+See the [Project Organization](project-organization.qmd) chapter for how this fits into the larger project structure.
 
 ## Code Chunks
 
@@ -134,91 +272,121 @@ Use the `#|` syntax to set options for individual chunks:
 #| message: false
 #| warning: false
 
-data <- read_csv("data/input.csv")
+data <- read_csv(here::here("data", "input.csv"))
 ```
 
-Common chunk options:
+The `label` option names the chunk. This is useful for:
+
+- Debugging (error messages reference the chunk label)
+- Cross-references (linking to figures)
+- Caching (cached chunks are identified by label)
+
+### Common Chunk Options
 
 | Option | Purpose | Values |
 |--------|---------|--------|
-| `label` | Chunk identifier (for cross-refs, debugging) | `load-data` |
+| `label` | Chunk identifier | `load-data`, `fig-volcano` |
 | `echo` | Show this chunk's code | `true`, `false` |
 | `eval` | Run this chunk | `true`, `false` |
-| `include` | Include chunk in output at all | `true`, `false` |
+| `include` | Include in output at all | `true`, `false` |
 | `message` | Show messages | `true`, `false` |
 | `warning` | Show warnings | `true`, `false` |
-| `fig-cap` | Figure caption | `"My figure"` |
+| `fig-cap` | Figure caption | `"My figure title"` |
 | `fig-width` | Figure width (inches) | `6` |
 | `fig-height` | Figure height (inches) | `4` |
 
-### The Setup Chunk
+### Chunk Patterns
 
-Most analysis scripts start with a setup chunk that loads packages, defines paths, and sets options. Use `#| include: false` to run it without showing it in the output:
+**Hidden setup** — runs but doesn't appear in output:
 
 ```r
 #| label: setup
 #| include: false
 
-# ---- Libraries ----
-suppressPackageStartupMessages({
-  library(tidyverse)
-  library(here)
-  library(scales)
-})
-
-# ---- Paths ----
-dir_data <- here::here("data", "processed")
-dir_out <- here::here("output", "figures")
-
-# Create output directory if needed
-dir.create(dir_out, recursive = TRUE, showWarnings = FALSE)
-
-# ---- Options ----
-options(stringsAsFactors = FALSE)
-set.seed(42)
+library(tidyverse)
 ```
 
-Key patterns:
+**Visible code with clean output** — shows code, hides messages:
 
-- `suppressPackageStartupMessages()` keeps the output clean
-- `here::here()` builds paths relative to the project root
-- `dir.create(..., showWarnings = FALSE)` ensures output folders exist
+```r
+#| label: load-data
+#| message: false
+#| warning: false
 
-## Lab Guidelines for Analysis Scripts
-
-### State Inputs and Outputs
-
-At the top of your document (after the YAML, before the setup chunk), clearly state what the script reads and produces:
-
-```markdown
-# Introduction
-
-This script generates volcano plots for the phosphoproteomics time course.
-
-**Inputs:**
-
-- `data/processed/limma_results.rds` — differential expression results
-- `data/processed/metadata.csv` — sample metadata
-
-**Outputs:**
-
-- `output/figures/volcano_*.pdf` — volcano plots per timepoint
-- `output/tables/significant_hits.csv` — filtered results table
+data <- read_csv("data.csv")
 ```
 
-### One Script, One Purpose
+**Figure with caption** — for publication-ready figures:
 
-Each `.qmd` should do one coherent thing:
+```r
+#| label: fig-volcano
+#| fig-cap: "Volcano plot showing differential expression"
+#| fig-width: 6
+#| fig-height: 4
 
-- `01_qc.qmd` — quality control and filtering
-- `02_differential_expression.qmd` — statistical analysis
-- `03_volcano_plots.qmd` — visualization
+ggplot(results, aes(x = logFC, y = -log10(pvalue))) +
+  geom_point()
+```
 
-Avoid giant all-purpose notebooks.
+**Code shown but not run** — for demonstrating syntax:
 
-### Save Outputs Explicitly
+```r
+#| label: example-syntax
+#| eval: false
 
-Don't rely on the Plots pane or copy-paste. Save figures and tables to files:
+# This code is displayed but not executed
+hypothetical_function()
+```
+
+## Working with R
+
+### Running Code
+
+Select code in the editor and press **Cmd+Enter** (macOS) or **Ctrl+Enter** (Windows) to run it in the R console. For entire chunks, use **Cmd+Shift+Enter**.
+
+When you run R code:
+
+- Output appears in the Console
+- Plots appear in the Plots pane (and can be viewed in Data Viewer for inspection)
+- Objects are created in your R session (visible in Variables pane)
+
+### The Data Viewer
+
+Click any dataframe in the Variables pane to open it in Positron's Data Viewer. This is essential for exploratory work—you'll constantly check data after transformations to verify they worked correctly.
+
+### renv Integration
+
+If your project uses renv (and it should), the R console automatically activates it. You'll see:
+
+```
+- Project '/path/to/project' loaded. [renv 1.0.0]
+```
+
+This confirms you're using the project's package library, not your global library.
+
+## Working with Python
+
+### Running Code
+
+The same shortcuts work for Python: **Cmd+Enter** to run the current line or selection.
+
+For Python chunks to execute during render, you need `ipykernel` installed in your conda environment:
+
+```bash
+conda install ipykernel
+```
+
+### Selecting the Interpreter
+
+Ensure Positron is using the correct conda environment:
+
+1. Open Command Palette (Cmd/Ctrl+Shift+P)
+2. Type "Python: Select Interpreter"
+3. Choose your project's conda environment
+
+## Saving Outputs
+
+Don't rely on the Plots pane or copy-paste. Save figures and tables to files explicitly:
 
 ```r
 #| label: fig-volcano
@@ -228,6 +396,7 @@ p <- ggplot(results, aes(x = logFC, y = -log10(adj.P.Val))) +
   geom_point() +
   theme_minimal()
 
+# Display in rendered document
 print(p)
 
 # Save to output folder
@@ -239,20 +408,47 @@ ggsave(
 )
 ```
 
-### Render Before Sharing
+This approach:
 
-Before sending a report or committing, render the full document to ensure it runs cleanly:
+- Embeds the figure in the rendered HTML (via `print(p)`)
+- Saves a high-quality PDF for publication or further use
+- Makes the output traceable (the file exists in `outs/`)
 
-```bash
-quarto render analysis/my_analysis.qmd
+For tables:
+
+```r
+# Save results table
+write_csv(significant_hits, file.path(dir_out, "significant_hits.csv"))
 ```
 
-This catches errors that might not appear when running chunks interactively.
+## Working Directory and Paths
 
-::: {.callout-tip}
-## Project Organization
-For how to structure your project folders and track which scripts produce which outputs, see the [Project Organization](project-organization.qmd) chapter.
-:::
+When Quarto renders a `.qmd`, the working directory is the folder containing the `.qmd` file—not the project root. This can cause path confusion.
+
+```
+project/
+├── scripts/
+│   └── 01_analysis.qmd    ← Working directory during render
+├── data/
+│   └── input.csv
+└── outs/
+```
+
+From `scripts/01_analysis.qmd`, a relative path to the data would be `../data/input.csv`. But this breaks if you move the script or run it from a different location.
+
+### The Solution: `here::here()`
+
+The `here` package finds the project root (by looking for `.git`, `.Rproj`, etc.) and builds paths from there:
+
+```r
+# Always works, regardless of working directory
+data <- read_csv(here::here("data", "input.csv"))
+
+# Instead of fragile relative paths
+data <- read_csv("../data/input.csv")  # Don't do this
+```
+
+Use `here::here()` for all file paths in your scripts. It makes your code portable and reproducible.
 
 ## Rendering
 
@@ -260,80 +456,139 @@ For how to structure your project folders and track which scripts produce which 
 
 ```bash
 # Render a single document
-quarto render analysis/01_qc.qmd
+quarto render scripts/01_analysis.qmd
 
 # Render all .qmd files in a directory
-quarto render analysis/
+quarto render scripts/
 ```
 
 ### From Positron
 
 - Click the **Render** button in the editor toolbar
-- Or use the keyboard shortcut (Cmd+Shift+K on macOS)
+- Or use **Cmd+Shift+K** (macOS) / **Ctrl+Shift+K** (Windows)
 
 ### Preview Mode
 
-For interactive development, use preview mode—it re-renders automatically when you save:
+For live feedback during development, use preview mode:
 
 ```bash
-quarto preview analysis/01_qc.qmd
+quarto preview scripts/01_analysis.qmd
 ```
 
-## Working Directory
+This opens a browser window that automatically refreshes when you save changes. Useful for tuning formatting, but remember that preview still renders in a fresh session—it's not the same as interactive execution.
 
-When Quarto renders a `.qmd`, the working directory is the folder containing the `.qmd` file—not the project root.
+## Best Practices
 
-This means relative paths in your code are relative to the `.qmd` location:
+### Render Before Committing
 
+Always render the full document before committing to Git. This catches:
+
+- Missing packages (installed interactively but not in lockfile)
+- Missing objects (created interactively but not in the script)
+- Order dependencies (chunks that depend on earlier chunks you modified)
+
+### Self-Contained Scripts
+
+Every `.qmd` should run successfully from a fresh R session. Don't assume objects exist from previous interactive work. If render fails, your script isn't self-contained.
+
+### Clear Section Structure
+
+Organize your script with clear headings:
+
+```markdown
+# Introduction
+# Setup
+# Load Data
+# Analysis
+# Results
+# Summary
 ```
-project/
-├── analysis/
-│   └── 01_qc.qmd      ← working directory when rendering
-├── data/
-│   └── input.csv
-└── output/
-```
 
-From `analysis/01_qc.qmd`, you'd write:
+This makes the script navigable (via Positron's Outline panel) and the rendered document readable.
+
+### Validation Chunks
+
+For complex analyses, add validation chunks that verify data integrity:
 
 ```r
-# Relative path (works, but fragile)
-data <- read_csv("../data/input.csv")
+#| label: validate-data
+#| include: false
 
-# Better: use here::here() for project-relative paths
-data <- read_csv(here::here("data", "input.csv"))
+# Check required columns exist
+required_cols <- c("sample_id", "condition", "value")
+missing_cols <- setdiff(required_cols, names(data))
+if (length(missing_cols) > 0) {
+  stop("Missing required columns: ", paste(missing_cols, collapse = ", "))
+}
+
+# Check for expected conditions
+stopifnot("No data loaded" = nrow(data) > 0)
 ```
 
-The `here` package finds the project root (by looking for `.git`, `.Rproj`, etc.) and builds paths from there. This makes your code work regardless of where the `.qmd` lives.
+These chunks catch problems early and provide clear error messages.
+
+### Session Info
+
+End your script with session information for reproducibility:
+
+```r
+#| label: session-info
+
+sessionInfo()
+```
+
+This records R version, package versions, and platform information in the rendered output.
 
 ## Common Issues
 
-### "Object not found" errors during render
+### "Object not found" During Render
 
-Code that works interactively may fail during render if you rely on objects in your R environment that aren't created in the script. The rendered document starts with a fresh environment.
+Code that works interactively may fail during render if you rely on objects not created in the script.
 
-**Fix:** Ensure your `.qmd` is self-contained—all objects must be created within the script.
+**Cause**: You created an object manually in the console, then used it in a chunk without creating it in the script.
 
-### Figures not appearing
+**Fix**: Ensure all objects are created within the `.qmd`. Render frequently to catch this early.
 
-If a plot doesn't show up, make sure you're printing it:
+### Figures Not Appearing
+
+If a plot doesn't show up in the rendered output:
 
 ```r
 p <- ggplot(data, aes(x, y)) + geom_point()
-print(p)  # Required inside functions or complex chunks
+print(p)  # Required inside loops or complex chunks
 ```
 
-### Package messages cluttering output
+The explicit `print()` is needed when the plot is the result of an assignment or is inside a loop/function.
 
-Set `message: false` and `warning: false` in the `execute:` block or per-chunk.
+### Package Messages Cluttering Output
 
-### Output file is huge
+Set `message: false` and `warning: false` in the `execute:` block:
 
-If your HTML is very large, it might be embedding high-resolution images. Options:
+```yaml
+execute:
+  message: false
+  warning: false
+```
 
-- Use `self-contained: false` (creates a `_files` folder for assets)
-- Reduce figure resolution with `fig-dpi: 150`
-- Use `fig-format: png` instead of `svg`
+Or per-chunk for specific chunks.
+
+### Output File Is Huge
+
+If your HTML is very large:
+
+- **Embedded images**: Use `self-contained: false` to keep images in a separate `_files` folder
+- **High resolution**: Add `fig-dpi: 150` to reduce figure resolution
+- **SVG format**: Use `fig-format: png` instead of SVG for complex plots
+
+### Chunk Takes Forever
+
+For long-running chunks during development, consider:
+
+```r
+#| cache: true
+```
+
+This caches the chunk's results. Subsequent renders skip execution if the code hasn't changed. Use sparingly—caching can cause subtle bugs if dependencies change.
 
 ## Quick Reference
 
@@ -342,12 +597,15 @@ If your HTML is very large, it might be embedding high-resolution images. Option
 ```yaml
 ---
 title: "Analysis Title"
+subtitle: "Project context"
 author: "Your Name"
 date: today
 format:
   html:
     toc: true
+    toc-depth: 2
     number-sections: true
+    code-fold: false
     code-tools: true
     self-contained: true
 execute:
@@ -357,20 +615,62 @@ execute:
 ---
 ```
 
-### Chunk Option Syntax
+### Setup Chunk Template
 
 ```r
-#| label: my-chunk
-#| echo: false
-#| fig-cap: "My figure caption"
-#| fig-width: 8
-#| fig-height: 6
+#| label: setup
+#| include: false
+
+# ---- Libraries ----
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(here)
+})
+
+# ---- Paths ----
+dir_data <- here::here("data")
+dir_out <- here::here("outs", "script_name")
+dir.create(dir_out, recursive = TRUE, showWarnings = FALSE)
+
+# ---- Options ----
+options(stringsAsFactors = FALSE)
+set.seed(42)
 ```
 
-### Useful Commands
+### Chunk Options Reference
 
-```bash
-quarto render file.qmd      # Render once
-quarto preview file.qmd     # Live preview
-quarto render analysis/     # Render all in folder
-```
+| Option | Purpose | Values |
+|--------|---------|--------|
+| `label` | Chunk name | Any string |
+| `echo` | Show code | `true` / `false` |
+| `eval` | Run code | `true` / `false` |
+| `include` | Include in output | `true` / `false` |
+| `message` | Show messages | `true` / `false` |
+| `warning` | Show warnings | `true` / `false` |
+| `error` | Continue on error | `true` / `false` |
+| `cache` | Cache results | `true` / `false` |
+| `fig-cap` | Figure caption | String |
+| `fig-width` | Width in inches | Number |
+| `fig-height` | Height in inches | Number |
+| `fig-dpi` | Resolution | Number (default 72) |
+| `fig-format` | Output format | `png` / `svg` / `pdf` |
+| `tbl-cap` | Table caption | String |
+
+### Quarto Commands
+
+| Command | Purpose |
+|---------|---------|
+| `quarto render file.qmd` | Render to HTML |
+| `quarto render file.qmd --to pdf` | Render to PDF |
+| `quarto preview file.qmd` | Live preview in browser |
+| `quarto render directory/` | Render all .qmd in directory |
+| `quarto check` | Verify Quarto installation |
+
+### Keyboard Shortcuts (Positron)
+
+| Action | macOS | Windows |
+|--------|-------|---------|
+| Run line/selection | Cmd+Enter | Ctrl+Enter |
+| Run chunk | Cmd+Shift+Enter | Ctrl+Shift+Enter |
+| Render document | Cmd+Shift+K | Ctrl+Shift+K |
+| Insert R chunk | Cmd+Option+I | Ctrl+Alt+I |

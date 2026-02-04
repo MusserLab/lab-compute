@@ -20,7 +20,7 @@ project-b-env/
   └── pandas 2.0
 ```
 
-Each project has exactly what it needs.
+Each project has its own libraries specific to its needs. Updates to libraries or the addition of new libraries in one project are isolated from other projects.
 
 ## Basic Commands
 
@@ -44,7 +44,7 @@ Then **close and reopen your terminal**. You only need to do this once.
 
 ### Create an Environment
 
-You can create an environment with just Python, or include packages from the start:
+You only need to create the environment once. New environments can be initiated with just a python installation, or include additional packages from the start. The option `-n project_name` specifies the name of the environment, and is followed by an initial list of packages to install:
 
 ```bash
 # Create with just Python
@@ -56,7 +56,7 @@ conda create -n my-project python=3.11 numpy pandas matplotlib ipykernel
 
 ### Core Data Science Packages
 
-When setting up a new project environment, these packages cover most data science needs:
+When setting up a new project environment, common data science packages you might include are:
 
 | Package | Purpose |
 |---------|---------|

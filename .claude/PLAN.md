@@ -18,7 +18,8 @@
 ### Part 2: Core Tools
 - [x] **Positron**: Expand chapter with workflow details (screenshots still needed)
 - [x] **Conda**: Expanded with core packages, channels, libmamba solver, lab policies
-- [ ] **renv**: Add troubleshooting for common Bioconductor issues
+- [x] **renv**: Renamed to "R: rig & renv", expanded with rig usage, tidyverse, Bioconductor (version sync, RNA-seq & single-cell packages)
+- [x] **Quarto**: Expanded with interactive workflow, setup patterns from TiHKAL, cheatsheets at end
 - [ ] **Git/GitHub**: Add section on GitHub Classroom (if using for courses)
 
 ### Part 3: Claude Code
@@ -75,6 +76,18 @@
 ## Session Notes
 
 _Add notes here during working sessions_
+
+### 2026-02-03
+- Expanded renv chapter → "R: rig & renv" (253→570 lines):
+  - rig section: why multiple R versions, essential commands, per-project R version pinning
+  - Tidyverse section: importance in data science, pandas parallel, link to R4DS
+  - Bioconductor expansion: what it is, version synchronization table, RNA-seq packages (DESeq2, limma, edgeR, tximport, tximeta, goseq), single-cell packages (Seurat, SingleCellExperiment, scran, scater, Monocle3)
+- Expanded Quarto chapter (377→676 lines):
+  - Why Quarto: compared to R scripts, compared to R Markdown
+  - Detailed interactive development workflow walkthrough
+  - Setup chunk patterns based on TiHKAL project
+  - Documenting inputs/outputs pattern
+  - Cheatsheets moved to end (YAML header, setup chunk template, chunk options, commands, shortcuts)
 
 ### 2026-02-02 (session 4)
 - Expanded Conda chapter (311→456 lines):
