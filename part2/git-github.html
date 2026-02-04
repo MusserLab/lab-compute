@@ -109,6 +109,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
@@ -503,46 +506,77 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#why-version-control" id="toc-why-version-control" class="nav-link active" data-scroll-target="#why-version-control"><span class="header-section-number">9.1</span> Why Version Control?</a></li>
-  <li><a href="#git-basics" id="toc-git-basics" class="nav-link" data-scroll-target="#git-basics"><span class="header-section-number">9.2</span> Git Basics</a>
+  <li><a href="#what-is-git" id="toc-what-is-git" class="nav-link active" data-scroll-target="#what-is-git"><span class="header-section-number">9.1</span> What is Git?</a></li>
+  <li><a href="#what-is-github" id="toc-what-is-github" class="nav-link" data-scroll-target="#what-is-github"><span class="header-section-number">9.2</span> What is GitHub?</a></li>
+  <li><a href="#personal-accounts-vs.-the-lab-organization" id="toc-personal-accounts-vs.-the-lab-organization" class="nav-link" data-scroll-target="#personal-accounts-vs.-the-lab-organization"><span class="header-section-number">9.3</span> Personal Accounts vs.&nbsp;the Lab Organization</a>
   <ul class="collapse">
-  <li><a href="#key-concepts" id="toc-key-concepts" class="nav-link" data-scroll-target="#key-concepts"><span class="header-section-number">9.2.1</span> Key Concepts</a></li>
-  <li><a href="#the-basic-workflow" id="toc-the-basic-workflow" class="nav-link" data-scroll-target="#the-basic-workflow"><span class="header-section-number">9.2.2</span> The Basic Workflow</a></li>
-  <li><a href="#viewing-history" id="toc-viewing-history" class="nav-link" data-scroll-target="#viewing-history"><span class="header-section-number">9.2.3</span> Viewing History</a></li>
+  <li><a href="#visibility-public-vs.-private" id="toc-visibility-public-vs.-private" class="nav-link" data-scroll-target="#visibility-public-vs.-private"><span class="header-section-number">9.3.1</span> Visibility: Public vs.&nbsp;Private</a></li>
+  <li><a href="#adding-collaborators" id="toc-adding-collaborators" class="nav-link" data-scroll-target="#adding-collaborators"><span class="header-section-number">9.3.2</span> Adding Collaborators</a></li>
   </ul></li>
-  <li><a href="#essential-commands" id="toc-essential-commands" class="nav-link" data-scroll-target="#essential-commands"><span class="header-section-number">9.3</span> Essential Commands</a>
+  <li><a href="#why-we-use-git-for-all-research" id="toc-why-we-use-git-for-all-research" class="nav-link" data-scroll-target="#why-we-use-git-for-all-research"><span class="header-section-number">9.4</span> Why We Use Git for All Research</a></li>
+  <li><a href="#key-concepts" id="toc-key-concepts" class="nav-link" data-scroll-target="#key-concepts"><span class="header-section-number">9.5</span> Key Concepts</a></li>
+  <li><a href="#the-daily-workflow" id="toc-the-daily-workflow" class="nav-link" data-scroll-target="#the-daily-workflow"><span class="header-section-number">9.6</span> The Daily Workflow</a>
   <ul class="collapse">
-  <li><a href="#starting-a-repo" id="toc-starting-a-repo" class="nav-link" data-scroll-target="#starting-a-repo"><span class="header-section-number">9.3.1</span> Starting a Repo</a></li>
-  <li><a href="#daily-work" id="toc-daily-work" class="nav-link" data-scroll-target="#daily-work"><span class="header-section-number">9.3.2</span> Daily Work</a></li>
-  <li><a href="#undoing-things" id="toc-undoing-things" class="nav-link" data-scroll-target="#undoing-things"><span class="header-section-number">9.3.3</span> Undoing Things</a></li>
+  <li><a href="#check-whats-changed-git-status" id="toc-check-whats-changed-git-status" class="nav-link" data-scroll-target="#check-whats-changed-git-status"><span class="header-section-number">9.6.1</span> 1. Check what’s changed: <code>git status</code></a></li>
+  <li><a href="#see-exactly-what-changed-git-diff" id="toc-see-exactly-what-changed-git-diff" class="nav-link" data-scroll-target="#see-exactly-what-changed-git-diff"><span class="header-section-number">9.6.2</span> 2. See exactly what changed: <code>git diff</code></a></li>
+  <li><a href="#stage-changes-git-add" id="toc-stage-changes-git-add" class="nav-link" data-scroll-target="#stage-changes-git-add"><span class="header-section-number">9.6.3</span> 3. Stage changes: <code>git add</code></a></li>
+  <li><a href="#commit-git-commit" id="toc-commit-git-commit" class="nav-link" data-scroll-target="#commit-git-commit"><span class="header-section-number">9.6.4</span> 4. Commit: <code>git commit</code></a></li>
+  <li><a href="#push-to-github-git-push" id="toc-push-to-github-git-push" class="nav-link" data-scroll-target="#push-to-github-git-push"><span class="header-section-number">9.6.5</span> 5. Push to GitHub: <code>git push</code></a></li>
+  <li><a href="#pull-others-changes-git-pull" id="toc-pull-others-changes-git-pull" class="nav-link" data-scroll-target="#pull-others-changes-git-pull"><span class="header-section-number">9.6.6</span> 6. Pull others’ changes: <code>git pull</code></a></li>
   </ul></li>
-  <li><a href="#writing-good-commit-messages" id="toc-writing-good-commit-messages" class="nav-link" data-scroll-target="#writing-good-commit-messages"><span class="header-section-number">9.4</span> Writing Good Commit Messages</a></li>
-  <li><a href="#branching" id="toc-branching" class="nav-link" data-scroll-target="#branching"><span class="header-section-number">9.5</span> Branching</a>
+  <li><a href="#starting-and-cloning-repos" id="toc-starting-and-cloning-repos" class="nav-link" data-scroll-target="#starting-and-cloning-repos"><span class="header-section-number">9.7</span> Starting and Cloning Repos</a>
   <ul class="collapse">
-  <li><a href="#when-to-branch" id="toc-when-to-branch" class="nav-link" data-scroll-target="#when-to-branch"><span class="header-section-number">9.5.1</span> When to Branch</a></li>
+  <li><a href="#creating-a-new-repository" id="toc-creating-a-new-repository" class="nav-link" data-scroll-target="#creating-a-new-repository"><span class="header-section-number">9.7.1</span> Creating a new repository</a></li>
+  <li><a href="#cloning-an-existing-repository" id="toc-cloning-an-existing-repository" class="nav-link" data-scroll-target="#cloning-an-existing-repository"><span class="header-section-number">9.7.2</span> Cloning an existing repository</a></li>
   </ul></li>
-  <li><a href="#github" id="toc-github" class="nav-link" data-scroll-target="#github"><span class="header-section-number">9.6</span> GitHub</a>
+  <li><a href="#viewing-history" id="toc-viewing-history" class="nav-link" data-scroll-target="#viewing-history"><span class="header-section-number">9.8</span> Viewing History</a>
   <ul class="collapse">
-  <li><a href="#connecting-to-github" id="toc-connecting-to-github" class="nav-link" data-scroll-target="#connecting-to-github"><span class="header-section-number">9.6.1</span> Connecting to GitHub</a></li>
-  <li><a href="#pull-changes" id="toc-pull-changes" class="nav-link" data-scroll-target="#pull-changes"><span class="header-section-number">9.6.2</span> Pull Changes</a></li>
-  <li><a href="#cloning-a-repo" id="toc-cloning-a-repo" class="nav-link" data-scroll-target="#cloning-a-repo"><span class="header-section-number">9.6.3</span> Cloning a Repo</a></li>
+  <li><a href="#see-the-commit-log" id="toc-see-the-commit-log" class="nav-link" data-scroll-target="#see-the-commit-log"><span class="header-section-number">9.8.1</span> See the commit log</a></li>
+  <li><a href="#see-what-changed-in-a-specific-commit" id="toc-see-what-changed-in-a-specific-commit" class="nav-link" data-scroll-target="#see-what-changed-in-a-specific-commit"><span class="header-section-number">9.8.2</span> See what changed in a specific commit</a></li>
+  <li><a href="#see-the-history-of-a-specific-file" id="toc-see-the-history-of-a-specific-file" class="nav-link" data-scroll-target="#see-the-history-of-a-specific-file"><span class="header-section-number">9.8.3</span> See the history of a specific file</a></li>
   </ul></li>
-  <li><a href="#pull-requests" id="toc-pull-requests" class="nav-link" data-scroll-target="#pull-requests"><span class="header-section-number">9.7</span> Pull Requests</a></li>
-  <li><a href="#gitignore" id="toc-gitignore" class="nav-link" data-scroll-target="#gitignore"><span class="header-section-number">9.8</span> .gitignore</a></li>
-  <li><a href="#common-scenarios" id="toc-common-scenarios" class="nav-link" data-scroll-target="#common-scenarios"><span class="header-section-number">9.9</span> Common Scenarios</a>
+  <li><a href="#undoing-mistakes" id="toc-undoing-mistakes" class="nav-link" data-scroll-target="#undoing-mistakes"><span class="header-section-number">9.9</span> Undoing Mistakes</a>
   <ul class="collapse">
-  <li><a href="#i-committed-but-havent-pushed" id="toc-i-committed-but-havent-pushed" class="nav-link" data-scroll-target="#i-committed-but-havent-pushed"><span class="header-section-number">9.9.1</span> “I committed but haven’t pushed”</a></li>
-  <li><a href="#i-want-to-see-an-old-version" id="toc-i-want-to-see-an-old-version" class="nav-link" data-scroll-target="#i-want-to-see-an-old-version"><span class="header-section-number">9.9.2</span> “I want to see an old version”</a></li>
-  <li><a href="#i-have-merge-conflicts" id="toc-i-have-merge-conflicts" class="nav-link" data-scroll-target="#i-have-merge-conflicts"><span class="header-section-number">9.9.3</span> “I have merge conflicts”</a></li>
+  <li><a href="#unstage-a-file-before-committing" id="toc-unstage-a-file-before-committing" class="nav-link" data-scroll-target="#unstage-a-file-before-committing"><span class="header-section-number">9.9.1</span> Unstage a file (before committing)</a></li>
+  <li><a href="#discard-changes-to-a-file-before-committing" id="toc-discard-changes-to-a-file-before-committing" class="nav-link" data-scroll-target="#discard-changes-to-a-file-before-committing"><span class="header-section-number">9.9.2</span> Discard changes to a file (before committing)</a></li>
+  <li><a href="#undo-the-last-commit-keep-the-changes" id="toc-undo-the-last-commit-keep-the-changes" class="nav-link" data-scroll-target="#undo-the-last-commit-keep-the-changes"><span class="header-section-number">9.9.3</span> Undo the last commit (keep the changes)</a></li>
+  <li><a href="#amend-the-last-commit" id="toc-amend-the-last-commit" class="nav-link" data-scroll-target="#amend-the-last-commit"><span class="header-section-number">9.9.4</span> Amend the last commit</a></li>
   </ul></li>
-  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices"><span class="header-section-number">9.10</span> Best Practices</a>
+  <li><a href="#writing-good-commit-messages" id="toc-writing-good-commit-messages" class="nav-link" data-scroll-target="#writing-good-commit-messages"><span class="header-section-number">9.10</span> Writing Good Commit Messages</a>
   <ul class="collapse">
-  <li><a href="#commit-often" id="toc-commit-often" class="nav-link" data-scroll-target="#commit-often"><span class="header-section-number">9.10.1</span> Commit Often</a></li>
-  <li><a href="#pull-before-push" id="toc-pull-before-push" class="nav-link" data-scroll-target="#pull-before-push"><span class="header-section-number">9.10.2</span> Pull Before Push</a></li>
-  <li><a href="#dont-commit-secrets" id="toc-dont-commit-secrets" class="nav-link" data-scroll-target="#dont-commit-secrets"><span class="header-section-number">9.10.3</span> Don’t Commit Secrets</a></li>
-  <li><a href="#dont-commit-large-data" id="toc-dont-commit-large-data" class="nav-link" data-scroll-target="#dont-commit-large-data"><span class="header-section-number">9.10.4</span> Don’t Commit Large Data</a></li>
+  <li><a href="#message-format" id="toc-message-format" class="nav-link" data-scroll-target="#message-format"><span class="header-section-number">9.10.1</span> Message format</a></li>
+  <li><a href="#when-to-commit" id="toc-when-to-commit" class="nav-link" data-scroll-target="#when-to-commit"><span class="header-section-number">9.10.2</span> When to commit</a></li>
   </ul></li>
-  <li><a href="#quick-reference" id="toc-quick-reference" class="nav-link" data-scroll-target="#quick-reference"><span class="header-section-number">9.11</span> Quick Reference</a></li>
+  <li><a href="#branching" id="toc-branching" class="nav-link" data-scroll-target="#branching"><span class="header-section-number">9.11</span> Branching</a>
+  <ul class="collapse">
+  <li><a href="#why-branch" id="toc-why-branch" class="nav-link" data-scroll-target="#why-branch"><span class="header-section-number">9.11.1</span> Why branch?</a></li>
+  <li><a href="#basic-branching-workflow" id="toc-basic-branching-workflow" class="nav-link" data-scroll-target="#basic-branching-workflow"><span class="header-section-number">9.11.2</span> Basic branching workflow</a></li>
+  <li><a href="#when-to-branch" id="toc-when-to-branch" class="nav-link" data-scroll-target="#when-to-branch"><span class="header-section-number">9.11.3</span> When to branch</a></li>
+  </ul></li>
+  <li><a href="#connecting-local-repos-to-github" id="toc-connecting-local-repos-to-github" class="nav-link" data-scroll-target="#connecting-local-repos-to-github"><span class="header-section-number">9.12</span> Connecting Local Repos to GitHub</a>
+  <ul class="collapse">
+  <li><a href="#using-the-github-cli-recommended" id="toc-using-the-github-cli-recommended" class="nav-link" data-scroll-target="#using-the-github-cli-recommended"><span class="header-section-number">9.12.1</span> Using the GitHub CLI (recommended)</a></li>
+  <li><a href="#manual-setup" id="toc-manual-setup" class="nav-link" data-scroll-target="#manual-setup"><span class="header-section-number">9.12.2</span> Manual setup</a></li>
+  <li><a href="#checking-your-remote" id="toc-checking-your-remote" class="nav-link" data-scroll-target="#checking-your-remote"><span class="header-section-number">9.12.3</span> Checking your remote</a></li>
+  </ul></li>
+  <li><a href="#pull-requests" id="toc-pull-requests" class="nav-link" data-scroll-target="#pull-requests"><span class="header-section-number">9.13</span> Pull Requests</a>
+  <ul class="collapse">
+  <li><a href="#the-pr-workflow" id="toc-the-pr-workflow" class="nav-link" data-scroll-target="#the-pr-workflow"><span class="header-section-number">9.13.1</span> The PR workflow</a></li>
+  <li><a href="#when-to-use-prs" id="toc-when-to-use-prs" class="nav-link" data-scroll-target="#when-to-use-prs"><span class="header-section-number">9.13.2</span> When to use PRs</a></li>
+  </ul></li>
+  <li><a href="#gitignore" id="toc-gitignore" class="nav-link" data-scroll-target="#gitignore"><span class="header-section-number">9.14</span> .gitignore</a>
+  <ul class="collapse">
+  <li><a href="#standard-.gitignore-for-lab-projects" id="toc-standard-.gitignore-for-lab-projects" class="nav-link" data-scroll-target="#standard-.gitignore-for-lab-projects"><span class="header-section-number">9.14.1</span> Standard .gitignore for lab projects</a></li>
+  <li><a href="#checking-if-something-is-ignored" id="toc-checking-if-something-is-ignored" class="nav-link" data-scroll-target="#checking-if-something-is-ignored"><span class="header-section-number">9.14.2</span> Checking if something is ignored</a></li>
+  </ul></li>
+  <li><a href="#common-scenarios" id="toc-common-scenarios" class="nav-link" data-scroll-target="#common-scenarios"><span class="header-section-number">9.15</span> Common Scenarios</a>
+  <ul class="collapse">
+  <li><a href="#i-want-to-see-what-a-file-looked-like-before" id="toc-i-want-to-see-what-a-file-looked-like-before" class="nav-link" data-scroll-target="#i-want-to-see-what-a-file-looked-like-before"><span class="header-section-number">9.15.1</span> “I want to see what a file looked like before”</a></li>
+  <li><a href="#i-want-to-go-back-to-an-old-version" id="toc-i-want-to-go-back-to-an-old-version" class="nav-link" data-scroll-target="#i-want-to-go-back-to-an-old-version"><span class="header-section-number">9.15.2</span> “I want to go back to an old version”</a></li>
+  <li><a href="#i-have-merge-conflicts" id="toc-i-have-merge-conflicts" class="nav-link" data-scroll-target="#i-have-merge-conflicts"><span class="header-section-number">9.15.3</span> “I have merge conflicts”</a></li>
+  </ul></li>
+  <li><a href="#best-practices-summary" id="toc-best-practices-summary" class="nav-link" data-scroll-target="#best-practices-summary"><span class="header-section-number">9.16</span> Best Practices Summary</a></li>
+  <li><a href="#quick-reference" id="toc-quick-reference" class="nav-link" data-scroll-target="#quick-reference"><span class="header-section-number">9.17</span> Quick Reference</a></li>
   </ul>
 </nav>
     </div>
@@ -569,253 +603,611 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Git tracks changes to your code over time. GitHub hosts your Git repositories online for backup and collaboration.</p>
-<section id="why-version-control" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="why-version-control"><span class="header-section-number">9.1</span> Why Version Control?</h2>
-<p>Without version control:</p>
+<section id="what-is-git" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="what-is-git"><span class="header-section-number">9.1</span> What is Git?</h2>
+<p>Git is a <strong>version control system</strong>—software that tracks every change you make to your files over time. Think of it as an unlimited undo history for your entire project, with the ability to see exactly what changed, when, and why.</p>
+<p>Without version control, projects tend to accumulate files like this:</p>
 <pre><code>analysis_v1.R
 analysis_v2.R
 analysis_v2_final.R
 analysis_v2_final_FINAL.R
 analysis_v2_final_FINAL_fixed.R</code></pre>
-<p>With Git: - One file, complete history - See what changed, when, and why - Revert mistakes - Collaborate without overwriting each other</p>
-</section>
-<section id="git-basics" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="git-basics"><span class="header-section-number">9.2</span> Git Basics</h2>
-<section id="key-concepts" class="level3" data-number="9.2.1">
-<h3 data-number="9.2.1" class="anchored" data-anchor-id="key-concepts"><span class="header-section-number">9.2.1</span> Key Concepts</h3>
+<p>With Git, you have one file (<code>analysis.R</code>) and a complete history of every version. You can:</p>
 <ul>
-<li><strong>Repository (repo)</strong>: A project folder tracked by Git</li>
-<li><strong>Commit</strong>: A snapshot of your project at a point in time</li>
-<li><strong>Stage</strong>: Mark files to include in the next commit</li>
-<li><strong>Branch</strong>: A parallel version of your project</li>
-<li><strong>Remote</strong>: A copy of your repo on another server (like GitHub)</li>
+<li><strong>See what changed</strong>: Compare any two versions to see exactly which lines were added, removed, or modified</li>
+<li><strong>Understand why</strong>: Each saved version includes a message explaining the change</li>
+<li><strong>Go back in time</strong>: Restore any previous version if something breaks</li>
+<li><strong>Work in parallel</strong>: Create “branches” to experiment without affecting your main code</li>
+<li><strong>Collaborate safely</strong>: Multiple people can work on the same project without overwriting each other</li>
 </ul>
+<p>Git runs locally on your computer. Every project folder that Git tracks is called a <strong>repository</strong> (or “repo”). The history lives in a hidden <code>.git</code> folder inside your project.</p>
 </section>
-<section id="the-basic-workflow" class="level3" data-number="9.2.2">
-<h3 data-number="9.2.2" class="anchored" data-anchor-id="the-basic-workflow"><span class="header-section-number">9.2.2</span> The Basic Workflow</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Make changes to files</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. See what changed</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Stage changes</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add filename.R</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Or stage everything:</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Commit with a message</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add analysis script"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="viewing-history" class="level3" data-number="9.2.3">
-<h3 data-number="9.2.3" class="anchored" data-anchor-id="viewing-history"><span class="header-section-number">9.2.3</span> Viewing History</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># See commit history</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># See compact history</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># See what changed in a commit</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> show abc123</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-</section>
-<section id="essential-commands" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="essential-commands"><span class="header-section-number">9.3</span> Essential Commands</h2>
-<section id="starting-a-repo" class="level3" data-number="9.3.1">
-<h3 data-number="9.3.1" class="anchored" data-anchor-id="starting-a-repo"><span class="header-section-number">9.3.1</span> Starting a Repo</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize new repo</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Clone existing repo</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/user/repo.git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="daily-work" class="level3" data-number="9.3.2">
-<h3 data-number="9.3.2" class="anchored" data-anchor-id="daily-work"><span class="header-section-number">9.3.2</span> Daily Work</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check status</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># See changes</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Stage files</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add file.R</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .  <span class="co"># All files</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Commit</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Your message"</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Push to GitHub</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="undoing-things" class="level3" data-number="9.3.3">
-<h3 data-number="9.3.3" class="anchored" data-anchor-id="undoing-things"><span class="header-section-number">9.3.3</span> Undoing Things</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Unstage a file</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset HEAD file.R</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Discard changes to a file</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">--</span> file.R</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Undo last commit (keep changes)</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset <span class="at">--soft</span> HEAD~1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-</section>
-<section id="writing-good-commit-messages" class="level2" data-number="9.4">
-<h2 data-number="9.4" class="anchored" data-anchor-id="writing-good-commit-messages"><span class="header-section-number">9.4</span> Writing Good Commit Messages</h2>
-<p><strong>Bad:</strong> - “update” - “fix” - “changes”</p>
-<p><strong>Good:</strong> - “Add function to normalize expression data” - “Fix off-by-one error in loop index” - “Update README with installation instructions”</p>
-<p>Format: - Short summary (50 chars or less) - Blank line - Detailed description if needed</p>
-</section>
-<section id="branching" class="level2" data-number="9.5">
-<h2 data-number="9.5" class="anchored" data-anchor-id="branching"><span class="header-section-number">9.5</span> Branching</h2>
-<p>Branches let you work on features without affecting the main code.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create and switch to new branch</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> feature-name</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Work, commit, etc...</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Switch back to main</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout main</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge feature into main</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge feature-name</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<section id="when-to-branch" class="level3" data-number="9.5.1">
-<h3 data-number="9.5.1" class="anchored" data-anchor-id="when-to-branch"><span class="header-section-number">9.5.1</span> When to Branch</h3>
+<section id="what-is-github" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="what-is-github"><span class="header-section-number">9.2</span> What is GitHub?</h2>
+<p>GitHub is a <strong>website that hosts Git repositories online</strong>. Git and GitHub are related but different:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Git</th>
+<th>GitHub</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Software on your computer</td>
+<td>Website (github.com)</td>
+</tr>
+<tr class="even">
+<td>Tracks file history locally</td>
+<td>Stores repos in the cloud</td>
+</tr>
+<tr class="odd">
+<td>Works offline</td>
+<td>Requires internet</td>
+</tr>
+<tr class="even">
+<td>Free, open-source tool</td>
+<td>Company (owned by Microsoft)</td>
+</tr>
+</tbody>
+</table>
+<p>You can use Git without GitHub—the history stays on your computer. But GitHub adds important capabilities:</p>
 <ul>
-<li>Adding a new feature</li>
-<li>Fixing a bug</li>
-<li>Experimenting</li>
+<li><strong>Backup</strong>: Your code is safe even if your laptop dies</li>
+<li><strong>Collaboration</strong>: Others can access, download, and contribute to your project</li>
+<li><strong>Visibility</strong>: Share your work publicly or keep it private</li>
+<li><strong>Project management</strong>: Issues, pull requests, and documentation</li>
 </ul>
-<p>Keep <code>main</code> stable. Do work in branches.</p>
+<p>Other Git hosting services exist (GitLab, Bitbucket), but GitHub is the most common in science and the one we use in the lab.</p>
 </section>
-</section>
-<section id="github" class="level2" data-number="9.6">
-<h2 data-number="9.6" class="anchored" data-anchor-id="github"><span class="header-section-number">9.6</span> GitHub</h2>
-<p>GitHub hosts your repositories online, enabling:</p>
+<section id="personal-accounts-vs.-the-lab-organization" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="personal-accounts-vs.-the-lab-organization"><span class="header-section-number">9.3</span> Personal Accounts vs.&nbsp;the Lab Organization</h2>
+<p>On GitHub, you have a <strong>personal account</strong> (your username), and you can also belong to <strong>organizations</strong> (shared accounts for teams).</p>
+<p>The lab uses the <strong>MusserLab</strong> organization for all research projects. Here’s how to think about where your repos should live:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 43%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Where</th>
+<th>When to use</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Your personal account</strong></td>
+<td>Personal projects only: coursework, side projects, learning exercises</td>
+<td><code>jsmith/practice-git</code>, <code>jsmith/coursework</code></td>
+</tr>
+<tr class="even">
+<td><strong>MusserLab organization</strong></td>
+<td>All lab research—no exceptions</td>
+<td><code>MusserLab/tryptamine-phospho</code>, <code>MusserLab/rnaseq-pipeline</code></td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Lab research belongs on the organization
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If a project involves lab research, it must be on the MusserLab organization—not your personal account. This ensures continuity when people leave, makes collaboration possible, and keeps lab work in one place.</p>
+</div>
+</div>
+<section id="visibility-public-vs.-private" class="level3" data-number="9.3.1">
+<h3 data-number="9.3.1" class="anchored" data-anchor-id="visibility-public-vs.-private"><span class="header-section-number">9.3.1</span> Visibility: Public vs.&nbsp;Private</h3>
+<p>Both personal accounts and organizations can have public or private repos:</p>
 <ul>
-<li>Backup of your code</li>
-<li>Collaboration with others</li>
-<li>Issue tracking</li>
-<li>Pull requests for code review</li>
+<li><strong>Private</strong>: Only you (or organization members) can see it</li>
+<li><strong>Public</strong>: Anyone on the internet can see it</li>
 </ul>
-<section id="connecting-to-github" class="level3" data-number="9.6.1">
-<h3 data-number="9.6.1" class="anchored" data-anchor-id="connecting-to-github"><span class="header-section-number">9.6.1</span> Connecting to GitHub</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add remote</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin https://github.com/user/repo.git</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Push (first time)</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Push (after first time)</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Lab research repos are typically kept <strong>private</strong>. When a paper is published, we usually create a separate, curated public repository with cleaned-up code and documentation—rather than making the working repo public. This lets you work freely during research without worrying about how messy your commit history looks.</p>
 </section>
-<section id="pull-changes" class="level3" data-number="9.6.2">
-<h3 data-number="9.6.2" class="anchored" data-anchor-id="pull-changes"><span class="header-section-number">9.6.2</span> Pull Changes</h3>
-<p>If someone else pushed changes:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="cloning-a-repo" class="level3" data-number="9.6.3">
-<h3 data-number="9.6.3" class="anchored" data-anchor-id="cloning-a-repo"><span class="header-section-number">9.6.3</span> Cloning a Repo</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/user/repo.git</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> repo</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-</section>
-<section id="pull-requests" class="level2" data-number="9.7">
-<h2 data-number="9.7" class="anchored" data-anchor-id="pull-requests"><span class="header-section-number">9.7</span> Pull Requests</h2>
-<p>Pull requests (PRs) let you propose changes and get feedback.</p>
+<section id="adding-collaborators" class="level3" data-number="9.3.2">
+<h3 data-number="9.3.2" class="anchored" data-anchor-id="adding-collaborators"><span class="header-section-number">9.3.2</span> Adding Collaborators</h3>
+<p>To give someone access to your repo:</p>
 <ol type="1">
-<li>Create a branch</li>
-<li>Make changes and push</li>
-<li>Open PR on GitHub</li>
-<li>Get review/feedback</li>
-<li>Merge when approved</li>
+<li>Go to your repo on GitHub</li>
+<li><strong>Settings</strong> → <strong>Collaborators and teams</strong></li>
+<li>Click <strong>Add people</strong></li>
+<li>Enter their GitHub username</li>
+<li>Choose their permission level:
+<ul>
+<li><strong>Read</strong>: Can view and clone, but not push changes</li>
+<li><strong>Write</strong>: Can push changes (use this for active collaborators)</li>
+<li><strong>Admin</strong>: Full control including settings (rarely needed)</li>
+</ul></li>
 </ol>
-<p>This is standard for collaboration, even on solo projects (to review your own work).</p>
 </section>
-<section id="gitignore" class="level2" data-number="9.8">
-<h2 data-number="9.8" class="anchored" data-anchor-id="gitignore"><span class="header-section-number">9.8</span> .gitignore</h2>
-<p>List files Git should ignore:</p>
-<pre><code># Data files (too large)
+</section>
+<section id="why-we-use-git-for-all-research" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="why-we-use-git-for-all-research"><span class="header-section-number">9.4</span> Why We Use Git for All Research</h2>
+<p>In the lab, we use Git for all research projects—think of it as the computational equivalent of a lab notebook. Your commit history becomes a record of how your analysis evolved: what you tried, what you changed, and why.</p>
+<p>This practice pays off in several ways:</p>
+<ol type="1">
+<li><strong>A record of your work</strong>: Every commit documents what you did and when, which helps with scientific integrity and your own memory</li>
+<li><strong>Safety net</strong>: Experiment freely knowing you can always go back if something breaks</li>
+<li><strong>Backup</strong>: Combined with GitHub, your work survives laptop failures and accidental deletions</li>
+<li><strong>Reproducibility</strong>: Collaborators (and future you) can trace exactly what code produced which results</li>
+</ol>
+<p>You don’t need to master every Git feature—the basics go a long way. The next sections cover the essential commands for daily work.</p>
+</section>
+<section id="key-concepts" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="key-concepts"><span class="header-section-number">9.5</span> Key Concepts</h2>
+<p>Before diving into commands, understand these core ideas:</p>
+<dl>
+<dt><strong>Repository (repo)</strong></dt>
+<dd>
+A project folder that Git is tracking. When you run <code>git init</code> in a folder, it becomes a repository. Git creates a hidden <code>.git</code> folder that stores the entire history.
+</dd>
+<dt><strong>Commit</strong></dt>
+<dd>
+A snapshot of your project at a moment in time. Each commit has a unique ID (like <code>a1b2c3d</code>), a message describing what changed, and a pointer to the previous commit. Commits form a chain—your project’s history.
+</dd>
+<dt><strong>Staging area</strong></dt>
+<dd>
+A holding area for changes you want to include in your next commit. You “stage” files with <code>git add</code>, then “commit” them with <code>git commit</code>. This two-step process lets you commit only some of your changes.
+</dd>
+<dt><strong>Branch</strong></dt>
+<dd>
+A parallel version of your project. The default branch is called <code>main</code>. You can create other branches to experiment without affecting <code>main</code>, then merge them back when ready.
+</dd>
+<dt><strong>Remote</strong></dt>
+<dd>
+A copy of your repository on another server—typically GitHub. Your local repo and the remote stay in sync through <code>push</code> (upload your commits) and <code>pull</code> (download others’ commits).
+</dd>
+</dl>
+</section>
+<section id="the-daily-workflow" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="the-daily-workflow"><span class="header-section-number">9.6</span> The Daily Workflow</h2>
+<p>Most of your Git usage follows this pattern:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    edit["Edit files"] --&gt; status["git status"]
+    status --&gt; add["git add"]
+    add --&gt; commit["git commit"]
+    commit --&gt; push["git push"]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<section id="check-whats-changed-git-status" class="level3" data-number="9.6.1">
+<h3 data-number="9.6.1" class="anchored" data-anchor-id="check-whats-changed-git-status"><span class="header-section-number">9.6.1</span> 1. Check what’s changed: <code>git status</code></h3>
+<p>Run this constantly. It shows: - Which files you’ve modified - Which files are staged for commit - Which files Git isn’t tracking</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Example output:</p>
+<pre><code>On branch main
+Changes not staged for commit:
+  modified:   scripts/01_import_qc.qmd
+
+Untracked files:
+  scripts/02_normalize.qmd</code></pre>
+<p>This tells you: you modified one file and created a new one. Neither is staged yet.</p>
+</section>
+<section id="see-exactly-what-changed-git-diff" class="level3" data-number="9.6.2">
+<h3 data-number="9.6.2" class="anchored" data-anchor-id="see-exactly-what-changed-git-diff"><span class="header-section-number">9.6.2</span> 2. See exactly what changed: <code>git diff</code></h3>
+<p>Before committing, review your changes:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff                    <span class="co"># Show unstaged changes</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff <span class="at">--staged</span>           <span class="co"># Show staged changes (what will be committed)</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff scripts/01_qc.qmd  <span class="co"># Show changes in a specific file</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Lines starting with <code>+</code> were added; lines starting with <code>-</code> were removed.</p>
+</section>
+<section id="stage-changes-git-add" class="level3" data-number="9.6.3">
+<h3 data-number="9.6.3" class="anchored" data-anchor-id="stage-changes-git-add"><span class="header-section-number">9.6.3</span> 3. Stage changes: <code>git add</code></h3>
+<p>Staging tells Git “include these changes in my next commit.”</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add scripts/01_import_qc.qmd    <span class="co"># Stage one file</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add scripts/                     <span class="co"># Stage all changes in a folder</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .                            <span class="co"># Stage everything (use carefully)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Be intentional about what you stage
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>git add .</code> stages everything, which is convenient but can accidentally include files you didn’t mean to commit. For important commits, stage files individually so you know exactly what’s included.</p>
+</div>
+</div>
+</section>
+<section id="commit-git-commit" class="level3" data-number="9.6.4">
+<h3 data-number="9.6.4" class="anchored" data-anchor-id="commit-git-commit"><span class="header-section-number">9.6.4</span> 4. Commit: <code>git commit</code></h3>
+<p>A commit saves your staged changes with a message explaining what you did:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add QC filtering step to remove low-quality samples"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The message is important—it’s the record of what you did and why. Write messages that help future-you understand the change.</p>
+</section>
+<section id="push-to-github-git-push" class="level3" data-number="9.6.5">
+<h3 data-number="9.6.5" class="anchored" data-anchor-id="push-to-github-git-push"><span class="header-section-number">9.6.5</span> 5. Push to GitHub: <code>git push</code></h3>
+<p>Upload your commits to GitHub:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Until you push, your commits exist only on your computer. Push regularly to back up your work.</p>
+</section>
+<section id="pull-others-changes-git-pull" class="level3" data-number="9.6.6">
+<h3 data-number="9.6.6" class="anchored" data-anchor-id="pull-others-changes-git-pull"><span class="header-section-number">9.6.6</span> 6. Pull others’ changes: <code>git pull</code></h3>
+<p>If collaborators pushed changes (or you worked from another computer), download them:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Always pull before you start working</strong> to avoid conflicts.</p>
+</section>
+</section>
+<section id="starting-and-cloning-repos" class="level2" data-number="9.7">
+<h2 data-number="9.7" class="anchored" data-anchor-id="starting-and-cloning-repos"><span class="header-section-number">9.7</span> Starting and Cloning Repos</h2>
+<section id="creating-a-new-repository" class="level3" data-number="9.7.1">
+<h3 data-number="9.7.1" class="anchored" data-anchor-id="creating-a-new-repository"><span class="header-section-number">9.7.1</span> Creating a new repository</h3>
+<p>For a new project:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> my-project</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This creates the <code>.git</code> folder and starts tracking. Your first commit usually includes the initial project structure.</p>
+</section>
+<section id="cloning-an-existing-repository" class="level3" data-number="9.7.2">
+<h3 data-number="9.7.2" class="anchored" data-anchor-id="cloning-an-existing-repository"><span class="header-section-number">9.7.2</span> Cloning an existing repository</h3>
+<p>To get a copy of a repo from GitHub:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/MusserLab/project-name.git</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> project-name</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This downloads the entire repository including all history. You can immediately start working, committing, and pushing.</p>
+</section>
+</section>
+<section id="viewing-history" class="level2" data-number="9.8">
+<h2 data-number="9.8" class="anchored" data-anchor-id="viewing-history"><span class="header-section-number">9.8</span> Viewing History</h2>
+<section id="see-the-commit-log" class="level3" data-number="9.8.1">
+<h3 data-number="9.8.1" class="anchored" data-anchor-id="see-the-commit-log"><span class="header-section-number">9.8.1</span> See the commit log</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log              <span class="co"># Full details</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span>    <span class="co"># Compact: one line per commit</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">-5</span>           <span class="co"># Last 5 commits</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Example <code>git log --oneline</code> output:</p>
+<pre><code>a1b2c3d Add volcano plot script
+e4f5g6h Fix sample filtering bug
+i7j8k9l Initial project setup</code></pre>
+</section>
+<section id="see-what-changed-in-a-specific-commit" class="level3" data-number="9.8.2">
+<h3 data-number="9.8.2" class="anchored" data-anchor-id="see-what-changed-in-a-specific-commit"><span class="header-section-number">9.8.2</span> See what changed in a specific commit</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> show a1b2c3d</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This shows the commit message and all the changes (diff) from that commit.</p>
+</section>
+<section id="see-the-history-of-a-specific-file" class="level3" data-number="9.8.3">
+<h3 data-number="9.8.3" class="anchored" data-anchor-id="see-the-history-of-a-specific-file"><span class="header-section-number">9.8.3</span> See the history of a specific file</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span> scripts/01_import_qc.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="undoing-mistakes" class="level2" data-number="9.9">
+<h2 data-number="9.9" class="anchored" data-anchor-id="undoing-mistakes"><span class="header-section-number">9.9</span> Undoing Mistakes</h2>
+<p>Git’s safety net—ways to undo changes at different stages.</p>
+<section id="unstage-a-file-before-committing" class="level3" data-number="9.9.1">
+<h3 data-number="9.9.1" class="anchored" data-anchor-id="unstage-a-file-before-committing"><span class="header-section-number">9.9.1</span> Unstage a file (before committing)</h3>
+<p>If you staged something by mistake:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset HEAD scripts/02_normalize.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The file stays modified, just not staged.</p>
+</section>
+<section id="discard-changes-to-a-file-before-committing" class="level3" data-number="9.9.2">
+<h3 data-number="9.9.2" class="anchored" data-anchor-id="discard-changes-to-a-file-before-committing"><span class="header-section-number">9.9.2</span> Discard changes to a file (before committing)</h3>
+<p>To throw away your changes and revert to the last committed version:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">--</span> scripts/02_normalize.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This permanently discards your changes. Make sure you really want to lose them.</p>
+</div>
+</div>
+</section>
+<section id="undo-the-last-commit-keep-the-changes" class="level3" data-number="9.9.3">
+<h3 data-number="9.9.3" class="anchored" data-anchor-id="undo-the-last-commit-keep-the-changes"><span class="header-section-number">9.9.3</span> Undo the last commit (keep the changes)</h3>
+<p>If you committed too soon or with the wrong message:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset <span class="at">--soft</span> HEAD~1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This “uncommits” but keeps your changes staged so you can commit again.</p>
+</section>
+<section id="amend-the-last-commit" class="level3" data-number="9.9.4">
+<h3 data-number="9.9.4" class="anchored" data-anchor-id="amend-the-last-commit"><span class="header-section-number">9.9.4</span> Amend the last commit</h3>
+<p>To add a forgotten file or fix the message (only if you haven’t pushed yet):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add forgotten-file.R</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">--amend</span> <span class="at">-m</span> <span class="st">"Better commit message"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="writing-good-commit-messages" class="level2" data-number="9.10">
+<h2 data-number="9.10" class="anchored" data-anchor-id="writing-good-commit-messages"><span class="header-section-number">9.10</span> Writing Good Commit Messages</h2>
+<p>Commit messages are part of your scientific record. Write them for future-you (and collaborators) who need to understand what changed and why.</p>
+<p><strong>Bad messages:</strong></p>
+<pre><code>update
+fix
+changes
+asdf</code></pre>
+<p>These tell you nothing. Six months later, you won’t remember what “update” meant.</p>
+<p><strong>Good messages:</strong></p>
+<pre><code>Add QC step to filter samples with &lt;1000 genes detected
+Fix off-by-one error causing last sample to be dropped
+Update normalization to use SCTransform instead of LogNormalize
+Remove outlier samples identified in PCA (samples 12, 47)</code></pre>
+<p>These explain <em>what</em> changed and often <em>why</em>. When you look at the history, you can understand the evolution of your analysis.</p>
+<section id="message-format" class="level3" data-number="9.10.1">
+<h3 data-number="9.10.1" class="anchored" data-anchor-id="message-format"><span class="header-section-number">9.10.1</span> Message format</h3>
+<p>Keep the first line short (under 50 characters if possible). If you need more detail, add a blank line and then a longer explanation:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Switch to more stringent QC thresholds</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="st">After reviewing the PCA, samples with fewer than 2000 genes detected</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="st">were clustering separately. Increased threshold from 1000 to 2000.</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="st">See issue #15 for discussion."</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="when-to-commit" class="level3" data-number="9.10.2">
+<h3 data-number="9.10.2" class="anchored" data-anchor-id="when-to-commit"><span class="header-section-number">9.10.2</span> When to commit</h3>
+<p>Commit when you’ve completed a logical unit of work: - Finished a new analysis step - Fixed a bug - Added a new figure - Made a decision you want to record</p>
+<p>Don’t wait until the end of the day to make one giant commit. Small, focused commits are easier to understand and easier to undo if needed.</p>
+</section>
+</section>
+<section id="branching" class="level2" data-number="9.11">
+<h2 data-number="9.11" class="anchored" data-anchor-id="branching"><span class="header-section-number">9.11</span> Branching</h2>
+<p>Branches let you work on something without affecting the main code. Think of <code>main</code> as the stable, working version of your project. When you want to try something new—a different analysis approach, a new figure, an experimental feature—create a branch.</p>
+<section id="why-branch" class="level3" data-number="9.11.1">
+<h3 data-number="9.11.1" class="anchored" data-anchor-id="why-branch"><span class="header-section-number">9.11.1</span> Why branch?</h3>
+<p>Without branches, every change goes directly into <code>main</code>. If something breaks, your main code is broken. With branches:</p>
+<ol type="1">
+<li>Create a branch for your experiment</li>
+<li>Make changes freely—<code>main</code> stays untouched</li>
+<li>If it works, merge it into <code>main</code></li>
+<li>If it doesn’t, delete the branch and <code>main</code> is still fine</li>
+</ol>
+</section>
+<section id="basic-branching-workflow" class="level3" data-number="9.11.2">
+<h3 data-number="9.11.2" class="anchored" data-anchor-id="basic-branching-workflow"><span class="header-section-number">9.11.2</span> Basic branching workflow</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># See what branch you're on</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create and switch to a new branch</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> try-new-clustering</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Work normally: edit, add, commit</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Try UMAP instead of tSNE for visualization"</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co"># When ready, switch back to main</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout main</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge your branch into main</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge try-new-clustering</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Delete the branch (optional, keeps things tidy)</span></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-d</span> try-new-clustering</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="when-to-branch" class="level3" data-number="9.11.3">
+<h3 data-number="9.11.3" class="anchored" data-anchor-id="when-to-branch"><span class="header-section-number">9.11.3</span> When to branch</h3>
+<p>For most solo analysis work, you can commit directly to <code>main</code>. Branches are most useful when:</p>
+<ul>
+<li><strong>Experimenting</strong>: You want to try something that might not work</li>
+<li><strong>Major changes</strong>: You’re restructuring code and want a safe fallback</li>
+<li><strong>Collaboration</strong>: Multiple people working on the same project</li>
+<li><strong>Code review</strong>: You want someone to review changes before merging</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Don’t overcomplicate it
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you’re working alone on an analysis and making incremental progress, committing to <code>main</code> is fine. Branches are a tool—use them when they help, skip them when they don’t.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="connecting-local-repos-to-github" class="level2" data-number="9.12">
+<h2 data-number="9.12" class="anchored" data-anchor-id="connecting-local-repos-to-github"><span class="header-section-number">9.12</span> Connecting Local Repos to GitHub</h2>
+<p>When you create a repo locally with <code>git init</code>, it’s not connected to GitHub. You need to:</p>
+<ol type="1">
+<li>Create a repo on GitHub (or use <code>gh repo create</code>)</li>
+<li>Tell your local repo where the remote is</li>
+<li>Push your commits</li>
+</ol>
+<section id="using-the-github-cli-recommended" class="level3" data-number="9.12.1">
+<h3 data-number="9.12.1" class="anchored" data-anchor-id="using-the-github-cli-recommended"><span class="header-section-number">9.12.1</span> Using the GitHub CLI (recommended)</h3>
+<p>The <code>gh</code> command handles everything in one step:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create repo on MusserLab and push</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo create MusserLab/my-project <span class="at">--private</span> <span class="at">--source</span><span class="op">=</span>. <span class="at">--push</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This creates the GitHub repo, connects it, and pushes your commits.</p>
+</section>
+<section id="manual-setup" class="level3" data-number="9.12.2">
+<h3 data-number="9.12.2" class="anchored" data-anchor-id="manual-setup"><span class="header-section-number">9.12.2</span> Manual setup</h3>
+<p>If you created the repo on github.com first:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Connect local repo to GitHub (one time)</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin https://github.com/MusserLab/my-project.git</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># First push (sets up tracking)</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Future pushes (just this)</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="checking-your-remote" class="level3" data-number="9.12.3">
+<h3 data-number="9.12.3" class="anchored" data-anchor-id="checking-your-remote"><span class="header-section-number">9.12.3</span> Checking your remote</h3>
+<p>To see what remote is configured:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote <span class="at">-v</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This shows the GitHub URL your repo is connected to.</p>
+</section>
+</section>
+<section id="pull-requests" class="level2" data-number="9.13">
+<h2 data-number="9.13" class="anchored" data-anchor-id="pull-requests"><span class="header-section-number">9.13</span> Pull Requests</h2>
+<p>Pull requests (PRs) are GitHub’s way of proposing changes for review before merging them into <code>main</code>. Even if you’re working alone, PRs can be useful for reviewing your own work before it becomes part of the main codebase.</p>
+<section id="the-pr-workflow" class="level3" data-number="9.13.1">
+<h3 data-number="9.13.1" class="anchored" data-anchor-id="the-pr-workflow"><span class="header-section-number">9.13.1</span> The PR workflow</h3>
+<ol type="1">
+<li>Create a branch and make your changes</li>
+<li>Push the branch to GitHub</li>
+<li>Open a PR on github.com (GitHub will prompt you)</li>
+<li>Review the changes (or have a collaborator review)</li>
+<li>Merge when satisfied</li>
+<li>Delete the branch</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create branch and work</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> add-volcano-plots</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ... make changes, commit ...</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Push branch to GitHub</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin add-volcano-plots</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Then go to GitHub—you’ll see a prompt to create a PR.</p>
+</section>
+<section id="when-to-use-prs" class="level3" data-number="9.13.2">
+<h3 data-number="9.13.2" class="anchored" data-anchor-id="when-to-use-prs"><span class="header-section-number">9.13.2</span> When to use PRs</h3>
+<p>For solo analysis work, PRs are optional. They’re most useful when:</p>
+<ul>
+<li>You want to review your own changes before merging</li>
+<li>Someone else should review the code</li>
+<li>You want a clear record of when and why a set of changes was merged</li>
+</ul>
+<p>See the <a href="../part3/collaborating.html">Collaborating</a> chapter for more on team workflows.</p>
+</section>
+</section>
+<section id="gitignore" class="level2" data-number="9.14">
+<h2 data-number="9.14" class="anchored" data-anchor-id="gitignore"><span class="header-section-number">9.14</span> .gitignore</h2>
+<p>The <code>.gitignore</code> file tells Git which files to ignore—they won’t be tracked or committed. This is essential for:</p>
+<ul>
+<li><strong>Large files</strong>: Data files that are too big for Git</li>
+<li><strong>Generated files</strong>: Outputs that can be recreated from code</li>
+<li><strong>Secrets</strong>: Credentials that should never be shared</li>
+<li><strong>System junk</strong>: OS and IDE files that aren’t part of your project</li>
+</ul>
+<section id="standard-.gitignore-for-lab-projects" class="level3" data-number="9.14.1">
+<h3 data-number="9.14.1" class="anchored" data-anchor-id="standard-.gitignore-for-lab-projects"><span class="header-section-number">9.14.1</span> Standard .gitignore for lab projects</h3>
+<pre><code># Large data files
 data/raw/
+*.h5ad
+*.rds
 *.csv
 
-# R
+# Generated outputs (reproducible from code)
+outs/
+
+# R artifacts
 .Rhistory
 .RData
 .Rproj.user/
+renv/library/
 
-# Python
+# Python artifacts
 __pycache__/
 *.pyc
+.venv/
 
-# Secrets
+# Quarto rendering
+*_files/
+*_cache/
+.quarto/
+
+# Secrets - NEVER commit these
 .env
-credentials.json
+*credentials*
+*secret*
 
 # OS files
-.DS_Store</code></pre>
-<p>Create <code>.gitignore</code> before your first commit.</p>
+.DS_Store
+Thumbs.db
+
+# IDE settings (optional - some teams share these)
+.vscode/
+.positron/</code></pre>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Create .gitignore first
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Set up <code>.gitignore</code> before your first commit. Once a file is committed, adding it to <code>.gitignore</code> won’t remove it from history—it’s already tracked.</p>
+</div>
+</div>
 </section>
-<section id="common-scenarios" class="level2" data-number="9.9">
-<h2 data-number="9.9" class="anchored" data-anchor-id="common-scenarios"><span class="header-section-number">9.9</span> Common Scenarios</h2>
-<section id="i-committed-but-havent-pushed" class="level3" data-number="9.9.1">
-<h3 data-number="9.9.1" class="anchored" data-anchor-id="i-committed-but-havent-pushed"><span class="header-section-number">9.9.1</span> “I committed but haven’t pushed”</h3>
-<p>You can still modify:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Amend the last commit</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">--amend</span> <span class="at">-m</span> <span class="st">"New message"</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add forgotten file to last commit</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add forgotten-file.R</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">--amend</span> <span class="at">--no-edit</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="checking-if-something-is-ignored" class="level3" data-number="9.14.2">
+<h3 data-number="9.14.2" class="anchored" data-anchor-id="checking-if-something-is-ignored"><span class="header-section-number">9.14.2</span> Checking if something is ignored</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status <span class="at">--ignored</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="i-want-to-see-an-old-version" class="level3" data-number="9.9.2">
-<h3 data-number="9.9.2" class="anchored" data-anchor-id="i-want-to-see-an-old-version"><span class="header-section-number">9.9.2</span> “I want to see an old version”</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View old version of file</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> show abc123:path/to/file.R</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Temporarily go back to old commit</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout abc123</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout main  <span class="co"># Return to present</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="i-have-merge-conflicts" class="level3" data-number="9.9.3">
-<h3 data-number="9.9.3" class="anchored" data-anchor-id="i-have-merge-conflicts"><span class="header-section-number">9.9.3</span> “I have merge conflicts”</h3>
-<p>When the same lines changed in both branches:</p>
-<ol type="1">
-<li><p>Open the conflicted file</p></li>
-<li><p>Look for conflict markers:</p>
+<section id="common-scenarios" class="level2" data-number="9.15">
+<h2 data-number="9.15" class="anchored" data-anchor-id="common-scenarios"><span class="header-section-number">9.15</span> Common Scenarios</h2>
+<section id="i-want-to-see-what-a-file-looked-like-before" class="level3" data-number="9.15.1">
+<h3 data-number="9.15.1" class="anchored" data-anchor-id="i-want-to-see-what-a-file-looked-like-before"><span class="header-section-number">9.15.1</span> “I want to see what a file looked like before”</h3>
+<p>To view an old version without changing anything:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> show abc123:scripts/01_import_qc.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Replace <code>abc123</code> with the commit hash (find it with <code>git log --oneline</code>).</p>
+</section>
+<section id="i-want-to-go-back-to-an-old-version" class="level3" data-number="9.15.2">
+<h3 data-number="9.15.2" class="anchored" data-anchor-id="i-want-to-go-back-to-an-old-version"><span class="header-section-number">9.15.2</span> “I want to go back to an old version”</h3>
+<p>To temporarily check out an old commit (read-only exploration):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout abc123</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Look around...</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout main  <span class="co"># Return to present</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To actually restore a file to an old version:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout abc123 <span class="at">--</span> scripts/01_import_qc.qmd</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add scripts/01_import_qc.qmd</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Restore old version of import script"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="i-have-merge-conflicts" class="level3" data-number="9.15.3">
+<h3 data-number="9.15.3" class="anchored" data-anchor-id="i-have-merge-conflicts"><span class="header-section-number">9.15.3</span> “I have merge conflicts”</h3>
+<p>Conflicts happen when you and someone else changed the same lines. Git can’t automatically decide which version to keep.</p>
+<p>When you see conflict markers in a file:</p>
 <pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-your changes
+# Your version
+result &lt;- calculate_mean(data)
 =======
-their changes
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; branch-name</code></pre></li>
-<li><p>Edit to resolve (keep what you want)</p></li>
-<li><p>Remove the markers</p></li>
-<li><p>Stage and commit</p></li>
-</ol>
+# Their version
+result &lt;- calculate_median(data)
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; origin/main</code></pre>
+<p>Edit the file to resolve—keep one version, combine them, or write something new. Remove all the marker lines (<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>), then:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add resolved-file.R</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Resolve merge conflict in analysis script"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="best-practices" class="level2" data-number="9.10">
-<h2 data-number="9.10" class="anchored" data-anchor-id="best-practices"><span class="header-section-number">9.10</span> Best Practices</h2>
-<section id="commit-often" class="level3" data-number="9.10.1">
-<h3 data-number="9.10.1" class="anchored" data-anchor-id="commit-often"><span class="header-section-number">9.10.1</span> Commit Often</h3>
-<p>Small, focused commits are easier to understand and revert.</p>
+<section id="best-practices-summary" class="level2" data-number="9.16">
+<h2 data-number="9.16" class="anchored" data-anchor-id="best-practices-summary"><span class="header-section-number">9.16</span> Best Practices Summary</h2>
+<dl>
+<dt><strong>Commit often, push regularly</strong></dt>
+<dd>
+Small commits are easier to understand. Pushing backs up your work.
+</dd>
+<dt><strong>Pull before you start working</strong></dt>
+<dd>
+Especially on shared projects—get others’ changes before you start.
+</dd>
+<dt><strong>Write meaningful commit messages</strong></dt>
+<dd>
+Future-you will thank present-you.
+</dd>
+<dt><strong>Use .gitignore from the start</strong></dt>
+<dd>
+Prevent large files and secrets from ever entering the repo.
+</dd>
+<dt><strong>Don’t panic</strong></dt>
+<dd>
+Git rarely loses data. Most mistakes are recoverable with the right commands (or ask for help).
+</dd>
+</dl>
 </section>
-<section id="pull-before-push" class="level3" data-number="9.10.2">
-<h3 data-number="9.10.2" class="anchored" data-anchor-id="pull-before-push"><span class="header-section-number">9.10.2</span> Pull Before Push</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Avoid conflicts by syncing first.</p>
-</section>
-<section id="dont-commit-secrets" class="level3" data-number="9.10.3">
-<h3 data-number="9.10.3" class="anchored" data-anchor-id="dont-commit-secrets"><span class="header-section-number">9.10.3</span> Don’t Commit Secrets</h3>
-<p>Never commit passwords, API keys, or credentials. Use <code>.gitignore</code>.</p>
-</section>
-<section id="dont-commit-large-data" class="level3" data-number="9.10.4">
-<h3 data-number="9.10.4" class="anchored" data-anchor-id="dont-commit-large-data"><span class="header-section-number">9.10.4</span> Don’t Commit Large Data</h3>
-<p>Git struggles with large files. Keep data separate or use Git LFS.</p>
-</section>
-</section>
-<section id="quick-reference" class="level2" data-number="9.11">
-<h2 data-number="9.11" class="anchored" data-anchor-id="quick-reference"><span class="header-section-number">9.11</span> Quick Reference</h2>
+<section id="quick-reference" class="level2" data-number="9.17">
+<h2 data-number="9.17" class="anchored" data-anchor-id="quick-reference"><span class="header-section-number">9.17</span> Quick Reference</h2>
 <table class="caption-top table">
 <thead>
 <tr class="header">

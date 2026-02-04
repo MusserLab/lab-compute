@@ -954,7 +954,7 @@
     "href": "part2/project-organization.html#how-dependencies-work",
     "title": "8  Project Organization",
     "section": "8.3 How Dependencies Work",
-    "text": "8.3 How Dependencies Work\nScripts read from two places:\n\ndata/ — external inputs\nouts/ — outputs from other scripts (typically earlier-numbered ones)\n\nDependencies don’t have to be strictly linear. Here’s an example dependency graph:\ndata/counts.csv ──────────────────────────────┐\n                                              │\n01_import_qc.qmd ─────► outs/01_import_qc/    │\n        │                      │              │\n        │                      ▼              │\n        │              02_normalize.qmd ──► outs/02_normalize/\n        │                      │\n        │                      ▼\n        │              03_differential.qmd ──► outs/03_differential/\n        │                      │                      │\n        ▼                      ▼                      │\n05_heatmaps.qmd ◄──────────────┴──────────────────────┘\n        │\n        ▼\n  outs/05_heatmaps/\nIn this example: - Scripts 01 → 02 → 03 form a linear chain - Script 05 reads from 01, 03, AND the original data - The numbering reflects the logical order, not strict dependencies",
+    "text": "8.3 How Dependencies Work\nScripts read from two places:\n\ndata/ — external inputs\nouts/ — outputs from other scripts (typically earlier-numbered ones)\n\nDependencies don’t have to be strictly linear. Here’s an example dependency graph:\n\n\n\n\n\nflowchart LR\n    data[\"data/*\"] --&gt; s01[\"01_import_qc\"]\n    s01 --&gt; s02[\"02_normalize\"]\n    s02 --&gt; s03[\"03_differential\"]\n\n    s01 --&gt; s05[\"05_heatmaps\"]\n    s03 --&gt; s05\n    data --&gt; s05\n\n\n\n\n\n\nIn this example:\n\nScripts 01 → 02 → 03 form a linear chain\nScript 05 reads from 01, 03, AND the original data\nThe numbering reflects the logical order, not strict dependencies",
     "crumbs": [
       "Core Tools",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Project Organization</span>"
@@ -1031,7 +1031,7 @@
     "href": "part2/project-organization.html#complete-example",
     "title": "8  Project Organization",
     "section": "8.10 Complete Example",
-    "text": "8.10 Complete Example\nHere’s a well-organized phosphoproteomics project:\ntryptamine_phospho/\n├── data/\n│   ├── README.md                    # Documents data sources\n│   ├── raw_counts.csv               # From mass spec core\n│   ├── sample_metadata.csv          # Experimental design\n│   └── gene_annotations.tsv         # Downloaded from UniProt\n│\n├── scripts/\n│   ├── 01_import_qc.qmd\n│   ├── 02_normalize.qmd\n│   ├── 03_differential.qmd\n│   ├── 04_volcano_plots.qmd\n│   ├── 05_trajectory_clustering.qmd\n│   └── 06_heatmaps.qmd\n│\n├── outs/\n│   ├── 01_import_qc/\n│   │   ├── filtered_counts.rds\n│   │   └── qc_summary.html\n│   ├── 02_normalize/\n│   │   └── normalized_counts.rds\n│   ├── 03_differential/\n│   │   ├── limma_results.rds\n│   │   └── significant_hits.csv\n│   ├── 04_volcano_plots/\n│   │   ├── volcano_3min.pdf\n│   │   ├── volcano_15min.pdf\n│   │   └── volcano_30min.pdf\n│   ├── 05_trajectory_clustering/\n│   │   ├── cluster_assignments.csv\n│   │   └── elbow_plot.pdf\n│   └── 06_heatmaps/\n│       ├── heatmap_all_clusters.pdf\n│       └── heatmap_per_cluster/\n│\n├── environment.yml\n├── renv.lock\n├── .gitignore\n└── README.md\nDependency flow:\ndata/* ──► 01 ──► 02 ──► 03 ──► 04\n                   │      │\n                   │      └──► 05 ──► 06\n                   │            │\n                   └────────────┘\nFrom this structure, anyone can understand: - Where the raw data came from (data/README.md) - The analysis workflow (numbered scripts) - What each script produces (matching output folders) - How to reproduce the analysis (environment files + scripts)",
+    "text": "8.10 Complete Example\nHere’s a well-organized phosphoproteomics project:\ntryptamine_phospho/\n├── data/\n│   ├── README.md                    # Documents data sources\n│   ├── raw_counts.csv               # From mass spec core\n│   ├── sample_metadata.csv          # Experimental design\n│   └── gene_annotations.tsv         # Downloaded from UniProt\n│\n├── scripts/\n│   ├── 01_import_qc.qmd\n│   ├── 02_normalize.qmd\n│   ├── 03_differential.qmd\n│   ├── 04_volcano_plots.qmd\n│   ├── 05_trajectory_clustering.qmd\n│   └── 06_heatmaps.qmd\n│\n├── outs/\n│   ├── 01_import_qc/\n│   │   ├── filtered_counts.rds\n│   │   └── qc_summary.html\n│   ├── 02_normalize/\n│   │   └── normalized_counts.rds\n│   ├── 03_differential/\n│   │   ├── limma_results.rds\n│   │   └── significant_hits.csv\n│   ├── 04_volcano_plots/\n│   │   ├── volcano_3min.pdf\n│   │   ├── volcano_15min.pdf\n│   │   └── volcano_30min.pdf\n│   ├── 05_trajectory_clustering/\n│   │   ├── cluster_assignments.csv\n│   │   └── elbow_plot.pdf\n│   └── 06_heatmaps/\n│       ├── heatmap_all_clusters.pdf\n│       └── heatmap_per_cluster/\n│\n├── environment.yml\n├── renv.lock\n├── .gitignore\n└── README.md\nDependency flow:\n\n\n\n\n\nflowchart LR\n    data[\"data/*\"] --&gt; s01[\"01\"]\n    s01 --&gt; s02[\"02\"]\n    s02 --&gt; s03[\"03\"]\n    s03 --&gt; s04[\"04\"]\n\n    s02 --&gt; s05[\"05\"]\n    s03 --&gt; s05\n    s05 --&gt; s06[\"06\"]\n\n\n\n\n\n\nFrom this structure, anyone can understand: - Where the raw data came from (data/README.md) - The analysis workflow (numbered scripts) - What each script produces (matching output folders) - How to reproduce the analysis (environment files + scripts)",
     "crumbs": [
       "Core Tools",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Project Organization</span>"
@@ -1042,40 +1042,106 @@
     "href": "part2/git-github.html",
     "title": "9  Git & GitHub",
     "section": "",
-    "text": "9.1 Why Version Control?\nGit tracks changes to your code over time. GitHub hosts your Git repositories online for backup and collaboration.\nWithout version control:\nWith Git: - One file, complete history - See what changed, when, and why - Revert mistakes - Collaborate without overwriting each other",
+    "text": "9.1 What is Git?\nGit is a version control system—software that tracks every change you make to your files over time. Think of it as an unlimited undo history for your entire project, with the ability to see exactly what changed, when, and why.\nWithout version control, projects tend to accumulate files like this:\nWith Git, you have one file (analysis.R) and a complete history of every version. You can:\nGit runs locally on your computer. Every project folder that Git tracks is called a repository (or “repo”). The history lives in a hidden .git folder inside your project.",
     "crumbs": [
       "Core Tools",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Git & GitHub</span>"
     ]
   },
   {
-    "objectID": "part2/git-github.html#why-version-control",
-    "href": "part2/git-github.html#why-version-control",
+    "objectID": "part2/git-github.html#what-is-git",
+    "href": "part2/git-github.html#what-is-git",
     "title": "9  Git & GitHub",
     "section": "",
-    "text": "analysis_v1.R\nanalysis_v2.R\nanalysis_v2_final.R\nanalysis_v2_final_FINAL.R\nanalysis_v2_final_FINAL_fixed.R",
+    "text": "analysis_v1.R\nanalysis_v2.R\nanalysis_v2_final.R\nanalysis_v2_final_FINAL.R\nanalysis_v2_final_FINAL_fixed.R\n\n\nSee what changed: Compare any two versions to see exactly which lines were added, removed, or modified\nUnderstand why: Each saved version includes a message explaining the change\nGo back in time: Restore any previous version if something breaks\nWork in parallel: Create “branches” to experiment without affecting your main code\nCollaborate safely: Multiple people can work on the same project without overwriting each other",
     "crumbs": [
       "Core Tools",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Git & GitHub</span>"
     ]
   },
   {
-    "objectID": "part2/git-github.html#git-basics",
-    "href": "part2/git-github.html#git-basics",
+    "objectID": "part2/git-github.html#what-is-github",
+    "href": "part2/git-github.html#what-is-github",
     "title": "9  Git & GitHub",
-    "section": "9.2 Git Basics",
-    "text": "9.2 Git Basics\n\n9.2.1 Key Concepts\n\nRepository (repo): A project folder tracked by Git\nCommit: A snapshot of your project at a point in time\nStage: Mark files to include in the next commit\nBranch: A parallel version of your project\nRemote: A copy of your repo on another server (like GitHub)\n\n\n\n9.2.2 The Basic Workflow\n# 1. Make changes to files\n\n# 2. See what changed\ngit status\n\n# 3. Stage changes\ngit add filename.R\n# Or stage everything:\ngit add .\n\n# 4. Commit with a message\ngit commit -m \"Add analysis script\"\n\n\n9.2.3 Viewing History\n# See commit history\ngit log\n\n# See compact history\ngit log --oneline\n\n# See what changed in a commit\ngit show abc123",
+    "section": "9.2 What is GitHub?",
+    "text": "9.2 What is GitHub?\nGitHub is a website that hosts Git repositories online. Git and GitHub are related but different:\n\n\n\nGit\nGitHub\n\n\n\n\nSoftware on your computer\nWebsite (github.com)\n\n\nTracks file history locally\nStores repos in the cloud\n\n\nWorks offline\nRequires internet\n\n\nFree, open-source tool\nCompany (owned by Microsoft)\n\n\n\nYou can use Git without GitHub—the history stays on your computer. But GitHub adds important capabilities:\n\nBackup: Your code is safe even if your laptop dies\nCollaboration: Others can access, download, and contribute to your project\nVisibility: Share your work publicly or keep it private\nProject management: Issues, pull requests, and documentation\n\nOther Git hosting services exist (GitLab, Bitbucket), but GitHub is the most common in science and the one we use in the lab.",
     "crumbs": [
       "Core Tools",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Git & GitHub</span>"
     ]
   },
   {
-    "objectID": "part2/git-github.html#essential-commands",
-    "href": "part2/git-github.html#essential-commands",
+    "objectID": "part2/git-github.html#personal-accounts-vs.-the-lab-organization",
+    "href": "part2/git-github.html#personal-accounts-vs.-the-lab-organization",
     "title": "9  Git & GitHub",
-    "section": "9.3 Essential Commands",
-    "text": "9.3 Essential Commands\n\n9.3.1 Starting a Repo\n# Initialize new repo\ngit init\n\n# Clone existing repo\ngit clone https://github.com/user/repo.git\n\n\n9.3.2 Daily Work\n# Check status\ngit status\n\n# See changes\ngit diff\n\n# Stage files\ngit add file.R\ngit add .  # All files\n\n# Commit\ngit commit -m \"Your message\"\n\n# Push to GitHub\ngit push\n\n\n9.3.3 Undoing Things\n# Unstage a file\ngit reset HEAD file.R\n\n# Discard changes to a file\ngit checkout -- file.R\n\n# Undo last commit (keep changes)\ngit reset --soft HEAD~1",
+    "section": "9.3 Personal Accounts vs. the Lab Organization",
+    "text": "9.3 Personal Accounts vs. the Lab Organization\nOn GitHub, you have a personal account (your username), and you can also belong to organizations (shared accounts for teams).\nThe lab uses the MusserLab organization for all research projects. Here’s how to think about where your repos should live:\n\n\n\n\n\n\n\n\nWhere\nWhen to use\nExamples\n\n\n\n\nYour personal account\nPersonal projects only: coursework, side projects, learning exercises\njsmith/practice-git, jsmith/coursework\n\n\nMusserLab organization\nAll lab research—no exceptions\nMusserLab/tryptamine-phospho, MusserLab/rnaseq-pipeline\n\n\n\n\n\n\n\n\n\nImportantLab research belongs on the organization\n\n\n\nIf a project involves lab research, it must be on the MusserLab organization—not your personal account. This ensures continuity when people leave, makes collaboration possible, and keeps lab work in one place.\n\n\n\n9.3.1 Visibility: Public vs. Private\nBoth personal accounts and organizations can have public or private repos:\n\nPrivate: Only you (or organization members) can see it\nPublic: Anyone on the internet can see it\n\nLab research repos are typically kept private. When a paper is published, we usually create a separate, curated public repository with cleaned-up code and documentation—rather than making the working repo public. This lets you work freely during research without worrying about how messy your commit history looks.\n\n\n9.3.2 Adding Collaborators\nTo give someone access to your repo:\n\nGo to your repo on GitHub\nSettings → Collaborators and teams\nClick Add people\nEnter their GitHub username\nChoose their permission level:\n\nRead: Can view and clone, but not push changes\nWrite: Can push changes (use this for active collaborators)\nAdmin: Full control including settings (rarely needed)",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Git & GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "part2/git-github.html#why-we-use-git-for-all-research",
+    "href": "part2/git-github.html#why-we-use-git-for-all-research",
+    "title": "9  Git & GitHub",
+    "section": "9.4 Why We Use Git for All Research",
+    "text": "9.4 Why We Use Git for All Research\nIn the lab, we use Git for all research projects—think of it as the computational equivalent of a lab notebook. Your commit history becomes a record of how your analysis evolved: what you tried, what you changed, and why.\nThis practice pays off in several ways:\n\nA record of your work: Every commit documents what you did and when, which helps with scientific integrity and your own memory\nSafety net: Experiment freely knowing you can always go back if something breaks\nBackup: Combined with GitHub, your work survives laptop failures and accidental deletions\nReproducibility: Collaborators (and future you) can trace exactly what code produced which results\n\nYou don’t need to master every Git feature—the basics go a long way. The next sections cover the essential commands for daily work.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Git & GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "part2/git-github.html#key-concepts",
+    "href": "part2/git-github.html#key-concepts",
+    "title": "9  Git & GitHub",
+    "section": "9.5 Key Concepts",
+    "text": "9.5 Key Concepts\nBefore diving into commands, understand these core ideas:\n\nRepository (repo)\n\nA project folder that Git is tracking. When you run git init in a folder, it becomes a repository. Git creates a hidden .git folder that stores the entire history.\n\nCommit\n\nA snapshot of your project at a moment in time. Each commit has a unique ID (like a1b2c3d), a message describing what changed, and a pointer to the previous commit. Commits form a chain—your project’s history.\n\nStaging area\n\nA holding area for changes you want to include in your next commit. You “stage” files with git add, then “commit” them with git commit. This two-step process lets you commit only some of your changes.\n\nBranch\n\nA parallel version of your project. The default branch is called main. You can create other branches to experiment without affecting main, then merge them back when ready.\n\nRemote\n\nA copy of your repository on another server—typically GitHub. Your local repo and the remote stay in sync through push (upload your commits) and pull (download others’ commits).",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Git & GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "part2/git-github.html#the-daily-workflow",
+    "href": "part2/git-github.html#the-daily-workflow",
+    "title": "9  Git & GitHub",
+    "section": "9.6 The Daily Workflow",
+    "text": "9.6 The Daily Workflow\nMost of your Git usage follows this pattern:\n\n\n\n\n\nflowchart LR\n    edit[\"Edit files\"] --&gt; status[\"git status\"]\n    status --&gt; add[\"git add\"]\n    add --&gt; commit[\"git commit\"]\n    commit --&gt; push[\"git push\"]\n\n\n\n\n\n\n\n9.6.1 1. Check what’s changed: git status\nRun this constantly. It shows: - Which files you’ve modified - Which files are staged for commit - Which files Git isn’t tracking\ngit status\nExample output:\nOn branch main\nChanges not staged for commit:\n  modified:   scripts/01_import_qc.qmd\n\nUntracked files:\n  scripts/02_normalize.qmd\nThis tells you: you modified one file and created a new one. Neither is staged yet.\n\n\n9.6.2 2. See exactly what changed: git diff\nBefore committing, review your changes:\ngit diff                    # Show unstaged changes\ngit diff --staged           # Show staged changes (what will be committed)\ngit diff scripts/01_qc.qmd  # Show changes in a specific file\nLines starting with + were added; lines starting with - were removed.\n\n\n9.6.3 3. Stage changes: git add\nStaging tells Git “include these changes in my next commit.”\ngit add scripts/01_import_qc.qmd    # Stage one file\ngit add scripts/                     # Stage all changes in a folder\ngit add .                            # Stage everything (use carefully)\n\n\n\n\n\n\nTipBe intentional about what you stage\n\n\n\ngit add . stages everything, which is convenient but can accidentally include files you didn’t mean to commit. For important commits, stage files individually so you know exactly what’s included.\n\n\n\n\n9.6.4 4. Commit: git commit\nA commit saves your staged changes with a message explaining what you did:\ngit commit -m \"Add QC filtering step to remove low-quality samples\"\nThe message is important—it’s the record of what you did and why. Write messages that help future-you understand the change.\n\n\n9.6.5 5. Push to GitHub: git push\nUpload your commits to GitHub:\ngit push\nUntil you push, your commits exist only on your computer. Push regularly to back up your work.\n\n\n9.6.6 6. Pull others’ changes: git pull\nIf collaborators pushed changes (or you worked from another computer), download them:\ngit pull\nAlways pull before you start working to avoid conflicts.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Git & GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "part2/git-github.html#starting-and-cloning-repos",
+    "href": "part2/git-github.html#starting-and-cloning-repos",
+    "title": "9  Git & GitHub",
+    "section": "9.7 Starting and Cloning Repos",
+    "text": "9.7 Starting and Cloning Repos\n\n9.7.1 Creating a new repository\nFor a new project:\ncd my-project\ngit init\nThis creates the .git folder and starts tracking. Your first commit usually includes the initial project structure.\n\n\n9.7.2 Cloning an existing repository\nTo get a copy of a repo from GitHub:\ngit clone https://github.com/MusserLab/project-name.git\ncd project-name\nThis downloads the entire repository including all history. You can immediately start working, committing, and pushing.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Git & GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "part2/git-github.html#viewing-history",
+    "href": "part2/git-github.html#viewing-history",
+    "title": "9  Git & GitHub",
+    "section": "9.8 Viewing History",
+    "text": "9.8 Viewing History\n\n9.8.1 See the commit log\ngit log              # Full details\ngit log --oneline    # Compact: one line per commit\ngit log -5           # Last 5 commits\nExample git log --oneline output:\na1b2c3d Add volcano plot script\ne4f5g6h Fix sample filtering bug\ni7j8k9l Initial project setup\n\n\n9.8.2 See what changed in a specific commit\ngit show a1b2c3d\nThis shows the commit message and all the changes (diff) from that commit.\n\n\n9.8.3 See the history of a specific file\ngit log --oneline scripts/01_import_qc.qmd",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Git & GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "part2/git-github.html#undoing-mistakes",
+    "href": "part2/git-github.html#undoing-mistakes",
+    "title": "9  Git & GitHub",
+    "section": "9.9 Undoing Mistakes",
+    "text": "9.9 Undoing Mistakes\nGit’s safety net—ways to undo changes at different stages.\n\n9.9.1 Unstage a file (before committing)\nIf you staged something by mistake:\ngit reset HEAD scripts/02_normalize.qmd\nThe file stays modified, just not staged.\n\n\n9.9.2 Discard changes to a file (before committing)\nTo throw away your changes and revert to the last committed version:\ngit checkout -- scripts/02_normalize.qmd\n\n\n\n\n\n\nWarning\n\n\n\nThis permanently discards your changes. Make sure you really want to lose them.\n\n\n\n\n9.9.3 Undo the last commit (keep the changes)\nIf you committed too soon or with the wrong message:\ngit reset --soft HEAD~1\nThis “uncommits” but keeps your changes staged so you can commit again.\n\n\n9.9.4 Amend the last commit\nTo add a forgotten file or fix the message (only if you haven’t pushed yet):\ngit add forgotten-file.R\ngit commit --amend -m \"Better commit message\"",
     "crumbs": [
       "Core Tools",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Git & GitHub</span>"
@@ -1085,8 +1151,8 @@
     "objectID": "part2/git-github.html#writing-good-commit-messages",
     "href": "part2/git-github.html#writing-good-commit-messages",
     "title": "9  Git & GitHub",
-    "section": "9.4 Writing Good Commit Messages",
-    "text": "9.4 Writing Good Commit Messages\nBad: - “update” - “fix” - “changes”\nGood: - “Add function to normalize expression data” - “Fix off-by-one error in loop index” - “Update README with installation instructions”\nFormat: - Short summary (50 chars or less) - Blank line - Detailed description if needed",
+    "section": "9.10 Writing Good Commit Messages",
+    "text": "9.10 Writing Good Commit Messages\nCommit messages are part of your scientific record. Write them for future-you (and collaborators) who need to understand what changed and why.\nBad messages:\nupdate\nfix\nchanges\nasdf\nThese tell you nothing. Six months later, you won’t remember what “update” meant.\nGood messages:\nAdd QC step to filter samples with &lt;1000 genes detected\nFix off-by-one error causing last sample to be dropped\nUpdate normalization to use SCTransform instead of LogNormalize\nRemove outlier samples identified in PCA (samples 12, 47)\nThese explain what changed and often why. When you look at the history, you can understand the evolution of your analysis.\n\n9.10.1 Message format\nKeep the first line short (under 50 characters if possible). If you need more detail, add a blank line and then a longer explanation:\ngit commit -m \"Switch to more stringent QC thresholds\n\nAfter reviewing the PCA, samples with fewer than 2000 genes detected\nwere clustering separately. Increased threshold from 1000 to 2000.\nSee issue #15 for discussion.\"\n\n\n9.10.2 When to commit\nCommit when you’ve completed a logical unit of work: - Finished a new analysis step - Fixed a bug - Added a new figure - Made a decision you want to record\nDon’t wait until the end of the day to make one giant commit. Small, focused commits are easier to understand and easier to undo if needed.",
     "crumbs": [
       "Core Tools",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Git & GitHub</span>"
@@ -1096,19 +1162,19 @@
     "objectID": "part2/git-github.html#branching",
     "href": "part2/git-github.html#branching",
     "title": "9  Git & GitHub",
-    "section": "9.5 Branching",
-    "text": "9.5 Branching\nBranches let you work on features without affecting the main code.\n# Create and switch to new branch\ngit checkout -b feature-name\n\n# Work, commit, etc...\n\n# Switch back to main\ngit checkout main\n\n# Merge feature into main\ngit merge feature-name\n\n9.5.1 When to Branch\n\nAdding a new feature\nFixing a bug\nExperimenting\n\nKeep main stable. Do work in branches.",
+    "section": "9.11 Branching",
+    "text": "9.11 Branching\nBranches let you work on something without affecting the main code. Think of main as the stable, working version of your project. When you want to try something new—a different analysis approach, a new figure, an experimental feature—create a branch.\n\n9.11.1 Why branch?\nWithout branches, every change goes directly into main. If something breaks, your main code is broken. With branches:\n\nCreate a branch for your experiment\nMake changes freely—main stays untouched\nIf it works, merge it into main\nIf it doesn’t, delete the branch and main is still fine\n\n\n\n9.11.2 Basic branching workflow\n# See what branch you're on\ngit branch\n\n# Create and switch to a new branch\ngit checkout -b try-new-clustering\n\n# Work normally: edit, add, commit\ngit add .\ngit commit -m \"Try UMAP instead of tSNE for visualization\"\n\n# When ready, switch back to main\ngit checkout main\n\n# Merge your branch into main\ngit merge try-new-clustering\n\n# Delete the branch (optional, keeps things tidy)\ngit branch -d try-new-clustering\n\n\n9.11.3 When to branch\nFor most solo analysis work, you can commit directly to main. Branches are most useful when:\n\nExperimenting: You want to try something that might not work\nMajor changes: You’re restructuring code and want a safe fallback\nCollaboration: Multiple people working on the same project\nCode review: You want someone to review changes before merging\n\n\n\n\n\n\n\nNoteDon’t overcomplicate it\n\n\n\nIf you’re working alone on an analysis and making incremental progress, committing to main is fine. Branches are a tool—use them when they help, skip them when they don’t.",
     "crumbs": [
       "Core Tools",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Git & GitHub</span>"
     ]
   },
   {
-    "objectID": "part2/git-github.html#github",
-    "href": "part2/git-github.html#github",
+    "objectID": "part2/git-github.html#connecting-local-repos-to-github",
+    "href": "part2/git-github.html#connecting-local-repos-to-github",
     "title": "9  Git & GitHub",
-    "section": "9.6 GitHub",
-    "text": "9.6 GitHub\nGitHub hosts your repositories online, enabling:\n\nBackup of your code\nCollaboration with others\nIssue tracking\nPull requests for code review\n\n\n9.6.1 Connecting to GitHub\n# Add remote\ngit remote add origin https://github.com/user/repo.git\n\n# Push (first time)\ngit push -u origin main\n\n# Push (after first time)\ngit push\n\n\n9.6.2 Pull Changes\nIf someone else pushed changes:\ngit pull\n\n\n9.6.3 Cloning a Repo\ngit clone https://github.com/user/repo.git\ncd repo",
+    "section": "9.12 Connecting Local Repos to GitHub",
+    "text": "9.12 Connecting Local Repos to GitHub\nWhen you create a repo locally with git init, it’s not connected to GitHub. You need to:\n\nCreate a repo on GitHub (or use gh repo create)\nTell your local repo where the remote is\nPush your commits\n\n\n9.12.1 Using the GitHub CLI (recommended)\nThe gh command handles everything in one step:\n# Create repo on MusserLab and push\ngh repo create MusserLab/my-project --private --source=. --push\nThis creates the GitHub repo, connects it, and pushes your commits.\n\n\n9.12.2 Manual setup\nIf you created the repo on github.com first:\n# Connect local repo to GitHub (one time)\ngit remote add origin https://github.com/MusserLab/my-project.git\n\n# First push (sets up tracking)\ngit push -u origin main\n\n# Future pushes (just this)\ngit push\n\n\n9.12.3 Checking your remote\nTo see what remote is configured:\ngit remote -v\nThis shows the GitHub URL your repo is connected to.",
     "crumbs": [
       "Core Tools",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Git & GitHub</span>"
@@ -1118,8 +1184,8 @@
     "objectID": "part2/git-github.html#pull-requests",
     "href": "part2/git-github.html#pull-requests",
     "title": "9  Git & GitHub",
-    "section": "9.7 Pull Requests",
-    "text": "9.7 Pull Requests\nPull requests (PRs) let you propose changes and get feedback.\n\nCreate a branch\nMake changes and push\nOpen PR on GitHub\nGet review/feedback\nMerge when approved\n\nThis is standard for collaboration, even on solo projects (to review your own work).",
+    "section": "9.13 Pull Requests",
+    "text": "9.13 Pull Requests\nPull requests (PRs) are GitHub’s way of proposing changes for review before merging them into main. Even if you’re working alone, PRs can be useful for reviewing your own work before it becomes part of the main codebase.\n\n9.13.1 The PR workflow\n\nCreate a branch and make your changes\nPush the branch to GitHub\nOpen a PR on github.com (GitHub will prompt you)\nReview the changes (or have a collaborator review)\nMerge when satisfied\nDelete the branch\n\n# Create branch and work\ngit checkout -b add-volcano-plots\n# ... make changes, commit ...\n\n# Push branch to GitHub\ngit push -u origin add-volcano-plots\nThen go to GitHub—you’ll see a prompt to create a PR.\n\n\n9.13.2 When to use PRs\nFor solo analysis work, PRs are optional. They’re most useful when:\n\nYou want to review your own changes before merging\nSomeone else should review the code\nYou want a clear record of when and why a set of changes was merged\n\nSee the Collaborating chapter for more on team workflows.",
     "crumbs": [
       "Core Tools",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Git & GitHub</span>"
@@ -1129,8 +1195,8 @@
     "objectID": "part2/git-github.html#gitignore",
     "href": "part2/git-github.html#gitignore",
     "title": "9  Git & GitHub",
-    "section": "9.8 .gitignore",
-    "text": "9.8 .gitignore\nList files Git should ignore:\n# Data files (too large)\ndata/raw/\n*.csv\n\n# R\n.Rhistory\n.RData\n.Rproj.user/\n\n# Python\n__pycache__/\n*.pyc\n\n# Secrets\n.env\ncredentials.json\n\n# OS files\n.DS_Store\nCreate .gitignore before your first commit.",
+    "section": "9.14 .gitignore",
+    "text": "9.14 .gitignore\nThe .gitignore file tells Git which files to ignore—they won’t be tracked or committed. This is essential for:\n\nLarge files: Data files that are too big for Git\nGenerated files: Outputs that can be recreated from code\nSecrets: Credentials that should never be shared\nSystem junk: OS and IDE files that aren’t part of your project\n\n\n9.14.1 Standard .gitignore for lab projects\n# Large data files\ndata/raw/\n*.h5ad\n*.rds\n*.csv\n\n# Generated outputs (reproducible from code)\nouts/\n\n# R artifacts\n.Rhistory\n.RData\n.Rproj.user/\nrenv/library/\n\n# Python artifacts\n__pycache__/\n*.pyc\n.venv/\n\n# Quarto rendering\n*_files/\n*_cache/\n.quarto/\n\n# Secrets - NEVER commit these\n.env\n*credentials*\n*secret*\n\n# OS files\n.DS_Store\nThumbs.db\n\n# IDE settings (optional - some teams share these)\n.vscode/\n.positron/\n\n\n\n\n\n\nImportantCreate .gitignore first\n\n\n\nSet up .gitignore before your first commit. Once a file is committed, adding it to .gitignore won’t remove it from history—it’s already tracked.\n\n\n\n\n9.14.2 Checking if something is ignored\ngit status --ignored",
     "crumbs": [
       "Core Tools",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Git & GitHub</span>"
@@ -1140,19 +1206,19 @@
     "objectID": "part2/git-github.html#common-scenarios",
     "href": "part2/git-github.html#common-scenarios",
     "title": "9  Git & GitHub",
-    "section": "9.9 Common Scenarios",
-    "text": "9.9 Common Scenarios\n\n9.9.1 “I committed but haven’t pushed”\nYou can still modify:\n# Amend the last commit\ngit commit --amend -m \"New message\"\n\n# Add forgotten file to last commit\ngit add forgotten-file.R\ngit commit --amend --no-edit\n\n\n9.9.2 “I want to see an old version”\n# View old version of file\ngit show abc123:path/to/file.R\n\n# Temporarily go back to old commit\ngit checkout abc123\ngit checkout main  # Return to present\n\n\n9.9.3 “I have merge conflicts”\nWhen the same lines changed in both branches:\n\nOpen the conflicted file\nLook for conflict markers:\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD\nyour changes\n=======\ntheir changes\n&gt;&gt;&gt;&gt;&gt;&gt;&gt; branch-name\nEdit to resolve (keep what you want)\nRemove the markers\nStage and commit",
+    "section": "9.15 Common Scenarios",
+    "text": "9.15 Common Scenarios\n\n9.15.1 “I want to see what a file looked like before”\nTo view an old version without changing anything:\ngit show abc123:scripts/01_import_qc.qmd\nReplace abc123 with the commit hash (find it with git log --oneline).\n\n\n9.15.2 “I want to go back to an old version”\nTo temporarily check out an old commit (read-only exploration):\ngit checkout abc123\n# Look around...\ngit checkout main  # Return to present\nTo actually restore a file to an old version:\ngit checkout abc123 -- scripts/01_import_qc.qmd\ngit add scripts/01_import_qc.qmd\ngit commit -m \"Restore old version of import script\"\n\n\n9.15.3 “I have merge conflicts”\nConflicts happen when you and someone else changed the same lines. Git can’t automatically decide which version to keep.\nWhen you see conflict markers in a file:\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD\n# Your version\nresult &lt;- calculate_mean(data)\n=======\n# Their version\nresult &lt;- calculate_median(data)\n&gt;&gt;&gt;&gt;&gt;&gt;&gt; origin/main\nEdit the file to resolve—keep one version, combine them, or write something new. Remove all the marker lines (&lt;&lt;&lt;&lt;&lt;&lt;&lt;, =======, &gt;&gt;&gt;&gt;&gt;&gt;&gt;), then:\ngit add resolved-file.R\ngit commit -m \"Resolve merge conflict in analysis script\"",
     "crumbs": [
       "Core Tools",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Git & GitHub</span>"
     ]
   },
   {
-    "objectID": "part2/git-github.html#best-practices",
-    "href": "part2/git-github.html#best-practices",
+    "objectID": "part2/git-github.html#best-practices-summary",
+    "href": "part2/git-github.html#best-practices-summary",
     "title": "9  Git & GitHub",
-    "section": "9.10 Best Practices",
-    "text": "9.10 Best Practices\n\n9.10.1 Commit Often\nSmall, focused commits are easier to understand and revert.\n\n\n9.10.2 Pull Before Push\ngit pull\ngit push\nAvoid conflicts by syncing first.\n\n\n9.10.3 Don’t Commit Secrets\nNever commit passwords, API keys, or credentials. Use .gitignore.\n\n\n9.10.4 Don’t Commit Large Data\nGit struggles with large files. Keep data separate or use Git LFS.",
+    "section": "9.16 Best Practices Summary",
+    "text": "9.16 Best Practices Summary\n\nCommit often, push regularly\n\nSmall commits are easier to understand. Pushing backs up your work.\n\nPull before you start working\n\nEspecially on shared projects—get others’ changes before you start.\n\nWrite meaningful commit messages\n\nFuture-you will thank present-you.\n\nUse .gitignore from the start\n\nPrevent large files and secrets from ever entering the repo.\n\nDon’t panic\n\nGit rarely loses data. Most mistakes are recoverable with the right commands (or ask for help).",
     "crumbs": [
       "Core Tools",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Git & GitHub</span>"
@@ -1162,8 +1228,8 @@
     "objectID": "part2/git-github.html#quick-reference",
     "href": "part2/git-github.html#quick-reference",
     "title": "9  Git & GitHub",
-    "section": "9.11 Quick Reference",
-    "text": "9.11 Quick Reference\n\n\n\nTask\nCommand\n\n\n\n\nInitialize repo\ngit init\n\n\nClone repo\ngit clone URL\n\n\nCheck status\ngit status\n\n\nStage file\ngit add FILE\n\n\nStage all\ngit add .\n\n\nCommit\ngit commit -m \"message\"\n\n\nPush\ngit push\n\n\nPull\ngit pull\n\n\nView log\ngit log --oneline\n\n\nCreate branch\ngit checkout -b NAME\n\n\nSwitch branch\ngit checkout NAME\n\n\nMerge branch\ngit merge NAME",
+    "section": "9.17 Quick Reference",
+    "text": "9.17 Quick Reference\n\n\n\nTask\nCommand\n\n\n\n\nInitialize repo\ngit init\n\n\nClone repo\ngit clone URL\n\n\nCheck status\ngit status\n\n\nStage file\ngit add FILE\n\n\nStage all\ngit add .\n\n\nCommit\ngit commit -m \"message\"\n\n\nPush\ngit push\n\n\nPull\ngit pull\n\n\nView log\ngit log --oneline\n\n\nCreate branch\ngit checkout -b NAME\n\n\nSwitch branch\ngit checkout NAME\n\n\nMerge branch\ngit merge NAME",
     "crumbs": [
       "Core Tools",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Git & GitHub</span>"
