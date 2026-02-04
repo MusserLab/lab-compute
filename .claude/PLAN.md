@@ -1,7 +1,7 @@
 # Lab Compute Guide — Planning Document
 
 > This document tracks next steps and improvements for the book.
-> Last updated: 2026-02-02
+> Last updated: 2026-02-03
 
 ## Immediate Next Steps
 
@@ -23,8 +23,13 @@
 - [ ] **Git/GitHub**: Add section on GitHub Classroom (if using for courses)
 
 ### Part 3: Claude Code
-- [ ] Add more examples from real lab workflows
-- [ ] Expand skills chapter with more skill examples
+- [ ] **Major revision planned** — see `CLAUDE_CODE_CHAPTER_PLAN.md` for details
+- [ ] Refocus on Positron extension (not CLI) as primary interface
+- [ ] Add plan files pattern (PLOTTING_PLAN.md style from TiHKAL)
+- [ ] Add context management guidance (when to start new chats, task focus)
+- [ ] Add prompt patterns for data science
+- [ ] Document project-specific skills pattern
+- [ ] Add orange "With Claude Code" callout boxes throughout ALL book chapters
 
 ### Part 4: Workflows
 - [ ] **Starting Project**: Add template repo link once created
@@ -76,6 +81,22 @@
 ## Session Notes
 
 _Add notes here during working sessions_
+
+### 2026-02-03 (session 2)
+- **Claude Code chapter improvement planning session**
+- Read entire book to understand structure and style
+- Analyzed TiHKAL project for workflow patterns:
+  - Multi-file .claude/ structure (CLAUDE.md + plan files)
+  - PLOTTING_PLAN.md pattern for status tracking
+  - Project-specific skills (gene-naming)
+  - Evolving documentation
+- Identified gaps vs actual workflow: Positron extension, plan files, context management, prompt patterns
+- Created `CLAUDE_CODE_CHAPTER_PLAN.md` with detailed research and next steps
+- User feedback on callouts:
+  - Use Claude orange (custom Anthropic-style class)
+  - Simple examples: troubleshooting or setting up one specific thing
+  - Detailed but concise prompts showing how to provide specific information
+- Next: Read user-level skills, create detailed outline for review
 
 ### 2026-02-03
 - Expanded renv chapter → "R: rig & renv" (253→570 lines):
