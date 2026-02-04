@@ -23,10 +23,10 @@ book:
     - part: "Core Tools"
       chapters:
         - part2/positron.qmd
-        - part2/conda.qmd
-        - part2/renv.qmd
-        - part2/quarto.qmd
         - part2/project-organization.qmd
+        - part2/quarto.qmd
+        - part2/renv.qmd
+        - part2/conda.qmd
         - part2/git-github.qmd
     - part: "Claude Code"
       chapters:
