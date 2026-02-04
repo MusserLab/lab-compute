@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Conda – Data Analysis in the Musser Lab</title>
+<title>8&nbsp; Conda – Data Analysis in the Musser Lab</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../part2/renv.html" rel="next">
-<link href="../part2/positron.html" rel="prev">
+<link href="../part2/git-github.html" rel="next">
+<link href="../part2/renv.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -284,7 +284,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part2/positron.html">Core Tools</a></li><li class="breadcrumb-item"><a href="../part2/conda.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conda</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part2/positron.html">Core Tools</a></li><li class="breadcrumb-item"><a href="../part2/conda.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Conda</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -364,26 +364,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../part2/conda.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conda</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../part2/renv.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">R: rig &amp; renv</span></span></a>
+  <a href="../part2/project-organization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Project Organization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part2/quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Quarto</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Quarto</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../part2/project-organization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Project Organization</span></span></a>
+  <a href="../part2/renv.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">R: rig &amp; renv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part2/conda.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Conda</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -503,54 +503,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#why-use-environments" id="toc-why-use-environments" class="nav-link active" data-scroll-target="#why-use-environments"><span class="header-section-number">5.1</span> Why Use Environments?</a></li>
-  <li><a href="#basic-commands" id="toc-basic-commands" class="nav-link" data-scroll-target="#basic-commands"><span class="header-section-number">5.2</span> Basic Commands</a>
+  <li><a href="#why-use-environments" id="toc-why-use-environments" class="nav-link active" data-scroll-target="#why-use-environments"><span class="header-section-number">8.1</span> Why Use Environments?</a></li>
+  <li><a href="#basic-commands" id="toc-basic-commands" class="nav-link" data-scroll-target="#basic-commands"><span class="header-section-number">8.2</span> Basic Commands</a>
   <ul class="collapse">
-  <li><a href="#create-an-environment" id="toc-create-an-environment" class="nav-link" data-scroll-target="#create-an-environment"><span class="header-section-number">5.2.1</span> Create an Environment</a></li>
-  <li><a href="#core-data-science-packages" id="toc-core-data-science-packages" class="nav-link" data-scroll-target="#core-data-science-packages"><span class="header-section-number">5.2.2</span> Core Data Science Packages</a></li>
-  <li><a href="#activatedeactivate" id="toc-activatedeactivate" class="nav-link" data-scroll-target="#activatedeactivate"><span class="header-section-number">5.2.3</span> Activate/Deactivate</a></li>
-  <li><a href="#install-packages" id="toc-install-packages" class="nav-link" data-scroll-target="#install-packages"><span class="header-section-number">5.2.4</span> Install Packages</a></li>
-  <li><a href="#list-environments" id="toc-list-environments" class="nav-link" data-scroll-target="#list-environments"><span class="header-section-number">5.2.5</span> List Environments</a></li>
-  <li><a href="#remove-environment" id="toc-remove-environment" class="nav-link" data-scroll-target="#remove-environment"><span class="header-section-number">5.2.6</span> Remove Environment</a></li>
+  <li><a href="#create-an-environment" id="toc-create-an-environment" class="nav-link" data-scroll-target="#create-an-environment"><span class="header-section-number">8.2.1</span> Create an Environment</a></li>
+  <li><a href="#core-data-science-packages" id="toc-core-data-science-packages" class="nav-link" data-scroll-target="#core-data-science-packages"><span class="header-section-number">8.2.2</span> Core Data Science Packages</a></li>
+  <li><a href="#activatedeactivate" id="toc-activatedeactivate" class="nav-link" data-scroll-target="#activatedeactivate"><span class="header-section-number">8.2.3</span> Activate/Deactivate</a></li>
+  <li><a href="#install-packages" id="toc-install-packages" class="nav-link" data-scroll-target="#install-packages"><span class="header-section-number">8.2.4</span> Install Packages</a></li>
+  <li><a href="#list-environments" id="toc-list-environments" class="nav-link" data-scroll-target="#list-environments"><span class="header-section-number">8.2.5</span> List Environments</a></li>
+  <li><a href="#remove-environment" id="toc-remove-environment" class="nav-link" data-scroll-target="#remove-environment"><span class="header-section-number">8.2.6</span> Remove Environment</a></li>
   </ul></li>
-  <li><a href="#environment-files" id="toc-environment-files" class="nav-link" data-scroll-target="#environment-files"><span class="header-section-number">5.3</span> Environment Files</a>
+  <li><a href="#environment-files" id="toc-environment-files" class="nav-link" data-scroll-target="#environment-files"><span class="header-section-number">8.3</span> Environment Files</a>
   <ul class="collapse">
-  <li><a href="#export-your-environment" id="toc-export-your-environment" class="nav-link" data-scroll-target="#export-your-environment"><span class="header-section-number">5.3.1</span> Export Your Environment</a></li>
-  <li><a href="#full-export-when-needed" id="toc-full-export-when-needed" class="nav-link" data-scroll-target="#full-export-when-needed"><span class="header-section-number">5.3.2</span> Full Export (When Needed)</a></li>
-  <li><a href="#recreate-from-file" id="toc-recreate-from-file" class="nav-link" data-scroll-target="#recreate-from-file"><span class="header-section-number">5.3.3</span> Recreate from File</a></li>
+  <li><a href="#export-your-environment" id="toc-export-your-environment" class="nav-link" data-scroll-target="#export-your-environment"><span class="header-section-number">8.3.1</span> Export Your Environment</a></li>
+  <li><a href="#full-export-when-needed" id="toc-full-export-when-needed" class="nav-link" data-scroll-target="#full-export-when-needed"><span class="header-section-number">8.3.2</span> Full Export (When Needed)</a></li>
+  <li><a href="#recreate-from-file" id="toc-recreate-from-file" class="nav-link" data-scroll-target="#recreate-from-file"><span class="header-section-number">8.3.3</span> Recreate from File</a></li>
   </ul></li>
-  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices"><span class="header-section-number">5.4</span> Best Practices</a>
+  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices"><span class="header-section-number">8.4</span> Best Practices</a>
   <ul class="collapse">
-  <li><a href="#one-environment-per-project" id="toc-one-environment-per-project" class="nav-link" data-scroll-target="#one-environment-per-project"><span class="header-section-number">5.4.1</span> One Environment Per Project</a></li>
-  <li><a href="#name-environments-meaningfully" id="toc-name-environments-meaningfully" class="nav-link" data-scroll-target="#name-environments-meaningfully"><span class="header-section-number">5.4.2</span> Name Environments Meaningfully</a></li>
-  <li><a href="#pin-major-versions" id="toc-pin-major-versions" class="nav-link" data-scroll-target="#pin-major-versions"><span class="header-section-number">5.4.3</span> Pin Major Versions</a></li>
-  <li><a href="#update-regularly-but-carefully" id="toc-update-regularly-but-carefully" class="nav-link" data-scroll-target="#update-regularly-but-carefully"><span class="header-section-number">5.4.4</span> Update Regularly (But Carefully)</a></li>
+  <li><a href="#one-environment-per-project" id="toc-one-environment-per-project" class="nav-link" data-scroll-target="#one-environment-per-project"><span class="header-section-number">8.4.1</span> One Environment Per Project</a></li>
+  <li><a href="#name-environments-meaningfully" id="toc-name-environments-meaningfully" class="nav-link" data-scroll-target="#name-environments-meaningfully"><span class="header-section-number">8.4.2</span> Name Environments Meaningfully</a></li>
+  <li><a href="#pin-major-versions" id="toc-pin-major-versions" class="nav-link" data-scroll-target="#pin-major-versions"><span class="header-section-number">8.4.3</span> Pin Major Versions</a></li>
+  <li><a href="#update-regularly-but-carefully" id="toc-update-regularly-but-carefully" class="nav-link" data-scroll-target="#update-regularly-but-carefully"><span class="header-section-number">8.4.4</span> Update Regularly (But Carefully)</a></li>
   </ul></li>
-  <li><a href="#conda-vs-pip" id="toc-conda-vs-pip" class="nav-link" data-scroll-target="#conda-vs-pip"><span class="header-section-number">5.5</span> Conda vs pip</a></li>
-  <li><a href="#channels" id="toc-channels" class="nav-link" data-scroll-target="#channels"><span class="header-section-number">5.6</span> Channels</a>
+  <li><a href="#conda-vs-pip" id="toc-conda-vs-pip" class="nav-link" data-scroll-target="#conda-vs-pip"><span class="header-section-number">8.5</span> Conda vs pip</a></li>
+  <li><a href="#channels" id="toc-channels" class="nav-link" data-scroll-target="#channels"><span class="header-section-number">8.6</span> Channels</a>
   <ul class="collapse">
-  <li><a href="#main-channels" id="toc-main-channels" class="nav-link" data-scroll-target="#main-channels"><span class="header-section-number">5.6.1</span> Main Channels</a></li>
-  <li><a href="#channel-priority" id="toc-channel-priority" class="nav-link" data-scroll-target="#channel-priority"><span class="header-section-number">5.6.2</span> Channel Priority</a></li>
-  <li><a href="#using-bioconda" id="toc-using-bioconda" class="nav-link" data-scroll-target="#using-bioconda"><span class="header-section-number">5.6.3</span> Using Bioconda</a></li>
-  <li><a href="#specifying-channels-in-environment.yml" id="toc-specifying-channels-in-environment.yml" class="nav-link" data-scroll-target="#specifying-channels-in-environment.yml"><span class="header-section-number">5.6.4</span> Specifying Channels in environment.yml</a></li>
+  <li><a href="#main-channels" id="toc-main-channels" class="nav-link" data-scroll-target="#main-channels"><span class="header-section-number">8.6.1</span> Main Channels</a></li>
+  <li><a href="#channel-priority" id="toc-channel-priority" class="nav-link" data-scroll-target="#channel-priority"><span class="header-section-number">8.6.2</span> Channel Priority</a></li>
+  <li><a href="#using-bioconda" id="toc-using-bioconda" class="nav-link" data-scroll-target="#using-bioconda"><span class="header-section-number">8.6.3</span> Using Bioconda</a></li>
+  <li><a href="#specifying-channels-in-environment.yml" id="toc-specifying-channels-in-environment.yml" class="nav-link" data-scroll-target="#specifying-channels-in-environment.yml"><span class="header-section-number">8.6.4</span> Specifying Channels in environment.yml</a></li>
   </ul></li>
-  <li><a href="#configuring-conda" id="toc-configuring-conda" class="nav-link" data-scroll-target="#configuring-conda"><span class="header-section-number">5.7</span> Configuring Conda</a>
+  <li><a href="#configuring-conda" id="toc-configuring-conda" class="nav-link" data-scroll-target="#configuring-conda"><span class="header-section-number">8.7</span> Configuring Conda</a>
   <ul class="collapse">
-  <li><a href="#use-the-libmamba-solver" id="toc-use-the-libmamba-solver" class="nav-link" data-scroll-target="#use-the-libmamba-solver"><span class="header-section-number">5.7.1</span> Use the Libmamba Solver</a></li>
-  <li><a href="#recommended-.condarc-configuration" id="toc-recommended-.condarc-configuration" class="nav-link" data-scroll-target="#recommended-.condarc-configuration"><span class="header-section-number">5.7.2</span> Recommended .condarc Configuration</a></li>
+  <li><a href="#use-the-libmamba-solver" id="toc-use-the-libmamba-solver" class="nav-link" data-scroll-target="#use-the-libmamba-solver"><span class="header-section-number">8.7.1</span> Use the Libmamba Solver</a></li>
+  <li><a href="#recommended-.condarc-configuration" id="toc-recommended-.condarc-configuration" class="nav-link" data-scroll-target="#recommended-.condarc-configuration"><span class="header-section-number">8.7.2</span> Recommended .condarc Configuration</a></li>
   </ul></li>
-  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting"><span class="header-section-number">5.8</span> Troubleshooting</a>
+  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting"><span class="header-section-number">8.8</span> Troubleshooting</a>
   <ul class="collapse">
-  <li><a href="#solving-environment-takes-forever" id="toc-solving-environment-takes-forever" class="nav-link" data-scroll-target="#solving-environment-takes-forever"><span class="header-section-number">5.8.1</span> “Solving environment” takes forever</a></li>
-  <li><a href="#dependency-conflicts" id="toc-dependency-conflicts" class="nav-link" data-scroll-target="#dependency-conflicts"><span class="header-section-number">5.8.2</span> Dependency Conflicts</a></li>
-  <li><a href="#package-not-found" id="toc-package-not-found" class="nav-link" data-scroll-target="#package-not-found"><span class="header-section-number">5.8.3</span> Package not found</a></li>
-  <li><a href="#macoslinux-conda-command-not-found" id="toc-macoslinux-conda-command-not-found" class="nav-link" data-scroll-target="#macoslinux-conda-command-not-found"><span class="header-section-number">5.8.4</span> macOS/Linux: “conda: command not found”</a></li>
-  <li><a href="#environment-corrupted" id="toc-environment-corrupted" class="nav-link" data-scroll-target="#environment-corrupted"><span class="header-section-number">5.8.5</span> Environment corrupted</a></li>
-  <li><a href="#windows-conda-activate-does-nothing-or-errors" id="toc-windows-conda-activate-does-nothing-or-errors" class="nav-link" data-scroll-target="#windows-conda-activate-does-nothing-or-errors"><span class="header-section-number">5.8.6</span> Windows: “conda activate” does nothing or errors</a></li>
-  <li><a href="#windows-conda-is-not-recognized" id="toc-windows-conda-is-not-recognized" class="nav-link" data-scroll-target="#windows-conda-is-not-recognized"><span class="header-section-number">5.8.7</span> Windows: “conda is not recognized”</a></li>
+  <li><a href="#solving-environment-takes-forever" id="toc-solving-environment-takes-forever" class="nav-link" data-scroll-target="#solving-environment-takes-forever"><span class="header-section-number">8.8.1</span> “Solving environment” takes forever</a></li>
+  <li><a href="#dependency-conflicts" id="toc-dependency-conflicts" class="nav-link" data-scroll-target="#dependency-conflicts"><span class="header-section-number">8.8.2</span> Dependency Conflicts</a></li>
+  <li><a href="#package-not-found" id="toc-package-not-found" class="nav-link" data-scroll-target="#package-not-found"><span class="header-section-number">8.8.3</span> Package not found</a></li>
+  <li><a href="#macoslinux-conda-command-not-found" id="toc-macoslinux-conda-command-not-found" class="nav-link" data-scroll-target="#macoslinux-conda-command-not-found"><span class="header-section-number">8.8.4</span> macOS/Linux: “conda: command not found”</a></li>
+  <li><a href="#environment-corrupted" id="toc-environment-corrupted" class="nav-link" data-scroll-target="#environment-corrupted"><span class="header-section-number">8.8.5</span> Environment corrupted</a></li>
+  <li><a href="#windows-conda-activate-does-nothing-or-errors" id="toc-windows-conda-activate-does-nothing-or-errors" class="nav-link" data-scroll-target="#windows-conda-activate-does-nothing-or-errors"><span class="header-section-number">8.8.6</span> Windows: “conda activate” does nothing or errors</a></li>
+  <li><a href="#windows-conda-is-not-recognized" id="toc-windows-conda-is-not-recognized" class="nav-link" data-scroll-target="#windows-conda-is-not-recognized"><span class="header-section-number">8.8.7</span> Windows: “conda is not recognized”</a></li>
   </ul></li>
-  <li><a href="#integration-with-positron" id="toc-integration-with-positron" class="nav-link" data-scroll-target="#integration-with-positron"><span class="header-section-number">5.9</span> Integration with Positron</a></li>
-  <li><a href="#quick-reference" id="toc-quick-reference" class="nav-link" data-scroll-target="#quick-reference"><span class="header-section-number">5.10</span> Quick Reference</a></li>
+  <li><a href="#integration-with-positron" id="toc-integration-with-positron" class="nav-link" data-scroll-target="#integration-with-positron"><span class="header-section-number">8.9</span> Integration with Positron</a></li>
+  <li><a href="#quick-reference" id="toc-quick-reference" class="nav-link" data-scroll-target="#quick-reference"><span class="header-section-number">8.10</span> Quick Reference</a></li>
   </ul>
 </nav>
     </div>
@@ -558,9 +558,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part2/positron.html">Core Tools</a></li><li class="breadcrumb-item"><a href="../part2/conda.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conda</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part2/positron.html">Core Tools</a></li><li class="breadcrumb-item"><a href="../part2/conda.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Conda</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conda</span></h1>
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Conda</span></h1>
 </div>
 
 
@@ -578,8 +578,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Conda is an environment and package manager that creates isolated spaces for your Python projects. Each environment has its own Python version and packages, preventing conflicts between projects.</p>
-<section id="why-use-environments" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="why-use-environments"><span class="header-section-number">5.1</span> Why Use Environments?</h2>
+<section id="why-use-environments" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="why-use-environments"><span class="header-section-number">8.1</span> Why Use Environments?</h2>
 <p>Without environments:</p>
 <ul>
 <li>Project A needs <code>pandas 1.5</code></li>
@@ -594,8 +594,8 @@ project-b-env/
   └── pandas 2.0</code></pre>
 <p>Each project has its own libraries specific to its needs. Updates to libraries or the addition of new libraries in one project are isolated from other projects.</p>
 </section>
-<section id="basic-commands" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="basic-commands"><span class="header-section-number">5.2</span> Basic Commands</h2>
+<section id="basic-commands" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="basic-commands"><span class="header-section-number">8.2</span> Basic Commands</h2>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -614,8 +614,8 @@ project-b-env/
 <p>Then <strong>close and reopen your terminal</strong>. You only need to do this once.</p>
 </div>
 </div>
-<section id="create-an-environment" class="level3" data-number="5.2.1">
-<h3 data-number="5.2.1" class="anchored" data-anchor-id="create-an-environment"><span class="header-section-number">5.2.1</span> Create an Environment</h3>
+<section id="create-an-environment" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="create-an-environment"><span class="header-section-number">8.2.1</span> Create an Environment</h3>
 <p>You only need to create the environment once. New environments can be initiated with just a python installation, or include additional packages from the start. The option <code>-n project_name</code> specifies the name of the environment, and is followed by an initial list of packages to install:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create with just Python</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> my-project python=3.11</span>
@@ -623,8 +623,8 @@ project-b-env/
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create with core data science packages (recommended)</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> my-project python=3.11 numpy pandas matplotlib ipykernel</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="core-data-science-packages" class="level3" data-number="5.2.2">
-<h3 data-number="5.2.2" class="anchored" data-anchor-id="core-data-science-packages"><span class="header-section-number">5.2.2</span> Core Data Science Packages</h3>
+<section id="core-data-science-packages" class="level3" data-number="8.2.2">
+<h3 data-number="8.2.2" class="anchored" data-anchor-id="core-data-science-packages"><span class="header-section-number">8.2.2</span> Core Data Science Packages</h3>
 <p>When setting up a new project environment, common data science packages you might include are:</p>
 <table class="caption-top table">
 <thead>
@@ -668,8 +668,8 @@ project-b-env/
 </div>
 </div>
 </section>
-<section id="activatedeactivate" class="level3" data-number="5.2.3">
-<h3 data-number="5.2.3" class="anchored" data-anchor-id="activatedeactivate"><span class="header-section-number">5.2.3</span> Activate/Deactivate</h3>
+<section id="activatedeactivate" class="level3" data-number="8.2.3">
+<h3 data-number="8.2.3" class="anchored" data-anchor-id="activatedeactivate"><span class="header-section-number">8.2.3</span> Activate/Deactivate</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Activate (start using the environment)</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate my-project</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -688,8 +688,8 @@ project-b-env/
 </div>
 </div>
 </section>
-<section id="install-packages" class="level3" data-number="5.2.4">
-<h3 data-number="5.2.4" class="anchored" data-anchor-id="install-packages"><span class="header-section-number">5.2.4</span> Install Packages</h3>
+<section id="install-packages" class="level3" data-number="8.2.4">
+<h3 data-number="8.2.4" class="anchored" data-anchor-id="install-packages"><span class="header-section-number">8.2.4</span> Install Packages</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install a package</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install pandas</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -699,24 +699,24 @@ project-b-env/
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Install multiple packages</span></span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install pandas numpy matplotlib seaborn</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="list-environments" class="level3" data-number="5.2.5">
-<h3 data-number="5.2.5" class="anchored" data-anchor-id="list-environments"><span class="header-section-number">5.2.5</span> List Environments</h3>
+<section id="list-environments" class="level3" data-number="8.2.5">
+<h3 data-number="8.2.5" class="anchored" data-anchor-id="list-environments"><span class="header-section-number">8.2.5</span> List Environments</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># See all environments</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env list</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># See packages in current environment</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> list</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="remove-environment" class="level3" data-number="5.2.6">
-<h3 data-number="5.2.6" class="anchored" data-anchor-id="remove-environment"><span class="header-section-number">5.2.6</span> Remove Environment</h3>
+<section id="remove-environment" class="level3" data-number="8.2.6">
+<h3 data-number="8.2.6" class="anchored" data-anchor-id="remove-environment"><span class="header-section-number">8.2.6</span> Remove Environment</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env remove <span class="at">-n</span> my-project</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="environment-files" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="environment-files"><span class="header-section-number">5.3</span> Environment Files</h2>
+<section id="environment-files" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="environment-files"><span class="header-section-number">8.3</span> Environment Files</h2>
 <p>Environment files (<code>environment.yml</code>) let collaborators recreate your exact Python setup.</p>
-<section id="export-your-environment" class="level3" data-number="5.3.1">
-<h3 data-number="5.3.1" class="anchored" data-anchor-id="export-your-environment"><span class="header-section-number">5.3.1</span> Export Your Environment</h3>
+<section id="export-your-environment" class="level3" data-number="8.3.1">
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="export-your-environment"><span class="header-section-number">8.3.1</span> Export Your Environment</h3>
 <p>We recommend using <code>--from-history</code> for most cases:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Recommended: exports only packages you explicitly installed</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env export <span class="at">--from-history</span> <span class="op">&gt;</span> environment.yml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -732,14 +732,14 @@ project-b-env/
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> matplotlib</span></span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> ipykernel</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="full-export-when-needed" class="level3" data-number="5.3.2">
-<h3 data-number="5.3.2" class="anchored" data-anchor-id="full-export-when-needed"><span class="header-section-number">5.3.2</span> Full Export (When Needed)</h3>
+<section id="full-export-when-needed" class="level3" data-number="8.3.2">
+<h3 data-number="8.3.2" class="anchored" data-anchor-id="full-export-when-needed"><span class="header-section-number">8.3.2</span> Full Export (When Needed)</h3>
 <p>For exact reproducibility on the same platform, use the full export:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env export <span class="op">&gt;</span> environment.yml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This includes exact versions and platform-specific builds—useful for debugging or archiving a precise state, but less portable.</p>
 </section>
-<section id="recreate-from-file" class="level3" data-number="5.3.3">
-<h3 data-number="5.3.3" class="anchored" data-anchor-id="recreate-from-file"><span class="header-section-number">5.3.3</span> Recreate from File</h3>
+<section id="recreate-from-file" class="level3" data-number="8.3.3">
+<h3 data-number="8.3.3" class="anchored" data-anchor-id="recreate-from-file"><span class="header-section-number">8.3.3</span> Recreate from File</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> environment.yml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -756,8 +756,8 @@ project-b-env/
 </div>
 </section>
 </section>
-<section id="best-practices" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="best-practices"><span class="header-section-number">5.4</span> Best Practices</h2>
+<section id="best-practices" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="best-practices"><span class="header-section-number">8.4</span> Best Practices</h2>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -771,8 +771,8 @@ project-b-env/
 <p>Always create a project-specific environment. Never install packages into the <code>base</code> environment—keep it minimal with just your conda configuration. This prevents conflicts and ensures each project is self-contained.</p>
 </div>
 </div>
-<section id="one-environment-per-project" class="level3" data-number="5.4.1">
-<h3 data-number="5.4.1" class="anchored" data-anchor-id="one-environment-per-project"><span class="header-section-number">5.4.1</span> One Environment Per Project</h3>
+<section id="one-environment-per-project" class="level3" data-number="8.4.1">
+<h3 data-number="8.4.1" class="anchored" data-anchor-id="one-environment-per-project"><span class="header-section-number">8.4.1</span> One Environment Per Project</h3>
 <p>Create a dedicated environment for each project:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> genomics-project python=3.11 numpy pandas matplotlib ipykernel</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> imaging-analysis python=3.10 numpy pandas matplotlib ipykernel</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -790,8 +790,8 @@ project-b-env/
 </div>
 </div>
 </section>
-<section id="name-environments-meaningfully" class="level3" data-number="5.4.2">
-<h3 data-number="5.4.2" class="anchored" data-anchor-id="name-environments-meaningfully"><span class="header-section-number">5.4.2</span> Name Environments Meaningfully</h3>
+<section id="name-environments-meaningfully" class="level3" data-number="8.4.2">
+<h3 data-number="8.4.2" class="anchored" data-anchor-id="name-environments-meaningfully"><span class="header-section-number">8.4.2</span> Name Environments Meaningfully</h3>
 <p>Use short, descriptive names:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> tihkal-analysis python=3.11</span>
@@ -799,14 +799,14 @@ project-b-env/
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Less helpful</span></span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> env1 python=3.11</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="pin-major-versions" class="level3" data-number="5.4.3">
-<h3 data-number="5.4.3" class="anchored" data-anchor-id="pin-major-versions"><span class="header-section-number">5.4.3</span> Pin Major Versions</h3>
+<section id="pin-major-versions" class="level3" data-number="8.4.3">
+<h3 data-number="8.4.3" class="anchored" data-anchor-id="pin-major-versions"><span class="header-section-number">8.4.3</span> Pin Major Versions</h3>
 <p>Specify Python version when creating:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> my-project python=3.11  <span class="co"># Not just "python"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The specific minor version (3.11.x) will be the latest available; pinning the major version ensures compatibility.</p>
 </section>
-<section id="update-regularly-but-carefully" class="level3" data-number="5.4.4">
-<h3 data-number="5.4.4" class="anchored" data-anchor-id="update-regularly-but-carefully"><span class="header-section-number">5.4.4</span> Update Regularly (But Carefully)</h3>
+<section id="update-regularly-but-carefully" class="level3" data-number="8.4.4">
+<h3 data-number="8.4.4" class="anchored" data-anchor-id="update-regularly-but-carefully"><span class="header-section-number">8.4.4</span> Update Regularly (But Carefully)</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Update all packages</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> update <span class="at">--all</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -815,8 +815,8 @@ project-b-env/
 <p>Test after updating to ensure nothing breaks. Update your <code>environment.yml</code> afterward.</p>
 </section>
 </section>
-<section id="conda-vs-pip" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="conda-vs-pip"><span class="header-section-number">5.5</span> Conda vs pip</h2>
+<section id="conda-vs-pip" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="conda-vs-pip"><span class="header-section-number">8.5</span> Conda vs pip</h2>
 <p>Both install Python packages. General rule:</p>
 <ul>
 <li><strong>Use conda first</strong> for scientific packages (pandas, numpy, scipy)</li>
@@ -841,26 +841,26 @@ project-b-env/
 </div>
 </div>
 </section>
-<section id="channels" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="channels"><span class="header-section-number">5.6</span> Channels</h2>
+<section id="channels" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="channels"><span class="header-section-number">8.6</span> Channels</h2>
 <p>Channels are package repositories where conda looks for packages. Understanding channels matters because the same package can exist in multiple channels with different versions or builds.</p>
-<section id="main-channels" class="level3" data-number="5.6.1">
-<h3 data-number="5.6.1" class="anchored" data-anchor-id="main-channels"><span class="header-section-number">5.6.1</span> Main Channels</h3>
+<section id="main-channels" class="level3" data-number="8.6.1">
+<h3 data-number="8.6.1" class="anchored" data-anchor-id="main-channels"><span class="header-section-number">8.6.1</span> Main Channels</h3>
 <ul>
 <li><strong>conda-forge</strong>: Community-maintained, comprehensive, well-tested. This is the primary channel for most scientific packages.</li>
 <li><strong>bioconda</strong>: Bioinformatics tools (samtools, bedtools, bwa, etc.). Essential for genomics work.</li>
 <li><strong>defaults</strong>: Anaconda’s default channel. We generally avoid this in favor of conda-forge.</li>
 </ul>
 </section>
-<section id="channel-priority" class="level3" data-number="5.6.2">
-<h3 data-number="5.6.2" class="anchored" data-anchor-id="channel-priority"><span class="header-section-number">5.6.2</span> Channel Priority</h3>
+<section id="channel-priority" class="level3" data-number="8.6.2">
+<h3 data-number="8.6.2" class="anchored" data-anchor-id="channel-priority"><span class="header-section-number">8.6.2</span> Channel Priority</h3>
 <p>When a package exists in multiple channels, conda uses <strong>channel priority</strong> to decide which version to install. We recommend <strong>strict priority</strong> with conda-forge first:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Configure strict channel priority (one-time setup)</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--set</span> channel_priority strict</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This ensures conda-forge packages are always preferred, avoiding subtle version mismatches.</p>
 </section>
-<section id="using-bioconda" class="level3" data-number="5.6.3">
-<h3 data-number="5.6.3" class="anchored" data-anchor-id="using-bioconda"><span class="header-section-number">5.6.3</span> Using Bioconda</h3>
+<section id="using-bioconda" class="level3" data-number="8.6.3">
+<h3 data-number="8.6.3" class="anchored" data-anchor-id="using-bioconda"><span class="header-section-number">8.6.3</span> Using Bioconda</h3>
 <p>For bioinformatics tools, add bioconda to your channels. The recommended order is:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add channels in priority order (highest priority last)</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--add</span> channels defaults</span>
@@ -869,8 +869,8 @@ project-b-env/
 <p>Then install bioinformatics tools normally:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install samtools bedtools</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="specifying-channels-in-environment.yml" class="level3" data-number="5.6.4">
-<h3 data-number="5.6.4" class="anchored" data-anchor-id="specifying-channels-in-environment.yml"><span class="header-section-number">5.6.4</span> Specifying Channels in environment.yml</h3>
+<section id="specifying-channels-in-environment.yml" class="level3" data-number="8.6.4">
+<h3 data-number="8.6.4" class="anchored" data-anchor-id="specifying-channels-in-environment.yml"><span class="header-section-number">8.6.4</span> Specifying Channels in environment.yml</h3>
 <p>For reproducibility, specify channels in your environment file:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> genomics-project</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">channels</span><span class="kw">:</span></span>
@@ -885,18 +885,18 @@ project-b-env/
 <p>The order matters—channels listed first have higher priority.</p>
 </section>
 </section>
-<section id="configuring-conda" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="configuring-conda"><span class="header-section-number">5.7</span> Configuring Conda</h2>
+<section id="configuring-conda" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="configuring-conda"><span class="header-section-number">8.7</span> Configuring Conda</h2>
 <p>A few one-time configuration changes make conda faster and more reliable.</p>
-<section id="use-the-libmamba-solver" class="level3" data-number="5.7.1">
-<h3 data-number="5.7.1" class="anchored" data-anchor-id="use-the-libmamba-solver"><span class="header-section-number">5.7.1</span> Use the Libmamba Solver</h3>
+<section id="use-the-libmamba-solver" class="level3" data-number="8.7.1">
+<h3 data-number="8.7.1" class="anchored" data-anchor-id="use-the-libmamba-solver"><span class="header-section-number">8.7.1</span> Use the Libmamba Solver</h3>
 <p>The default conda solver can be slow, especially with complex environments. The <strong>libmamba</strong> solver is much faster and is now built into conda:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set libmamba as the default solver (one-time, global)</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--set</span> solver libmamba</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This dramatically speeds up environment creation and package installation. You only need to run this once—it applies to all environments.</p>
 </section>
-<section id="recommended-.condarc-configuration" class="level3" data-number="5.7.2">
-<h3 data-number="5.7.2" class="anchored" data-anchor-id="recommended-.condarc-configuration"><span class="header-section-number">5.7.2</span> Recommended .condarc Configuration</h3>
+<section id="recommended-.condarc-configuration" class="level3" data-number="8.7.2">
+<h3 data-number="8.7.2" class="anchored" data-anchor-id="recommended-.condarc-configuration"><span class="header-section-number">8.7.2</span> Recommended .condarc Configuration</h3>
 <p>Your conda configuration lives in <code>~/.condarc</code>. After the setup commands above, it should look something like:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">channels</span><span class="kw">:</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> conda-forge</span></span>
@@ -907,16 +907,16 @@ project-b-env/
 <p>You can edit this file directly or use <code>conda config</code> commands.</p>
 </section>
 </section>
-<section id="troubleshooting" class="level2" data-number="5.8">
-<h2 data-number="5.8" class="anchored" data-anchor-id="troubleshooting"><span class="header-section-number">5.8</span> Troubleshooting</h2>
-<section id="solving-environment-takes-forever" class="level3" data-number="5.8.1">
-<h3 data-number="5.8.1" class="anchored" data-anchor-id="solving-environment-takes-forever"><span class="header-section-number">5.8.1</span> “Solving environment” takes forever</h3>
+<section id="troubleshooting" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="troubleshooting"><span class="header-section-number">8.8</span> Troubleshooting</h2>
+<section id="solving-environment-takes-forever" class="level3" data-number="8.8.1">
+<h3 data-number="8.8.1" class="anchored" data-anchor-id="solving-environment-takes-forever"><span class="header-section-number">8.8.1</span> “Solving environment” takes forever</h3>
 <p>This usually means you haven’t configured the fast solver. Set libmamba as your default:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--set</span> solver libmamba</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then try again. If you’ve already configured libmamba and it’s still slow, you may have conflicting package requirements.</p>
 </section>
-<section id="dependency-conflicts" class="level3" data-number="5.8.2">
-<h3 data-number="5.8.2" class="anchored" data-anchor-id="dependency-conflicts"><span class="header-section-number">5.8.2</span> Dependency Conflicts</h3>
+<section id="dependency-conflicts" class="level3" data-number="8.8.2">
+<h3 data-number="8.8.2" class="anchored" data-anchor-id="dependency-conflicts"><span class="header-section-number">8.8.2</span> Dependency Conflicts</h3>
 <p><strong>Symptoms</strong>: Conda reports “conflict” or can’t find a solution when installing a package.</p>
 <p><strong>Solutions</strong>:</p>
 <ol type="1">
@@ -934,8 +934,8 @@ project-b-env/
 <li><p><strong>Check bioconda compatibility</strong>: Some bioinformatics packages have strict dependencies. Check the package’s documentation for known issues.</p></li>
 </ol>
 </section>
-<section id="package-not-found" class="level3" data-number="5.8.3">
-<h3 data-number="5.8.3" class="anchored" data-anchor-id="package-not-found"><span class="header-section-number">5.8.3</span> Package not found</h3>
+<section id="package-not-found" class="level3" data-number="8.8.3">
+<h3 data-number="8.8.3" class="anchored" data-anchor-id="package-not-found"><span class="header-section-number">8.8.3</span> Package not found</h3>
 <ol type="1">
 <li>Check spelling</li>
 <li>Ensure you have the right channels configured (conda-forge, bioconda)</li>
@@ -943,23 +943,23 @@ project-b-env/
 <li>Fall back to pip if it’s not in conda</li>
 </ol>
 </section>
-<section id="macoslinux-conda-command-not-found" class="level3" data-number="5.8.4">
-<h3 data-number="5.8.4" class="anchored" data-anchor-id="macoslinux-conda-command-not-found"><span class="header-section-number">5.8.4</span> macOS/Linux: “conda: command not found”</h3>
+<section id="macoslinux-conda-command-not-found" class="level3" data-number="8.8.4">
+<h3 data-number="8.8.4" class="anchored" data-anchor-id="macoslinux-conda-command-not-found"><span class="header-section-number">8.8.4</span> macOS/Linux: “conda: command not found”</h3>
 <p>Your shell isn’t configured for conda. Run:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/miniconda3/etc/profile.d/conda.sh</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># or if using Miniforge:</span></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/miniforge3/etc/profile.d/conda.sh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To make this permanent, add that line to your <code>~/.bashrc</code> or <code>~/.zshrc</code> file.</p>
 </section>
-<section id="environment-corrupted" class="level3" data-number="5.8.5">
-<h3 data-number="5.8.5" class="anchored" data-anchor-id="environment-corrupted"><span class="header-section-number">5.8.5</span> Environment corrupted</h3>
+<section id="environment-corrupted" class="level3" data-number="8.8.5">
+<h3 data-number="8.8.5" class="anchored" data-anchor-id="environment-corrupted"><span class="header-section-number">8.8.5</span> Environment corrupted</h3>
 <p>Remove and recreate:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> deactivate</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env remove <span class="at">-n</span> my-project</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> environment.yml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="windows-conda-activate-does-nothing-or-errors" class="level3" data-number="5.8.6">
-<h3 data-number="5.8.6" class="anchored" data-anchor-id="windows-conda-activate-does-nothing-or-errors"><span class="header-section-number">5.8.6</span> Windows: “conda activate” does nothing or errors</h3>
+<section id="windows-conda-activate-does-nothing-or-errors" class="level3" data-number="8.8.6">
+<h3 data-number="8.8.6" class="anchored" data-anchor-id="windows-conda-activate-does-nothing-or-errors"><span class="header-section-number">8.8.6</span> Windows: “conda activate” does nothing or errors</h3>
 <p>This usually means conda isn’t initialized for your shell. Run:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For PowerShell</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>conda init powershell</span>
@@ -968,8 +968,8 @@ project-b-env/
 <span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>conda init cmd<span class="op">.</span><span class="fu">exe</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then restart your terminal. If you’re using VS Code or Positron’s integrated terminal, close and reopen the entire application.</p>
 </section>
-<section id="windows-conda-is-not-recognized" class="level3" data-number="5.8.7">
-<h3 data-number="5.8.7" class="anchored" data-anchor-id="windows-conda-is-not-recognized"><span class="header-section-number">5.8.7</span> Windows: “conda is not recognized”</h3>
+<section id="windows-conda-is-not-recognized" class="level3" data-number="8.8.7">
+<h3 data-number="8.8.7" class="anchored" data-anchor-id="windows-conda-is-not-recognized"><span class="header-section-number">8.8.7</span> Windows: “conda is not recognized”</h3>
 <p>The Miniforge installer may not have added conda to your PATH. Either:</p>
 <ol type="1">
 <li>Use the “Miniforge Prompt” from the Start menu (this has conda pre-configured)</li>
@@ -981,8 +981,8 @@ project-b-env/
 </ol>
 </section>
 </section>
-<section id="integration-with-positron" class="level2" data-number="5.9">
-<h2 data-number="5.9" class="anchored" data-anchor-id="integration-with-positron"><span class="header-section-number">5.9</span> Integration with Positron</h2>
+<section id="integration-with-positron" class="level2" data-number="8.9">
+<h2 data-number="8.9" class="anchored" data-anchor-id="integration-with-positron"><span class="header-section-number">8.9</span> Integration with Positron</h2>
 <ol type="1">
 <li>Activate your environment in the terminal</li>
 <li>In Positron, open Command Palette (Cmd/Ctrl+Shift+P)</li>
@@ -991,8 +991,8 @@ project-b-env/
 </ol>
 <p>The environment’s Python will be used for running scripts and notebooks.</p>
 </section>
-<section id="quick-reference" class="level2" data-number="5.10">
-<h2 data-number="5.10" class="anchored" data-anchor-id="quick-reference"><span class="header-section-number">5.10</span> Quick Reference</h2>
+<section id="quick-reference" class="level2" data-number="8.10">
+<h2 data-number="8.10" class="anchored" data-anchor-id="quick-reference"><span class="header-section-number">8.10</span> Quick Reference</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 40%">
@@ -1467,13 +1467,13 @@ project-b-env/
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../part2/positron.html" class="pagination-link" aria-label="Positron">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Positron</span></span>
+      <a href="../part2/renv.html" class="pagination-link" aria-label="R: rig &amp; renv">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">R: rig &amp; renv</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../part2/renv.html" class="pagination-link" aria-label="R: rig &amp; renv">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">R: rig &amp; renv</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../part2/git-github.html" class="pagination-link" aria-label="Git &amp; GitHub">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Git &amp; GitHub</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

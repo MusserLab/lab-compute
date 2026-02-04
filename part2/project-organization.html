@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8&nbsp; Project Organization – Data Analysis in the Musser Lab</title>
+<title>5&nbsp; Project Organization – Data Analysis in the Musser Lab</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../part2/git-github.html" rel="next">
-<link href="../part2/quarto.html" rel="prev">
+<link href="../part2/quarto.html" rel="next">
+<link href="../part2/positron.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -287,7 +287,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part2/positron.html">Core Tools</a></li><li class="breadcrumb-item"><a href="../part2/project-organization.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Project Organization</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part2/positron.html">Core Tools</a></li><li class="breadcrumb-item"><a href="../part2/project-organization.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Project Organization</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -367,26 +367,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../part2/conda.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conda</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../part2/renv.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">R: rig &amp; renv</span></span></a>
+  <a href="../part2/project-organization.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Project Organization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part2/quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Quarto</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Quarto</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../part2/project-organization.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Project Organization</span></span></a>
+  <a href="../part2/renv.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">R: rig &amp; renv</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part2/conda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Conda</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -506,30 +506,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-core-principle" id="toc-the-core-principle" class="nav-link active" data-scroll-target="#the-core-principle"><span class="header-section-number">8.1</span> The Core Principle</a></li>
-  <li><a href="#project-structure" id="toc-project-structure" class="nav-link" data-scroll-target="#project-structure"><span class="header-section-number">8.2</span> Project Structure</a>
+  <li><a href="#the-core-principle" id="toc-the-core-principle" class="nav-link active" data-scroll-target="#the-core-principle"><span class="header-section-number">5.1</span> The Core Principle</a></li>
+  <li><a href="#project-structure" id="toc-project-structure" class="nav-link" data-scroll-target="#project-structure"><span class="header-section-number">5.2</span> Project Structure</a>
   <ul class="collapse">
-  <li><a href="#data-external-inputs" id="toc-data-external-inputs" class="nav-link" data-scroll-target="#data-external-inputs"><span class="header-section-number">8.2.1</span> <code>data/</code> — External Inputs</a></li>
-  <li><a href="#scripts-analysis-scripts" id="toc-scripts-analysis-scripts" class="nav-link" data-scroll-target="#scripts-analysis-scripts"><span class="header-section-number">8.2.2</span> <code>scripts/</code> — Analysis Scripts</a></li>
-  <li><a href="#outs-generated-outputs" id="toc-outs-generated-outputs" class="nav-link" data-scroll-target="#outs-generated-outputs"><span class="header-section-number">8.2.3</span> <code>outs/</code> — Generated Outputs</a></li>
+  <li><a href="#data-external-inputs" id="toc-data-external-inputs" class="nav-link" data-scroll-target="#data-external-inputs"><span class="header-section-number">5.2.1</span> <code>data/</code> — External Inputs</a></li>
+  <li><a href="#scripts-analysis-scripts" id="toc-scripts-analysis-scripts" class="nav-link" data-scroll-target="#scripts-analysis-scripts"><span class="header-section-number">5.2.2</span> <code>scripts/</code> — Analysis Scripts</a></li>
+  <li><a href="#outs-generated-outputs" id="toc-outs-generated-outputs" class="nav-link" data-scroll-target="#outs-generated-outputs"><span class="header-section-number">5.2.3</span> <code>outs/</code> — Generated Outputs</a></li>
   </ul></li>
-  <li><a href="#how-dependencies-work" id="toc-how-dependencies-work" class="nav-link" data-scroll-target="#how-dependencies-work"><span class="header-section-number">8.3</span> How Dependencies Work</a></li>
-  <li><a href="#documenting-dependencies" id="toc-documenting-dependencies" class="nav-link" data-scroll-target="#documenting-dependencies"><span class="header-section-number">8.4</span> Documenting Dependencies</a></li>
-  <li><a href="#setting-up-output-paths" id="toc-setting-up-output-paths" class="nav-link" data-scroll-target="#setting-up-output-paths"><span class="header-section-number">8.5</span> Setting Up Output Paths</a></li>
-  <li><a href="#handling-subprojects" id="toc-handling-subprojects" class="nav-link" data-scroll-target="#handling-subprojects"><span class="header-section-number">8.6</span> Handling Subprojects</a></li>
-  <li><a href="#naming-conventions" id="toc-naming-conventions" class="nav-link" data-scroll-target="#naming-conventions"><span class="header-section-number">8.7</span> Naming Conventions</a>
+  <li><a href="#how-dependencies-work" id="toc-how-dependencies-work" class="nav-link" data-scroll-target="#how-dependencies-work"><span class="header-section-number">5.3</span> How Dependencies Work</a></li>
+  <li><a href="#documenting-dependencies" id="toc-documenting-dependencies" class="nav-link" data-scroll-target="#documenting-dependencies"><span class="header-section-number">5.4</span> Documenting Dependencies</a></li>
+  <li><a href="#setting-up-output-paths" id="toc-setting-up-output-paths" class="nav-link" data-scroll-target="#setting-up-output-paths"><span class="header-section-number">5.5</span> Setting Up Output Paths</a></li>
+  <li><a href="#handling-subprojects" id="toc-handling-subprojects" class="nav-link" data-scroll-target="#handling-subprojects"><span class="header-section-number">5.6</span> Handling Subprojects</a></li>
+  <li><a href="#naming-conventions" id="toc-naming-conventions" class="nav-link" data-scroll-target="#naming-conventions"><span class="header-section-number">5.7</span> Naming Conventions</a>
   <ul class="collapse">
-  <li><a href="#scripts" id="toc-scripts" class="nav-link" data-scroll-target="#scripts"><span class="header-section-number">8.7.1</span> Scripts</a></li>
-  <li><a href="#output-files" id="toc-output-files" class="nav-link" data-scroll-target="#output-files"><span class="header-section-number">8.7.2</span> Output Files</a></li>
-  <li><a href="#what-to-avoid" id="toc-what-to-avoid" class="nav-link" data-scroll-target="#what-to-avoid"><span class="header-section-number">8.7.3</span> What to Avoid</a></li>
+  <li><a href="#scripts" id="toc-scripts" class="nav-link" data-scroll-target="#scripts"><span class="header-section-number">5.7.1</span> Scripts</a></li>
+  <li><a href="#output-files" id="toc-output-files" class="nav-link" data-scroll-target="#output-files"><span class="header-section-number">5.7.2</span> Output Files</a></li>
+  <li><a href="#what-to-avoid" id="toc-what-to-avoid" class="nav-link" data-scroll-target="#what-to-avoid"><span class="header-section-number">5.7.3</span> What to Avoid</a></li>
   </ul></li>
-  <li><a href="#version-control-considerations" id="toc-version-control-considerations" class="nav-link" data-scroll-target="#version-control-considerations"><span class="header-section-number">8.8</span> Version Control Considerations</a>
+  <li><a href="#version-control-considerations" id="toc-version-control-considerations" class="nav-link" data-scroll-target="#version-control-considerations"><span class="header-section-number">5.8</span> Version Control Considerations</a>
   <ul class="collapse">
-  <li><a href="#what-to-commit" id="toc-what-to-commit" class="nav-link" data-scroll-target="#what-to-commit"><span class="header-section-number">8.8.1</span> What to Commit</a></li>
-  <li><a href="#what-to-ignore" id="toc-what-to-ignore" class="nav-link" data-scroll-target="#what-to-ignore"><span class="header-section-number">8.8.2</span> What to Ignore</a></li>
+  <li><a href="#what-to-commit" id="toc-what-to-commit" class="nav-link" data-scroll-target="#what-to-commit"><span class="header-section-number">5.8.1</span> What to Commit</a></li>
+  <li><a href="#what-to-ignore" id="toc-what-to-ignore" class="nav-link" data-scroll-target="#what-to-ignore"><span class="header-section-number">5.8.2</span> What to Ignore</a></li>
   </ul></li>
-  <li><a href="#handling-old-versions" id="toc-handling-old-versions" class="nav-link" data-scroll-target="#handling-old-versions"><span class="header-section-number">8.9</span> Handling Old Versions</a></li>
-  <li><a href="#complete-example" id="toc-complete-example" class="nav-link" data-scroll-target="#complete-example"><span class="header-section-number">8.10</span> Complete Example</a></li>
+  <li><a href="#handling-old-versions" id="toc-handling-old-versions" class="nav-link" data-scroll-target="#handling-old-versions"><span class="header-section-number">5.9</span> Handling Old Versions</a></li>
+  <li><a href="#complete-example" id="toc-complete-example" class="nav-link" data-scroll-target="#complete-example"><span class="header-section-number">5.10</span> Complete Example</a></li>
   </ul>
 </nav>
     </div>
@@ -537,9 +537,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part2/positron.html">Core Tools</a></li><li class="breadcrumb-item"><a href="../part2/project-organization.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Project Organization</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part2/positron.html">Core Tools</a></li><li class="breadcrumb-item"><a href="../part2/project-organization.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Project Organization</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Project Organization</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Project Organization</span></h1>
 </div>
 
 
@@ -557,8 +557,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>A well-organized project makes it easy to find files, understand dependencies, and reproduce analyses. This chapter describes the lab’s conventions for structuring analysis projects.</p>
-<section id="the-core-principle" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="the-core-principle"><span class="header-section-number">8.1</span> The Core Principle</h2>
+<section id="the-core-principle" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="the-core-principle"><span class="header-section-number">5.1</span> The Core Principle</h2>
 <p>Every analysis project has two types of files:</p>
 <ol type="1">
 <li><strong>External inputs</strong> — data that comes from outside the project (sequencing results, collaborator files, public datasets)</li>
@@ -566,8 +566,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>The key to staying organized is keeping these separate and tracking which scripts produce which outputs.</p>
 </section>
-<section id="project-structure" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="project-structure"><span class="header-section-number">8.2</span> Project Structure</h2>
+<section id="project-structure" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="project-structure"><span class="header-section-number">5.2</span> Project Structure</h2>
 <p>A typical lab project has three core folders:</p>
 <pre><code>my-project/
 ├── data/              # External inputs only
@@ -576,8 +576,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ├── environment.yml    # Conda environment
 ├── renv.lock          # R package versions
 └── README.md          # Project overview</code></pre>
-<section id="data-external-inputs" class="level3" data-number="8.2.1">
-<h3 data-number="8.2.1" class="anchored" data-anchor-id="data-external-inputs"><span class="header-section-number">8.2.1</span> <code>data/</code> — External Inputs</h3>
+<section id="data-external-inputs" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="data-external-inputs"><span class="header-section-number">5.2.1</span> <code>data/</code> — External Inputs</h3>
 <p>This folder holds data that comes from <strong>outside</strong> the project:</p>
 <ul>
 <li>Raw sequencing data from the core facility</li>
@@ -596,8 +596,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Document where each file came from (in the README or a <code>data/README.md</code>)</li>
 </ul>
 </section>
-<section id="scripts-analysis-scripts" class="level3" data-number="8.2.2">
-<h3 data-number="8.2.2" class="anchored" data-anchor-id="scripts-analysis-scripts"><span class="header-section-number">8.2.2</span> <code>scripts/</code> — Analysis Scripts</h3>
+<section id="scripts-analysis-scripts" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="scripts-analysis-scripts"><span class="header-section-number">5.2.2</span> <code>scripts/</code> — Analysis Scripts</h3>
 <p>All <code>.qmd</code> analysis scripts live here, numbered to indicate their logical order:</p>
 <pre><code>scripts/
 ├── 01_import_qc.qmd
@@ -607,8 +607,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 └── 05_heatmaps.qmd</code></pre>
 <p>The numbers indicate the general flow of the analysis, not a strict linear dependency. Script 05 might read outputs from scripts 01 and 03 directly—the numbering just helps you understand the overall structure at a glance.</p>
 </section>
-<section id="outs-generated-outputs" class="level3" data-number="8.2.3">
-<h3 data-number="8.2.3" class="anchored" data-anchor-id="outs-generated-outputs"><span class="header-section-number">8.2.3</span> <code>outs/</code> — Generated Outputs</h3>
+<section id="outs-generated-outputs" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="outs-generated-outputs"><span class="header-section-number">5.2.3</span> <code>outs/</code> — Generated Outputs</h3>
 <p><strong>Every script gets a corresponding output folder.</strong> Script <code>01_import_qc.qmd</code> writes to <code>outs/01_import_qc/</code>:</p>
 <pre><code>outs/
 ├── 01_import_qc/
@@ -629,8 +629,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>This structure encodes provenance.</strong> When you see a file in <code>outs/03_differential/</code>, you know exactly which script created it.</p>
 </section>
 </section>
-<section id="how-dependencies-work" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="how-dependencies-work"><span class="header-section-number">8.3</span> How Dependencies Work</h2>
+<section id="how-dependencies-work" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="how-dependencies-work"><span class="header-section-number">5.3</span> How Dependencies Work</h2>
 <p>Scripts read from two places:</p>
 <ol type="1">
 <li><code>data/</code> — external inputs</li>
@@ -663,8 +663,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>The numbering reflects the logical order, not strict dependencies</li>
 </ul>
 </section>
-<section id="documenting-dependencies" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="documenting-dependencies"><span class="header-section-number">8.4</span> Documenting Dependencies</h2>
+<section id="documenting-dependencies" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="documenting-dependencies"><span class="header-section-number">5.4</span> Documenting Dependencies</h2>
 <p>At the top of each script, explicitly list inputs and outputs:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Volcano Plots</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -683,8 +683,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Find which scripts depend on a file</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-r</span> <span class="st">"limma_results.rds"</span> scripts/ <span class="kw">|</span> <span class="fu">grep</span> <span class="st">"Inputs:"</span> <span class="at">-A5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="setting-up-output-paths" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="setting-up-output-paths"><span class="header-section-number">8.5</span> Setting Up Output Paths</h2>
+<section id="setting-up-output-paths" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="setting-up-output-paths"><span class="header-section-number">5.5</span> Setting Up Output Paths</h2>
 <p>In your setup chunk, define paths that match this structure:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
@@ -707,8 +707,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Save figures</span></span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">file.path</span>(dir_out, <span class="st">"volcano_plot.pdf"</span>), p, <span class="at">width =</span> <span class="dv">6</span>, <span class="at">height =</span> <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="handling-subprojects" class="level2" data-number="8.6">
-<h2 data-number="8.6" class="anchored" data-anchor-id="handling-subprojects"><span class="header-section-number">8.6</span> Handling Subprojects</h2>
+<section id="handling-subprojects" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="handling-subprojects"><span class="header-section-number">5.6</span> Handling Subprojects</h2>
 <p>For projects with multiple distinct analyses (e.g., phosphoproteomics AND transcriptomics), prefix script names with the subproject:</p>
 <pre><code>scripts/
 ├── phospho_01_qc.qmd
@@ -727,26 +727,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 └── combined_01_integration/</code></pre>
 <p>The <code>combined_*</code> scripts can read from both <code>phospho_*</code> and <code>trans_*</code> outputs.</p>
 </section>
-<section id="naming-conventions" class="level2" data-number="8.7">
-<h2 data-number="8.7" class="anchored" data-anchor-id="naming-conventions"><span class="header-section-number">8.7</span> Naming Conventions</h2>
-<section id="scripts" class="level3" data-number="8.7.1">
-<h3 data-number="8.7.1" class="anchored" data-anchor-id="scripts"><span class="header-section-number">8.7.1</span> Scripts</h3>
+<section id="naming-conventions" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="naming-conventions"><span class="header-section-number">5.7</span> Naming Conventions</h2>
+<section id="scripts" class="level3" data-number="5.7.1">
+<h3 data-number="5.7.1" class="anchored" data-anchor-id="scripts"><span class="header-section-number">5.7.1</span> Scripts</h3>
 <ul>
 <li>Use lowercase with underscores: <code>01_import_qc.qmd</code></li>
 <li>Start with a two-digit number: <code>01_</code>, <code>02_</code>, … <code>10_</code>, <code>11_</code></li>
 <li>Use descriptive names: <code>03_differential.qmd</code> not <code>03_analysis.qmd</code></li>
 </ul>
 </section>
-<section id="output-files" class="level3" data-number="8.7.2">
-<h3 data-number="8.7.2" class="anchored" data-anchor-id="output-files"><span class="header-section-number">8.7.2</span> Output Files</h3>
+<section id="output-files" class="level3" data-number="5.7.2">
+<h3 data-number="5.7.2" class="anchored" data-anchor-id="output-files"><span class="header-section-number">5.7.2</span> Output Files</h3>
 <ul>
 <li>Name files descriptively: <code>normalized_counts.rds</code> not <code>data.rds</code></li>
 <li>Use consistent extensions: <code>.rds</code> for R objects, <code>.csv</code> for tables, <code>.pdf</code> for figures</li>
 <li>For multiple similar outputs, use a pattern: <code>volcano_3min.pdf</code>, <code>volcano_15min.pdf</code></li>
 </ul>
 </section>
-<section id="what-to-avoid" class="level3" data-number="8.7.3">
-<h3 data-number="8.7.3" class="anchored" data-anchor-id="what-to-avoid"><span class="header-section-number">8.7.3</span> What to Avoid</h3>
+<section id="what-to-avoid" class="level3" data-number="5.7.3">
+<h3 data-number="5.7.3" class="anchored" data-anchor-id="what-to-avoid"><span class="header-section-number">5.7.3</span> What to Avoid</h3>
 <ul>
 <li>Spaces in filenames (use underscores or hyphens)</li>
 <li>Generic names (<code>output.csv</code>, <code>figure1.pdf</code>, <code>results.rds</code>)</li>
@@ -754,10 +754,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </section>
 </section>
-<section id="version-control-considerations" class="level2" data-number="8.8">
-<h2 data-number="8.8" class="anchored" data-anchor-id="version-control-considerations"><span class="header-section-number">8.8</span> Version Control Considerations</h2>
-<section id="what-to-commit" class="level3" data-number="8.8.1">
-<h3 data-number="8.8.1" class="anchored" data-anchor-id="what-to-commit"><span class="header-section-number">8.8.1</span> What to Commit</h3>
+<section id="version-control-considerations" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="version-control-considerations"><span class="header-section-number">5.8</span> Version Control Considerations</h2>
+<section id="what-to-commit" class="level3" data-number="5.8.1">
+<h3 data-number="5.8.1" class="anchored" data-anchor-id="what-to-commit"><span class="header-section-number">5.8.1</span> What to Commit</h3>
 <ul>
 <li>All scripts (<code>scripts/*.qmd</code>)</li>
 <li>External data if small enough (<code>data/</code>)</li>
@@ -765,8 +765,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>README and documentation</li>
 </ul>
 </section>
-<section id="what-to-ignore" class="level3" data-number="8.8.2">
-<h3 data-number="8.8.2" class="anchored" data-anchor-id="what-to-ignore"><span class="header-section-number">8.8.2</span> What to Ignore</h3>
+<section id="what-to-ignore" class="level3" data-number="5.8.2">
+<h3 data-number="5.8.2" class="anchored" data-anchor-id="what-to-ignore"><span class="header-section-number">5.8.2</span> What to Ignore</h3>
 <p>Add to <code>.gitignore</code>:</p>
 <pre><code># Large data files
 data/large_file.h5ad
@@ -786,8 +786,8 @@ outs/
 <p>If you ignore outputs, document how to regenerate them in the README.</p>
 </section>
 </section>
-<section id="handling-old-versions" class="level2" data-number="8.9">
-<h2 data-number="8.9" class="anchored" data-anchor-id="handling-old-versions"><span class="header-section-number">8.9</span> Handling Old Versions</h2>
+<section id="handling-old-versions" class="level2" data-number="5.9">
+<h2 data-number="5.9" class="anchored" data-anchor-id="handling-old-versions"><span class="header-section-number">5.9</span> Handling Old Versions</h2>
 <p>Analysis projects tend to accumulate old scripts and outputs. Resist the urge to create <code>old/</code> folders everywhere.</p>
 <p><strong>Better approaches:</strong></p>
 <ol type="1">
@@ -805,8 +805,8 @@ outs/
 └── 2025-01-20_relaxed_threshold/</code></pre></li>
 </ol>
 </section>
-<section id="complete-example" class="level2" data-number="8.10">
-<h2 data-number="8.10" class="anchored" data-anchor-id="complete-example"><span class="header-section-number">8.10</span> Complete Example</h2>
+<section id="complete-example" class="level2" data-number="5.10">
+<h2 data-number="5.10" class="anchored" data-anchor-id="complete-example"><span class="header-section-number">5.10</span> Complete Example</h2>
 <p>Here’s a well-organized phosphoproteomics project:</p>
 <pre><code>tryptamine_phospho/
 ├── data/
@@ -1289,13 +1289,13 @@ outs/
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../part2/quarto.html" class="pagination-link" aria-label="Quarto">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Quarto</span></span>
+      <a href="../part2/positron.html" class="pagination-link" aria-label="Positron">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Positron</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../part2/git-github.html" class="pagination-link" aria-label="Git &amp; GitHub">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Git &amp; GitHub</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../part2/quarto.html" class="pagination-link" aria-label="Quarto">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Quarto</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
