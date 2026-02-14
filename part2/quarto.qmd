@@ -122,7 +122,7 @@ When rendered, this produces an HTML file with the title, your text, and the cod
 
 ## The YAML Header
 
-The YAML header controls document metadata and rendering behavior. Here's a typical header for a lab analysis script:
+The YAML header controls document metadata and rendering behavior. Here's the standard header for a lab analysis script:
 
 ```yaml
 ---
@@ -130,18 +130,25 @@ title: "Phosphoproteomics Volcano Plots"
 subtitle: "Tryptamine treatment time course"
 author: "Your Name"
 date: today
+status: development        # development | finalized | deprecated
 format:
   html:
     toc: true
     toc-depth: 2
     number-sections: true
+    code-overflow: wrap
     code-fold: false
     code-tools: true
+    highlight-style: github
+    theme: cosmo
+    fontsize: 1rem
+    linestretch: 1.5
     self-contained: true
 execute:
   echo: true
   message: false
   warning: false
+  cache: false
 ---
 ```
 
@@ -150,9 +157,10 @@ execute:
 | Option | Purpose | Example |
 |--------|---------|---------|
 | `title` | Document title (appears at top) | `"My Analysis"` |
-| `subtitle` | Secondary title | `"Version 2"` |
+| `subtitle` | Secondary title | `"Brief description"` |
 | `author` | Your name | `"Jane Doe"` |
 | `date` | Date; use `today` for automatic | `today` |
+| `status` | Script lifecycle stage (see [Project Organization](project-organization.qmd#script-lifecycle)) | `development` |
 
 ### Format Options
 
@@ -163,8 +171,13 @@ These go under `format: html:` and control the HTML output:
 | `toc` | Include table of contents | `true` |
 | `toc-depth` | How many heading levels in TOC | `2` |
 | `number-sections` | Number your headings | `true` |
+| `code-overflow` | How to handle long code lines | `wrap` |
 | `code-fold` | Collapse code blocks by default | `false` for analysis scripts |
 | `code-tools` | Add show/hide all code button | `true` |
+| `highlight-style` | Syntax highlighting theme | `github` |
+| `theme` | Bootstrap theme for HTML | `cosmo` |
+| `fontsize` | Base font size | `1rem` |
+| `linestretch` | Line spacing multiplier | `1.5` |
 | `self-contained` | Single HTML file (no external dependencies) | `true` |
 
 ### Execute Options
@@ -174,15 +187,15 @@ These go under `execute:` and control code execution:
 | Option | Purpose | Recommended |
 |--------|---------|-------------|
 | `echo` | Show code in output | `true` for analysis scripts |
-| `message` | Show package messages | `false` |
+| `message` | Show package messages | `false` (R only) |
 | `warning` | Show warnings | `false` |
-| `cache` | Cache chunk results | `false` (usually) |
+| `cache` | Cache chunk results | `false` |
 
-Setting `message: false` and `warning: false` globally keeps your rendered output clean. You can override these per-chunk when you need to see specific messages.
+Setting `message: false` and `warning: false` globally keeps your rendered output clean. You can override these per-chunk when you need to see specific messages. We set `cache: false` explicitly to avoid subtle bugs from stale cached results.
 
 ## The Setup Chunk
 
-Every analysis script should start with a setup chunk that loads packages, defines paths, and sets options. This establishes the foundation for everything that follows.
+Every analysis script should start with a setup chunk that loads packages, defines paths, sets options, and captures the git commit hash for provenance.
 
 ```r
 #| label: setup
@@ -192,19 +205,20 @@ Every analysis script should start with a setup chunk that loads packages, defin
 suppressPackageStartupMessages({
   library(tidyverse)
   library(here)
-  library(scales)
 })
 
 # ---- Paths ----
-dir_data <- here::here("data", "processed")
-dir_out <- here::here("outs", "01_my_analysis")
-
-# Create output directory if needed
+dir_data <- here::here("data")
+dir_out <- here::here("outs", "01_script_name")
 dir.create(dir_out, recursive = TRUE, showWarnings = FALSE)
 
 # ---- Options ----
 options(stringsAsFactors = FALSE)
 set.seed(42)
+
+# ---- Provenance ----
+git_hash <- system("git rev-parse --short HEAD", intern = TRUE)
+cat("Rendered from commit:", git_hash, "\n")
 ```
 
 ### Key Patterns
@@ -219,33 +233,39 @@ set.seed(42)
 
 **`set.seed()`** — Makes random operations reproducible. Use a fixed seed when your analysis involves any randomness (sampling, clustering, etc.).
 
-## Documenting Inputs and Outputs
+**`git_hash`** — Captures the current commit for provenance tracking. This is used later in `BUILD_INFO.txt` (see [Provenance Chunk](#provenance-chunk) below).
 
-After the YAML header and before the setup chunk, document what the script reads and produces:
+## Documenting Inputs
+
+After the setup chunk, add an explicit inputs section that loads all dependencies. This makes it immediately clear what the script needs to run:
+
+```r
+#| label: inputs
+
+# --- Inputs (from other scripts) ---
+results <- readRDS(here("outs/03_differential/limma_results.rds"))
+
+# --- Inputs (external data) ---
+metadata <- read_csv(here("data/sample_metadata.csv"))
+```
+
+Separating inputs from analysis code makes dependencies self-documenting—reading the top of any script shows exactly what it depends on. You can also document outputs in the introduction text:
 
 ```markdown
-# Introduction
+# Volcano Plots
 
-This script generates volcano plots for the phosphoproteomics time course,
-visualizing differential phosphorylation between treated and control samples.
+This script generates volcano plots for the phosphoproteomics time course.
 
 **Inputs:**
 
-- `data/processed/limma_results.rds` — differential expression results
-- `data/processed/metadata.csv` — sample metadata
+- `outs/03_differential/limma_results.rds`
+- `data/sample_metadata.csv`
 
 **Outputs:**
 
-- `outs/01_volcano_plots/volcano_*.pdf` — volcano plots per comparison
-- `outs/01_volcano_plots/significant_hits.csv` — filtered results table
+- `outs/04_volcano_plots/volcano_*.pdf`
+- `outs/04_volcano_plots/significant_hits.csv`
 ```
-
-This practice:
-
-- Makes the script's purpose immediately clear
-- Documents dependencies (what must exist before this runs)
-- Documents products (what other scripts can use as inputs)
-- Helps you and collaborators understand the analysis pipeline
 
 See the [Project Organization](project-organization.qmd) chapter for how this fits into the larger project structure.
 
@@ -364,7 +384,9 @@ If your project uses renv (and it should), the R console automatically activates
 
 This confirms you're using the project's package library, not your global library.
 
-## Working with Python
+## Working with Python {#working-with-python}
+
+Quarto `.qmd` is the standard format for Python data analysis in the lab, just as it is for R. Plain `.py` files are for standalone utilities, CLI tools, and library code—not for data analysis scripts. Everything described above (YAML headers, setup chunks, inputs, provenance) applies to Python QMD too.
 
 ### Running Code
 
@@ -383,6 +405,151 @@ Ensure Positron is using the correct conda environment:
 1. Open Command Palette (Cmd/Ctrl+Shift+P)
 2. Type "Python: Select Interpreter"
 3. Choose your project's conda environment
+
+### Rendering Python QMD
+
+::: {.callout-important}
+## Activate Conda Before Rendering
+
+Python QMD files require the conda environment to be active when you render. Without this, Quarto uses the wrong Python or can't find your packages:
+
+```bash
+source ~/miniconda3/etc/profile.d/conda.sh && conda activate my-project && quarto render scripts/02_analysis.qmd
+```
+
+This is the #1 Python QMD gotcha. If `quarto render` fails with `ModuleNotFoundError`, check that your conda environment is active.
+:::
+
+### Python YAML Header
+
+The Python YAML header is the same as R, with two differences: add `jupyter: python3` and drop `message: false` (which is R-specific):
+
+```yaml
+---
+title: "Script Title"
+subtitle: "Brief description"
+author: "Your Name"
+date: today
+status: development
+jupyter: python3
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    code-overflow: wrap
+    code-fold: false
+    code-tools: true
+    highlight-style: github
+    theme: cosmo
+    fontsize: 1rem
+    linestretch: 1.5
+    self-contained: true
+execute:
+  echo: true
+  warning: false
+  cache: false
+---
+```
+
+### Python Setup Chunk
+
+```python
+#| label: setup
+
+import subprocess
+import sys
+import random
+from pathlib import Path
+from datetime import datetime
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+PROJECT_ROOT = Path(subprocess.check_output(
+    ["git", "rev-parse", "--show-toplevel"]
+).decode().strip())
+sys.path.insert(0, str(PROJECT_ROOT / "python"))
+# from helpers import ...  # if needed
+
+# ---- Options ----
+random.seed(42)
+np.random.seed(42)
+pd.set_option("display.max_columns", None)
+sns.set_theme(style="whitegrid")
+
+# ---- Paths ----
+out_dir = PROJECT_ROOT / "outs/XX_script_name"
+out_dir.mkdir(parents=True, exist_ok=True)
+
+git_hash = subprocess.check_output(
+    ["git", "rev-parse", "--short", "HEAD"]
+).decode().strip()
+print(f"Rendered from commit: {git_hash}")
+```
+
+Key differences from R:
+
+- **`PROJECT_ROOT`** replaces `here::here()` — found via `git rev-parse --show-toplevel`
+- **Helper loading** uses `sys.path.insert()` instead of `source()`
+- **Two random seeds** — `random.seed(42)` for Python stdlib, `np.random.seed(42)` for NumPy
+
+### Python Figure Saving
+
+Save figures to `outs/` AND display inline:
+
+```python
+#| label: fig-example
+#| fig-cap: "Description of figure"
+
+fig, ax = plt.subplots(figsize=(6, 4))
+# ... plotting code ...
+plt.tight_layout()
+
+# Save to outs/ AND display inline
+fig.savefig(out_dir / "figure_name.pdf", dpi=300, bbox_inches="tight")
+fig.savefig(out_dir / "figure_name.png", dpi=300, bbox_inches="tight")
+plt.show()
+```
+
+### Python Provenance Chunk
+
+```python
+#| label: build-info
+
+(out_dir / "BUILD_INFO.txt").write_text(
+    f"script: XX_script_name.qmd\n"
+    f"commit: {git_hash}\n"
+    f"date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"
+)
+
+import session_info
+session_info.show()
+```
+
+::: {.callout-note}
+`session_info` must be installed in your conda environment: `pip install session-info`. Include it in every data science environment.
+:::
+
+### Language Mixing
+
+Do not mix R and Python chunks in a single `.qmd`. Each script uses one language. Scripts communicate through files in `outs/`, not shared memory. If an R script produces data that a Python script needs, save it as Parquet (see [Project Organization](project-organization.qmd#output-files)).
+
+### R vs Python Quick Reference
+
+| Convention | R | Python |
+|------------|---|--------|
+| Project root | `here::here()` | `PROJECT_ROOT` (from git) |
+| Read CSV | `read_csv(here("data/file.csv"))` | `pd.read_csv(PROJECT_ROOT / "data/file.csv")` |
+| Read TSV | `read_tsv(here("data/file.tsv"))` | `pd.read_csv(PROJECT_ROOT / "data/file.tsv", sep="\t")` |
+| Read Parquet | `arrow::read_parquet(here(...))` | `pd.read_parquet(PROJECT_ROOT / ...)` |
+| Save figure | `ggsave(file.path(dir_out, "fig.pdf"))` | `fig.savefig(out_dir / "fig.pdf")` |
+| Random seed | `set.seed(42)` | `random.seed(42)` + `np.random.seed(42)` |
+| Session info | `sessionInfo()` | `session_info.show()` |
+| Chunk label | `{r label-name}` or `#| label:` | `#| label:` only |
+| Helper loading | `source(here("R/helpers.R"))` | `sys.path.insert(0, str(PROJECT_ROOT / "python"))` |
 
 ## Saving Outputs
 
@@ -455,8 +622,11 @@ Use `here::here()` for all file paths in your scripts. It makes your code portab
 ### From the Terminal
 
 ```bash
-# Render a single document
+# Render an R document
 quarto render scripts/01_analysis.qmd
+
+# Render a Python document (conda must be active!)
+source ~/miniconda3/etc/profile.d/conda.sh && conda activate my-project && quarto render scripts/02_plots.qmd
 
 # Render all .qmd files in a directory
 quarto render scripts/
@@ -527,17 +697,29 @@ stopifnot("No data loaded" = nrow(data) > 0)
 
 These chunks catch problems early and provide clear error messages.
 
-### Session Info
+### Provenance Chunk {#provenance-chunk}
 
-End your script with session information for reproducibility:
+End every script with a chunk that writes `BUILD_INFO.txt` and prints session information:
 
 ```r
-#| label: session-info
+#| label: build-info
+
+writeLines(
+  c(
+    paste("script:", "01_script_name.qmd"),
+    paste("commit:", git_hash),
+    paste("date:", format(Sys.time(), "%Y-%m-%d %H:%M:%S"))
+  ),
+  file.path(dir_out, "BUILD_INFO.txt")
+)
 
 sessionInfo()
 ```
 
-This records R version, package versions, and platform information in the rendered output.
+This records:
+
+- **BUILD_INFO.txt** — which script, commit, and timestamp produced the outputs (answers "when was this last regenerated?")
+- **sessionInfo()** — R version, package versions, and platform in the rendered HTML
 
 ## Common Issues
 
@@ -604,7 +786,7 @@ This caches the chunk's results. Subsequent renders skip execution if the code h
 
 ## Quick Reference
 
-### Typical YAML Header
+### Typical YAML Header (R)
 
 ```yaml
 ---
@@ -612,22 +794,59 @@ title: "Analysis Title"
 subtitle: "Project context"
 author: "Your Name"
 date: today
+status: development
 format:
   html:
     toc: true
     toc-depth: 2
     number-sections: true
+    code-overflow: wrap
     code-fold: false
     code-tools: true
+    highlight-style: github
+    theme: cosmo
+    fontsize: 1rem
+    linestretch: 1.5
     self-contained: true
 execute:
   echo: true
   message: false
   warning: false
+  cache: false
 ---
 ```
 
-### Setup Chunk Template
+### Typical YAML Header (Python)
+
+```yaml
+---
+title: "Analysis Title"
+subtitle: "Project context"
+author: "Your Name"
+date: today
+status: development
+jupyter: python3
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    code-overflow: wrap
+    code-fold: false
+    code-tools: true
+    highlight-style: github
+    theme: cosmo
+    fontsize: 1rem
+    linestretch: 1.5
+    self-contained: true
+execute:
+  echo: true
+  warning: false
+  cache: false
+---
+```
+
+### R Setup Chunk Template
 
 ```r
 #| label: setup
@@ -641,12 +860,49 @@ suppressPackageStartupMessages({
 
 # ---- Paths ----
 dir_data <- here::here("data")
-dir_out <- here::here("outs", "script_name")
+dir_out <- here::here("outs", "01_script_name")
 dir.create(dir_out, recursive = TRUE, showWarnings = FALSE)
 
 # ---- Options ----
 options(stringsAsFactors = FALSE)
 set.seed(42)
+
+# ---- Provenance ----
+git_hash <- system("git rev-parse --short HEAD", intern = TRUE)
+cat("Rendered from commit:", git_hash, "\n")
+```
+
+### Python Setup Chunk Template
+
+```python
+#| label: setup
+
+import subprocess, sys, random
+from pathlib import Path
+from datetime import datetime
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+PROJECT_ROOT = Path(subprocess.check_output(
+    ["git", "rev-parse", "--show-toplevel"]
+).decode().strip())
+sys.path.insert(0, str(PROJECT_ROOT / "python"))
+
+random.seed(42)
+np.random.seed(42)
+pd.set_option("display.max_columns", None)
+sns.set_theme(style="whitegrid")
+
+out_dir = PROJECT_ROOT / "outs/XX_script_name"
+out_dir.mkdir(parents=True, exist_ok=True)
+
+git_hash = subprocess.check_output(
+    ["git", "rev-parse", "--short", "HEAD"]
+).decode().strip()
+print(f"Rendered from commit: {git_hash}")
 ```
 
 ### Chunk Options Reference

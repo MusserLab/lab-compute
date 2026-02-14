@@ -207,7 +207,7 @@ Provide more context:
 
 Instead of: "Fix the bug"
 
-Try: "In analysis.R line 45, I get 'object x not found'. Here's the relevant code: [paste code]. The data is loaded from data/raw/data.csv."
+Try: "In analysis.R line 45, I get 'object x not found'. Here's the relevant code: [paste code]. The data is loaded from data/data.csv."
 
 ## Positron
 

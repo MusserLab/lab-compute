@@ -216,8 +216,7 @@ The `.gitignore` file tells Git which files to ignore—they won't be tracked or
 ### Standard .gitignore for Lab Projects
 
 ```
-# Large data files
-data/raw/
+# Large data files (add specific patterns as needed)
 *.h5ad
 *.rds
 *.csv

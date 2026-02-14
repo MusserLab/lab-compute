@@ -1,6 +1,6 @@
 # Starting a New Analysis Project
 
-This chapter walks through setting up a new analysis project from scratch, using all the tools together.
+This chapter walks through setting up a new analysis project from scratch, using all the tools together. For detailed explanations of each convention, see the [Project Organization](../part2/project-organization.qmd) and [Quarto](../part2/quarto.qmd) chapters.
 
 ## The Standard Structure
 
@@ -12,14 +12,36 @@ project-name/
 │   └── CLAUDE.md         # Claude Code instructions
 ├── .git/                  # Git repository
 ├── .gitignore            # Files to exclude from Git
-├── data/
-│   ├── raw/              # Original data (never modify)
-│   └── processed/        # Cleaned/transformed data
-├── scripts/              # Analysis scripts
-├── output/               # Results, figures, tables
+├── R/                    # Shared R helper functions
+├── python/               # Shared Python helper functions
+├── scripts/
+│   └── exploratory/      # One-off analyses
+├── data/                 # External inputs only — scripts never write here
+├── outs/                 # All script-generated outputs
 ├── environment.yml       # Conda environment (Python)
 ├── renv.lock            # R package versions
 └── README.md            # Project description
+```
+
+For projects with multiple analysis sections (e.g., phosphoproteomics + transcriptomics), mirror the sections across `scripts/`, `data/`, and `outs/`:
+
+```
+scripts/
+├── phosphoproteomics/
+│   ├── 01_qc.qmd
+│   └── 02_analysis.qmd
+├── transcriptomics/
+│   └── 01_heatmaps.qmd
+└── exploratory/
+
+data/
+├── phosphoproteomics/
+└── transcriptomics/
+
+outs/
+├── phosphoproteomics/
+├── transcriptomics/
+└── exploratory/
 ```
 
 ## Step-by-Step Setup
@@ -40,49 +62,56 @@ git init
 Create `.gitignore`:
 
 ```
-# Data (large files)
-data/raw/
-*.csv
-*.tsv
-*.xlsx
+# Generated outputs (reproducible from code)
+outs/
 
-# R
+# R artifacts
 .Rhistory
 .RData
 .Rproj.user/
 renv/library/
 renv/staging/
+renv/local/
+*_cache/
 
-# Python
+# Python artifacts
 __pycache__/
-*.pyc
+*.py[cod]
+*.egg-info/
+.eggs/
+*.egg
 .venv/
+venv/
 
-# Output (regenerated from code)
-output/
+# Quarto rendering
+*_files/
+.quarto/
 
-# OS
+# OS files
 .DS_Store
 Thumbs.db
 
-# IDE
+# IDE settings
 .vscode/
 .positron/
+*.Rproj
 
 # Secrets
 .env
+*.pem
+credentials.json
 ```
 
 ### 3. Create Directory Structure
 
 ```bash
-mkdir -p data/raw data/processed scripts output .claude
+mkdir -p R python scripts/exploratory data outs/exploratory .claude
 ```
 
 ::: {.callout-claude title="Ask Claude"}
 **Set up your CLAUDE.md:**
 
-> I'm starting a new project analyzing proteomics data from cell cultures. The data is in `data/raw/`, I'm using R with renv, and I'll render with Quarto. Can you create a starter `.claude/CLAUDE.md` for this project?
+> I'm starting a new project analyzing proteomics data from cell cultures. The data is in `data/`, I'm using R with renv, and I'll render with Quarto. Can you create a starter `.claude/CLAUDE.md` for this project?
 
 *Tell Claude the project type, data location, and tools you're using. It'll create a tailored template.*
 :::
@@ -90,11 +119,17 @@ mkdir -p data/raw data/processed scripts output .claude
 ### 4. Set Up Python Environment (if using Python)
 
 ```bash
-conda create -n my-analysis python=3.11 -y
+conda create -n my-analysis python=3.11 pandas numpy matplotlib seaborn ipykernel -y
 conda activate my-analysis
-conda install pandas numpy matplotlib seaborn -y
-conda env export > environment.yml
+pip install session-info
+conda env export --from-history > environment.yml
 ```
+
+The `--from-history` flag produces a portable file with only explicitly installed packages (no platform-specific builds).
+
+::: {.callout-note}
+Always include `ipykernel` — it's required for Quarto to render Python `.qmd` files. Include `session-info` for reproducibility tracking.
+:::
 
 ### 5. Set Up R with renv (if using R)
 
@@ -121,16 +156,27 @@ Create `.claude/CLAUDE.md`:
 - R: Uses renv (auto-activates)
 
 ## Key Directories
-- `data/raw/` — Original data (read-only)
-- `data/processed/` — Cleaned data
-- `scripts/` — Analysis code
-- `output/` — Results and figures
+- `data/` — External input data (read-only, scripts never write here)
+- `scripts/` — Quarto analysis scripts (.qmd)
+- `scripts/exploratory/` — One-off analyses
+- `outs/` — All script-generated outputs
+- `R/` — Shared R helper functions
+- `python/` — Shared Python helper functions
 
 ## Workflows
 [How to run the analysis]
 
 ## Data
-[Description of data files and their contents]
+[Description of data files and their sources]
+
+## Conventions
+- Scripts use `status:` lifecycle field (development → finalized → deprecated)
+- Every script writes `BUILD_INFO.txt` to its output folder
+- Scripts communicate through files in `outs/`, not shared memory
+- Cross-language data uses Parquet format
+
+## Project Document Registry
+[Planning documents go here as the project grows]
 ```
 
 ### 7. Create README
@@ -180,72 +226,44 @@ Or manually:
 
 ## Adding Data
 
-### Raw Data
+Put external data files in `data/`. Never modify these files — treat them as read-only. Scripts never write to `data/`.
 
-Put original data files in `data/raw/`. Never modify these files — treat them as read-only.
+If data files are large, don't commit them to Git. Add them to `.gitignore` and document where to obtain the data in your README.
 
-If data files are large, don't commit them to Git. Add to `.gitignore`:
+## Writing Your First Script
 
-```
-data/raw/*.csv
-```
-
-Instead, document where to obtain the data in your README.
-
-### Processing Data
-
-Scripts that clean or transform data should:
-
-1. Read from `data/raw/`
-2. Write to `data/processed/`
-3. Include documentation of what transformations were applied
+Analysis scripts are `.qmd` files (not `.R` or `.py`). Here's a typical first script that reads external data, cleans it, and saves the result to `outs/`:
 
 ```r
-# scripts/01_clean_data.R
+# scripts/01_clean_data.qmd — setup chunk
 
 library(tidyverse)
 library(here)
 
-# Load raw data
-raw <- read_csv(here("data/raw/experiment_data.csv"))
+dir_out <- here("outs", "01_clean_data")
+dir.create(dir_out, recursive = TRUE, showWarnings = FALSE)
+
+# --- Inputs (external data) ---
+raw <- read_csv(here("data", "experiment_data.csv"))
 cat("Loaded", nrow(raw), "rows\n")
 
-# Clean: remove rows with missing values
+# Clean
 clean <- raw %>%
   filter(!is.na(value)) %>%
   filter(quality > 0.8)
 cat("After cleaning:", nrow(clean), "rows\n")
 
-# Save
-write_csv(clean, here("data/processed/clean_data.csv"))
+# Save to outs/
+write_csv(clean, file.path(dir_out, "clean_data.csv"))
 ```
 
-## Organizing Scripts
+Key points:
 
-Name scripts with numbers to indicate order:
+- Reads from `data/` (external inputs)
+- Writes to `outs/01_clean_data/` (script-specific output folder)
+- Never writes to `data/`
 
-```
-scripts/
-├── 01_clean_data.R
-├── 02_exploratory_analysis.R
-├── 03_statistical_analysis.R
-└── 04_generate_figures.R
-```
-
-Or organize by function:
-
-```
-scripts/
-├── preprocessing/
-│   ├── clean_data.R
-│   └── normalize.R
-├── analysis/
-│   ├── differential_expression.R
-│   └── pathway_analysis.R
-└── figures/
-    ├── figure1.R
-    └── figure2.R
-```
+For full script templates including YAML headers, setup chunks, and BUILD_INFO.txt, see the [Quarto](../part2/quarto.qmd) chapter and [Templates](../appendices/templates.qmd) appendix.
 
 ## Using Claude Code
 
@@ -257,7 +275,7 @@ claude
 
 Example workflow:
 
-> "I have RNA-seq counts in data/raw/counts.csv. Create a script to load it, do basic QC, and save a cleaned version."
+> "I have RNA-seq counts in data/counts.csv. Create a QMD script to load it, do basic QC, and save a cleaned version to outs/."
 
 Review the generated code, then:
 
@@ -269,8 +287,8 @@ Before starting analysis:
 
 - [ ] Git initialized
 - [ ] `.gitignore` in place
-- [ ] Directory structure created
-- [ ] Conda environment created and exported
+- [ ] Directory structure created (`R/`, `python/`, `scripts/exploratory/`, `data/`, `outs/`)
+- [ ] Conda environment created and exported (`--from-history`)
 - [ ] renv initialized (if using R)
 - [ ] `.claude/CLAUDE.md` written
 - [ ] README drafted

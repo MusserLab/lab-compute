@@ -13,13 +13,16 @@ The key to staying organized is keeping these separate and tracking which script
 
 ## Project Structure
 
-A typical lab project has three core folders:
+A typical lab project looks like this:
 
 ```
 my-project/
-├── data/              # External inputs only
-├── scripts/           # Quarto analysis scripts
-├── outs/              # All generated outputs
+├── data/              # External inputs only — scripts never write here
+├── scripts/           # Quarto analysis scripts (.qmd)
+│   └── exploratory/   # One-off analyses (no numbering required)
+├── outs/              # All script-generated outputs
+├── R/                 # Shared R helper functions
+├── python/            # Shared Python helper functions
 ├── environment.yml    # Conda environment
 ├── renv.lock          # R package versions
 └── README.md          # Project overview
@@ -57,10 +60,20 @@ scripts/
 ├── 02_normalize.qmd
 ├── 03_differential.qmd
 ├── 04_volcano_plots.qmd
-└── 05_heatmaps.qmd
+├── 05_heatmaps.qmd
+└── exploratory/           # One-off analyses, quick tests
 ```
 
 The numbers indicate the general flow of the analysis, not a strict linear dependency. Script 05 might read outputs from scripts 01 and 03 directly—the numbering just helps you understand the overall structure at a glance.
+
+#### `scripts/exploratory/`
+
+The `exploratory/` subdirectory is for one-off analyses, quick tests, and feasibility checks. These scripts:
+
+- Don't need number prefixes or `BUILD_INFO.txt`
+- Must never be depended on by other scripts (one-way dependency — exploratory scripts can read from `outs/`, but nothing reads from exploratory outputs)
+- Can be cleaned out periodically without breaking anything
+- Are good candidates for promotion to numbered scripts when an analysis matures
 
 ### `outs/` — Generated Outputs
 
@@ -185,7 +198,11 @@ ggsave(file.path(dir_out, "volcano_plot.pdf"), p, width = 6, height = 4)
 
 ## Handling Subprojects
 
-For projects with multiple distinct analyses (e.g., phosphoproteomics AND transcriptomics), prefix script names with the subproject:
+Projects with multiple distinct analyses (e.g., phosphoproteomics AND transcriptomics) need a way to group related scripts. There are two approaches:
+
+### Prefixes (simpler)
+
+Good for projects with 2–3 subprojects and fewer than ~5 scripts each:
 
 ```
 scripts/
@@ -197,19 +214,54 @@ scripts/
 └── combined_01_integration.qmd
 ```
 
-Outputs mirror this structure:
+Outputs mirror the naming:
 
 ```
 outs/
 ├── phospho_01_qc/
 ├── phospho_02_normalize/
-├── phospho_03_differential/
 ├── trans_01_import/
-├── trans_02_pca/
 └── combined_01_integration/
 ```
 
-The `combined_*` scripts can read from both `phospho_*` and `trans_*` outputs.
+### Subdirectories (recommended for larger projects)
+
+When there are many scripts per section, subdirectories are cleaner. Numbering restarts at `01_` within each section:
+
+```
+scripts/
+├── phosphoproteomics/
+│   ├── 01_qc.qmd
+│   ├── 02_normalize.qmd
+│   └── 03_differential.qmd
+├── transcriptomics/
+│   ├── 01_import.qmd
+│   └── 02_pca.qmd
+├── combined/
+│   └── 01_integration.qmd
+└── exploratory/
+```
+
+Data and output folders mirror this structure:
+
+```
+data/
+├── phosphoproteomics/
+└── transcriptomics/
+
+outs/
+├── phosphoproteomics/
+│   ├── 01_qc/
+│   ├── 02_normalize/
+│   └── 03_differential/
+├── transcriptomics/
+│   ├── 01_import/
+│   └── 02_pca/
+└── combined/
+    └── 01_integration/
+```
+
+Either approach works—the key is that outputs always mirror the script organization so provenance is clear.
 
 ## Naming Conventions
 
@@ -224,6 +276,7 @@ The `combined_*` scripts can read from both `phospho_*` and `trans_*` outputs.
 - Name files descriptively: `normalized_counts.rds` not `data.rds`
 - Use consistent extensions: `.rds` for R objects, `.csv` for tables, `.pdf` for figures
 - For multiple similar outputs, use a pattern: `volcano_3min.pdf`, `volcano_15min.pdf`
+- **Cross-language data**: When data produced by an R script will be read by a Python script (or vice versa), use **Parquet** format (`.parquet`). Avoid `.rds` (R-only) or `.pkl` (Python-only) for cross-language data. Both R (`arrow::write_parquet()`) and Python (`pd.to_parquet()`) handle Parquet natively.
 
 ### What to Avoid
 
@@ -264,23 +317,97 @@ Whether to commit `outs/` is a judgment call:
 
 If you ignore outputs, document how to regenerate them in the README.
 
+## Script Lifecycle
+
+Every analysis script has a lifecycle. Track it with a `status` field in the YAML frontmatter:
+
+```yaml
+---
+title: "Differential Expression"
+status: development
+---
+```
+
+| Status | Meaning | Location |
+|--------|---------|----------|
+| `development` | In active development; outputs are provisional | `scripts/` |
+| `finalized` | Outputs are publication-ready; modify only with deliberate re-validation | `scripts/` |
+| `deprecated` | Superseded; kept for reference | `scripts/old/` |
+
+When deprecating a script, move it to `scripts/old/` and add `deprecated_by:` to the YAML:
+
+```yaml
+---
+title: "Old Heatmaps"
+status: deprecated
+deprecated_by: 05_improved_heatmaps.qmd
+---
+```
+
+This makes it clear which script replaced it, while git preserves the full history.
+
+## Provenance: BUILD_INFO.txt
+
+Every numbered script should write a `BUILD_INFO.txt` to its output folder as its last action. This answers "when was this output last regenerated, and from what code version?"
+
+```
+script: 01_analysis.qmd
+commit: a1b2c3d
+date: 2026-02-14 15:30:00
+```
+
+See the [Quarto](quarto.qmd) chapter for the R and Python code to generate this automatically.
+
+## Helper Functions
+
+### Project-level: `R/` and `python/`
+
+Shared helper functions that multiple scripts in the project use live in dedicated directories:
+
+```
+project/
+├── R/                    # Shared R helpers
+│   └── helpers.R
+├── python/               # Shared Python helpers
+│   └── helpers.py
+└── scripts/
+```
+
+Load them in your setup chunk:
+
+```r
+# R
+source(here::here("R", "helpers.R"))
+```
+
+```python
+# Python
+import sys
+sys.path.insert(0, str(PROJECT_ROOT / "python"))
+from helpers import my_function
+```
+
+Don't version function names (`make_gene_short`, not `make_gene_short_v2`)—fix in place and let git track the history.
+
+### Cross-project: `~/lib/`
+
+When a helper function proves useful across 2+ projects, promote it to your personal library:
+
+```
+~/lib/
+├── R/          # Cross-project R functions
+└── python/     # Cross-project Python functions
+```
+
+This keeps project repositories clean while making reusable code accessible everywhere.
+
 ## Handling Old Versions
 
-Analysis projects tend to accumulate old scripts and outputs. Resist the urge to create `old/` folders everywhere.
+Analysis projects tend to accumulate old scripts and outputs. Here are the recommended approaches:
 
-**Better approaches:**
+1. **Use git.** Delete old files; recover from history if needed. This is the preferred approach.
 
-1. **Use git.** Delete old files; recover from history if needed.
-
-2. **Archive at project root.** If you must keep old versions outside git:
-   ```
-   project/
-   ├── scripts/
-   ├── outs/
-   └── _archive/           # One place for old stuff
-       ├── old_scripts/
-       └── old_outputs/
-   ```
+2. **Use `scripts/old/`.** For deprecated scripts you want to keep visible, move them to `scripts/old/` with `status: deprecated` in the YAML (see [Script Lifecycle](#script-lifecycle) above).
 
 3. **Date sparingly.** Only add dates when you need multiple versions to coexist (e.g., comparing runs with different parameters):
    ```
@@ -295,6 +422,10 @@ Here's a well-organized phosphoproteomics project:
 
 ```
 tryptamine_phospho/
+├── .claude/
+│   └── CLAUDE.md                    # Claude Code instructions
+├── R/
+│   └── gene_helpers.R               # Shared R functions
 ├── data/
 │   ├── README.md                    # Documents data sources
 │   ├── raw_counts.csv               # From mass spec core
@@ -302,22 +433,29 @@ tryptamine_phospho/
 │   └── gene_annotations.tsv         # Downloaded from UniProt
 │
 ├── scripts/
-│   ├── 01_import_qc.qmd
-│   ├── 02_normalize.qmd
-│   ├── 03_differential.qmd
-│   ├── 04_volcano_plots.qmd
-│   ├── 05_trajectory_clustering.qmd
-│   └── 06_heatmaps.qmd
+│   ├── 01_import_qc.qmd            # status: finalized
+│   ├── 02_normalize.qmd            # status: finalized
+│   ├── 03_differential.qmd         # status: finalized
+│   ├── 04_volcano_plots.qmd        # status: development
+│   ├── 05_trajectory_clustering.qmd # status: development
+│   ├── 06_heatmaps.qmd             # status: development
+│   ├── exploratory/
+│   │   └── test_new_clustering.qmd
+│   └── old/
+│       └── 04_volcano_plots_v1.qmd  # status: deprecated
 │
 ├── outs/
 │   ├── 01_import_qc/
 │   │   ├── filtered_counts.rds
-│   │   └── qc_summary.html
+│   │   ├── qc_summary.html
+│   │   └── BUILD_INFO.txt
 │   ├── 02_normalize/
-│   │   └── normalized_counts.rds
+│   │   ├── normalized_counts.rds
+│   │   └── BUILD_INFO.txt
 │   ├── 03_differential/
 │   │   ├── limma_results.rds
-│   │   └── significant_hits.csv
+│   │   ├── significant_hits.csv
+│   │   └── BUILD_INFO.txt
 │   ├── 04_volcano_plots/
 │   │   ├── volcano_3min.pdf
 │   │   ├── volcano_15min.pdf
@@ -350,7 +488,10 @@ flowchart LR
 ```
 
 From this structure, anyone can understand:
-- Where the raw data came from (data/README.md)
+
+- Where the raw data came from (`data/README.md`)
 - The analysis workflow (numbered scripts)
 - What each script produces (matching output folders)
+- Which scripts are finalized vs. still in development (YAML `status:` field)
+- When outputs were last generated (`BUILD_INFO.txt`)
 - How to reproduce the analysis (environment files + scripts)

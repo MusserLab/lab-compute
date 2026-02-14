@@ -94,14 +94,14 @@ Explain:
 **Bad** — hardcoded absolute paths:
 
 ```r
-data <- read_csv("/Users/jm284/projects/analysis/data/raw/data.csv")
+data <- read_csv("/Users/jm284/projects/analysis/data/data.csv")
 ```
 
 **Good** — relative paths with `here`:
 
 ```r
 library(here)
-data <- read_csv(here("data/raw/data.csv"))
+data <- read_csv(here("data", "data.csv"))
 ```
 
 **Python** — use `pathlib`:
@@ -109,8 +109,8 @@ data <- read_csv(here("data/raw/data.csv"))
 ```python
 from pathlib import Path
 
-data_dir = Path(__file__).parent.parent / "data" / "raw"
-data = pd.read_csv(data_dir / "data.csv")
+PROJECT_ROOT = Path(__file__).parent.parent
+data = pd.read_csv(PROJECT_ROOT / "data" / "data.csv")
 ```
 
 The `here` package (R) and `pathlib` (Python) find paths relative to the project root, regardless of where scripts are run from.
@@ -146,15 +146,15 @@ In your README or a separate `DATA.md`:
 ```markdown
 # Data Description
 
-## Raw Data
+## Data
 
-### data/raw/counts.csv
+### data/counts.csv
 - Source: GEO accession GSE12345
 - Downloaded: 2024-01-15
 - Format: CSV, 20,000 genes × 12 samples
 - Columns: gene_id, sample1, sample2, ...
 
-### data/raw/metadata.csv
+### data/metadata.csv
 - Source: Provided by collaborator
 - Format: CSV, 12 rows
 - Columns: sample_id, condition, batch, replicate
@@ -192,13 +192,13 @@ A Quarto document that runs all code chunks in order is inherently reproducible 
 **Make** (`Makefile`):
 
 ```makefile
-all: output/figures/figure1.pdf output/results.csv
+all: outs/03_figures/figure1.pdf outs/02_analysis/results.csv
 
-output/figures/figure1.pdf: scripts/03_figures.R data/processed/clean.csv
-	Rscript scripts/03_figures.R
+outs/03_figures/figure1.pdf: scripts/03_figures.qmd outs/01_clean_data/clean.csv
+	quarto render scripts/03_figures.qmd
 
-data/processed/clean.csv: scripts/01_clean_data.R data/raw/data.csv
-	Rscript scripts/01_clean_data.R
+outs/01_clean_data/clean.csv: scripts/01_clean_data.qmd data/data.csv
+	quarto render scripts/01_clean_data.qmd
 ```
 
 ## Testing Reproducibility

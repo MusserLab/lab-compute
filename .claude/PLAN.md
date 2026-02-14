@@ -67,12 +67,28 @@ These are marked with `[TODO: screenshot]` in the source files:
 - [x] Claude Code: Prompt patterns for data science
 - [x] Claude Code: Project-specific skills (gene-naming example)
 - [x] Orange "Ask Claude" callout boxes — CSS + 14 boxes across all chapters
+- [x] Convention alignment: reconciled book with Claude Code skills (script-organization, quarto-docs, conda-env, new-project)
+  - Ch. 5: Added subdirectories, exploratory/, lifecycle, BUILD_INFO, helpers, ~/lib, Parquet
+  - Ch. 6: Updated YAML/setup templates, expanded Python QMD to first-class, added R vs Python table
+  - Ch. 8: Added ipykernel/seaborn/session-info to core packages
+  - Ch. 14: Full rewrite — outs/ not output/, flat data/ not data/raw+processed/
+  - Appendix C: All templates updated to match skills
+  - Consistency fixes across 5 additional files (zero remaining old-pattern references)
 
 ---
 
 ## Session Notes
 
 _Add notes here during working sessions_
+
+### 2026-02-14
+- **Convention alignment session** — reconciled book with current Claude Code skills
+- Source of truth: `~/.claude/skills/` (script-organization, quarto-docs, conda-env, new-project)
+- Followed instructions from `~/.claude/plans/book-update-instructions.md`
+- 10 files modified across 5 primary chapters + 5 consistency fixes
+- Key theme: Python QMD as first-class data science format alongside R
+- All `data/raw/`, `data/processed/`, `output/` references eliminated
+- All templates now include: status field, git hash, BUILD_INFO.txt, set.seed(42)
 
 ### 2026-02-03 (session 2)
 - **Claude Code chapter improvement planning session**

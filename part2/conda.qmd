@@ -63,13 +63,22 @@ When setting up a new project environment, common data science packages you migh
 | `numpy` | Numerical computing with arrays and matrices |
 | `pandas` | Data manipulation and analysis (dataframes) |
 | `matplotlib` | Plotting and visualization |
-| `ipykernel` | Required for Quarto to execute Python code |
+| `ipykernel` | **Required** for Quarto to execute Python `.qmd` files |
+| `seaborn` | Statistical data visualization (built on matplotlib) |
+| `session-info` | Python session info for reproducibility (install via pip) |
 
 A typical environment creation command:
 
 ```bash
-conda create -n my-project python=3.11 numpy pandas matplotlib ipykernel
+conda create -n my-project python=3.11 numpy pandas matplotlib seaborn ipykernel -y
+pip install session-info
 ```
+
+::: {.callout-important}
+## Always Include ipykernel
+
+Every data science environment must include `ipykernel`. Without it, Quarto cannot execute Python `.qmd` files — you'll get a kernel error when rendering. Make it a habit to include it in every `conda create` command.
+:::
 
 ::: {.callout-note}
 ## What about Jupyter?

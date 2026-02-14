@@ -212,7 +212,7 @@ Understanding the reasoning helps you decide if it's appropriate for your use ca
 Here's a realistic session flow:
 
 ```
-You: I have count data in data/raw/counts.csv. What does it look like?
+You: I have count data in data/counts.csv. What does it look like?
 
 Claude: [reads file, reports dimensions, column names, value ranges]
 

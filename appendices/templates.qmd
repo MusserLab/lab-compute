@@ -5,23 +5,19 @@ Copy-paste templates for common project files.
 ## .gitignore
 
 ```{.default filename=".gitignore"}
-# Data files (large)
-data/raw/
-*.csv
-*.tsv
-*.xlsx
-*.rds
-*.RData
+# Generated outputs (reproducible from code)
+outs/
 
-# R
+# R artifacts
 .Rhistory
 .RData
 .Rproj.user/
 renv/library/
 renv/staging/
 renv/local/
+*_cache/
 
-# Python
+# Python artifacts
 __pycache__/
 *.py[cod]
 *.egg-info/
@@ -29,27 +25,19 @@ __pycache__/
 *.egg
 .venv/
 venv/
-ENV/
 
-# Jupyter
-.ipynb_checkpoints/
-
-# Output (can be regenerated)
-output/
-_book/
-_site/
+# Quarto rendering
 *_files/
+.quarto/
 
 # OS files
 .DS_Store
-.DS_Store?
 Thumbs.db
 
-# IDE
+# IDE settings
 .vscode/
 .positron/
 *.Rproj
-.idea/
 
 # Secrets
 .env
@@ -66,17 +54,17 @@ channels:
   - defaults
 dependencies:
   - python=3.11
-  - pandas>=2.0
+  - pandas
   - numpy
   - matplotlib
   - seaborn
-  - scipy
-  - scikit-learn
-  - jupyter
+  - ipykernel
   - pip
   - pip:
-    - some-pip-only-package
+    - session-info
 ```
+
+Generate with `conda env export --from-history > environment.yml` for a portable file containing only explicitly installed packages.
 
 ## README.md
 
@@ -114,48 +102,26 @@ Brief description of what this project does.
 
 4. Configure Positron interpreters via Command Palette (Cmd+Shift+P / Ctrl+Shift+P):
    - **R:** "R: Select Interpreter" → select R 4.x
-   - **Python:** "Python: Select Interpreter" → select `environment-name` conda env
-
-   Alternatively, create `.positron/settings.json`:
-   ```json
-   {
-     "positron.r.kernel.path": "/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/bin/R",
-     "python.defaultInterpreterPath": "~/miniconda3/envs/environment-name/bin/python"
-   }
-   ```
-
-## Usage
-
-Describe how to run the analysis:
-
-```bash
-# Example
-python scripts/run_analysis.py
-```
-
-Or:
-
-```r
-source("scripts/main.R")
-```
+   - **Python:** "Python: Select Interpreter" → select `project-name` conda env
 
 ## Project Structure
 
 ```
 project-name/
-├── data/
-│   ├── raw/          # Original data (read-only)
-│   └── processed/    # Cleaned data
-├── scripts/          # Analysis scripts
-├── output/           # Results and figures
-├── environment.yml   # Python dependencies
+├── data/            # External inputs (read-only)
+├── scripts/         # Quarto analysis scripts (.qmd)
+│   └── exploratory/ # One-off analyses
+├── outs/            # All script-generated outputs
+├── R/               # Shared R helper functions
+├── python/          # Shared Python helper functions
+├── environment.yml  # Python dependencies
 └── renv.lock        # R dependencies
 ```
 
 ## Data
 
 Describe data sources:
-- `data.csv`: Description, source, date obtained
+- `data/file.csv`: Description, source, date obtained
 
 ## Authors
 
@@ -186,126 +152,76 @@ Uses renv. Activates automatically via `.Rprofile`.
 
 ## Key Files and Directories
 
-- `data/raw/` — Original data files (DO NOT MODIFY)
-- `data/processed/` — Cleaned/transformed data
-- `scripts/` — Analysis scripts
-- `output/` — Generated figures and results
+- `data/` — External input data (read-only, scripts never write here)
+- `scripts/` — Quarto analysis scripts (.qmd)
+- `scripts/exploratory/` — One-off analyses
+- `outs/` — All script-generated outputs
+- `R/` — Shared R helper functions
+- `python/` — Shared Python helper functions
 
 ## Workflows
 
 ### Running the full analysis
 ```bash
-./run_analysis.sh
+quarto render scripts/
 ```
 
-### Generating figures
-```r
-source("scripts/generate_figures.R")
+### Rendering a single script
+```bash
+# R scripts
+quarto render scripts/01_analysis.qmd
+
+# Python scripts (conda must be active)
+source ~/miniconda3/etc/profile.d/conda.sh && conda activate project-name && quarto render scripts/02_plots.qmd
 ```
 
 ## Data
 
 ### Input data
-- `data/raw/counts.csv` — Gene expression counts, 20000 genes × 12 samples
-- `data/raw/metadata.csv` — Sample metadata
-
-### Output
-- `output/results.csv` — Analysis results
-- `output/figures/` — Generated figures
+- `data/counts.csv` — Gene expression counts, 20000 genes × 12 samples
+- `data/metadata.csv` — Sample metadata
 
 ## Conventions
 
+- Scripts use `status:` lifecycle field (development → finalized → deprecated)
+- Every script writes `BUILD_INFO.txt` to its output folder
+- Scripts communicate through files in `outs/`, not shared memory
+- Cross-language data uses Parquet format
 - Use tidyverse style for R code
-- Use black formatter for Python
 - Commit after completing each logical unit of work
-- Include Co-Authored-By line in commits
 
-## Notes
+## Project Document Registry
 
-Any special instructions or gotchas for this project.
+[Planning documents go here as the project grows]
 ```
 
-## R Script Template
+## R QMD Template
 
-```{.r filename="scripts/analysis.R"}
-# =============================================================================
-# Script: analysis.R
-# Description: Brief description of what this script does
-# Author: Your Name
-# Date: YYYY-MM-DD
-# =============================================================================
-
-# Setup -----------------------------------------------------------------------
-library(tidyverse)
-library(here)
-
-# Load data -------------------------------------------------------------------
-data <- read_csv(here("data/raw/data.csv"))
-cat("Loaded", nrow(data), "rows,", ncol(data), "columns\n")
-glimpse(data)
-
-# Process data ----------------------------------------------------------------
-# Add your analysis here
-
-# Save results ----------------------------------------------------------------
-write_csv(results, here("output/results.csv"))
-cat("Saved results to output/results.csv\n")
-
-# Session info ----------------------------------------------------------------
-sessionInfo()
-```
-
-## Python Script Template
-
-```{.python filename="scripts/analysis.py"}
-"""
-Script: analysis.py
-Description: Brief description of what this script does
-Author: Your Name
-Date: YYYY-MM-DD
-"""
-
-from pathlib import Path
-import pandas as pd
-import matplotlib.pyplot as plt
-
-# Setup
-PROJECT_ROOT = Path(__file__).parent.parent
-DATA_DIR = PROJECT_ROOT / "data"
-OUTPUT_DIR = PROJECT_ROOT / "output"
-
-
-def main():
-    # Load data
-    data = pd.read_csv(DATA_DIR / "raw" / "data.csv")
-    print(f"Loaded {len(data)} rows, {len(data.columns)} columns")
-    print(data.head())
-
-    # Process data
-    # Add your analysis here
-
-    # Save results
-    results.to_csv(OUTPUT_DIR / "results.csv", index=False)
-    print(f"Saved results to {OUTPUT_DIR / 'results.csv'}")
-
-
-if __name__ == "__main__":
-    main()
-```
-
-## Quarto Document Template
-
-```{.markdown filename="analysis.qmd"}
+```{.markdown filename="scripts/01_analysis.qmd"}
 ---
 title: "Analysis Title"
+subtitle: "Brief description"
 author: "Your Name"
 date: today
+status: development
 format:
   html:
     toc: true
-    code-fold: true
+    toc-depth: 2
+    number-sections: true
+    code-overflow: wrap
+    code-fold: false
+    code-tools: true
+    highlight-style: github
+    theme: cosmo
+    fontsize: 1rem
+    linestretch: 1.5
+    self-contained: true
 execute:
+  echo: true
+  message: false
   warning: false
+  cache: false
 ---
 
 ## Introduction
@@ -316,17 +232,36 @@ Brief description of the analysis.
 
 ```{{r}}
 #| label: setup
-library(tidyverse)
-library(here)
+#| include: false
+
+# ---- Libraries ----
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(here)
+})
+
+# ---- Paths ----
+dir_data <- here::here("data")
+dir_out <- here::here("outs", "01_analysis")
+dir.create(dir_out, recursive = TRUE, showWarnings = FALSE)
+
+# ---- Options ----
+options(stringsAsFactors = FALSE)
+set.seed(42)
+
+# ---- Provenance ----
+git_hash <- system("git rev-parse --short HEAD", intern = TRUE)
+cat("Rendered from commit:", git_hash, "\n")
 ```
 
-## Load Data
+## Inputs
 
 ```{{r}}
-#| label: load-data
-data <- read_csv(here("data/raw/data.csv"))
+#| label: inputs
+
+# --- Inputs (external data) ---
+data <- read_csv(here("data", "data.csv"))
 cat("Loaded", nrow(data), "rows\n")
-glimpse(data)
 ```
 
 ## Analysis
@@ -337,10 +272,161 @@ Your analysis code here.
 
 Summary of results.
 
-## Session Info
+## Build Info
 
 ```{{r}}
-#| label: session-info
+#| label: build-info
+
+writeLines(
+  c(
+    paste("script:", "01_analysis.qmd"),
+    paste("commit:", git_hash),
+    paste("date:", format(Sys.time(), "%Y-%m-%d %H:%M:%S"))
+  ),
+  file.path(dir_out, "BUILD_INFO.txt")
+)
+
 sessionInfo()
 ```
+```
+
+## Python QMD Template
+
+```{.markdown filename="scripts/01_analysis.qmd"}
+---
+title: "Analysis Title"
+subtitle: "Brief description"
+author: "Your Name"
+date: today
+status: development
+jupyter: python3
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    code-overflow: wrap
+    code-fold: false
+    code-tools: true
+    highlight-style: github
+    theme: cosmo
+    fontsize: 1rem
+    linestretch: 1.5
+    self-contained: true
+execute:
+  echo: true
+  warning: false
+  cache: false
+---
+
+## Introduction
+
+Brief description of the analysis.
+
+## Setup
+
+```{{python}}
+#| label: setup
+
+import subprocess
+import sys
+import random
+from pathlib import Path
+from datetime import datetime
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+PROJECT_ROOT = Path(subprocess.check_output(
+    ["git", "rev-parse", "--show-toplevel"]
+).decode().strip())
+sys.path.insert(0, str(PROJECT_ROOT / "python"))
+
+# ---- Options ----
+random.seed(42)
+np.random.seed(42)
+pd.set_option("display.max_columns", None)
+sns.set_theme(style="whitegrid")
+
+# ---- Paths ----
+out_dir = PROJECT_ROOT / "outs/01_analysis"
+out_dir.mkdir(parents=True, exist_ok=True)
+
+git_hash = subprocess.check_output(
+    ["git", "rev-parse", "--short", "HEAD"]
+).decode().strip()
+print(f"Rendered from commit: {git_hash}")
+```
+
+## Inputs
+
+```{{python}}
+#| label: inputs
+
+# --- Inputs (external data) ---
+data = pd.read_csv(PROJECT_ROOT / "data/data.csv")
+print(f"Loaded {len(data)} rows")
+```
+
+## Analysis
+
+Your analysis code here.
+
+## Results
+
+Summary of results.
+
+## Build Info
+
+```{{python}}
+#| label: build-info
+
+(out_dir / "BUILD_INFO.txt").write_text(
+    f"script: 01_analysis.qmd\n"
+    f"commit: {git_hash}\n"
+    f"date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"
+)
+
+import session_info
+session_info.show()
+```
+```
+
+## Python Script Template (.py)
+
+For standalone utilities, CLI tools, and library code (not for data analysis — use QMD for that):
+
+```{.python filename="python/helpers.py"}
+"""
+Shared helper functions for this project.
+"""
+
+from pathlib import Path
+import pandas as pd
+
+
+def load_data(filename: str) -> pd.DataFrame:
+    """Load a data file from the project data/ directory."""
+    project_root = Path(__file__).parent.parent
+    return pd.read_csv(project_root / "data" / filename)
+```
+
+## R Script Template (.R)
+
+For shared helper functions (not for data analysis — use QMD for that):
+
+```{.r filename="R/helpers.R"}
+# Shared helper functions for this project.
+
+#' Load and validate a data file
+#'
+#' @param filename Name of file in data/ directory
+#' @return A tibble
+load_data <- function(filename) {
+  path <- here::here("data", filename)
+  stopifnot(file.exists(path))
+  readr::read_csv(path, show_col_types = FALSE)
+}
 ```
