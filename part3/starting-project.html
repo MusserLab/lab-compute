@@ -517,12 +517,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#first-commit" id="toc-first-commit" class="nav-link" data-scroll-target="#first-commit"><span class="header-section-number">14.2.8</span> 8. First Commit</a></li>
   <li><a href="#push-to-github" id="toc-push-to-github" class="nav-link" data-scroll-target="#push-to-github"><span class="header-section-number">14.2.9</span> 9. Push to GitHub</a></li>
   </ul></li>
-  <li><a href="#adding-data" id="toc-adding-data" class="nav-link" data-scroll-target="#adding-data"><span class="header-section-number">14.3</span> Adding Data</a>
-  <ul class="collapse">
-  <li><a href="#raw-data" id="toc-raw-data" class="nav-link" data-scroll-target="#raw-data"><span class="header-section-number">14.3.1</span> Raw Data</a></li>
-  <li><a href="#processing-data" id="toc-processing-data" class="nav-link" data-scroll-target="#processing-data"><span class="header-section-number">14.3.2</span> Processing Data</a></li>
-  </ul></li>
-  <li><a href="#organizing-scripts" id="toc-organizing-scripts" class="nav-link" data-scroll-target="#organizing-scripts"><span class="header-section-number">14.4</span> Organizing Scripts</a></li>
+  <li><a href="#adding-data" id="toc-adding-data" class="nav-link" data-scroll-target="#adding-data"><span class="header-section-number">14.3</span> Adding Data</a></li>
+  <li><a href="#writing-your-first-script" id="toc-writing-your-first-script" class="nav-link" data-scroll-target="#writing-your-first-script"><span class="header-section-number">14.4</span> Writing Your First Script</a></li>
   <li><a href="#using-claude-code" id="toc-using-claude-code" class="nav-link" data-scroll-target="#using-claude-code"><span class="header-section-number">14.5</span> Using Claude Code</a></li>
   <li><a href="#checklist" id="toc-checklist" class="nav-link" data-scroll-target="#checklist"><span class="header-section-number">14.6</span> Checklist</a></li>
   </ul>
@@ -551,7 +547,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This chapter walks through setting up a new analysis project from scratch, using all the tools together.</p>
+<p>This chapter walks through setting up a new analysis project from scratch, using all the tools together. For detailed explanations of each convention, see the <a href="../part2/project-organization.html">Project Organization</a> and <a href="../part2/quarto.html">Quarto</a> chapters.</p>
 <section id="the-standard-structure" class="level2" data-number="14.1">
 <h2 data-number="14.1" class="anchored" data-anchor-id="the-standard-structure"><span class="header-section-number">14.1</span> The Standard Structure</h2>
 <p>Every analysis project should have:</p>
@@ -560,138 +556,188 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 │   └── CLAUDE.md         # Claude Code instructions
 ├── .git/                  # Git repository
 ├── .gitignore            # Files to exclude from Git
-├── data/
-│   ├── raw/              # Original data (never modify)
-│   └── processed/        # Cleaned/transformed data
-├── scripts/              # Analysis scripts
-├── output/               # Results, figures, tables
+├── R/                    # Shared R helper functions
+├── python/               # Shared Python helper functions
+├── scripts/
+│   └── exploratory/      # One-off analyses
+├── data/                 # External inputs only — scripts never write here
+├── outs/                 # All script-generated outputs
 ├── environment.yml       # Conda environment (Python)
 ├── renv.lock            # R package versions
 └── README.md            # Project description</code></pre>
+<p>For projects with multiple analysis sections (e.g., phosphoproteomics + transcriptomics), mirror the sections across <code>scripts/</code>, <code>data/</code>, and <code>outs/</code>:</p>
+<pre><code>scripts/
+├── phosphoproteomics/
+│   ├── 01_qc.qmd
+│   └── 02_analysis.qmd
+├── transcriptomics/
+│   └── 01_heatmaps.qmd
+└── exploratory/
+
+data/
+├── phosphoproteomics/
+└── transcriptomics/
+
+outs/
+├── phosphoproteomics/
+├── transcriptomics/
+└── exploratory/</code></pre>
 </section>
 <section id="step-by-step-setup" class="level2" data-number="14.2">
 <h2 data-number="14.2" class="anchored" data-anchor-id="step-by-step-setup"><span class="header-section-number">14.2</span> Step-by-Step Setup</h2>
 <section id="create-the-project-directory" class="level3" data-number="14.2.1">
 <h3 data-number="14.2.1" class="anchored" data-anchor-id="create-the-project-directory"><span class="header-section-number">14.2.1</span> 1. Create the Project Directory</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> my-analysis</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> my-analysis</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> my-analysis</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> my-analysis</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="initialize-git" class="level3" data-number="14.2.2">
 <h3 data-number="14.2.2" class="anchored" data-anchor-id="initialize-git"><span class="header-section-number">14.2.2</span> 2. Initialize Git</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Create <code>.gitignore</code>:</p>
-<pre><code># Data (large files)
-data/raw/
-*.csv
-*.tsv
-*.xlsx
+<pre><code># Generated outputs (reproducible from code)
+outs/
 
-# R
+# R artifacts
 .Rhistory
 .RData
 .Rproj.user/
 renv/library/
 renv/staging/
+renv/local/
+*_cache/
 
-# Python
+# Python artifacts
 __pycache__/
-*.pyc
+*.py[cod]
+*.egg-info/
+.eggs/
+*.egg
 .venv/
+venv/
 
-# Output (regenerated from code)
-output/
+# Quarto rendering
+*_files/
+.quarto/
 
-# OS
+# OS files
 .DS_Store
 Thumbs.db
 
-# IDE
+# IDE settings
 .vscode/
 .positron/
+*.Rproj
 
 # Secrets
-.env</code></pre>
+.env
+*.pem
+credentials.json</code></pre>
 </section>
 <section id="create-directory-structure" class="level3" data-number="14.2.3">
 <h3 data-number="14.2.3" class="anchored" data-anchor-id="create-directory-structure"><span class="header-section-number">14.2.3</span> 3. Create Directory Structure</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> data/raw data/processed scripts output .claude</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> R python scripts/exploratory data outs/exploratory .claude</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout-claude" title="Ask Claude">
 <p><strong>Set up your CLAUDE.md:</strong></p>
 <blockquote class="blockquote">
-<p>I’m starting a new project analyzing proteomics data from cell cultures. The data is in <code>data/raw/</code>, I’m using R with renv, and I’ll render with Quarto. Can you create a starter <code>.claude/CLAUDE.md</code> for this project?</p>
+<p>I’m starting a new project analyzing proteomics data from cell cultures. The data is in <code>data/</code>, I’m using R with renv, and I’ll render with Quarto. Can you create a starter <code>.claude/CLAUDE.md</code> for this project?</p>
 </blockquote>
 <p><em>Tell Claude the project type, data location, and tools you’re using. It’ll create a tailored template.</em></p>
 </div>
 </section>
 <section id="set-up-python-environment-if-using-python" class="level3" data-number="14.2.4">
 <h3 data-number="14.2.4" class="anchored" data-anchor-id="set-up-python-environment-if-using-python"><span class="header-section-number">14.2.4</span> 4. Set Up Python Environment (if using Python)</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> my-analysis python=3.11 <span class="at">-y</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate my-analysis</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install pandas numpy matplotlib seaborn <span class="at">-y</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env export <span class="op">&gt;</span> environment.yml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> my-analysis python=3.11 pandas numpy matplotlib seaborn ipykernel <span class="at">-y</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate my-analysis</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install session-info</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env export <span class="at">--from-history</span> <span class="op">&gt;</span> environment.yml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>--from-history</code> flag produces a portable file with only explicitly installed packages (no platform-specific builds).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Always include <code>ipykernel</code> — it’s required for Quarto to render Python <code>.qmd</code> files. Include <code>session-info</code> for reproducibility tracking.</p>
+</div>
+</div>
 </section>
 <section id="set-up-r-with-renv-if-using-r" class="level3" data-number="14.2.5">
 <h3 data-number="14.2.5" class="anchored" data-anchor-id="set-up-r-with-renv-if-using-r"><span class="header-section-number">14.2.5</span> 5. Set Up R with renv (if using R)</h3>
 <p>In R:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"here"</span>))</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"here"</span>))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="create-project-claude.md" class="level3" data-number="14.2.6">
 <h3 data-number="14.2.6" class="anchored" data-anchor-id="create-project-claude.md"><span class="header-section-number">14.2.6</span> 6. Create Project CLAUDE.md</h3>
 <p>Create <code>.claude/CLAUDE.md</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Project: My Analysis</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Overview</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Brief description of what this project does</span><span class="co">]</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Environment</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Python: <span class="in">`conda activate my-analysis`</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>R: Uses renv (auto-activates)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key Directories</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`data/raw/`</span> — Original data (read-only)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`data/processed/`</span> — Cleaned data</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`scripts/`</span> — Analysis code</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`output/`</span> — Results and figures</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="fu">## Workflows</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">How to run the analysis</span><span class="co">]</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data</span></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Description of data files and their contents</span><span class="co">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Project: My Analysis</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Overview</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Brief description of what this project does</span><span class="co">]</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Environment</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Python: <span class="in">`conda activate my-analysis`</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>R: Uses renv (auto-activates)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key Directories</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`data/`</span> — External input data (read-only, scripts never write here)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`scripts/`</span> — Quarto analysis scripts (.qmd)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`scripts/exploratory/`</span> — One-off analyses</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`outs/`</span> — All script-generated outputs</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`R/`</span> — Shared R helper functions</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`python/`</span> — Shared Python helper functions</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## Workflows</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">How to run the analysis</span><span class="co">]</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Description of data files and their sources</span><span class="co">]</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conventions</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Scripts use <span class="in">`status:`</span> lifecycle field (development → finalized → deprecated)</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Every script writes <span class="in">`BUILD_INFO.txt`</span> to its output folder</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Scripts communicate through files in <span class="in">`outs/`</span>, not shared memory</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Cross-language data uses Parquet format</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## Project Document Registry</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Planning documents go here as the project grows</span><span class="co">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="create-readme" class="level3" data-number="14.2.7">
 <h3 data-number="14.2.7" class="anchored" data-anchor-id="create-readme"><span class="header-section-number">14.2.7</span> 7. Create README</h3>
 <p>Create <code>README.md</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># My Analysis</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Overview</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">What this project does</span><span class="co">]</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Setup</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">### Python</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>conda env create -f environment.yml</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>conda activate my-analysis</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="fu">### R</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="fu"># renv will auto-activate; run renv::restore() if needed</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## Running the Analysis</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Instructions</span><span class="co">]</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Data sources and descriptions</span><span class="co">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># My Analysis</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Overview</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">What this project does</span><span class="co">]</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Setup</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">### Python</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>conda env create -f environment.yml</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>conda activate my-analysis</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="fu">### R</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="fu"># renv will auto-activate; run renv::restore() if needed</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## Running the Analysis</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Instructions</span><span class="co">]</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Data sources and descriptions</span><span class="co">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="first-commit" class="level3" data-number="14.2.8">
 <h3 data-number="14.2.8" class="anchored" data-anchor-id="first-commit"><span class="header-section-number">14.2.8</span> 8. First Commit</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Initial project setup"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Initial project setup"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="push-to-github" class="level3" data-number="14.2.9">
 <h3 data-number="14.2.9" class="anchored" data-anchor-id="push-to-github"><span class="header-section-number">14.2.9</span> 9. Push to GitHub</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo create my-analysis <span class="at">--private</span> <span class="at">--source</span><span class="op">=</span>. <span class="at">--push</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo create my-analysis <span class="at">--private</span> <span class="at">--source</span><span class="op">=</span>. <span class="at">--push</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Or manually:</p>
 <ol type="1">
 <li>Create repo on GitHub</li>
@@ -702,67 +748,47 @@ Thumbs.db
 </section>
 <section id="adding-data" class="level2" data-number="14.3">
 <h2 data-number="14.3" class="anchored" data-anchor-id="adding-data"><span class="header-section-number">14.3</span> Adding Data</h2>
-<section id="raw-data" class="level3" data-number="14.3.1">
-<h3 data-number="14.3.1" class="anchored" data-anchor-id="raw-data"><span class="header-section-number">14.3.1</span> Raw Data</h3>
-<p>Put original data files in <code>data/raw/</code>. Never modify these files — treat them as read-only.</p>
-<p>If data files are large, don’t commit them to Git. Add to <code>.gitignore</code>:</p>
-<pre><code>data/raw/*.csv</code></pre>
-<p>Instead, document where to obtain the data in your README.</p>
+<p>Put external data files in <code>data/</code>. Never modify these files — treat them as read-only. Scripts never write to <code>data/</code>.</p>
+<p>If data files are large, don’t commit them to Git. Add them to <code>.gitignore</code> and document where to obtain the data in your README.</p>
 </section>
-<section id="processing-data" class="level3" data-number="14.3.2">
-<h3 data-number="14.3.2" class="anchored" data-anchor-id="processing-data"><span class="header-section-number">14.3.2</span> Processing Data</h3>
-<p>Scripts that clean or transform data should:</p>
-<ol type="1">
-<li>Read from <code>data/raw/</code></li>
-<li>Write to <code>data/processed/</code></li>
-<li>Include documentation of what transformations were applied</li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># scripts/01_clean_data.R</span></span>
+<section id="writing-your-first-script" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="writing-your-first-script"><span class="header-section-number">14.4</span> Writing Your First Script</h2>
+<p>Analysis scripts are <code>.qmd</code> files (not <code>.R</code> or <code>.py</code>). Here’s a typical first script that reads external data, cleans it, and saves the result to <code>outs/</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># scripts/01_clean_data.qmd — setup chunk</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Load raw data</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>raw <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/raw/experiment_data.csv"</span>))</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Loaded"</span>, <span class="fu">nrow</span>(raw), <span class="st">"rows</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Clean: remove rows with missing values</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>clean <span class="ot">&lt;-</span> raw <span class="sc">%&gt;%</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(value)) <span class="sc">%&gt;%</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(quality <span class="sc">&gt;</span> <span class="fl">0.8</span>)</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"After cleaning:"</span>, <span class="fu">nrow</span>(clean), <span class="st">"rows</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Save</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(clean, <span class="fu">here</span>(<span class="st">"data/processed/clean_data.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-</section>
-<section id="organizing-scripts" class="level2" data-number="14.4">
-<h2 data-number="14.4" class="anchored" data-anchor-id="organizing-scripts"><span class="header-section-number">14.4</span> Organizing Scripts</h2>
-<p>Name scripts with numbers to indicate order:</p>
-<pre><code>scripts/
-├── 01_clean_data.R
-├── 02_exploratory_analysis.R
-├── 03_statistical_analysis.R
-└── 04_generate_figures.R</code></pre>
-<p>Or organize by function:</p>
-<pre><code>scripts/
-├── preprocessing/
-│   ├── clean_data.R
-│   └── normalize.R
-├── analysis/
-│   ├── differential_expression.R
-│   └── pathway_analysis.R
-└── figures/
-    ├── figure1.R
-    └── figure2.R</code></pre>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>dir_out <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"outs"</span>, <span class="st">"01_clean_data"</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(dir_out, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Inputs (external data) ---</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>raw <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"experiment_data.csv"</span>))</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Loaded"</span>, <span class="fu">nrow</span>(raw), <span class="st">"rows</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Clean</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>clean <span class="ot">&lt;-</span> raw <span class="sc">%&gt;%</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(value)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(quality <span class="sc">&gt;</span> <span class="fl">0.8</span>)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"After cleaning:"</span>, <span class="fu">nrow</span>(clean), <span class="st">"rows</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Save to outs/</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(clean, <span class="fu">file.path</span>(dir_out, <span class="st">"clean_data.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Key points:</p>
+<ul>
+<li>Reads from <code>data/</code> (external inputs)</li>
+<li>Writes to <code>outs/01_clean_data/</code> (script-specific output folder)</li>
+<li>Never writes to <code>data/</code></li>
+</ul>
+<p>For full script templates including YAML headers, setup chunks, and BUILD_INFO.txt, see the <a href="../part2/quarto.html">Quarto</a> chapter and <a href="../appendices/templates.html">Templates</a> appendix.</p>
 </section>
 <section id="using-claude-code" class="level2" data-number="14.5">
 <h2 data-number="14.5" class="anchored" data-anchor-id="using-claude-code"><span class="header-section-number">14.5</span> Using Claude Code</h2>
 <p>With your <code>.claude/CLAUDE.md</code> in place, start Claude Code:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Example workflow:</p>
 <blockquote class="blockquote">
-<p>“I have RNA-seq counts in data/raw/counts.csv. Create a script to load it, do basic QC, and save a cleaned version.”</p>
+<p>“I have RNA-seq counts in data/counts.csv. Create a QMD script to load it, do basic QC, and save a cleaned version to outs/.”</p>
 </blockquote>
 <p>Review the generated code, then:</p>
 <blockquote class="blockquote">
@@ -775,8 +801,8 @@ Thumbs.db
 <ul class="task-list">
 <li><label><input type="checkbox">Git initialized</label></li>
 <li><label><input type="checkbox"><code>.gitignore</code> in place</label></li>
-<li><label><input type="checkbox">Directory structure created</label></li>
-<li><label><input type="checkbox">Conda environment created and exported</label></li>
+<li><label><input type="checkbox">Directory structure created (<code>R/</code>, <code>python/</code>, <code>scripts/exploratory/</code>, <code>data/</code>, <code>outs/</code>)</label></li>
+<li><label><input type="checkbox">Conda environment created and exported (<code>--from-history</code>)</label></li>
 <li><label><input type="checkbox">renv initialized (if using R)</label></li>
 <li><label><input type="checkbox"><code>.claude/CLAUDE.md</code> written</label></li>
 <li><label><input type="checkbox">README drafted</label></li>

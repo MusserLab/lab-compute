@@ -628,6 +628,10 @@ project-b-env/
 <h3 data-number="8.2.2" class="anchored" data-anchor-id="core-data-science-packages"><span class="header-section-number">8.2.2</span> Core Data Science Packages</h3>
 <p>When setting up a new project environment, common data science packages you might include are:</p>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
 <thead>
 <tr class="header">
 <th>Package</th>
@@ -649,12 +653,34 @@ project-b-env/
 </tr>
 <tr class="even">
 <td><code>ipykernel</code></td>
-<td>Required for Quarto to execute Python code</td>
+<td><strong>Required</strong> for Quarto to execute Python <code>.qmd</code> files</td>
+</tr>
+<tr class="odd">
+<td><code>seaborn</code></td>
+<td>Statistical data visualization (built on matplotlib)</td>
+</tr>
+<tr class="even">
+<td><code>session-info</code></td>
+<td>Python session info for reproducibility (install via pip)</td>
 </tr>
 </tbody>
 </table>
 <p>A typical environment creation command:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> my-project python=3.11 numpy pandas matplotlib ipykernel</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> my-project python=3.11 numpy pandas matplotlib seaborn ipykernel <span class="at">-y</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install session-info</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Always Include ipykernel
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Every data science environment must include <code>ipykernel</code>. Without it, Quarto cannot execute Python <code>.qmd</code> files — you’ll get a kernel error when rendering. Make it a habit to include it in every <code>conda create</code> command.</p>
+</div>
+</div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">

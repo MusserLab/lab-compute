@@ -514,7 +514,7 @@
     "href": "part2/project-organization.html#project-structure",
     "title": "5  Project Organization",
     "section": "5.2 Project Structure",
-    "text": "5.2 Project Structure\nA typical lab project has three core folders:\nmy-project/\n├── data/              # External inputs only\n├── scripts/           # Quarto analysis scripts\n├── outs/              # All generated outputs\n├── environment.yml    # Conda environment\n├── renv.lock          # R package versions\n└── README.md          # Project overview\n\n5.2.1 data/ — External Inputs\nThis folder holds data that comes from outside the project:\n\nRaw sequencing data from the core facility\nFiles from collaborators\nDownloaded public datasets\nMetadata spreadsheets\n\ndata/\n├── counts_matrix.csv          # From sequencing core\n├── sample_metadata.xlsx       # From collaborator\n└── reference_genome.fasta     # Downloaded from NCBI\nRules for data/:\n\nNever modify these files\nNever put script-generated files here\nDocument where each file came from (in the README or a data/README.md)\n\n\n\n5.2.2 scripts/ — Analysis Scripts\nAll .qmd analysis scripts live here, numbered to indicate their logical order:\nscripts/\n├── 01_import_qc.qmd\n├── 02_normalize.qmd\n├── 03_differential.qmd\n├── 04_volcano_plots.qmd\n└── 05_heatmaps.qmd\nThe numbers indicate the general flow of the analysis, not a strict linear dependency. Script 05 might read outputs from scripts 01 and 03 directly—the numbering just helps you understand the overall structure at a glance.\n\n\n5.2.3 outs/ — Generated Outputs\nEvery script gets a corresponding output folder. Script 01_import_qc.qmd writes to outs/01_import_qc/:\nouts/\n├── 01_import_qc/\n│   ├── filtered_counts.rds\n│   ├── qc_report.html\n│   └── sample_summary.csv\n├── 02_normalize/\n│   └── normalized_counts.rds\n├── 03_differential/\n│   ├── limma_results.rds\n│   └── significant_hits.csv\n├── 04_volcano_plots/\n│   ├── volcano_3min.pdf\n│   ├── volcano_15min.pdf\n│   └── volcano_30min.pdf\n└── 05_heatmaps/\n    └── cluster_heatmap.pdf\nThis structure encodes provenance. When you see a file in outs/03_differential/, you know exactly which script created it.\n\nReview your project structure:\n\nHere’s my project folder structure:\n[paste output of ls -R or describe your layout]\nI’m analyzing RNA-seq data from three conditions with time points. Does this organization make sense, or should I restructure anything?\n\nDescribe what type of analysis you’re doing. Claude can suggest improvements based on your specific project needs.",
+    "text": "5.2 Project Structure\nA typical lab project looks like this:\nmy-project/\n├── data/              # External inputs only — scripts never write here\n├── scripts/           # Quarto analysis scripts (.qmd)\n│   └── exploratory/   # One-off analyses (no numbering required)\n├── outs/              # All script-generated outputs\n├── R/                 # Shared R helper functions\n├── python/            # Shared Python helper functions\n├── environment.yml    # Conda environment\n├── renv.lock          # R package versions\n└── README.md          # Project overview\n\n5.2.1 data/ — External Inputs\nThis folder holds data that comes from outside the project:\n\nRaw sequencing data from the core facility\nFiles from collaborators\nDownloaded public datasets\nMetadata spreadsheets\n\ndata/\n├── counts_matrix.csv          # From sequencing core\n├── sample_metadata.xlsx       # From collaborator\n└── reference_genome.fasta     # Downloaded from NCBI\nRules for data/:\n\nNever modify these files\nNever put script-generated files here\nDocument where each file came from (in the README or a data/README.md)\n\n\n\n5.2.2 scripts/ — Analysis Scripts\nAll .qmd analysis scripts live here, numbered to indicate their logical order:\nscripts/\n├── 01_import_qc.qmd\n├── 02_normalize.qmd\n├── 03_differential.qmd\n├── 04_volcano_plots.qmd\n├── 05_heatmaps.qmd\n└── exploratory/           # One-off analyses, quick tests\nThe numbers indicate the general flow of the analysis, not a strict linear dependency. Script 05 might read outputs from scripts 01 and 03 directly—the numbering just helps you understand the overall structure at a glance.\n\n5.2.2.1 scripts/exploratory/\nThe exploratory/ subdirectory is for one-off analyses, quick tests, and feasibility checks. These scripts:\n\nDon’t need number prefixes or BUILD_INFO.txt\nMust never be depended on by other scripts (one-way dependency — exploratory scripts can read from outs/, but nothing reads from exploratory outputs)\nCan be cleaned out periodically without breaking anything\nAre good candidates for promotion to numbered scripts when an analysis matures\n\n\n\n\n5.2.3 outs/ — Generated Outputs\nEvery script gets a corresponding output folder. Script 01_import_qc.qmd writes to outs/01_import_qc/:\nouts/\n├── 01_import_qc/\n│   ├── filtered_counts.rds\n│   ├── qc_report.html\n│   └── sample_summary.csv\n├── 02_normalize/\n│   └── normalized_counts.rds\n├── 03_differential/\n│   ├── limma_results.rds\n│   └── significant_hits.csv\n├── 04_volcano_plots/\n│   ├── volcano_3min.pdf\n│   ├── volcano_15min.pdf\n│   └── volcano_30min.pdf\n└── 05_heatmaps/\n    └── cluster_heatmap.pdf\nThis structure encodes provenance. When you see a file in outs/03_differential/, you know exactly which script created it.\n\nReview your project structure:\n\nHere’s my project folder structure:\n[paste output of ls -R or describe your layout]\nI’m analyzing RNA-seq data from three conditions with time points. Does this organization make sense, or should I restructure anything?\n\nDescribe what type of analysis you’re doing. Claude can suggest improvements based on your specific project needs.",
     "crumbs": [
       "Core Tools",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Project Organization</span>"
@@ -558,7 +558,7 @@
     "href": "part2/project-organization.html#handling-subprojects",
     "title": "5  Project Organization",
     "section": "5.6 Handling Subprojects",
-    "text": "5.6 Handling Subprojects\nFor projects with multiple distinct analyses (e.g., phosphoproteomics AND transcriptomics), prefix script names with the subproject:\nscripts/\n├── phospho_01_qc.qmd\n├── phospho_02_normalize.qmd\n├── phospho_03_differential.qmd\n├── trans_01_import.qmd\n├── trans_02_pca.qmd\n└── combined_01_integration.qmd\nOutputs mirror this structure:\nouts/\n├── phospho_01_qc/\n├── phospho_02_normalize/\n├── phospho_03_differential/\n├── trans_01_import/\n├── trans_02_pca/\n└── combined_01_integration/\nThe combined_* scripts can read from both phospho_* and trans_* outputs.",
+    "text": "5.6 Handling Subprojects\nProjects with multiple distinct analyses (e.g., phosphoproteomics AND transcriptomics) need a way to group related scripts. There are two approaches:\n\n5.6.1 Prefixes (simpler)\nGood for projects with 2–3 subprojects and fewer than ~5 scripts each:\nscripts/\n├── phospho_01_qc.qmd\n├── phospho_02_normalize.qmd\n├── phospho_03_differential.qmd\n├── trans_01_import.qmd\n├── trans_02_pca.qmd\n└── combined_01_integration.qmd\nOutputs mirror the naming:\nouts/\n├── phospho_01_qc/\n├── phospho_02_normalize/\n├── trans_01_import/\n└── combined_01_integration/\n\n\n5.6.2 Subdirectories (recommended for larger projects)\nWhen there are many scripts per section, subdirectories are cleaner. Numbering restarts at 01_ within each section:\nscripts/\n├── phosphoproteomics/\n│   ├── 01_qc.qmd\n│   ├── 02_normalize.qmd\n│   └── 03_differential.qmd\n├── transcriptomics/\n│   ├── 01_import.qmd\n│   └── 02_pca.qmd\n├── combined/\n│   └── 01_integration.qmd\n└── exploratory/\nData and output folders mirror this structure:\ndata/\n├── phosphoproteomics/\n└── transcriptomics/\n\nouts/\n├── phosphoproteomics/\n│   ├── 01_qc/\n│   ├── 02_normalize/\n│   └── 03_differential/\n├── transcriptomics/\n│   ├── 01_import/\n│   └── 02_pca/\n└── combined/\n    └── 01_integration/\nEither approach works—the key is that outputs always mirror the script organization so provenance is clear.",
     "crumbs": [
       "Core Tools",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Project Organization</span>"
@@ -569,7 +569,7 @@
     "href": "part2/project-organization.html#naming-conventions",
     "title": "5  Project Organization",
     "section": "5.7 Naming Conventions",
-    "text": "5.7 Naming Conventions\n\n5.7.1 Scripts\n\nUse lowercase with underscores: 01_import_qc.qmd\nStart with a two-digit number: 01_, 02_, … 10_, 11_\nUse descriptive names: 03_differential.qmd not 03_analysis.qmd\n\n\n\n5.7.2 Output Files\n\nName files descriptively: normalized_counts.rds not data.rds\nUse consistent extensions: .rds for R objects, .csv for tables, .pdf for figures\nFor multiple similar outputs, use a pattern: volcano_3min.pdf, volcano_15min.pdf\n\n\n\n5.7.3 What to Avoid\n\nSpaces in filenames (use underscores or hyphens)\nGeneric names (output.csv, figure1.pdf, results.rds)\nDate prefixes on every file (let git track versions)",
+    "text": "5.7 Naming Conventions\n\n5.7.1 Scripts\n\nUse lowercase with underscores: 01_import_qc.qmd\nStart with a two-digit number: 01_, 02_, … 10_, 11_\nUse descriptive names: 03_differential.qmd not 03_analysis.qmd\n\n\n\n5.7.2 Output Files\n\nName files descriptively: normalized_counts.rds not data.rds\nUse consistent extensions: .rds for R objects, .csv for tables, .pdf for figures\nFor multiple similar outputs, use a pattern: volcano_3min.pdf, volcano_15min.pdf\nCross-language data: When data produced by an R script will be read by a Python script (or vice versa), use Parquet format (.parquet). Avoid .rds (R-only) or .pkl (Python-only) for cross-language data. Both R (arrow::write_parquet()) and Python (pd.to_parquet()) handle Parquet natively.\n\n\n\n5.7.3 What to Avoid\n\nSpaces in filenames (use underscores or hyphens)\nGeneric names (output.csv, figure1.pdf, results.rds)\nDate prefixes on every file (let git track versions)",
     "crumbs": [
       "Core Tools",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Project Organization</span>"
@@ -587,11 +587,44 @@
     ]
   },
   {
+    "objectID": "part2/project-organization.html#script-lifecycle",
+    "href": "part2/project-organization.html#script-lifecycle",
+    "title": "5  Project Organization",
+    "section": "5.9 Script Lifecycle",
+    "text": "5.9 Script Lifecycle\nEvery analysis script has a lifecycle. Track it with a status field in the YAML frontmatter:\n---\ntitle: \"Differential Expression\"\nstatus: development\n---\n\n\n\n\n\n\n\n\nStatus\nMeaning\nLocation\n\n\n\n\ndevelopment\nIn active development; outputs are provisional\nscripts/\n\n\nfinalized\nOutputs are publication-ready; modify only with deliberate re-validation\nscripts/\n\n\ndeprecated\nSuperseded; kept for reference\nscripts/old/\n\n\n\nWhen deprecating a script, move it to scripts/old/ and add deprecated_by: to the YAML:\n---\ntitle: \"Old Heatmaps\"\nstatus: deprecated\ndeprecated_by: 05_improved_heatmaps.qmd\n---\nThis makes it clear which script replaced it, while git preserves the full history.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Project Organization</span>"
+    ]
+  },
+  {
+    "objectID": "part2/project-organization.html#provenance-build_info.txt",
+    "href": "part2/project-organization.html#provenance-build_info.txt",
+    "title": "5  Project Organization",
+    "section": "5.10 Provenance: BUILD_INFO.txt",
+    "text": "5.10 Provenance: BUILD_INFO.txt\nEvery numbered script should write a BUILD_INFO.txt to its output folder as its last action. This answers “when was this output last regenerated, and from what code version?”\nscript: 01_analysis.qmd\ncommit: a1b2c3d\ndate: 2026-02-14 15:30:00\nSee the Quarto chapter for the R and Python code to generate this automatically.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Project Organization</span>"
+    ]
+  },
+  {
+    "objectID": "part2/project-organization.html#helper-functions",
+    "href": "part2/project-organization.html#helper-functions",
+    "title": "5  Project Organization",
+    "section": "5.11 Helper Functions",
+    "text": "5.11 Helper Functions\n\n5.11.1 Project-level: R/ and python/\nShared helper functions that multiple scripts in the project use live in dedicated directories:\nproject/\n├── R/                    # Shared R helpers\n│   └── helpers.R\n├── python/               # Shared Python helpers\n│   └── helpers.py\n└── scripts/\nLoad them in your setup chunk:\n# R\nsource(here::here(\"R\", \"helpers.R\"))\n# Python\nimport sys\nsys.path.insert(0, str(PROJECT_ROOT / \"python\"))\nfrom helpers import my_function\nDon’t version function names (make_gene_short, not make_gene_short_v2)—fix in place and let git track the history.\n\n\n5.11.2 Cross-project: ~/lib/\nWhen a helper function proves useful across 2+ projects, promote it to your personal library:\n~/lib/\n├── R/          # Cross-project R functions\n└── python/     # Cross-project Python functions\nThis keeps project repositories clean while making reusable code accessible everywhere.",
+    "crumbs": [
+      "Core Tools",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Project Organization</span>"
+    ]
+  },
+  {
     "objectID": "part2/project-organization.html#handling-old-versions",
     "href": "part2/project-organization.html#handling-old-versions",
     "title": "5  Project Organization",
-    "section": "5.9 Handling Old Versions",
-    "text": "5.9 Handling Old Versions\nAnalysis projects tend to accumulate old scripts and outputs. Resist the urge to create old/ folders everywhere.\nBetter approaches:\n\nUse git. Delete old files; recover from history if needed.\nArchive at project root. If you must keep old versions outside git:\nproject/\n├── scripts/\n├── outs/\n└── _archive/           # One place for old stuff\n    ├── old_scripts/\n    └── old_outputs/\nDate sparingly. Only add dates when you need multiple versions to coexist (e.g., comparing runs with different parameters):\nouts/03_differential/\n├── 2025-01-15_strict_threshold/\n└── 2025-01-20_relaxed_threshold/",
+    "section": "5.12 Handling Old Versions",
+    "text": "5.12 Handling Old Versions\nAnalysis projects tend to accumulate old scripts and outputs. Here are the recommended approaches:\n\nUse git. Delete old files; recover from history if needed. This is the preferred approach.\nUse scripts/old/. For deprecated scripts you want to keep visible, move them to scripts/old/ with status: deprecated in the YAML (see Script Lifecycle above).\nDate sparingly. Only add dates when you need multiple versions to coexist (e.g., comparing runs with different parameters):\nouts/03_differential/\n├── 2025-01-15_strict_threshold/\n└── 2025-01-20_relaxed_threshold/",
     "crumbs": [
       "Core Tools",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Project Organization</span>"
@@ -601,8 +634,8 @@
     "objectID": "part2/project-organization.html#complete-example",
     "href": "part2/project-organization.html#complete-example",
     "title": "5  Project Organization",
-    "section": "5.10 Complete Example",
-    "text": "5.10 Complete Example\nHere’s a well-organized phosphoproteomics project:\ntryptamine_phospho/\n├── data/\n│   ├── README.md                    # Documents data sources\n│   ├── raw_counts.csv               # From mass spec core\n│   ├── sample_metadata.csv          # Experimental design\n│   └── gene_annotations.tsv         # Downloaded from UniProt\n│\n├── scripts/\n│   ├── 01_import_qc.qmd\n│   ├── 02_normalize.qmd\n│   ├── 03_differential.qmd\n│   ├── 04_volcano_plots.qmd\n│   ├── 05_trajectory_clustering.qmd\n│   └── 06_heatmaps.qmd\n│\n├── outs/\n│   ├── 01_import_qc/\n│   │   ├── filtered_counts.rds\n│   │   └── qc_summary.html\n│   ├── 02_normalize/\n│   │   └── normalized_counts.rds\n│   ├── 03_differential/\n│   │   ├── limma_results.rds\n│   │   └── significant_hits.csv\n│   ├── 04_volcano_plots/\n│   │   ├── volcano_3min.pdf\n│   │   ├── volcano_15min.pdf\n│   │   └── volcano_30min.pdf\n│   ├── 05_trajectory_clustering/\n│   │   ├── cluster_assignments.csv\n│   │   └── elbow_plot.pdf\n│   └── 06_heatmaps/\n│       ├── heatmap_all_clusters.pdf\n│       └── heatmap_per_cluster/\n│\n├── environment.yml\n├── renv.lock\n├── .gitignore\n└── README.md\nDependency flow:\n\n\n\n\n\nflowchart LR\n    data[\"data/*\"] --&gt; s01[\"01\"]\n    s01 --&gt; s02[\"02\"]\n    s02 --&gt; s03[\"03\"]\n    s03 --&gt; s04[\"04\"]\n\n    s02 --&gt; s05[\"05\"]\n    s03 --&gt; s05\n    s05 --&gt; s06[\"06\"]\n\n\n\n\n\n\nFrom this structure, anyone can understand: - Where the raw data came from (data/README.md) - The analysis workflow (numbered scripts) - What each script produces (matching output folders) - How to reproduce the analysis (environment files + scripts)",
+    "section": "5.13 Complete Example",
+    "text": "5.13 Complete Example\nHere’s a well-organized phosphoproteomics project:\ntryptamine_phospho/\n├── .claude/\n│   └── CLAUDE.md                    # Claude Code instructions\n├── R/\n│   └── gene_helpers.R               # Shared R functions\n├── data/\n│   ├── README.md                    # Documents data sources\n│   ├── raw_counts.csv               # From mass spec core\n│   ├── sample_metadata.csv          # Experimental design\n│   └── gene_annotations.tsv         # Downloaded from UniProt\n│\n├── scripts/\n│   ├── 01_import_qc.qmd            # status: finalized\n│   ├── 02_normalize.qmd            # status: finalized\n│   ├── 03_differential.qmd         # status: finalized\n│   ├── 04_volcano_plots.qmd        # status: development\n│   ├── 05_trajectory_clustering.qmd # status: development\n│   ├── 06_heatmaps.qmd             # status: development\n│   ├── exploratory/\n│   │   └── test_new_clustering.qmd\n│   └── old/\n│       └── 04_volcano_plots_v1.qmd  # status: deprecated\n│\n├── outs/\n│   ├── 01_import_qc/\n│   │   ├── filtered_counts.rds\n│   │   ├── qc_summary.html\n│   │   └── BUILD_INFO.txt\n│   ├── 02_normalize/\n│   │   ├── normalized_counts.rds\n│   │   └── BUILD_INFO.txt\n│   ├── 03_differential/\n│   │   ├── limma_results.rds\n│   │   ├── significant_hits.csv\n│   │   └── BUILD_INFO.txt\n│   ├── 04_volcano_plots/\n│   │   ├── volcano_3min.pdf\n│   │   ├── volcano_15min.pdf\n│   │   └── volcano_30min.pdf\n│   ├── 05_trajectory_clustering/\n│   │   ├── cluster_assignments.csv\n│   │   └── elbow_plot.pdf\n│   └── 06_heatmaps/\n│       ├── heatmap_all_clusters.pdf\n│       └── heatmap_per_cluster/\n│\n├── environment.yml\n├── renv.lock\n├── .gitignore\n└── README.md\nDependency flow:\n\n\n\n\n\nflowchart LR\n    data[\"data/*\"] --&gt; s01[\"01\"]\n    s01 --&gt; s02[\"02\"]\n    s02 --&gt; s03[\"03\"]\n    s03 --&gt; s04[\"04\"]\n\n    s02 --&gt; s05[\"05\"]\n    s03 --&gt; s05\n    s05 --&gt; s06[\"06\"]\n\n\n\n\n\n\nFrom this structure, anyone can understand:\n\nWhere the raw data came from (data/README.md)\nThe analysis workflow (numbered scripts)\nWhat each script produces (matching output folders)\nWhich scripts are finalized vs. still in development (YAML status: field)\nWhen outputs were last generated (BUILD_INFO.txt)\nHow to reproduce the analysis (environment files + scripts)",
     "crumbs": [
       "Core Tools",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Project Organization</span>"
@@ -657,7 +690,7 @@
     "href": "part2/quarto.html#the-yaml-header",
     "title": "6  Quarto",
     "section": "6.4 The YAML Header",
-    "text": "6.4 The YAML Header\nThe YAML header controls document metadata and rendering behavior. Here’s a typical header for a lab analysis script:\n---\ntitle: \"Phosphoproteomics Volcano Plots\"\nsubtitle: \"Tryptamine treatment time course\"\nauthor: \"Your Name\"\ndate: today\nformat:\n  html:\n    toc: true\n    toc-depth: 2\n    number-sections: true\n    code-fold: false\n    code-tools: true\n    self-contained: true\nexecute:\n  echo: true\n  message: false\n  warning: false\n---\n\n6.4.1 Document Metadata\n\n\n\nOption\nPurpose\nExample\n\n\n\n\ntitle\nDocument title (appears at top)\n\"My Analysis\"\n\n\nsubtitle\nSecondary title\n\"Version 2\"\n\n\nauthor\nYour name\n\"Jane Doe\"\n\n\ndate\nDate; use today for automatic\ntoday\n\n\n\n\n\n6.4.2 Format Options\nThese go under format: html: and control the HTML output:\n\n\n\n\n\n\n\n\nOption\nPurpose\nRecommended\n\n\n\n\ntoc\nInclude table of contents\ntrue\n\n\ntoc-depth\nHow many heading levels in TOC\n2\n\n\nnumber-sections\nNumber your headings\ntrue\n\n\ncode-fold\nCollapse code blocks by default\nfalse for analysis scripts\n\n\ncode-tools\nAdd show/hide all code button\ntrue\n\n\nself-contained\nSingle HTML file (no external dependencies)\ntrue\n\n\n\n\n\n6.4.3 Execute Options\nThese go under execute: and control code execution:\n\n\n\nOption\nPurpose\nRecommended\n\n\n\n\necho\nShow code in output\ntrue for analysis scripts\n\n\nmessage\nShow package messages\nfalse\n\n\nwarning\nShow warnings\nfalse\n\n\ncache\nCache chunk results\nfalse (usually)\n\n\n\nSetting message: false and warning: false globally keeps your rendered output clean. You can override these per-chunk when you need to see specific messages.",
+    "text": "6.4 The YAML Header\nThe YAML header controls document metadata and rendering behavior. Here’s the standard header for a lab analysis script:\n---\ntitle: \"Phosphoproteomics Volcano Plots\"\nsubtitle: \"Tryptamine treatment time course\"\nauthor: \"Your Name\"\ndate: today\nstatus: development        # development | finalized | deprecated\nformat:\n  html:\n    toc: true\n    toc-depth: 2\n    number-sections: true\n    code-overflow: wrap\n    code-fold: false\n    code-tools: true\n    highlight-style: github\n    theme: cosmo\n    fontsize: 1rem\n    linestretch: 1.5\n    self-contained: true\nexecute:\n  echo: true\n  message: false\n  warning: false\n  cache: false\n---\n\n6.4.1 Document Metadata\n\n\n\nOption\nPurpose\nExample\n\n\n\n\ntitle\nDocument title (appears at top)\n\"My Analysis\"\n\n\nsubtitle\nSecondary title\n\"Brief description\"\n\n\nauthor\nYour name\n\"Jane Doe\"\n\n\ndate\nDate; use today for automatic\ntoday\n\n\nstatus\nScript lifecycle stage (see Project Organization)\ndevelopment\n\n\n\n\n\n6.4.2 Format Options\nThese go under format: html: and control the HTML output:\n\n\n\n\n\n\n\n\nOption\nPurpose\nRecommended\n\n\n\n\ntoc\nInclude table of contents\ntrue\n\n\ntoc-depth\nHow many heading levels in TOC\n2\n\n\nnumber-sections\nNumber your headings\ntrue\n\n\ncode-overflow\nHow to handle long code lines\nwrap\n\n\ncode-fold\nCollapse code blocks by default\nfalse for analysis scripts\n\n\ncode-tools\nAdd show/hide all code button\ntrue\n\n\nhighlight-style\nSyntax highlighting theme\ngithub\n\n\ntheme\nBootstrap theme for HTML\ncosmo\n\n\nfontsize\nBase font size\n1rem\n\n\nlinestretch\nLine spacing multiplier\n1.5\n\n\nself-contained\nSingle HTML file (no external dependencies)\ntrue\n\n\n\n\n\n6.4.3 Execute Options\nThese go under execute: and control code execution:\n\n\n\nOption\nPurpose\nRecommended\n\n\n\n\necho\nShow code in output\ntrue for analysis scripts\n\n\nmessage\nShow package messages\nfalse (R only)\n\n\nwarning\nShow warnings\nfalse\n\n\ncache\nCache chunk results\nfalse\n\n\n\nSetting message: false and warning: false globally keeps your rendered output clean. You can override these per-chunk when you need to see specific messages. We set cache: false explicitly to avoid subtle bugs from stale cached results.",
     "crumbs": [
       "Core Tools",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Quarto</span>"
@@ -668,18 +701,18 @@
     "href": "part2/quarto.html#the-setup-chunk",
     "title": "6  Quarto",
     "section": "6.5 The Setup Chunk",
-    "text": "6.5 The Setup Chunk\nEvery analysis script should start with a setup chunk that loads packages, defines paths, and sets options. This establishes the foundation for everything that follows.\n#| label: setup\n#| include: false\n\n# ---- Libraries ----\nsuppressPackageStartupMessages({\n  library(tidyverse)\n  library(here)\n  library(scales)\n})\n\n# ---- Paths ----\ndir_data &lt;- here::here(\"data\", \"processed\")\ndir_out &lt;- here::here(\"outs\", \"01_my_analysis\")\n\n# Create output directory if needed\ndir.create(dir_out, recursive = TRUE, showWarnings = FALSE)\n\n# ---- Options ----\noptions(stringsAsFactors = FALSE)\nset.seed(42)\n\n6.5.1 Key Patterns\n#| include: false — The chunk runs but doesn’t appear in the rendered output. Use this for setup code that readers don’t need to see.\nsuppressPackageStartupMessages() — Prevents the startup messages that packages print when loaded. This keeps your console (and rendered output) clean.\nhere::here() — Builds file paths relative to the project root, not the script location. Essential for reproducibility. See Working Directory and Paths below.\ndir.create(..., showWarnings = FALSE) — Ensures output directories exist. The showWarnings = FALSE prevents errors if the directory already exists.\nset.seed() — Makes random operations reproducible. Use a fixed seed when your analysis involves any randomness (sampling, clustering, etc.).",
+    "text": "6.5 The Setup Chunk\nEvery analysis script should start with a setup chunk that loads packages, defines paths, sets options, and captures the git commit hash for provenance.\n#| label: setup\n#| include: false\n\n# ---- Libraries ----\nsuppressPackageStartupMessages({\n  library(tidyverse)\n  library(here)\n})\n\n# ---- Paths ----\ndir_data &lt;- here::here(\"data\")\ndir_out &lt;- here::here(\"outs\", \"01_script_name\")\ndir.create(dir_out, recursive = TRUE, showWarnings = FALSE)\n\n# ---- Options ----\noptions(stringsAsFactors = FALSE)\nset.seed(42)\n\n# ---- Provenance ----\ngit_hash &lt;- system(\"git rev-parse --short HEAD\", intern = TRUE)\ncat(\"Rendered from commit:\", git_hash, \"\\n\")\n\n6.5.1 Key Patterns\n#| include: false — The chunk runs but doesn’t appear in the rendered output. Use this for setup code that readers don’t need to see.\nsuppressPackageStartupMessages() — Prevents the startup messages that packages print when loaded. This keeps your console (and rendered output) clean.\nhere::here() — Builds file paths relative to the project root, not the script location. Essential for reproducibility. See Working Directory and Paths below.\ndir.create(..., showWarnings = FALSE) — Ensures output directories exist. The showWarnings = FALSE prevents errors if the directory already exists.\nset.seed() — Makes random operations reproducible. Use a fixed seed when your analysis involves any randomness (sampling, clustering, etc.).\ngit_hash — Captures the current commit for provenance tracking. This is used later in BUILD_INFO.txt (see Provenance Chunk below).",
     "crumbs": [
       "Core Tools",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Quarto</span>"
     ]
   },
   {
-    "objectID": "part2/quarto.html#documenting-inputs-and-outputs",
-    "href": "part2/quarto.html#documenting-inputs-and-outputs",
+    "objectID": "part2/quarto.html#documenting-inputs",
+    "href": "part2/quarto.html#documenting-inputs",
     "title": "6  Quarto",
-    "section": "6.6 Documenting Inputs and Outputs",
-    "text": "6.6 Documenting Inputs and Outputs\nAfter the YAML header and before the setup chunk, document what the script reads and produces:\n# Introduction\n\nThis script generates volcano plots for the phosphoproteomics time course,\nvisualizing differential phosphorylation between treated and control samples.\n\n**Inputs:**\n\n- `data/processed/limma_results.rds` — differential expression results\n- `data/processed/metadata.csv` — sample metadata\n\n**Outputs:**\n\n- `outs/01_volcano_plots/volcano_*.pdf` — volcano plots per comparison\n- `outs/01_volcano_plots/significant_hits.csv` — filtered results table\nThis practice:\n\nMakes the script’s purpose immediately clear\nDocuments dependencies (what must exist before this runs)\nDocuments products (what other scripts can use as inputs)\nHelps you and collaborators understand the analysis pipeline\n\nSee the Project Organization chapter for how this fits into the larger project structure.",
+    "section": "6.6 Documenting Inputs",
+    "text": "6.6 Documenting Inputs\nAfter the setup chunk, add an explicit inputs section that loads all dependencies. This makes it immediately clear what the script needs to run:\n#| label: inputs\n\n# --- Inputs (from other scripts) ---\nresults &lt;- readRDS(here(\"outs/03_differential/limma_results.rds\"))\n\n# --- Inputs (external data) ---\nmetadata &lt;- read_csv(here(\"data/sample_metadata.csv\"))\nSeparating inputs from analysis code makes dependencies self-documenting—reading the top of any script shows exactly what it depends on. You can also document outputs in the introduction text:\n# Volcano Plots\n\nThis script generates volcano plots for the phosphoproteomics time course.\n\n**Inputs:**\n\n- `outs/03_differential/limma_results.rds`\n- `data/sample_metadata.csv`\n\n**Outputs:**\n\n- `outs/04_volcano_plots/volcano_*.pdf`\n- `outs/04_volcano_plots/significant_hits.csv`\nSee the Project Organization chapter for how this fits into the larger project structure.",
     "crumbs": [
       "Core Tools",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Quarto</span>"
@@ -712,7 +745,7 @@
     "href": "part2/quarto.html#working-with-python",
     "title": "6  Quarto",
     "section": "6.9 Working with Python",
-    "text": "6.9 Working with Python\n\n6.9.1 Running Code\nThe same shortcuts work for Python: Cmd+Enter to run the current line or selection.\nFor Python chunks to execute during render, you need ipykernel installed in your conda environment:\nconda install ipykernel\n\n\n6.9.2 Selecting the Interpreter\nEnsure Positron is using the correct conda environment:\n\nOpen Command Palette (Cmd/Ctrl+Shift+P)\nType “Python: Select Interpreter”\nChoose your project’s conda environment",
+    "text": "6.9 Working with Python\nQuarto .qmd is the standard format for Python data analysis in the lab, just as it is for R. Plain .py files are for standalone utilities, CLI tools, and library code—not for data analysis scripts. Everything described above (YAML headers, setup chunks, inputs, provenance) applies to Python QMD too.\n\n6.9.1 Running Code\nThe same shortcuts work for Python: Cmd+Enter to run the current line or selection.\nFor Python chunks to execute during render, you need ipykernel installed in your conda environment:\nconda install ipykernel\n\n\n6.9.2 Selecting the Interpreter\nEnsure Positron is using the correct conda environment:\n\nOpen Command Palette (Cmd/Ctrl+Shift+P)\nType “Python: Select Interpreter”\nChoose your project’s conda environment\n\n\n\n6.9.3 Rendering Python QMD\n\n\n\n\n\n\nImportantActivate Conda Before Rendering\n\n\n\nPython QMD files require the conda environment to be active when you render. Without this, Quarto uses the wrong Python or can’t find your packages:\nsource ~/miniconda3/etc/profile.d/conda.sh && conda activate my-project && quarto render scripts/02_analysis.qmd\nThis is the #1 Python QMD gotcha. If quarto render fails with ModuleNotFoundError, check that your conda environment is active.\n\n\n\n\n6.9.4 Python YAML Header\nThe Python YAML header is the same as R, with two differences: add jupyter: python3 and drop message: false (which is R-specific):\n---\ntitle: \"Script Title\"\nsubtitle: \"Brief description\"\nauthor: \"Your Name\"\ndate: today\nstatus: development\njupyter: python3\nformat:\n  html:\n    toc: true\n    toc-depth: 2\n    number-sections: true\n    code-overflow: wrap\n    code-fold: false\n    code-tools: true\n    highlight-style: github\n    theme: cosmo\n    fontsize: 1rem\n    linestretch: 1.5\n    self-contained: true\nexecute:\n  echo: true\n  warning: false\n  cache: false\n---\n\n\n6.9.5 Python Setup Chunk\n#| label: setup\n\nimport subprocess\nimport sys\nimport random\nfrom pathlib import Path\nfrom datetime import datetime\n\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n\nPROJECT_ROOT = Path(subprocess.check_output(\n    [\"git\", \"rev-parse\", \"--show-toplevel\"]\n).decode().strip())\nsys.path.insert(0, str(PROJECT_ROOT / \"python\"))\n# from helpers import ...  # if needed\n\n# ---- Options ----\nrandom.seed(42)\nnp.random.seed(42)\npd.set_option(\"display.max_columns\", None)\nsns.set_theme(style=\"whitegrid\")\n\n# ---- Paths ----\nout_dir = PROJECT_ROOT / \"outs/XX_script_name\"\nout_dir.mkdir(parents=True, exist_ok=True)\n\ngit_hash = subprocess.check_output(\n    [\"git\", \"rev-parse\", \"--short\", \"HEAD\"]\n).decode().strip()\nprint(f\"Rendered from commit: {git_hash}\")\nKey differences from R:\n\nPROJECT_ROOT replaces here::here() — found via git rev-parse --show-toplevel\nHelper loading uses sys.path.insert() instead of source()\nTwo random seeds — random.seed(42) for Python stdlib, np.random.seed(42) for NumPy\n\n\n\n6.9.6 Python Figure Saving\nSave figures to outs/ AND display inline:\n#| label: fig-example\n#| fig-cap: \"Description of figure\"\n\nfig, ax = plt.subplots(figsize=(6, 4))\n# ... plotting code ...\nplt.tight_layout()\n\n# Save to outs/ AND display inline\nfig.savefig(out_dir / \"figure_name.pdf\", dpi=300, bbox_inches=\"tight\")\nfig.savefig(out_dir / \"figure_name.png\", dpi=300, bbox_inches=\"tight\")\nplt.show()\n\n\n6.9.7 Python Provenance Chunk\n#| label: build-info\n\n(out_dir / \"BUILD_INFO.txt\").write_text(\n    f\"script: XX_script_name.qmd\\n\"\n    f\"commit: {git_hash}\\n\"\n    f\"date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\\n\"\n)\n\nimport session_info\nsession_info.show()\n\n\n\n\n\n\nNote\n\n\n\nsession_info must be installed in your conda environment: pip install session-info. Include it in every data science environment.\n\n\n\n\n6.9.8 Language Mixing\nDo not mix R and Python chunks in a single .qmd. Each script uses one language. Scripts communicate through files in outs/, not shared memory. If an R script produces data that a Python script needs, save it as Parquet (see Project Organization).\n\n\n6.9.9 R vs Python Quick Reference\n\n\n\n\n\n\n\n\nConvention\nR\nPython\n\n\n\n\nProject root\nhere::here()\nPROJECT_ROOT (from git)\n\n\nRead CSV\nread_csv(here(\"data/file.csv\"))\npd.read_csv(PROJECT_ROOT / \"data/file.csv\")\n\n\nRead TSV\nread_tsv(here(\"data/file.tsv\"))\npd.read_csv(PROJECT_ROOT / \"data/file.tsv\", sep=\"\\t\")\n\n\nRead Parquet\narrow::read_parquet(here(...))\npd.read_parquet(PROJECT_ROOT / ...)\n\n\nSave figure\nggsave(file.path(dir_out, \"fig.pdf\"))\nfig.savefig(out_dir / \"fig.pdf\")\n\n\nRandom seed\nset.seed(42)\nrandom.seed(42) + np.random.seed(42)\n\n\nSession info\nsessionInfo()\nsession_info.show()\n\n\nChunk label\n{r label-name} or #| label:\n#| label: only\n\n\nHelper loading\nsource(here(\"R/helpers.R\"))\nsys.path.insert(0, str(PROJECT_ROOT / \"python\"))",
     "crumbs": [
       "Core Tools",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Quarto</span>"
@@ -745,7 +778,7 @@
     "href": "part2/quarto.html#rendering-1",
     "title": "6  Quarto",
     "section": "6.12 Rendering",
-    "text": "6.12 Rendering\n\n6.12.1 From the Terminal\n# Render a single document\nquarto render scripts/01_analysis.qmd\n\n# Render all .qmd files in a directory\nquarto render scripts/\n\n\n6.12.2 From Positron\n\nClick the Render button in the editor toolbar\nOr use Cmd+Shift+K (macOS) / Ctrl+Shift+K (Windows)\n\n\n\n6.12.3 Preview Mode\nFor live feedback during development, use preview mode:\nquarto preview scripts/01_analysis.qmd\nThis opens a browser window that automatically refreshes when you save changes. Useful for tuning formatting, but remember that preview still renders in a fresh session—it’s not the same as interactive execution.",
+    "text": "6.12 Rendering\n\n6.12.1 From the Terminal\n# Render an R document\nquarto render scripts/01_analysis.qmd\n\n# Render a Python document (conda must be active!)\nsource ~/miniconda3/etc/profile.d/conda.sh && conda activate my-project && quarto render scripts/02_plots.qmd\n\n# Render all .qmd files in a directory\nquarto render scripts/\n\n\n6.12.2 From Positron\n\nClick the Render button in the editor toolbar\nOr use Cmd+Shift+K (macOS) / Ctrl+Shift+K (Windows)\n\n\n\n6.12.3 Preview Mode\nFor live feedback during development, use preview mode:\nquarto preview scripts/01_analysis.qmd\nThis opens a browser window that automatically refreshes when you save changes. Useful for tuning formatting, but remember that preview still renders in a fresh session—it’s not the same as interactive execution.",
     "crumbs": [
       "Core Tools",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Quarto</span>"
@@ -756,7 +789,7 @@
     "href": "part2/quarto.html#best-practices",
     "title": "6  Quarto",
     "section": "6.13 Best Practices",
-    "text": "6.13 Best Practices\n\n6.13.1 Render Before Committing\nAlways render the full document before committing to Git. This catches:\n\nMissing packages (installed interactively but not in lockfile)\nMissing objects (created interactively but not in the script)\nOrder dependencies (chunks that depend on earlier chunks you modified)\n\n\n\n6.13.2 Self-Contained Scripts\nEvery .qmd should run successfully from a fresh R session. Don’t assume objects exist from previous interactive work. If render fails, your script isn’t self-contained.\n\n\n6.13.3 Clear Section Structure\nOrganize your script with clear headings:\n# Introduction\n# Setup\n# Load Data\n# Analysis\n# Results\n# Summary\nThis makes the script navigable (via Positron’s Outline panel) and the rendered document readable.\n\n\n6.13.4 Validation Chunks\nFor complex analyses, add validation chunks that verify data integrity:\n#| label: validate-data\n#| include: false\n\n# Check required columns exist\nrequired_cols &lt;- c(\"sample_id\", \"condition\", \"value\")\nmissing_cols &lt;- setdiff(required_cols, names(data))\nif (length(missing_cols) &gt; 0) {\n  stop(\"Missing required columns: \", paste(missing_cols, collapse = \", \"))\n}\n\n# Check for expected conditions\nstopifnot(\"No data loaded\" = nrow(data) &gt; 0)\nThese chunks catch problems early and provide clear error messages.\n\n\n6.13.5 Session Info\nEnd your script with session information for reproducibility:\n#| label: session-info\n\nsessionInfo()\nThis records R version, package versions, and platform information in the rendered output.",
+    "text": "6.13 Best Practices\n\n6.13.1 Render Before Committing\nAlways render the full document before committing to Git. This catches:\n\nMissing packages (installed interactively but not in lockfile)\nMissing objects (created interactively but not in the script)\nOrder dependencies (chunks that depend on earlier chunks you modified)\n\n\n\n6.13.2 Self-Contained Scripts\nEvery .qmd should run successfully from a fresh R session. Don’t assume objects exist from previous interactive work. If render fails, your script isn’t self-contained.\n\n\n6.13.3 Clear Section Structure\nOrganize your script with clear headings:\n# Introduction\n# Setup\n# Load Data\n# Analysis\n# Results\n# Summary\nThis makes the script navigable (via Positron’s Outline panel) and the rendered document readable.\n\n\n6.13.4 Validation Chunks\nFor complex analyses, add validation chunks that verify data integrity:\n#| label: validate-data\n#| include: false\n\n# Check required columns exist\nrequired_cols &lt;- c(\"sample_id\", \"condition\", \"value\")\nmissing_cols &lt;- setdiff(required_cols, names(data))\nif (length(missing_cols) &gt; 0) {\n  stop(\"Missing required columns: \", paste(missing_cols, collapse = \", \"))\n}\n\n# Check for expected conditions\nstopifnot(\"No data loaded\" = nrow(data) &gt; 0)\nThese chunks catch problems early and provide clear error messages.\n\n\n6.13.5 Provenance Chunk\nEnd every script with a chunk that writes BUILD_INFO.txt and prints session information:\n#| label: build-info\n\nwriteLines(\n  c(\n    paste(\"script:\", \"01_script_name.qmd\"),\n    paste(\"commit:\", git_hash),\n    paste(\"date:\", format(Sys.time(), \"%Y-%m-%d %H:%M:%S\"))\n  ),\n  file.path(dir_out, \"BUILD_INFO.txt\")\n)\n\nsessionInfo()\nThis records:\n\nBUILD_INFO.txt — which script, commit, and timestamp produced the outputs (answers “when was this last regenerated?”)\nsessionInfo() — R version, package versions, and platform in the rendered HTML",
     "crumbs": [
       "Core Tools",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Quarto</span>"
@@ -778,7 +811,7 @@
     "href": "part2/quarto.html#quick-reference",
     "title": "6  Quarto",
     "section": "6.15 Quick Reference",
-    "text": "6.15 Quick Reference\n\n6.15.1 Typical YAML Header\n---\ntitle: \"Analysis Title\"\nsubtitle: \"Project context\"\nauthor: \"Your Name\"\ndate: today\nformat:\n  html:\n    toc: true\n    toc-depth: 2\n    number-sections: true\n    code-fold: false\n    code-tools: true\n    self-contained: true\nexecute:\n  echo: true\n  message: false\n  warning: false\n---\n\n\n6.15.2 Setup Chunk Template\n#| label: setup\n#| include: false\n\n# ---- Libraries ----\nsuppressPackageStartupMessages({\n  library(tidyverse)\n  library(here)\n})\n\n# ---- Paths ----\ndir_data &lt;- here::here(\"data\")\ndir_out &lt;- here::here(\"outs\", \"script_name\")\ndir.create(dir_out, recursive = TRUE, showWarnings = FALSE)\n\n# ---- Options ----\noptions(stringsAsFactors = FALSE)\nset.seed(42)\n\n\n6.15.3 Chunk Options Reference\n\n\n\nOption\nPurpose\nValues\n\n\n\n\nlabel\nChunk name\nAny string\n\n\necho\nShow code\ntrue / false\n\n\neval\nRun code\ntrue / false\n\n\ninclude\nInclude in output\ntrue / false\n\n\nmessage\nShow messages\ntrue / false\n\n\nwarning\nShow warnings\ntrue / false\n\n\nerror\nContinue on error\ntrue / false\n\n\ncache\nCache results\ntrue / false\n\n\nfig-cap\nFigure caption\nString\n\n\nfig-width\nWidth in inches\nNumber\n\n\nfig-height\nHeight in inches\nNumber\n\n\nfig-dpi\nResolution\nNumber (default 72)\n\n\nfig-format\nOutput format\npng / svg / pdf\n\n\ntbl-cap\nTable caption\nString\n\n\n\n\n\n6.15.4 Quarto Commands\n\n\n\nCommand\nPurpose\n\n\n\n\nquarto render file.qmd\nRender to HTML\n\n\nquarto render file.qmd --to pdf\nRender to PDF\n\n\nquarto preview file.qmd\nLive preview in browser\n\n\nquarto render directory/\nRender all .qmd in directory\n\n\nquarto check\nVerify Quarto installation\n\n\n\n\n\n6.15.5 Keyboard Shortcuts (Positron)\n\n\n\nAction\nmacOS\nWindows\n\n\n\n\nRun line/selection\nCmd+Enter\nCtrl+Enter\n\n\nRun chunk\nCmd+Shift+Enter\nCtrl+Shift+Enter\n\n\nRender document\nCmd+Shift+K\nCtrl+Shift+K\n\n\nInsert R chunk\nCmd+Option+I\nCtrl+Alt+I",
+    "text": "6.15 Quick Reference\n\n6.15.1 Typical YAML Header (R)\n---\ntitle: \"Analysis Title\"\nsubtitle: \"Project context\"\nauthor: \"Your Name\"\ndate: today\nstatus: development\nformat:\n  html:\n    toc: true\n    toc-depth: 2\n    number-sections: true\n    code-overflow: wrap\n    code-fold: false\n    code-tools: true\n    highlight-style: github\n    theme: cosmo\n    fontsize: 1rem\n    linestretch: 1.5\n    self-contained: true\nexecute:\n  echo: true\n  message: false\n  warning: false\n  cache: false\n---\n\n\n6.15.2 Typical YAML Header (Python)\n---\ntitle: \"Analysis Title\"\nsubtitle: \"Project context\"\nauthor: \"Your Name\"\ndate: today\nstatus: development\njupyter: python3\nformat:\n  html:\n    toc: true\n    toc-depth: 2\n    number-sections: true\n    code-overflow: wrap\n    code-fold: false\n    code-tools: true\n    highlight-style: github\n    theme: cosmo\n    fontsize: 1rem\n    linestretch: 1.5\n    self-contained: true\nexecute:\n  echo: true\n  warning: false\n  cache: false\n---\n\n\n6.15.3 R Setup Chunk Template\n#| label: setup\n#| include: false\n\n# ---- Libraries ----\nsuppressPackageStartupMessages({\n  library(tidyverse)\n  library(here)\n})\n\n# ---- Paths ----\ndir_data &lt;- here::here(\"data\")\ndir_out &lt;- here::here(\"outs\", \"01_script_name\")\ndir.create(dir_out, recursive = TRUE, showWarnings = FALSE)\n\n# ---- Options ----\noptions(stringsAsFactors = FALSE)\nset.seed(42)\n\n# ---- Provenance ----\ngit_hash &lt;- system(\"git rev-parse --short HEAD\", intern = TRUE)\ncat(\"Rendered from commit:\", git_hash, \"\\n\")\n\n\n6.15.4 Python Setup Chunk Template\n#| label: setup\n\nimport subprocess, sys, random\nfrom pathlib import Path\nfrom datetime import datetime\n\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n\nPROJECT_ROOT = Path(subprocess.check_output(\n    [\"git\", \"rev-parse\", \"--show-toplevel\"]\n).decode().strip())\nsys.path.insert(0, str(PROJECT_ROOT / \"python\"))\n\nrandom.seed(42)\nnp.random.seed(42)\npd.set_option(\"display.max_columns\", None)\nsns.set_theme(style=\"whitegrid\")\n\nout_dir = PROJECT_ROOT / \"outs/XX_script_name\"\nout_dir.mkdir(parents=True, exist_ok=True)\n\ngit_hash = subprocess.check_output(\n    [\"git\", \"rev-parse\", \"--short\", \"HEAD\"]\n).decode().strip()\nprint(f\"Rendered from commit: {git_hash}\")\n\n\n6.15.5 Chunk Options Reference\n\n\n\nOption\nPurpose\nValues\n\n\n\n\nlabel\nChunk name\nAny string\n\n\necho\nShow code\ntrue / false\n\n\neval\nRun code\ntrue / false\n\n\ninclude\nInclude in output\ntrue / false\n\n\nmessage\nShow messages\ntrue / false\n\n\nwarning\nShow warnings\ntrue / false\n\n\nerror\nContinue on error\ntrue / false\n\n\ncache\nCache results\ntrue / false\n\n\nfig-cap\nFigure caption\nString\n\n\nfig-width\nWidth in inches\nNumber\n\n\nfig-height\nHeight in inches\nNumber\n\n\nfig-dpi\nResolution\nNumber (default 72)\n\n\nfig-format\nOutput format\npng / svg / pdf\n\n\ntbl-cap\nTable caption\nString\n\n\n\n\n\n6.15.6 Quarto Commands\n\n\n\nCommand\nPurpose\n\n\n\n\nquarto render file.qmd\nRender to HTML\n\n\nquarto render file.qmd --to pdf\nRender to PDF\n\n\nquarto preview file.qmd\nLive preview in browser\n\n\nquarto render directory/\nRender all .qmd in directory\n\n\nquarto check\nVerify Quarto installation\n\n\n\n\n\n6.15.7 Keyboard Shortcuts (Positron)\n\n\n\nAction\nmacOS\nWindows\n\n\n\n\nRun line/selection\nCmd+Enter\nCtrl+Enter\n\n\nRun chunk\nCmd+Shift+Enter\nCtrl+Shift+Enter\n\n\nRender document\nCmd+Shift+K\nCtrl+Shift+K\n\n\nInsert R chunk\nCmd+Option+I\nCtrl+Alt+I",
     "crumbs": [
       "Core Tools",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Quarto</span>"
@@ -943,7 +976,7 @@
     "href": "part2/conda.html#basic-commands",
     "title": "8  Conda",
     "section": "8.2 Basic Commands",
-    "text": "8.2 Basic Commands\n\n\n\n\n\n\nNoteWindows Users: Initialize Your Shell First\n\n\n\nAfter installing Miniforge/conda on Windows, you must initialize your shell before conda activate will work. Open your terminal and run:\nPowerShell:\nconda init powershell\nCommand Prompt:\nconda init cmd.exe\nThen close and reopen your terminal. You only need to do this once.\n\n\n\n8.2.1 Create an Environment\nYou only need to create the environment once. New environments can be initiated with just a python installation, or include additional packages from the start. The option -n project_name specifies the name of the environment, and is followed by an initial list of packages to install:\n# Create with just Python\nconda create -n my-project python=3.11\n\n# Create with core data science packages (recommended)\nconda create -n my-project python=3.11 numpy pandas matplotlib ipykernel\n\n\n8.2.2 Core Data Science Packages\nWhen setting up a new project environment, common data science packages you might include are:\n\n\n\nPackage\nPurpose\n\n\n\n\nnumpy\nNumerical computing with arrays and matrices\n\n\npandas\nData manipulation and analysis (dataframes)\n\n\nmatplotlib\nPlotting and visualization\n\n\nipykernel\nRequired for Quarto to execute Python code\n\n\n\nA typical environment creation command:\nconda create -n my-project python=3.11 numpy pandas matplotlib ipykernel\n\n\n\n\n\n\nNoteWhat about Jupyter?\n\n\n\nYou don’t need jupyter or jupyterlab for our workflow—Quarto handles document rendering directly. Only install them if you receive .ipynb notebook files from collaborators and want to open them in the traditional notebook interface.\n\n\n\n\n8.2.3 Activate/Deactivate\n# Activate (start using the environment)\nconda activate my-project\n\n# Deactivate (return to base)\nconda deactivate\nWhen activated, your prompt shows the environment name:\n\nmacOS / LinuxWindows\n\n\n(my-project) $\n\n\n(my-project) C:\\Users\\yourname&gt;\n\n\n\n\n\n8.2.4 Install Packages\n# Install a package\nconda install pandas\n\n# Install specific version\nconda install pandas=2.0\n\n# Install multiple packages\nconda install pandas numpy matplotlib seaborn\n\n\n8.2.5 List Environments\n# See all environments\nconda env list\n\n# See packages in current environment\nconda list\n\n\n8.2.6 Remove Environment\nconda env remove -n my-project",
+    "text": "8.2 Basic Commands\n\n\n\n\n\n\nNoteWindows Users: Initialize Your Shell First\n\n\n\nAfter installing Miniforge/conda on Windows, you must initialize your shell before conda activate will work. Open your terminal and run:\nPowerShell:\nconda init powershell\nCommand Prompt:\nconda init cmd.exe\nThen close and reopen your terminal. You only need to do this once.\n\n\n\n8.2.1 Create an Environment\nYou only need to create the environment once. New environments can be initiated with just a python installation, or include additional packages from the start. The option -n project_name specifies the name of the environment, and is followed by an initial list of packages to install:\n# Create with just Python\nconda create -n my-project python=3.11\n\n# Create with core data science packages (recommended)\nconda create -n my-project python=3.11 numpy pandas matplotlib ipykernel\n\n\n8.2.2 Core Data Science Packages\nWhen setting up a new project environment, common data science packages you might include are:\n\n\n\n\n\n\n\nPackage\nPurpose\n\n\n\n\nnumpy\nNumerical computing with arrays and matrices\n\n\npandas\nData manipulation and analysis (dataframes)\n\n\nmatplotlib\nPlotting and visualization\n\n\nipykernel\nRequired for Quarto to execute Python .qmd files\n\n\nseaborn\nStatistical data visualization (built on matplotlib)\n\n\nsession-info\nPython session info for reproducibility (install via pip)\n\n\n\nA typical environment creation command:\nconda create -n my-project python=3.11 numpy pandas matplotlib seaborn ipykernel -y\npip install session-info\n\n\n\n\n\n\nImportantAlways Include ipykernel\n\n\n\nEvery data science environment must include ipykernel. Without it, Quarto cannot execute Python .qmd files — you’ll get a kernel error when rendering. Make it a habit to include it in every conda create command.\n\n\n\n\n\n\n\n\nNoteWhat about Jupyter?\n\n\n\nYou don’t need jupyter or jupyterlab for our workflow—Quarto handles document rendering directly. Only install them if you receive .ipynb notebook files from collaborators and want to open them in the traditional notebook interface.\n\n\n\n\n8.2.3 Activate/Deactivate\n# Activate (start using the environment)\nconda activate my-project\n\n# Deactivate (return to base)\nconda deactivate\nWhen activated, your prompt shows the environment name:\n\nmacOS / LinuxWindows\n\n\n(my-project) $\n\n\n(my-project) C:\\Users\\yourname&gt;\n\n\n\n\n\n8.2.4 Install Packages\n# Install a package\nconda install pandas\n\n# Install specific version\nconda install pandas=2.0\n\n# Install multiple packages\nconda install pandas numpy matplotlib seaborn\n\n\n8.2.5 List Environments\n# See all environments\nconda env list\n\n# See packages in current environment\nconda list\n\n\n8.2.6 Remove Environment\nconda env remove -n my-project",
     "crumbs": [
       "Core Tools",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Conda</span>"
@@ -1130,7 +1163,7 @@
     "href": "part2/git-github.html#setting-up-.gitignore",
     "title": "Git & GitHub",
     "section": "Setting Up .gitignore",
-    "text": "Setting Up .gitignore\nThe .gitignore file tells Git which files to ignore—they won’t be tracked or committed. This is essential for:\n\nLarge files: Data files that are too big for Git\nGenerated files: Outputs that can be recreated from code\nSecrets: Credentials that should never be shared\nSystem junk: OS and IDE files that aren’t part of your project\n\n\nStandard .gitignore for Lab Projects\n# Large data files\ndata/raw/\n*.h5ad\n*.rds\n*.csv\n\n# Generated outputs (reproducible from code)\nouts/\n\n# R artifacts\n.Rhistory\n.RData\n.Rproj.user/\nrenv/library/\n\n# Python artifacts\n__pycache__/\n*.pyc\n.venv/\n\n# Quarto rendering\n*_files/\n*_cache/\n.quarto/\n\n# Secrets - NEVER commit these\n.env\n*credentials*\n*secret*\n\n# OS files\n.DS_Store\nThumbs.db\n\n# IDE settings (optional - some teams share these)\n.vscode/\n.positron/\n\n\n\n\n\n\nImportantCreate .gitignore first\n\n\n\nSet up .gitignore before your first commit. Once a file is committed, adding it to .gitignore won’t remove it from history—it’s already tracked.",
+    "text": "Setting Up .gitignore\nThe .gitignore file tells Git which files to ignore—they won’t be tracked or committed. This is essential for:\n\nLarge files: Data files that are too big for Git\nGenerated files: Outputs that can be recreated from code\nSecrets: Credentials that should never be shared\nSystem junk: OS and IDE files that aren’t part of your project\n\n\nStandard .gitignore for Lab Projects\n# Large data files (add specific patterns as needed)\n*.h5ad\n*.rds\n*.csv\n\n# Generated outputs (reproducible from code)\nouts/\n\n# R artifacts\n.Rhistory\n.RData\n.Rproj.user/\nrenv/library/\n\n# Python artifacts\n__pycache__/\n*.pyc\n.venv/\n\n# Quarto rendering\n*_files/\n*_cache/\n.quarto/\n\n# Secrets - NEVER commit these\n.env\n*credentials*\n*secret*\n\n# OS files\n.DS_Store\nThumbs.db\n\n# IDE settings (optional - some teams share these)\n.vscode/\n.positron/\n\n\n\n\n\n\nImportantCreate .gitignore first\n\n\n\nSet up .gitignore before your first commit. Once a file is committed, adding it to .gitignore won’t remove it from history—it’s already tracked.",
     "crumbs": [
       "Core Tools",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Git & GitHub</span>"
@@ -1295,7 +1328,7 @@
     "href": "claude-code/configuring-projects.html#creating-your-project-claude.md",
     "title": "11  Configuring Your Project for Claude",
     "section": "11.2 Creating Your Project CLAUDE.md",
-    "text": "11.2 Creating Your Project CLAUDE.md\nCreate a .claude/ folder in your project root with a CLAUDE.md file inside. This file answers: “What does Claude need to know to work effectively here?”\n\n11.2.1 Minimal Example (Course Project)\n# Stats 101 Final Project\n\n## Overview\nAnalysis of penguin body measurements to predict species.\n\n## Data\n- Raw data: `data/penguins.csv` (from palmerpenguins package)\n- 344 observations, 8 variables\n\n## Workflows\nRender the analysis: `quarto render analysis.qmd`\n\n## Conventions\n- Use tidyverse style\n- theme_classic() for all plots\n\n\n11.2.2 Full Template (Research Project)\n# Project: [Name]\n\n## Overview\n[One paragraph: what does this project do? What's its current state?]\n\n## Environment\n- **Python**: `conda activate [env-name]`\n- **R**: Uses renv (auto-activates)\n\n## Repository Layout\nproject/ ├── data/ │ ├── raw/ # Original data (DO NOT MODIFY) │ └── processed/ # Cleaned data ├── analysis/ # Quarto analysis scripts ├── output/ # Results, figures └── scripts/ # Utility functions\n\n## Key Files\n- `analysis/main.qmd` — Primary analysis script\n- `data/raw/counts.csv` — Input data (10,000 genes × 50 samples)\n- `output/figures/` — Publication figures\n\n## Workflows\n\n### Run the analysis\n```bash\nquarto render analysis/main.qmd",
+    "text": "11.2 Creating Your Project CLAUDE.md\nCreate a .claude/ folder in your project root with a CLAUDE.md file inside. This file answers: “What does Claude need to know to work effectively here?”\n\n11.2.1 Minimal Example (Course Project)\n# Stats 101 Final Project\n\n## Overview\nAnalysis of penguin body measurements to predict species.\n\n## Data\n- Raw data: `data/penguins.csv` (from palmerpenguins package)\n- 344 observations, 8 variables\n\n## Workflows\nRender the analysis: `quarto render analysis.qmd`\n\n## Conventions\n- Use tidyverse style\n- theme_classic() for all plots\n\n\n11.2.2 Full Template (Research Project)\n# Project: [Name]\n\n## Overview\n[One paragraph: what does this project do? What's its current state?]\n\n## Environment\n- **Python**: `conda activate [env-name]`\n- **R**: Uses renv (auto-activates)\n\n## Repository Layout\nproject/ ├── data/ # External inputs (read-only) ├── scripts/ # Quarto analysis scripts (.qmd) │ └── exploratory/ # One-off analyses ├── outs/ # All script-generated outputs ├── R/ # Shared R helper functions └── python/ # Shared Python helper functions\n\n## Key Files\n- `scripts/01_analysis.qmd` — Primary analysis script\n- `data/counts.csv` — Input data (10,000 genes × 50 samples)\n- `outs/01_analysis/` — Analysis outputs (figures, tables)\n\n## Workflows\n\n### Run the analysis\n```bash\nquarto render analysis/main.qmd",
     "crumbs": [
       "Claude Code",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>Configuring Your Project for Claude</span>"
@@ -1317,7 +1350,7 @@
     "href": "claude-code/configuring-projects.html#gotchas",
     "title": "11  Configuring Your Project for Claude",
     "section": "11.4 Gotchas",
-    "text": "11.4 Gotchas\n\nMemory error with full dataset—use subset for testing\nSample IDs in data/ are 1-indexed, in metadata/ are 0-indexed\n\n\n### What Makes a Good CLAUDE.md\n\n| Principle | Example |\n|-----------|---------|\n| **Be specific about data** | \"10,000 genes × 50 samples, raw counts\" not \"gene expression data\" |\n| **Document the non-obvious** | Quirks, conventions, known issues |\n| **Include actual commands** | `quarto render analysis.qmd` not \"run the analysis\" |\n| **Keep it current** | Update as the project evolves |\n\n## Evolving Your Project Documentation\n\nYour CLAUDE.md should grow with the project:\n\n| When | What to add |\n|------|-------------|\n| **After debugging** | Add the gotcha so future sessions don't hit it again |\n| **After decisions** | Document analytical choices and why you made them |\n| **After refactoring** | Update folder structure, rename files |\n| **After collaboration** | Note team conventions and workflows |\n\n**Good habit:** At the end of each session, ask yourself: \"What did I learn that future sessions should know?\" Then add it.\n\n## Plan Files for Complex Projects\n\nFor projects with many tasks—multiple figures, several analyses, ongoing work—use dedicated **plan files** alongside your main CLAUDE.md.\n\n### When to Use Plan Files\n\n- Tracking multiple figures or outputs\n- Managing a multi-step analysis pipeline\n- Recording decisions that affect multiple parts of the project\n- Keeping a running status of what's done and what's pending\n\n### Example: PLOTTING_PLAN.md\n\n```markdown\n# Plotting Plan\n\n## Quick Reference\n- Input data: `output/results.rds`\n- Output directory: `figures/`\n- Standard dimensions: 8×6 inches (main), 4×4 (supplementary)\n\n## Technical Decisions\n\n| Decision | Resolution |\n|----------|------------|\n| Color palette | viridis for continuous, Set1 for categorical |\n| Font size | 12pt base, 10pt for legends |\n| Format | PDF for publication, PNG for presentations |\n\n## Figure Status\n\n### Figure 1: Sample Overview\n- **Status**: DONE\n- **Script**: `scripts/fig1_overview.R`\n- **Notes**: Log scale for y-axis; reviewer requested in revision\n\n### Figure 2: Differential Expression Volcano\n- **Status**: IN PROGRESS\n- **Script**: `scripts/fig2_volcano.R`\n- **Blocked**: Need to finalize FDR threshold with PI\n\n### Figure 3: Pathway Enrichment\n- **Status**: TODO\n- **Requirements**: Complete DE analysis first\n\n11.4.1 Example: DATA_NOTES.md\n# Data Documentation\n\n## Raw Data\n\n### counts.csv\n- Source: Core facility, batch 2024-01\n- Dimensions: 10,234 genes × 48 samples\n- Format: Raw counts (not normalized)\n- Known issues: Sample S23 failed QC, excluded\n\n### metadata.csv\n- Columns: sample_id, condition, batch, sex, age\n- Condition levels: control, treatment_low, treatment_high\n- Note: age is in weeks, not days\n\n## Processed Data\n\n### counts_normalized.rds\n- Created by: `analysis/01_normalization.qmd`\n- Method: TMM normalization via edgeR\n- Genes filtered: kept 8,456 with CPM &gt; 1 in at least 3 samples\n\n\n11.4.2 Why Plan Files Help\n\nClaude sees them — Claude reads your .claude/ folder and understands project status\nTrack decisions — No repeating the same discussions across sessions\nReview progress — When you return after a break, you know what’s done\nShare status — Collaborators can see what’s pending",
+    "text": "11.4 Gotchas\n\nMemory error with full dataset—use subset for testing\nSample IDs in data/ are 1-indexed, in metadata/ are 0-indexed\n\n\n### What Makes a Good CLAUDE.md\n\n| Principle | Example |\n|-----------|---------|\n| **Be specific about data** | \"10,000 genes × 50 samples, raw counts\" not \"gene expression data\" |\n| **Document the non-obvious** | Quirks, conventions, known issues |\n| **Include actual commands** | `quarto render analysis.qmd` not \"run the analysis\" |\n| **Keep it current** | Update as the project evolves |\n\n## Evolving Your Project Documentation\n\nYour CLAUDE.md should grow with the project:\n\n| When | What to add |\n|------|-------------|\n| **After debugging** | Add the gotcha so future sessions don't hit it again |\n| **After decisions** | Document analytical choices and why you made them |\n| **After refactoring** | Update folder structure, rename files |\n| **After collaboration** | Note team conventions and workflows |\n\n**Good habit:** At the end of each session, ask yourself: \"What did I learn that future sessions should know?\" Then add it.\n\n## Plan Files for Complex Projects\n\nFor projects with many tasks—multiple figures, several analyses, ongoing work—use dedicated **plan files** alongside your main CLAUDE.md.\n\n### When to Use Plan Files\n\n- Tracking multiple figures or outputs\n- Managing a multi-step analysis pipeline\n- Recording decisions that affect multiple parts of the project\n- Keeping a running status of what's done and what's pending\n\n### Example: PLOTTING_PLAN.md\n\n```markdown\n# Plotting Plan\n\n## Quick Reference\n- Input data: `outs/03_differential/results.rds`\n- Output directory: `outs/04_figures/`\n- Standard dimensions: 8×6 inches (main), 4×4 (supplementary)\n\n## Technical Decisions\n\n| Decision | Resolution |\n|----------|------------|\n| Color palette | viridis for continuous, Set1 for categorical |\n| Font size | 12pt base, 10pt for legends |\n| Format | PDF for publication, PNG for presentations |\n\n## Figure Status\n\n### Figure 1: Sample Overview\n- **Status**: DONE\n- **Script**: `scripts/fig1_overview.R`\n- **Notes**: Log scale for y-axis; reviewer requested in revision\n\n### Figure 2: Differential Expression Volcano\n- **Status**: IN PROGRESS\n- **Script**: `scripts/fig2_volcano.R`\n- **Blocked**: Need to finalize FDR threshold with PI\n\n### Figure 3: Pathway Enrichment\n- **Status**: TODO\n- **Requirements**: Complete DE analysis first\n\n11.4.1 Example: DATA_NOTES.md\n# Data Documentation\n\n## Raw Data\n\n### counts.csv\n- Source: Core facility, batch 2024-01\n- Dimensions: 10,234 genes × 48 samples\n- Format: Raw counts (not normalized)\n- Known issues: Sample S23 failed QC, excluded\n\n### metadata.csv\n- Columns: sample_id, condition, batch, sex, age\n- Condition levels: control, treatment_low, treatment_high\n- Note: age is in weeks, not days\n\n## Processed Data\n\n### counts_normalized.rds\n- Created by: `analysis/01_normalization.qmd`\n- Method: TMM normalization via edgeR\n- Genes filtered: kept 8,456 with CPM &gt; 1 in at least 3 samples\n\n\n11.4.2 Why Plan Files Help\n\nClaude sees them — Claude reads your .claude/ folder and understands project status\nTrack decisions — No repeating the same discussions across sessions\nReview progress — When you return after a break, you know what’s done\nShare status — Collaborators can see what’s pending",
     "crumbs": [
       "Claude Code",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>Configuring Your Project for Claude</span>"
@@ -1559,7 +1592,7 @@
     "href": "claude-code/working-effectively.html#a-complete-session-example",
     "title": "13  Working Effectively with Claude",
     "section": "13.8 A Complete Session Example",
-    "text": "13.8 A Complete Session Example\nHere’s a realistic session flow:\nYou: I have count data in data/raw/counts.csv. What does it look like?\n\nClaude: [reads file, reports dimensions, column names, value ranges]\n\nYou: Create a Quarto script at analysis/01_qc.qmd that:\n     - Loads the data\n     - Shows a histogram of total counts per sample\n     - Flags any sample with unusually low counts\n\nClaude: [creates script, shows content]\n\nYou: [reviews, accepts]\n     Render it and show me any errors.\n\nClaude: [runs quarto render, reports success]\n\nYou: [opens HTML, notices an issue]\n     Sample_3 looks strange. Add a section that calculates\n     summary stats and explicitly flags outliers.\n\nClaude: [proposes edit]\n\nYou: [accepts]\n     Render again.\n\nClaude: [renders]\n\nYou: /done\n\nClaude: Session summary:\n        - Created analysis/01_qc.qmd with QC diagnostics\n        - Identified Sample_3 as potential outlier\n\n        Commit these changes?\n        \"Add QC analysis with sample diagnostics\"\n\nYou: [accepts commit]\nThe key pattern: explore → create → verify → refine → commit.",
+    "text": "13.8 A Complete Session Example\nHere’s a realistic session flow:\nYou: I have count data in data/counts.csv. What does it look like?\n\nClaude: [reads file, reports dimensions, column names, value ranges]\n\nYou: Create a Quarto script at analysis/01_qc.qmd that:\n     - Loads the data\n     - Shows a histogram of total counts per sample\n     - Flags any sample with unusually low counts\n\nClaude: [creates script, shows content]\n\nYou: [reviews, accepts]\n     Render it and show me any errors.\n\nClaude: [runs quarto render, reports success]\n\nYou: [opens HTML, notices an issue]\n     Sample_3 looks strange. Add a section that calculates\n     summary stats and explicitly flags outliers.\n\nClaude: [proposes edit]\n\nYou: [accepts]\n     Render again.\n\nClaude: [renders]\n\nYou: /done\n\nClaude: Session summary:\n        - Created analysis/01_qc.qmd with QC diagnostics\n        - Identified Sample_3 as potential outlier\n\n        Commit these changes?\n        \"Add QC analysis with sample diagnostics\"\n\nYou: [accepts commit]\nThe key pattern: explore → create → verify → refine → commit.",
     "crumbs": [
       "Claude Code",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Working Effectively with Claude</span>"
@@ -1570,7 +1603,7 @@
     "href": "part3/starting-project.html",
     "title": "14  Starting a New Analysis Project",
     "section": "",
-    "text": "14.1 The Standard Structure\nThis chapter walks through setting up a new analysis project from scratch, using all the tools together.\nEvery analysis project should have:",
+    "text": "14.1 The Standard Structure\nThis chapter walks through setting up a new analysis project from scratch, using all the tools together. For detailed explanations of each convention, see the Project Organization and Quarto chapters.\nEvery analysis project should have:\nFor projects with multiple analysis sections (e.g., phosphoproteomics + transcriptomics), mirror the sections across scripts/, data/, and outs/:",
     "crumbs": [
       "Workflows",
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>Starting a New Analysis Project</span>"
@@ -1581,7 +1614,7 @@
     "href": "part3/starting-project.html#the-standard-structure",
     "title": "14  Starting a New Analysis Project",
     "section": "",
-    "text": "project-name/\n├── .claude/\n│   └── CLAUDE.md         # Claude Code instructions\n├── .git/                  # Git repository\n├── .gitignore            # Files to exclude from Git\n├── data/\n│   ├── raw/              # Original data (never modify)\n│   └── processed/        # Cleaned/transformed data\n├── scripts/              # Analysis scripts\n├── output/               # Results, figures, tables\n├── environment.yml       # Conda environment (Python)\n├── renv.lock            # R package versions\n└── README.md            # Project description",
+    "text": "project-name/\n├── .claude/\n│   └── CLAUDE.md         # Claude Code instructions\n├── .git/                  # Git repository\n├── .gitignore            # Files to exclude from Git\n├── R/                    # Shared R helper functions\n├── python/               # Shared Python helper functions\n├── scripts/\n│   └── exploratory/      # One-off analyses\n├── data/                 # External inputs only — scripts never write here\n├── outs/                 # All script-generated outputs\n├── environment.yml       # Conda environment (Python)\n├── renv.lock            # R package versions\n└── README.md            # Project description\n\nscripts/\n├── phosphoproteomics/\n│   ├── 01_qc.qmd\n│   └── 02_analysis.qmd\n├── transcriptomics/\n│   └── 01_heatmaps.qmd\n└── exploratory/\n\ndata/\n├── phosphoproteomics/\n└── transcriptomics/\n\nouts/\n├── phosphoproteomics/\n├── transcriptomics/\n└── exploratory/",
     "crumbs": [
       "Workflows",
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>Starting a New Analysis Project</span>"
@@ -1592,7 +1625,7 @@
     "href": "part3/starting-project.html#step-by-step-setup",
     "title": "14  Starting a New Analysis Project",
     "section": "14.2 Step-by-Step Setup",
-    "text": "14.2 Step-by-Step Setup\n\n14.2.1 1. Create the Project Directory\nmkdir my-analysis\ncd my-analysis\n\n\n14.2.2 2. Initialize Git\ngit init\nCreate .gitignore:\n# Data (large files)\ndata/raw/\n*.csv\n*.tsv\n*.xlsx\n\n# R\n.Rhistory\n.RData\n.Rproj.user/\nrenv/library/\nrenv/staging/\n\n# Python\n__pycache__/\n*.pyc\n.venv/\n\n# Output (regenerated from code)\noutput/\n\n# OS\n.DS_Store\nThumbs.db\n\n# IDE\n.vscode/\n.positron/\n\n# Secrets\n.env\n\n\n14.2.3 3. Create Directory Structure\nmkdir -p data/raw data/processed scripts output .claude\n\nSet up your CLAUDE.md:\n\nI’m starting a new project analyzing proteomics data from cell cultures. The data is in data/raw/, I’m using R with renv, and I’ll render with Quarto. Can you create a starter .claude/CLAUDE.md for this project?\n\nTell Claude the project type, data location, and tools you’re using. It’ll create a tailored template.\n\n\n\n14.2.4 4. Set Up Python Environment (if using Python)\nconda create -n my-analysis python=3.11 -y\nconda activate my-analysis\nconda install pandas numpy matplotlib seaborn -y\nconda env export &gt; environment.yml\n\n\n14.2.5 5. Set Up R with renv (if using R)\nIn R:\nrenv::init()\ninstall.packages(c(\"tidyverse\", \"here\"))\nrenv::snapshot()\n\n\n14.2.6 6. Create Project CLAUDE.md\nCreate .claude/CLAUDE.md:\n# Project: My Analysis\n\n## Overview\n[Brief description of what this project does]\n\n## Environment\n- Python: `conda activate my-analysis`\n- R: Uses renv (auto-activates)\n\n## Key Directories\n- `data/raw/` — Original data (read-only)\n- `data/processed/` — Cleaned data\n- `scripts/` — Analysis code\n- `output/` — Results and figures\n\n## Workflows\n[How to run the analysis]\n\n## Data\n[Description of data files and their contents]\n\n\n14.2.7 7. Create README\nCreate README.md:\n# My Analysis\n\n## Overview\n[What this project does]\n\n## Setup\n\n### Python\nconda env create -f environment.yml\nconda activate my-analysis\n\n### R\n# renv will auto-activate; run renv::restore() if needed\n\n## Running the Analysis\n[Instructions]\n\n## Data\n[Data sources and descriptions]\n\n\n14.2.8 8. First Commit\ngit add .\ngit commit -m \"Initial project setup\"\n\n\n14.2.9 9. Push to GitHub\ngh repo create my-analysis --private --source=. --push\nOr manually:\n\nCreate repo on GitHub\ngit remote add origin https://github.com/USERNAME/my-analysis.git\ngit push -u origin main",
+    "text": "14.2 Step-by-Step Setup\n\n14.2.1 1. Create the Project Directory\nmkdir my-analysis\ncd my-analysis\n\n\n14.2.2 2. Initialize Git\ngit init\nCreate .gitignore:\n# Generated outputs (reproducible from code)\nouts/\n\n# R artifacts\n.Rhistory\n.RData\n.Rproj.user/\nrenv/library/\nrenv/staging/\nrenv/local/\n*_cache/\n\n# Python artifacts\n__pycache__/\n*.py[cod]\n*.egg-info/\n.eggs/\n*.egg\n.venv/\nvenv/\n\n# Quarto rendering\n*_files/\n.quarto/\n\n# OS files\n.DS_Store\nThumbs.db\n\n# IDE settings\n.vscode/\n.positron/\n*.Rproj\n\n# Secrets\n.env\n*.pem\ncredentials.json\n\n\n14.2.3 3. Create Directory Structure\nmkdir -p R python scripts/exploratory data outs/exploratory .claude\n\nSet up your CLAUDE.md:\n\nI’m starting a new project analyzing proteomics data from cell cultures. The data is in data/, I’m using R with renv, and I’ll render with Quarto. Can you create a starter .claude/CLAUDE.md for this project?\n\nTell Claude the project type, data location, and tools you’re using. It’ll create a tailored template.\n\n\n\n14.2.4 4. Set Up Python Environment (if using Python)\nconda create -n my-analysis python=3.11 pandas numpy matplotlib seaborn ipykernel -y\nconda activate my-analysis\npip install session-info\nconda env export --from-history &gt; environment.yml\nThe --from-history flag produces a portable file with only explicitly installed packages (no platform-specific builds).\n\n\n\n\n\n\nNote\n\n\n\nAlways include ipykernel — it’s required for Quarto to render Python .qmd files. Include session-info for reproducibility tracking.\n\n\n\n\n14.2.5 5. Set Up R with renv (if using R)\nIn R:\nrenv::init()\ninstall.packages(c(\"tidyverse\", \"here\"))\nrenv::snapshot()\n\n\n14.2.6 6. Create Project CLAUDE.md\nCreate .claude/CLAUDE.md:\n# Project: My Analysis\n\n## Overview\n[Brief description of what this project does]\n\n## Environment\n- Python: `conda activate my-analysis`\n- R: Uses renv (auto-activates)\n\n## Key Directories\n- `data/` — External input data (read-only, scripts never write here)\n- `scripts/` — Quarto analysis scripts (.qmd)\n- `scripts/exploratory/` — One-off analyses\n- `outs/` — All script-generated outputs\n- `R/` — Shared R helper functions\n- `python/` — Shared Python helper functions\n\n## Workflows\n[How to run the analysis]\n\n## Data\n[Description of data files and their sources]\n\n## Conventions\n- Scripts use `status:` lifecycle field (development → finalized → deprecated)\n- Every script writes `BUILD_INFO.txt` to its output folder\n- Scripts communicate through files in `outs/`, not shared memory\n- Cross-language data uses Parquet format\n\n## Project Document Registry\n[Planning documents go here as the project grows]\n\n\n14.2.7 7. Create README\nCreate README.md:\n# My Analysis\n\n## Overview\n[What this project does]\n\n## Setup\n\n### Python\nconda env create -f environment.yml\nconda activate my-analysis\n\n### R\n# renv will auto-activate; run renv::restore() if needed\n\n## Running the Analysis\n[Instructions]\n\n## Data\n[Data sources and descriptions]\n\n\n14.2.8 8. First Commit\ngit add .\ngit commit -m \"Initial project setup\"\n\n\n14.2.9 9. Push to GitHub\ngh repo create my-analysis --private --source=. --push\nOr manually:\n\nCreate repo on GitHub\ngit remote add origin https://github.com/USERNAME/my-analysis.git\ngit push -u origin main",
     "crumbs": [
       "Workflows",
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>Starting a New Analysis Project</span>"
@@ -1603,18 +1636,18 @@
     "href": "part3/starting-project.html#adding-data",
     "title": "14  Starting a New Analysis Project",
     "section": "14.3 Adding Data",
-    "text": "14.3 Adding Data\n\n14.3.1 Raw Data\nPut original data files in data/raw/. Never modify these files — treat them as read-only.\nIf data files are large, don’t commit them to Git. Add to .gitignore:\ndata/raw/*.csv\nInstead, document where to obtain the data in your README.\n\n\n14.3.2 Processing Data\nScripts that clean or transform data should:\n\nRead from data/raw/\nWrite to data/processed/\nInclude documentation of what transformations were applied\n\n# scripts/01_clean_data.R\n\nlibrary(tidyverse)\nlibrary(here)\n\n# Load raw data\nraw &lt;- read_csv(here(\"data/raw/experiment_data.csv\"))\ncat(\"Loaded\", nrow(raw), \"rows\\n\")\n\n# Clean: remove rows with missing values\nclean &lt;- raw %&gt;%\n  filter(!is.na(value)) %&gt;%\n  filter(quality &gt; 0.8)\ncat(\"After cleaning:\", nrow(clean), \"rows\\n\")\n\n# Save\nwrite_csv(clean, here(\"data/processed/clean_data.csv\"))",
+    "text": "14.3 Adding Data\nPut external data files in data/. Never modify these files — treat them as read-only. Scripts never write to data/.\nIf data files are large, don’t commit them to Git. Add them to .gitignore and document where to obtain the data in your README.",
     "crumbs": [
       "Workflows",
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>Starting a New Analysis Project</span>"
     ]
   },
   {
-    "objectID": "part3/starting-project.html#organizing-scripts",
-    "href": "part3/starting-project.html#organizing-scripts",
+    "objectID": "part3/starting-project.html#writing-your-first-script",
+    "href": "part3/starting-project.html#writing-your-first-script",
     "title": "14  Starting a New Analysis Project",
-    "section": "14.4 Organizing Scripts",
-    "text": "14.4 Organizing Scripts\nName scripts with numbers to indicate order:\nscripts/\n├── 01_clean_data.R\n├── 02_exploratory_analysis.R\n├── 03_statistical_analysis.R\n└── 04_generate_figures.R\nOr organize by function:\nscripts/\n├── preprocessing/\n│   ├── clean_data.R\n│   └── normalize.R\n├── analysis/\n│   ├── differential_expression.R\n│   └── pathway_analysis.R\n└── figures/\n    ├── figure1.R\n    └── figure2.R",
+    "section": "14.4 Writing Your First Script",
+    "text": "14.4 Writing Your First Script\nAnalysis scripts are .qmd files (not .R or .py). Here’s a typical first script that reads external data, cleans it, and saves the result to outs/:\n# scripts/01_clean_data.qmd — setup chunk\n\nlibrary(tidyverse)\nlibrary(here)\n\ndir_out &lt;- here(\"outs\", \"01_clean_data\")\ndir.create(dir_out, recursive = TRUE, showWarnings = FALSE)\n\n# --- Inputs (external data) ---\nraw &lt;- read_csv(here(\"data\", \"experiment_data.csv\"))\ncat(\"Loaded\", nrow(raw), \"rows\\n\")\n\n# Clean\nclean &lt;- raw %&gt;%\n  filter(!is.na(value)) %&gt;%\n  filter(quality &gt; 0.8)\ncat(\"After cleaning:\", nrow(clean), \"rows\\n\")\n\n# Save to outs/\nwrite_csv(clean, file.path(dir_out, \"clean_data.csv\"))\nKey points:\n\nReads from data/ (external inputs)\nWrites to outs/01_clean_data/ (script-specific output folder)\nNever writes to data/\n\nFor full script templates including YAML headers, setup chunks, and BUILD_INFO.txt, see the Quarto chapter and Templates appendix.",
     "crumbs": [
       "Workflows",
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>Starting a New Analysis Project</span>"
@@ -1625,7 +1658,7 @@
     "href": "part3/starting-project.html#using-claude-code",
     "title": "14  Starting a New Analysis Project",
     "section": "14.5 Using Claude Code",
-    "text": "14.5 Using Claude Code\nWith your .claude/CLAUDE.md in place, start Claude Code:\nclaude\nExample workflow:\n\n“I have RNA-seq counts in data/raw/counts.csv. Create a script to load it, do basic QC, and save a cleaned version.”\n\nReview the generated code, then:\n\n“Commit this with an appropriate message”",
+    "text": "14.5 Using Claude Code\nWith your .claude/CLAUDE.md in place, start Claude Code:\nclaude\nExample workflow:\n\n“I have RNA-seq counts in data/counts.csv. Create a QMD script to load it, do basic QC, and save a cleaned version to outs/.”\n\nReview the generated code, then:\n\n“Commit this with an appropriate message”",
     "crumbs": [
       "Workflows",
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>Starting a New Analysis Project</span>"
@@ -1636,7 +1669,7 @@
     "href": "part3/starting-project.html#checklist",
     "title": "14  Starting a New Analysis Project",
     "section": "14.6 Checklist",
-    "text": "14.6 Checklist\nBefore starting analysis:\n\nGit initialized\n.gitignore in place\nDirectory structure created\nConda environment created and exported\nrenv initialized (if using R)\n.claude/CLAUDE.md written\nREADME drafted\nFirst commit made\nPushed to GitHub",
+    "text": "14.6 Checklist\nBefore starting analysis:\n\nGit initialized\n.gitignore in place\nDirectory structure created (R/, python/, scripts/exploratory/, data/, outs/)\nConda environment created and exported (--from-history)\nrenv initialized (if using R)\n.claude/CLAUDE.md written\nREADME drafted\nFirst commit made\nPushed to GitHub",
     "crumbs": [
       "Workflows",
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>Starting a New Analysis Project</span>"
@@ -1801,7 +1834,7 @@
     "href": "part3/reproducibility.html#using-relative-paths",
     "title": "16  Reproducible Analysis",
     "section": "16.4 Using Relative Paths",
-    "text": "16.4 Using Relative Paths\nBad — hardcoded absolute paths:\ndata &lt;- read_csv(\"/Users/jm284/projects/analysis/data/raw/data.csv\")\nGood — relative paths with here:\nlibrary(here)\ndata &lt;- read_csv(here(\"data/raw/data.csv\"))\nPython — use pathlib:\nfrom pathlib import Path\n\ndata_dir = Path(__file__).parent.parent / \"data\" / \"raw\"\ndata = pd.read_csv(data_dir / \"data.csv\")\nThe here package (R) and pathlib (Python) find paths relative to the project root, regardless of where scripts are run from.",
+    "text": "16.4 Using Relative Paths\nBad — hardcoded absolute paths:\ndata &lt;- read_csv(\"/Users/jm284/projects/analysis/data/data.csv\")\nGood — relative paths with here:\nlibrary(here)\ndata &lt;- read_csv(here(\"data\", \"data.csv\"))\nPython — use pathlib:\nfrom pathlib import Path\n\nPROJECT_ROOT = Path(__file__).parent.parent\ndata = pd.read_csv(PROJECT_ROOT / \"data\" / \"data.csv\")\nThe here package (R) and pathlib (Python) find paths relative to the project root, regardless of where scripts are run from.",
     "crumbs": [
       "Workflows",
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>Reproducible Analysis</span>"
@@ -1823,7 +1856,7 @@
     "href": "part3/reproducibility.html#documenting-data",
     "title": "16  Reproducible Analysis",
     "section": "16.6 Documenting Data",
-    "text": "16.6 Documenting Data\nIn your README or a separate DATA.md:\n# Data Description\n\n## Raw Data\n\n### data/raw/counts.csv\n- Source: GEO accession GSE12345\n- Downloaded: 2024-01-15\n- Format: CSV, 20,000 genes × 12 samples\n- Columns: gene_id, sample1, sample2, ...\n\n### data/raw/metadata.csv\n- Source: Provided by collaborator\n- Format: CSV, 12 rows\n- Columns: sample_id, condition, batch, replicate",
+    "text": "16.6 Documenting Data\nIn your README or a separate DATA.md:\n# Data Description\n\n## Data\n\n### data/counts.csv\n- Source: GEO accession GSE12345\n- Downloaded: 2024-01-15\n- Format: CSV, 20,000 genes × 12 samples\n- Columns: gene_id, sample1, sample2, ...\n\n### data/metadata.csv\n- Source: Provided by collaborator\n- Format: CSV, 12 rows\n- Columns: sample_id, condition, batch, replicate",
     "crumbs": [
       "Workflows",
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>Reproducible Analysis</span>"
@@ -1834,7 +1867,7 @@
     "href": "part3/reproducibility.html#running-the-full-analysis",
     "title": "16  Reproducible Analysis",
     "section": "16.7 Running the Full Analysis",
-    "text": "16.7 Running the Full Analysis\nCreate a master script or Makefile that runs everything:\nShell script (run_analysis.sh):\n#!/bin/bash\nset -e  # Exit on error\n\necho \"Setting up environment...\"\nconda activate my-analysis\n\necho \"Step 1: Cleaning data...\"\nRscript scripts/01_clean_data.R\n\necho \"Step 2: Analysis...\"\npython scripts/02_analyze.py\n\necho \"Step 3: Figures...\"\nRscript scripts/03_figures.R\n\necho \"Done!\"\nQuarto (analysis.qmd):\nA Quarto document that runs all code chunks in order is inherently reproducible — rendering the document runs the full analysis.\nMake (Makefile):\nall: output/figures/figure1.pdf output/results.csv\n\noutput/figures/figure1.pdf: scripts/03_figures.R data/processed/clean.csv\n    Rscript scripts/03_figures.R\n\ndata/processed/clean.csv: scripts/01_clean_data.R data/raw/data.csv\n    Rscript scripts/01_clean_data.R",
+    "text": "16.7 Running the Full Analysis\nCreate a master script or Makefile that runs everything:\nShell script (run_analysis.sh):\n#!/bin/bash\nset -e  # Exit on error\n\necho \"Setting up environment...\"\nconda activate my-analysis\n\necho \"Step 1: Cleaning data...\"\nRscript scripts/01_clean_data.R\n\necho \"Step 2: Analysis...\"\npython scripts/02_analyze.py\n\necho \"Step 3: Figures...\"\nRscript scripts/03_figures.R\n\necho \"Done!\"\nQuarto (analysis.qmd):\nA Quarto document that runs all code chunks in order is inherently reproducible — rendering the document runs the full analysis.\nMake (Makefile):\nall: outs/03_figures/figure1.pdf outs/02_analysis/results.csv\n\nouts/03_figures/figure1.pdf: scripts/03_figures.qmd outs/01_clean_data/clean.csv\n    quarto render scripts/03_figures.qmd\n\nouts/01_clean_data/clean.csv: scripts/01_clean_data.qmd data/data.csv\n    quarto render scripts/01_clean_data.qmd",
     "crumbs": [
       "Workflows",
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>Reproducible Analysis</span>"
@@ -1933,7 +1966,7 @@
     "href": "part3/troubleshooting.html#claude-code",
     "title": "17  Common Tasks & Troubleshooting",
     "section": "17.4 Claude Code",
-    "text": "17.4 Claude Code\n\n17.4.1 “Command not found” for conda in Claude Code\nClaude Code runs in a non-interactive shell. Always source conda first:\nsource ~/miniforge3/etc/profile.d/conda.sh && conda activate my-env && python script.py\nDocument this pattern in your .claude/CLAUDE.md.\n\n\n17.4.2 Claude doesn’t understand my project\nEnsure .claude/CLAUDE.md exists and contains:\n\nProject overview\nEnvironment setup commands\nKey file locations\nCommon workflows\n\n\n\n17.4.3 Responses are generic or unhelpful\nProvide more context:\n\nShow the specific file or code\nExplain what you’re trying to accomplish\nShare error messages in full\n\nInstead of: “Fix the bug”\nTry: “In analysis.R line 45, I get ‘object x not found’. Here’s the relevant code: [paste code]. The data is loaded from data/raw/data.csv.”",
+    "text": "17.4 Claude Code\n\n17.4.1 “Command not found” for conda in Claude Code\nClaude Code runs in a non-interactive shell. Always source conda first:\nsource ~/miniforge3/etc/profile.d/conda.sh && conda activate my-env && python script.py\nDocument this pattern in your .claude/CLAUDE.md.\n\n\n17.4.2 Claude doesn’t understand my project\nEnsure .claude/CLAUDE.md exists and contains:\n\nProject overview\nEnvironment setup commands\nKey file locations\nCommon workflows\n\n\n\n17.4.3 Responses are generic or unhelpful\nProvide more context:\n\nShow the specific file or code\nExplain what you’re trying to accomplish\nShare error messages in full\n\nInstead of: “Fix the bug”\nTry: “In analysis.R line 45, I get ‘object x not found’. Here’s the relevant code: [paste code]. The data is loaded from data/data.csv.”",
     "crumbs": [
       "Workflows",
       "<span class='chapter-number'>17</span>  <span class='chapter-title'>Common Tasks & Troubleshooting</span>"
@@ -2153,7 +2186,7 @@
     "href": "appendices/templates.html#gitignore",
     "title": "Appendix C — Templates",
     "section": "",
-    "text": ".gitignore\n\n# Data files (large)\ndata/raw/\n*.csv\n*.tsv\n*.xlsx\n*.rds\n*.RData\n\n# R\n.Rhistory\n.RData\n.Rproj.user/\nrenv/library/\nrenv/staging/\nrenv/local/\n\n# Python\n__pycache__/\n*.py[cod]\n*.egg-info/\n.eggs/\n*.egg\n.venv/\nvenv/\nENV/\n\n# Jupyter\n.ipynb_checkpoints/\n\n# Output (can be regenerated)\noutput/\n_book/\n_site/\n*_files/\n\n# OS files\n.DS_Store\n.DS_Store?\nThumbs.db\n\n# IDE\n.vscode/\n.positron/\n*.Rproj\n.idea/\n\n# Secrets\n.env\n*.pem\ncredentials.json",
+    "text": ".gitignore\n\n# Generated outputs (reproducible from code)\nouts/\n\n# R artifacts\n.Rhistory\n.RData\n.Rproj.user/\nrenv/library/\nrenv/staging/\nrenv/local/\n*_cache/\n\n# Python artifacts\n__pycache__/\n*.py[cod]\n*.egg-info/\n.eggs/\n*.egg\n.venv/\nvenv/\n\n# Quarto rendering\n*_files/\n.quarto/\n\n# OS files\n.DS_Store\nThumbs.db\n\n# IDE settings\n.vscode/\n.positron/\n*.Rproj\n\n# Secrets\n.env\n*.pem\ncredentials.json",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>C</span>  <span class='chapter-title'>Templates</span>"
@@ -2164,7 +2197,7 @@
     "href": "appendices/templates.html#environment.yml-conda",
     "title": "Appendix C — Templates",
     "section": "C.2 environment.yml (Conda)",
-    "text": "C.2 environment.yml (Conda)\n\n\nenvironment.yml\n\nname: project-name\nchannels:\n  - conda-forge\n  - defaults\ndependencies:\n  - python=3.11\n  - pandas&gt;=2.0\n  - numpy\n  - matplotlib\n  - seaborn\n  - scipy\n  - scikit-learn\n  - jupyter\n  - pip\n  - pip:\n    - some-pip-only-package",
+    "text": "C.2 environment.yml (Conda)\n\n\nenvironment.yml\n\nname: project-name\nchannels:\n  - conda-forge\n  - defaults\ndependencies:\n  - python=3.11\n  - pandas\n  - numpy\n  - matplotlib\n  - seaborn\n  - ipykernel\n  - pip\n  - pip:\n    - session-info\n\nGenerate with conda env export --from-history &gt; environment.yml for a portable file containing only explicitly installed packages.",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>C</span>  <span class='chapter-title'>Templates</span>"
@@ -2175,18 +2208,7 @@
     "href": "appendices/templates.html#readme.md",
     "title": "Appendix C — Templates",
     "section": "C.3 README.md",
-    "text": "C.3 README.md\n\n\nREADME.md\n\n# Project Name\n\nBrief description of what this project does.\n\n## Setup\n\n### Prerequisites\n- [Positron](https://positron.posit.co/) (recommended) or VS Code\n- [rig](https://github.com/r-lib/rig) for R installation\n- [Conda](https://github.com/conda-forge/miniforge) (Miniforge recommended)\n- [Git](https://git-scm.com/)\n\n### Installation\n\n1. Clone the repository:\n   ```bash\n   git clone https://github.com/username/project-name.git\n   cd project-name\n\n\nCreate conda environment (Python):\nconda env create -f environment.yml\nconda activate project-name\nInstall R packages (if using R):\nrenv::restore()\nConfigure Positron interpreters via Command Palette (Cmd+Shift+P / Ctrl+Shift+P):\n\nR: “R: Select Interpreter” → select R 4.x\nPython: “Python: Select Interpreter” → select environment-name conda env\n\nAlternatively, create .positron/settings.json:\n{\n  \"positron.r.kernel.path\": \"/Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/bin/R\",\n  \"python.defaultInterpreterPath\": \"~/miniconda3/envs/environment-name/bin/python\"\n}",
-    "crumbs": [
-      "Appendices",
-      "<span class='chapter-number'>C</span>  <span class='chapter-title'>Templates</span>"
-    ]
-  },
-  {
-    "objectID": "appendices/templates.html#usage",
-    "href": "appendices/templates.html#usage",
-    "title": "Appendix C — Templates",
-    "section": "C.4 Usage",
-    "text": "C.4 Usage\nDescribe how to run the analysis:\n# Example\npython scripts/run_analysis.py\nOr:\nsource(\"scripts/main.R\")",
+    "text": "C.3 README.md\n\n\nREADME.md\n\n# Project Name\n\nBrief description of what this project does.\n\n## Setup\n\n### Prerequisites\n- [Positron](https://positron.posit.co/) (recommended) or VS Code\n- [rig](https://github.com/r-lib/rig) for R installation\n- [Conda](https://github.com/conda-forge/miniforge) (Miniforge recommended)\n- [Git](https://git-scm.com/)\n\n### Installation\n\n1. Clone the repository:\n   ```bash\n   git clone https://github.com/username/project-name.git\n   cd project-name\n\n\nCreate conda environment (Python):\nconda env create -f environment.yml\nconda activate project-name\nInstall R packages (if using R):\nrenv::restore()\nConfigure Positron interpreters via Command Palette (Cmd+Shift+P / Ctrl+Shift+P):\n\nR: “R: Select Interpreter” → select R 4.x\nPython: “Python: Select Interpreter” → select project-name conda env",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>C</span>  <span class='chapter-title'>Templates</span>"
@@ -2196,8 +2218,8 @@
     "objectID": "appendices/templates.html#project-structure",
     "href": "appendices/templates.html#project-structure",
     "title": "Appendix C — Templates",
-    "section": "C.5 Project Structure",
-    "text": "C.5 Project Structure\nproject-name/\n├── data/\n│   ├── raw/          # Original data (read-only)\n│   └── processed/    # Cleaned data\n├── scripts/          # Analysis scripts\n├── output/           # Results and figures\n├── environment.yml   # Python dependencies\n└── renv.lock        # R dependencies",
+    "section": "C.4 Project Structure",
+    "text": "C.4 Project Structure\nproject-name/\n├── data/            # External inputs (read-only)\n├── scripts/         # Quarto analysis scripts (.qmd)\n│   └── exploratory/ # One-off analyses\n├── outs/            # All script-generated outputs\n├── R/               # Shared R helper functions\n├── python/          # Shared Python helper functions\n├── environment.yml  # Python dependencies\n└── renv.lock        # R dependencies",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>C</span>  <span class='chapter-title'>Templates</span>"
@@ -2207,8 +2229,8 @@
     "objectID": "appendices/templates.html#data",
     "href": "appendices/templates.html#data",
     "title": "Appendix C — Templates",
-    "section": "C.6 Data",
-    "text": "C.6 Data\nDescribe data sources: - data.csv: Description, source, date obtained",
+    "section": "C.5 Data",
+    "text": "C.5 Data\nDescribe data sources: - data/file.csv: Description, source, date obtained",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>C</span>  <span class='chapter-title'>Templates</span>"
@@ -2218,8 +2240,8 @@
     "objectID": "appendices/templates.html#authors",
     "href": "appendices/templates.html#authors",
     "title": "Appendix C — Templates",
-    "section": "C.7 Authors",
-    "text": "C.7 Authors\n\nYour Name (@github-username)",
+    "section": "C.6 Authors",
+    "text": "C.6 Authors\n\nYour Name (@github-username)",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>C</span>  <span class='chapter-title'>Templates</span>"
@@ -2229,8 +2251,8 @@
     "objectID": "appendices/templates.html#license",
     "href": "appendices/templates.html#license",
     "title": "Appendix C — Templates",
-    "section": "C.8 License",
-    "text": "C.8 License\n[Choose appropriate license]\n\n## .claude/CLAUDE.md\n\n```{.markdown filename=\".claude/CLAUDE.md\"}\n# Project: Project Name\n\n## Overview\nBrief description of the project and its goals.\n\n## Environment\n\n### Python\n```bash\nconda activate project-name\n\nC.8.1 R\nUses renv. Activates automatically via .Rprofile.",
+    "section": "C.7 License",
+    "text": "C.7 License\n[Choose appropriate license]\n\n## .claude/CLAUDE.md\n\n```{.markdown filename=\".claude/CLAUDE.md\"}\n# Project: Project Name\n\n## Overview\nBrief description of the project and its goals.\n\n## Environment\n\n### Python\n```bash\nconda activate project-name\n\nC.7.1 R\nUses renv. Activates automatically via .Rprofile.",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>C</span>  <span class='chapter-title'>Templates</span>"
@@ -2240,8 +2262,8 @@
     "objectID": "appendices/templates.html#key-files-and-directories",
     "href": "appendices/templates.html#key-files-and-directories",
     "title": "Appendix C — Templates",
-    "section": "C.9 Key Files and Directories",
-    "text": "C.9 Key Files and Directories\n\ndata/raw/ — Original data files (DO NOT MODIFY)\ndata/processed/ — Cleaned/transformed data\nscripts/ — Analysis scripts\noutput/ — Generated figures and results",
+    "section": "C.8 Key Files and Directories",
+    "text": "C.8 Key Files and Directories\n\ndata/ — External input data (read-only, scripts never write here)\nscripts/ — Quarto analysis scripts (.qmd)\nscripts/exploratory/ — One-off analyses\nouts/ — All script-generated outputs\nR/ — Shared R helper functions\npython/ — Shared Python helper functions",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>C</span>  <span class='chapter-title'>Templates</span>"
@@ -2251,8 +2273,8 @@
     "objectID": "appendices/templates.html#workflows",
     "href": "appendices/templates.html#workflows",
     "title": "Appendix C — Templates",
-    "section": "C.10 Workflows",
-    "text": "C.10 Workflows\n\nC.10.1 Running the full analysis\n./run_analysis.sh\n\n\nC.10.2 Generating figures\nsource(\"scripts/generate_figures.R\")",
+    "section": "C.9 Workflows",
+    "text": "C.9 Workflows\n\nC.9.1 Running the full analysis\nquarto render scripts/\n\n\nC.9.2 Rendering a single script\n# R scripts\nquarto render scripts/01_analysis.qmd\n\n# Python scripts (conda must be active)\nsource ~/miniconda3/etc/profile.d/conda.sh && conda activate project-name && quarto render scripts/02_plots.qmd",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>C</span>  <span class='chapter-title'>Templates</span>"
@@ -2262,8 +2284,8 @@
     "objectID": "appendices/templates.html#data-1",
     "href": "appendices/templates.html#data-1",
     "title": "Appendix C — Templates",
-    "section": "C.11 Data",
-    "text": "C.11 Data\n\nC.11.1 Input data\n\ndata/raw/counts.csv — Gene expression counts, 20000 genes × 12 samples\ndata/raw/metadata.csv — Sample metadata\n\n\n\nC.11.2 Output\n\noutput/results.csv — Analysis results\noutput/figures/ — Generated figures",
+    "section": "C.10 Data",
+    "text": "C.10 Data\n\nC.10.1 Input data\n\ndata/counts.csv — Gene expression counts, 20000 genes × 12 samples\ndata/metadata.csv — Sample metadata",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>C</span>  <span class='chapter-title'>Templates</span>"
@@ -2273,52 +2295,30 @@
     "objectID": "appendices/templates.html#conventions",
     "href": "appendices/templates.html#conventions",
     "title": "Appendix C — Templates",
-    "section": "C.12 Conventions",
-    "text": "C.12 Conventions\n\nUse tidyverse style for R code\nUse black formatter for Python\nCommit after completing each logical unit of work\nInclude Co-Authored-By line in commits",
+    "section": "C.11 Conventions",
+    "text": "C.11 Conventions\n\nScripts use status: lifecycle field (development → finalized → deprecated)\nEvery script writes BUILD_INFO.txt to its output folder\nScripts communicate through files in outs/, not shared memory\nCross-language data uses Parquet format\nUse tidyverse style for R code\nCommit after completing each logical unit of work",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>C</span>  <span class='chapter-title'>Templates</span>"
     ]
   },
   {
-    "objectID": "appendices/templates.html#notes",
-    "href": "appendices/templates.html#notes",
+    "objectID": "appendices/templates.html#project-document-registry",
+    "href": "appendices/templates.html#project-document-registry",
     "title": "Appendix C — Templates",
-    "section": "C.13 Notes",
-    "text": "C.13 Notes\nAny special instructions or gotchas for this project.\n\n## R Script Template\n\n```{.r filename=\"scripts/analysis.R\"}\n# =============================================================================\n# Script: analysis.R\n# Description: Brief description of what this script does\n# Author: Your Name\n# Date: YYYY-MM-DD\n# =============================================================================\n\n# Setup -----------------------------------------------------------------------\nlibrary(tidyverse)\nlibrary(here)\n\n# Load data -------------------------------------------------------------------\ndata &lt;- read_csv(here(\"data/raw/data.csv\"))\ncat(\"Loaded\", nrow(data), \"rows,\", ncol(data), \"columns\\n\")\nglimpse(data)\n\n# Process data ----------------------------------------------------------------\n# Add your analysis here\n\n# Save results ----------------------------------------------------------------\nwrite_csv(results, here(\"output/results.csv\"))\ncat(\"Saved results to output/results.csv\\n\")\n\n# Session info ----------------------------------------------------------------\nsessionInfo()",
+    "section": "C.12 Project Document Registry",
+    "text": "C.12 Project Document Registry\n[Planning documents go here as the project grows]\n\n## R QMD Template\n\n```{.markdown filename=\"scripts/01_analysis.qmd\"}\n---\ntitle: \"Analysis Title\"\nsubtitle: \"Brief description\"\nauthor: \"Your Name\"\ndate: today\nstatus: development\nformat:\n  html:\n    toc: true\n    toc-depth: 2\n    number-sections: true\n    code-overflow: wrap\n    code-fold: false\n    code-tools: true\n    highlight-style: github\n    theme: cosmo\n    fontsize: 1rem\n    linestretch: 1.5\n    self-contained: true\nexecute:\n  echo: true\n  message: false\n  warning: false\n  cache: false\n---\n\n## Introduction\n\nBrief description of the analysis.\n\n## Setup\n\n```{r}\n#| label: setup\n#| include: false\n\n# ---- Libraries ----\nsuppressPackageStartupMessages({\n  library(tidyverse)\n  library(here)\n})\n\n# ---- Paths ----\ndir_data &lt;- here::here(\"data\")\ndir_out &lt;- here::here(\"outs\", \"01_analysis\")\ndir.create(dir_out, recursive = TRUE, showWarnings = FALSE)\n\n# ---- Options ----\noptions(stringsAsFactors = FALSE)\nset.seed(42)\n\n# ---- Provenance ----\ngit_hash &lt;- system(\"git rev-parse --short HEAD\", intern = TRUE)\ncat(\"Rendered from commit:\", git_hash, \"\\n\")",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>C</span>  <span class='chapter-title'>Templates</span>"
     ]
   },
   {
-    "objectID": "appendices/templates.html#python-script-template",
-    "href": "appendices/templates.html#python-script-template",
+    "objectID": "appendices/templates.html#inputs",
+    "href": "appendices/templates.html#inputs",
     "title": "Appendix C — Templates",
-    "section": "C.14 Python Script Template",
-    "text": "C.14 Python Script Template\n\n\nscripts/analysis.py\n\n\"\"\"\nScript: analysis.py\nDescription: Brief description of what this script does\nAuthor: Your Name\nDate: YYYY-MM-DD\n\"\"\"\n\nfrom pathlib import Path\nimport pandas as pd\nimport matplotlib.pyplot as plt\n\n# Setup\nPROJECT_ROOT = Path(__file__).parent.parent\nDATA_DIR = PROJECT_ROOT / \"data\"\nOUTPUT_DIR = PROJECT_ROOT / \"output\"\n\n\ndef main():\n    # Load data\n    data = pd.read_csv(DATA_DIR / \"raw\" / \"data.csv\")\n    print(f\"Loaded {len(data)} rows, {len(data.columns)} columns\")\n    print(data.head())\n\n    # Process data\n    # Add your analysis here\n\n    # Save results\n    results.to_csv(OUTPUT_DIR / \"results.csv\", index=False)\n    print(f\"Saved results to {OUTPUT_DIR / 'results.csv'}\")\n\n\nif __name__ == \"__main__\":\n    main()",
-    "crumbs": [
-      "Appendices",
-      "<span class='chapter-number'>C</span>  <span class='chapter-title'>Templates</span>"
-    ]
-  },
-  {
-    "objectID": "appendices/templates.html#quarto-document-template",
-    "href": "appendices/templates.html#quarto-document-template",
-    "title": "Appendix C — Templates",
-    "section": "C.15 Quarto Document Template",
-    "text": "C.15 Quarto Document Template\n\n\nanalysis.qmd\n\n---\ntitle: \"Analysis Title\"\nauthor: \"Your Name\"\ndate: today\nformat:\n  html:\n    toc: true\n    code-fold: true\nexecute:\n  warning: false\n---\n\n## Introduction\n\nBrief description of the analysis.\n\n## Setup\n\n```{r}\n#| label: setup\nlibrary(tidyverse)\nlibrary(here)",
-    "crumbs": [
-      "Appendices",
-      "<span class='chapter-number'>C</span>  <span class='chapter-title'>Templates</span>"
-    ]
-  },
-  {
-    "objectID": "appendices/templates.html#load-data",
-    "href": "appendices/templates.html#load-data",
-    "title": "Appendix C — Templates",
-    "section": "C.16 Load Data",
-    "text": "C.16 Load Data\n```{r}\n#| label: load-data\ndata &lt;- read_csv(here(\"data/raw/data.csv\"))\ncat(\"Loaded\", nrow(data), \"rows\\n\")\nglimpse(data)\n```",
+    "section": "C.13 Inputs",
+    "text": "C.13 Inputs\n```{r}\n#| label: inputs\n\n# --- Inputs (external data) ---\ndata &lt;- read_csv(here(\"data\", \"data.csv\"))\ncat(\"Loaded\", nrow(data), \"rows\\n\")\n```",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>C</span>  <span class='chapter-title'>Templates</span>"
@@ -2328,8 +2328,8 @@
     "objectID": "appendices/templates.html#analysis",
     "href": "appendices/templates.html#analysis",
     "title": "Appendix C — Templates",
-    "section": "C.17 Analysis",
-    "text": "C.17 Analysis\nYour analysis code here.",
+    "section": "C.14 Analysis",
+    "text": "C.14 Analysis\nYour analysis code here.",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>C</span>  <span class='chapter-title'>Templates</span>"
@@ -2339,19 +2339,74 @@
     "objectID": "appendices/templates.html#results",
     "href": "appendices/templates.html#results",
     "title": "Appendix C — Templates",
-    "section": "C.18 Results",
-    "text": "C.18 Results\nSummary of results.",
+    "section": "C.15 Results",
+    "text": "C.15 Results\nSummary of results.",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>C</span>  <span class='chapter-title'>Templates</span>"
     ]
   },
   {
-    "objectID": "appendices/templates.html#session-info",
-    "href": "appendices/templates.html#session-info",
+    "objectID": "appendices/templates.html#build-info",
+    "href": "appendices/templates.html#build-info",
     "title": "Appendix C — Templates",
-    "section": "C.19 Session Info",
-    "text": "C.19 Session Info\n```{r}\n#| label: session-info\nsessionInfo()\n```\n```",
+    "section": "C.16 Build Info",
+    "text": "C.16 Build Info\n```{r}\n#| label: build-info\n\nwriteLines(\n  c(\n    paste(\"script:\", \"01_analysis.qmd\"),\n    paste(\"commit:\", git_hash),\n    paste(\"date:\", format(Sys.time(), \"%Y-%m-%d %H:%M:%S\"))\n  ),\n  file.path(dir_out, \"BUILD_INFO.txt\")\n)\n\nsessionInfo()\n```\n\n## Python QMD Template\n\n```{.markdown filename=\"scripts/01_analysis.qmd\"}\n---\ntitle: \"Analysis Title\"\nsubtitle: \"Brief description\"\nauthor: \"Your Name\"\ndate: today\nstatus: development\njupyter: python3\nformat:\n  html:\n    toc: true\n    toc-depth: 2\n    number-sections: true\n    code-overflow: wrap\n    code-fold: false\n    code-tools: true\n    highlight-style: github\n    theme: cosmo\n    fontsize: 1rem\n    linestretch: 1.5\n    self-contained: true\nexecute:\n  echo: true\n  warning: false\n  cache: false\n---\n\n## Introduction\n\nBrief description of the analysis.\n\n## Setup\n\n```{python}\n#| label: setup\n\nimport subprocess\nimport sys\nimport random\nfrom pathlib import Path\nfrom datetime import datetime\n\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n\nPROJECT_ROOT = Path(subprocess.check_output(\n    [\"git\", \"rev-parse\", \"--show-toplevel\"]\n).decode().strip())\nsys.path.insert(0, str(PROJECT_ROOT / \"python\"))\n\n# ---- Options ----\nrandom.seed(42)\nnp.random.seed(42)\npd.set_option(\"display.max_columns\", None)\nsns.set_theme(style=\"whitegrid\")\n\n# ---- Paths ----\nout_dir = PROJECT_ROOT / \"outs/01_analysis\"\nout_dir.mkdir(parents=True, exist_ok=True)\n\ngit_hash = subprocess.check_output(\n    [\"git\", \"rev-parse\", \"--short\", \"HEAD\"]\n).decode().strip()\nprint(f\"Rendered from commit: {git_hash}\")",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>C</span>  <span class='chapter-title'>Templates</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/templates.html#inputs-1",
+    "href": "appendices/templates.html#inputs-1",
+    "title": "Appendix C — Templates",
+    "section": "C.17 Inputs",
+    "text": "C.17 Inputs\n```{python}\n#| label: inputs\n\n# --- Inputs (external data) ---\ndata = pd.read_csv(PROJECT_ROOT / \"data/data.csv\")\nprint(f\"Loaded {len(data)} rows\")\n```",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>C</span>  <span class='chapter-title'>Templates</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/templates.html#analysis-1",
+    "href": "appendices/templates.html#analysis-1",
+    "title": "Appendix C — Templates",
+    "section": "C.18 Analysis",
+    "text": "C.18 Analysis\nYour analysis code here.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>C</span>  <span class='chapter-title'>Templates</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/templates.html#results-1",
+    "href": "appendices/templates.html#results-1",
+    "title": "Appendix C — Templates",
+    "section": "C.19 Results",
+    "text": "C.19 Results\nSummary of results.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>C</span>  <span class='chapter-title'>Templates</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/templates.html#build-info-1",
+    "href": "appendices/templates.html#build-info-1",
+    "title": "Appendix C — Templates",
+    "section": "C.20 Build Info",
+    "text": "C.20 Build Info\n```{python}\n#| label: build-info\n\n(out_dir / \"BUILD_INFO.txt\").write_text(\n    f\"script: 01_analysis.qmd\\n\"\n    f\"commit: {git_hash}\\n\"\n    f\"date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\\n\"\n)\n\nimport session_info\nsession_info.show()\n```\n\n## Python Script Template (.py)\n\nFor standalone utilities, CLI tools, and library code (not for data analysis — use QMD for that):\n\n```{.python filename=\"python/helpers.py\"}\n\"\"\"\nShared helper functions for this project.\n\"\"\"\n\nfrom pathlib import Path\nimport pandas as pd\n\n\ndef load_data(filename: str) -&gt; pd.DataFrame:\n    \"\"\"Load a data file from the project data/ directory.\"\"\"\n    project_root = Path(__file__).parent.parent\n    return pd.read_csv(project_root / \"data\" / filename)",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>C</span>  <span class='chapter-title'>Templates</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/templates.html#r-script-template-.r",
+    "href": "appendices/templates.html#r-script-template-.r",
+    "title": "Appendix C — Templates",
+    "section": "C.21 R Script Template (.R)",
+    "text": "C.21 R Script Template (.R)\nFor shared helper functions (not for data analysis — use QMD for that):\n\n\nR/helpers.R\n\n# Shared helper functions for this project.\n\n#' Load and validate a data file\n#'\n#' @param filename Name of file in data/ directory\n#' @return A tibble\nload_data &lt;- function(filename) {\n  path &lt;- here::here(\"data\", filename)\n  stopifnot(file.exists(path))\n  readr::read_csv(path, show_col_types = FALSE)\n}",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>C</span>  <span class='chapter-title'>Templates</span>"

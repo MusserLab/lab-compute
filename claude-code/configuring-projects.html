@@ -610,12 +610,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**R**: Uses renv (auto-activates)</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## Repository Layout</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>project/ ├── data/ │ ├── raw/ # Original data (DO NOT MODIFY) │ └── processed/ # Cleaned data ├── analysis/ # Quarto analysis scripts ├── output/ # Results, figures └── scripts/ # Utility functions</p>
+<p>project/ ├── data/ # External inputs (read-only) ├── scripts/ # Quarto analysis scripts (.qmd) │ └── exploratory/ # One-off analyses ├── outs/ # All script-generated outputs ├── R/ # Shared R helper functions └── python/ # Shared Python helper functions</p>
 <pre><code>
 ## Key Files
-- `analysis/main.qmd` — Primary analysis script
-- `data/raw/counts.csv` — Input data (10,000 genes × 50 samples)
-- `output/figures/` — Publication figures
+- `scripts/01_analysis.qmd` — Primary analysis script
+- `data/counts.csv` — Input data (10,000 genes × 50 samples)
+- `outs/01_analysis/` — Analysis outputs (figures, tables)
 
 ## Workflows
 
@@ -678,8 +678,8 @@ For projects with many tasks—multiple figures, several analyses, ongoing work�
 # Plotting Plan
 
 ## Quick Reference
-- Input data: `output/results.rds`
-- Output directory: `figures/`
+- Input data: `outs/03_differential/results.rds`
+- Output directory: `outs/04_figures/`
 - Standard dimensions: 8×6 inches (main), 4×4 (supplementary)
 
 ## Technical Decisions
