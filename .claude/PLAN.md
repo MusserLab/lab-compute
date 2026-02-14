@@ -1,35 +1,25 @@
 # Lab Compute Guide — Planning Document
 
 > This document tracks next steps and improvements for the book.
-> Last updated: 2026-02-03
+> Last updated: 2026-02-14
 
-## Immediate Next Steps
+## Still Open
 
-- [ ] Add screenshots throughout (marked with `[TODO: screenshot]`)
+### Screenshots (5 remaining)
+These are marked with `[TODO: screenshot]` in the source files:
+
+- [ ] Positron interface with empty folder open (`first-project.qmd:34`)
+- [ ] Rendered HTML output (`first-project.qmd:295`)
+- [ ] Positron interface with labeled panes (`positron.qmd:17`)
+- [ ] Positron Data Viewer with dataframe open (`positron.qmd:68`)
+- [ ] Positron with .qmd, console, and Data Viewer (`quarto.qmd:58`)
+
+### Content
 - [ ] Review Quick Start section for clarity and completeness
 - [ ] Test installation instructions on a fresh machine (macOS and Windows)
 - [ ] Have a student test the Quick Start walkthrough
-
-## Content to Expand
-
-### Part 1: Quick Start
 - [ ] Review `first-project.qmd` — ensure all steps work end-to-end
-
-### Part 2: Core Tools
-- [x] **Positron**: Expand chapter with workflow details (screenshots still needed)
-- [x] **Conda**: Expanded with core packages, channels, libmamba solver, lab policies
-- [x] **renv**: Renamed to "R: rig & renv", expanded with rig usage, tidyverse, Bioconductor (version sync, RNA-seq & single-cell packages)
-- [x] **Quarto**: Expanded with interactive workflow, setup patterns from TiHKAL, cheatsheets at end
 - [ ] **Git/GitHub**: Add section on GitHub Classroom (if using for courses)
-
-### Part 3: Claude Code
-- [ ] **Major revision planned** — see `CLAUDE_CODE_CHAPTER_PLAN.md` for details
-- [ ] Refocus on Positron extension (not CLI) as primary interface
-- [ ] Add plan files pattern (PLOTTING_PLAN.md style from TiHKAL)
-- [ ] Add context management guidance (when to start new chats, task focus)
-- [ ] Add prompt patterns for data science
-- [ ] Document project-specific skills pattern
-- [ ] Add orange "With Claude Code" callout boxes throughout ALL book chapters
 
 ### Part 4: Workflows
 - [ ] **Starting Project**: Add template repo link once created
@@ -46,15 +36,6 @@
 - [ ] Common bioinformatics workflows
 
 > **Note:** HPC/cluster computing, genomic resources, and data storage info will be in a separate "Lab Resources" reference, not this book.
-
-## Screenshots Needed
-
-- [ ] Positron interface overview (labeled panes)
-- [ ] Positron Data Viewer
-- [ ] Positron with R and Python sessions
-- [ ] GitHub repo creation
-- [ ] GitHub Pages settings
-- [ ] Claude Code session example
 
 ## Completed
 
@@ -75,6 +56,17 @@
 - [x] Created Quarto Documents chapter (part2/quarto.qmd)
 - [x] Created Project Organization chapter (part2/project-organization.qmd)
 - [x] Expanded Claude Code to full Part with 4 chapters
+- [x] Positron chapter expanded (365 lines, "home base" framing)
+- [x] Conda chapter expanded (456 lines, core packages, channels, lab policies)
+- [x] renv chapter expanded → "R: rig & renv" (570 lines, Bioconductor, tidyverse)
+- [x] Quarto chapter expanded (676 lines, interactive workflow, setup patterns, cheatsheets)
+- [x] Claude Code: Major revision — 4 chapters rewritten (getting-started, configuring-projects, skills, working-effectively)
+- [x] Claude Code: Positron extension as primary interface
+- [x] Claude Code: Plan files pattern (PLOTTING_PLAN.md, DATA_NOTES.md)
+- [x] Claude Code: Context management guidance
+- [x] Claude Code: Prompt patterns for data science
+- [x] Claude Code: Project-specific skills (gene-naming example)
+- [x] Orange "Ask Claude" callout boxes — CSS + 14 boxes across all chapters
 
 ---
 
