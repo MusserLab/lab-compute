@@ -1,3 +1,4 @@
+<!-- project-type: general -->
 # Data Analysis in the Musser Lab
 
 ## Overview
