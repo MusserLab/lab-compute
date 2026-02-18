@@ -34,7 +34,7 @@ You might need multiple R versions when:
 
 ### Essential rig Commands
 
-```bash
+```default
 # List installed R versions
 rig list
 
@@ -453,7 +453,7 @@ renv::snapshot()
 
 Then commit the updated `renv.lock`:
 
-```bash
+```default
 git add renv.lock
 git commit -m "Add ggplot2 package"
 ```

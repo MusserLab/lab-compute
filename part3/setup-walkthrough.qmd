@@ -18,7 +18,7 @@ In Positron (and VS Code), a **project** is simply a folder. When you open a fol
 
 Open your terminal and create a new project:
 
-```bash
+```default
 # Navigate to where you keep projects
 cd ~/Documents  # or wherever you prefer
 
@@ -35,7 +35,7 @@ Open Positron and use **File → Open Folder** to open `my-analysis`.
 
 We initialize Git first so that every change from here on is tracked. In Positron's terminal (**View → Terminal**), initialize a Git repository:
 
-```bash
+```default
 git init
 ```
 
@@ -49,7 +49,7 @@ Claude Code can generate configuration files tailored to your specific project s
 Claude will create a `.gitignore` with the right patterns for both languages—renv cache, conda environments, data files, and OS-specific junk files.
 :::
 
-```bash
+```default
 # Create .gitignore
 cat > .gitignore << 'EOF'
 # R
@@ -86,21 +86,21 @@ EOF
 
 Every project gets its own conda environment, even if you're primarily using R. This isolation prevents a common problem: updating a package for one project and accidentally breaking another.
 
-```bash
+```default
 conda create -n my-analysis python=3.11 -y
 conda activate my-analysis
 ```
 
 Save the environment specification so collaborators (or future you) can recreate it:
 
-```bash
+```default
 conda env export > environment.yml
 ```
 
 ::: {.callout-tip}
 ## Environment Activation
 Every time you work on this project, activate the environment first:
-```bash
+```default
 conda activate my-analysis
 ```
 :::
@@ -167,7 +167,7 @@ You only configure interpreters once per project. Positron remembers your choice
 
 Create the lab's standard folder structure:
 
-```bash
+```default
 mkdir -p data scripts outs
 ```
 
@@ -277,7 +277,7 @@ We summarized body mass across three penguin species. The figure has been saved 
 
 In Positron's terminal, render the document:
 
-```bash
+```default
 quarto render scripts/01_penguin_summary.qmd
 ```
 
@@ -289,7 +289,7 @@ Quarto executes every code chunk in a fresh R session and weaves the output into
 ::: {.callout-tip}
 ## Preview Mode
 During development, use `quarto preview` for live updates as you edit:
-```bash
+```default
 quarto preview scripts/01_penguin_summary.qmd
 ```
 This opens a browser window that refreshes automatically when you save changes.
@@ -301,7 +301,7 @@ A **commit** is a snapshot of your project at this moment. From now on, every si
 
 Stage and commit your work:
 
-```bash
+```default
 # See what's ready to commit
 git status
 
@@ -329,7 +329,7 @@ For this walkthrough, you can use either. For real lab projects, use the MusserL
 
 If you haven't already, install and authenticate the GitHub CLI:
 
-```bash
+```default
 # macOS
 brew install gh
 
@@ -345,7 +345,7 @@ When prompted, choose **"Login with a web browser"** and follow the prompts.
 
 The easiest way to create a repository and push in one step:
 
-```bash
+```default
 # Create a private repo and push (on your personal account)
 gh repo create my-analysis --private --source=. --push
 
@@ -355,7 +355,7 @@ gh repo create my-analysis --private --source=. --push
 
 Alternatively, create the repository manually on github.com, then:
 
-```bash
+```default
 git remote add origin https://github.com/YOUR-USERNAME/my-analysis.git
 git push -u origin main
 ```
@@ -382,7 +382,7 @@ This is the pattern you'll use for every analysis in the lab.
 
 When you return to a project:
 
-```bash
+```default
 cd my-analysis
 conda activate my-analysis
 # Open in Positron — renv will auto-activate when R starts

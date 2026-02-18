@@ -252,7 +252,7 @@ You can render a Quarto document in two ways:
 
 For live preview during development:
 
-```bash
+```default
 quarto preview filename.qmd
 ```
 

@@ -155,7 +155,7 @@ At the top of each script, explicitly list inputs and outputs:
 
 This makes dependencies grep-able:
 
-```bash
+```default
 # Find which script produces a file
 grep -r "limma_results.rds" scripts/
 

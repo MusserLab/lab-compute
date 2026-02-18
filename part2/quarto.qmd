@@ -63,7 +63,7 @@ During interactive development, you're using Positron like an enhanced REPL. The
 
 When the analysis is complete—or when you want to share it—you **render** the document:
 
-```bash
+```default
 quarto render my_analysis.qmd
 ```
 
@@ -396,7 +396,7 @@ The same shortcuts work for Python: **Cmd+Enter** to run the current line or sel
 
 For Python chunks to execute during render, you need `ipykernel` installed in your conda environment:
 
-```bash
+```default
 conda install ipykernel
 ```
 
@@ -415,7 +415,7 @@ Ensure Positron is using the correct conda environment:
 
 Python QMD files require the conda environment to be active when you render. Without this, Quarto uses the wrong Python or can't find your packages:
 
-```bash
+```default
 source ~/miniconda3/etc/profile.d/conda.sh && conda activate my-project && quarto render scripts/02_analysis.qmd
 ```
 
@@ -623,7 +623,7 @@ Use `here::here()` for all file paths in your scripts. It makes your code portab
 
 ### From the Terminal
 
-```bash
+```default
 # Render an R document
 quarto render scripts/01_analysis.qmd
 
@@ -643,7 +643,7 @@ quarto render scripts/
 
 For live feedback during development, use preview mode:
 
-```bash
+```default
 quarto preview scripts/01_analysis.qmd
 ```
 

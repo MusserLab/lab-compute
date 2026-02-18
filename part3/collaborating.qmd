@@ -17,14 +17,14 @@ On GitHub:
 
 Your collaborator clones the repo:
 
-```bash
+```default
 git clone https://github.com/USERNAME/project-name.git
 cd project-name
 ```
 
 Then sets up environments:
 
-```bash
+```default
 # Python
 conda env create -f environment.yml
 conda activate project-name
@@ -39,13 +39,13 @@ renv::restore()
 
 Always pull the latest changes:
 
-```bash
+```default
 git pull
 ```
 
 Check for environment updates:
 
-```bash
+```default
 # Python - check if environment.yml changed
 conda env update -f environment.yml
 
@@ -61,7 +61,7 @@ conda env update -f environment.yml
 3. Stage and commit
 4. Push
 
-```bash
+```default
 git pull
 # ... make changes ...
 git add .
@@ -73,7 +73,7 @@ git push
 
 If someone pushed while you were working:
 
-```bash
+```default
 git pull
 # May need to resolve conflicts (see below)
 git push
@@ -85,13 +85,13 @@ For larger changes, use branches:
 
 ### Create a Branch
 
-```bash
+```default
 git checkout -b my-feature
 ```
 
 ### Work on the Branch
 
-```bash
+```default
 # Make changes, commit as usual
 git add .
 git commit -m "Add new analysis"
@@ -99,7 +99,7 @@ git commit -m "Add new analysis"
 
 ### Push the Branch
 
-```bash
+```default
 git push -u origin my-feature
 ```
 
@@ -113,7 +113,7 @@ git push -u origin my-feature
 
 ### After Merging
 
-```bash
+```default
 git checkout main
 git pull
 git branch -d my-feature  # Delete local branch
@@ -133,7 +133,7 @@ Claude Code can explain merge conflicts and help you resolve them safely.
 
 ### Recognizing a Conflict
 
-```bash
+```default
 git pull
 # CONFLICT (content): Merge conflict in analysis.R
 # Automatic merge failed; fix conflicts and then commit.
@@ -163,7 +163,7 @@ result_median <- calculate_median(data)
 
 Remove the conflict markers, then:
 
-```bash
+```default
 git add analysis.R
 git commit -m "Resolve merge conflict in analysis.R"
 git push
@@ -175,7 +175,7 @@ git push
 
 **Python:**
 
-```bash
+```default
 conda install new-package
 conda env export > environment.yml
 git add environment.yml
@@ -190,7 +190,7 @@ install.packages("new-package")
 renv::snapshot()
 ```
 
-```bash
+```default
 git add renv.lock
 git commit -m "Add new-package to renv"
 git push
@@ -202,7 +202,7 @@ After pulling:
 
 **Python:**
 
-```bash
+```default
 conda env update -f environment.yml
 ```
 
@@ -226,7 +226,7 @@ Small, frequent commits are easier to merge than large changes.
 
 ### Pull Before Push
 
-```bash
+```default
 git pull
 git push
 ```
@@ -265,7 +265,7 @@ Click **New Issue** on GitHub and describe the task.
 
 Link commits to issues:
 
-```bash
+```default
 git commit -m "Fix normalization bug (closes #12)"
 ```
 

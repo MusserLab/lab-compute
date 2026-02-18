@@ -43,13 +43,13 @@ If you already have R installed, you can skip rig for now — any recent version
 
 Then open a terminal and install the latest R version:
 
-```{.text}
+```default
 rig add release
 ```
 
 After the install finishes, **close and reopen your terminal**, then verify the installation:
 
-```{.text}
+```default
 R --version
 ```
 
@@ -68,13 +68,13 @@ R --version
 2. Run the installer
 3. Open a **new** PowerShell window (this is important — a fresh window picks up the new installation) and install R:
 
-```{.text}
+```default
 rig add release
 ```
 
 4. **Close and reopen PowerShell**, then verify:
 
-```{.text}
+```default
 R --version
 ```
 
@@ -94,7 +94,7 @@ Quarto is a scientific publishing system that lets you combine code, results, an
 
 If you have [Homebrew](https://brew.sh) (a popular macOS package manager), you can install Quarto from the terminal:
 
-```{.text}
+```default
 brew install quarto
 ```
 
@@ -102,7 +102,7 @@ If you don't have Homebrew, download the installer from [https://quarto.org/docs
 
 After installing, **close and reopen your terminal**, then verify:
 
-```{.text}
+```default
 quarto --version
 ```
 
@@ -112,7 +112,7 @@ Download and run the installer from [https://quarto.org/docs/get-started/](https
 
 After installing, **close and reopen PowerShell**, then verify:
 
-```{.text}
+```default
 quarto --version
 ```
 
@@ -125,7 +125,7 @@ Claude Code is an AI coding assistant that runs in your terminal or integrates d
 You need Node.js 18+ installed. In your terminal:
 
 **macOS** (using Homebrew):
-```{.text}
+```default
 brew install node
 ```
 
@@ -136,7 +136,7 @@ Download and install from [https://nodejs.org](https://nodejs.org) (choose the L
 
 In your terminal, run:
 
-```{.text}
+```default
 npm install -g @anthropic-ai/claude-code
 ```
 
@@ -144,7 +144,7 @@ npm install -g @anthropic-ai/claude-code
 
 Run Claude Code once to set up authentication:
 
-```{.text}
+```default
 claude
 ```
 
@@ -170,7 +170,7 @@ You'll see a Claude Code panel in Positron's sidebar. You can use it right along
 
 Open a fresh terminal window and run these commands to verify everything is installed:
 
-```{.text}
+```default
 R --version
 quarto --version
 claude --version

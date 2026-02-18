@@ -6,7 +6,7 @@ Quick reference for essential commands.
 
 ### Environment Management
 
-```bash
+```default
 # Create environment
 conda create -n ENV_NAME python=3.11
 
@@ -37,7 +37,7 @@ conda env update -f environment.yml
 
 ### Package Management
 
-```bash
+```default
 # Install package
 conda install PACKAGE
 
@@ -88,7 +88,7 @@ renv::deactivate()
 
 ### Setup
 
-```bash
+```default
 # Initialize repo
 git init
 
@@ -105,7 +105,7 @@ git remote add origin URL
 
 ### Daily Workflow
 
-```bash
+```default
 # Check status
 git status
 
@@ -129,7 +129,7 @@ git pull
 
 ### Branches
 
-```bash
+```default
 # List branches
 git branch
 
@@ -148,7 +148,7 @@ git branch -d BRANCH
 
 ### History
 
-```bash
+```default
 # View log
 git log
 git log --oneline
@@ -163,7 +163,7 @@ git log -p FILE
 
 ### Undoing
 
-```bash
+```default
 # Unstage file
 git reset HEAD FILE
 
@@ -179,7 +179,7 @@ git commit --amend
 
 ## GitHub CLI (gh)
 
-```bash
+```default
 # Authenticate
 gh auth login
 
@@ -204,7 +204,7 @@ gh issue create --title "Title" --body "Description"
 
 ## Quarto
 
-```bash
+```default
 # Create project
 quarto create project book NAME
 
@@ -223,7 +223,7 @@ quarto publish gh-pages
 
 ## File Operations (Bash)
 
-```bash
+```default
 # Create directory
 mkdir DIRNAME
 mkdir -p path/to/nested/dir

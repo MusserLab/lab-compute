@@ -166,7 +166,7 @@ Create a master script or Makefile that runs everything:
 
 **Shell script** (`run_analysis.sh`):
 
-```bash
+```default
 #!/bin/bash
 set -e  # Exit on error
 
@@ -210,7 +210,7 @@ outs/01_clean_data/clean.csv: scripts/01_clean_data.qmd data/data.csv
 3. Run the full analysis
 4. Compare results
 
-```bash
+```default
 # In a temporary directory
 git clone https://github.com/user/project.git test-project
 cd test-project

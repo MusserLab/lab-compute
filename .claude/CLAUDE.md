@@ -114,7 +114,7 @@ Screenshots are marked with `[TODO: screenshot]` throughout.
 
 ## Writing Conventions
 
-- **Terminal commands** use `` ```{.text} `` fenced blocks — this gives a styled code box with plain black text (no syntax coloring). Do NOT use `bash` or `powershell` language identifiers for terminal commands.
+- **Terminal commands** use `` ```default `` fenced blocks — this gives a styled code box with copy button but no syntax coloring. Do NOT use `bash`, `powershell`, or `{.text}` for terminal commands. (`bash` adds unwanted syntax coloring; `{.text}` loses the code box styling and copy button.)
 - **Claude Code callout boxes** use `::: {.callout-warning title="Claude Code"}` — Quarto's built-in orange warning callout with a custom title. Each box has: (1) a 1–2 sentence intro, (2) a blockquoted example prompt, (3) an explanation of what Claude Code will do.
 - **macOS + Windows**: Every terminal instruction includes both platforms. Always mention which app to open (Terminal on macOS, PowerShell on Windows).
 - **Restart terminal reminders**: After every installation step, remind students to close and reopen their terminal so new commands are available.

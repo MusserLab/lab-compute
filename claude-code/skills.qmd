@@ -183,7 +183,7 @@ What instructions do you repeat? Common candidates:
 
 ### 2. Create the Skill
 
-```bash
+```default
 # User-level (applies to all projects)
 mkdir -p ~/.claude/skills/my-skill
 

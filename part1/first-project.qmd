@@ -309,7 +309,7 @@ Now let's **render** the document. Rendering runs every code chunk in a **fresh 
 
 Open the terminal (Cmd+\` or Ctrl+\`) and run:
 
-```bash
+```default
 quarto render scripts/01_seurat_basics.qmd
 mkdir -p outs/01_seurat_basics
 mv scripts/01_seurat_basics.html outs/01_seurat_basics/

@@ -24,7 +24,7 @@ Claude will investigate environment changes, package updates, or data difference
 
 **macOS/Linux**: Conda isn't initialized in this shell session.
 
-```bash
+```default
 source ~/miniforge3/etc/profile.d/conda.sh
 # Or for miniconda:
 source ~/miniconda3/etc/profile.d/conda.sh
@@ -41,19 +41,19 @@ Conda's dependency resolver can be slow with complex environments.
 **Solutions:**
 
 1. Use mamba (faster drop-in replacement):
-   ```bash
+   ```default
    conda install mamba -n base
    mamba install package-name
    ```
 
 2. Create minimal environments:
-   ```bash
+   ```default
    conda create -n project python=3.11 pandas numpy
    # Instead of installing everything at once
    ```
 
 3. Use conda-forge channel consistently:
-   ```bash
+   ```default
    conda config --add channels conda-forge
    conda config --set channel_priority strict
    ```
@@ -66,7 +66,7 @@ Conda's dependency resolver can be slow with complex environments.
 
 ### Recreating a broken environment
 
-```bash
+```default
 conda deactivate
 conda env remove -n broken-env
 conda env create -f environment.yml
@@ -117,7 +117,7 @@ renv::install("package-name", repos = "https://cloud.r-project.org")
 renv::deactivate()
 ```
 
-```bash
+```default
 rm -rf renv renv.lock .Rprofile
 ```
 
@@ -131,7 +131,7 @@ renv::init()
 
 Someone pushed while you were working.
 
-```bash
+```default
 git pull
 # Resolve any conflicts if needed
 git push
@@ -141,7 +141,7 @@ git push
 
 Remove from history (if not yet pushed):
 
-```bash
+```default
 git reset --soft HEAD~1
 # Edit .gitignore to exclude the file
 git add .gitignore
@@ -152,19 +152,19 @@ If already pushed, use BFG or git-filter-branch (more complex).
 
 ### Undo the last commit (keep changes)
 
-```bash
+```default
 git reset --soft HEAD~1
 ```
 
 ### See what changed in a file
 
-```bash
+```default
 git log -p filename.R
 ```
 
 ### Discard all uncommitted changes
 
-```bash
+```default
 git checkout -- .
 # Or for all files including untracked:
 git clean -fd
@@ -178,7 +178,7 @@ git clean -fd
 
 Claude Code runs in a non-interactive shell. Always source conda first:
 
-```bash
+```default
 source ~/miniforge3/etc/profile.d/conda.sh && conda activate my-env && python script.py
 ```
 
@@ -231,7 +231,7 @@ Try: "In analysis.R line 45, I get 'object x not found'. Here's the relevant cod
 ### "quarto: command not found"
 
 **macOS:**
-```bash
+```default
 brew install quarto
 # Or use full path:
 /usr/local/bin/quarto render document.qmd
@@ -257,7 +257,7 @@ brew install quarto
 
 ### How do I start working on a project?
 
-```bash
+```default
 cd project-directory
 conda activate project-env  # if Python
 positron .
@@ -266,7 +266,7 @@ positron .
 
 ### How do I end a work session?
 
-```bash
+```default
 git status                    # See what changed
 git add .                     # Stage changes
 git commit -m "Description"   # Commit
@@ -276,7 +276,7 @@ git push                      # Push to GitHub
 ### How do I update all packages?
 
 **Python:**
-```bash
+```default
 conda update --all
 conda env export > environment.yml
 git add environment.yml && git commit -m "Update packages"
@@ -287,7 +287,7 @@ git add environment.yml && git commit -m "Update packages"
 renv::update()
 renv::snapshot()
 ```
-```bash
+```default
 git add renv.lock && git commit -m "Update R packages"
 ```
 
@@ -299,7 +299,7 @@ git add renv.lock && git commit -m "Update R packages"
 4. Share the repository URL
 
 The collaborator then:
-```bash
+```default
 git clone https://github.com/user/project.git
 cd project
 conda env create -f environment.yml

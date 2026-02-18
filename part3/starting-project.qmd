@@ -50,7 +50,7 @@ Each section has its own numbering sequence.
 
 ## Setup Commands
 
-```bash
+```default
 # 1. Create project
 mkdir my-analysis && cd my-analysis
 
@@ -194,7 +194,7 @@ conda activate my-analysis
 
 With your `.claude/CLAUDE.md` in place:
 
-```bash
+```default
 claude
 ```
 

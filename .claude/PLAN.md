@@ -77,7 +77,7 @@ These are marked with `[TODO: screenshot]` in the source files:
   - index.qmd: "How to Use This Book" section, honest audience description
   - Spongilla dataset added to examples/data/spongilla_counts/
 - [x] Replaced custom .callout-claude CSS with built-in .callout-warning title="Claude Code" (14 files)
-- [x] Switched all terminal code blocks to `{.text}` (no syntax highlighting)
+- [x] Standardized all terminal code blocks to `default` (styled box + copy button, no syntax coloring)
 - [x] Cleared styles.css (custom callout CSS removed)
 - [x] Added RStudio-to-Positron translation table in positron.qmd
 - [x] Orange "Ask Claude" callout boxes — CSS + 14 boxes across all chapters
@@ -94,6 +94,13 @@ These are marked with `[TODO: screenshot]` in the source files:
 ## Session Notes
 
 _Add notes here during working sessions_
+
+### 2026-02-18
+- **Code block standardization** — switched all terminal command fences to `default`
+- Discovered `{.text}` produces invisible code blocks (no `sourceCode` class → no Quarto CSS styling or copy button)
+- Tested 4 approaches: `{.text}`, `bash`, `default`, bare fences — `default` is the only one with styled box + copy button + no syntax coloring
+- Converted 108 blocks across 15 files; 3 `bash` blocks intentionally kept in `templates.qmd` (literal template content)
+- Updated CLAUDE.md writing convention to document `default` standard
 
 ### 2026-02-14
 - **Convention alignment session** — reconciled book with current Claude Code skills
