@@ -343,7 +343,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part1/first-project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Your First Project</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Your First R Project</span></span></a>
   </div>
 </li>
       </ul>
@@ -441,26 +441,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../part3/setup-walkthrough.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Setting Up a Lab Project</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../part3/starting-project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Starting a New Analysis Project</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Quick Reference: Project Setup</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part3/collaborating.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Collaborating with Others</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Collaborating with Others</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part3/reproducibility.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Reproducible Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Reproducible Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part3/troubleshooting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Common Tasks &amp; Troubleshooting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Common Tasks &amp; Troubleshooting</span></span></a>
   </div>
 </li>
       </ul>
@@ -578,6 +584,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p>In <a href="../part1/first-project.html">Your First R Project</a>, you used renv to manage R packages for your project. Conda serves the same purpose for Python: isolated, reproducible environments with pinned package versions. The concepts are the same—the tooling is different.</p>
 <p>Conda is an environment and package manager that creates isolated spaces for your Python projects. Each environment has its own Python version and packages, preventing conflicts between projects.</p>
 <section id="why-use-environments" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="why-use-environments"><span class="header-section-number">8.1</span> Why Use Environments?</h2>
@@ -768,14 +775,22 @@ project-b-env/
 <section id="recreate-from-file" class="level3" data-number="8.3.3">
 <h3 data-number="8.3.3" class="anchored" data-anchor-id="recreate-from-file"><span class="header-section-number">8.3.3</span> Recreate from File</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> environment.yml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="callout-claude" title="Ask Claude">
-<p><strong>Fix conda environment issues:</strong></p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Claude Code">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Claude Code
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Claude Code can diagnose environment issues by checking which environment is active, what’s installed, and where packages are missing.</p>
 <blockquote class="blockquote">
-<p>I’m getting <code>ModuleNotFoundError: No module named 'pandas'</code> when I run my script, but I thought I installed it. The environment is <code>my-project</code> and here’s what <code>conda list</code> shows:</p>
-<p>[paste output]</p>
-<p>What’s wrong?</p>
+<p>I’m getting <code>ModuleNotFoundError: No module named 'pandas'</code> when I run my script, but I thought I installed it. The environment is <code>my-project</code> and here’s what <code>conda list</code> shows: [paste output]. What’s wrong?</p>
 </blockquote>
-<p><em>Include the environment name and the output of <code>conda list</code>. Claude can spot if the package is missing or if you’re in the wrong environment.</em></p>
+<p>Claude will check whether the package is installed in the right environment, whether your script is running in a different environment, and suggest the fix.</p>
+</div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">

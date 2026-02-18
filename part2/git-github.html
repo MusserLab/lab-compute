@@ -308,7 +308,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part1/first-project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Your First Project</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Your First R Project</span></span></a>
   </div>
 </li>
       </ul>
@@ -406,26 +406,32 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../part3/setup-walkthrough.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Setting Up a Lab Project</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../part3/starting-project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Starting a New Analysis Project</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Quick Reference: Project Setup</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part3/collaborating.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Collaborating with Others</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Collaborating with Others</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part3/reproducibility.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Reproducible Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Reproducible Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part3/troubleshooting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Common Tasks &amp; Troubleshooting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Common Tasks &amp; Troubleshooting</span></span></a>
   </div>
 </li>
       </ul>
@@ -875,15 +881,22 @@ Thumbs.db
 <p>Conflicts happen when two people change the same lines in a file, or when you have changes on two different computers that overlap. Git can’t automatically decide which version to keep, so it asks you to resolve it manually.</p>
 <p>When this happens, the conflicting file will show both versions with special markers. You edit the file to keep the version you want (or combine them), then commit the resolution. Positron highlights conflicts and provides tools to help resolve them.</p>
 <p>Conflicts are less common than you might fear, especially on solo projects. Pull before you start working, and you’ll rarely encounter them.</p>
-<div class="callout-claude" title="Ask Claude">
-<p><strong>Understand a git message:</strong></p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Claude Code">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Claude Code
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Claude Code can explain confusing Git messages and suggest safe next steps.</p>
 <blockquote class="blockquote">
-<p>Git is showing me this message and I’m not sure what to do:</p>
-<pre><code>Your branch and 'origin/main' have diverged,
-and have 2 and 3 different commits each, respectively.</code></pre>
-<p>What does this mean and how do I fix it?</p>
+<p>Git is showing me this and I’m not sure what to do: <code>Your branch and 'origin/main' have diverged, and have 2 and 3 different commits each, respectively.</code> What does this mean and how do I fix it?</p>
 </blockquote>
-<p><em>Paste the exact git output. Claude can explain what happened and suggest safe next steps.</em></p>
+<p>Claude will explain the situation in plain language (your local and remote branches have different changes) and walk you through resolving it safely, typically with <code>git pull --rebase</code> or a merge.</p>
+</div>
 </div>
 </section>
 <section id="undoing-mistakes" class="level3">

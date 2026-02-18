@@ -343,7 +343,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part1/first-project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Your First Project</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Your First R Project</span></span></a>
   </div>
 </li>
       </ul>
@@ -441,26 +441,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../part3/setup-walkthrough.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Setting Up a Lab Project</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../part3/starting-project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Starting a New Analysis Project</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Quick Reference: Project Setup</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part3/collaborating.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Collaborating with Others</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Collaborating with Others</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part3/reproducibility.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Reproducible Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Reproducible Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part3/troubleshooting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Common Tasks &amp; Troubleshooting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Common Tasks &amp; Troubleshooting</span></span></a>
   </div>
 </li>
       </ul>
@@ -588,6 +594,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p>In <a href="../part1/first-project.html">Your First R Project</a>, you ran <code>renv::init()</code>, installed packages, and ran <code>renv::snapshot()</code> to lock your environment. This chapter explains what those commands actually do under the hood, and covers rig for managing R versions alongside renv for packages.</p>
 <p>Managing R effectively requires two things: controlling which <strong>version of R</strong> you’re running, and controlling which <strong>packages</strong> are installed for each project. We use <strong>rig</strong> for the former and <strong>renv</strong> for the latter. Together, they give you the same isolation and reproducibility that conda provides for Python.</p>
 <section id="why-this-matters" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="why-this-matters"><span class="header-section-number">7.1</span> Why This Matters</h2>
@@ -767,16 +774,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Different versions than the lockfile</li>
 </ul>
 <p>Run <code>renv::status()</code> before committing to ensure your lockfile is current.</p>
-<div class="callout-claude" title="Ask Claude">
-<p><strong>Fix renv sync issues:</strong></p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Claude Code">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Claude Code
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Claude Code can interpret renv status messages and tell you whether to <code>restore()</code> or <code>snapshot()</code>.</p>
 <blockquote class="blockquote">
-<p>I’m getting this warning when I start R:</p>
-<p><code>* Project 'my-project' is out-of-sync -- use renv::status() for details</code></p>
-<p>I ran <code>renv::status()</code> and it shows:</p>
-<p>[paste the output]</p>
-<p>What should I do—restore or snapshot?</p>
+<p>I’m getting <code>Project 'my-project' is out-of-sync</code> when I start R. Here’s the output of <code>renv::status()</code>: [paste output]. Should I restore or snapshot?</p>
 </blockquote>
-<p><em>Include the actual <code>renv::status()</code> output. It tells Claude exactly what’s out of sync.</em></p>
+<p>Claude will read the status output, explain which packages are out of sync and why, and recommend the right command.</p>
+</div>
 </div>
 </section>
 </section>
@@ -1116,7 +1129,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>renv/library/</code> — The actual installed packages (too large, platform-specific)</li>
 <li><code>renv/staging/</code> — Temporary files during installation</li>
 </ul>
-<p>The default renv setup handles this correctly. If you used the <code>.gitignore</code> from the <a href="../part1/first-project.html">first project chapter</a>, these exclusions are already in place.</p>
+<p>The default renv setup handles this correctly. If you used the <code>.gitignore</code> from the <a href="../part3/setup-walkthrough.html">Setting Up a Lab Project</a> chapter, these exclusions are already in place.</p>
 </section>
 <section id="updating-packages" class="level2" data-number="7.9">
 <h2 data-number="7.9" class="anchored" data-anchor-id="updating-packages"><span class="header-section-number">7.9</span> Updating Packages</h2>

@@ -308,7 +308,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part1/first-project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Your First Project</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Your First R Project</span></span></a>
   </div>
 </li>
       </ul>
@@ -406,26 +406,32 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../part3/setup-walkthrough.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Setting Up a Lab Project</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../part3/starting-project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Starting a New Analysis Project</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Quick Reference: Project Setup</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part3/collaborating.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Collaborating with Others</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Collaborating with Others</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part3/reproducibility.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Reproducible Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Reproducible Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part3/troubleshooting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Common Tasks &amp; Troubleshooting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Common Tasks &amp; Troubleshooting</span></span></a>
   </div>
 </li>
       </ul>
@@ -469,12 +475,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#why-these-tools" id="toc-why-these-tools" class="nav-link active" data-scroll-target="#why-these-tools"><span class="header-section-number">1.1</span> Why These Tools?</a>
-  <ul class="collapse">
-  <li><a href="#what-good-looks-like" id="toc-what-good-looks-like" class="nav-link" data-scroll-target="#what-good-looks-like"><span class="header-section-number">1.1.1</span> What “good” looks like</a></li>
-  </ul></li>
-  <li><a href="#how-they-fit-together" id="toc-how-they-fit-together" class="nav-link" data-scroll-target="#how-they-fit-together"><span class="header-section-number">1.2</span> How They Fit Together</a></li>
-  <li><a href="#what-youll-learn" id="toc-what-youll-learn" class="nav-link" data-scroll-target="#what-youll-learn"><span class="header-section-number">1.3</span> What You’ll Learn</a></li>
+  <li><a href="#what-were-going-to-do" id="toc-what-were-going-to-do" class="nav-link active" data-scroll-target="#what-were-going-to-do"><span class="header-section-number">1.1</span> What We’re Going to Do</a></li>
+  <li><a href="#how-we-work-in-the-lab" id="toc-how-we-work-in-the-lab" class="nav-link" data-scroll-target="#how-we-work-in-the-lab"><span class="header-section-number">1.2</span> How We Work in the Lab</a></li>
+  <li><a href="#the-tools" id="toc-the-tools" class="nav-link" data-scroll-target="#the-tools"><span class="header-section-number">1.3</span> The Tools</a></li>
+  <li><a href="#what-youll-learn-in-part-1" id="toc-what-youll-learn-in-part-1" class="nav-link" data-scroll-target="#what-youll-learn-in-part-1"><span class="header-section-number">1.4</span> What You’ll Learn in Part 1</a></li>
   </ul>
 </nav>
     </div>
@@ -501,127 +505,52 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="why-these-tools" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="why-these-tools"><span class="header-section-number">1.1</span> Why These Tools?</h2>
-<p>In the Musser Lab, most analyses are written as <strong>self-contained Quarto scripts</strong> (<code>.qmd</code>). A <code>.qmd</code> is both a <em>script</em> and a <em>publishable document</em>: it contains code, narrative, and the logic to render a shareable output (usually HTML).</p>
-<p>This workflow supports how we actually work:</p>
-<ul>
-<li>We often use <strong>both R and Python</strong> across a project, although usually one one language per script.</li>
-<li>Each analysis script clearly states what data it reads and what it produces.</li>
-<li>Scripts are designed to be readable, annotated, and reproducible for other lab members.</li>
-</ul>
-<p>The toolchain in this guide exists to make <code>.qmd</code>-based analyses:</p>
-<ul>
-<li><strong>Reproducible</strong> — same results on another machine</li>
-<li><strong>Collaborative</strong> — easy to review and share</li>
-<li><strong>Maintainable</strong> — clear provenance and version control</li>
-</ul>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Tool</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Positron</strong></td>
-<td>IDE designed for data science (R + Python)</td>
-</tr>
-<tr class="even">
-<td><strong>Conda</strong></td>
-<td>Python environment management</td>
-</tr>
-<tr class="odd">
-<td><strong>renv</strong></td>
-<td>R package management</td>
-</tr>
-<tr class="even">
-<td><strong>Git/GitHub</strong></td>
-<td>Version control and collaboration</td>
-</tr>
-<tr class="odd">
-<td><strong>Claude Code</strong></td>
-<td>AI-assisted coding and analysis</td>
-</tr>
-</tbody>
-</table>
-<section id="what-good-looks-like" class="level3" data-number="1.1.1">
-<h3 data-number="1.1.1" class="anchored" data-anchor-id="what-good-looks-like"><span class="header-section-number">1.1.1</span> What “good” looks like</h3>
-<p>A typical analysis loop in the lab:</p>
-<ol type="1">
-<li>Open the project folder in Positron</li>
-<li>Positron automatically activates the project environments (conda for Python, renv for R)</li>
-<li>Write a Quarto analysis script (<code>.qmd</code>) that loads data, runs analysis, and exports results</li>
-<li>Render the script to HTML: <code>quarto render analysis/my_analysis.qmd</code></li>
-<li>Commit and push code + lockfiles (<code>environment.yml</code>, <code>renv.lock</code>) with Git</li>
-</ol>
+<section id="what-were-going-to-do" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="what-were-going-to-do"><span class="header-section-number">1.1</span> What We’re Going to Do</h2>
+<p>In Part 1, you’re going to install a few tools and then run a real single-cell RNA-seq analysis — loading a count matrix, filtering and normalizing the data, clustering cells, and generating a UMAP visualization. You’ll do all of this interactively in Positron, our lab’s IDE, writing your analysis in a Quarto document that doubles as a shareable report.</p>
+<p>Along the way, you’ll learn to use the features of Positron that you’ll rely on every day: the file explorer for navigating your project, the console for running code interactively, the environment pane for inspecting your data, the plots pane for viewing figures, and the terminal for running commands.</p>
+<p>By the end, you’ll have a working project with a rendered HTML report that you could share with anyone in the lab. That’s the starting point for every analysis you’ll do here.</p>
 </section>
+<section id="how-we-work-in-the-lab" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="how-we-work-in-the-lab"><span class="header-section-number">1.2</span> How We Work in the Lab</h2>
+<p>Most analysis in the Musser Lab is written in <strong>Quarto documents</strong> (<code>.qmd</code> files). A Quarto document is both a script and a report: you write code and explanatory text together in one file, and when you render it, Quarto runs all the code and produces a clean HTML (or PDF) document with your results, figures, and narrative included. This means your analysis and your documentation are always in sync — there’s no separate step of copying figures into a report or updating numbers by hand.</p>
+<p>Our projects typically use both <strong>R and Python</strong>, though usually one language per script. R is the go-to for statistical analysis, plotting, and the many well-established bioinformatics packages (Seurat, DESeq2, limma). Python is used for automation, file manipulation, working with sequences, and an expanding set of analysis tools (Scanpy, metacell). Positron handles both languages equally well, so you can switch between them as needed.</p>
 </section>
-<section id="how-they-fit-together" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="how-they-fit-together"><span class="header-section-number">1.2</span> How They Fit Together</h2>
-<pre><code>┌─────────────────────────────────────────────────┐
-│                   Positron                      │
-│              (Your workspace)                   │
-│                                                 │
-│  ┌──────────┐  ┌──────────┐  ┌──────────────┐  │
-│  │  Conda   │  │   renv   │  │  Claude Code │  │
-│  │ (Python) │  │   (R)    │  │    (AI)      │  │
-│  └──────────┘  └──────────┘  └──────────────┘  │
-│                                                 │
-│  ┌──────────────────────────────────────────┐   │
-│  │              Git / GitHub                │   │
-│  │        (Version control for all)         │   │
-└──┴──────────────────────────────────────────┴───┘</code></pre>
-<p><strong>Positron</strong> is where you write and run code and manage project files.</p>
-<p><strong>Conda</strong> defines a Python environment for the project (Python version + packages).</p>
-<p><strong>renv</strong> manages the R package set for the project.</p>
-<p><strong>Git/GitHub</strong> tracks changes to scripts, data-processing logic, and environment definitions.</p>
-<p><strong>Claude Code</strong> is optional; it can help write or debug code, but outputs must be verified.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Key concepts
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<section id="the-tools" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="the-tools"><span class="header-section-number">1.3</span> The Tools</h2>
+<p>Here’s a quick overview of the tools you’ll encounter in this guide and how they fit together. You don’t need to understand all of this now — you’ll learn each tool as you need it.</p>
+<pre><code>┌───────────────────────────────────────────────────┐
+│                      Positron                     │
+│          (where you write and run code)           │
+│                                                   │
+│   ┌───────────┐  ┌───────────┐  ┌─────────────┐   │
+│   │   Conda   │  │   renv    │  │ Claude Code │   │
+│   │  (Python  │  │    (R     │  │ (AI coding  │   │
+│   │ packages) │  │ packages) │  │  assistant) │   │
+│   └───────────┘  └───────────┘  └─────────────┘   │
+│                                                   │
+│   ┌───────────────────────────────────────────┐   │
+│   │               Git / GitHub                │   │
+│   │   (version control and collaboration)     │   │
+│   └───────────────────────────────────────────┘   │
+└───────────────────────────────────────────────────┘</code></pre>
+<p><strong>Positron</strong> is your home base — the application where you write code, explore data, view plots, and manage your project files. It’s built by the makers of RStudio but designed for both R and Python.</p>
+<p><strong>Conda</strong> and <strong>renv</strong> are environment managers. They keep track of which packages (and which versions) each project uses, so your analysis works the same way on any computer. Conda handles Python; renv handles R. You’ll set up renv in your first project and learn conda later in Part 2.</p>
+<p><strong>Git and GitHub</strong> let you track changes to your code over time and share it with collaborators. Think of Git as an unlimited undo history for your project, and GitHub as the place where that history lives online. You’ll learn these in Part 2.</p>
+<p><strong>Claude Code</strong> is an AI coding assistant that integrates into Positron. It can help you write code, debug errors, explain unfamiliar functions, and plan analyses. You’ll install it in the next chapter and see it in action throughout the guide.</p>
+</section>
+<section id="what-youll-learn-in-part-1" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="what-youll-learn-in-part-1"><span class="header-section-number">1.4</span> What You’ll Learn in Part 1</h2>
+<p>After working through the next two chapters, you will have:</p>
 <ul>
-<li><strong>Quarto script (<code>.qmd</code>)</strong>: the main analysis artifact in the lab; it renders to a shareable output (HTML/PDF).</li>
-<li><strong>Environment</strong>: project-specific dependencies.
-<ul>
-<li>Python dependencies: conda (<code>environment.yml</code>)</li>
-<li>R dependencies: renv (<code>renv.lock</code>)</li>
-</ul></li>
-<li><strong>Render</strong>: convert <code>.qmd</code> → HTML/PDF, executing code in the process.</li>
-<li><strong>Interpreter/kernel selection</strong>: Quarto and Positron must run the correct R and Python; this guide shows how to verify which ones are being used.</li>
+<li>Installed Positron, R, Quarto, and Claude Code</li>
+<li>Created a project with a proper folder structure</li>
+<li>Run a complete single-cell analysis interactively in Positron, learning the IDE along the way</li>
+<li>Rendered your analysis into a self-contained HTML report</li>
+<li>Used renv to manage your R packages</li>
 </ul>
-</div>
-</div>
-<p>For a deeper introduction to Quarto, see <strong>Part 2 → Quarto documents</strong>.</p>
-</section>
-<section id="what-youll-learn" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="what-youll-learn"><span class="header-section-number">1.3</span> What You’ll Learn</h2>
-<p>By the end of Part 1, you will have:</p>
-<ol type="1">
-<li>Installed the core tools and verified they work</li>
-<li>Opened a lab-style project folder in Positron</li>
-<li>Set up project environments:
-<ul>
-<li>conda environment for Python</li>
-<li>renv for R packages</li>
-</ul></li>
-<li>Written a Quarto analysis script (<code>.qmd</code>) that:
-<ul>
-<li>states what it reads and what it produces</li>
-<li>runs an analysis and generates a figure</li>
-<li>renders to HTML</li>
-</ul></li>
-<li>Put the project under version control and pushed it to GitHub</li>
-</ol>
-<p>Next, we’ll install tools and build your first Quarto-based analysis project.</p>
+<p>That’s enough to start working on real lab projects. Parts 2–4 will deepen your understanding of each tool and introduce version control, collaboration workflows, and more advanced techniques — but you can come back to those as you need them.</p>
+<p>Let’s start by installing the tools.</p>
 
 
 </section>

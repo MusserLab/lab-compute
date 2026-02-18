@@ -343,7 +343,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part1/first-project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Your First Project</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Your First R Project</span></span></a>
   </div>
 </li>
       </ul>
@@ -441,26 +441,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../part3/setup-walkthrough.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Setting Up a Lab Project</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../part3/starting-project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Starting a New Analysis Project</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Quick Reference: Project Setup</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part3/collaborating.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Collaborating with Others</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Collaborating with Others</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part3/reproducibility.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Reproducible Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Reproducible Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part3/troubleshooting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Common Tasks &amp; Troubleshooting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Common Tasks &amp; Troubleshooting</span></span></a>
   </div>
 </li>
       </ul>
@@ -618,6 +624,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p>In <a href="../part1/first-project.html">Your First R Project</a>, you worked with a <code>.qmd</code> file—running code chunks interactively, viewing results in the plots pane, and rendering the document to HTML. This chapter explains Quarto’s syntax and features in depth so you can write your own analysis documents from scratch.</p>
 <p>Quarto is a scientific publishing system that lets you combine code, results, and narrative text in a single document. You write analysis scripts as <code>.qmd</code> files—plain text with embedded R or Python code—and Quarto renders them into polished HTML reports with your outputs automatically included.</p>
 <p>In the Musser Lab, Quarto documents are the standard format for data analysis because they solve a fundamental problem: keeping your code, your results, and your explanation of those results in sync. When you render a <code>.qmd</code> file, Quarto executes the code fresh and weaves the outputs into the document, so the report always reflects the actual analysis.</p>
 <section id="why-quarto" class="level2" data-number="6.1">
@@ -1494,14 +1501,22 @@ Note
 </section>
 <section id="common-issues" class="level2" data-number="6.14">
 <h2 data-number="6.14" class="anchored" data-anchor-id="common-issues"><span class="header-section-number">6.14</span> Common Issues</h2>
-<div class="callout-claude" title="Ask Claude">
-<p><strong>Debug a render error:</strong></p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Claude Code">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Claude Code
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Claude Code can debug render failures, especially the common case where code works interactively but fails during rendering.</p>
 <blockquote class="blockquote">
-<p>When I run <code>quarto render analysis.qmd</code>, I get this error:</p>
-<p>[paste the full error message]</p>
-<p>The code runs fine when I execute it interactively in the console. What’s going wrong?</p>
+<p>When I run <code>quarto render analysis.qmd</code>, I get this error: [paste error]. The code runs fine interactively in the console. What’s going wrong?</p>
 </blockquote>
-<p><em>Include the exact error. Mention if it works interactively—that’s an important clue that often points to missing objects or path issues.</em></p>
+<p>Claude will trace the error to its cause—typically a missing object that existed in your interactive session but isn’t created in the script, or a path that resolves differently during rendering.</p>
+</div>
 </div>
 <section id="object-not-found-during-render" class="level3" data-number="6.14.1">
 <h3 data-number="6.14.1" class="anchored" data-anchor-id="object-not-found-during-render"><span class="header-section-number">6.14.1</span> “Object not found” During Render</h3>

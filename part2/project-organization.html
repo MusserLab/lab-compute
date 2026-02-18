@@ -346,7 +346,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part1/first-project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Your First Project</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Your First R Project</span></span></a>
   </div>
 </li>
       </ul>
@@ -444,26 +444,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../part3/setup-walkthrough.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Setting Up a Lab Project</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../part3/starting-project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Starting a New Analysis Project</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Quick Reference: Project Setup</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part3/collaborating.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Collaborating with Others</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Collaborating with Others</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part3/reproducibility.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Reproducible Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Reproducible Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part3/troubleshooting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Common Tasks &amp; Troubleshooting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Common Tasks &amp; Troubleshooting</span></span></a>
   </div>
 </li>
       </ul>
@@ -568,6 +574,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p>In <a href="../part1/first-project.html">Your First R Project</a>, you created a project with <code>data/</code>, <code>scripts/</code>, and <code>outs/</code> folders—the same structure used in every lab project. This chapter explains that structure formally and covers the conventions that keep projects organized as they grow.</p>
 <p>A well-organized project makes it easy to find files, understand dependencies, and reproduce analyses. This chapter describes the lab’s conventions for structuring analysis projects.</p>
 <section id="the-core-principle" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="the-core-principle"><span class="header-section-number">5.1</span> The Core Principle</h2>
@@ -653,14 +660,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 └── 05_heatmaps/
     └── cluster_heatmap.pdf</code></pre>
 <p><strong>This structure encodes provenance.</strong> When you see a file in <code>outs/03_differential/</code>, you know exactly which script created it.</p>
-<div class="callout-claude" title="Ask Claude">
-<p><strong>Review your project structure:</strong></p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Claude Code">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Claude Code
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Claude Code can review your project layout and suggest improvements based on the lab’s conventions.</p>
 <blockquote class="blockquote">
-<p>Here’s my project folder structure:</p>
-<p>[paste output of <code>ls -R</code> or describe your layout]</p>
-<p>I’m analyzing RNA-seq data from three conditions with time points. Does this organization make sense, or should I restructure anything?</p>
+<p>Here’s my project folder structure: [paste output of <code>ls -R</code>]. I’m analyzing RNA-seq data from three conditions with time points. Does this organization make sense?</p>
 </blockquote>
-<p><em>Describe what type of analysis you’re doing. Claude can suggest improvements based on your specific project needs.</em></p>
+<p>Claude will compare your layout against the lab conventions, flag any issues (like outputs mixed with inputs), and suggest a cleaner structure.</p>
+</div>
 </div>
 </section>
 </section>

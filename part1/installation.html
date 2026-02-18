@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -343,7 +308,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part1/first-project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Your First Project</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Your First R Project</span></span></a>
   </div>
 </li>
       </ul>
@@ -441,26 +406,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../part3/setup-walkthrough.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Setting Up a Lab Project</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../part3/starting-project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Starting a New Analysis Project</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Quick Reference: Project Setup</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part3/collaborating.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Collaborating with Others</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Collaborating with Others</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part3/reproducibility.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Reproducible Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Reproducible Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part3/troubleshooting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Common Tasks &amp; Troubleshooting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Common Tasks &amp; Troubleshooting</span></span></a>
   </div>
 </li>
       </ul>
@@ -509,37 +480,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#macos" id="toc-macos" class="nav-link" data-scroll-target="#macos"><span class="header-section-number">2.1.1</span> macOS</a></li>
   <li><a href="#windows" id="toc-windows" class="nav-link" data-scroll-target="#windows"><span class="header-section-number">2.1.2</span> Windows</a></li>
   </ul></li>
-  <li><a href="#conda-miniforge" id="toc-conda-miniforge" class="nav-link" data-scroll-target="#conda-miniforge"><span class="header-section-number">2.2</span> 2. Conda (Miniforge)</a>
+  <li><a href="#r-using-rig" id="toc-r-using-rig" class="nav-link" data-scroll-target="#r-using-rig"><span class="header-section-number">2.2</span> 2. R (using rig)</a>
   <ul class="collapse">
   <li><a href="#macos-1" id="toc-macos-1" class="nav-link" data-scroll-target="#macos-1"><span class="header-section-number">2.2.1</span> macOS</a></li>
   <li><a href="#windows-1" id="toc-windows-1" class="nav-link" data-scroll-target="#windows-1"><span class="header-section-number">2.2.2</span> Windows</a></li>
+  <li><a href="#why-rig" id="toc-why-rig" class="nav-link" data-scroll-target="#why-rig"><span class="header-section-number">2.2.3</span> Why rig?</a></li>
   </ul></li>
-  <li><a href="#r-using-rig" id="toc-r-using-rig" class="nav-link" data-scroll-target="#r-using-rig"><span class="header-section-number">2.3</span> 3. R (using rig)</a>
+  <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto"><span class="header-section-number">2.3</span> 3. Quarto</a>
   <ul class="collapse">
   <li><a href="#macos-2" id="toc-macos-2" class="nav-link" data-scroll-target="#macos-2"><span class="header-section-number">2.3.1</span> macOS</a></li>
   <li><a href="#windows-2" id="toc-windows-2" class="nav-link" data-scroll-target="#windows-2"><span class="header-section-number">2.3.2</span> Windows</a></li>
-  <li><a href="#why-rig" id="toc-why-rig" class="nav-link" data-scroll-target="#why-rig"><span class="header-section-number">2.3.3</span> Why rig?</a></li>
   </ul></li>
-  <li><a href="#git" id="toc-git" class="nav-link" data-scroll-target="#git"><span class="header-section-number">2.4</span> 4. Git</a>
+  <li><a href="#claude-code" id="toc-claude-code" class="nav-link" data-scroll-target="#claude-code"><span class="header-section-number">2.4</span> 4. Claude Code</a>
   <ul class="collapse">
-  <li><a href="#macos-3" id="toc-macos-3" class="nav-link" data-scroll-target="#macos-3"><span class="header-section-number">2.4.1</span> macOS</a></li>
-  <li><a href="#windows-3" id="toc-windows-3" class="nav-link" data-scroll-target="#windows-3"><span class="header-section-number">2.4.2</span> Windows</a></li>
-  <li><a href="#configure-git-both-platforms" id="toc-configure-git-both-platforms" class="nav-link" data-scroll-target="#configure-git-both-platforms"><span class="header-section-number">2.4.3</span> Configure Git (Both Platforms)</a></li>
+  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites"><span class="header-section-number">2.4.1</span> Prerequisites</a></li>
+  <li><a href="#install-claude-code" id="toc-install-claude-code" class="nav-link" data-scroll-target="#install-claude-code"><span class="header-section-number">2.4.2</span> Install Claude Code</a></li>
+  <li><a href="#authenticate" id="toc-authenticate" class="nav-link" data-scroll-target="#authenticate"><span class="header-section-number">2.4.3</span> Authenticate</a></li>
+  <li><a href="#install-the-positron-extension" id="toc-install-the-positron-extension" class="nav-link" data-scroll-target="#install-the-positron-extension"><span class="header-section-number">2.4.4</span> Install the Positron Extension</a></li>
   </ul></li>
-  <li><a href="#github-account" id="toc-github-account" class="nav-link" data-scroll-target="#github-account"><span class="header-section-number">2.5</span> 5. GitHub Account</a></li>
-  <li><a href="#claude-code" id="toc-claude-code" class="nav-link" data-scroll-target="#claude-code"><span class="header-section-number">2.6</span> 6. Claude Code</a>
-  <ul class="collapse">
-  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites"><span class="header-section-number">2.6.1</span> Prerequisites</a></li>
-  <li><a href="#install-claude-code" id="toc-install-claude-code" class="nav-link" data-scroll-target="#install-claude-code"><span class="header-section-number">2.6.2</span> Install Claude Code</a></li>
-  <li><a href="#authenticate" id="toc-authenticate" class="nav-link" data-scroll-target="#authenticate"><span class="header-section-number">2.6.3</span> Authenticate</a></li>
-  </ul></li>
-  <li><a href="#quarto-optional" id="toc-quarto-optional" class="nav-link" data-scroll-target="#quarto-optional"><span class="header-section-number">2.7</span> 7. Quarto (Optional)</a>
-  <ul class="collapse">
-  <li><a href="#macos-4" id="toc-macos-4" class="nav-link" data-scroll-target="#macos-4"><span class="header-section-number">2.7.1</span> macOS</a></li>
-  <li><a href="#windows-4" id="toc-windows-4" class="nav-link" data-scroll-target="#windows-4"><span class="header-section-number">2.7.2</span> Windows</a></li>
-  </ul></li>
-  <li><a href="#verification-checklist" id="toc-verification-checklist" class="nav-link" data-scroll-target="#verification-checklist"><span class="header-section-number">2.8</span> Verification Checklist</a></li>
-  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">2.9</span> Next Steps</a></li>
+  <li><a href="#verification-checklist" id="toc-verification-checklist" class="nav-link" data-scroll-target="#verification-checklist"><span class="header-section-number">2.5</span> Verification Checklist</a></li>
+  <li><a href="#what-about-git-conda-and-github" id="toc-what-about-git-conda-and-github" class="nav-link" data-scroll-target="#what-about-git-conda-and-github"><span class="header-section-number">2.6</span> What About Git, Conda, and GitHub?</a></li>
   </ul>
 </nav>
     </div>
@@ -566,10 +526,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This chapter walks you through installing all the tools you need. Follow the sections in order.</p>
+<p>This chapter walks you through installing the tools you need for your first project. We’ll install more tools (Git, conda) later when you need them in Part 2.</p>
+<p>Several steps below require running commands in a <strong>terminal</strong> (also called a command line). On macOS, open the built-in <strong>Terminal</strong> app (search for “Terminal” in Spotlight). On Windows, open <strong>PowerShell</strong> from the Start menu. You’ll type or paste commands there and press Enter to run them.</p>
 <section id="positron" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="positron"><span class="header-section-number">2.1</span> 1. Positron</h2>
-<p>Positron is a data science IDE (integrated development environment) built by the makers of RStudio. It combines the best features of RStudio—like an integrated data viewer, variable explorer, and plot pane—with the modern editing experience of VS Code. Unlike RStudio, Positron treats both R and Python equally, making it ideal for labs that work in both languages. It’s also highly extensible, with access to the full set of VS Code extensions, including claude code.</p>
+<p>Positron is a data science IDE (integrated development environment) built by the makers of RStudio. It combines the best features of RStudio—like an integrated data viewer, variable explorer, and plot pane—with the modern editing experience of VS Code. Unlike RStudio, Positron treats both R and Python equally, making it ideal for labs that work in both languages. It’s also highly extensible, with access to the full set of VS Code extensions, including Claude Code.</p>
 <section id="macos" class="level3" data-number="2.1.1">
 <h3 data-number="2.1.1" class="anchored" data-anchor-id="macos"><span class="header-section-number">2.1.1</span> macOS</h3>
 <ol type="1">
@@ -601,59 +562,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="conda-miniforge" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="conda-miniforge"><span class="header-section-number">2.2</span> 2. Conda (Miniforge)</h2>
-<p>Conda is a package and environment manager that handles Python installations and their dependencies. The key feature is <em>environments</em>: isolated spaces where you can install specific versions of Python and packages for a specific project without affecting other projects. This prevents the common problem of upgrading a package for one project and breaking another. We use Miniforge, a community-driven conda distribution that defaults to the conda-forge channel—a large, well-maintained repository of python packages. Miniforge is lightweight and free to use in any context, unlike some commercial conda distributions.</p>
-<section id="macos-1" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="macos-1"><span class="header-section-number">2.2.1</span> macOS</h3>
-<p>Open Terminal and run:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Download the installer</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-L</span> <span class="at">-O</span> <span class="st">"https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-</span><span class="va">$(</span><span class="fu">uname</span> <span class="at">-m</span><span class="va">)</span><span class="st">.sh"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the installer</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> Miniforge3-MacOSX-<span class="va">$(</span><span class="fu">uname</span> <span class="at">-m</span><span class="va">)</span>.sh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Follow the prompts, accepting the defaults. When asked about initializing conda, say <strong>yes</strong>.</p>
-<p>After installation, restart your terminal or run:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.zshrc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Verify the installation:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="windows-1" class="level3" data-number="2.2.2">
-<h3 data-number="2.2.2" class="anchored" data-anchor-id="windows-1"><span class="header-section-number">2.2.2</span> Windows</h3>
-<ol type="1">
-<li>Download the Miniforge installer from <a href="https://github.com/conda-forge/miniforge/releases">https://github.com/conda-forge/miniforge/releases</a>
-<ul>
-<li>Choose <code>Miniforge3-Windows-x86_64.exe</code></li>
-</ul></li>
-<li>Run the installer</li>
-<li>Check “Add Miniforge3 to my PATH environment variable” during installation</li>
-<li>Complete the installation</li>
-</ol>
-<p>Open a <strong>new</strong> PowerShell window and verify:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>conda <span class="op">--</span>version</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Then initialize conda for your shell (this is required to make <code>conda activate</code> work):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>conda init powershell</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Close and reopen PowerShell</strong> after running this command. You only need to do this once.</p>
+<section id="r-using-rig" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="r-using-rig"><span class="header-section-number">2.2</span> 2. R (using rig)</h2>
+<p>We install R using <strong>rig</strong> (R Installation Manager) rather than downloading directly from CRAN. Rig makes it easy to install R, switch between R versions, and keep R updated, all from the command line. Most importantly, it installs new R versions without overwriting or deleting previous versions, a common problem encountered when installing precompiled packages from the main R website. This is especially useful when you want to install the newest version of R to use with a new project while still maintaining older versions associated with older projects.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Command Prompt Users
+<span class="screen-reader-only">Note</span>Already have R?
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you use Command Prompt instead of PowerShell, run <code>conda init cmd.exe</code> instead.</p>
+<p>If you already have R installed, you can skip rig for now — any recent version of R (4.0+) will work for this tutorial. We still recommend installing rig for future projects, because it makes managing multiple R versions painless, but it’s not required to get started.</p>
 </div>
 </div>
-</section>
-</section>
-<section id="r-using-rig" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="r-using-rig"><span class="header-section-number">2.3</span> 3. R (using rig)</h2>
-<p>We install R using <strong>rig</strong> (R Installation Manager) rather than downloading directly from CRAN. Rig makes it easy to install R, switch between R versions, and keep R updated, all from the command line. Most importantly, it installs new R versions without overwriting or deleting previous versions, a common problem encountered when installing precompiled packages from the main R website. This is especially useful when you want to install the newest version of R to use with a new project while still maintaining older versions associated with older projects.</p>
-<section id="macos-2" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="macos-2"><span class="header-section-number">2.3.1</span> macOS</h3>
+<section id="macos-1" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="macos-1"><span class="header-section-number">2.2.1</span> macOS</h3>
 <ol type="1">
 <li>Download the latest rig installer from <a href="https://github.com/r-lib/rig/releases">https://github.com/r-lib/rig/releases</a>
 <ul>
@@ -661,10 +587,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li>Double-click the <code>.pkg</code> file and follow the installation prompts</li>
 </ol>
-<p>Then install the latest R version:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rig</span> add release</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Verify the installation:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Then open a terminal and install the latest R version:</p>
+<pre class="text"><code>rig add release</code></pre>
+<p>After the install finishes, <strong>close and reopen your terminal</strong>, then verify the installation:</p>
+<pre class="text"><code>R --version</code></pre>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -684,87 +610,70 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="windows-2" class="level3" data-number="2.3.2">
-<h3 data-number="2.3.2" class="anchored" data-anchor-id="windows-2"><span class="header-section-number">2.3.2</span> Windows</h3>
+<section id="windows-1" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="windows-1"><span class="header-section-number">2.2.2</span> Windows</h3>
 <ol type="1">
 <li>Download the rig installer from <a href="https://github.com/r-lib/rig/releases">https://github.com/r-lib/rig/releases</a>
 <ul>
 <li>Choose <code>rig-windows-latest.exe</code></li>
 </ul></li>
 <li>Run the installer</li>
-<li>Open a <strong>new</strong> PowerShell window and install R:</li>
+<li>Open a <strong>new</strong> PowerShell window (this is important — a fresh window picks up the new installation) and install R:</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>rig add release</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="text"><code>rig add release</code></pre>
 <ol start="4" type="1">
-<li>Verify:</li>
+<li><strong>Close and reopen PowerShell</strong>, then verify:</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">R</span> <span class="op">--</span>version</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="text"><code>R --version</code></pre>
 </section>
-<section id="why-rig" class="level3" data-number="2.3.3">
-<h3 data-number="2.3.3" class="anchored" data-anchor-id="why-rig"><span class="header-section-number">2.3.3</span> Why rig?</h3>
+<section id="why-rig" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="why-rig"><span class="header-section-number">2.2.3</span> Why rig?</h3>
 <ul>
 <li><strong>Easy updates</strong>: <code>rig add release</code> always gets the latest version</li>
 <li><strong>Multiple versions</strong>: Install R 4.3 and R 4.4 side by side for testing</li>
 <li><strong>Consistent</strong>: Same commands on macOS and Windows</li>
 </ul>
+<p>You’ll learn more about managing R versions in the <a href="../part2/renv.html">rig &amp; renv chapter</a>.</p>
 </section>
 </section>
-<section id="git" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="git"><span class="header-section-number">2.4</span> 4. Git</h2>
-<p>Git is a version control system that tracks changes to your code over time. Think of it as an unlimited undo history that also lets you see <em>what</em> changed, <em>when</em>, and <em>why</em>. More importantly, Git enables collaboration - multiple people can work on the same project without overwriting each other’s work. Every serious software project uses Git, and increasingly, so do data analysis projects. Learning Git is an investment that pays off throughout your career.</p>
-<section id="macos-3" class="level3" data-number="2.4.1">
-<h3 data-number="2.4.1" class="anchored" data-anchor-id="macos-3"><span class="header-section-number">2.4.1</span> macOS</h3>
-<p>Git may already be installed. Check by running:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>If not installed, you’ll be prompted to install the Xcode Command Line Tools. Accept the prompt.</p>
-<p>Alternatively, install via Homebrew:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="quarto" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="quarto"><span class="header-section-number">2.3</span> 3. Quarto</h2>
+<p>Quarto is a scientific publishing system that lets you combine code, results, and narrative text in a single document. You write in Markdown with embedded R or Python code chunks, and Quarto renders it to HTML, PDF, Word, or other formats—with your code output automatically included. If you’ve used R Markdown, Quarto is its successor—same core idea, but with more features and equal support for Python. This is the modern approach to reproducible research: your analysis and your report are the same document, so results stay in sync with the code that produced them. In fact, this book was built with Quarto!</p>
+<section id="macos-2" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="macos-2"><span class="header-section-number">2.3.1</span> macOS</h3>
+<p>If you have <a href="https://brew.sh">Homebrew</a> (a popular macOS package manager), you can install Quarto from the terminal:</p>
+<pre class="text"><code>brew install quarto</code></pre>
+<p>If you don’t have Homebrew, download the installer from <a href="https://quarto.org/docs/get-started/">https://quarto.org/docs/get-started/</a> instead.</p>
+<p>After installing, <strong>close and reopen your terminal</strong>, then verify:</p>
+<pre class="text"><code>quarto --version</code></pre>
 </section>
-<section id="windows-3" class="level3" data-number="2.4.2">
-<h3 data-number="2.4.2" class="anchored" data-anchor-id="windows-3"><span class="header-section-number">2.4.2</span> Windows</h3>
-<ol type="1">
-<li>Download Git from <a href="https://git-scm.com/download/win">https://git-scm.com/download/win</a></li>
-<li>Run the installer</li>
-<li>Accept the default options (the defaults are good)</li>
-<li>Verify in a new terminal:</li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>git <span class="op">--</span>version</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="configure-git-both-platforms" class="level3" data-number="2.4.3">
-<h3 data-number="2.4.3" class="anchored" data-anchor-id="configure-git-both-platforms"><span class="header-section-number">2.4.3</span> Configure Git (Both Platforms)</h3>
-<p>Set your identity (use your real name and email):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Your Name"</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"your.email@example.com"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="windows-2" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="windows-2"><span class="header-section-number">2.3.2</span> Windows</h3>
+<p>Download and run the installer from <a href="https://quarto.org/docs/get-started/">https://quarto.org/docs/get-started/</a></p>
+<p>After installing, <strong>close and reopen PowerShell</strong>, then verify:</p>
+<pre class="text"><code>quarto --version</code></pre>
 </section>
 </section>
-<section id="github-account" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="github-account"><span class="header-section-number">2.5</span> 5. GitHub Account</h2>
-<p>GitHub is a web platform that hosts Git repositories in the cloud. It’s where you’ll store your code, collaborate with others, and share your work publicly or privately. GitHub adds features on top of Git—like issue tracking, pull requests for code review, and GitHub Pages for hosting websites. Most open-source software lives on GitHub, including the R and Python packages you use daily. If you don’t have an individual GitHub account, please make one for yourself. We also maintain a <a href="https://github.com/MusserLab">Lab Github Team</a> where we keep all lab code projects (including individual student projects).</p>
-<ol type="1">
-<li>Go to <a href="https://github.com">https://github.com</a> and create an account if you don’t have one</li>
-<li>We’ll set up authentication in <a href="first-project.html#sec-github-auth" class="quarto-xref"><span>Section 3.11</span></a></li>
-<li>Give Jake your account username so he can give you access to the Lab Github organization.</li>
-</ol>
+<section id="claude-code" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="claude-code"><span class="header-section-number">2.4</span> 4. Claude Code</h2>
+<p>Claude Code is an AI coding assistant that runs in your terminal or integrates directly into Positron. Unlike chat-based AI tools, Claude Code can read and write files in your project, run commands, and help you build and debug code interactively. It understands context from your entire codebase, making it useful for writing code, explaining unfamiliar code, debugging errors, and planning larger projects. Think of it as a knowledgeable collaborator who’s always available.</p>
+<section id="prerequisites" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="prerequisites"><span class="header-section-number">2.4.1</span> Prerequisites</h3>
+<p>You need Node.js 18+ installed. In your terminal:</p>
+<p><strong>macOS</strong> (using Homebrew):</p>
+<pre class="text"><code>brew install node</code></pre>
+<p><strong>Windows:</strong> Download and install from <a href="https://nodejs.org">https://nodejs.org</a> (choose the LTS version). After installing, <strong>close and reopen PowerShell</strong>.</p>
 </section>
-<section id="claude-code" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="claude-code"><span class="header-section-number">2.6</span> 6. Claude Code</h2>
-<p>Claude Code is an AI coding assistant that runs in your terminal or integrates into Positron. Unlike chat-based AI tools, Claude Code can read and write files in your project, run commands, and help you build and debug code interactively. It understands context from your entire codebase, making it useful for everything from writing code, explaining unfamiliar code, debugging errors, and planning and tracking larger projects. Think of it as a knowledgeable collaborator who’s always available and can work in the background.</p>
-<section id="prerequisites" class="level3" data-number="2.6.1">
-<h3 data-number="2.6.1" class="anchored" data-anchor-id="prerequisites"><span class="header-section-number">2.6.1</span> Prerequisites</h3>
-<p>You need Node.js 18+ installed:</p>
-<p><strong>macOS:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install node</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Windows:</strong> Download and install from <a href="https://nodejs.org">https://nodejs.org</a> (LTS version).</p>
+<section id="install-claude-code" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="install-claude-code"><span class="header-section-number">2.4.2</span> Install Claude Code</h3>
+<p>In your terminal, run:</p>
+<pre class="text"><code>npm install -g @anthropic-ai/claude-code</code></pre>
 </section>
-<section id="install-claude-code" class="level3" data-number="2.6.2">
-<h3 data-number="2.6.2" class="anchored" data-anchor-id="install-claude-code"><span class="header-section-number">2.6.2</span> Install Claude Code</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install <span class="at">-g</span> @anthropic-ai/claude-code</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="authenticate" class="level3" data-number="2.6.3">
-<h3 data-number="2.6.3" class="anchored" data-anchor-id="authenticate"><span class="header-section-number">2.6.3</span> Authenticate</h3>
-<p>Run Claude Code once to authenticate:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Follow the prompts to log in with your Anthropic account.</p>
+<section id="authenticate" class="level3" data-number="2.4.3">
+<h3 data-number="2.4.3" class="anchored" data-anchor-id="authenticate"><span class="header-section-number">2.4.3</span> Authenticate</h3>
+<p>Run Claude Code once to set up authentication:</p>
+<pre class="text"><code>claude</code></pre>
+<p>When prompted, choose <strong>Use OAuth (Anthropic account)</strong> and press Enter. This will open a browser window where you log in with your Anthropic account — the same email and password you use for <a href="https://claude.ai">claude.ai</a>. Once you approve the connection in the browser, Claude Code is ready to use in the terminal.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -775,43 +684,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You’ll need an Anthropic account with API access. If you’re a lab member, ask for credentials.</p>
+<p>You need a Claude Pro or Max subscription to use Claude Code. All lab members have personal subscriptions — if yours isn’t set up yet, ask Jake.</p>
 </div>
 </div>
 </section>
-</section>
-<section id="quarto-optional" class="level2" data-number="2.7">
-<h2 data-number="2.7" class="anchored" data-anchor-id="quarto-optional"><span class="header-section-number">2.7</span> 7. Quarto (Optional)</h2>
-<p>Quarto is a scientific publishing system that lets you combine code, results, and narrative text in a single document. You write in Markdown with embedded R or Python code chunks, and Quarto renders it to HTML, PDF, Word, or other formats—with your code output automatically included. This is the modern approach to reproducible research: your analysis and your report are the same document, so results stay in sync with the code that produced them. Quarto can also make books, websites, presentations, and other types of documents. In fact, this book was built with Quarto!</p>
-<section id="macos-4" class="level3" data-number="2.7.1">
-<h3 data-number="2.7.1" class="anchored" data-anchor-id="macos-4"><span class="header-section-number">2.7.1</span> macOS</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install quarto</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Or download from <a href="https://quarto.org/docs/get-started/">https://quarto.org/docs/get-started/</a></p>
-</section>
-<section id="windows-4" class="level3" data-number="2.7.2">
-<h3 data-number="2.7.2" class="anchored" data-anchor-id="windows-4"><span class="header-section-number">2.7.2</span> Windows</h3>
-<p>Download and run the installer from <a href="https://quarto.org/docs/get-started/">https://quarto.org/docs/get-started/</a></p>
+<section id="install-the-positron-extension" class="level3" data-number="2.4.4">
+<h3 data-number="2.4.4" class="anchored" data-anchor-id="install-the-positron-extension"><span class="header-section-number">2.4.4</span> Install the Positron Extension</h3>
+<p>Claude Code integrates directly into Positron as an extension:</p>
+<ol type="1">
+<li>Open Positron</li>
+<li>Go to the Extensions view (Cmd+Shift+X on macOS, Ctrl+Shift+X on Windows)</li>
+<li>Search for “Claude Code”</li>
+<li>Click <strong>Install</strong></li>
+</ol>
+<p>You’ll see a Claude Code panel in Positron’s sidebar. You can use it right alongside your code editor, console, and plots pane.</p>
 </section>
 </section>
-<section id="verification-checklist" class="level2" data-number="2.8">
-<h2 data-number="2.8" class="anchored" data-anchor-id="verification-checklist"><span class="header-section-number">2.8</span> Verification Checklist</h2>
-<p>Run these commands to verify everything is installed:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check each tool</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">positron</span> <span class="at">--version</span>  <span class="co"># Or just open Positron</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> <span class="at">--version</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> <span class="at">--version</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">--version</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span> <span class="at">--version</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> <span class="at">--version</span>    <span class="co"># If installed</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>All commands should return version numbers without errors.</p>
-<div class="callout-claude" title="Ask Claude">
-<p><strong>Verify your setup:</strong></p>
+<section id="verification-checklist" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="verification-checklist"><span class="header-section-number">2.5</span> Verification Checklist</h2>
+<p>Open a fresh terminal window and run these commands to verify everything is installed:</p>
+<pre class="text"><code>R --version
+quarto --version
+claude --version</code></pre>
+<p>All commands should return version numbers without errors. Open Positron and confirm it launches.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Claude Code">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Claude Code
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Claude Code can help troubleshoot installation problems by checking your paths, versions, and configuration.</p>
 <blockquote class="blockquote">
-<p>I just installed R, conda, and git. Here’s what I get when I run the version commands:</p>
-<p>[paste your output]</p>
-<p>Does this look right, or is something misconfigured?</p>
+<p>I just installed R and Quarto. Here’s what I get when I run the version commands: [paste your output]. Does this look right, or is something misconfigured?</p>
 </blockquote>
-<p><em>Claude can check that paths are correct, versions are compatible, and flag common installation issues.</em></p>
+<p>Claude will check that paths are correct, versions are compatible, and flag common installation issues like missing PATH entries or conflicting installations.</p>
+</div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -833,9 +744,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="next-steps" class="level2" data-number="2.9">
-<h2 data-number="2.9" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">2.9</span> Next Steps</h2>
-<p>Now that everything is installed, let’s create your first project.</p>
+<section id="what-about-git-conda-and-github" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="what-about-git-conda-and-github"><span class="header-section-number">2.6</span> What About Git, Conda, and GitHub?</h2>
+<p>You’ll install these later when you need them:</p>
+<ul>
+<li><strong>Conda</strong> (Python environments) — installed in the <a href="../part2/conda.html">Conda chapter</a></li>
+<li><strong>Git</strong> (version control) — installed in the <a href="../part2/git-github.html">Git &amp; GitHub chapter</a></li>
+<li><strong>GitHub account</strong> — set up in the <a href="../part3/setup-walkthrough.html#sec-github-auth">Setting Up a Lab Project</a> walkthrough</li>
+</ul>
+<p>For now, you have everything you need. Let’s build your first project.</p>
 
 
 </section>
@@ -1261,8 +1178,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../part1/first-project.html" class="pagination-link" aria-label="Your First Project">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Your First Project</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../part1/first-project.html" class="pagination-link" aria-label="Your First R Project">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Your First R Project</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
