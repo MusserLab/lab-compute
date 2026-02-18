@@ -1,7 +1,7 @@
 # Lab Compute Guide — Planning Document
 
 > This document tracks next steps and improvements for the book.
-> Last updated: 2026-02-14
+> Last updated: 2026-02-18
 
 ## Still Open
 
@@ -19,6 +19,8 @@ These are marked with `[TODO: screenshot]` in the source files:
 - [ ] Test installation instructions on a fresh machine (macOS and Windows)
 - [ ] Have a student test the Quick Start walkthrough
 - [ ] Review `first-project.qmd` — ensure all steps work end-to-end
+- [ ] Check cross-references between chapters (especially old first-project links)
+- [ ] Consider subsetting Spongilla data more aggressively (~10K cells → ~2-3K) to get matrix.mtx.gz under 50 MB (GitHub recommended limit; currently 93.5 MB)
 - [ ] **Git/GitHub**: Add section on GitHub Classroom (if using for courses)
 
 ### Part 4: Workflows
@@ -66,6 +68,18 @@ These are marked with `[TODO: screenshot]` in the source files:
 - [x] Claude Code: Context management guidance
 - [x] Claude Code: Prompt patterns for data science
 - [x] Claude Code: Project-specific skills (gene-naming example)
+- [x] **Book Restructure** (Feb 2026): Rewrote Part 1 as hands-on Seurat tutorial
+  - first-project.qmd: Spongilla scRNA-seq analysis (replaced project scaffolding)
+  - setup-walkthrough.qmd: Old first-project content moved to Workflows
+  - starting-project.qmd: Trimmed to quick reference/checklist
+  - intro.qmd: Rewritten with narrative style, ASCII tools diagram
+  - installation.qmd: Terminal instructions, rig optional, OAuth auth, Homebrew explanation
+  - index.qmd: "How to Use This Book" section, honest audience description
+  - Spongilla dataset added to examples/data/spongilla_counts/
+- [x] Replaced custom .callout-claude CSS with built-in .callout-warning title="Claude Code" (14 files)
+- [x] Switched all terminal code blocks to `{.text}` (no syntax highlighting)
+- [x] Cleared styles.css (custom callout CSS removed)
+- [x] Added RStudio-to-Positron translation table in positron.qmd
 - [x] Orange "Ask Claude" callout boxes — CSS + 14 boxes across all chapters
 - [x] Convention alignment: reconciled book with Claude Code skills (script-organization, quarto-docs, conda-env, new-project)
   - Ch. 5: Added subdirectories, exploratory/, lifecycle, BUILD_INFO, helpers, ~/lib, Parquet

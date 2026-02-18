@@ -45,6 +45,21 @@ lab_compute/
 └── examples/             # Code examples
 ```
 
+## Project Document Registry
+
+### Planning Documents
+
+| Document | Topic | Has status table? |
+|----------|-------|:-:|
+| [PLAN.md](.claude/PLAN.md) | Book roadmap, open items, session notes | Yes |
+| [CLAUDE_CODE_CHAPTER_PLAN.md](.claude/CLAUDE_CODE_CHAPTER_PLAN.md) | Claude Code chapter research and outline | Yes |
+
+### Convention/Reference
+
+| Document | Topic |
+|----------|-------|
+| [CLAUDE.md](.claude/CLAUDE.md) | This file — project overview, conventions, registry |
+
 ## Key Decisions
 
 - **Audience:** Students with some coding experience (not complete beginners)
