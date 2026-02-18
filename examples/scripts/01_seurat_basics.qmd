@@ -1,0 +1,141 @@
+---
+title: "Spongilla Single-Cell Analysis"
+subtitle: "First look at the scRNA-seq data"
+author: "Your Name"
+date: today
+format:
+  html:
+    toc: true
+    code-overflow: wrap
+    self-contained: true
+execute:
+  echo: true
+  warning: false
+---
+
+## Setup
+
+```{r}
+#| label: setup
+
+library(Seurat)
+library(ggplot2)
+library(patchwork)
+library(dplyr)
+library(here)
+```
+
+## Load data
+
+We load the 10X count matrix with `Read10X()` and create a Seurat object. A Seurat
+object is the central data structure for single-cell analysis in R—it stores the count
+matrix, cell metadata, dimensionality reductions, and clustering results all in one place.
+
+```{r}
+#| label: load-data
+
+counts <- Read10X(data.dir = here("data/spongilla_counts"))
+sponge <- CreateSeuratObject(counts = counts, project = "spongilla")
+sponge
+```
+
+## Quality control
+
+We examine the distribution of UMI counts and detected genes per cell, split by
+sample. This dataset has already been quality-filtered, so we're checking that
+the distributions look reasonable—no extreme outliers or suspicious patterns.
+
+```{r}
+#| label: fig-qc-violin
+#| fig-cap: "Distribution of QC metrics across cells, split by sample"
+
+VlnPlot(sponge, features = c("nFeature_RNA", "nCount_RNA"), ncol = 2,
+        group.by = "orig.ident")
+```
+
+## Normalization and variable features
+
+Normalization adjusts for differences in sequencing depth between cells. `NormalizeData()`
+divides each cell's gene counts by the cell's total UMI count to get relative expression
+levels, then applies a log transformation to equilibrate variance across genes with
+different expression levels.
+
+We then identify highly variable features—genes whose expression varies meaningfully
+across cells. These are the genes that distinguish cell types.
+
+```{r}
+#| label: normalize
+
+sponge <- NormalizeData(sponge)
+sponge <- FindVariableFeatures(sponge, selection.method = "vst", nfeatures = 2000)
+```
+
+```{r}
+#| label: fig-variable-features
+#| fig-cap: "Top variable features"
+
+top10 <- head(VariableFeatures(sponge), 10)
+
+plot1 <- VariableFeaturePlot(sponge)
+plot2 <- LabelPoints(plot = plot1, points = top10, repel = TRUE)
+plot2
+```
+
+## Dimensionality reduction
+
+Scaling shifts each gene to mean 0 and variance 1, so highly expressed genes don't
+dominate. PCA then reduces the data from thousands of genes to a smaller number of
+principal components that capture the main axes of variation.
+
+```{r}
+#| label: scale-pca
+
+sponge <- ScaleData(sponge)
+sponge <- RunPCA(sponge)
+```
+
+The elbow plot helps us decide how many PCs to use for clustering. We look for
+the "elbow"—the point where additional PCs stop adding much new information.
+
+```{r}
+#| label: fig-elbow
+#| fig-cap: "Elbow plot showing variance explained by each PC"
+
+ElbowPlot(sponge, ndims = 50)
+```
+
+## Clustering
+
+We cluster cells using the Leiden algorithm, which finds communities of similar
+cells in PCA space. Then UMAP projects these relationships into two dimensions
+for visualization.
+
+```{r}
+#| label: cluster
+
+sponge <- FindNeighbors(sponge, dims = 1:40)
+sponge <- FindClusters(sponge, resolution = 2, algorithm = 4)
+sponge <- RunUMAP(sponge, dims = 1:40)
+```
+
+## UMAP visualization
+
+```{r}
+#| label: fig-umap
+#| fig-cap: "UMAP visualization of Spongilla cell clusters"
+
+DimPlot(sponge, reduction = "umap", label = TRUE) + NoLegend()
+```
+
+## Gene expression
+
+We can overlay expression of individual genes onto the UMAP. *Eef1a1* is an
+elongation factor and strong archaeocyte marker, while *Pcna* is a
+proliferation marker for actively dividing cells.
+
+```{r}
+#| label: fig-features
+#| fig-cap: "Expression of selected genes across clusters"
+
+FeaturePlot(sponge, features = c("Eef1a1 A", "Pcna"))
+```

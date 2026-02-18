@@ -1,10 +1,12 @@
 # Installation
 
-This chapter walks you through installing all the tools you need. Follow the sections in order.
+This chapter walks you through installing the tools you need for your first project. We'll install more tools (Git, conda) later when you need them in Part 2.
+
+Several steps below require running commands in a **terminal** (also called a command line). On macOS, open the built-in **Terminal** app (search for "Terminal" in Spotlight). On Windows, open **PowerShell** from the Start menu. You'll type or paste commands there and press Enter to run them.
 
 ## 1. Positron
 
-Positron is a data science IDE (integrated development environment) built by the makers of RStudio. It combines the best features of RStudio—like an integrated data viewer, variable explorer, and plot pane—with the modern editing experience of VS Code. Unlike RStudio, Positron treats both R and Python equally, making it ideal for labs that work in both languages. It's also highly extensible, with access to the full set of VS Code extensions, including claude code.
+Positron is a data science IDE (integrated development environment) built by the makers of RStudio. It combines the best features of RStudio—like an integrated data viewer, variable explorer, and plot pane—with the modern editing experience of VS Code. Unlike RStudio, Positron treats both R and Python equally, making it ideal for labs that work in both languages. It's also highly extensible, with access to the full set of VS Code extensions, including Claude Code.
 
 ### macOS
 
@@ -24,66 +26,14 @@ Positron is a data science IDE (integrated development environment) built by the
 When you first open Positron, it may ask to install recommended extensions. Accept these defaults.
 :::
 
-## 2. Conda (Miniforge)
-
-Conda is a package and environment manager that handles Python installations and their dependencies. The key feature is *environments*: isolated spaces where you can install specific versions of Python and packages for a specific project without affecting other projects. This prevents the common problem of upgrading a package for one project and breaking another. We use Miniforge, a community-driven conda distribution that defaults to the conda-forge channel—a large, well-maintained repository of python packages. Miniforge is lightweight and free to use in any context, unlike some commercial conda distributions.
-
-### macOS
-
-Open Terminal and run:
-
-```bash
-# Download the installer
-curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-$(uname -m).sh"
-
-# Run the installer
-bash Miniforge3-MacOSX-$(uname -m).sh
-```
-
-Follow the prompts, accepting the defaults. When asked about initializing conda, say **yes**.
-
-After installation, restart your terminal or run:
-
-```bash
-source ~/.zshrc
-```
-
-Verify the installation:
-
-```bash
-conda --version
-```
-
-### Windows
-
-1. Download the Miniforge installer from [https://github.com/conda-forge/miniforge/releases](https://github.com/conda-forge/miniforge/releases)
-   - Choose `Miniforge3-Windows-x86_64.exe`
-2. Run the installer
-3. Check "Add Miniforge3 to my PATH environment variable" during installation
-4. Complete the installation
-
-Open a **new** PowerShell window and verify:
-
-```powershell
-conda --version
-```
-
-Then initialize conda for your shell (this is required to make `conda activate` work):
-
-```powershell
-conda init powershell
-```
-
-**Close and reopen PowerShell** after running this command. You only need to do this once.
-
-::: {.callout-note}
-## Command Prompt Users
-If you use Command Prompt instead of PowerShell, run `conda init cmd.exe` instead.
-:::
-
-## 3. R (using rig)
+## 2. R (using rig)
 
 We install R using **rig** (R Installation Manager) rather than downloading directly from CRAN. Rig makes it easy to install R, switch between R versions, and keep R updated, all from the command line. Most importantly, it installs new R versions without overwriting or deleting previous versions, a common problem encountered when installing precompiled packages from the main R website. This is especially useful when you want to install the newest version of R to use with a new project while still maintaining older versions associated with older projects.
+
+::: {.callout-note}
+## Already have R?
+If you already have R installed, you can skip rig for now — any recent version of R (4.0+) will work for this tutorial. We still recommend installing rig for future projects, because it makes managing multiple R versions painless, but it's not required to get started.
+:::
 
 ### macOS
 
@@ -91,15 +41,15 @@ We install R using **rig** (R Installation Manager) rather than downloading dire
    - Choose the `.pkg` file (e.g., `rig-macos-arm64.pkg` for Apple Silicon or `rig-macos-x86_64.pkg` for Intel Macs)
 2. Double-click the `.pkg` file and follow the installation prompts
 
-Then install the latest R version:
+Then open a terminal and install the latest R version:
 
-```bash
+```{.text}
 rig add release
 ```
 
-Verify the installation:
+After the install finishes, **close and reopen your terminal**, then verify the installation:
 
-```bash
+```{.text}
 R --version
 ```
 
@@ -116,15 +66,15 @@ R --version
 1. Download the rig installer from [https://github.com/r-lib/rig/releases](https://github.com/r-lib/rig/releases)
    - Choose `rig-windows-latest.exe`
 2. Run the installer
-3. Open a **new** PowerShell window and install R:
+3. Open a **new** PowerShell window (this is important — a fresh window picks up the new installation) and install R:
 
-```powershell
+```{.text}
 rig add release
 ```
 
-4. Verify:
+4. **Close and reopen PowerShell**, then verify:
 
-```powershell
+```{.text}
 R --version
 ```
 
@@ -134,133 +84,106 @@ R --version
 - **Multiple versions**: Install R 4.3 and R 4.4 side by side for testing
 - **Consistent**: Same commands on macOS and Windows
 
-## 4. Git
+You'll learn more about managing R versions in the [rig & renv chapter](../part2/renv.qmd).
 
-Git is a version control system that tracks changes to your code over time. Think of it as an unlimited undo history that also lets you see *what* changed, *when*, and *why*. More importantly, Git enables collaboration - multiple people can work on the same project without overwriting each other's work. Every serious software project uses Git, and increasingly, so do data analysis projects. Learning Git is an investment that pays off throughout your career.
+## 3. Quarto
 
-### macOS
-
-Git may already be installed. Check by running:
-
-```bash
-git --version
-```
-
-If not installed, you'll be prompted to install the Xcode Command Line Tools. Accept the prompt.
-
-Alternatively, install via Homebrew:
-
-```bash
-brew install git
-```
-
-### Windows
-
-1. Download Git from [https://git-scm.com/download/win](https://git-scm.com/download/win)
-2. Run the installer
-3. Accept the default options (the defaults are good)
-4. Verify in a new terminal:
-
-```powershell
-git --version
-```
-
-### Configure Git (Both Platforms)
-
-Set your identity (use your real name and email):
-
-```bash
-git config --global user.name "Your Name"
-git config --global user.email "your.email@example.com"
-```
-
-## 5. GitHub Account
-
-GitHub is a web platform that hosts Git repositories in the cloud. It's where you'll store your code, collaborate with others, and share your work publicly or privately. GitHub adds features on top of Git—like issue tracking, pull requests for code review, and GitHub Pages for hosting websites. Most open-source software lives on GitHub, including the R and Python packages you use daily. If you don't have an individual GitHub account, please make one for yourself. We also maintain a [Lab Github Team](https://github.com/MusserLab) where we keep all lab code projects (including individual student projects). 
-
-1. Go to [https://github.com](https://github.com) and create an account if you don't have one
-2. We'll set up authentication in @sec-github-auth
-3. Give Jake your account username so he can give you access to the Lab Github organization.
-
-## 6. Claude Code
-
-Claude Code is an AI coding assistant that runs in your terminal or integrates into Positron. Unlike chat-based AI tools, Claude Code can read and write files in your project, run commands, and help you build and debug code interactively. It understands context from your entire codebase, making it useful for everything from writing code, explaining unfamiliar code, debugging errors, and planning and tracking larger projects. Think of it as a knowledgeable collaborator who's always available and can work in the background.
-
-### Prerequisites
-
-You need Node.js 18+ installed:
-
-**macOS:**
-```bash
-brew install node
-```
-
-**Windows:**
-Download and install from [https://nodejs.org](https://nodejs.org) (LTS version).
-
-### Install Claude Code
-
-```bash
-npm install -g @anthropic-ai/claude-code
-```
-
-### Authenticate
-
-Run Claude Code once to authenticate:
-
-```bash
-claude
-```
-
-Follow the prompts to log in with your Anthropic account.
-
-::: {.callout-note}
-## Anthropic Account
-You'll need an Anthropic account with API access. If you're a lab member, ask for credentials.
-:::
-
-## 7. Quarto (Optional)
-
-Quarto is a scientific publishing system that lets you combine code, results, and narrative text in a single document. You write in Markdown with embedded R or Python code chunks, and Quarto renders it to HTML, PDF, Word, or other formats—with your code output automatically included. This is the modern approach to reproducible research: your analysis and your report are the same document, so results stay in sync with the code that produced them. Quarto can also make books, websites, presentations, and other types of documents. In fact, this book was built with Quarto!
+Quarto is a scientific publishing system that lets you combine code, results, and narrative text in a single document. You write in Markdown with embedded R or Python code chunks, and Quarto renders it to HTML, PDF, Word, or other formats—with your code output automatically included. If you've used R Markdown, Quarto is its successor—same core idea, but with more features and equal support for Python. This is the modern approach to reproducible research: your analysis and your report are the same document, so results stay in sync with the code that produced them. In fact, this book was built with Quarto!
 
 ### macOS
 
-```bash
+If you have [Homebrew](https://brew.sh) (a popular macOS package manager), you can install Quarto from the terminal:
+
+```{.text}
 brew install quarto
 ```
 
-Or download from [https://quarto.org/docs/get-started/](https://quarto.org/docs/get-started/)
+If you don't have Homebrew, download the installer from [https://quarto.org/docs/get-started/](https://quarto.org/docs/get-started/) instead.
+
+After installing, **close and reopen your terminal**, then verify:
+
+```{.text}
+quarto --version
+```
 
 ### Windows
 
 Download and run the installer from [https://quarto.org/docs/get-started/](https://quarto.org/docs/get-started/)
 
-## Verification Checklist
+After installing, **close and reopen PowerShell**, then verify:
 
-Run these commands to verify everything is installed:
-
-```bash
-# Check each tool
-positron --version  # Or just open Positron
-conda --version
-R --version
-git --version
-claude --version
-quarto --version    # If installed
+```{.text}
+quarto --version
 ```
 
-All commands should return version numbers without errors.
+## 4. Claude Code
 
-::: {.callout-claude title="Ask Claude"}
-**Verify your setup:**
+Claude Code is an AI coding assistant that runs in your terminal or integrates directly into Positron. Unlike chat-based AI tools, Claude Code can read and write files in your project, run commands, and help you build and debug code interactively. It understands context from your entire codebase, making it useful for writing code, explaining unfamiliar code, debugging errors, and planning larger projects. Think of it as a knowledgeable collaborator who's always available.
 
-> I just installed R, conda, and git. Here's what I get when I run the version commands:
->
-> [paste your output]
->
-> Does this look right, or is something misconfigured?
+### Prerequisites
 
-*Claude can check that paths are correct, versions are compatible, and flag common installation issues.*
+You need Node.js 18+ installed. In your terminal:
+
+**macOS** (using Homebrew):
+```{.text}
+brew install node
+```
+
+**Windows:**
+Download and install from [https://nodejs.org](https://nodejs.org) (choose the LTS version). After installing, **close and reopen PowerShell**.
+
+### Install Claude Code
+
+In your terminal, run:
+
+```{.text}
+npm install -g @anthropic-ai/claude-code
+```
+
+### Authenticate
+
+Run Claude Code once to set up authentication:
+
+```{.text}
+claude
+```
+
+When prompted, choose **Use OAuth (Anthropic account)** and press Enter. This will open a browser window where you log in with your Anthropic account — the same email and password you use for [claude.ai](https://claude.ai). Once you approve the connection in the browser, Claude Code is ready to use in the terminal.
+
+::: {.callout-note}
+## Anthropic Account
+You need a Claude Pro or Max subscription to use Claude Code. All lab members have personal subscriptions — if yours isn't set up yet, ask Jake.
+:::
+
+### Install the Positron Extension
+
+Claude Code integrates directly into Positron as an extension:
+
+1. Open Positron
+2. Go to the Extensions view (Cmd+Shift+X on macOS, Ctrl+Shift+X on Windows)
+3. Search for "Claude Code"
+4. Click **Install**
+
+You'll see a Claude Code panel in Positron's sidebar. You can use it right alongside your code editor, console, and plots pane.
+
+## Verification Checklist
+
+Open a fresh terminal window and run these commands to verify everything is installed:
+
+```{.text}
+R --version
+quarto --version
+claude --version
+```
+
+All commands should return version numbers without errors. Open Positron and confirm it launches.
+
+::: {.callout-warning title="Claude Code"}
+Claude Code can help troubleshoot installation problems by checking your paths, versions, and configuration.
+
+> I just installed R and Quarto. Here's what I get when I run the version commands: [paste your output]. Does this look right, or is something misconfigured?
+
+Claude will check that paths are correct, versions are compatible, and flag common installation issues like missing PATH entries or conflicting installations.
 :::
 
 ::: {.callout-tip}
@@ -274,6 +197,12 @@ If any command fails with "command not found":
 See [Troubleshooting](../part3/troubleshooting.qmd) for common issues.
 :::
 
-## Next Steps
+## What About Git, Conda, and GitHub?
 
-Now that everything is installed, let's create your first project.
+You'll install these later when you need them:
+
+- **Conda** (Python environments) — installed in the [Conda chapter](../part2/conda.qmd)
+- **Git** (version control) — installed in the [Git & GitHub chapter](../part2/git-github.qmd)
+- **GitHub account** — set up in the [Setting Up a Lab Project](../part3/setup-walkthrough.qmd#sec-github-auth) walkthrough
+
+For now, you have everything you need. Let's build your first project.

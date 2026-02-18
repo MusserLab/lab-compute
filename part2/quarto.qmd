@@ -1,5 +1,7 @@
 # Quarto
 
+In [Your First R Project](../part1/first-project.qmd), you worked with a `.qmd` file—running code chunks interactively, viewing results in the plots pane, and rendering the document to HTML. This chapter explains Quarto's syntax and features in depth so you can write your own analysis documents from scratch.
+
 Quarto is a scientific publishing system that lets you combine code, results, and narrative text in a single document. You write analysis scripts as `.qmd` files—plain text with embedded R or Python code—and Quarto renders them into polished HTML reports with your outputs automatically included.
 
 In the Musser Lab, Quarto documents are the standard format for data analysis because they solve a fundamental problem: keeping your code, your results, and your explanation of those results in sync. When you render a `.qmd` file, Quarto executes the code fresh and weaves the outputs into the document, so the report always reflects the actual analysis.
@@ -723,16 +725,12 @@ This records:
 
 ## Common Issues
 
-::: {.callout-claude title="Ask Claude"}
-**Debug a render error:**
+::: {.callout-warning title="Claude Code"}
+Claude Code can debug render failures, especially the common case where code works interactively but fails during rendering.
 
-> When I run `quarto render analysis.qmd`, I get this error:
->
-> [paste the full error message]
->
-> The code runs fine when I execute it interactively in the console. What's going wrong?
+> When I run `quarto render analysis.qmd`, I get this error: [paste error]. The code runs fine interactively in the console. What's going wrong?
 
-*Include the exact error. Mention if it works interactively—that's an important clue that often points to missing objects or path issues.*
+Claude will trace the error to its cause—typically a missing object that existed in your interactive session but isn't created in the script, or a path that resolves differently during rendering.
 :::
 
 ### "Object not found" During Render

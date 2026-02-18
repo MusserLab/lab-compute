@@ -1,93 +1,59 @@
 # Introduction
 
-## Why These Tools?
+## What We're Going to Do
 
-In the Musser Lab, most analyses are written as **self-contained Quarto scripts** (`.qmd`). A `.qmd` is both a *script* and a *publishable document*: it contains code, narrative, and the logic to render a shareable output (usually HTML).
+In Part 1, you're going to install a few tools and then run a real single-cell RNA-seq analysis — loading a count matrix, filtering and normalizing the data, clustering cells, and generating a UMAP visualization. You'll do all of this interactively in Positron, our lab's IDE, writing your analysis in a Quarto document that doubles as a shareable report.
 
-This workflow supports how we actually work:
+Along the way, you'll learn to use the features of Positron that you'll rely on every day: the file explorer for navigating your project, the console for running code interactively, the environment pane for inspecting your data, the plots pane for viewing figures, and the terminal for running commands.
 
-- We often use **both R and Python** across a project, although usually one one language per script.
-- Each analysis script clearly states what data it reads and what it produces.
-- Scripts are designed to be readable, annotated, and reproducible for other lab members.
+By the end, you'll have a working project with a rendered HTML report that you could share with anyone in the lab. That's the starting point for every analysis you'll do here.
 
-The toolchain in this guide exists to make `.qmd`-based analyses:
+## How We Work in the Lab
 
-- **Reproducible** — same results on another machine
-- **Collaborative** — easy to review and share
-- **Maintainable** — clear provenance and version control
+Most analysis in the Musser Lab is written in **Quarto documents** (`.qmd` files). A Quarto document is both a script and a report: you write code and explanatory text together in one file, and when you render it, Quarto runs all the code and produces a clean HTML (or PDF) document with your results, figures, and narrative included. This means your analysis and your documentation are always in sync — there's no separate step of copying figures into a report or updating numbers by hand.
 
-| Tool | Purpose |
-|------|---------|
-| **Positron** | IDE designed for data science (R + Python) |
-| **Conda** | Python environment management |
-| **renv** | R package management |
-| **Git/GitHub** | Version control and collaboration |
-| **Claude Code** | AI-assisted coding and analysis |
+Our projects typically use both **R and Python**, though usually one language per script. R is the go-to for statistical analysis, plotting, and the many well-established bioinformatics packages (Seurat, DESeq2, limma). Python is used for automation, file manipulation, working with sequences, and an expanding set of analysis tools (Scanpy, metacell). Positron handles both languages equally well, so you can switch between them as needed.
 
-### What "good" looks like
+## The Tools
 
-A typical analysis loop in the lab:
-
-1. Open the project folder in Positron
-2. Positron automatically activates the project environments (conda for Python, renv for R)
-3. Write a Quarto analysis script (`.qmd`) that loads data, runs analysis, and exports results
-4. Render the script to HTML: `quarto render analysis/my_analysis.qmd`
-5. Commit and push code + lockfiles (`environment.yml`, `renv.lock`) with Git
-
-## How They Fit Together
+Here's a quick overview of the tools you'll encounter in this guide and how they fit together. You don't need to understand all of this now — you'll learn each tool as you need it.
 
 ```
-┌─────────────────────────────────────────────────┐
-│                   Positron                      │
-│              (Your workspace)                   │
-│                                                 │
-│  ┌──────────┐  ┌──────────┐  ┌──────────────┐  │
-│  │  Conda   │  │   renv   │  │  Claude Code │  │
-│  │ (Python) │  │   (R)    │  │    (AI)      │  │
-│  └──────────┘  └──────────┘  └──────────────┘  │
-│                                                 │
-│  ┌──────────────────────────────────────────┐   │
-│  │              Git / GitHub                │   │
-│  │        (Version control for all)         │   │
-└──┴──────────────────────────────────────────┴───┘
+┌───────────────────────────────────────────────────┐
+│                      Positron                     │
+│          (where you write and run code)           │
+│                                                   │
+│   ┌───────────┐  ┌───────────┐  ┌─────────────┐   │
+│   │   Conda   │  │   renv    │  │ Claude Code │   │
+│   │  (Python  │  │    (R     │  │ (AI coding  │   │
+│   │ packages) │  │ packages) │  │  assistant) │   │
+│   └───────────┘  └───────────┘  └─────────────┘   │
+│                                                   │
+│   ┌───────────────────────────────────────────┐   │
+│   │               Git / GitHub                │   │
+│   │   (version control and collaboration)     │   │
+│   └───────────────────────────────────────────┘   │
+└───────────────────────────────────────────────────┘
 ```
 
-**Positron** is where you write and run code and manage project files.
+**Positron** is your home base — the application where you write code, explore data, view plots, and manage your project files. It's built by the makers of RStudio but designed for both R and Python.
 
-**Conda** defines a Python environment for the project (Python version + packages).
+**Conda** and **renv** are environment managers. They keep track of which packages (and which versions) each project uses, so your analysis works the same way on any computer. Conda handles Python; renv handles R. You'll set up renv in your first project and learn conda later in Part 2.
 
-**renv** manages the R package set for the project.
+**Git and GitHub** let you track changes to your code over time and share it with collaborators. Think of Git as an unlimited undo history for your project, and GitHub as the place where that history lives online. You'll learn these in Part 2.
 
-**Git/GitHub** tracks changes to scripts, data-processing logic, and environment definitions.
+**Claude Code** is an AI coding assistant that integrates into Positron. It can help you write code, debug errors, explain unfamiliar functions, and plan analyses. You'll install it in the next chapter and see it in action throughout the guide.
 
-**Claude Code** is optional; it can help write or debug code, but outputs must be verified.
+## What You'll Learn in Part 1
 
-::: {.callout-note}
-### Key concepts
+After working through the next two chapters, you will have:
 
-- **Quarto script (`.qmd`)**: the main analysis artifact in the lab; it renders to a shareable output (HTML/PDF).
-- **Environment**: project-specific dependencies.
-  - Python dependencies: conda (`environment.yml`)
-  - R dependencies: renv (`renv.lock`)
-- **Render**: convert `.qmd` → HTML/PDF, executing code in the process.
-- **Interpreter/kernel selection**: Quarto and Positron must run the correct R and Python; this guide shows how to verify which ones are being used.
-:::
+- Installed Positron, R, Quarto, and Claude Code
+- Created a project with a proper folder structure
+- Run a complete single-cell analysis interactively in Positron, learning the IDE along the way
+- Rendered your analysis into a self-contained HTML report
+- Used renv to manage your R packages
 
-For a deeper introduction to Quarto, see **Part 2 → Quarto documents**.
+That's enough to start working on real lab projects. Parts 2–4 will deepen your understanding of each tool and introduce version control, collaboration workflows, and more advanced techniques — but you can come back to those as you need them.
 
-## What You'll Learn
-
-By the end of Part 1, you will have:
-
-1. Installed the core tools and verified they work
-2. Opened a lab-style project folder in Positron
-3. Set up project environments:
-   - conda environment for Python
-   - renv for R packages
-4. Written a Quarto analysis script (`.qmd`) that:
-   - states what it reads and what it produces
-   - runs an analysis and generates a figure
-   - renders to HTML
-5. Put the project under version control and pushed it to GitHub
-
-Next, we'll install tools and build your first Quarto-based analysis project.
+Let's start by installing the tools.

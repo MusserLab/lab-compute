@@ -1,5 +1,7 @@
 # R: rig & renv
 
+In [Your First R Project](../part1/first-project.qmd), you ran `renv::init()`, installed packages, and ran `renv::snapshot()` to lock your environment. This chapter explains what those commands actually do under the hood, and covers rig for managing R versions alongside renv for packages.
+
 Managing R effectively requires two things: controlling which **version of R** you're running, and controlling which **packages** are installed for each project. We use **rig** for the former and **renv** for the latter. Together, they give you the same isolation and reproducibility that conda provides for Python.
 
 ## Why This Matters
@@ -188,20 +190,12 @@ This tells you if packages are:
 
 Run `renv::status()` before committing to ensure your lockfile is current.
 
-::: {.callout-claude title="Ask Claude"}
-**Fix renv sync issues:**
+::: {.callout-warning title="Claude Code"}
+Claude Code can interpret renv status messages and tell you whether to `restore()` or `snapshot()`.
 
-> I'm getting this warning when I start R:
->
-> `* Project 'my-project' is out-of-sync -- use renv::status() for details`
->
-> I ran `renv::status()` and it shows:
->
-> [paste the output]
->
-> What should I do—restore or snapshot?
+> I'm getting `Project 'my-project' is out-of-sync` when I start R. Here's the output of `renv::status()`: [paste output]. Should I restore or snapshot?
 
-*Include the actual `renv::status()` output. It tells Claude exactly what's out of sync.*
+Claude will read the status output, explain which packages are out of sync and why, and recommend the right command.
 :::
 
 ## Core R Packages
@@ -419,7 +413,7 @@ The lockfile records:
 - `renv/library/` — The actual installed packages (too large, platform-specific)
 - `renv/staging/` — Temporary files during installation
 
-The default renv setup handles this correctly. If you used the `.gitignore` from the [first project chapter](../part1/first-project.qmd), these exclusions are already in place.
+The default renv setup handles this correctly. If you used the `.gitignore` from the [Setting Up a Lab Project](../part3/setup-walkthrough.qmd) chapter, these exclusions are already in place.
 
 ## Updating Packages
 

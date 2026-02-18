@@ -1,5 +1,7 @@
 # Positron
 
+In [Your First R Project](../part1/first-project.qmd), you used Positron's core features—the console, environment pane, data viewer, plots pane, and terminal—to run a single-cell analysis. This chapter covers those features in more depth, plus keyboard shortcuts, customization, and workflows you'll use daily.
+
 Positron is your home base. It's where you write code, explore data, run analyses, and manage your project—all in one window. Built by Posit (the company behind RStudio) on top of VS Code, Positron combines the familiarity of RStudio with the power and extensibility of a modern code editor.
 
 ## Why Positron?
@@ -12,7 +14,17 @@ If you're coming from RStudio, Positron will feel familiar: there's an R console
 
 **The VS Code extension ecosystem.** Positron inherits thousands of extensions: linters, formatters, Git tools, AI coding assistants. Unlike RStudio, which exists in its own world, Positron connects you to the broader developer tooling ecosystem.
 
-If you've used RStudio before, see the [RStudio → Positron translation table](../index.qmd#rstudio-positron-translation) on the Welcome page for a quick mapping of concepts.
+### RStudio → Positron Translation {#rstudio-positron-translation}
+
+If you're coming from RStudio, here are the key conceptual shifts:
+
+| RStudio concept | Positron concept | What changes? |
+|---|---|---|
+| "Project" (.Rproj) | **Open Folder / Workspace** | The folder is the unit of work; you open it as a workspace. |
+| R console | R console | Still an R process, but integrated with a broader editor/terminal model. |
+| Python integration | Python interpreter + (sometimes) **kernel** | You must be explicit about which Python environment is used for scripts/notebooks. |
+| R package library | `renv` | Packages are pinned per project; do not rely on global R libraries. |
+| "Environment pane" | variable viewers + terminal + notebooks | Different UI, same goals. |
 
 [TODO: screenshot of Positron interface with labeled panes]
 
@@ -184,12 +196,12 @@ Positron remembers this choice for the project. When you open the project again,
 If you just created a new conda environment, you may need to restart Positron for it to detect the new environment. This is a common gotcha—restart and try again.
 :::
 
-::: {.callout-claude title="Ask Claude"}
-**Fix interpreter or environment issues:**
+::: {.callout-warning title="Claude Code"}
+Claude Code can troubleshoot Positron configuration issues like missing interpreters, environment detection, and extension problems.
 
 > Positron isn't finding my conda environment "my-project". When I open the interpreter selector, it's not in the list. I created it with `conda create -n my-project python=3.11` and it shows up when I run `conda env list` in the terminal. What should I check?
 
-*Describe what you expected, what happened, and what you've already checked.*
+Claude will check your conda installation path, Positron's Python discovery settings, and suggest fixes—typically a settings.json edit or a Positron reload.
 :::
 
 ### Seamless Environment Switching

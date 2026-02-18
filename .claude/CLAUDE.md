@@ -15,18 +15,25 @@ A Quarto book teaching Musser Lab students how to set up reproducible data analy
 lab_compute/
 ├── _quarto.yml           # Book configuration
 ├── index.qmd             # Welcome page
-├── part1/                # Quick Start (get running in 30 min)
+├── part1/                # Quick Start
 │   ├── intro.qmd
 │   ├── installation.qmd  # Uses rig for R installation
-│   └── first-project.qmd
+│   └── first-project.qmd # Hands-on Positron + Seurat tutorial
 ├── part2/                # Core Tools (deep dives)
 │   ├── positron.qmd
-│   ├── conda.qmd
+│   ├── project-organization.qmd
+│   ├── quarto.qmd
 │   ├── renv.qmd
-│   ├── git-github.qmd
-│   └── claude-code.qmd
-├── part3/                # Workflows
-│   ├── starting-project.qmd
+│   ├── conda.qmd
+│   └── git-github.qmd
+├── claude-code/          # Claude Code (Part 3)
+│   ├── getting-started.qmd
+│   ├── configuring-projects.qmd
+│   ├── skills.qmd
+│   └── working-effectively.qmd
+├── part3/                # Workflows (Part 4)
+│   ├── setup-walkthrough.qmd  # Full lab project setup (git, conda, renv, GitHub)
+│   ├── starting-project.qmd   # Quick reference/checklist + templates
 │   ├── collaborating.qmd
 │   ├── reproducibility.qmd
 │   └── troubleshooting.qmd
@@ -89,6 +96,16 @@ Screenshots are marked with `[TODO: screenshot]` throughout.
 
 - **TiHKAL** and **Genomic Resources** projects can be referenced as real-world examples
 - User's Claude Code setup (skills, CLAUDE.md patterns) documented in the claude-code.qmd chapter
+
+## Writing Conventions
+
+- **Terminal commands** use `` ```{.text} `` fenced blocks — this gives a styled code box with plain black text (no syntax coloring). Do NOT use `bash` or `powershell` language identifiers for terminal commands.
+- **Claude Code callout boxes** use `::: {.callout-warning title="Claude Code"}` — Quarto's built-in orange warning callout with a custom title. Each box has: (1) a 1–2 sentence intro, (2) a blockquoted example prompt, (3) an explanation of what Claude Code will do.
+- **macOS + Windows**: Every terminal instruction includes both platforms. Always mention which app to open (Terminal on macOS, PowerShell on Windows).
+- **Restart terminal reminders**: After every installation step, remind students to close and reopen their terminal so new commands are available.
+- **Homebrew references**: Always briefly explain what Homebrew is when first mentioning `brew` commands, and provide a non-Homebrew alternative (download link).
+- **Tone**: Friendly, narrative paragraphs over bullet lists. Write things out rather than listing them. The audience has some coding experience but is not expert.
+- **Parts 2–4 are marked "Work in Progress"** in the Welcome page.
 
 ## Notes
 

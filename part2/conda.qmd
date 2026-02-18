@@ -1,5 +1,7 @@
 # Conda
 
+In [Your First R Project](../part1/first-project.qmd), you used renv to manage R packages for your project. Conda serves the same purpose for Python: isolated, reproducible environments with pinned package versions. The concepts are the same—the tooling is different.
+
 Conda is an environment and package manager that creates isolated spaces for your Python projects. Each environment has its own Python version and packages, preventing conflicts between projects.
 
 ## Why Use Environments?
@@ -184,16 +186,12 @@ This includes exact versions and platform-specific builds—useful for debugging
 conda env create -f environment.yml
 ```
 
-::: {.callout-claude title="Ask Claude"}
-**Fix conda environment issues:**
+::: {.callout-warning title="Claude Code"}
+Claude Code can diagnose environment issues by checking which environment is active, what's installed, and where packages are missing.
 
-> I'm getting `ModuleNotFoundError: No module named 'pandas'` when I run my script, but I thought I installed it. The environment is `my-project` and here's what `conda list` shows:
->
-> [paste output]
->
-> What's wrong?
+> I'm getting `ModuleNotFoundError: No module named 'pandas'` when I run my script, but I thought I installed it. The environment is `my-project` and here's what `conda list` shows: [paste output]. What's wrong?
 
-*Include the environment name and the output of `conda list`. Claude can spot if the package is missing or if you're in the wrong environment.*
+Claude will check whether the package is installed in the right environment, whether your script is running in a different environment, and suggest the fix.
 :::
 
 ::: {.callout-tip}

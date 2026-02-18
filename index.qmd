@@ -2,90 +2,43 @@
 
 This guide teaches reproducible, collaborative data analysis workflows for the Musser Lab. Most lab projects use **both R and Python**: R is often best for statistical analysis, plotting, and many important legacy packages used for RNA sequencing and proteomic analysis (e.g. Seurat, DESeq2, and limma); Python is often best for automating analysis pipelines (including in bash), manipulating files, working with sequences and strings, and a growing number of RNAseq data analysis libraries (e.g. Scanpy, metacell) and plotting libraries (e.g. Matplotlib). The goal of this guide is to help you set up a standard workflow for creating computational projects that are **well-managed, documented, collaborative, and reproducible**.
 
-The lab's standard toolchain is:
-
-- **Positron** — the IDE/workspace where we develop and run R + Python
-- **Conda** — Python environment management (Python version + packages)
-- **Rig & renv** — R installation and package management
-- **Git & GitHub** — version control, collaboration, and backup
-- **Claude Code** — optional AI-assisted coding (useful, but never required)
-
-## By the end of your first week
-
-You should be able to:
-
-1. Open a lab analysis folder in Positron and understand what "the project" is (it's the folder)
-2. Create and activate a **conda environment** for Python and a **renv environment** for R in the same project
-3. Write a Quarto script (.qmd) with a small R chunk and render it into an HTML report.
-4. Commit and push changes to GitHub, including environment lockfiles when relevant
-5. Diagnose the most common setup issues (wrong interpreter/kernel, missing packages, PATH problems)
-
-::: {.callout-note}
-### The key idea
-We treat an analysis as a portable object:
-**(code + environment definitions + instructions)**
-A collaborator should be able to clone the repo, recreate the environments, and reproduce outputs.
-:::
-
-## RStudio → Positron translation {#rstudio-positron-translation}
-
-If you're used to RStudio, here are the key conceptual shifts:
-
-| RStudio concept | Positron concept | What changes? |
-|---|---|---|
-| "Project" (.Rproj) | **Open Folder / Workspace** | The folder is the unit of work; you open it as a workspace. |
-| R console | R console | Still an R process, but integrated with a broader editor/terminal model. |
-| Python integration | Python interpreter + (sometimes) **kernel** | You must be explicit about which Python environment is used for scripts/notebooks. |
-| R package library | `renv` | Packages are pinned per project; do not rely on global R libraries. |
-| "Environment pane" | variable viewers + terminal + notebooks | Different UI, same goals. |
-
-## Lab norms
-
-- **One project, one publication** Think of projects as the computational infrastructure for one publication.
-- **Never install packages into the base conda environment.** Create a conda environment specific to the project.
-- **Every project has both**: a conda environment definition (for Python) and an renv lockfile (for R), unless explicitly documented otherwise.
-- If you change dependencies (e.g. installing new R packages), **commit the lockfile(s)** with your other changes (`environment.yml` / `renv.lock`).
-- Keep git repositories lightweight: **avoid large raw data or output plots in git** unless it's deliberately small demo data.
-- Every project has a **README**: what it is, how to run it, where outputs go.
-
 ## Who This Guide Is For
 
-This guide is for lab members with basic programming experience (often RStudio-based) who want professional workflows for reproducible analysis and collaboration. You do not need prior expertise with conda, renv, or Git—this guide is designed to get you to "operational competence."
+This guide is for lab members who have some experience writing code — maybe you've used R in RStudio, written Python scripts, or worked through a data analysis tutorial. You should be comfortable with basics like variables, functions, and reading error messages, but you don't need to be an expert. You also don't need any prior experience with the specific tools we'll use (Positron, conda, renv, Git) — we'll walk you through all of those.
 
-## How to Use This Guide
+## How to Use This Book
 
-Start with **Part 1: Quick Start**. You'll install tools and build a small first project that demonstrates the standard lab setup (Positron + conda + renv + Git/GitHub).
+**Start with Part 1: Quick Start.** This is the hands-on introduction. You'll install a few tools, then work through a real single-cell RNA-seq analysis in Positron — learning the IDE, Quarto documents, and interactive coding along the way. This is where every new lab member should begin.
 
-Then:
+**Parts 2–4 are reference material** that you'll use as you need it:
 
-- Use **Part 2: Core Tools** as reference when you need to understand a tool or troubleshoot it.
-- Use **Part 3: Claude Code** to learn how AI can accelerate your workflow (optional but recommended).
-- Use **Part 4: Workflows** for checklists (starting a project, collaborating, reproducibility, troubleshooting).
+- **Part 2: Core Tools** — Deeper coverage of each tool in the lab stack: Positron, project organization, Quarto, renv, conda, and Git/GitHub. Come here when you need to understand how something works or troubleshoot it.
+- **Part 3: Claude Code** — How to use AI-assisted coding to accelerate your work. Covers setup, project configuration, and working effectively with Claude Code.
+- **Part 4: Workflows** — Practical guides for common tasks: setting up a new project, collaborating with others, ensuring reproducibility, and troubleshooting.
 
-::: {.callout-claude title="Look for These Boxes"}
-Throughout this guide, you'll see orange boxes like this one. Each contains an example prompt you can use with Claude Code to get help with that chapter's topic.
-
-These aren't magic incantations—they're examples of how to ask for help effectively. The key is being **specific**: include the error message, the file name, or what you're trying to accomplish. Claude Code works best when you give it context.
-
-You'll learn more about Claude Code in Part 3, but you can start using these prompts right away if you have it installed.
+::: {.callout-important}
+## Work in Progress
+Parts 2, 3, and 4 are still being written. Some chapters are complete, others are drafts or placeholders. Part 1 is ready to use now.
 :::
 
-Suggested reading order for most new lab members:
+## By the End of Your First Project
 
-1. Quick Start → Installation
-2. Quick Start → Your First Project
-3. Core Tools → Positron
-4. Core Tools → Conda and renv
-5. Core Tools → Git & GitHub
-6. Core Tools - Claude Code
+After working through Part 1, you should be able to:
 
-## The Philosophy
+1. Open a project folder in **Positron** and navigate the IDE (file explorer, console, environment pane, plots pane)
+2. Run R code interactively in a **Quarto document** (.qmd) and see results in real time
+3. Perform a basic single-cell RNA-seq analysis — from loading a count matrix to generating a UMAP
+4. **Render** a Quarto document into a self-contained HTML report
+5. Use **renv** to manage R package dependencies for a project
 
-We emphasize:
+::: {.callout-warning title="Claude Code"}
+Throughout this guide, you'll see orange boxes like this one. Each shows how **Claude Code** — an AI coding assistant — can help with that chapter's topic. Each box has an example prompt and a brief explanation of what Claude Code will do.
 
-1. **Reproducibility** — analysis runs should be easy to reproduce and share
-2. **Environment isolation** — library/package dependencies are explicit and project-specific
-3. **Version control** — changes are tracked, reviewable, and reversible
-4. **AI assistance** — accelerate analysis, manage project goals, automate git, but **verify outputs**
+These aren't magic incantations — they're examples of how to ask for help effectively. The key is being **specific**: include the error message, the file name, or what you're trying to accomplish. Claude Code works best when you give it context.
 
-If you remember one idea: **make analyses easy to reproduce for someone else.**
+You'll install Claude Code in the [Installation chapter](part1/installation.qmd) and can start using these prompts right away.
+:::
+
+## Our Goal
+
+We want every lab member to feel confident doing computational work — not just running scripts someone else wrote, but understanding and building their own analyses. The tools in this guide are chosen to make that easier: modern editors that help you explore data interactively, environment managers that keep your projects organized, version control that lets you share code and collaborate without fear of breaking things, and AI assistants like Claude Code that can help you write, debug, and learn faster. Everything we do is oriented around one principle: your analyses should be easy to reproduce and share with others in the lab and beyond.

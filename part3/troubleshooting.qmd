@@ -2,24 +2,20 @@
 
 This chapter covers frequently asked questions and common problems.
 
-::: {.callout-claude title="Ask Claude"}
-**Debug a cryptic error:**
+::: {.callout-warning title="Claude Code"}
+Claude Code excels at debugging—paste an error message and it can usually trace the cause and suggest a fix.
 
-> I'm getting this error and don't understand it:
->
-> [paste the full error message]
->
-> This is the code that caused it: [paste relevant code or filename:line]. What's happening?
+> I'm getting this error and don't understand it: [paste error message]. This is the code that caused it: [paste code or filename:line]. What's happening?
 
-*Include both the error AND the code. Claude can trace the issue much faster with context.*
+Claude will read the error, examine your code, and explain what went wrong in plain language. Include both the error and the code—context helps Claude trace the issue much faster.
 :::
 
-::: {.callout-claude title="Ask Claude"}
-**Figure out why code stopped working:**
+::: {.callout-warning title="Claude Code"}
+Claude Code can help diagnose why previously working code suddenly breaks.
 
 > This script was working yesterday and now fails with: [error]. I didn't change anything in the script. What could have changed?
 
-*Mention what changed (or didn't). Claude can help trace environment or dependency issues.*
+Claude will investigate environment changes, package updates, or data differences that could explain the regression.
 :::
 
 ## Conda

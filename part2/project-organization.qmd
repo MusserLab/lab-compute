@@ -1,5 +1,7 @@
 # Project Organization
 
+In [Your First R Project](../part1/first-project.qmd), you created a project with `data/`, `scripts/`, and `outs/` folders—the same structure used in every lab project. This chapter explains that structure formally and covers the conventions that keep projects organized as they grow.
+
 A well-organized project makes it easy to find files, understand dependencies, and reproduce analyses. This chapter describes the lab's conventions for structuring analysis projects.
 
 ## The Core Principle
@@ -100,16 +102,12 @@ outs/
 
 **This structure encodes provenance.** When you see a file in `outs/03_differential/`, you know exactly which script created it.
 
-::: {.callout-claude title="Ask Claude"}
-**Review your project structure:**
+::: {.callout-warning title="Claude Code"}
+Claude Code can review your project layout and suggest improvements based on the lab's conventions.
 
-> Here's my project folder structure:
->
-> [paste output of `ls -R` or describe your layout]
->
-> I'm analyzing RNA-seq data from three conditions with time points. Does this organization make sense, or should I restructure anything?
+> Here's my project folder structure: [paste output of `ls -R`]. I'm analyzing RNA-seq data from three conditions with time points. Does this organization make sense?
 
-*Describe what type of analysis you're doing. Claude can suggest improvements based on your specific project needs.*
+Claude will compare your layout against the lab conventions, flag any issues (like outputs mixed with inputs), and suggest a cleaner structure.
 :::
 
 ## How Dependencies Work

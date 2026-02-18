@@ -1,27 +1,29 @@
-# Starting a New Analysis Project
+# Quick Reference: Project Setup
 
-This chapter walks through setting up a new analysis project from scratch, using all the tools together. For detailed explanations of each convention, see the [Project Organization](../part2/project-organization.qmd) and [Quarto](../part2/quarto.qmd) chapters.
+This page is a concise reference for setting up a new analysis project. For a full step-by-step walkthrough with explanations, see [Setting Up a Lab Project](setup-walkthrough.qmd). For the rationale behind each convention, see [Project Organization](../part2/project-organization.qmd).
 
-## The Standard Structure
+## Standard Structure
 
-Every analysis project should have:
+### Flat layout (single topic, < 10 scripts)
 
 ```
 project-name/
 ├── .claude/
 │   └── CLAUDE.md         # Claude Code instructions
-├── .git/                  # Git repository
-├── .gitignore            # Files to exclude from Git
+├── .git/
+├── .gitignore
 ├── R/                    # Shared R helper functions
 ├── python/               # Shared Python helper functions
 ├── scripts/
-│   └── exploratory/      # One-off analyses
+│   └── exploratory/      # One-off analyses (no numbering)
 ├── data/                 # External inputs only — scripts never write here
 ├── outs/                 # All script-generated outputs
 ├── environment.yml       # Conda environment (Python)
 ├── renv.lock            # R package versions
-└── README.md            # Project description
+└── README.md
 ```
+
+### Sectioned layout (multiple analysis threads)
 
 For projects with multiple analysis sections (e.g., phosphoproteomics + transcriptomics), mirror the sections across `scripts/`, `data/`, and `outs/`:
 
@@ -44,22 +46,40 @@ outs/
 └── exploratory/
 ```
 
-## Step-by-Step Setup
+Each section has its own numbering sequence.
 
-### 1. Create the Project Directory
-
-```bash
-mkdir my-analysis
-cd my-analysis
-```
-
-### 2. Initialize Git
+## Setup Commands
 
 ```bash
+# 1. Create project
+mkdir my-analysis && cd my-analysis
+
+# 2. Git
 git init
+# Create .gitignore (see template below)
+
+# 3. Directory structure
+mkdir -p R python scripts/exploratory data outs/exploratory .claude
+
+# 4. Python environment (if using Python)
+conda create -n my-analysis python=3.11 pandas numpy matplotlib seaborn ipykernel -y
+conda activate my-analysis
+pip install session-info
+conda env export --from-history > environment.yml
+
+# 5. R packages (if using R)
+# In R console: renv::init(); install.packages(c("tidyverse", "here")); renv::snapshot()
+
+# 6. First commit
+git add .
+git commit -m "Initial project setup"
+
+# 7. Push to GitHub
+gh repo create my-analysis --private --source=. --push
+# Or for lab: gh repo create MusserLab/my-analysis --private --source=. --push
 ```
 
-Create `.gitignore`:
+## .gitignore Template
 
 ```
 # Generated outputs (reproducible from code)
@@ -102,46 +122,7 @@ Thumbs.db
 credentials.json
 ```
 
-### 3. Create Directory Structure
-
-```bash
-mkdir -p R python scripts/exploratory data outs/exploratory .claude
-```
-
-::: {.callout-claude title="Ask Claude"}
-**Set up your CLAUDE.md:**
-
-> I'm starting a new project analyzing proteomics data from cell cultures. The data is in `data/`, I'm using R with renv, and I'll render with Quarto. Can you create a starter `.claude/CLAUDE.md` for this project?
-
-*Tell Claude the project type, data location, and tools you're using. It'll create a tailored template.*
-:::
-
-### 4. Set Up Python Environment (if using Python)
-
-```bash
-conda create -n my-analysis python=3.11 pandas numpy matplotlib seaborn ipykernel -y
-conda activate my-analysis
-pip install session-info
-conda env export --from-history > environment.yml
-```
-
-The `--from-history` flag produces a portable file with only explicitly installed packages (no platform-specific builds).
-
-::: {.callout-note}
-Always include `ipykernel` — it's required for Quarto to render Python `.qmd` files. Include `session-info` for reproducibility tracking.
-:::
-
-### 5. Set Up R with renv (if using R)
-
-In R:
-
-```r
-renv::init()
-install.packages(c("tidyverse", "here"))
-renv::snapshot()
-```
-
-### 6. Create Project CLAUDE.md
+## CLAUDE.md Template
 
 Create `.claude/CLAUDE.md`:
 
@@ -179,9 +160,7 @@ Create `.claude/CLAUDE.md`:
 [Planning documents go here as the project grows]
 ```
 
-### 7. Create README
-
-Create `README.md`:
+## README Template
 
 ```markdown
 # My Analysis
@@ -205,81 +184,27 @@ conda activate my-analysis
 [Data sources and descriptions]
 ```
 
-### 8. First Commit
+## Data Rules
 
-```bash
-git add .
-git commit -m "Initial project setup"
-```
-
-### 9. Push to GitHub
-
-```bash
-gh repo create my-analysis --private --source=. --push
-```
-
-Or manually:
-
-1. Create repo on GitHub
-2. `git remote add origin https://github.com/USERNAME/my-analysis.git`
-3. `git push -u origin main`
-
-## Adding Data
-
-Put external data files in `data/`. Never modify these files — treat them as read-only. Scripts never write to `data/`.
-
-If data files are large, don't commit them to Git. Add them to `.gitignore` and document where to obtain the data in your README.
-
-## Writing Your First Script
-
-Analysis scripts are `.qmd` files (not `.R` or `.py`). Here's a typical first script that reads external data, cleans it, and saves the result to `outs/`:
-
-```r
-# scripts/01_clean_data.qmd — setup chunk
-
-library(tidyverse)
-library(here)
-
-dir_out <- here("outs", "01_clean_data")
-dir.create(dir_out, recursive = TRUE, showWarnings = FALSE)
-
-# --- Inputs (external data) ---
-raw <- read_csv(here("data", "experiment_data.csv"))
-cat("Loaded", nrow(raw), "rows\n")
-
-# Clean
-clean <- raw %>%
-  filter(!is.na(value)) %>%
-  filter(quality > 0.8)
-cat("After cleaning:", nrow(clean), "rows\n")
-
-# Save to outs/
-write_csv(clean, file.path(dir_out, "clean_data.csv"))
-```
-
-Key points:
-
-- Reads from `data/` (external inputs)
-- Writes to `outs/01_clean_data/` (script-specific output folder)
-- Never writes to `data/`
-
-For full script templates including YAML headers, setup chunks, and BUILD_INFO.txt, see the [Quarto](../part2/quarto.qmd) chapter and [Templates](../appendices/templates.qmd) appendix.
+- Put external data files in `data/`. **Never modify these files** — treat them as read-only.
+- Scripts never write to `data/`.
+- If data files are large, don't commit them to Git. Add them to `.gitignore` and document where to obtain the data in your README.
 
 ## Using Claude Code
 
-With your `.claude/CLAUDE.md` in place, start Claude Code:
+With your `.claude/CLAUDE.md` in place:
 
 ```bash
 claude
 ```
 
-Example workflow:
+::: {.callout-warning title="Claude Code"}
+Claude Code can scaffold project configuration files based on your specific setup.
 
-> "I have RNA-seq counts in data/counts.csv. Create a QMD script to load it, do basic QC, and save a cleaned version to outs/."
+> I'm starting a new project analyzing proteomics data from cell cultures. The data is in `data/`, I'm using R with renv, and I'll render with Quarto. Can you create a starter `.claude/CLAUDE.md` for this project?
 
-Review the generated code, then:
-
-> "Commit this with an appropriate message"
+Claude will create a CLAUDE.md tailored to your project type, data location, and tooling—saving you from starting with a blank template.
+:::
 
 ## Checklist
 

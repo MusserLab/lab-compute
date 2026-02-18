@@ -36,6 +36,7 @@ book:
         - claude-code/working-effectively.qmd
     - part: "Workflows"
       chapters:
+        - part3/setup-walkthrough.qmd
         - part3/starting-project.qmd
         - part3/collaborating.qmd
         - part3/reproducibility.qmd

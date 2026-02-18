@@ -123,20 +123,10 @@ git branch -d my-feature  # Delete local branch
 
 Conflicts happen when two people change the same lines.
 
-::: {.callout-claude title="Ask Claude"}
-**Understand a merge conflict:**
+::: {.callout-warning title="Claude Code"}
+Claude Code can explain merge conflicts and help you resolve them safely.
 
-> I have a merge conflict in `analysis.qmd`. Here are the conflict markers:
->
-> ```
-> <<<<<<< HEAD
-> threshold <- 0.05
-> =======
-> threshold <- 0.01
-> >>>>>>> feature-branch
-> ```
->
-> My collaborator changed the threshold. Which should I keep, or should I combine them somehow?
+> I have a merge conflict in `analysis.qmd` with these conflict markers: [paste the conflicting section]. My collaborator changed the threshold. Which should I keep?
 
 *Show the conflict markers and explain the context. Claude can help you understand what each version does and decide how to resolve it.*
 :::

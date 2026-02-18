@@ -1,398 +1,368 @@
-# Your First Project
+# Your First R Project
 
-Let's create a complete project that demonstrates the full workflow. This is a practice run—the structure and tools may feel like overkill for a simple example, but they pay off immediately when projects grow. In the lab, we treat each analysis project as the computational infrastructure for a publication: well-organized, reproducible, and easy to share.
+In this chapter, you'll do a real single-cell RNA-seq analysis—from raw count data to a UMAP of cell clusters. Along the way, you'll learn how to use Positron's key features: the file explorer, console, environment pane, plots pane, and interactive code execution. By the end, you'll render the analysis into a shareable HTML report.
 
-By the end, you'll have:
+We'll work with a single-cell RNA-seq dataset from the freshwater sponge *Spongilla lacustris*, one of the organisms studied in the Musser Lab. The dataset contains about 10,000 cells across 4 samples. Don't worry about understanding every biological detail—focus on learning how Positron works and getting comfortable running R code interactively.
 
-- A project folder with organized structure
-- A conda environment for Python
-- An R environment managed by renv
-- A Quarto analysis script that renders to HTML
-- Everything under Git version control and backed up to GitHub
+## Create a Project Folder
 
-## Step 1: Create the Project Folder
+First, create a folder for this project and open it in Positron.
 
-In Positron (and VS Code), a **project** is simply a folder. When you open a folder as your workspace, all of Positron's tools—the terminal, file browser, R console, Python interpreter—work relative to that folder. The top-level folder will contain important configuration files: `.git/` for version control, `renv.lock` for R packages, `environment.yml` for Python packages, and optionally `.claude/` for Claude Code instructions or `.vscode/settings.json` for editor settings.
+1. Open Positron
+2. Go to **File → Open Folder**
+3. Navigate to where you want to keep projects (e.g., `~/Documents`)
+4. Click **New Folder**, name it `my-first-analysis`, then open it
 
-Open your terminal and create a new project:
+Positron now treats this folder as your workspace. Everything you do—running code, browsing files, managing packages—happens relative to this folder.
 
-```bash
-# Navigate to where you keep projects
-cd ~/Documents  # or wherever you prefer
+Take a moment to look around the Positron interface:
 
-# Create and enter the project folder
-mkdir my-first-analysis
-cd my-first-analysis
-```
+- **File Explorer** (left sidebar): Shows files and folders in your project. Right now it's empty.
+- **Console** (bottom panel): Where your R session will run. You may need to start one—click "Start R Session" in the status bar at the bottom if you don't see an R prompt.
+- **Environment pane** (right panel, or bottom panel next to Console): Will show R objects as you create them. Look for the "Variables" tab.
+- **Plots pane**: Will appear when you make your first plot.
 
-Use lowercase with hyphens for project names—avoid spaces and special characters.
+[TODO: screenshot of Positron with empty project, panes labeled]
 
-## Step 2: Open in Positron
+## Install Packages with renv
 
-Open Positron and use **File → Open Folder** to open `my-first-analysis`. This sets the folder as your workspace. From now on, the integrated terminal, file browser, and language consoles all operate within this project folder.
+Before we can analyze data, we need to install some R packages. We'll use **renv** to manage packages for this project—renv gives each project its own package library, so installing or updating packages here won't affect your other projects.
 
-[TODO: screenshot of Positron with empty folder open]
-
-## Step 3: Initialize Git
-
-We initialize Git first so that every change from here on is tracked. In Positron's terminal (**View → Terminal**), initialize a Git repository:
-
-```bash
-git init
-```
-
-Next, create a `.gitignore` file to tell Git which files to skip—large data files, generated outputs, and system files don't belong in version control. See the [Git & GitHub](../part2/git-github.qmd) chapter for details on what each line means.
-
-::: {.callout-claude title="Ask Claude"}
-**Create a project-specific gitignore:**
-
-> I'm starting a new R project that will also use Python for some preprocessing. Can you create a .gitignore file? I'm using renv for R packages and conda for Python.
-
-*Claude can generate a gitignore tailored to your specific project setup, including patterns for both languages.*
-:::
-
-```bash
-# Create .gitignore
-cat > .gitignore << 'EOF'
-# R
-.Rhistory
-.RData
-.Rproj.user/
-renv/library/
-renv/staging/
-
-# Python
-__pycache__/
-*.pyc
-.conda/
-.venv/
-
-# Quarto
-*_files/
-.quarto/
-
-# Generated outputs (can be reproduced from scripts)
-outs/
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# IDE
-.vscode/
-.positron/
-EOF
-```
-
-## Step 4: Set Up Conda Environment
-
-Every project gets its own conda environment, even if you're primarily using R. This isolation prevents a common problem: updating a package for one project and accidentally breaking another. It also establishes good habits for mixed-language work.
-
-```bash
-conda create -n my-first-analysis python=3.11 -y
-conda activate my-first-analysis
-```
-
-Save the environment specification so collaborators (or future you) can recreate it exactly:
-
-```bash
-conda env export > environment.yml
-```
-
-::: {.callout-tip}
-## Environment Activation
-Every time you work on this project, activate the environment first:
-```bash
-conda activate my-first-analysis
-```
-:::
-
-## Step 5: Set Up R with renv
-
-Just as conda isolates Python packages, renv isolates R packages. Each project gets its own library, and the `renv.lock` file records exact package versions so anyone can recreate your R environment with `renv::restore()`.
-
-In Positron's R console, initialize renv:
+In the R console, type (or paste) and press Enter:
 
 ```r
-# Install renv if needed
 install.packages("renv")
-
-# Initialize renv for this project
 renv::init()
 ```
 
-This creates:
+Watch the console output—renv creates a project-specific library and a `renv.lock` file. **Look at the file explorer**: you should now see `renv/` and `renv.lock` appear.
 
-- `renv/` folder for the project's package library
-- `renv.lock` file recording package versions
-- `.Rprofile` to auto-activate renv when R starts
+The **lock file** (`renv.lock`) is a snapshot of every package installed in your project, including exact version numbers. This is what makes your analysis reproducible—a collaborator (or future you) can run `renv::restore()` on another machine to install the exact same package versions. You'll learn more about renv in the [renv chapter](../part2/renv.qmd).
 
-Install the packages we'll need for our analysis:
+Now install the packages we need. Since we initialized renv, `install.packages()` installs into the project-specific library rather than your system library:
 
 ```r
-install.packages(c("ggplot2", "dplyr", "palmerpenguins", "here"))
-renv::snapshot()  # Save the state
+install.packages(c("Seurat", "leidenbase", "ggplot2", "patchwork", "dplyr", "here"))
 ```
 
-## Step 6: Configure Positron for This Project
+This takes a few minutes—Seurat has many dependencies. The `leidenbase` package is needed for the Leiden clustering algorithm we'll use later. Watch the console output as packages download and compile. When it's done, save the state:
 
-Now that the conda environment and R packages exist, tell Positron which interpreters to use. You only need to do this once per project.
-
-### Select the Python Interpreter
-
-1. Open the Command Palette: **Cmd+Shift+P** (macOS) or **Ctrl+Shift+P** (Windows)
-2. Type "Python: Select Interpreter" and select it
-3. Choose the `my-first-analysis` conda environment from the list
-
-If the environment doesn't appear, restart Positron—it needs to detect newly created environments.
-
-### Select the R Version
-
-If you have multiple R versions installed via rig, you can set the default for this project:
-
-1. Open Command Palette → "R: Select R Binary"
-2. Choose the version you want (usually the latest stable release)
-
-Alternatively, set it permanently in `.vscode/settings.json` (covered in the [Positron](../part2/positron.qmd) chapter).
-
-### Restart and Verify
-
-Restart Positron to ensure settings take effect. Then verify by opening both consoles:
-
-1. **R Console**: View → Console, or click "Start R Session" in the status bar. You should see `[renv]` indicating renv is active.
-2. **Python Console**: Open a `.py` file and run a line, or use the terminal to run `python --version`. Confirm it shows the conda environment's Python.
+```r
+renv::snapshot()
+```
 
 ::: {.callout-note}
-## One-Time Setup
-You only configure interpreters once per project. Positron remembers your choices in `.vscode/settings.json`, which is stored in the project folder.
+## renv::snapshot()
+`renv::snapshot()` updates `renv.lock` with the exact versions of every package you've installed. Run it after installing new packages so the lock file stays current.
 :::
 
-## Step 7: Create Project Structure
+## Get the Data and Analysis Script
 
-Create the lab's standard folder structure:
+We need two things: the *Spongilla* count matrix and the analysis script you'll run through.
 
-```bash
-mkdir -p data scripts outs
-```
+### Download the data
 
-Your project now looks like:
+Create a `data/` folder in your project:
+
+- **In the file explorer**: Right-click in the empty space → **New Folder** → name it `data`
+- **Or in the terminal** (toggle with Cmd+\` or Ctrl+\`): `mkdir data`
+
+Now download the *Spongilla* count matrix. This is a single-cell dataset in 10X Genomics format—the same format you'll work with when analyzing your own data from the sequencing core. It contains about 10,000 cells across 4 samples and 40,000 genes.
+
+[TODO: Add download link for Spongilla count matrix]
+
+Place the downloaded folder inside `data/` so you have `data/spongilla_counts/` containing three files.
+
+### Get the analysis script
+
+Create a `scripts/` folder and an `outs/` folder the same way, then download the analysis script:
+
+[TODO: Add download link for 01_seurat_basics.qmd]
+
+Place it in `scripts/` so your project looks like:
 
 ```
 my-first-analysis/
-├── .git/
-├── .gitignore
-├── data/              # External inputs only (raw data, metadata)
-├── scripts/           # Quarto analysis scripts (.qmd files)
-├── outs/              # All generated outputs (figures, tables, processed data)
-├── environment.yml    # Conda environment specification
-├── renv/              # R package library (not tracked in git)
-└── renv.lock          # R package versions (tracked in git)
+├── data/
+│   └── spongilla_counts/
+│       ├── barcodes.tsv.gz        # One barcode per cell
+│       ├── features.tsv.gz        # One row per gene
+│       └── matrix.mtx.gz          # The sparse count matrix
+├── scripts/
+│   └── 01_seurat_basics.qmd      # The analysis you'll run
+├── outs/                          # Will hold script outputs
+├── renv/
+├── renv.lock
+└── .Rprofile
 ```
 
-This structure separates **inputs** (`data/`) from **outputs** (`outs/`), with scripts in the middle. Each script writes to a corresponding subfolder in `outs/`, making it easy to trace which script produced which files. See the [Project Organization](../part2/project-organization.qmd) chapter for the full rationale and conventions.
+**Look at the file explorer now.** You can click into folders to browse their contents. Click into `data/spongilla_counts/` to see the three files that make up a 10X count matrix.
 
-## Step 8: Write a Quarto Analysis Script
+[TODO: screenshot of file explorer showing project structure]
 
-Quarto documents (`.qmd` files) mix code and narrative text. When you **render** a `.qmd`, Quarto executes all the code in a fresh R or Python session and weaves the results into a polished output document—typically HTML, but also PDF or Word. This is how we create reproducible, shareable analysis reports.
+## Open the Analysis Script
 
-Create a new file at `scripts/01_penguin_summary.qmd`:
+Open `scripts/01_seurat_basics.qmd` by clicking on it in the file explorer.
 
-````markdown
----
-title: "Penguin Size Summary"
-author: "Your Name"
-format: html
----
+This is a **Quarto document** (`.qmd`)—the format we use for analyses in the lab. If you've used RMarkdown before, Quarto is its successor: it has the same idea of mixing code and narrative, but with more features and equal support for both R and Python. When you render a `.qmd`, all the code runs and the results are woven into an HTML report.
 
-## Overview
+Look at the structure of the file:
 
-This analysis summarizes body size measurements from the Palmer Penguins dataset.
+- **YAML header** (the block between `---` marks at the top): Metadata that tells Quarto how to render the document—title, author, output format, and execution options.
+- **Markdown text**: Written explanation between code chunks. This is where you describe what the analysis does and why.
+- **Code chunks** (blocks starting with `` ```{r} ``): R code that will be executed. Each chunk has a `#| label:` line that gives it a name.
 
-**Inputs:** `palmerpenguins` package (built-in dataset)
-
-**Outputs:** `outs/01_penguin_summary/penguin_mass.png`
-
-```{{r}}
-#| label: setup
-library(palmerpenguins)
-library(dplyr)
-library(ggplot2)
-library(here)
-
-# Create output directory for this script
-dir_out <- here::here("outs", "01_penguin_summary")
-dir.create(dir_out, recursive = TRUE, showWarnings = FALSE)
-```
-
-## Data summary
-
-```{{r}}
-#| label: summary
-penguins |>
-  group_by(species) |>
-  summarise(
-    n = n(),
-    mean_mass_g = mean(body_mass_g, na.rm = TRUE),
-    mean_flipper_mm = mean(flipper_length_mm, na.rm = TRUE)
-  )
-```
-
-## Body mass by species
-
-```{{r}}
-#| label: fig-mass
-#| fig-cap: "Body mass distribution by penguin species"
-
-p <- ggplot(penguins, aes(x = species, y = body_mass_g, fill = species)) +
-  geom_boxplot() +
-  labs(x = "Species", y = "Body mass (g)") +
-  theme_minimal() +
-  theme(legend.position = "none")
-
-print(p)
-
-# Save to this script's output folder
-ggsave(file.path(dir_out, "penguin_mass.png"), p, width = 6, height = 4)
-```
-
-## Summary
-
-We summarized body mass across three penguin species. The figure has been saved to `outs/01_penguin_summary/penguin_mass.png`.
-````
-
-::: {.callout-note}
-## What makes this a "lab-style" analysis script?
-
-1. **Self-contained** — All code needed to run is in the file
-2. **Documents inputs and outputs** — States what it reads and what it produces
-3. **Writes outputs to a dedicated folder** — `outs/01_penguin_summary/` corresponds to script `01_penguin_summary.qmd`
-4. **Uses `here::here()`** — Paths are relative to the project root, not the script location
-:::
-
-### Interactive vs. Rendering
-
-There are two ways to run code in a `.qmd` file:
-
-**Interactive execution** (Cmd+Enter / Ctrl+Enter): Runs the current line or selection in your R console. Use this while developing—you can inspect objects, test code, and debug interactively. The results appear in the console and plots pane.
-
-**Rendering** (`quarto render`): Runs the entire document in a fresh R session and produces an HTML (or PDF/Word) output. Use this when you want a polished, shareable report. Because rendering starts fresh, it catches errors that might not appear interactively (like relying on objects you created earlier but forgot to include in the script).
-
-During development, work interactively. When you're ready to share or commit, render the full document to ensure it runs cleanly from start to finish.
-
-## Step 9: Render the Analysis
-
-In Positron's terminal (**View → Terminal**), render the document:
-
-```bash
-quarto render scripts/01_penguin_summary.qmd
-```
-
-Quarto executes every code chunk in a fresh R session and weaves the output into an HTML report. This creates:
-
-- `scripts/01_penguin_summary.html` — the rendered report (open in a browser to view)
-- `outs/01_penguin_summary/penguin_mass.png` — the exported figure
-
-[TODO: screenshot of rendered HTML]
+We're going to run through this script **chunk by chunk**, interactively. This is how you'll develop analyses in the lab—running code, inspecting results, and iterating before rendering the final report.
 
 ::: {.callout-tip}
-## Preview Mode
-During development, use `quarto preview` for live updates as you edit:
-```bash
-quarto preview scripts/01_penguin_summary.qmd
-```
-This opens a browser window that refreshes automatically when you save changes.
+## Cmd+Enter: Your Most-Used Shortcut
+**Cmd+Enter** (Ctrl+Enter on Windows) runs the current line or selection in the R console. **Cmd+Shift+Enter** runs the entire code chunk. You'll use these constantly during interactive development.
 :::
 
-## Step 10: Commit Your Work
+## Step 1: Load Libraries
 
-A **commit** is a snapshot of your project at this moment. From now on, every significant change should get its own commit—this builds a history you can review, share, or revert to if something breaks.
+Find the first code chunk (labeled `setup`) and place your cursor inside it. Press **Cmd+Shift+Enter** to run the entire chunk.
 
-Stage and commit your work:
-
-```bash
-# See what's ready to commit
-git status
-
-# Add files
-git add .
-
-# Commit with a descriptive message
-git commit -m "Initial project setup with penguin analysis"
+```r
+library(Seurat)
+library(ggplot2)
+library(patchwork)
+library(dplyr)
+library(here)
 ```
 
-## Step 11: Push to GitHub {#sec-github-auth}
+**Watch the console** at the bottom—you'll see library loading messages appear there. The code runs in the console, not in the document. This is **interactive execution**: you're exploring and developing, running code chunk by chunk, checking results as you go.
 
-Pushing to GitHub backs up your work in the cloud and enables collaboration. Once pushed, your project is safe even if your laptop dies.
+[TODO: screenshot of console showing library loading messages]
 
-::: {.callout-important}
-## Personal vs. Lab GitHub
+## Step 2: Load the Count Matrix
 
-GitHub can host repositories on your personal account or on the [lab's GitHub organization (MusserLab)](https://github.com/MusserLab).
+Run the next chunk (`load-data`). This loads the 10X count matrix and creates a Seurat object—the central data structure for single-cell analysis in R.
 
-- **Lab organization**: All analysis and coding projects for lab work go here. This ensures continuity when people leave and makes collaboration easier.
-- **Personal account**: Use for personal configuration folders (like your Claude Code settings), side projects, or practice repositories.
+```r
+counts <- Read10X(data.dir = here("data/spongilla_counts"))
+sponge <- CreateSeuratObject(counts = counts, project = "spongilla")
+sponge
+```
 
-For this tutorial, you can use either. For real lab projects, create the repository under the MusserLab organization.
+Two things to notice:
+
+1. **The console** prints a summary of the Seurat object: the number of genes (features) and cells (samples) in the dataset.
+2. **The environment pane** (Variables tab) now shows two objects: `counts` (a sparse matrix) and `sponge` (a Seurat object). You can see the object type and size at a glance.
+
+[TODO: screenshot of Environment pane showing counts and sponge objects]
+
+Now let's inspect the cell metadata. Run this in the console:
+
+```r
+View(sponge@meta.data)
+```
+
+This opens Positron's **data viewer**—a spreadsheet-style view of the metadata, with one row per cell and columns like `orig.ident`, `nCount_RNA` (total UMIs per cell), and `nFeature_RNA` (genes detected per cell).
+
+Notice two useful features of the data viewer:
+
+- **Column histograms**: Each numeric column shows a small histogram at the top, giving you a quick summary of the distribution. You can immediately see the range and shape of `nCount_RNA` and `nFeature_RNA` without making a plot.
+- **Filtering**: Click on a column header to filter rows. For example, you could filter `nFeature_RNA` to only show cells with more than 1,000 detected genes. This is useful for quickly exploring subsets of your data.
+
+[TODO: screenshot of Data Viewer showing Seurat metadata with histograms visible]
+
+## Step 3: Quality Control
+
+Run the next chunk (`fig-qc-violin`). This creates violin plots of two key QC metrics, split by sample:
+
+- **nCount_RNA** — total UMI counts per cell. Very low counts suggest empty droplets or dead cells.
+- **nFeature_RNA** — number of genes detected per cell. Very low values suggest poor capture; very high values might indicate doublets (two cells in one droplet).
+
+```r
+VlnPlot(sponge, features = c("nFeature_RNA", "nCount_RNA"), ncol = 2,
+        group.by = "orig.ident")
+```
+
+**Your first plot appears in the Plots pane!** The violin plots show the distribution of genes and UMI counts across all cells, split by sample. You can resize the Plots pane by dragging its border, and use the navigation arrows to flip between plots as you make more.
+
+[TODO: screenshot of Plots pane showing VlnPlot split by sample]
+
+::: {.callout-tip}
+## Pop Out the Plots Pane
+If you want a larger view of a plot, you can pop the Plots pane out into a separate window. Click the pop-out icon in the top-right corner of the Plots pane. This is especially useful for complex plots like UMAPs where you want to see fine detail.
 :::
 
-### Authenticate with GitHub
+This dataset has already been quality-filtered, so the distributions should look clean—no extreme outliers. In a real analysis starting from unfiltered data, you would filter cells here based on these metrics.
 
-If you haven't already, install and authenticate the GitHub CLI:
+::: {.callout-note}
+## QC Filtering in Practice
+With unfiltered data, you'd remove low-quality cells using `subset()`. For example, `subset(sponge, subset = nFeature_RNA > 200 & nFeature_RNA < 5000)` removes cells with too few or too many detected genes. The specific thresholds depend on your dataset—the violin plots help you choose reasonable cutoffs.
+:::
 
-```bash
-# macOS
-brew install gh
+## Step 4: Normalize and Find Variable Features
 
-# Windows: Download from https://cli.github.com/
+Run the `normalize` chunk. This does two things:
 
-# Authenticate
-gh auth login
+**Normalization** adjusts for differences in sequencing depth between cells. Some cells have more total UMIs than others, and this variation is mostly technical—not biological. `NormalizeData()` divides each cell's gene counts by the cell's total UMI count to get relative expression levels, then applies a log transformation. The log transformation addresses *heteroscedasticity*: without it, highly expressed genes would have much higher variance than lowly expressed genes, dominating downstream analyses. Log transformation helps equilibrate variance across genes with different expression levels.
+
+**FindVariableFeatures** identifies the 2,000 genes whose expression varies most across cells. These are the genes that distinguish cell types and will drive the downstream analysis. Genes expressed at similar levels in every cell don't help us find structure in the data.
+
+```r
+sponge <- NormalizeData(sponge)
+sponge <- FindVariableFeatures(sponge, selection.method = "vst", nfeatures = 2000)
 ```
 
-When prompted, choose **"Login with a web browser"** and follow the prompts.
+Now run the `fig-variable-features` chunk to visualize the results:
 
-### Create and Push to GitHub
+```r
+top10 <- head(VariableFeatures(sponge), 10)
 
-The easiest way to create a repository and push in one step:
-
-```bash
-# Create a private repo and push (on your personal account)
-gh repo create my-first-analysis --private --source=. --push
-
-# Or for the lab organization:
-# gh repo create MusserLab/my-first-analysis --private --source=. --push
+plot1 <- VariableFeaturePlot(sponge)
+plot2 <- LabelPoints(plot = plot1, points = top10, repel = TRUE)
+plot2
 ```
 
-Alternatively, create the repository manually on github.com, then:
+A new plot appears in the **Plots pane** showing genes ranked by variability. The labeled points are the most variable genes. **Use the navigation arrows** in the Plots pane to flip between this plot and the earlier violin plot.
 
-```bash
-git remote add origin https://github.com/YOUR-USERNAME/my-first-analysis.git
-git push -u origin main
+[TODO: screenshot of Plots pane showing variable feature plot]
+
+## Step 5: Scale Data and Run PCA
+
+Run the `scale-pca` chunk:
+
+```r
+sponge <- ScaleData(sponge)
+sponge <- RunPCA(sponge)
 ```
 
-## What You've Built
+**Scaling** shifts each gene to have mean 0 and variance 1. Together with the log normalization from the previous step, this ensures that both lowly and highly expressed genes contribute equally to the analysis. **PCA** (Principal Component Analysis) then reduces the data from thousands of genes down to a smaller number of dimensions (principal components) that capture the main axes of variation.
 
-You now have a complete project with:
+::: {.callout-note}
+## A Note on Methods
+Scaling followed by PCA is the standard Seurat workflow and a good default for most datasets. Other approaches exist—for example, SAM (Self-Assembling Manifolds) skips PCA entirely and can work well in some cases. As you gain experience, you may explore alternative methods, but the standard pipeline is where everyone starts.
+:::
 
-- ✅ Organized folder structure (`data/`, `scripts/`, `outs/`)
-- ✅ Python environment (conda) — isolated and reproducible
-- ✅ R package management (renv) — isolated and reproducible
-- ✅ Positron configured for both languages
-- ✅ A Quarto analysis script that renders to HTML
-- ✅ Exported figures in `outs/01_penguin_summary/`
-- ✅ Version control (Git) and cloud backup (GitHub)
+Now run the `fig-elbow` chunk to see the elbow plot:
 
-This is the pattern you'll use for every analysis in the lab. The setup may feel like a lot of steps the first time, but it becomes second nature quickly—after a few projects, you'll have it done in minutes.
+```r
+ElbowPlot(sponge, ndims = 50)
+```
+
+The elbow plot shows how much variation each PC explains. We need to choose how many PCs to use for clustering. Using too few PCs can cause you to miss real biological structure—clusters that should be separate may merge together. We'll use 40 PCs for this dataset; the curve has mostly flattened by then, meaning additional PCs add little new information.
+
+[TODO: screenshot of Plots pane showing elbow plot]
+
+## Step 6: Cluster Cells
+
+Run the `cluster` chunk. This is the most computationally intensive step—it takes a moment.
+
+```r
+sponge <- FindNeighbors(sponge, dims = 1:40)
+sponge <- FindClusters(sponge, resolution = 2, algorithm = 4)
+sponge <- RunUMAP(sponge, dims = 1:40)
+```
+
+Three things happen here:
+
+- **FindNeighbors** builds a graph connecting cells with similar expression profiles (using the first 40 PCs).
+- **FindClusters** uses the Leiden algorithm to find communities of similar cells in that graph.
+- **RunUMAP** projects the high-dimensional relationships into two dimensions for visualization.
+
+When it finishes, **check the environment pane**—the `sponge` object now contains clustering results and UMAP coordinates. Run `View(sponge@meta.data)` again to see a new `seurat_clusters` column in the metadata.
+
+::: {.callout-note}
+## Clustering Parameters
+- **dims = 1:40** — uses the first 40 PCs. Using too few PCs can cause you to miss real clusters in the data.
+- **resolution = 2** — higher values produce more clusters. The right resolution depends on how many cell types you expect.
+- **algorithm = 4** — Leiden algorithm, which generally produces more robust clusters than the default Louvain (algorithm = 1).
+:::
+
+## Step 7: The UMAP
+
+Run the `fig-umap` chunk:
+
+```r
+DimPlot(sponge, reduction = "umap", label = TRUE) + NoLegend()
+```
+
+**This is the result you've been working toward**—a UMAP plot where each dot is a cell, colored by cluster. Cells that are close together have similar gene expression. Each cluster likely represents a distinct cell type or state.
+
+[TODO: screenshot of UMAP DimPlot in Plots pane]
+
+## Step 8: Gene Expression on the UMAP
+
+Run the final chunk (`fig-features`):
+
+```r
+FeaturePlot(sponge, features = c("Eef1a1 A", "Pcna"))
+```
+
+This overlays gene expression onto the UMAP—each cell is colored by how strongly it expresses that gene. *Eef1a1* is an elongation factor that is a strong marker for archaeocytes (the stem cell-like cells of sponges), and *Pcna* is a proliferation marker (it marks cells that are actively dividing). Notice how expression is concentrated in specific clusters, not spread uniformly. In a real analysis, you'd plot known marker genes like these to identify which cluster corresponds to which cell type.
+
+[TODO: screenshot of FeaturePlot in Plots pane]
+
+## Render the Document
+
+So far you've been running code **interactively**—chunk by chunk, with results appearing in the console, environment pane, and plots pane. This is how you develop and explore.
+
+Now let's **render** the document. Rendering runs every code chunk in a **fresh R session** from top to bottom, and produces a polished HTML report. This is important because:
+
+- It proves the analysis is **reproducible**—it runs start to finish without relying on objects you created interactively
+- It catches **errors** you might miss during interactive development (like relying on a variable you defined in the console but forgot to include in the script)
+- It produces a **shareable document** with all code, results, and narrative together
+
+Open the terminal (Cmd+\` or Ctrl+\`) and run:
+
+```bash
+quarto render scripts/01_seurat_basics.qmd
+mkdir -p outs/01_seurat_basics
+mv scripts/01_seurat_basics.html outs/01_seurat_basics/
+```
+
+The first command renders the document—Quarto re-executes all your R code from scratch. Then we move the HTML output into the `outs/` folder, following the lab convention of keeping script outputs separate from source code. When it finishes, open `outs/01_seurat_basics/01_seurat_basics.html` in your browser to see the full analysis as a formatted report—code, plots, and your written explanations all together.
+
+[TODO: screenshot of rendered HTML report in browser]
+
+::: {.callout-tip}
+## Interactive vs. Rendering
+During development, **work interactively**—run chunks, inspect objects, iterate. When you're satisfied, **render** to confirm everything runs cleanly and to produce the final report. If rendering fails, the error messages tell you where the problem is.
+:::
+
+## What You've Learned
+
+You've now used all of Positron's key features:
+
+| Feature | What you used it for |
+|---------|---------------------|
+| **File Explorer** | Browsing project files, seeing data and output structure |
+| **Console** | Running R code interactively, seeing output and messages |
+| **Environment pane** | Inspecting R objects—their types, sizes, and contents |
+| **Data Viewer** | Examining cell metadata with filtering and column histograms |
+| **Plots pane** | Viewing violin plots, UMAP, and feature plots (with pop-out) |
+| **Terminal** | Running `quarto render` to produce the HTML report |
+
+And you've run a basic single-cell analysis pipeline:
+
+1. **Loaded** a 10X count matrix into a Seurat object
+2. **Inspected** QC metrics to check data quality across samples
+3. **Normalized** and identified highly variable genes
+4. **Scaled**, ran **PCA**, and chose dimensions with an elbow plot
+5. **Clustered** cells with the Leiden algorithm
+6. **Visualized** clusters on a UMAP and plotted gene expression
+
+This is the starting point for every single-cell analysis in the lab. From here you'd identify cell types using marker genes, run differential expression, and explore biology—but the tools and workflow are exactly what you've just practiced.
+
+## Try Claude Code
+
+You installed Claude Code in the previous chapter. Now that you have a real project, try it out. Open the Claude Code panel in Positron's sidebar (or run `claude` in the terminal) and try a prompt like:
+
+::: {.callout-warning title="Claude Code"}
+Claude Code can read your project files and answer questions about your analysis in context.
+
+> I just ran a Seurat analysis on Spongilla data and got clusters on a UMAP. Can you look at the script in `scripts/01_seurat_basics.qmd` and suggest some marker genes I could plot to start identifying cell types?
+
+Claude will read your script, understand the analysis you've run, and suggest biologically relevant genes to explore—drawing on knowledge of sponge cell biology and single-cell analysis methods.
+:::
+
+Throughout this book, you'll see orange boxes like this one showing how Claude Code can help with each topic. Try the prompts as you encounter them—Claude Code works best when you give it specific context about what you're working on.
 
 ## What's Next
 
-- **Part 2** dives deeper into each tool (Positron, Conda, renv, Git, Quarto, Project Organization)
-- **Part 3** covers workflows like starting new projects, collaboration, and troubleshooting
-
-When you return to this project:
-
-```bash
-cd my-first-analysis
-conda activate my-first-analysis
-# Open in Positron — renv will auto-activate when R starts
-```
+- **Part 2** dives deeper into each tool: the [Positron chapter](../part2/positron.qmd) covers more features and keyboard shortcuts, the [Quarto chapter](../part2/quarto.qmd) covers document syntax and options, and the [Project Organization chapter](../part2/project-organization.qmd) explains the lab's conventions for structuring projects.
+- **The [Workflows](../part3/setup-walkthrough.qmd) section** shows how to set up a full lab project with Git, conda, proper folder structure, and GitHub—the production infrastructure you'll use for real analyses.
