@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -588,9 +623,9 @@ ul.task-list li input[type="checkbox"] {
 <li>Double-click the <code>.pkg</code> file and follow the installation prompts</li>
 </ol>
 <p>Then open a terminal and install the latest R version:</p>
-<pre class="text"><code>rig add release</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>rig add release</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>After the install finishes, <strong>close and reopen your terminal</strong>, then verify the installation:</p>
-<pre class="text"><code>R --version</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>R --version</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -620,11 +655,11 @@ ul.task-list li input[type="checkbox"] {
 <li>Run the installer</li>
 <li>Open a <strong>new</strong> PowerShell window (this is important — a fresh window picks up the new installation) and install R:</li>
 </ol>
-<pre class="text"><code>rig add release</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>rig add release</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="4" type="1">
 <li><strong>Close and reopen PowerShell</strong>, then verify:</li>
 </ol>
-<pre class="text"><code>R --version</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>R --version</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="why-rig" class="level3" data-number="2.2.3">
 <h3 data-number="2.2.3" class="anchored" data-anchor-id="why-rig"><span class="header-section-number">2.2.3</span> Why rig?</h3>
@@ -642,16 +677,16 @@ ul.task-list li input[type="checkbox"] {
 <section id="macos-2" class="level3" data-number="2.3.1">
 <h3 data-number="2.3.1" class="anchored" data-anchor-id="macos-2"><span class="header-section-number">2.3.1</span> macOS</h3>
 <p>If you have <a href="https://brew.sh">Homebrew</a> (a popular macOS package manager), you can install Quarto from the terminal:</p>
-<pre class="text"><code>brew install quarto</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>brew install quarto</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If you don’t have Homebrew, download the installer from <a href="https://quarto.org/docs/get-started/">https://quarto.org/docs/get-started/</a> instead.</p>
 <p>After installing, <strong>close and reopen your terminal</strong>, then verify:</p>
-<pre class="text"><code>quarto --version</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>quarto --version</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="windows-2" class="level3" data-number="2.3.2">
 <h3 data-number="2.3.2" class="anchored" data-anchor-id="windows-2"><span class="header-section-number">2.3.2</span> Windows</h3>
 <p>Download and run the installer from <a href="https://quarto.org/docs/get-started/">https://quarto.org/docs/get-started/</a></p>
 <p>After installing, <strong>close and reopen PowerShell</strong>, then verify:</p>
-<pre class="text"><code>quarto --version</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>quarto --version</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="claude-code" class="level2" data-number="2.4">
@@ -661,18 +696,18 @@ ul.task-list li input[type="checkbox"] {
 <h3 data-number="2.4.1" class="anchored" data-anchor-id="prerequisites"><span class="header-section-number">2.4.1</span> Prerequisites</h3>
 <p>You need Node.js 18+ installed. In your terminal:</p>
 <p><strong>macOS</strong> (using Homebrew):</p>
-<pre class="text"><code>brew install node</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>brew install node</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Windows:</strong> Download and install from <a href="https://nodejs.org">https://nodejs.org</a> (choose the LTS version). After installing, <strong>close and reopen PowerShell</strong>.</p>
 </section>
 <section id="install-claude-code" class="level3" data-number="2.4.2">
 <h3 data-number="2.4.2" class="anchored" data-anchor-id="install-claude-code"><span class="header-section-number">2.4.2</span> Install Claude Code</h3>
 <p>In your terminal, run:</p>
-<pre class="text"><code>npm install -g @anthropic-ai/claude-code</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>npm install -g @anthropic-ai/claude-code</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="authenticate" class="level3" data-number="2.4.3">
 <h3 data-number="2.4.3" class="anchored" data-anchor-id="authenticate"><span class="header-section-number">2.4.3</span> Authenticate</h3>
 <p>Run Claude Code once to set up authentication:</p>
-<pre class="text"><code>claude</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>claude</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>When prompted, choose <strong>Use OAuth (Anthropic account)</strong> and press Enter. This will open a browser window where you log in with your Anthropic account — the same email and password you use for <a href="https://claude.ai">claude.ai</a>. Once you approve the connection in the browser, Claude Code is ready to use in the terminal.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -703,9 +738,9 @@ ul.task-list li input[type="checkbox"] {
 <section id="verification-checklist" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="verification-checklist"><span class="header-section-number">2.5</span> Verification Checklist</h2>
 <p>Open a fresh terminal window and run these commands to verify everything is installed:</p>
-<pre class="text"><code>R --version
-quarto --version
-claude --version</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>R --version</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>quarto --version</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>claude --version</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>All commands should return version numbers without errors. Open Positron and confirm it launches.</p>
 <div class="callout callout-style-default callout-warning callout-titled" title="Claude Code">
 <div class="callout-header d-flex align-content-center">

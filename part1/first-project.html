@@ -830,9 +830,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>It produces a <strong>shareable document</strong> with all code, results, and narrative together</li>
 </ul>
 <p>Open the terminal (Cmd+` or Ctrl+`) and run:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render scripts/01_seurat_basics.qmd</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> outs/01_seurat_basics</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> scripts/01_seurat_basics.html outs/01_seurat_basics/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>quarto render scripts/01_seurat_basics.qmd</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>mkdir -p outs/01_seurat_basics</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>mv scripts/01_seurat_basics.html outs/01_seurat_basics/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The first command renders the document—Quarto re-executes all your R code from scratch. Then we move the HTML output into the <code>outs/</code> folder, following the lab convention of keeping script outputs separate from source code. When it finishes, open <code>outs/01_seurat_basics/01_seurat_basics.html</code> in your browser to see the full analysis as a formatted report—code, plots, and your written explanations all together.</p>
 <p>[TODO: screenshot of rendered HTML report in browser]</p>
 <div class="callout callout-style-default callout-tip callout-titled">

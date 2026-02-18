@@ -710,7 +710,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="rendering" class="level3" data-number="6.2.2">
 <h3 data-number="6.2.2" class="anchored" data-anchor-id="rendering"><span class="header-section-number">6.2.2</span> Rendering</h3>
 <p>When the analysis is complete—or when you want to share it—you <strong>render</strong> the document:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render my_analysis.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>quarto render my_analysis.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Rendering executes every code chunk in a <strong>fresh session</strong> (no leftover objects from interactive work) and produces a standalone HTML file. This catches errors you might miss interactively, like relying on an object you created manually but forgot to include in the script.</p>
 <p><strong>The key insight</strong>: Interactive mode is for development. Rendering is for validation and sharing. Always render before committing or sending a report to someone.</p>
 </section>
@@ -1146,7 +1146,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="6.9.1" class="anchored" data-anchor-id="running-code-1"><span class="header-section-number">6.9.1</span> Running Code</h3>
 <p>The same shortcuts work for Python: <strong>Cmd+Enter</strong> to run the current line or selection.</p>
 <p>For Python chunks to execute during render, you need <code>ipykernel</code> installed in your conda environment:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install ipykernel</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>conda install ipykernel</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="selecting-the-interpreter" class="level3" data-number="6.9.2">
 <h3 data-number="6.9.2" class="anchored" data-anchor-id="selecting-the-interpreter"><span class="header-section-number">6.9.2</span> Selecting the Interpreter</h3>
@@ -1170,7 +1170,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-body-container callout-body">
 <p>Python QMD files require the conda environment to be active when you render. Without this, Quarto uses the wrong Python or can’t find your packages:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/miniconda3/etc/profile.d/conda.sh <span class="kw">&amp;&amp;</span> <span class="ex">conda</span> activate my-project <span class="kw">&amp;&amp;</span> <span class="ex">quarto</span> render scripts/02_analysis.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>source ~/miniconda3/etc/profile.d/conda.sh &amp;&amp; conda activate my-project &amp;&amp; quarto render scripts/02_analysis.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This is the #1 Python QMD gotcha. If <code>quarto render</code> fails with <code>ModuleNotFoundError</code>, check that your conda environment is active.</p>
 </div>
 </div>
@@ -1411,14 +1411,14 @@ Note
 <h2 data-number="6.12" class="anchored" data-anchor-id="rendering-1"><span class="header-section-number">6.12</span> Rendering</h2>
 <section id="from-the-terminal" class="level3" data-number="6.12.1">
 <h3 data-number="6.12.1" class="anchored" data-anchor-id="from-the-terminal"><span class="header-section-number">6.12.1</span> From the Terminal</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Render an R document</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render scripts/01_analysis.qmd</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a># Render an R document</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>quarto render scripts/01_analysis.qmd</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Render a Python document (conda must be active!)</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/miniconda3/etc/profile.d/conda.sh <span class="kw">&amp;&amp;</span> <span class="ex">conda</span> activate my-project <span class="kw">&amp;&amp;</span> <span class="ex">quarto</span> render scripts/02_plots.qmd</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a># Render a Python document (conda must be active!)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>source ~/miniconda3/etc/profile.d/conda.sh &amp;&amp; conda activate my-project &amp;&amp; quarto render scripts/02_plots.qmd</span>
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Render all .qmd files in a directory</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render scripts/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a># Render all .qmd files in a directory</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>quarto render scripts/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="from-positron" class="level3" data-number="6.12.2">
 <h3 data-number="6.12.2" class="anchored" data-anchor-id="from-positron"><span class="header-section-number">6.12.2</span> From Positron</h3>
@@ -1430,7 +1430,7 @@ Note
 <section id="preview-mode" class="level3" data-number="6.12.3">
 <h3 data-number="6.12.3" class="anchored" data-anchor-id="preview-mode"><span class="header-section-number">6.12.3</span> Preview Mode</h3>
 <p>For live feedback during development, use preview mode:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> preview scripts/01_analysis.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>quarto preview scripts/01_analysis.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This opens a browser window that automatically refreshes when you save changes. Useful for tuning formatting, but remember that preview still renders in a fresh session—it’s not the same as interactive execution.</p>
 </section>
 </section>
