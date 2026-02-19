@@ -1,15 +1,31 @@
 # Lab Compute Guide — Planning Document
 
 > This document tracks next steps and improvements for the book.
-> Last updated: 2026-02-18
+> Last updated: 2026-02-18 (session 2)
 
 ## Still Open
 
-### Screenshots (5 remaining)
-These are marked with `[TODO: screenshot]` in the source files:
+### Screenshots
 
-- [ ] Positron interface with empty folder open (`first-project.qmd:34`)
-- [ ] Rendered HTML output (`first-project.qmd:295`)
+#### first-project.qmd (14 screenshots — user creating)
+Place in `images/first-project/`. Detailed descriptions provided in Feb 18 session 2.
+
+- [ ] `positron-empty-project.png` — Positron with empty project, panes visible
+- [ ] `project-structure.png` — File explorer showing full project tree with data/scripts/outs
+- [ ] `qmd-in-editor.png` — QMD file open showing YAML header, markdown, code chunk
+- [ ] `console-library-loading.png` — Console after running library() calls
+- [ ] `environment-pane-objects.png` — Variables tab showing counts + sponge objects
+- [ ] `data-viewer-metadata.png` — Data Viewer with sponge@meta.data, column histograms
+- [ ] `qc-violin-plot.png` — VlnPlot of nFeature_RNA and nCount_RNA by sample
+- [ ] `variable-features-plot.png` — VariableFeaturePlot with top 10 labeled
+- [ ] `elbow-plot.png` — ElbowPlot with 50 PCs
+- [ ] `umap-clusters.png` — DimPlot with cluster labels
+- [ ] `featureplot-eef1a1-pcna.png` — FeaturePlot of Eef1a1 A and Pcna
+- [ ] `dotplot-de-markers.png` — DotPlot of top DE markers for cluster 0
+- [ ] `piwi-expression.png` — VlnPlot + FeaturePlot of Piwi side by side
+- [ ] `rendered-html-report.png` — Rendered HTML in browser
+
+#### Other chapters (3 screenshots remaining)
 - [ ] Positron interface with labeled panes (`positron.qmd:17`)
 - [ ] Positron Data Viewer with dataframe open (`positron.qmd:68`)
 - [ ] Positron with .qmd, console, and Data Viewer (`quarto.qmd:58`)
@@ -78,6 +94,7 @@ These are marked with `[TODO: screenshot]` in the source files:
   - Spongilla dataset added to examples/data/spongilla_counts/
 - [x] Replaced custom .callout-claude CSS with built-in .callout-warning title="Claude Code" (14 files)
 - [x] Standardized all terminal code blocks to `default` (styled box + copy button, no syntax coloring)
+- [x] README rewritten to be reader-focused (example data, scripts, reference outputs)
 - [x] Cleared styles.css (custom callout CSS removed)
 - [x] Added RStudio-to-Positron translation table in positron.qmd
 - [x] Orange "Ask Claude" callout boxes — CSS + 14 boxes across all chapters
@@ -94,6 +111,24 @@ These are marked with `[TODO: screenshot]` in the source files:
 ## Session Notes
 
 _Add notes here during working sessions_
+
+### 2026-02-19
+- Rewrote README.md to be reader-focused — highlights example dataset (Spongilla), analysis script, and reference outputs with direct repo links
+- Previous README was developer-oriented (build instructions, contributing); new version prioritizes what readers can download and use
+
+### 2026-02-18 (session 2)
+- **Major first-project.qmd revision** — incorporated detailed biology and pedagogy feedback
+  - Added GitHub download instructions for example data/scripts
+  - Annotated example QMD script: YAML header comments, chunk option explanations, Quarto/Markdown tutorial elements
+  - Revised QC section: nCount_RNA varies by cell type, doublets, clustering-based QC, DoubletFinder
+  - Revised normalization: not always technical, biological RNA abundance differences, Casey Dunn's count-space methods
+  - Revised variable features: SAM as alternative, "standard pipeline" is one convention not gospel
+  - Revised PCA: pick more PCs than elbow suggests, rare cell types in later PCs
+  - Reframed UMAP as one visualization, not the analysis endpoint
+  - Added Step 9: Identifying Cell Types — unbiased DE (FindMarkers, DotPlot) + candidate gene approach (Piwi)
+  - Updated Claude Code example: muscle genes (myosins) in pinacocytes
+  - Screenshot count: 14 needed for first-project chapter (detailed descriptions provided to user)
+- Created `practical-comparative-single-cell/single-cell-analysis-notes.md` — seed for future single-cell book project
 
 ### 2026-02-18
 - **Code block standardization** — switched all terminal command fences to `default`
