@@ -23,7 +23,7 @@ Positron is a data science IDE (integrated development environment) built by the
 
 ::: {.callout-tip}
 ## First Launch
-When you first open Positron, it may ask to install recommended extensions. Accept these defaults.
+When you first open Positron, it may ask to install recommended extensions. Accept these defaults. You may also see a message in the **Source Control** panel (left sidebar) about Git not being installed — just ignore this for now. We'll install Git later in [Part 2](../part2/git-github.qmd).
 :::
 
 ## 2. R (using rig)
@@ -46,6 +46,8 @@ Then open a terminal and install the latest R version:
 ```default
 rig add release
 ```
+
+This installs the current stable release of R (4.5.x as of this writing). You want at least **R 4.4 or newer** — Positron works best with recent R versions, and newer Seurat releases require R 4.4+.
 
 After the install finishes, **close and reopen your terminal**, then verify the installation:
 
@@ -71,6 +73,8 @@ R --version
 ```default
 rig add release
 ```
+
+This installs the current stable release (4.5.x as of this writing). You want at least **R 4.4 or newer**.
 
 4. **Close and reopen PowerShell**, then verify:
 
@@ -130,7 +134,7 @@ brew install node
 ```
 
 **Windows:**
-Download and install from [https://nodejs.org](https://nodejs.org) (choose the LTS version). After installing, **close and reopen PowerShell**.
+Download and install from [https://nodejs.org](https://nodejs.org) (choose the LTS version). After installing, **close and reopen PowerShell**. If you get a "running scripts is disabled" error in the next step, see [the fix below](#sec-windows-execution-policy).
 
 ### Install Claude Code
 
@@ -186,16 +190,35 @@ Claude Code can help troubleshoot installation problems by checking your paths, 
 Claude will check that paths are correct, versions are compatible, and flag common installation issues like missing PATH entries or conflicting installations.
 :::
 
-::: {.callout-tip}
 ## Troubleshooting
-If any command fails with "command not found":
 
-- **macOS**: Try opening a new terminal window
-- **Windows**: Try opening a new PowerShell window
-- Check that the tool's install directory is in your PATH
+If you run into problems, check the solutions below before moving on. See [Troubleshooting](../part3/troubleshooting.qmd) for additional common issues.
 
-See [Troubleshooting](../part3/troubleshooting.qmd) for common issues.
-:::
+### "Command not found" errors
+
+If any command fails with "command not found" (macOS) or "is not recognized" (Windows), try opening a **new terminal window**. Newly installed tools often aren't available until you start a fresh terminal session.
+
+### Windows: "Running scripts is disabled on this system" {#sec-windows-execution-policy}
+
+If you see this error when running `npm install` on Windows:
+
+```
+npm : File C:\Program Files\nodejs\npm.ps1 cannot be loaded because running
+scripts is disabled on this system.
+```
+
+Windows PowerShell blocks scripts by default. You need to change the execution policy:
+
+1. Open PowerShell **as Administrator** — search for "PowerShell" in the Start menu, right-click it, and select **Run as administrator**
+2. Run this command:
+
+```default
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+```
+
+3. Type **Y** and press Enter to confirm
+
+This allows locally created scripts (like npm) to run while still requiring downloaded scripts to be signed. After this, close the administrator PowerShell and open a regular PowerShell window to continue the installation.
 
 ## What About Git, Conda, and GitHub?
 

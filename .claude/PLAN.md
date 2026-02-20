@@ -1,29 +1,14 @@
 # Lab Compute Guide — Planning Document
 
 > This document tracks next steps and improvements for the book.
-> Last updated: 2026-02-18 (session 2)
+> Last updated: 2026-02-20
 
 ## Still Open
 
 ### Screenshots
 
-#### first-project.qmd (14 screenshots — user creating)
-Place in `images/first-project/`. Detailed descriptions provided in Feb 18 session 2.
-
-- [ ] `positron-empty-project.png` — Positron with empty project, panes visible
-- [ ] `project-structure.png` — File explorer showing full project tree with data/scripts/outs
-- [ ] `qmd-in-editor.png` — QMD file open showing YAML header, markdown, code chunk
-- [ ] `console-library-loading.png` — Console after running library() calls
-- [ ] `environment-pane-objects.png` — Variables tab showing counts + sponge objects
-- [ ] `data-viewer-metadata.png` — Data Viewer with sponge@meta.data, column histograms
-- [ ] `qc-violin-plot.png` — VlnPlot of nFeature_RNA and nCount_RNA by sample
-- [ ] `variable-features-plot.png` — VariableFeaturePlot with top 10 labeled
-- [ ] `elbow-plot.png` — ElbowPlot with 50 PCs
-- [ ] `umap-clusters.png` — DimPlot with cluster labels
-- [ ] `featureplot-eef1a1-pcna.png` — FeaturePlot of Eef1a1 A and Pcna
-- [ ] `dotplot-de-markers.png` — DotPlot of top DE markers for cluster 0
-- [ ] `piwi-expression.png` — VlnPlot + FeaturePlot of Piwi side by side
-- [ ] `rendered-html-report.png` — Rendered HTML in browser
+#### first-project.qmd — DONE (14 images in `images/first-project/`)
+7 user-provided screenshots + 7 R-generated plots. All inserted into chapter.
 
 #### Other chapters (3 screenshots remaining)
 - [ ] Positron interface with labeled panes (`positron.qmd:17`)
@@ -111,6 +96,10 @@ Place in `images/first-project/`. Detailed descriptions provided in Feb 18 sessi
 ## Session Notes
 
 _Add notes here during working sessions_
+
+### 2026-02-20
+- Session wrap-up and commit: all first-project work from Feb 18-19 sessions
+- Published to GitHub Pages
 
 ### 2026-02-19
 - Rewrote README.md to be reader-focused — highlights example dataset (Spongilla), analysis script, and reference outputs with direct repo links

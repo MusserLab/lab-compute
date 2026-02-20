@@ -1,8 +1,8 @@
 # Your First R Project
 
-In this chapter, you'll do a real single-cell RNA-seq analysis—from raw count data to a UMAP of cell clusters. Along the way, you'll learn how to use Positron's key features: the file explorer, console, environment pane, plots pane, and interactive code execution. By the end, you'll render the analysis into a shareable HTML report.
+In this chapter, you'll do a real single-cell RNA-seq analysis—from raw count data to identified cell types. Along the way, you'll learn how to use Positron's key features: the file explorer, console, environment pane, plots pane, and interactive code execution. By the end, you'll render the analysis into a shareable HTML report.
 
-We'll work with a single-cell RNA-seq dataset from the freshwater sponge *Spongilla lacustris*, one of the organisms studied in the Musser Lab. The dataset contains about 10,000 cells across 4 samples. Don't worry about understanding every biological detail—focus on learning how Positron works and getting comfortable running R code interactively.
+We'll work with a single-cell RNA-seq dataset from the freshwater sponge *Spongilla lacustris*, one of the organisms studied in the Musser Lab. The dataset contains about 10,000 cells across 4 samples. Don't worry about understanding every biological detail—focus on learning how Positron works and getting comfortable running R code interactively. We'll teach some biology along the way too.
 
 ## Create a Project Folder
 
@@ -22,7 +22,7 @@ Take a moment to look around the Positron interface:
 - **Environment pane** (right panel, or bottom panel next to Console): Will show R objects as you create them. Look for the "Variables" tab.
 - **Plots pane**: Will appear when you make your first plot.
 
-[TODO: screenshot of Positron with empty project, panes labeled]
+![Positron with an empty project open](../images/first-project/positron-empty-project.png)
 
 ## Install Packages with renv
 
@@ -35,14 +35,16 @@ install.packages("renv")
 renv::init()
 ```
 
-Watch the console output—renv creates a project-specific library and a `renv.lock` file. **Look at the file explorer**: you should now see `renv/` and `renv.lock` appear.
+When `renv::init()` finishes, it will ask you to **restart R**. Do this—in Positron, you can restart by clicking the power icon in the Console toolbar, or pressing **Cmd+Shift+0** (Ctrl+Shift+0 on Windows). Restarting is necessary because renv modifies your `.Rprofile` to activate itself when R starts, and that only takes effect after a restart.
+
+After restarting, **look at the file explorer**: you should now see `renv/` and `renv.lock` appear. The console should also show a message like "renv activated" confirming it's working.
 
 The **lock file** (`renv.lock`) is a snapshot of every package installed in your project, including exact version numbers. This is what makes your analysis reproducible—a collaborator (or future you) can run `renv::restore()` on another machine to install the exact same package versions. You'll learn more about renv in the [renv chapter](../part2/renv.qmd).
 
-Now install the packages we need. Since we initialized renv, `install.packages()` installs into the project-specific library rather than your system library:
+Now install the packages we need. We use `renv::install()` rather than `install.packages()` because it understands how to install packages from multiple sources—CRAN, Bioconductor, and GitHub:
 
 ```r
-install.packages(c("Seurat", "leidenbase", "ggplot2", "patchwork", "dplyr", "here"))
+renv::install(c("Seurat", "leidenbase", "ggplot2", "patchwork", "dplyr", "here"))
 ```
 
 This takes a few minutes—Seurat has many dependencies. The `leidenbase` package is needed for the Leiden clustering algorithm we'll use later. Watch the console output as packages download and compile. When it's done, save the state:
@@ -52,34 +54,61 @@ renv::snapshot()
 ```
 
 ::: {.callout-note}
-## renv::snapshot()
-`renv::snapshot()` updates `renv.lock` with the exact versions of every package you've installed. Run it after installing new packages so the lock file stays current.
+## renv::install() and Bioconductor
+`renv::install()` is the standard way to install packages in an renv project. For CRAN packages, just use the package name: `renv::install("Seurat")`. For **Bioconductor** packages (common in genomics—DESeq2, SingleCellExperiment, etc.), prefix with `bioc::`:
+
+```r
+renv::install("bioc::DESeq2")
+```
+
+After installing, always run `renv::snapshot()` to record the new packages in your lock file.
 :::
 
 ## Get the Data and Analysis Script
 
-We need two things: the *Spongilla* count matrix and the analysis script you'll run through.
+We need two things: the *Spongilla* count matrix and the analysis script you'll run through. Both are in the book's GitHub repository.
 
-### Download the data
+### Download from GitHub
 
-Create a `data/` folder in your project:
+The example data and scripts live in the `examples/` folder of the [lab-compute repository](https://github.com/MusserLab/lab-compute). The repository's README has a description of what's available — you need two things from it:
 
-- **In the file explorer**: Right-click in the empty space → **New Folder** → name it `data`
-- **Or in the terminal** (toggle with Cmd+\` or Ctrl+\`): `mkdir data`
+- **The Spongilla count matrix** — in `examples/data/spongilla_counts/` (three files)
+- **The analysis script** — `examples/scripts/01_seurat_basics.qmd`
 
-Now download the *Spongilla* count matrix. This is a single-cell dataset in 10X Genomics format—the same format you'll work with when analyzing your own data from the sequencing core. It contains about 10,000 cells across 4 samples and 40,000 genes.
+The easiest way to get them is to download the whole repository as a ZIP file:
 
-[TODO: Add download link for Spongilla count matrix]
+1. Go to [github.com/MusserLab/lab-compute](https://github.com/MusserLab/lab-compute)
+2. Click the green **Code** button, then **Download ZIP**
+3. Unzip the downloaded file — you'll find an `examples/` folder inside
 
-Place the downloaded folder inside `data/` so you have `data/spongilla_counts/` containing three files.
+Now create the project folders and copy the files in. Open a terminal in your project folder (in Positron: **Terminal → New Terminal**, or Cmd+\` / Ctrl+\`).
 
-### Get the analysis script
+**macOS:**
 
-Create a `scripts/` folder and an `outs/` folder the same way, then download the analysis script:
+```default
+mkdir -p data scripts outs
+cp -r ~/Downloads/lab-compute-main/examples/data/spongilla_counts data/
+cp ~/Downloads/lab-compute-main/examples/scripts/01_seurat_basics.qmd scripts/
+```
 
-[TODO: Add download link for 01_seurat_basics.qmd]
+**Windows PowerShell:**
 
-Place it in `scripts/` so your project looks like:
+```default
+mkdir data, scripts, outs
+Copy-Item -Recurse ~\Downloads\lab-compute-main\examples\data\spongilla_counts data\
+Copy-Item ~\Downloads\lab-compute-main\examples\scripts\01_seurat_basics.qmd scripts\
+```
+
+Or do it by hand: create `data/`, `scripts/`, and `outs/` folders in Positron's File Explorer (right-click → **New Folder**), then drag the files from the unzipped download into the right places.
+
+::: {.callout-tip}
+## The outs/ folder
+The `outs/` folder is empty for now — you'll use it later when rendering the analysis to HTML. In the lab we keep script outputs separate from source code so things stay organized.
+:::
+
+### What you should have
+
+Your project should now look like this:
 
 ```
 my-first-analysis/
@@ -96,9 +125,11 @@ my-first-analysis/
 └── .Rprofile
 ```
 
-**Look at the file explorer now.** You can click into folders to browse their contents. Click into `data/spongilla_counts/` to see the three files that make up a 10X count matrix.
+The three files in `spongilla_counts/` are the standard **10X Genomics format**—the same format you'll get when analyzing your own single-cell data from a sequencing core. The barcodes file has one entry per cell, the features file lists every gene, and the matrix file stores the actual counts in a compressed sparse format (most gene-cell combinations are zero, so this saves a lot of space).
 
-[TODO: screenshot of file explorer showing project structure]
+**Look at the file explorer now.** You can click into folders to browse their contents. Click into `data/spongilla_counts/` to see the three files.
+
+![File explorer showing the project structure](../images/first-project/project-structure.png)
 
 ## Open the Analysis Script
 
@@ -106,11 +137,15 @@ Open `scripts/01_seurat_basics.qmd` by clicking on it in the file explorer.
 
 This is a **Quarto document** (`.qmd`)—the format we use for analyses in the lab. If you've used RMarkdown before, Quarto is its successor: it has the same idea of mixing code and narrative, but with more features and equal support for both R and Python. When you render a `.qmd`, all the code runs and the results are woven into an HTML report.
 
-Look at the structure of the file:
+![The QMD file open in the editor](../images/first-project/qmd-in-editor.png)
 
-- **YAML header** (the block between `---` marks at the top): Metadata that tells Quarto how to render the document—title, author, output format, and execution options.
-- **Markdown text**: Written explanation between code chunks. This is where you describe what the analysis does and why.
-- **Code chunks** (blocks starting with `` ```{r} ``): R code that will be executed. Each chunk has a `#| label:` line that gives it a name.
+Look at the structure of the file. There are three kinds of content:
+
+**The YAML header** is the block between `---` marks at the top. It controls metadata—title, author, date—and rendering options like output format and whether to show code. You'll see comments (lines starting with `#`) explaining what each option does. The YAML header is the first thing Quarto reads when rendering.
+
+**Markdown text** is the written explanation between code chunks. Markdown is a lightweight formatting language: `**bold**` for **bold**, `*italic*` for *italic*, `##` for section headings, and `[link text](url)` for hyperlinks. The Quarto document itself has a brief Markdown introduction at the top—read through it to get oriented.
+
+**Code chunks** are blocks starting with `` ```{r} `` and ending with `` ``` ``. Each chunk has options on lines starting with `#|`. The most important is `#| label:` which gives the chunk a name. Other options control things like figure captions (`#| fig-cap:`) and figure dimensions. The first chunk in the script has comments explaining common chunk options.
 
 We're going to run through this script **chunk by chunk**, interactively. This is how you'll develop analyses in the lab—running code, inspecting results, and iterating before rendering the final report.
 
@@ -133,11 +168,11 @@ library(here)
 
 **Watch the console** at the bottom—you'll see library loading messages appear there. The code runs in the console, not in the document. This is **interactive execution**: you're exploring and developing, running code chunk by chunk, checking results as you go.
 
-[TODO: screenshot of console showing library loading messages]
+![Console showing library loading messages](../images/first-project/console-library-loading.png)
 
 ## Step 2: Load the Count Matrix
 
-Run the next chunk (`load-data`). This loads the 10X count matrix and creates a Seurat object—the central data structure for single-cell analysis in R.
+Run the next chunk (`load-data`). This loads the 10X count matrix and creates a Seurat object—the central data structure for single-cell analysis in R. It stores the count matrix, cell metadata, dimensionality reductions, and clustering results all in one container.
 
 ```r
 counts <- Read10X(data.dir = here("data/spongilla_counts"))
@@ -150,63 +185,81 @@ Two things to notice:
 1. **The console** prints a summary of the Seurat object: the number of genes (features) and cells (samples) in the dataset.
 2. **The environment pane** (Variables tab) now shows two objects: `counts` (a sparse matrix) and `sponge` (a Seurat object). You can see the object type and size at a glance.
 
-[TODO: screenshot of Environment pane showing counts and sponge objects]
+![Environment pane showing the counts and sponge objects](../images/first-project/environment-pane-objects.png)
 
-Now let's inspect the cell metadata. Run this in the console:
+Now let's inspect the cell metadata. Run the `peek-metadata` chunk, or type this in the console:
 
 ```r
 View(sponge@meta.data)
 ```
 
-This opens Positron's **data viewer**—a spreadsheet-style view of the metadata, with one row per cell and columns like `orig.ident`, `nCount_RNA` (total UMIs per cell), and `nFeature_RNA` (genes detected per cell).
+This opens Positron's **data viewer**—a spreadsheet-style view of the metadata, with one row per cell. You'll see three columns:
+
+- **orig.ident** — which sample the cell came from
+- **nCount_RNA** — total UMI counts per cell (how much RNA was captured)
+- **nFeature_RNA** — number of distinct genes detected per cell
 
 Notice two useful features of the data viewer:
 
 - **Column histograms**: Each numeric column shows a small histogram at the top, giving you a quick summary of the distribution. You can immediately see the range and shape of `nCount_RNA` and `nFeature_RNA` without making a plot.
 - **Filtering**: Click on a column header to filter rows. For example, you could filter `nFeature_RNA` to only show cells with more than 1,000 detected genes. This is useful for quickly exploring subsets of your data.
 
-[TODO: screenshot of Data Viewer showing Seurat metadata with histograms visible]
+![Data Viewer showing Seurat metadata with column histograms](../images/first-project/data-viewer-metadata.png)
 
 ## Step 3: Quality Control
 
-Run the next chunk (`fig-qc-violin`). This creates violin plots of two key QC metrics, split by sample:
-
-- **nCount_RNA** — total UMI counts per cell. Very low counts suggest empty droplets or dead cells.
-- **nFeature_RNA** — number of genes detected per cell. Very low values suggest poor capture; very high values might indicate doublets (two cells in one droplet).
+Run the next chunk (`fig-qc-violin`). This creates violin plots of two key QC metrics:
 
 ```r
-VlnPlot(sponge, features = c("nFeature_RNA", "nCount_RNA"), ncol = 2,
-        group.by = "orig.ident")
+VlnPlot(sponge, features = c("nFeature_RNA", "nCount_RNA"), ncol = 2)
 ```
 
-**Your first plot appears in the Plots pane!** The violin plots show the distribution of genes and UMI counts across all cells, split by sample. You can resize the Plots pane by dragging its border, and use the navigation arrows to flip between plots as you make more.
+**Your first plot appears in the Plots pane!** The violin plots show the distribution of genes and UMI counts across all cells. You can resize the Plots pane by dragging its border, and use the navigation arrows to flip between plots as you make more.
 
-[TODO: screenshot of Plots pane showing VlnPlot split by sample]
+![QC violin plots in the Plots pane](../images/first-project/qc-violin-plot.png)
+
+Here's what to look for in these plots:
+
+**nCount_RNA** (total UMI counts) varies naturally by cell type. Large cells or transcriptionally active cells capture more RNA, so higher counts don't necessarily mean better quality. On the other hand, very high counts can indicate **doublets**—droplets that accidentally captured two cells during the 10X run, giving them roughly double the expected RNA content. Very low counts suggest empty droplets or dead cells.
+
+**nFeature_RNA** (genes detected) gives a sense of library complexity. A cell with very few detected genes may not have been captured well. Differences between samples are normal and can reflect both biology and technical variation.
+
+This dataset has already been quality-filtered, so the distributions should look clean.
 
 ::: {.callout-tip}
 ## Pop Out the Plots Pane
-If you want a larger view of a plot, you can pop the Plots pane out into a separate window. Click the pop-out icon in the top-right corner of the Plots pane. This is especially useful for complex plots like UMAPs where you want to see fine detail.
+If you want a larger view of a plot, you can pop the Plots pane out into a separate window. Click the pop-out icon in the top-right corner of the Plots pane. This is especially useful for complex plots where you want to see fine detail.
 :::
-
-This dataset has already been quality-filtered, so the distributions should look clean—no extreme outliers. In a real analysis starting from unfiltered data, you would filter cells here based on these metrics.
 
 ::: {.callout-note}
 ## QC Filtering in Practice
-With unfiltered data, you'd remove low-quality cells using `subset()`. For example, `subset(sponge, subset = nFeature_RNA > 200 & nFeature_RNA < 5000)` removes cells with too few or too many detected genes. The specific thresholds depend on your dataset—the violin plots help you choose reasonable cutoffs.
+With raw, unfiltered data, you'd typically remove obvious junk cells—those with extremely low gene counts or extremely high counts that suggest doublets. But in practice, many experienced analysts set only very lenient thresholds at this stage, or none at all. The reason is that clustering itself is a powerful QC tool: cells with low-quality profiles often group together into their own "junk clusters" that you can remove later, after seeing how cells actually behave. This is more nuanced than applying hard cutoffs upfront, because some cells with low RNA counts are perfectly real (they're just small or quiescent cells), and hard thresholds would throw them out.
+
+Programs like **DoubletFinder** can also identify likely doublets computationally, which is more principled than a simple nCount_RNA threshold.
 :::
 
 ## Step 4: Normalize and Find Variable Features
 
-Run the `normalize` chunk. This does two things:
+Run the `normalize` chunk. This does two things.
 
-**Normalization** adjusts for differences in sequencing depth between cells. Some cells have more total UMIs than others, and this variation is mostly technical—not biological. `NormalizeData()` divides each cell's gene counts by the cell's total UMI count to get relative expression levels, then applies a log transformation. The log transformation addresses *heteroscedasticity*: without it, highly expressed genes would have much higher variance than lowly expressed genes, dominating downstream analyses. Log transformation helps equilibrate variance across genes with different expression levels.
+### Normalization
 
-**FindVariableFeatures** identifies the 2,000 genes whose expression varies most across cells. These are the genes that distinguish cell types and will drive the downstream analysis. Genes expressed at similar levels in every cell don't help us find structure in the data.
+`NormalizeData()` adjusts for differences in sequencing depth between cells. It divides each cell's gene counts by the cell's total UMI count to get relative expression levels, then applies a log transformation. The log transformation addresses *heteroscedasticity*: without it, highly expressed genes would have much higher variance than lowly expressed genes, dominating downstream analyses.
+
+A word of caution: it's often stated that differences in total RNA per cell are purely technical artifacts of sequencing depth. That can be true when comparing closely related cell types. But in whole-organism datasets like this one—where cells range from tiny pinacocytes to large, transcriptionally active archaeocytes—differences in total RNA abundance are genuinely biological. Normalization can flatten out real biology in these cases. This step is a useful default, but not a biological law.
+
+Not all methods even require this step. Casey Dunn and colleagues have developed approaches that work directly in count space, avoiding the assumptions baked into log-normalization. As you gain experience, it's worth understanding what normalization does and when alternatives might be more appropriate.
 
 ```r
 sponge <- NormalizeData(sponge)
 sponge <- FindVariableFeatures(sponge, selection.method = "vst", nfeatures = 2000)
 ```
+
+### Variable features
+
+`FindVariableFeatures()` identifies the 2,000 genes whose expression varies most across cells. The idea is that genes expressed at similar levels in every cell don't have much to say about the structure of the data—they won't help distinguish cell types. By focusing on the most variable genes, the downstream analysis is more efficient and less noisy.
+
+This is a reasonable heuristic, but it's not the only approach. Methods like **SAM** (Self-Assembling Manifolds) take a different tack: they use *all* genes but weight them by how informative they are for finding structure, rather than discarding genes outright. The "select top 2,000 variable features" convention is one way to do this, not the only way.
 
 Now run the `fig-variable-features` chunk to visualize the results:
 
@@ -218,9 +271,9 @@ plot2 <- LabelPoints(plot = plot1, points = top10, repel = TRUE)
 plot2
 ```
 
-A new plot appears in the **Plots pane** showing genes ranked by variability. The labeled points are the most variable genes. **Use the navigation arrows** in the Plots pane to flip between this plot and the earlier violin plot.
+A new plot appears in the **Plots pane** showing genes ranked by variability. The labeled points are the top 10 most variable genes. **Use the navigation arrows** in the Plots pane to flip between this plot and the earlier violin plot.
 
-[TODO: screenshot of Plots pane showing variable feature plot]
+![Variable features plot with top genes labeled](../images/first-project/variable-features-plot.png)
 
 ## Step 5: Scale Data and Run PCA
 
@@ -235,7 +288,7 @@ sponge <- RunPCA(sponge)
 
 ::: {.callout-note}
 ## A Note on Methods
-Scaling followed by PCA is the standard Seurat workflow and a good default for most datasets. Other approaches exist—for example, SAM (Self-Assembling Manifolds) skips PCA entirely and can work well in some cases. As you gain experience, you may explore alternative methods, but the standard pipeline is where everyone starts.
+Scaling followed by PCA is the standard Seurat workflow and a reasonable starting point for most datasets. Other approaches exist—for example, **SAM** (Self-Assembling Manifolds) skips the variable feature selection and PCA steps entirely and can work well, particularly for complex datasets. The Seurat pipeline is one well-established starting point, but it's worth knowing that alternatives exist and may be better suited to your particular data.
 :::
 
 Now run the `fig-elbow` chunk to see the elbow plot:
@@ -244,9 +297,9 @@ Now run the `fig-elbow` chunk to see the elbow plot:
 ElbowPlot(sponge, ndims = 50)
 ```
 
-The elbow plot shows how much variation each PC explains. We need to choose how many PCs to use for clustering. Using too few PCs can cause you to miss real biological structure—clusters that should be separate may merge together. We'll use 40 PCs for this dataset; the curve has mostly flattened by then, meaning additional PCs add little new information.
+The elbow plot shows how much variation each PC explains. We need to choose how many PCs to use for clustering. The "elbow"—where the curve flattens—gives a rough guide, but in practice we often include more PCs than the elbow alone might suggest. The reason: later PCs can capture variation from rare cell types that would be missed with too few dimensions. Using too few PCs has a real cost—clusters that should be separate may merge together, and you'll miss biology. We'll use 40 PCs for this dataset, which is deliberately generous.
 
-[TODO: screenshot of Plots pane showing elbow plot]
+![Elbow plot in the Plots pane](../images/first-project/elbow-plot.png)
 
 ## Step 6: Cluster Cells
 
@@ -268,12 +321,12 @@ When it finishes, **check the environment pane**—the `sponge` object now conta
 
 ::: {.callout-note}
 ## Clustering Parameters
-- **dims = 1:40** — uses the first 40 PCs. Using too few PCs can cause you to miss real clusters in the data.
-- **resolution = 2** — higher values produce more clusters. The right resolution depends on how many cell types you expect.
+- **dims = 1:40** — uses the first 40 PCs. We deliberately include more than the elbow suggests to catch rare cell types.
+- **resolution = 2** — higher values produce more clusters. The right resolution depends on how many cell types you expect and how finely you want to split them.
 - **algorithm = 4** — Leiden algorithm, which generally produces more robust clusters than the default Louvain (algorithm = 1).
 :::
 
-## Step 7: The UMAP
+## Step 7: Visualize with UMAP
 
 Run the `fig-umap` chunk:
 
@@ -281,21 +334,75 @@ Run the `fig-umap` chunk:
 DimPlot(sponge, reduction = "umap", label = TRUE) + NoLegend()
 ```
 
-**This is the result you've been working toward**—a UMAP plot where each dot is a cell, colored by cluster. Cells that are close together have similar gene expression. Each cluster likely represents a distinct cell type or state.
+The UMAP is one of many ways to look at single-cell data. Each dot is a cell, colored by cluster, and cells that are close together have similar gene expression. It's a useful 2D summary of high-dimensional relationships, but it's important not to over-interpret distances or shapes—UMAP is a visualization tool, not an analysis endpoint. The real work is figuring out what each cluster *is*, which we'll do next.
 
-[TODO: screenshot of UMAP DimPlot in Plots pane]
+![UMAP with cluster labels](../images/first-project/umap-clusters.png)
 
-## Step 8: Gene Expression on the UMAP
+## Step 8: Explore Gene Expression
 
-Run the final chunk (`fig-features`):
+Run the `fig-features` chunk:
 
 ```r
 FeaturePlot(sponge, features = c("Eef1a1 A", "Pcna"))
 ```
 
-This overlays gene expression onto the UMAP—each cell is colored by how strongly it expresses that gene. *Eef1a1* is an elongation factor that is a strong marker for archaeocytes (the stem cell-like cells of sponges), and *Pcna* is a proliferation marker (it marks cells that are actively dividing). Notice how expression is concentrated in specific clusters, not spread uniformly. In a real analysis, you'd plot known marker genes like these to identify which cluster corresponds to which cell type.
+This overlays gene expression onto the UMAP—each cell is colored by how strongly it expresses that gene. *Eef1a1* is an elongation factor that marks archaeocytes (the stem cell-like cells of sponges), and *Pcna* is a proliferation marker (it labels cells that are actively dividing). Notice how expression is concentrated in specific clusters, not spread uniformly. This is what makes these genes useful as markers for identifying cell types.
 
-[TODO: screenshot of FeaturePlot in Plots pane]
+![FeaturePlot of Eef1a1 A and Pcna](../images/first-project/featureplot-eef1a1-pcna.png)
+
+## Step 9: Identify Cell Types
+
+Now the interesting part: figuring out what each cluster actually is. There are two complementary approaches, and you'll typically use both.
+
+### Approach 1: Unbiased differential expression
+
+We can ask which genes are most enriched in a given cluster compared to all other cells. This is **unbiased**—we let the data tell us what's distinctive about a cluster without assuming anything in advance.
+
+Run the `de-cluster1` chunk to find markers for the largest cluster (cluster 1):
+
+```r
+markers_c1 <- FindMarkers(sponge, ident.1 = 1, min.pct = 0.25)
+head(markers_c1, 20)
+```
+
+The output shows genes ranked by statistical significance, with columns for log fold-change, detection rates, and adjusted p-values. Scroll through the top genes and look for patterns—are there gene families that keep coming up?
+
+Now run the `fig-dotplot-c1` chunk to visualize these markers across all clusters:
+
+```r
+top_genes <- rownames(head(markers_c1, 15))
+DotPlot(sponge, features = top_genes) + RotatedAxis()
+```
+
+In the **dot plot**, dot size shows what fraction of cells in each cluster express the gene, and dot color shows average expression level. Look for genes that are strongly expressed in cluster 1 but absent or low in most other clusters.
+
+![Dot plot of top markers for cluster 1](../images/first-project/dotplot-de-markers.png)
+
+You'll see ribosomal genes (names starting with *Rpl* or *Rps*) dominating the top markers. This signature—high ribosomal gene expression indicating active protein synthesis—is characteristic of **archaeocytes**. Archaeocytes are the stem cell-like cells of sponges, and similar transcriptional profiles mark stem cells in many invertebrates.
+
+### Approach 2: Candidate genes
+
+The complementary strategy is to take genes you already know something about and look at where they're expressed. This is the **candidate gene** approach.
+
+*Piwi* genes are highly conserved markers of stem cells and germline across animals. If archaeocytes are truly stem cell-like, they should express *Piwi*. Run the `find-piwi` chunk to search for it:
+
+```r
+grep("iwi", rownames(sponge), value = TRUE, ignore.case = TRUE)
+```
+
+This is a useful trick—when you don't know the exact gene name in a dataset, `grep()` lets you search by partial match. You should see `Piwil2` and `Piwil1/3/4` in the results. Now run the `fig-piwi` chunk to see where *Piwil2* is expressed:
+
+```r
+p1 <- VlnPlot(sponge, features = "Piwil2", pt.size = 0.1)
+p2 <- FeaturePlot(sponge, features = "Piwil2")
+p1 + p2
+```
+
+The **VlnPlot** shows which clusters express *Piwil2* most strongly. The **FeaturePlot** shows where those cells sit on the UMAP. If *Piwil2* expression is concentrated in the same cluster that showed the ribosomal signature in the DE analysis, that's convergent evidence: two independent approaches pointing to the same biological identity.
+
+![Piwi expression — VlnPlot and FeaturePlot](../images/first-project/piwi-expression.png)
+
+This two-pronged strategy—unbiased differential expression to discover what's distinctive, plus candidate genes to confirm identity—is a standard approach for annotating clusters in single-cell data.
 
 ## Render the Document
 
@@ -317,7 +424,7 @@ mv scripts/01_seurat_basics.html outs/01_seurat_basics/
 
 The first command renders the document—Quarto re-executes all your R code from scratch. Then we move the HTML output into the `outs/` folder, following the lab convention of keeping script outputs separate from source code. When it finishes, open `outs/01_seurat_basics/01_seurat_basics.html` in your browser to see the full analysis as a formatted report—code, plots, and your written explanations all together.
 
-[TODO: screenshot of rendered HTML report in browser]
+![The rendered HTML report in a browser](../images/first-project/rendered-html-report.png)
 
 ::: {.callout-tip}
 ## Interactive vs. Rendering
@@ -334,30 +441,33 @@ You've now used all of Positron's key features:
 | **Console** | Running R code interactively, seeing output and messages |
 | **Environment pane** | Inspecting R objects—their types, sizes, and contents |
 | **Data Viewer** | Examining cell metadata with filtering and column histograms |
-| **Plots pane** | Viewing violin plots, UMAP, and feature plots (with pop-out) |
+| **Plots pane** | Viewing violin plots, UMAP, feature plots, dot plots (with pop-out) |
 | **Terminal** | Running `quarto render` to produce the HTML report |
 
-And you've run a basic single-cell analysis pipeline:
+And you've run a single-cell analysis from start to finish:
 
 1. **Loaded** a 10X count matrix into a Seurat object
 2. **Inspected** QC metrics to check data quality across samples
 3. **Normalized** and identified highly variable genes
 4. **Scaled**, ran **PCA**, and chose dimensions with an elbow plot
 5. **Clustered** cells with the Leiden algorithm
-6. **Visualized** clusters on a UMAP and plotted gene expression
+6. **Visualized** clusters on a UMAP and explored gene expression
+7. **Identified cell types** using both unbiased differential expression and candidate gene markers
 
-This is the starting point for every single-cell analysis in the lab. From here you'd identify cell types using marker genes, run differential expression, and explore biology—but the tools and workflow are exactly what you've just practiced.
+This is the starting point for single-cell analysis in the lab. The tools and workflow you've practiced here—interactive development in Positron, Quarto for reproducible reports, Seurat for analysis—are what you'll use for your own projects.
 
 ## Try Claude Code
 
-You installed Claude Code in the previous chapter. Now that you have a real project, try it out. Open the Claude Code panel in Positron's sidebar (or run `claude` in the terminal) and try a prompt like:
+You installed Claude Code in the previous chapter. Now that you have a real project with real data, try it out. Open the Claude Code panel in Positron's sidebar (or run `claude` in the terminal).
+
+Sponges don't have canonical muscles, but the flat epithelial cells covering the sponge surface—**pinacocytes**—have been described to express muscle-related genes like myosins. Let's explore this with Claude Code:
 
 ::: {.callout-warning title="Claude Code"}
-Claude Code can read your project files and answer questions about your analysis in context.
+Claude Code can read your project files, understand your analysis, and write R code in context.
 
-> I just ran a Seurat analysis on Spongilla data and got clusters on a UMAP. Can you look at the script in `scripts/01_seurat_basics.qmd` and suggest some marker genes I could plot to start identifying cell types?
+> I'm analyzing Spongilla single-cell data with Seurat. Can you find all myosin genes in the dataset (search for "Myh" and "Myl" in the gene names) and make FeaturePlots and VlnPlots for any that show interesting expression patterns? The Seurat object is called `sponge`.
 
-Claude will read your script, understand the analysis you've run, and suggest biologically relevant genes to explore—drawing on knowledge of sponge cell biology and single-cell analysis methods.
+Claude will search the gene names in your Seurat object, identify the myosin genes present, check their expression patterns, and create plots of the ones that show cluster-specific expression—all without you needing to write the R code yourself.
 :::
 
 Throughout this book, you'll see orange boxes like this one showing how Claude Code can help with each topic. Try the prompts as you encounter them—Claude Code works best when you give it specific context about what you're working on.

@@ -1,35 +1,67 @@
 ---
-title: "Spongilla Single-Cell Analysis"
-subtitle: "First look at the scRNA-seq data"
-author: "Your Name"
-date: today
+title: "Spongilla Single-Cell Analysis"      # Title appears at the top of the rendered document
+subtitle: "First look at scRNA-seq data"
+author: "Your Name"                           # Replace with your name!
+date: today                                   # Quarto fills in today's date automatically
 format:
-  html:
-    toc: true
-    code-overflow: wrap
-    self-contained: true
+  html:                                       # Output format — Quarto can also render to PDF, Word, etc.
+    toc: true                                 # Table of contents sidebar
+    code-overflow: wrap                       # Wrap long code lines instead of scrolling
+    self-contained: true                      # Bundle everything into one HTML file
 execute:
-  echo: true
-  warning: false
+  echo: true                                  # Show code in the rendered output
+  warning: false                              # Hide R warning messages from the output
 ---
+
+This is a **Quarto document** (`.qmd`). It mixes plain text written in
+[Markdown](https://quarto.org/docs/authoring/markdown-basics.html) with
+executable R code chunks. When you *render* this document, all the code runs
+and the results—including plots—are woven into an HTML report.
+
+The block above between the `---` marks is the **YAML header**. It controls
+metadata (title, author, date) and rendering options (output format, table of
+contents, whether to show code). You'll adjust these settings as you write
+your own analyses.
+
+Everything outside of code chunks is **Markdown**—plain text with simple
+formatting. For example, `**bold**` renders as **bold**, `*italic*` renders as
+*italic*, and `[link text](url)` creates a hyperlink. Section headings use `##`.
+You don't need to learn all of Markdown right now; you'll pick it up naturally
+as you write.
+
 
 ## Setup
 
+Code lives inside **code chunks**—blocks fenced by `` ```{r} `` and `` ``` ``.
+The lines starting with `#|` are **chunk options** that control how Quarto
+handles this chunk. Every chunk should have a `label` (a short unique name)
+so you can refer to it later.
+
 ```{r}
 #| label: setup
+#|
+#| # Chunk options reference:
+#| #   label:    a unique name for this chunk
+#| #   echo:     show the code in the output? (default: true)
+#| #   eval:     actually run the code? (default: true)
+#| #   warning:  show warnings? (we set false globally in the YAML above)
+#| #   fig-cap:  caption for figures (we'll use this later)
 
-library(Seurat)
-library(ggplot2)
-library(patchwork)
-library(dplyr)
-library(here)
+library(Seurat)       # Single-cell analysis toolkit
+library(ggplot2)      # Plotting
+library(patchwork)    # Arranging multiple plots side by side
+library(dplyr)        # Data manipulation (filter, mutate, etc.)
+library(here)         # Builds file paths relative to the project root
 ```
+
 
 ## Load data
 
-We load the 10X count matrix with `Read10X()` and create a Seurat object. A Seurat
-object is the central data structure for single-cell analysis in R—it stores the count
-matrix, cell metadata, dimensionality reductions, and clustering results all in one place.
+We load the 10X count matrix with `Read10X()` and create a **Seurat object**—the
+central data structure for single-cell analysis in R. A Seurat object stores the
+count matrix, cell metadata, dimensionality reductions, and clustering results
+all in one place. Think of it as a container that accumulates results as you work
+through the analysis.
 
 ```{r}
 #| label: load-data
@@ -39,29 +71,66 @@ sponge <- CreateSeuratObject(counts = counts, project = "spongilla")
 sponge
 ```
 
+The output tells us how many genes (features) and cells (samples) are in the
+dataset. Take a look at the cell metadata:
+
+```{r}
+#| label: peek-metadata
+
+head(sponge@meta.data)
+```
+
+Each row is a cell. The columns include:
+
+- **orig.ident** — which sample the cell came from
+- **nCount_RNA** — total UMI counts (a measure of how much RNA was captured from this cell)
+- **nFeature_RNA** — number of distinct genes detected in this cell
+
+
 ## Quality control
 
-We examine the distribution of UMI counts and detected genes per cell, split by
-sample. This dataset has already been quality-filtered, so we're checking that
-the distributions look reasonable—no extreme outliers or suspicious patterns.
+We examine the distribution of UMI counts and detected genes per cell. This
+dataset has already been quality-filtered, so we're checking that the
+distributions look reasonable—no extreme outliers or suspicious patterns.
 
 ```{r}
 #| label: fig-qc-violin
-#| fig-cap: "Distribution of QC metrics across cells, split by sample"
+#| fig-cap: "Distribution of QC metrics across cells"
 
-VlnPlot(sponge, features = c("nFeature_RNA", "nCount_RNA"), ncol = 2,
-        group.by = "orig.ident")
+VlnPlot(sponge, features = c("nFeature_RNA", "nCount_RNA"), ncol = 2)
 ```
+
+A few things to look for in these plots:
+
+- **nCount_RNA** varies by cell type—large or transcriptionally active cells
+  capture more RNA. Very high counts can also indicate **doublets**: droplets
+  that accidentally captured two cells during the 10X run.
+- **nFeature_RNA** gives a sense of library complexity. Cells with very few
+  detected genes may be empty droplets or dead cells.
+- Differences between samples are normal and can reflect biology (different
+  tissue regions, developmental stages) or technical factors (sequencing depth).
+
 
 ## Normalization and variable features
 
-Normalization adjusts for differences in sequencing depth between cells. `NormalizeData()`
-divides each cell's gene counts by the cell's total UMI count to get relative expression
-levels, then applies a log transformation to equilibrate variance across genes with
-different expression levels.
+### Normalization
 
-We then identify highly variable features—genes whose expression varies meaningfully
-across cells. These are the genes that distinguish cell types.
+`NormalizeData()` adjusts for differences in sequencing depth between cells. It
+divides each cell's gene counts by the cell's total UMI count, then applies a
+log transformation to equilibrate variance across genes with different expression
+levels.
+
+A common claim is that differences in total RNA per cell are purely technical.
+That is sometimes true when comparing closely related cell types with similar RNA
+content. But in whole-organism datasets like this one—where cells range from tiny
+pinacocytes to large, transcriptionally active archaeocytes—differences in total
+RNA can be genuinely biological. Keep this in mind: normalization is a useful
+default, but it can remove real biological signal in some contexts.
+
+Not all methods require normalization. For example, Casey Dunn and colleagues
+have developed approaches that work directly in count space, avoiding the
+assumptions baked into log-normalization. As you gain experience, it's worth
+understanding what normalization does and when alternatives might be appropriate.
 
 ```{r}
 #| label: normalize
@@ -70,9 +139,22 @@ sponge <- NormalizeData(sponge)
 sponge <- FindVariableFeatures(sponge, selection.method = "vst", nfeatures = 2000)
 ```
 
+### Variable features
+
+`FindVariableFeatures()` identifies the 2,000 genes whose expression varies most
+across cells. The idea is that genes with uniform expression across all cells
+don't help distinguish cell types, so we focus downstream analysis on the most
+informative genes.
+
+This is a reasonable heuristic, but it's not the only approach. Methods like
+**SAM** (Self-Assembling Manifolds) use all genes but weight them by how
+informative they are for finding structure in the data, rather than discarding
+genes outright. The "select top variable genes" approach is one convention, not a
+biological law.
+
 ```{r}
 #| label: fig-variable-features
-#| fig-cap: "Top variable features"
+#| fig-cap: "Top variable features — genes with the most cell-to-cell variation"
 
 top10 <- head(VariableFeatures(sponge), 10)
 
@@ -81,11 +163,13 @@ plot2 <- LabelPoints(plot = plot1, points = top10, repel = TRUE)
 plot2
 ```
 
+
 ## Dimensionality reduction
 
-Scaling shifts each gene to mean 0 and variance 1, so highly expressed genes don't
-dominate. PCA then reduces the data from thousands of genes to a smaller number of
-principal components that capture the main axes of variation.
+**Scaling** shifts each gene to mean 0 and variance 1, so highly expressed genes
+don't dominate. **PCA** (Principal Component Analysis) then reduces the data from
+thousands of genes to a smaller number of principal components that capture the
+main axes of variation.
 
 ```{r}
 #| label: scale-pca
@@ -94,21 +178,27 @@ sponge <- ScaleData(sponge)
 sponge <- RunPCA(sponge)
 ```
 
-The elbow plot helps us decide how many PCs to use for clustering. We look for
-the "elbow"—the point where additional PCs stop adding much new information.
+The **elbow plot** helps us decide how many PCs to use downstream. We look for
+the point where additional PCs stop adding much new information (the "elbow").
 
 ```{r}
 #| label: fig-elbow
-#| fig-cap: "Elbow plot showing variance explained by each PC"
+#| fig-cap: "Elbow plot — variance explained by each PC"
 
 ElbowPlot(sponge, ndims = 50)
 ```
 
+We'll use 40 PCs. The elbow plot is a guide, not a strict rule. In practice we
+often include more PCs than the elbow alone might suggest, because later PCs can
+capture variation from rare cell types that would be missed with too few
+dimensions. Erring on the side of more PCs is usually safer than using too few.
+
+
 ## Clustering
 
-We cluster cells using the Leiden algorithm, which finds communities of similar
-cells in PCA space. Then UMAP projects these relationships into two dimensions
-for visualization.
+We build a nearest-neighbor graph from the PCA coordinates, then use the
+**Leiden algorithm** to find communities of similar cells. Finally, **UMAP**
+projects the high-dimensional relationships into two dimensions for visualization.
 
 ```{r}
 #| label: cluster
@@ -118,7 +208,12 @@ sponge <- FindClusters(sponge, resolution = 2, algorithm = 4)
 sponge <- RunUMAP(sponge, dims = 1:40)
 ```
 
-## UMAP visualization
+
+## Visualizing clusters
+
+The UMAP is one of many ways to visualize single-cell data—it projects
+high-dimensional relationships into a 2D layout where nearby cells have similar
+expression profiles. It's a useful summary, but not the end goal of an analysis.
 
 ```{r}
 #| label: fig-umap
@@ -127,15 +222,113 @@ sponge <- RunUMAP(sponge, dims = 1:40)
 DimPlot(sponge, reduction = "umap", label = TRUE) + NoLegend()
 ```
 
-## Gene expression
+Each dot is a cell, colored by cluster. Cells that are close together tend to
+have similar gene expression. The cluster numbers are arbitrary labels—the real
+work of understanding what each cluster *is* comes next.
 
-We can overlay expression of individual genes onto the UMAP. *Eef1a1* is an
-elongation factor and strong archaeocyte marker, while *Pcna* is a
-proliferation marker for actively dividing cells.
+
+## Exploring gene expression
+
+We can overlay expression of individual genes onto the UMAP. This is one of the
+main ways to start connecting clusters to biology.
+
+*Eef1a1* is an elongation factor involved in protein synthesis and is a strong
+marker for archaeocytes (stem cell-like cells in sponges). *Pcna* is a
+proliferation marker that labels actively dividing cells.
 
 ```{r}
 #| label: fig-features
-#| fig-cap: "Expression of selected genes across clusters"
+#| fig-cap: "Expression of selected marker genes"
 
 FeaturePlot(sponge, features = c("Eef1a1 A", "Pcna"))
 ```
+
+Notice how expression is concentrated in specific clusters rather than spread
+uniformly—this is what makes these genes useful as markers.
+
+
+## Identifying cell types
+
+Now we get to the interesting part: figuring out what each cluster actually *is*.
+There are two complementary approaches.
+
+### Approach 1: Unbiased — differential expression
+
+We can ask which genes are most enriched in a given cluster compared to all other
+cells. This is an unbiased approach—we let the data tell us what's distinctive
+about each cluster without assuming anything in advance.
+
+Let's start with the largest cluster (cluster 1):
+
+```{r}
+#| label: de-cluster1
+
+markers_c1 <- FindMarkers(sponge, ident.1 = 1, min.pct = 0.25)
+head(markers_c1, 20)
+```
+
+The output shows genes ranked by statistical significance, with columns for
+log fold-change (`avg_log2FC`), detection rate in the cluster vs. all other cells
+(`pct.1` vs `pct.2`), and adjusted p-value.
+
+Let's visualize the top markers across all clusters with a **dot plot**:
+
+```{r}
+#| label: fig-dotplot-c1
+#| fig-cap: "Top markers for cluster 1 across all clusters"
+#| fig-width: 10
+#| fig-height: 6
+
+top_genes <- rownames(head(markers_c1, 15))
+DotPlot(sponge, features = top_genes) + RotatedAxis()
+```
+
+In the dot plot, dot **size** shows what fraction of cells in each cluster
+express the gene, and dot **color** shows average expression level. Look for
+genes that are both highly expressed and broadly detected in cluster 1 but not
+in other clusters.
+
+If you see ribosomal genes (names starting with *Rpl* or *Rps*) and
+mitochondrial machinery among the top markers, that's a signature of
+transcriptionally active cells with high protein synthesis—consistent with
+**archaeocytes**, the stem cell-like cells of sponges.
+
+
+### Approach 2: Candidate genes — known markers
+
+The complementary approach is to start with genes you already know something
+about and ask where they're expressed. This is the **candidate gene** approach.
+
+*Piwi* genes are conserved markers of stem cells and germline in many animals.
+Let's see if there's a *Piwi* gene in our dataset:
+
+```{r}
+#| label: find-piwi
+
+# Search for piwi genes by name — useful when you don't know the exact spelling
+grep("iwi", rownames(sponge), value = TRUE, ignore.case = TRUE)
+```
+
+Now plot its expression:
+
+```{r}
+#| label: fig-piwi
+#| fig-cap: "Expression of Piwil2 across clusters"
+#| fig-width: 10
+#| fig-height: 5
+
+# The grep above should show "Piwil2" — use that here
+p1 <- VlnPlot(sponge, features = "Piwil2", pt.size = 0.1)
+p2 <- FeaturePlot(sponge, features = "Piwil2")
+p1 + p2
+```
+
+The **VlnPlot** shows expression levels per cluster—you can immediately see
+which clusters have the highest *Piwi* expression. The **FeaturePlot** shows
+where those cells sit on the UMAP. Together, these confirm whether the cluster
+we identified by differential expression (above) is indeed an archaeocyte/stem
+cell population.
+
+This two-pronged strategy—unbiased DE to discover what's distinctive, plus
+candidate genes to confirm identity—is a standard approach for annotating
+clusters in single-cell data.

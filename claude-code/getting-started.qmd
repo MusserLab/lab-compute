@@ -1,6 +1,6 @@
 # Getting Started with Claude Code
 
-Claude Code is an AI assistant that works directly with your project files. Unlike web-based AI chat, it can read your code, edit files, run commands, and search across your codebase—all within the context of your project.
+Claude Code is an AI assistant that works directly with your project files. Unlike web-based AI chat, it can read your code, edit files, run commands, and search across your codebase, all within the context of your project.
 
 ## Accessing Claude Code
 
