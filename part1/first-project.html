@@ -514,22 +514,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#install-packages-with-renv" id="toc-install-packages-with-renv" class="nav-link" data-scroll-target="#install-packages-with-renv"><span class="header-section-number">3.2</span> Install Packages with renv</a></li>
   <li><a href="#get-the-data-and-analysis-script" id="toc-get-the-data-and-analysis-script" class="nav-link" data-scroll-target="#get-the-data-and-analysis-script"><span class="header-section-number">3.3</span> Get the Data and Analysis Script</a>
   <ul class="collapse">
-  <li><a href="#download-the-data" id="toc-download-the-data" class="nav-link" data-scroll-target="#download-the-data"><span class="header-section-number">3.3.1</span> Download the data</a></li>
-  <li><a href="#get-the-analysis-script" id="toc-get-the-analysis-script" class="nav-link" data-scroll-target="#get-the-analysis-script"><span class="header-section-number">3.3.2</span> Get the analysis script</a></li>
+  <li><a href="#download-from-github" id="toc-download-from-github" class="nav-link" data-scroll-target="#download-from-github"><span class="header-section-number">3.3.1</span> Download from GitHub</a></li>
+  <li><a href="#what-you-should-have" id="toc-what-you-should-have" class="nav-link" data-scroll-target="#what-you-should-have"><span class="header-section-number">3.3.2</span> What you should have</a></li>
   </ul></li>
   <li><a href="#open-the-analysis-script" id="toc-open-the-analysis-script" class="nav-link" data-scroll-target="#open-the-analysis-script"><span class="header-section-number">3.4</span> Open the Analysis Script</a></li>
   <li><a href="#step-1-load-libraries" id="toc-step-1-load-libraries" class="nav-link" data-scroll-target="#step-1-load-libraries"><span class="header-section-number">3.5</span> Step 1: Load Libraries</a></li>
   <li><a href="#step-2-load-the-count-matrix" id="toc-step-2-load-the-count-matrix" class="nav-link" data-scroll-target="#step-2-load-the-count-matrix"><span class="header-section-number">3.6</span> Step 2: Load the Count Matrix</a></li>
   <li><a href="#step-3-quality-control" id="toc-step-3-quality-control" class="nav-link" data-scroll-target="#step-3-quality-control"><span class="header-section-number">3.7</span> Step 3: Quality Control</a></li>
-  <li><a href="#step-4-normalize-and-find-variable-features" id="toc-step-4-normalize-and-find-variable-features" class="nav-link" data-scroll-target="#step-4-normalize-and-find-variable-features"><span class="header-section-number">3.8</span> Step 4: Normalize and Find Variable Features</a></li>
+  <li><a href="#step-4-normalize-and-find-variable-features" id="toc-step-4-normalize-and-find-variable-features" class="nav-link" data-scroll-target="#step-4-normalize-and-find-variable-features"><span class="header-section-number">3.8</span> Step 4: Normalize and Find Variable Features</a>
+  <ul class="collapse">
+  <li><a href="#normalization" id="toc-normalization" class="nav-link" data-scroll-target="#normalization"><span class="header-section-number">3.8.1</span> Normalization</a></li>
+  <li><a href="#variable-features" id="toc-variable-features" class="nav-link" data-scroll-target="#variable-features"><span class="header-section-number">3.8.2</span> Variable features</a></li>
+  </ul></li>
   <li><a href="#step-5-scale-data-and-run-pca" id="toc-step-5-scale-data-and-run-pca" class="nav-link" data-scroll-target="#step-5-scale-data-and-run-pca"><span class="header-section-number">3.9</span> Step 5: Scale Data and Run PCA</a></li>
   <li><a href="#step-6-cluster-cells" id="toc-step-6-cluster-cells" class="nav-link" data-scroll-target="#step-6-cluster-cells"><span class="header-section-number">3.10</span> Step 6: Cluster Cells</a></li>
-  <li><a href="#step-7-the-umap" id="toc-step-7-the-umap" class="nav-link" data-scroll-target="#step-7-the-umap"><span class="header-section-number">3.11</span> Step 7: The UMAP</a></li>
-  <li><a href="#step-8-gene-expression-on-the-umap" id="toc-step-8-gene-expression-on-the-umap" class="nav-link" data-scroll-target="#step-8-gene-expression-on-the-umap"><span class="header-section-number">3.12</span> Step 8: Gene Expression on the UMAP</a></li>
-  <li><a href="#render-the-document" id="toc-render-the-document" class="nav-link" data-scroll-target="#render-the-document"><span class="header-section-number">3.13</span> Render the Document</a></li>
-  <li><a href="#what-youve-learned" id="toc-what-youve-learned" class="nav-link" data-scroll-target="#what-youve-learned"><span class="header-section-number">3.14</span> What You’ve Learned</a></li>
-  <li><a href="#try-claude-code" id="toc-try-claude-code" class="nav-link" data-scroll-target="#try-claude-code"><span class="header-section-number">3.15</span> Try Claude Code</a></li>
-  <li><a href="#whats-next" id="toc-whats-next" class="nav-link" data-scroll-target="#whats-next"><span class="header-section-number">3.16</span> What’s Next</a></li>
+  <li><a href="#step-7-visualize-with-umap" id="toc-step-7-visualize-with-umap" class="nav-link" data-scroll-target="#step-7-visualize-with-umap"><span class="header-section-number">3.11</span> Step 7: Visualize with UMAP</a></li>
+  <li><a href="#step-8-explore-gene-expression" id="toc-step-8-explore-gene-expression" class="nav-link" data-scroll-target="#step-8-explore-gene-expression"><span class="header-section-number">3.12</span> Step 8: Explore Gene Expression</a></li>
+  <li><a href="#step-9-identify-cell-types" id="toc-step-9-identify-cell-types" class="nav-link" data-scroll-target="#step-9-identify-cell-types"><span class="header-section-number">3.13</span> Step 9: Identify Cell Types</a>
+  <ul class="collapse">
+  <li><a href="#approach-1-unbiased-differential-expression" id="toc-approach-1-unbiased-differential-expression" class="nav-link" data-scroll-target="#approach-1-unbiased-differential-expression"><span class="header-section-number">3.13.1</span> Approach 1: Unbiased differential expression</a></li>
+  <li><a href="#approach-2-candidate-genes" id="toc-approach-2-candidate-genes" class="nav-link" data-scroll-target="#approach-2-candidate-genes"><span class="header-section-number">3.13.2</span> Approach 2: Candidate genes</a></li>
+  </ul></li>
+  <li><a href="#render-the-document" id="toc-render-the-document" class="nav-link" data-scroll-target="#render-the-document"><span class="header-section-number">3.14</span> Render the Document</a></li>
+  <li><a href="#what-youve-learned" id="toc-what-youve-learned" class="nav-link" data-scroll-target="#what-youve-learned"><span class="header-section-number">3.15</span> What You’ve Learned</a></li>
+  <li><a href="#try-claude-code" id="toc-try-claude-code" class="nav-link" data-scroll-target="#try-claude-code"><span class="header-section-number">3.16</span> Try Claude Code</a></li>
+  <li><a href="#whats-next" id="toc-whats-next" class="nav-link" data-scroll-target="#whats-next"><span class="header-section-number">3.17</span> What’s Next</a></li>
   </ul>
 </nav>
     </div>
@@ -556,8 +565,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In this chapter, you’ll do a real single-cell RNA-seq analysis—from raw count data to a UMAP of cell clusters. Along the way, you’ll learn how to use Positron’s key features: the file explorer, console, environment pane, plots pane, and interactive code execution. By the end, you’ll render the analysis into a shareable HTML report.</p>
-<p>We’ll work with a single-cell RNA-seq dataset from the freshwater sponge <em>Spongilla lacustris</em>, one of the organisms studied in the Musser Lab. The dataset contains about 10,000 cells across 4 samples. Don’t worry about understanding every biological detail—focus on learning how Positron works and getting comfortable running R code interactively.</p>
+<p>In this chapter, you’ll do a real single-cell RNA-seq analysis—from raw count data to identified cell types. Along the way, you’ll learn how to use Positron’s key features: the file explorer, console, environment pane, plots pane, and interactive code execution. By the end, you’ll render the analysis into a shareable HTML report.</p>
+<p>We’ll work with a single-cell RNA-seq dataset from the freshwater sponge <em>Spongilla lacustris</em>, one of the organisms studied in the Musser Lab. The dataset contains about 10,000 cells across 4 samples. Don’t worry about understanding every biological detail—focus on learning how Positron works and getting comfortable running R code interactively. We’ll teach some biology along the way too.</p>
 <section id="create-a-project-folder" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="create-a-project-folder"><span class="header-section-number">3.1</span> Create a Project Folder</h2>
 <p>First, create a folder for this project and open it in Positron.</p>
@@ -575,7 +584,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Environment pane</strong> (right panel, or bottom panel next to Console): Will show R objects as you create them. Look for the “Variables” tab.</li>
 <li><strong>Plots pane</strong>: Will appear when you make your first plot.</li>
 </ul>
-<p>[TODO: screenshot of Positron with empty project, panes labeled]</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/first-project/positron-empty-project.png" class="img-fluid figure-img"></p>
+<figcaption>Positron with an empty project open</figcaption>
+</figure>
+</div>
 </section>
 <section id="install-packages-with-renv" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="install-packages-with-renv"><span class="header-section-number">3.2</span> Install Packages with renv</h2>
@@ -583,10 +597,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In the R console, type (or paste) and press Enter:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"renv"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Watch the console output—renv creates a project-specific library and a <code>renv.lock</code> file. <strong>Look at the file explorer</strong>: you should now see <code>renv/</code> and <code>renv.lock</code> appear.</p>
+<p>When <code>renv::init()</code> finishes, it will ask you to <strong>restart R</strong>. Do this—in Positron, you can restart by clicking the power icon in the Console toolbar, or pressing <strong>Cmd+Shift+0</strong> (Ctrl+Shift+0 on Windows). Restarting is necessary because renv modifies your <code>.Rprofile</code> to activate itself when R starts, and that only takes effect after a restart.</p>
+<p>After restarting, <strong>look at the file explorer</strong>: you should now see <code>renv/</code> and <code>renv.lock</code> appear. The console should also show a message like “renv activated” confirming it’s working.</p>
 <p>The <strong>lock file</strong> (<code>renv.lock</code>) is a snapshot of every package installed in your project, including exact version numbers. This is what makes your analysis reproducible—a collaborator (or future you) can run <code>renv::restore()</code> on another machine to install the exact same package versions. You’ll learn more about renv in the <a href="../part2/renv.html">renv chapter</a>.</p>
-<p>Now install the packages we need. Since we initialized renv, <code>install.packages()</code> installs into the project-specific library rather than your system library:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"Seurat"</span>, <span class="st">"leidenbase"</span>, <span class="st">"ggplot2"</span>, <span class="st">"patchwork"</span>, <span class="st">"dplyr"</span>, <span class="st">"here"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now install the packages we need. We use <code>renv::install()</code> rather than <code>install.packages()</code> because it understands how to install packages from multiple sources—CRAN, Bioconductor, and GitHub:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">install</span>(<span class="fu">c</span>(<span class="st">"Seurat"</span>, <span class="st">"leidenbase"</span>, <span class="st">"ggplot2"</span>, <span class="st">"patchwork"</span>, <span class="st">"dplyr"</span>, <span class="st">"here"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This takes a few minutes—Seurat has many dependencies. The <code>leidenbase</code> package is needed for the Leiden clustering algorithm we’ll use later. Watch the console output as packages download and compile. When it’s done, save the state:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -595,33 +610,59 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>renv::snapshot()
+<span class="screen-reader-only">Note</span>renv::install() and Bioconductor
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><code>renv::snapshot()</code> updates <code>renv.lock</code> with the exact versions of every package you’ve installed. Run it after installing new packages so the lock file stays current.</p>
+<p><code>renv::install()</code> is the standard way to install packages in an renv project. For CRAN packages, just use the package name: <code>renv::install("Seurat")</code>. For <strong>Bioconductor</strong> packages (common in genomics—DESeq2, SingleCellExperiment, etc.), prefix with <code>bioc::</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">install</span>(<span class="st">"bioc::DESeq2"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>After installing, always run <code>renv::snapshot()</code> to record the new packages in your lock file.</p>
 </div>
 </div>
 </section>
 <section id="get-the-data-and-analysis-script" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="get-the-data-and-analysis-script"><span class="header-section-number">3.3</span> Get the Data and Analysis Script</h2>
-<p>We need two things: the <em>Spongilla</em> count matrix and the analysis script you’ll run through.</p>
-<section id="download-the-data" class="level3" data-number="3.3.1">
-<h3 data-number="3.3.1" class="anchored" data-anchor-id="download-the-data"><span class="header-section-number">3.3.1</span> Download the data</h3>
-<p>Create a <code>data/</code> folder in your project:</p>
+<p>We need two things: the <em>Spongilla</em> count matrix and the analysis script you’ll run through. Both are in the book’s GitHub repository.</p>
+<section id="download-from-github" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="download-from-github"><span class="header-section-number">3.3.1</span> Download from GitHub</h3>
+<p>The example data and scripts live in the <code>examples/</code> folder of the <a href="https://github.com/MusserLab/lab-compute">lab-compute repository</a>. The repository’s README has a description of what’s available — you need two things from it:</p>
 <ul>
-<li><strong>In the file explorer</strong>: Right-click in the empty space → <strong>New Folder</strong> → name it <code>data</code></li>
-<li><strong>Or in the terminal</strong> (toggle with Cmd+` or Ctrl+`): <code>mkdir data</code></li>
+<li><strong>The Spongilla count matrix</strong> — in <code>examples/data/spongilla_counts/</code> (three files)</li>
+<li><strong>The analysis script</strong> — <code>examples/scripts/01_seurat_basics.qmd</code></li>
 </ul>
-<p>Now download the <em>Spongilla</em> count matrix. This is a single-cell dataset in 10X Genomics format—the same format you’ll work with when analyzing your own data from the sequencing core. It contains about 10,000 cells across 4 samples and 40,000 genes.</p>
-<p>[TODO: Add download link for Spongilla count matrix]</p>
-<p>Place the downloaded folder inside <code>data/</code> so you have <code>data/spongilla_counts/</code> containing three files.</p>
+<p>The easiest way to get them is to download the whole repository as a ZIP file:</p>
+<ol type="1">
+<li>Go to <a href="https://github.com/MusserLab/lab-compute">github.com/MusserLab/lab-compute</a></li>
+<li>Click the green <strong>Code</strong> button, then <strong>Download ZIP</strong></li>
+<li>Unzip the downloaded file — you’ll find an <code>examples/</code> folder inside</li>
+</ol>
+<p>Now create the project folders and copy the files in. Open a terminal in your project folder (in Positron: <strong>Terminal → New Terminal</strong>, or Cmd+` / Ctrl+`).</p>
+<p><strong>macOS:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mkdir -p data scripts outs</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>cp -r ~/Downloads/lab-compute-main/examples/data/spongilla_counts data/</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>cp ~/Downloads/lab-compute-main/examples/scripts/01_seurat_basics.qmd scripts/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Windows PowerShell:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mkdir data, scripts, outs</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>Copy-Item -Recurse ~\Downloads\lab-compute-main\examples\data\spongilla_counts data\</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>Copy-Item ~\Downloads\lab-compute-main\examples\scripts\01_seurat_basics.qmd scripts\</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Or do it by hand: create <code>data/</code>, <code>scripts/</code>, and <code>outs/</code> folders in Positron’s File Explorer (right-click → <strong>New Folder</strong>), then drag the files from the unzipped download into the right places.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>The outs/ folder
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <code>outs/</code> folder is empty for now — you’ll use it later when rendering the analysis to HTML. In the lab we keep script outputs separate from source code so things stay organized.</p>
+</div>
+</div>
 </section>
-<section id="get-the-analysis-script" class="level3" data-number="3.3.2">
-<h3 data-number="3.3.2" class="anchored" data-anchor-id="get-the-analysis-script"><span class="header-section-number">3.3.2</span> Get the analysis script</h3>
-<p>Create a <code>scripts/</code> folder and an <code>outs/</code> folder the same way, then download the analysis script:</p>
-<p>[TODO: Add download link for 01_seurat_basics.qmd]</p>
-<p>Place it in <code>scripts/</code> so your project looks like:</p>
+<section id="what-you-should-have" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="what-you-should-have"><span class="header-section-number">3.3.2</span> What you should have</h3>
+<p>Your project should now look like this:</p>
 <pre><code>my-first-analysis/
 ├── data/
 │   └── spongilla_counts/
@@ -634,20 +675,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ├── renv/
 ├── renv.lock
 └── .Rprofile</code></pre>
-<p><strong>Look at the file explorer now.</strong> You can click into folders to browse their contents. Click into <code>data/spongilla_counts/</code> to see the three files that make up a 10X count matrix.</p>
-<p>[TODO: screenshot of file explorer showing project structure]</p>
+<p>The three files in <code>spongilla_counts/</code> are the standard <strong>10X Genomics format</strong>—the same format you’ll get when analyzing your own single-cell data from a sequencing core. The barcodes file has one entry per cell, the features file lists every gene, and the matrix file stores the actual counts in a compressed sparse format (most gene-cell combinations are zero, so this saves a lot of space).</p>
+<p><strong>Look at the file explorer now.</strong> You can click into folders to browse their contents. Click into <code>data/spongilla_counts/</code> to see the three files.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/first-project/project-structure.png" class="img-fluid figure-img"></p>
+<figcaption>File explorer showing the project structure</figcaption>
+</figure>
+</div>
 </section>
 </section>
 <section id="open-the-analysis-script" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="open-the-analysis-script"><span class="header-section-number">3.4</span> Open the Analysis Script</h2>
 <p>Open <code>scripts/01_seurat_basics.qmd</code> by clicking on it in the file explorer.</p>
 <p>This is a <strong>Quarto document</strong> (<code>.qmd</code>)—the format we use for analyses in the lab. If you’ve used RMarkdown before, Quarto is its successor: it has the same idea of mixing code and narrative, but with more features and equal support for both R and Python. When you render a <code>.qmd</code>, all the code runs and the results are woven into an HTML report.</p>
-<p>Look at the structure of the file:</p>
-<ul>
-<li><strong>YAML header</strong> (the block between <code>---</code> marks at the top): Metadata that tells Quarto how to render the document—title, author, output format, and execution options.</li>
-<li><strong>Markdown text</strong>: Written explanation between code chunks. This is where you describe what the analysis does and why.</li>
-<li><strong>Code chunks</strong> (blocks starting with <code>```{r}</code>): R code that will be executed. Each chunk has a <code>#| label:</code> line that gives it a name.</li>
-</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/first-project/qmd-in-editor.png" class="img-fluid figure-img"></p>
+<figcaption>The QMD file open in the editor</figcaption>
+</figure>
+</div>
+<p>Look at the structure of the file. There are three kinds of content:</p>
+<p><strong>The YAML header</strong> is the block between <code>---</code> marks at the top. It controls metadata—title, author, date—and rendering options like output format and whether to show code. You’ll see comments (lines starting with <code>#</code>) explaining what each option does. The YAML header is the first thing Quarto reads when rendering.</p>
+<p><strong>Markdown text</strong> is the written explanation between code chunks. Markdown is a lightweight formatting language: <code>**bold**</code> for <strong>bold</strong>, <code>*italic*</code> for <em>italic</em>, <code>##</code> for section headings, and <code>[link text](url)</code> for hyperlinks. The Quarto document itself has a brief Markdown introduction at the top—read through it to get oriented.</p>
+<p><strong>Code chunks</strong> are blocks starting with <code>```{r}</code> and ending with <code>```</code>. Each chunk has options on lines starting with <code>#|</code>. The most important is <code>#| label:</code> which gives the chunk a name. Other options control things like figure captions (<code>#| fig-cap:</code>) and figure dimensions. The first chunk in the script has comments explaining common chunk options.</p>
 <p>We’re going to run through this script <strong>chunk by chunk</strong>, interactively. This is how you’ll develop analyses in the lab—running code, inspecting results, and iterating before rendering the final report.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -666,47 +717,71 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="step-1-load-libraries" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="step-1-load-libraries"><span class="header-section-number">3.5</span> Step 1: Load Libraries</h2>
 <p>Find the first code chunk (labeled <code>setup</code>) and place your cursor inside it. Press <strong>Cmd+Shift+Enter</strong> to run the entire chunk.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Seurat)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Seurat)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Watch the console</strong> at the bottom—you’ll see library loading messages appear there. The code runs in the console, not in the document. This is <strong>interactive execution</strong>: you’re exploring and developing, running code chunk by chunk, checking results as you go.</p>
-<p>[TODO: screenshot of console showing library loading messages]</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/first-project/console-library-loading.png" class="img-fluid figure-img"></p>
+<figcaption>Console showing library loading messages</figcaption>
+</figure>
+</div>
 </section>
 <section id="step-2-load-the-count-matrix" class="level2" data-number="3.6">
 <h2 data-number="3.6" class="anchored" data-anchor-id="step-2-load-the-count-matrix"><span class="header-section-number">3.6</span> Step 2: Load the Count Matrix</h2>
-<p>Run the next chunk (<code>load-data</code>). This loads the 10X count matrix and creates a Seurat object—the central data structure for single-cell analysis in R.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">Read10X</span>(<span class="at">data.dir =</span> <span class="fu">here</span>(<span class="st">"data/spongilla_counts"</span>))</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>sponge <span class="ot">&lt;-</span> <span class="fu">CreateSeuratObject</span>(<span class="at">counts =</span> counts, <span class="at">project =</span> <span class="st">"spongilla"</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>sponge</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Run the next chunk (<code>load-data</code>). This loads the 10X count matrix and creates a Seurat object—the central data structure for single-cell analysis in R. It stores the count matrix, cell metadata, dimensionality reductions, and clustering results all in one container.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">Read10X</span>(<span class="at">data.dir =</span> <span class="fu">here</span>(<span class="st">"data/spongilla_counts"</span>))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>sponge <span class="ot">&lt;-</span> <span class="fu">CreateSeuratObject</span>(<span class="at">counts =</span> counts, <span class="at">project =</span> <span class="st">"spongilla"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>sponge</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Two things to notice:</p>
 <ol type="1">
 <li><strong>The console</strong> prints a summary of the Seurat object: the number of genes (features) and cells (samples) in the dataset.</li>
 <li><strong>The environment pane</strong> (Variables tab) now shows two objects: <code>counts</code> (a sparse matrix) and <code>sponge</code> (a Seurat object). You can see the object type and size at a glance.</li>
 </ol>
-<p>[TODO: screenshot of Environment pane showing counts and sponge objects]</p>
-<p>Now let’s inspect the cell metadata. Run this in the console:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(sponge<span class="sc">@</span>meta.data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This opens Positron’s <strong>data viewer</strong>—a spreadsheet-style view of the metadata, with one row per cell and columns like <code>orig.ident</code>, <code>nCount_RNA</code> (total UMIs per cell), and <code>nFeature_RNA</code> (genes detected per cell).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/first-project/environment-pane-objects.png" class="img-fluid figure-img"></p>
+<figcaption>Environment pane showing the counts and sponge objects</figcaption>
+</figure>
+</div>
+<p>Now let’s inspect the cell metadata. Run the <code>peek-metadata</code> chunk, or type this in the console:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(sponge<span class="sc">@</span>meta.data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This opens Positron’s <strong>data viewer</strong>—a spreadsheet-style view of the metadata, with one row per cell. You’ll see three columns:</p>
+<ul>
+<li><strong>orig.ident</strong> — which sample the cell came from</li>
+<li><strong>nCount_RNA</strong> — total UMI counts per cell (how much RNA was captured)</li>
+<li><strong>nFeature_RNA</strong> — number of distinct genes detected per cell</li>
+</ul>
 <p>Notice two useful features of the data viewer:</p>
 <ul>
 <li><strong>Column histograms</strong>: Each numeric column shows a small histogram at the top, giving you a quick summary of the distribution. You can immediately see the range and shape of <code>nCount_RNA</code> and <code>nFeature_RNA</code> without making a plot.</li>
 <li><strong>Filtering</strong>: Click on a column header to filter rows. For example, you could filter <code>nFeature_RNA</code> to only show cells with more than 1,000 detected genes. This is useful for quickly exploring subsets of your data.</li>
 </ul>
-<p>[TODO: screenshot of Data Viewer showing Seurat metadata with histograms visible]</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/first-project/data-viewer-metadata.png" class="img-fluid figure-img"></p>
+<figcaption>Data Viewer showing Seurat metadata with column histograms</figcaption>
+</figure>
+</div>
 </section>
 <section id="step-3-quality-control" class="level2" data-number="3.7">
 <h2 data-number="3.7" class="anchored" data-anchor-id="step-3-quality-control"><span class="header-section-number">3.7</span> Step 3: Quality Control</h2>
-<p>Run the next chunk (<code>fig-qc-violin</code>). This creates violin plots of two key QC metrics, split by sample:</p>
-<ul>
-<li><strong>nCount_RNA</strong> — total UMI counts per cell. Very low counts suggest empty droplets or dead cells.</li>
-<li><strong>nFeature_RNA</strong> — number of genes detected per cell. Very low values suggest poor capture; very high values might indicate doublets (two cells in one droplet).</li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">VlnPlot</span>(sponge, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">"nFeature_RNA"</span>, <span class="st">"nCount_RNA"</span>), <span class="at">ncol =</span> <span class="dv">2</span>,</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">group.by =</span> <span class="st">"orig.ident"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Your first plot appears in the Plots pane!</strong> The violin plots show the distribution of genes and UMI counts across all cells, split by sample. You can resize the Plots pane by dragging its border, and use the navigation arrows to flip between plots as you make more.</p>
-<p>[TODO: screenshot of Plots pane showing VlnPlot split by sample]</p>
+<p>Run the next chunk (<code>fig-qc-violin</code>). This creates violin plots of two key QC metrics:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">VlnPlot</span>(sponge, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">"nFeature_RNA"</span>, <span class="st">"nCount_RNA"</span>), <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Your first plot appears in the Plots pane!</strong> The violin plots show the distribution of genes and UMI counts across all cells. You can resize the Plots pane by dragging its border, and use the navigation arrows to flip between plots as you make more.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/first-project/qc-violin-plot.png" class="img-fluid figure-img"></p>
+<figcaption>QC violin plots in the Plots pane</figcaption>
+</figure>
+</div>
+<p>Here’s what to look for in these plots:</p>
+<p><strong>nCount_RNA</strong> (total UMI counts) varies naturally by cell type. Large cells or transcriptionally active cells capture more RNA, so higher counts don’t necessarily mean better quality. On the other hand, very high counts can indicate <strong>doublets</strong>—droplets that accidentally captured two cells during the 10X run, giving them roughly double the expected RNA content. Very low counts suggest empty droplets or dead cells.</p>
+<p><strong>nFeature_RNA</strong> (genes detected) gives a sense of library complexity. A cell with very few detected genes may not have been captured well. Differences between samples are normal and can reflect both biology and technical variation.</p>
+<p>This dataset has already been quality-filtered, so the distributions should look clean.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -717,10 +792,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you want a larger view of a plot, you can pop the Plots pane out into a separate window. Click the pop-out icon in the top-right corner of the Plots pane. This is especially useful for complex plots like UMAPs where you want to see fine detail.</p>
+<p>If you want a larger view of a plot, you can pop the Plots pane out into a separate window. Click the pop-out icon in the top-right corner of the Plots pane. This is especially useful for complex plots where you want to see fine detail.</p>
 </div>
 </div>
-<p>This dataset has already been quality-filtered, so the distributions should look clean—no extreme outliers. In a real analysis starting from unfiltered data, you would filter cells here based on these metrics.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -731,31 +805,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>With unfiltered data, you’d remove low-quality cells using <code>subset()</code>. For example, <code>subset(sponge, subset = nFeature_RNA &gt; 200 &amp; nFeature_RNA &lt; 5000)</code> removes cells with too few or too many detected genes. The specific thresholds depend on your dataset—the violin plots help you choose reasonable cutoffs.</p>
+<p>With raw, unfiltered data, you’d typically remove obvious junk cells—those with extremely low gene counts or extremely high counts that suggest doublets. But in practice, many experienced analysts set only very lenient thresholds at this stage, or none at all. The reason is that clustering itself is a powerful QC tool: cells with low-quality profiles often group together into their own “junk clusters” that you can remove later, after seeing how cells actually behave. This is more nuanced than applying hard cutoffs upfront, because some cells with low RNA counts are perfectly real (they’re just small or quiescent cells), and hard thresholds would throw them out.</p>
+<p>Programs like <strong>DoubletFinder</strong> can also identify likely doublets computationally, which is more principled than a simple nCount_RNA threshold.</p>
 </div>
 </div>
 </section>
 <section id="step-4-normalize-and-find-variable-features" class="level2" data-number="3.8">
 <h2 data-number="3.8" class="anchored" data-anchor-id="step-4-normalize-and-find-variable-features"><span class="header-section-number">3.8</span> Step 4: Normalize and Find Variable Features</h2>
-<p>Run the <code>normalize</code> chunk. This does two things:</p>
-<p><strong>Normalization</strong> adjusts for differences in sequencing depth between cells. Some cells have more total UMIs than others, and this variation is mostly technical—not biological. <code>NormalizeData()</code> divides each cell’s gene counts by the cell’s total UMI count to get relative expression levels, then applies a log transformation. The log transformation addresses <em>heteroscedasticity</em>: without it, highly expressed genes would have much higher variance than lowly expressed genes, dominating downstream analyses. Log transformation helps equilibrate variance across genes with different expression levels.</p>
-<p><strong>FindVariableFeatures</strong> identifies the 2,000 genes whose expression varies most across cells. These are the genes that distinguish cell types and will drive the downstream analysis. Genes expressed at similar levels in every cell don’t help us find structure in the data.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sponge <span class="ot">&lt;-</span> <span class="fu">NormalizeData</span>(sponge)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>sponge <span class="ot">&lt;-</span> <span class="fu">FindVariableFeatures</span>(sponge, <span class="at">selection.method =</span> <span class="st">"vst"</span>, <span class="at">nfeatures =</span> <span class="dv">2000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Run the <code>normalize</code> chunk. This does two things.</p>
+<section id="normalization" class="level3" data-number="3.8.1">
+<h3 data-number="3.8.1" class="anchored" data-anchor-id="normalization"><span class="header-section-number">3.8.1</span> Normalization</h3>
+<p><code>NormalizeData()</code> adjusts for differences in sequencing depth between cells. It divides each cell’s gene counts by the cell’s total UMI count to get relative expression levels, then applies a log transformation. The log transformation addresses <em>heteroscedasticity</em>: without it, highly expressed genes would have much higher variance than lowly expressed genes, dominating downstream analyses.</p>
+<p>A word of caution: it’s often stated that differences in total RNA per cell are purely technical artifacts of sequencing depth. That can be true when comparing closely related cell types. But in whole-organism datasets like this one—where cells range from tiny pinacocytes to large, transcriptionally active archaeocytes—differences in total RNA abundance are genuinely biological. Normalization can flatten out real biology in these cases. This step is a useful default, but not a biological law.</p>
+<p>Not all methods even require this step. Casey Dunn and colleagues have developed approaches that work directly in count space, avoiding the assumptions baked into log-normalization. As you gain experience, it’s worth understanding what normalization does and when alternatives might be more appropriate.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sponge <span class="ot">&lt;-</span> <span class="fu">NormalizeData</span>(sponge)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>sponge <span class="ot">&lt;-</span> <span class="fu">FindVariableFeatures</span>(sponge, <span class="at">selection.method =</span> <span class="st">"vst"</span>, <span class="at">nfeatures =</span> <span class="dv">2000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="variable-features" class="level3" data-number="3.8.2">
+<h3 data-number="3.8.2" class="anchored" data-anchor-id="variable-features"><span class="header-section-number">3.8.2</span> Variable features</h3>
+<p><code>FindVariableFeatures()</code> identifies the 2,000 genes whose expression varies most across cells. The idea is that genes expressed at similar levels in every cell don’t have much to say about the structure of the data—they won’t help distinguish cell types. By focusing on the most variable genes, the downstream analysis is more efficient and less noisy.</p>
+<p>This is a reasonable heuristic, but it’s not the only approach. Methods like <strong>SAM</strong> (Self-Assembling Manifolds) take a different tack: they use <em>all</em> genes but weight them by how informative they are for finding structure, rather than discarding genes outright. The “select top 2,000 variable features” convention is one way to do this, not the only way.</p>
 <p>Now run the <code>fig-variable-features</code> chunk to visualize the results:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>top10 <span class="ot">&lt;-</span> <span class="fu">head</span>(<span class="fu">VariableFeatures</span>(sponge), <span class="dv">10</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">VariableFeaturePlot</span>(sponge)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">LabelPoints</span>(<span class="at">plot =</span> plot1, <span class="at">points =</span> top10, <span class="at">repel =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>plot2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>A new plot appears in the <strong>Plots pane</strong> showing genes ranked by variability. The labeled points are the most variable genes. <strong>Use the navigation arrows</strong> in the Plots pane to flip between this plot and the earlier violin plot.</p>
-<p>[TODO: screenshot of Plots pane showing variable feature plot]</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>top10 <span class="ot">&lt;-</span> <span class="fu">head</span>(<span class="fu">VariableFeatures</span>(sponge), <span class="dv">10</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">VariableFeaturePlot</span>(sponge)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">LabelPoints</span>(<span class="at">plot =</span> plot1, <span class="at">points =</span> top10, <span class="at">repel =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>plot2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A new plot appears in the <strong>Plots pane</strong> showing genes ranked by variability. The labeled points are the top 10 most variable genes. <strong>Use the navigation arrows</strong> in the Plots pane to flip between this plot and the earlier violin plot.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/first-project/variable-features-plot.png" class="img-fluid figure-img"></p>
+<figcaption>Variable features plot with top genes labeled</figcaption>
+</figure>
+</div>
+</section>
 </section>
 <section id="step-5-scale-data-and-run-pca" class="level2" data-number="3.9">
 <h2 data-number="3.9" class="anchored" data-anchor-id="step-5-scale-data-and-run-pca"><span class="header-section-number">3.9</span> Step 5: Scale Data and Run PCA</h2>
 <p>Run the <code>scale-pca</code> chunk:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sponge <span class="ot">&lt;-</span> <span class="fu">ScaleData</span>(sponge)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>sponge <span class="ot">&lt;-</span> <span class="fu">RunPCA</span>(sponge)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sponge <span class="ot">&lt;-</span> <span class="fu">ScaleData</span>(sponge)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>sponge <span class="ot">&lt;-</span> <span class="fu">RunPCA</span>(sponge)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Scaling</strong> shifts each gene to have mean 0 and variance 1. Together with the log normalization from the previous step, this ensures that both lowly and highly expressed genes contribute equally to the analysis. <strong>PCA</strong> (Principal Component Analysis) then reduces the data from thousands of genes down to a smaller number of dimensions (principal components) that capture the main axes of variation.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -767,20 +856,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Scaling followed by PCA is the standard Seurat workflow and a good default for most datasets. Other approaches exist—for example, SAM (Self-Assembling Manifolds) skips PCA entirely and can work well in some cases. As you gain experience, you may explore alternative methods, but the standard pipeline is where everyone starts.</p>
+<p>Scaling followed by PCA is the standard Seurat workflow and a reasonable starting point for most datasets. Other approaches exist—for example, <strong>SAM</strong> (Self-Assembling Manifolds) skips the variable feature selection and PCA steps entirely and can work well, particularly for complex datasets. The Seurat pipeline is one well-established starting point, but it’s worth knowing that alternatives exist and may be better suited to your particular data.</p>
 </div>
 </div>
 <p>Now run the <code>fig-elbow</code> chunk to see the elbow plot:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ElbowPlot</span>(sponge, <span class="at">ndims =</span> <span class="dv">50</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The elbow plot shows how much variation each PC explains. We need to choose how many PCs to use for clustering. Using too few PCs can cause you to miss real biological structure—clusters that should be separate may merge together. We’ll use 40 PCs for this dataset; the curve has mostly flattened by then, meaning additional PCs add little new information.</p>
-<p>[TODO: screenshot of Plots pane showing elbow plot]</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ElbowPlot</span>(sponge, <span class="at">ndims =</span> <span class="dv">50</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The elbow plot shows how much variation each PC explains. We need to choose how many PCs to use for clustering. The “elbow”—where the curve flattens—gives a rough guide, but in practice we often include more PCs than the elbow alone might suggest. The reason: later PCs can capture variation from rare cell types that would be missed with too few dimensions. Using too few PCs has a real cost—clusters that should be separate may merge together, and you’ll miss biology. We’ll use 40 PCs for this dataset, which is deliberately generous.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/first-project/elbow-plot.png" class="img-fluid figure-img"></p>
+<figcaption>Elbow plot in the Plots pane</figcaption>
+</figure>
+</div>
 </section>
 <section id="step-6-cluster-cells" class="level2" data-number="3.10">
 <h2 data-number="3.10" class="anchored" data-anchor-id="step-6-cluster-cells"><span class="header-section-number">3.10</span> Step 6: Cluster Cells</h2>
 <p>Run the <code>cluster</code> chunk. This is the most computationally intensive step—it takes a moment.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>sponge <span class="ot">&lt;-</span> <span class="fu">FindNeighbors</span>(sponge, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">40</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>sponge <span class="ot">&lt;-</span> <span class="fu">FindClusters</span>(sponge, <span class="at">resolution =</span> <span class="dv">2</span>, <span class="at">algorithm =</span> <span class="dv">4</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>sponge <span class="ot">&lt;-</span> <span class="fu">RunUMAP</span>(sponge, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">40</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sponge <span class="ot">&lt;-</span> <span class="fu">FindNeighbors</span>(sponge, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">40</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>sponge <span class="ot">&lt;-</span> <span class="fu">FindClusters</span>(sponge, <span class="at">resolution =</span> <span class="dv">2</span>, <span class="at">algorithm =</span> <span class="dv">4</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>sponge <span class="ot">&lt;-</span> <span class="fu">RunUMAP</span>(sponge, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">40</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Three things happen here:</p>
 <ul>
 <li><strong>FindNeighbors</strong> builds a graph connecting cells with similar expression profiles (using the first 40 PCs).</li>
@@ -799,29 +893,80 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li><strong>dims = 1:40</strong> — uses the first 40 PCs. Using too few PCs can cause you to miss real clusters in the data.</li>
-<li><strong>resolution = 2</strong> — higher values produce more clusters. The right resolution depends on how many cell types you expect.</li>
+<li><strong>dims = 1:40</strong> — uses the first 40 PCs. We deliberately include more than the elbow suggests to catch rare cell types.</li>
+<li><strong>resolution = 2</strong> — higher values produce more clusters. The right resolution depends on how many cell types you expect and how finely you want to split them.</li>
 <li><strong>algorithm = 4</strong> — Leiden algorithm, which generally produces more robust clusters than the default Louvain (algorithm = 1).</li>
 </ul>
 </div>
 </div>
 </section>
-<section id="step-7-the-umap" class="level2" data-number="3.11">
-<h2 data-number="3.11" class="anchored" data-anchor-id="step-7-the-umap"><span class="header-section-number">3.11</span> Step 7: The UMAP</h2>
+<section id="step-7-visualize-with-umap" class="level2" data-number="3.11">
+<h2 data-number="3.11" class="anchored" data-anchor-id="step-7-visualize-with-umap"><span class="header-section-number">3.11</span> Step 7: Visualize with UMAP</h2>
 <p>Run the <code>fig-umap</code> chunk:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">DimPlot</span>(sponge, <span class="at">reduction =</span> <span class="st">"umap"</span>, <span class="at">label =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> <span class="fu">NoLegend</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>This is the result you’ve been working toward</strong>—a UMAP plot where each dot is a cell, colored by cluster. Cells that are close together have similar gene expression. Each cluster likely represents a distinct cell type or state.</p>
-<p>[TODO: screenshot of UMAP DimPlot in Plots pane]</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">DimPlot</span>(sponge, <span class="at">reduction =</span> <span class="st">"umap"</span>, <span class="at">label =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> <span class="fu">NoLegend</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The UMAP is one of many ways to look at single-cell data. Each dot is a cell, colored by cluster, and cells that are close together have similar gene expression. It’s a useful 2D summary of high-dimensional relationships, but it’s important not to over-interpret distances or shapes—UMAP is a visualization tool, not an analysis endpoint. The real work is figuring out what each cluster <em>is</em>, which we’ll do next.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/first-project/umap-clusters.png" class="img-fluid figure-img"></p>
+<figcaption>UMAP with cluster labels</figcaption>
+</figure>
+</div>
 </section>
-<section id="step-8-gene-expression-on-the-umap" class="level2" data-number="3.12">
-<h2 data-number="3.12" class="anchored" data-anchor-id="step-8-gene-expression-on-the-umap"><span class="header-section-number">3.12</span> Step 8: Gene Expression on the UMAP</h2>
-<p>Run the final chunk (<code>fig-features</code>):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">FeaturePlot</span>(sponge, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">"Eef1a1 A"</span>, <span class="st">"Pcna"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This overlays gene expression onto the UMAP—each cell is colored by how strongly it expresses that gene. <em>Eef1a1</em> is an elongation factor that is a strong marker for archaeocytes (the stem cell-like cells of sponges), and <em>Pcna</em> is a proliferation marker (it marks cells that are actively dividing). Notice how expression is concentrated in specific clusters, not spread uniformly. In a real analysis, you’d plot known marker genes like these to identify which cluster corresponds to which cell type.</p>
-<p>[TODO: screenshot of FeaturePlot in Plots pane]</p>
+<section id="step-8-explore-gene-expression" class="level2" data-number="3.12">
+<h2 data-number="3.12" class="anchored" data-anchor-id="step-8-explore-gene-expression"><span class="header-section-number">3.12</span> Step 8: Explore Gene Expression</h2>
+<p>Run the <code>fig-features</code> chunk:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">FeaturePlot</span>(sponge, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">"Eef1a1 A"</span>, <span class="st">"Pcna"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This overlays gene expression onto the UMAP—each cell is colored by how strongly it expresses that gene. <em>Eef1a1</em> is an elongation factor that marks archaeocytes (the stem cell-like cells of sponges), and <em>Pcna</em> is a proliferation marker (it labels cells that are actively dividing). Notice how expression is concentrated in specific clusters, not spread uniformly. This is what makes these genes useful as markers for identifying cell types.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/first-project/featureplot-eef1a1-pcna.png" class="img-fluid figure-img"></p>
+<figcaption>FeaturePlot of Eef1a1 A and Pcna</figcaption>
+</figure>
+</div>
 </section>
-<section id="render-the-document" class="level2" data-number="3.13">
-<h2 data-number="3.13" class="anchored" data-anchor-id="render-the-document"><span class="header-section-number">3.13</span> Render the Document</h2>
+<section id="step-9-identify-cell-types" class="level2" data-number="3.13">
+<h2 data-number="3.13" class="anchored" data-anchor-id="step-9-identify-cell-types"><span class="header-section-number">3.13</span> Step 9: Identify Cell Types</h2>
+<p>Now the interesting part: figuring out what each cluster actually is. There are two complementary approaches, and you’ll typically use both.</p>
+<section id="approach-1-unbiased-differential-expression" class="level3" data-number="3.13.1">
+<h3 data-number="3.13.1" class="anchored" data-anchor-id="approach-1-unbiased-differential-expression"><span class="header-section-number">3.13.1</span> Approach 1: Unbiased differential expression</h3>
+<p>We can ask which genes are most enriched in a given cluster compared to all other cells. This is <strong>unbiased</strong>—we let the data tell us what’s distinctive about a cluster without assuming anything in advance.</p>
+<p>Run the <code>de-cluster1</code> chunk to find markers for the largest cluster (cluster 1):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>markers_c1 <span class="ot">&lt;-</span> <span class="fu">FindMarkers</span>(sponge, <span class="at">ident.1 =</span> <span class="dv">1</span>, <span class="at">min.pct =</span> <span class="fl">0.25</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(markers_c1, <span class="dv">20</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The output shows genes ranked by statistical significance, with columns for log fold-change, detection rates, and adjusted p-values. Scroll through the top genes and look for patterns—are there gene families that keep coming up?</p>
+<p>Now run the <code>fig-dotplot-c1</code> chunk to visualize these markers across all clusters:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>top_genes <span class="ot">&lt;-</span> <span class="fu">rownames</span>(<span class="fu">head</span>(markers_c1, <span class="dv">15</span>))</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">DotPlot</span>(sponge, <span class="at">features =</span> top_genes) <span class="sc">+</span> <span class="fu">RotatedAxis</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>In the <strong>dot plot</strong>, dot size shows what fraction of cells in each cluster express the gene, and dot color shows average expression level. Look for genes that are strongly expressed in cluster 1 but absent or low in most other clusters.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/first-project/dotplot-de-markers.png" class="img-fluid figure-img"></p>
+<figcaption>Dot plot of top markers for cluster 1</figcaption>
+</figure>
+</div>
+<p>You’ll see ribosomal genes (names starting with <em>Rpl</em> or <em>Rps</em>) dominating the top markers. This signature—high ribosomal gene expression indicating active protein synthesis—is characteristic of <strong>archaeocytes</strong>. Archaeocytes are the stem cell-like cells of sponges, and similar transcriptional profiles mark stem cells in many invertebrates.</p>
+</section>
+<section id="approach-2-candidate-genes" class="level3" data-number="3.13.2">
+<h3 data-number="3.13.2" class="anchored" data-anchor-id="approach-2-candidate-genes"><span class="header-section-number">3.13.2</span> Approach 2: Candidate genes</h3>
+<p>The complementary strategy is to take genes you already know something about and look at where they’re expressed. This is the <strong>candidate gene</strong> approach.</p>
+<p><em>Piwi</em> genes are highly conserved markers of stem cells and germline across animals. If archaeocytes are truly stem cell-like, they should express <em>Piwi</em>. Run the <code>find-piwi</code> chunk to search for it:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span>(<span class="st">"iwi"</span>, <span class="fu">rownames</span>(sponge), <span class="at">value =</span> <span class="cn">TRUE</span>, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This is a useful trick—when you don’t know the exact gene name in a dataset, <code>grep()</code> lets you search by partial match. You should see <code>Piwil2</code> and <code>Piwil1/3/4</code> in the results. Now run the <code>fig-piwi</code> chunk to see where <em>Piwil2</em> is expressed:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">VlnPlot</span>(sponge, <span class="at">features =</span> <span class="st">"Piwil2"</span>, <span class="at">pt.size =</span> <span class="fl">0.1</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">FeaturePlot</span>(sponge, <span class="at">features =</span> <span class="st">"Piwil2"</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> p2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <strong>VlnPlot</strong> shows which clusters express <em>Piwil2</em> most strongly. The <strong>FeaturePlot</strong> shows where those cells sit on the UMAP. If <em>Piwil2</em> expression is concentrated in the same cluster that showed the ribosomal signature in the DE analysis, that’s convergent evidence: two independent approaches pointing to the same biological identity.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/first-project/piwi-expression.png" class="img-fluid figure-img"></p>
+<figcaption>Piwi expression — VlnPlot and FeaturePlot</figcaption>
+</figure>
+</div>
+<p>This two-pronged strategy—unbiased differential expression to discover what’s distinctive, plus candidate genes to confirm identity—is a standard approach for annotating clusters in single-cell data.</p>
+</section>
+</section>
+<section id="render-the-document" class="level2" data-number="3.14">
+<h2 data-number="3.14" class="anchored" data-anchor-id="render-the-document"><span class="header-section-number">3.14</span> Render the Document</h2>
 <p>So far you’ve been running code <strong>interactively</strong>—chunk by chunk, with results appearing in the console, environment pane, and plots pane. This is how you develop and explore.</p>
 <p>Now let’s <strong>render</strong> the document. Rendering runs every code chunk in a <strong>fresh R session</strong> from top to bottom, and produces a polished HTML report. This is important because:</p>
 <ul>
@@ -830,11 +975,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>It produces a <strong>shareable document</strong> with all code, results, and narrative together</li>
 </ul>
 <p>Open the terminal (Cmd+` or Ctrl+`) and run:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>quarto render scripts/01_seurat_basics.qmd</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>mkdir -p outs/01_seurat_basics</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>mv scripts/01_seurat_basics.html outs/01_seurat_basics/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>quarto render scripts/01_seurat_basics.qmd</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>mkdir -p outs/01_seurat_basics</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>mv scripts/01_seurat_basics.html outs/01_seurat_basics/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The first command renders the document—Quarto re-executes all your R code from scratch. Then we move the HTML output into the <code>outs/</code> folder, following the lab convention of keeping script outputs separate from source code. When it finishes, open <code>outs/01_seurat_basics/01_seurat_basics.html</code> in your browser to see the full analysis as a formatted report—code, plots, and your written explanations all together.</p>
-<p>[TODO: screenshot of rendered HTML report in browser]</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/first-project/rendered-html-report.png" class="img-fluid figure-img"></p>
+<figcaption>The rendered HTML report in a browser</figcaption>
+</figure>
+</div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -849,8 +999,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="what-youve-learned" class="level2" data-number="3.14">
-<h2 data-number="3.14" class="anchored" data-anchor-id="what-youve-learned"><span class="header-section-number">3.14</span> What You’ve Learned</h2>
+<section id="what-youve-learned" class="level2" data-number="3.15">
+<h2 data-number="3.15" class="anchored" data-anchor-id="what-youve-learned"><span class="header-section-number">3.15</span> What You’ve Learned</h2>
 <p>You’ve now used all of Positron’s key features:</p>
 <table class="caption-top table">
 <colgroup>
@@ -882,7 +1032,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td><strong>Plots pane</strong></td>
-<td>Viewing violin plots, UMAP, and feature plots (with pop-out)</td>
+<td>Viewing violin plots, UMAP, feature plots, dot plots (with pop-out)</td>
 </tr>
 <tr class="even">
 <td><strong>Terminal</strong></td>
@@ -890,20 +1040,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>And you’ve run a basic single-cell analysis pipeline:</p>
+<p>And you’ve run a single-cell analysis from start to finish:</p>
 <ol type="1">
 <li><strong>Loaded</strong> a 10X count matrix into a Seurat object</li>
 <li><strong>Inspected</strong> QC metrics to check data quality across samples</li>
 <li><strong>Normalized</strong> and identified highly variable genes</li>
 <li><strong>Scaled</strong>, ran <strong>PCA</strong>, and chose dimensions with an elbow plot</li>
 <li><strong>Clustered</strong> cells with the Leiden algorithm</li>
-<li><strong>Visualized</strong> clusters on a UMAP and plotted gene expression</li>
+<li><strong>Visualized</strong> clusters on a UMAP and explored gene expression</li>
+<li><strong>Identified cell types</strong> using both unbiased differential expression and candidate gene markers</li>
 </ol>
-<p>This is the starting point for every single-cell analysis in the lab. From here you’d identify cell types using marker genes, run differential expression, and explore biology—but the tools and workflow are exactly what you’ve just practiced.</p>
+<p>This is the starting point for single-cell analysis in the lab. The tools and workflow you’ve practiced here—interactive development in Positron, Quarto for reproducible reports, Seurat for analysis—are what you’ll use for your own projects.</p>
 </section>
-<section id="try-claude-code" class="level2" data-number="3.15">
-<h2 data-number="3.15" class="anchored" data-anchor-id="try-claude-code"><span class="header-section-number">3.15</span> Try Claude Code</h2>
-<p>You installed Claude Code in the previous chapter. Now that you have a real project, try it out. Open the Claude Code panel in Positron’s sidebar (or run <code>claude</code> in the terminal) and try a prompt like:</p>
+<section id="try-claude-code" class="level2" data-number="3.16">
+<h2 data-number="3.16" class="anchored" data-anchor-id="try-claude-code"><span class="header-section-number">3.16</span> Try Claude Code</h2>
+<p>You installed Claude Code in the previous chapter. Now that you have a real project with real data, try it out. Open the Claude Code panel in Positron’s sidebar (or run <code>claude</code> in the terminal).</p>
+<p>Sponges don’t have canonical muscles, but the flat epithelial cells covering the sponge surface—<strong>pinacocytes</strong>—have been described to express muscle-related genes like myosins. Let’s explore this with Claude Code:</p>
 <div class="callout callout-style-default callout-warning callout-titled" title="Claude Code">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -914,17 +1066,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Claude Code can read your project files and answer questions about your analysis in context.</p>
+<p>Claude Code can read your project files, understand your analysis, and write R code in context.</p>
 <blockquote class="blockquote">
-<p>I just ran a Seurat analysis on Spongilla data and got clusters on a UMAP. Can you look at the script in <code>scripts/01_seurat_basics.qmd</code> and suggest some marker genes I could plot to start identifying cell types?</p>
+<p>I’m analyzing Spongilla single-cell data with Seurat. Can you find all myosin genes in the dataset (search for “Myh” and “Myl” in the gene names) and make FeaturePlots and VlnPlots for any that show interesting expression patterns? The Seurat object is called <code>sponge</code>.</p>
 </blockquote>
-<p>Claude will read your script, understand the analysis you’ve run, and suggest biologically relevant genes to explore—drawing on knowledge of sponge cell biology and single-cell analysis methods.</p>
+<p>Claude will search the gene names in your Seurat object, identify the myosin genes present, check their expression patterns, and create plots of the ones that show cluster-specific expression—all without you needing to write the R code yourself.</p>
 </div>
 </div>
 <p>Throughout this book, you’ll see orange boxes like this one showing how Claude Code can help with each topic. Try the prompts as you encounter them—Claude Code works best when you give it specific context about what you’re working on.</p>
 </section>
-<section id="whats-next" class="level2" data-number="3.16">
-<h2 data-number="3.16" class="anchored" data-anchor-id="whats-next"><span class="header-section-number">3.16</span> What’s Next</h2>
+<section id="whats-next" class="level2" data-number="3.17">
+<h2 data-number="3.17" class="anchored" data-anchor-id="whats-next"><span class="header-section-number">3.17</span> What’s Next</h2>
 <ul>
 <li><strong>Part 2</strong> dives deeper into each tool: the <a href="../part2/positron.html">Positron chapter</a> covers more features and keyboard shortcuts, the <a href="../part2/quarto.html">Quarto chapter</a> covers document syntax and options, and the <a href="../part2/project-organization.html">Project Organization chapter</a> explains the lab’s conventions for structuring projects.</li>
 <li><strong>The <a href="../part3/setup-walkthrough.html">Workflows</a> section</strong> shows how to set up a full lab project with Git, conda, proper folder structure, and GitHub—the production infrastructure you’ll use for real analyses.</li>

@@ -534,7 +534,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#install-the-positron-extension" id="toc-install-the-positron-extension" class="nav-link" data-scroll-target="#install-the-positron-extension"><span class="header-section-number">2.4.4</span> Install the Positron Extension</a></li>
   </ul></li>
   <li><a href="#verification-checklist" id="toc-verification-checklist" class="nav-link" data-scroll-target="#verification-checklist"><span class="header-section-number">2.5</span> Verification Checklist</a></li>
-  <li><a href="#what-about-git-conda-and-github" id="toc-what-about-git-conda-and-github" class="nav-link" data-scroll-target="#what-about-git-conda-and-github"><span class="header-section-number">2.6</span> What About Git, Conda, and GitHub?</a></li>
+  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting"><span class="header-section-number">2.6</span> Troubleshooting</a>
+  <ul class="collapse">
+  <li><a href="#command-not-found-errors" id="toc-command-not-found-errors" class="nav-link" data-scroll-target="#command-not-found-errors"><span class="header-section-number">2.6.1</span> “Command not found” errors</a></li>
+  <li><a href="#sec-windows-execution-policy" id="toc-sec-windows-execution-policy" class="nav-link" data-scroll-target="#sec-windows-execution-policy"><span class="header-section-number">2.6.2</span> Windows: “Running scripts is disabled on this system”</a></li>
+  </ul></li>
+  <li><a href="#what-about-git-conda-and-github" id="toc-what-about-git-conda-and-github" class="nav-link" data-scroll-target="#what-about-git-conda-and-github"><span class="header-section-number">2.7</span> What About Git, Conda, and GitHub?</a></li>
   </ul>
 </nav>
     </div>
@@ -592,7 +597,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>When you first open Positron, it may ask to install recommended extensions. Accept these defaults.</p>
+<p>When you first open Positron, it may ask to install recommended extensions. Accept these defaults. You may also see a message in the <strong>Source Control</strong> panel (left sidebar) about Git not being installed — just ignore this for now. We’ll install Git later in <a href="../part2/git-github.html">Part 2</a>.</p>
 </div>
 </div>
 </section>
@@ -624,6 +629,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>Then open a terminal and install the latest R version:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>rig add release</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This installs the current stable release of R (4.5.x as of this writing). You want at least <strong>R 4.4 or newer</strong> — Positron works best with recent R versions, and newer Seurat releases require R 4.4+.</p>
 <p>After the install finishes, <strong>close and reopen your terminal</strong>, then verify the installation:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>R --version</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -656,6 +662,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Open a <strong>new</strong> PowerShell window (this is important — a fresh window picks up the new installation) and install R:</li>
 </ol>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>rig add release</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This installs the current stable release (4.5.x as of this writing). You want at least <strong>R 4.4 or newer</strong>.</p>
 <ol start="4" type="1">
 <li><strong>Close and reopen PowerShell</strong>, then verify:</li>
 </ol>
@@ -697,7 +704,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>You need Node.js 18+ installed. In your terminal:</p>
 <p><strong>macOS</strong> (using Homebrew):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>brew install node</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Windows:</strong> Download and install from <a href="https://nodejs.org">https://nodejs.org</a> (choose the LTS version). After installing, <strong>close and reopen PowerShell</strong>.</p>
+<p><strong>Windows:</strong> Download and install from <a href="https://nodejs.org">https://nodejs.org</a> (choose the LTS version). After installing, <strong>close and reopen PowerShell</strong>. If you get a “running scripts is disabled” error in the next step, see <a href="#sec-windows-execution-policy">the fix below</a>.</p>
 </section>
 <section id="install-claude-code" class="level3" data-number="2.4.2">
 <h3 data-number="2.4.2" class="anchored" data-anchor-id="install-claude-code"><span class="header-section-number">2.4.2</span> Install Claude Code</h3>
@@ -759,28 +766,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Claude will check that paths are correct, versions are compatible, and flag common installation issues like missing PATH entries or conflicting installations.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Troubleshooting
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If any command fails with “command not found”:</p>
-<ul>
-<li><strong>macOS</strong>: Try opening a new terminal window</li>
-<li><strong>Windows</strong>: Try opening a new PowerShell window</li>
-<li>Check that the tool’s install directory is in your PATH</li>
-</ul>
-<p>See <a href="../part3/troubleshooting.html">Troubleshooting</a> for common issues.</p>
-</div>
-</div>
 </section>
-<section id="what-about-git-conda-and-github" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="what-about-git-conda-and-github"><span class="header-section-number">2.6</span> What About Git, Conda, and GitHub?</h2>
+<section id="troubleshooting" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="troubleshooting"><span class="header-section-number">2.6</span> Troubleshooting</h2>
+<p>If you run into problems, check the solutions below before moving on. See <a href="../part3/troubleshooting.html">Troubleshooting</a> for additional common issues.</p>
+<section id="command-not-found-errors" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="command-not-found-errors"><span class="header-section-number">2.6.1</span> “Command not found” errors</h3>
+<p>If any command fails with “command not found” (macOS) or “is not recognized” (Windows), try opening a <strong>new terminal window</strong>. Newly installed tools often aren’t available until you start a fresh terminal session.</p>
+</section>
+<section id="sec-windows-execution-policy" class="level3" data-number="2.6.2">
+<h3 data-number="2.6.2" class="anchored" data-anchor-id="sec-windows-execution-policy"><span class="header-section-number">2.6.2</span> Windows: “Running scripts is disabled on this system”</h3>
+<p>If you see this error when running <code>npm install</code> on Windows:</p>
+<pre><code>npm : File C:\Program Files\nodejs\npm.ps1 cannot be loaded because running
+scripts is disabled on this system.</code></pre>
+<p>Windows PowerShell blocks scripts by default. You need to change the execution policy:</p>
+<ol type="1">
+<li>Open PowerShell <strong>as Administrator</strong> — search for “PowerShell” in the Start menu, right-click it, and select <strong>Run as administrator</strong></li>
+<li>Run this command:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="3" type="1">
+<li>Type <strong>Y</strong> and press Enter to confirm</li>
+</ol>
+<p>This allows locally created scripts (like npm) to run while still requiring downloaded scripts to be signed. After this, close the administrator PowerShell and open a regular PowerShell window to continue the installation.</p>
+</section>
+</section>
+<section id="what-about-git-conda-and-github" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="what-about-git-conda-and-github"><span class="header-section-number">2.7</span> What About Git, Conda, and GitHub?</h2>
 <p>You’ll install these later when you need them:</p>
 <ul>
 <li><strong>Conda</strong> (Python environments) — installed in the <a href="../part2/conda.html">Conda chapter</a></li>
