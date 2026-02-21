@@ -6,7 +6,7 @@ Several steps below require running commands in a **terminal** (also called a co
 
 ## 1. Positron
 
-Positron is a data science IDE (integrated development environment) built by the makers of RStudio. It combines the best features of RStudio—like an integrated data viewer, variable explorer, and plot pane—with the modern editing experience of VS Code. Unlike RStudio, Positron treats both R and Python equally, making it ideal for labs that work in both languages. It's also highly extensible, with access to the full set of VS Code extensions, including Claude Code.
+Positron is a data science IDE (Integrated Development Environment) built by the makers of RStudio. It combines the best features of RStudio, like an integrated data viewer, variable explorer, and plot pane, with the modern editing experience of VS Code. Unlike RStudio, Positron treats both R and Python equally, making it ideal for working in both languages. It's also highly moddable, with access to the full set of VS Code extensions, including Claude Code.
 
 ### macOS
 

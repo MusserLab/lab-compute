@@ -5,33 +5,28 @@
 
 ## Still Open
 
-### Screenshots
+### Screenshots (3 remaining)
 
-#### first-project.qmd — DONE (14 images in `images/first-project/`)
-7 user-provided screenshots + 7 R-generated plots. All inserted into chapter.
+first-project.qmd is done (14 images in `images/first-project/`).
 
-#### Other chapters (3 screenshots remaining)
-- [ ] Positron interface with labeled panes (`positron.qmd:17`)
-- [ ] Positron Data Viewer with dataframe open (`positron.qmd:68`)
-- [ ] Positron with .qmd, console, and Data Viewer (`quarto.qmd:58`)
+- [ ] Positron interface with labeled panes (`positron.qmd:29`)
+- [ ] Positron Data Viewer with dataframe open (`positron.qmd:80`)
+- [ ] Positron with .qmd, console, and Data Viewer (`quarto.qmd:60`)
 
 ### Content
+- [ ] Update "Work in Progress" callout in `index.qmd:19-22` — all 21 chapters are substantive now, no stubs or placeholders remain. Soften or remove.
 - [ ] Review Quick Start section for clarity and completeness
 - [ ] Test installation instructions on a fresh machine (macOS and Windows)
 - [ ] Have a student test the Quick Start walkthrough
 - [ ] Review `first-project.qmd` — ensure all steps work end-to-end
-- [ ] Check cross-references between chapters (especially old first-project links)
-- [ ] Consider subsetting Spongilla data more aggressively (~10K cells → ~2-3K) to get matrix.mtx.gz under 50 MB (GitHub recommended limit; currently 93.5 MB)
+- [ ] Consider subsetting Spongilla data more aggressively (~10K cells → ~2-3K) to get matrix.mtx.gz under 50 MB (GitHub recommended limit; currently 94 MB)
 - [ ] **Git/GitHub**: Add section on GitHub Classroom (if using for courses)
 
 ### Part 4: Workflows
 - [ ] **Starting Project**: Add template repo link once created
 - [ ] **Collaborating**: Add section on code review practices
-- [ ] **Reproducibility**: Consider adding Docker basics
-- [ ] **Troubleshooting**: Collect common student questions and add answers
 
 ### Appendices
-- [ ] Add lab-specific templates
 - [ ] Add links to external resources
 
 ## Ideas for Future Chapters
@@ -90,6 +85,10 @@
   - Ch. 14: Full rewrite — outs/ not output/, flat data/ not data/raw+processed/
   - Appendix C: All templates updated to match skills
   - Consistency fixes across 5 additional files (zero remaining old-pattern references)
+- [x] Cross-references audit — all internal links and heading anchors verified clean (Feb 2026 audit)
+- [x] Reproducibility chapter: Docker basics section added (`reproducibility.qmd:222`)
+- [x] Troubleshooting chapter: substantive content (323 lines, common tasks and answers)
+- [x] Appendix C (Templates): lab-specific templates added (432 lines)
 
 ---
 
