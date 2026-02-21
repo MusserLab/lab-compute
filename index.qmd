@@ -31,7 +31,7 @@ After working through Part 1, you should be able to:
 4. **Render** a Quarto document into a self-contained HTML report
 5. Use **renv** to manage R package dependencies for a project
 
-::: {.callout-warning title="Claude Code"}
+::: {.callout-warning .claude-callout title="Claude Code"}
 Throughout this guide, you'll see orange boxes like this one. Each shows how **Claude Code** — an AI coding assistant — can help with that chapter's topic. Each box has an example prompt and a brief explanation of what Claude Code will do.
 
 These aren't magic incantations — they're examples of how to ask for help effectively. The key is being **specific**: include the error message, the file name, or what you're trying to accomplish. Claude Code works best when you give it context.

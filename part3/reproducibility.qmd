@@ -54,7 +54,7 @@ Explain:
 
 ## Reproducibility Checklist
 
-::: {.callout-warning title="Claude Code"}
+::: {.callout-warning .claude-callout title="Claude Code"}
 Claude Code can audit your scripts for common reproducibility pitfalls.
 
 > Can you check `analysis/01_qc.qmd` for reproducibility issues? Look for hardcoded paths, missing package declarations, missing seed settings, or code that might behave differently on another machine.

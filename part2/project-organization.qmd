@@ -102,7 +102,7 @@ outs/
 
 **This structure encodes provenance.** When you see a file in `outs/03_differential/`, you know exactly which script created it.
 
-::: {.callout-warning title="Claude Code"}
+::: {.callout-warning .claude-callout title="Claude Code"}
 Claude Code can review your project layout and suggest improvements based on the lab's conventions.
 
 > Here's my project folder structure: [paste output of `ls -R`]. I'm analyzing RNA-seq data from three conditions with time points. Does this organization make sense?

@@ -41,7 +41,7 @@ git init
 
 Next, create a `.gitignore` file to tell Git which files to skip—large data files, generated outputs, and system files don't belong in version control. See the [Git & GitHub](../part2/git-github.qmd) chapter for details on what each line means.
 
-::: {.callout-warning title="Claude Code"}
+::: {.callout-warning .claude-callout title="Claude Code"}
 Claude Code can generate configuration files tailored to your specific project setup.
 
 > I'm starting a new R project that will also use Python for some preprocessing. Can you create a .gitignore file? I'm using renv for R packages and conda for Python.

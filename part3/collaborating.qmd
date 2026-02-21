@@ -123,7 +123,7 @@ git branch -d my-feature  # Delete local branch
 
 Conflicts happen when two people change the same lines.
 
-::: {.callout-warning title="Claude Code"}
+::: {.callout-warning .claude-callout title="Claude Code"}
 Claude Code can explain merge conflicts and help you resolve them safely.
 
 > I have a merge conflict in `analysis.qmd` with these conflict markers: [paste the conflicting section]. My collaborator changed the threshold. Which should I keep?

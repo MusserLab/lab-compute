@@ -725,7 +725,7 @@ This records:
 
 ## Common Issues
 
-::: {.callout-warning title="Claude Code"}
+::: {.callout-warning .claude-callout title="Claude Code"}
 Claude Code can debug render failures, especially the common case where code works interactively but fails during rendering.
 
 > When I run `quarto render analysis.qmd`, I get this error: [paste error]. The code runs fine interactively in the console. What's going wrong?

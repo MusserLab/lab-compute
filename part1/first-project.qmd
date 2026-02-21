@@ -462,7 +462,7 @@ You installed Claude Code in the previous chapter. Now that you have a real proj
 
 Sponges don't have canonical muscles, but the flat epithelial cells covering the sponge surface—**pinacocytes**—have been described to express muscle-related genes like myosins. Let's explore this with Claude Code:
 
-::: {.callout-warning title="Claude Code"}
+::: {.callout-warning .claude-callout title="Claude Code"}
 Claude Code can read your project files, understand your analysis, and write R code in context.
 
 > I'm analyzing Spongilla single-cell data with Seurat. Can you find all myosin genes in the dataset (search for "Myh" and "Myl" in the gene names) and make FeaturePlots and VlnPlots for any that show interesting expression patterns? The Seurat object is called `sponge`.
@@ -470,7 +470,7 @@ Claude Code can read your project files, understand your analysis, and write R c
 Claude will search the gene names in your Seurat object, identify the myosin genes present, check their expression patterns, and create plots of the ones that show cluster-specific expression—all without you needing to write the R code yourself.
 :::
 
-Throughout this book, you'll see orange boxes like this one showing how Claude Code can help with each topic. Try the prompts as you encounter them—Claude Code works best when you give it specific context about what you're working on.
+Try the prompts in these orange boxes as you encounter them throughout the book—Claude Code works best when you give it specific context about what you're working on.
 
 ## What's Next
 

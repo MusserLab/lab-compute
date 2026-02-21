@@ -182,7 +182,7 @@ claude --version
 
 All commands should return version numbers without errors. Open Positron and confirm it launches.
 
-::: {.callout-warning title="Claude Code"}
+::: {.callout-warning .claude-callout title="Claude Code"}
 Claude Code can help troubleshoot installation problems by checking your paths, versions, and configuration.
 
 > I just installed R and Quarto. Here's what I get when I run the version commands: [paste your output]. Does this look right, or is something misconfigured?

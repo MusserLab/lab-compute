@@ -198,7 +198,7 @@ With your `.claude/CLAUDE.md` in place:
 claude
 ```
 
-::: {.callout-warning title="Claude Code"}
+::: {.callout-warning .claude-callout title="Claude Code"}
 Claude Code can scaffold project configuration files based on your specific setup.
 
 > I'm starting a new project analyzing proteomics data from cell cultures. The data is in `data/`, I'm using R with renv, and I'll render with Quarto. Can you create a starter `.claude/CLAUDE.md` for this project?

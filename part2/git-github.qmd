@@ -303,7 +303,7 @@ When this happens, the conflicting file will show both versions with special mar
 
 Conflicts are less common than you might fear, especially on solo projects. Pull before you start working, and you'll rarely encounter them.
 
-::: {.callout-warning title="Claude Code"}
+::: {.callout-warning .claude-callout title="Claude Code"}
 Claude Code can explain confusing Git messages and suggest safe next steps.
 
 > Git is showing me this and I'm not sure what to do: `Your branch and 'origin/main' have diverged, and have 2 and 3 different commits each, respectively.` What does this mean and how do I fix it?

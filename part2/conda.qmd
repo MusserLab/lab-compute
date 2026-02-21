@@ -186,7 +186,7 @@ This includes exact versions and platform-specific builds—useful for debugging
 conda env create -f environment.yml
 ```
 
-::: {.callout-warning title="Claude Code"}
+::: {.callout-warning .claude-callout title="Claude Code"}
 Claude Code can diagnose environment issues by checking which environment is active, what's installed, and where packages are missing.
 
 > I'm getting `ModuleNotFoundError: No module named 'pandas'` when I run my script, but I thought I installed it. The environment is `my-project` and here's what `conda list` shows: [paste output]. What's wrong?

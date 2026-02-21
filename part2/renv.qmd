@@ -190,7 +190,7 @@ This tells you if packages are:
 
 Run `renv::status()` before committing to ensure your lockfile is current.
 
-::: {.callout-warning title="Claude Code"}
+::: {.callout-warning .claude-callout title="Claude Code"}
 Claude Code can interpret renv status messages and tell you whether to `restore()` or `snapshot()`.
 
 > I'm getting `Project 'my-project' is out-of-sync` when I start R. Here's the output of `renv::status()`: [paste output]. Should I restore or snapshot?

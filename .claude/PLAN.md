@@ -78,6 +78,7 @@ first-project.qmd is done (14 images in `images/first-project/`).
 - [x] Cleared styles.css (custom callout CSS removed)
 - [x] Added RStudio-to-Positron translation table in positron.qmd
 - [x] Orange "Ask Claude" callout boxes — CSS + 14 boxes across all chapters
+- [x] Claude Code callout icon: chat-dots (speech bubble) instead of warning triangle via `.claude-callout` CSS class
 - [x] Convention alignment: reconciled book with Claude Code skills (script-organization, quarto-docs, conda-env, new-project)
   - Ch. 5: Added subdirectories, exploratory/, lifecycle, BUILD_INFO, helpers, ~/lib, Parquet
   - Ch. 6: Updated YAML/setup templates, expanded Python QMD to first-class, added R vs Python table
@@ -95,6 +96,12 @@ first-project.qmd is done (14 images in `images/first-project/`).
 ## Session Notes
 
 _Add notes here during working sessions_
+
+### 2026-02-21
+- Claude Code callout icon: replaced warning triangle with chat-dots (speech bubble) via CSS override in `styles.css`
+- Added `.claude-callout` class to all 15 Claude Code boxes across 14 files; 2 plain `.callout-warning` boxes unchanged
+- Fixed intro text in first-project.qmd that introduced boxes as if for the first time (a box already appeared in installation.qmd)
+- Updated CLAUDE.md writing convention with new callout syntax
 
 ### 2026-02-20
 - Session wrap-up and commit: all first-project work from Feb 18-19 sessions
