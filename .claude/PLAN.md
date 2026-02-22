@@ -102,6 +102,8 @@ _Add notes here during working sessions_
 - Added `.claude-callout` class to all 15 Claude Code boxes across 14 files; 2 plain `.callout-warning` boxes unchanged
 - Fixed intro text in first-project.qmd that introduced boxes as if for the first time (a box already appeared in installation.qmd)
 - Updated CLAUDE.md writing convention with new callout syntax
+- `getting-started.qmd`: Added "Before You Start" prerequisites section with checklist and link back to installation chapter; reorganized access methods (Positron primary, terminal secondary)
+- `installation.qmd`: Clarified Claude Code authentication — explicitly warns to choose OAuth not API key, explains billing difference, includes `claude logout` recovery
 
 ### 2026-02-20
 - Session wrap-up and commit: all first-project work from Feb 18-19 sessions

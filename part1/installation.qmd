@@ -152,7 +152,9 @@ Run Claude Code once to set up authentication:
 claude
 ```
 
-When prompted, choose **Use OAuth (Anthropic account)** and press Enter. This will open a browser window where you log in with your Anthropic account — the same email and password you use for [claude.ai](https://claude.ai). Once you approve the connection in the browser, Claude Code is ready to use in the terminal.
+Claude Code will ask how you want to authenticate. You'll see several options — make sure you choose **Use OAuth (Anthropic account)**, not "Use an API key." The API key option connects to a separate pay-per-use billing system, which is not what you want. OAuth connects to your existing Claude Pro subscription at no extra cost.
+
+This will open a browser window where you log in with your Anthropic account — the same email and password you use for [claude.ai](https://claude.ai). Once you approve the connection in the browser, Claude Code is ready to use in the terminal. If you accidentally chose the API key option, run `claude logout` and then `claude` again to pick OAuth.
 
 ::: {.callout-note}
 ## Anthropic Account

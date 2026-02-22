@@ -2,9 +2,18 @@
 
 Claude Code is an AI assistant that works directly with your project files. Unlike web-based AI chat, it can read your code, edit files, run commands, and search across your codebase, all within the context of your project.
 
-## Accessing Claude Code
+## Before You Start
 
-### Positron Extension (Recommended)
+If you followed the [Installation chapter](../part1/installation.qmd), you've already installed Claude Code, authenticated, and added the Positron extension. If you skipped that chapter or need a refresher, here's what you need:
+
+1. **Node.js** installed ([nodejs.org](https://nodejs.org))
+2. **Claude Code CLI** installed: `npm install -g @anthropic-ai/claude-code`
+3. **Authenticated**: run `claude` in your terminal once and log in with your Anthropic account
+4. **Positron extension**: Extensions view → search "Claude Code" → Install
+
+If any of those steps are unfamiliar, work through [Section 2.4](../part1/installation.qmd#claude-code) first.
+
+## Using Claude Code in Positron
 
 The easiest way to use Claude Code is through the Positron extension. This keeps your code, terminal, and AI assistant in one window.
 
@@ -24,15 +33,9 @@ The extension automatically knows which project you're working in and can see yo
 | New conversation | Click "+" or `Cmd+N` in the Claude panel |
 | Reference a file | Type `@` and start typing the filename |
 
-### Other Ways to Access Claude Code
+### Terminal Alternative
 
-You can also use Claude Code through:
-
-- **Terminal/CLI** — Run `claude` from your project directory ([Anthropic docs](https://docs.anthropic.com/en/docs/claude-code))
-- **Desktop app** — Claude for Mac or claude.app
-- **Web** — claude.ai (no file access, but useful for general questions)
-
-This guide focuses on the Positron extension since it integrates with your development workflow.
+You can also run Claude Code directly in any terminal by navigating to your project directory and typing `claude`. This gives you the same capabilities as the extension — reading files, editing code, running commands — but in a terminal interface rather than a sidebar panel. Some people prefer this, especially for quick one-off questions or when working outside Positron.
 
 ## What Claude Code Can Do
 
