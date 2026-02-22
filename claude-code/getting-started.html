@@ -475,22 +475,22 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#accessing-claude-code" id="toc-accessing-claude-code" class="nav-link active" data-scroll-target="#accessing-claude-code"><span class="header-section-number">10.1</span> Accessing Claude Code</a>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start"><span class="header-section-number">10.1</span> Before You Start</a></li>
+  <li><a href="#using-claude-code-in-positron" id="toc-using-claude-code-in-positron" class="nav-link" data-scroll-target="#using-claude-code-in-positron"><span class="header-section-number">10.2</span> Using Claude Code in Positron</a>
   <ul class="collapse">
-  <li><a href="#positron-extension-recommended" id="toc-positron-extension-recommended" class="nav-link" data-scroll-target="#positron-extension-recommended"><span class="header-section-number">10.1.1</span> Positron Extension (Recommended)</a></li>
-  <li><a href="#other-ways-to-access-claude-code" id="toc-other-ways-to-access-claude-code" class="nav-link" data-scroll-target="#other-ways-to-access-claude-code"><span class="header-section-number">10.1.2</span> Other Ways to Access Claude Code</a></li>
+  <li><a href="#terminal-alternative" id="toc-terminal-alternative" class="nav-link" data-scroll-target="#terminal-alternative"><span class="header-section-number">10.2.1</span> Terminal Alternative</a></li>
   </ul></li>
-  <li><a href="#what-claude-code-can-do" id="toc-what-claude-code-can-do" class="nav-link" data-scroll-target="#what-claude-code-can-do"><span class="header-section-number">10.2</span> What Claude Code Can Do</a></li>
-  <li><a href="#when-to-use-claude-code" id="toc-when-to-use-claude-code" class="nav-link" data-scroll-target="#when-to-use-claude-code"><span class="header-section-number">10.3</span> When to Use Claude Code</a></li>
-  <li><a href="#the-mental-model" id="toc-the-mental-model" class="nav-link" data-scroll-target="#the-mental-model"><span class="header-section-number">10.4</span> The Mental Model</a>
+  <li><a href="#what-claude-code-can-do" id="toc-what-claude-code-can-do" class="nav-link" data-scroll-target="#what-claude-code-can-do"><span class="header-section-number">10.3</span> What Claude Code Can Do</a></li>
+  <li><a href="#when-to-use-claude-code" id="toc-when-to-use-claude-code" class="nav-link" data-scroll-target="#when-to-use-claude-code"><span class="header-section-number">10.4</span> When to Use Claude Code</a></li>
+  <li><a href="#the-mental-model" id="toc-the-mental-model" class="nav-link" data-scroll-target="#the-mental-model"><span class="header-section-number">10.5</span> The Mental Model</a>
   <ul class="collapse">
-  <li><a href="#capable-but-not-omniscient" id="toc-capable-but-not-omniscient" class="nav-link" data-scroll-target="#capable-but-not-omniscient"><span class="header-section-number">10.4.1</span> 1. Capable but not omniscient</a></li>
-  <li><a href="#context-matters" id="toc-context-matters" class="nav-link" data-scroll-target="#context-matters"><span class="header-section-number">10.4.2</span> 2. Context matters</a></li>
-  <li><a href="#verify-then-trust" id="toc-verify-then-trust" class="nav-link" data-scroll-target="#verify-then-trust"><span class="header-section-number">10.4.3</span> 3. Verify, then trust</a></li>
+  <li><a href="#capable-but-not-omniscient" id="toc-capable-but-not-omniscient" class="nav-link" data-scroll-target="#capable-but-not-omniscient"><span class="header-section-number">10.5.1</span> 1. Capable but not omniscient</a></li>
+  <li><a href="#context-matters" id="toc-context-matters" class="nav-link" data-scroll-target="#context-matters"><span class="header-section-number">10.5.2</span> 2. Context matters</a></li>
+  <li><a href="#verify-then-trust" id="toc-verify-then-trust" class="nav-link" data-scroll-target="#verify-then-trust"><span class="header-section-number">10.5.3</span> 3. Verify, then trust</a></li>
   </ul></li>
-  <li><a href="#a-quick-example" id="toc-a-quick-example" class="nav-link" data-scroll-target="#a-quick-example"><span class="header-section-number">10.5</span> A Quick Example</a></li>
-  <li><a href="#reviewing-changes" id="toc-reviewing-changes" class="nav-link" data-scroll-target="#reviewing-changes"><span class="header-section-number">10.6</span> Reviewing Changes</a></li>
-  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">10.7</span> Next Steps</a></li>
+  <li><a href="#a-quick-example" id="toc-a-quick-example" class="nav-link" data-scroll-target="#a-quick-example"><span class="header-section-number">10.6</span> A Quick Example</a></li>
+  <li><a href="#reviewing-changes" id="toc-reviewing-changes" class="nav-link" data-scroll-target="#reviewing-changes"><span class="header-section-number">10.7</span> Reviewing Changes</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">10.8</span> Next Steps</a></li>
   </ul>
 </nav>
     </div>
@@ -518,10 +518,19 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Claude Code is an AI assistant that works directly with your project files. Unlike web-based AI chat, it can read your code, edit files, run commands, and search across your codebase, all within the context of your project.</p>
-<section id="accessing-claude-code" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="accessing-claude-code"><span class="header-section-number">10.1</span> Accessing Claude Code</h2>
-<section id="positron-extension-recommended" class="level3" data-number="10.1.1">
-<h3 data-number="10.1.1" class="anchored" data-anchor-id="positron-extension-recommended"><span class="header-section-number">10.1.1</span> Positron Extension (Recommended)</h3>
+<section id="before-you-start" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="before-you-start"><span class="header-section-number">10.1</span> Before You Start</h2>
+<p>If you followed the <a href="../part1/installation.html">Installation chapter</a>, you’ve already installed Claude Code, authenticated, and added the Positron extension. If you skipped that chapter or need a refresher, here’s what you need:</p>
+<ol type="1">
+<li><strong>Node.js</strong> installed (<a href="https://nodejs.org">nodejs.org</a>)</li>
+<li><strong>Claude Code CLI</strong> installed: <code>npm install -g @anthropic-ai/claude-code</code></li>
+<li><strong>Authenticated</strong>: run <code>claude</code> in your terminal once and log in with your Anthropic account</li>
+<li><strong>Positron extension</strong>: Extensions view → search “Claude Code” → Install</li>
+</ol>
+<p>If any of those steps are unfamiliar, work through <a href="../part1/installation.html#claude-code">Section 2.4</a> first.</p>
+</section>
+<section id="using-claude-code-in-positron" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="using-claude-code-in-positron"><span class="header-section-number">10.2</span> Using Claude Code in Positron</h2>
 <p>The easiest way to use Claude Code is through the Positron extension. This keeps your code, terminal, and AI assistant in one window.</p>
 <p><strong>To open Claude Code in Positron:</strong></p>
 <ol type="1">
@@ -553,20 +562,13 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-</section>
-<section id="other-ways-to-access-claude-code" class="level3" data-number="10.1.2">
-<h3 data-number="10.1.2" class="anchored" data-anchor-id="other-ways-to-access-claude-code"><span class="header-section-number">10.1.2</span> Other Ways to Access Claude Code</h3>
-<p>You can also use Claude Code through:</p>
-<ul>
-<li><strong>Terminal/CLI</strong> — Run <code>claude</code> from your project directory (<a href="https://docs.anthropic.com/en/docs/claude-code">Anthropic docs</a>)</li>
-<li><strong>Desktop app</strong> — Claude for Mac or claude.app</li>
-<li><strong>Web</strong> — claude.ai (no file access, but useful for general questions)</li>
-</ul>
-<p>This guide focuses on the Positron extension since it integrates with your development workflow.</p>
+<section id="terminal-alternative" class="level3" data-number="10.2.1">
+<h3 data-number="10.2.1" class="anchored" data-anchor-id="terminal-alternative"><span class="header-section-number">10.2.1</span> Terminal Alternative</h3>
+<p>You can also run Claude Code directly in any terminal by navigating to your project directory and typing <code>claude</code>. This gives you the same capabilities as the extension — reading files, editing code, running commands — but in a terminal interface rather than a sidebar panel. Some people prefer this, especially for quick one-off questions or when working outside Positron.</p>
 </section>
 </section>
-<section id="what-claude-code-can-do" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="what-claude-code-can-do"><span class="header-section-number">10.2</span> What Claude Code Can Do</h2>
+<section id="what-claude-code-can-do" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="what-claude-code-can-do"><span class="header-section-number">10.3</span> What Claude Code Can Do</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 54%">
@@ -606,8 +608,8 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 </section>
-<section id="when-to-use-claude-code" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="when-to-use-claude-code"><span class="header-section-number">10.3</span> When to Use Claude Code</h2>
+<section id="when-to-use-claude-code" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="when-to-use-claude-code"><span class="header-section-number">10.4</span> When to Use Claude Code</h2>
 <p><strong>Claude Code is helpful for:</strong></p>
 <ul>
 <li>Setting up project structure and boilerplate</li>
@@ -638,11 +640,11 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="the-mental-model" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="the-mental-model"><span class="header-section-number">10.4</span> The Mental Model</h2>
+<section id="the-mental-model" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="the-mental-model"><span class="header-section-number">10.5</span> The Mental Model</h2>
 <p>Three concepts help you work effectively with Claude Code:</p>
-<section id="capable-but-not-omniscient" class="level3" data-number="10.4.1">
-<h3 data-number="10.4.1" class="anchored" data-anchor-id="capable-but-not-omniscient"><span class="header-section-number">10.4.1</span> 1. Capable but not omniscient</h3>
+<section id="capable-but-not-omniscient" class="level3" data-number="10.5.1">
+<h3 data-number="10.5.1" class="anchored" data-anchor-id="capable-but-not-omniscient"><span class="header-section-number">10.5.1</span> 1. Capable but not omniscient</h3>
 <p>Claude can write sophisticated code, but it doesn’t automatically know:</p>
 <ul>
 <li>Your specific data structures and conventions</li>
@@ -651,13 +653,13 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p><strong>Solution:</strong> Tell Claude what it needs to know. Be specific about your data, your goals, and any constraints.</p>
 </section>
-<section id="context-matters" class="level3" data-number="10.4.2">
-<h3 data-number="10.4.2" class="anchored" data-anchor-id="context-matters"><span class="header-section-number">10.4.2</span> 2. Context matters</h3>
+<section id="context-matters" class="level3" data-number="10.5.2">
+<h3 data-number="10.5.2" class="anchored" data-anchor-id="context-matters"><span class="header-section-number">10.5.2</span> 2. Context matters</h3>
 <p>Claude only knows what’s in your project folder and what you tell it. Each new conversation starts fresh—it doesn’t remember yesterday’s session.</p>
 <p><strong>Solution:</strong> Use project configuration files (covered in the next chapter) to give Claude persistent context about your project.</p>
 </section>
-<section id="verify-then-trust" class="level3" data-number="10.4.3">
-<h3 data-number="10.4.3" class="anchored" data-anchor-id="verify-then-trust"><span class="header-section-number">10.4.3</span> 3. Verify, then trust</h3>
+<section id="verify-then-trust" class="level3" data-number="10.5.3">
+<h3 data-number="10.5.3" class="anchored" data-anchor-id="verify-then-trust"><span class="header-section-number">10.5.3</span> 3. Verify, then trust</h3>
 <p>Claude often gets things right, but sometimes produces plausible-looking code with subtle bugs, especially for:</p>
 <ul>
 <li>Statistical methods it doesn’t fully understand</li>
@@ -667,15 +669,15 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Solution:</strong> Run the code and check the outputs. For analytical code, verify counts at each step and spot-check results.</p>
 </section>
 </section>
-<section id="a-quick-example" class="level2" data-number="10.5">
-<h2 data-number="10.5" class="anchored" data-anchor-id="a-quick-example"><span class="header-section-number">10.5</span> A Quick Example</h2>
+<section id="a-quick-example" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="a-quick-example"><span class="header-section-number">10.6</span> A Quick Example</h2>
 <p>Here’s what a typical interaction looks like in Positron:</p>
 <p><strong>You type:</strong> &gt; I’m getting this error when I run the script: &gt; &gt; Error in <code>left_join()</code>: ! <code>by</code> must be supplied when <code>x</code> and <code>y</code> have no common variables. &gt; &gt; The join is on line 45 of analysis.qmd</p>
 <p><strong>Claude responds:</strong> - Reads the relevant section of <code>analysis.qmd</code> - Explains that the column names don’t match between the two dataframes - Shows you the column names in each - Proposes a fix with the correct <code>by =</code> argument - Asks if you want to apply the edit</p>
 <p>You review the proposed change, accept it, and the file is updated.</p>
 </section>
-<section id="reviewing-changes" class="level2" data-number="10.6">
-<h2 data-number="10.6" class="anchored" data-anchor-id="reviewing-changes"><span class="header-section-number">10.6</span> Reviewing Changes</h2>
+<section id="reviewing-changes" class="level2" data-number="10.7">
+<h2 data-number="10.7" class="anchored" data-anchor-id="reviewing-changes"><span class="header-section-number">10.7</span> Reviewing Changes</h2>
 <p>Claude always shows you what it plans to do:</p>
 <ul>
 <li><strong>File edits</strong> — Shows a diff with the proposed changes highlighted</li>
@@ -689,8 +691,8 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Reject</strong> and try a different approach (“Actually, let’s do this a different way”)</li>
 </ul>
 </section>
-<section id="next-steps" class="level2" data-number="10.7">
-<h2 data-number="10.7" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">10.7</span> Next Steps</h2>
+<section id="next-steps" class="level2" data-number="10.8">
+<h2 data-number="10.8" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">10.8</span> Next Steps</h2>
 <p>Now that you understand what Claude Code can do, the following chapters cover:</p>
 <ul>
 <li><strong>Configuring Projects</strong> — How to give Claude persistent context about your project</li>

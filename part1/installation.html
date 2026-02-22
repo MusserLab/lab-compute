@@ -715,7 +715,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="2.4.3" class="anchored" data-anchor-id="authenticate"><span class="header-section-number">2.4.3</span> Authenticate</h3>
 <p>Run Claude Code once to set up authentication:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>claude</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>When prompted, choose <strong>Use OAuth (Anthropic account)</strong> and press Enter. This will open a browser window where you log in with your Anthropic account — the same email and password you use for <a href="https://claude.ai">claude.ai</a>. Once you approve the connection in the browser, Claude Code is ready to use in the terminal.</p>
+<p>Claude Code will ask how you want to authenticate. You’ll see several options — make sure you choose <strong>Use OAuth (Anthropic account)</strong>, not “Use an API key.” The API key option connects to a separate pay-per-use billing system, which is not what you want. OAuth connects to your existing Claude Pro subscription at no extra cost.</p>
+<p>This will open a browser window where you log in with your Anthropic account — the same email and password you use for <a href="https://claude.ai">claude.ai</a>. Once you approve the connection in the browser, Claude Code is ready to use in the terminal. If you accidentally chose the API key option, run <code>claude logout</code> and then <code>claude</code> again to pick OAuth.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
