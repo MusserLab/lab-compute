@@ -512,92 +512,53 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#why-quarto" id="toc-why-quarto" class="nav-link active" data-scroll-target="#why-quarto"><span class="header-section-number">6.1</span> Why Quarto?</a>
   <ul class="collapse">
-  <li><a href="#compared-to-plain-r-scripts" id="toc-compared-to-plain-r-scripts" class="nav-link" data-scroll-target="#compared-to-plain-r-scripts"><span class="header-section-number">6.1.1</span> Compared to Plain R Scripts</a></li>
-  <li><a href="#compared-to-r-markdown" id="toc-compared-to-r-markdown" class="nav-link" data-scroll-target="#compared-to-r-markdown"><span class="header-section-number">6.1.2</span> Compared to R Markdown</a></li>
-  <li><a href="#what-else-can-quarto-do" id="toc-what-else-can-quarto-do" class="nav-link" data-scroll-target="#what-else-can-quarto-do"><span class="header-section-number">6.1.3</span> What Else Can Quarto Do?</a></li>
+  <li><a href="#compared-to-plain-scripts" id="toc-compared-to-plain-scripts" class="nav-link" data-scroll-target="#compared-to-plain-scripts"><span class="header-section-number">6.1.1</span> Compared to Plain Scripts</a></li>
+  <li><a href="#compared-to-jupyter-notebooks" id="toc-compared-to-jupyter-notebooks" class="nav-link" data-scroll-target="#compared-to-jupyter-notebooks"><span class="header-section-number">6.1.2</span> Compared to Jupyter Notebooks</a></li>
+  <li><a href="#compared-to-r-markdown" id="toc-compared-to-r-markdown" class="nav-link" data-scroll-target="#compared-to-r-markdown"><span class="header-section-number">6.1.3</span> Compared to R Markdown</a></li>
+  <li><a href="#what-else-can-quarto-do" id="toc-what-else-can-quarto-do" class="nav-link" data-scroll-target="#what-else-can-quarto-do"><span class="header-section-number">6.1.4</span> What Else Can Quarto Do?</a></li>
   </ul></li>
-  <li><a href="#the-interactive-development-workflow" id="toc-the-interactive-development-workflow" class="nav-link" data-scroll-target="#the-interactive-development-workflow"><span class="header-section-number">6.2</span> The Interactive Development Workflow</a>
+  <li><a href="#the-interactive-development-workflow" id="toc-the-interactive-development-workflow" class="nav-link" data-scroll-target="#the-interactive-development-workflow"><span class="header-section-number">6.2</span> The Interactive Development Workflow</a></li>
+  <li><a href="#writing-a-quarto-document" id="toc-writing-a-quarto-document" class="nav-link" data-scroll-target="#writing-a-quarto-document"><span class="header-section-number">6.3</span> Writing a Quarto Document</a>
   <ul class="collapse">
-  <li><a href="#interactive-development" id="toc-interactive-development" class="nav-link" data-scroll-target="#interactive-development"><span class="header-section-number">6.2.1</span> Interactive Development</a></li>
-  <li><a href="#rendering" id="toc-rendering" class="nav-link" data-scroll-target="#rendering"><span class="header-section-number">6.2.2</span> Rendering</a></li>
-  <li><a href="#a-typical-session" id="toc-a-typical-session" class="nav-link" data-scroll-target="#a-typical-session"><span class="header-section-number">6.2.3</span> A Typical Session</a></li>
+  <li><a href="#document-structure" id="toc-document-structure" class="nav-link" data-scroll-target="#document-structure"><span class="header-section-number">6.3.1</span> Document Structure</a></li>
+  <li><a href="#the-yaml-header" id="toc-the-yaml-header" class="nav-link" data-scroll-target="#the-yaml-header"><span class="header-section-number">6.3.2</span> The YAML Header</a></li>
+  <li><a href="#the-setup-chunk" id="toc-the-setup-chunk" class="nav-link" data-scroll-target="#the-setup-chunk"><span class="header-section-number">6.3.3</span> The Setup Chunk</a></li>
+  <li><a href="#code-chunks" id="toc-code-chunks" class="nav-link" data-scroll-target="#code-chunks"><span class="header-section-number">6.3.4</span> Code Chunks</a></li>
+  <li><a href="#documenting-inputs-and-outputs" id="toc-documenting-inputs-and-outputs" class="nav-link" data-scroll-target="#documenting-inputs-and-outputs"><span class="header-section-number">6.3.5</span> Documenting Inputs and Outputs</a></li>
   </ul></li>
-  <li><a href="#document-structure" id="toc-document-structure" class="nav-link" data-scroll-target="#document-structure"><span class="header-section-number">6.3</span> Document Structure</a>
+  <li><a href="#saving-outputs" id="toc-saving-outputs" class="nav-link" data-scroll-target="#saving-outputs"><span class="header-section-number">6.4</span> Saving Outputs</a></li>
+  <li><a href="#working-directory-and-paths" id="toc-working-directory-and-paths" class="nav-link" data-scroll-target="#working-directory-and-paths"><span class="header-section-number">6.5</span> Working Directory and Paths</a></li>
+  <li><a href="#rendering" id="toc-rendering" class="nav-link" data-scroll-target="#rendering"><span class="header-section-number">6.6</span> Rendering</a>
   <ul class="collapse">
-  <li><a href="#minimal-example" id="toc-minimal-example" class="nav-link" data-scroll-target="#minimal-example"><span class="header-section-number">6.3.1</span> Minimal Example</a></li>
+  <li><a href="#from-the-terminal" id="toc-from-the-terminal" class="nav-link" data-scroll-target="#from-the-terminal"><span class="header-section-number">6.6.1</span> From the Terminal</a></li>
+  <li><a href="#from-positron" id="toc-from-positron" class="nav-link" data-scroll-target="#from-positron"><span class="header-section-number">6.6.2</span> From Positron</a></li>
+  <li><a href="#preview-mode" id="toc-preview-mode" class="nav-link" data-scroll-target="#preview-mode"><span class="header-section-number">6.6.3</span> Preview Mode</a></li>
   </ul></li>
-  <li><a href="#the-yaml-header" id="toc-the-yaml-header" class="nav-link" data-scroll-target="#the-yaml-header"><span class="header-section-number">6.4</span> The YAML Header</a>
+  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices"><span class="header-section-number">6.7</span> Best Practices</a>
   <ul class="collapse">
-  <li><a href="#document-metadata" id="toc-document-metadata" class="nav-link" data-scroll-target="#document-metadata"><span class="header-section-number">6.4.1</span> Document Metadata</a></li>
-  <li><a href="#format-options" id="toc-format-options" class="nav-link" data-scroll-target="#format-options"><span class="header-section-number">6.4.2</span> Format Options</a></li>
-  <li><a href="#execute-options" id="toc-execute-options" class="nav-link" data-scroll-target="#execute-options"><span class="header-section-number">6.4.3</span> Execute Options</a></li>
+  <li><a href="#render-before-committing" id="toc-render-before-committing" class="nav-link" data-scroll-target="#render-before-committing"><span class="header-section-number">6.7.1</span> Render Before Committing</a></li>
+  <li><a href="#self-contained-scripts" id="toc-self-contained-scripts" class="nav-link" data-scroll-target="#self-contained-scripts"><span class="header-section-number">6.7.2</span> Self-Contained Scripts</a></li>
+  <li><a href="#clear-section-structure" id="toc-clear-section-structure" class="nav-link" data-scroll-target="#clear-section-structure"><span class="header-section-number">6.7.3</span> Clear Section Structure</a></li>
+  <li><a href="#validation-chunks" id="toc-validation-chunks" class="nav-link" data-scroll-target="#validation-chunks"><span class="header-section-number">6.7.4</span> Validation Chunks</a></li>
+  <li><a href="#provenance-chunk" id="toc-provenance-chunk" class="nav-link" data-scroll-target="#provenance-chunk"><span class="header-section-number">6.7.5</span> Provenance Chunk</a></li>
   </ul></li>
-  <li><a href="#the-setup-chunk" id="toc-the-setup-chunk" class="nav-link" data-scroll-target="#the-setup-chunk"><span class="header-section-number">6.5</span> The Setup Chunk</a>
+  <li><a href="#common-issues" id="toc-common-issues" class="nav-link" data-scroll-target="#common-issues"><span class="header-section-number">6.8</span> Common Issues</a>
   <ul class="collapse">
-  <li><a href="#key-patterns" id="toc-key-patterns" class="nav-link" data-scroll-target="#key-patterns"><span class="header-section-number">6.5.1</span> Key Patterns</a></li>
+  <li><a href="#object-not-found-during-render" id="toc-object-not-found-during-render" class="nav-link" data-scroll-target="#object-not-found-during-render"><span class="header-section-number">6.8.1</span> “Object not found” During Render</a></li>
+  <li><a href="#figures-not-appearing" id="toc-figures-not-appearing" class="nav-link" data-scroll-target="#figures-not-appearing"><span class="header-section-number">6.8.2</span> Figures Not Appearing</a></li>
+  <li><a href="#package-messages-cluttering-output" id="toc-package-messages-cluttering-output" class="nav-link" data-scroll-target="#package-messages-cluttering-output"><span class="header-section-number">6.8.3</span> Package Messages Cluttering Output</a></li>
+  <li><a href="#output-file-is-huge" id="toc-output-file-is-huge" class="nav-link" data-scroll-target="#output-file-is-huge"><span class="header-section-number">6.8.4</span> Output File Is Huge</a></li>
+  <li><a href="#chunk-takes-forever" id="toc-chunk-takes-forever" class="nav-link" data-scroll-target="#chunk-takes-forever"><span class="header-section-number">6.8.5</span> Chunk Takes Forever</a></li>
   </ul></li>
-  <li><a href="#documenting-inputs" id="toc-documenting-inputs" class="nav-link" data-scroll-target="#documenting-inputs"><span class="header-section-number">6.6</span> Documenting Inputs</a></li>
-  <li><a href="#code-chunks" id="toc-code-chunks" class="nav-link" data-scroll-target="#code-chunks"><span class="header-section-number">6.7</span> Code Chunks</a>
+  <li><a href="#quick-reference" id="toc-quick-reference" class="nav-link" data-scroll-target="#quick-reference"><span class="header-section-number">6.9</span> Quick Reference</a>
   <ul class="collapse">
-  <li><a href="#chunk-options" id="toc-chunk-options" class="nav-link" data-scroll-target="#chunk-options"><span class="header-section-number">6.7.1</span> Chunk Options</a></li>
-  <li><a href="#common-chunk-options" id="toc-common-chunk-options" class="nav-link" data-scroll-target="#common-chunk-options"><span class="header-section-number">6.7.2</span> Common Chunk Options</a></li>
-  <li><a href="#chunk-patterns" id="toc-chunk-patterns" class="nav-link" data-scroll-target="#chunk-patterns"><span class="header-section-number">6.7.3</span> Chunk Patterns</a></li>
+  <li><a href="#yaml-options" id="toc-yaml-options" class="nav-link" data-scroll-target="#yaml-options"><span class="header-section-number">6.9.1</span> YAML Options</a></li>
+  <li><a href="#chunk-options" id="toc-chunk-options" class="nav-link" data-scroll-target="#chunk-options"><span class="header-section-number">6.9.2</span> Chunk Options</a></li>
+  <li><a href="#r-vs-python-comparison" id="toc-r-vs-python-comparison" class="nav-link" data-scroll-target="#r-vs-python-comparison"><span class="header-section-number">6.9.3</span> R vs Python Comparison</a></li>
+  <li><a href="#quarto-commands" id="toc-quarto-commands" class="nav-link" data-scroll-target="#quarto-commands"><span class="header-section-number">6.9.4</span> Quarto Commands</a></li>
+  <li><a href="#keyboard-shortcuts-positron" id="toc-keyboard-shortcuts-positron" class="nav-link" data-scroll-target="#keyboard-shortcuts-positron"><span class="header-section-number">6.9.5</span> Keyboard Shortcuts (Positron)</a></li>
   </ul></li>
-  <li><a href="#working-with-r" id="toc-working-with-r" class="nav-link" data-scroll-target="#working-with-r"><span class="header-section-number">6.8</span> Working with R</a>
-  <ul class="collapse">
-  <li><a href="#running-code" id="toc-running-code" class="nav-link" data-scroll-target="#running-code"><span class="header-section-number">6.8.1</span> Running Code</a></li>
-  <li><a href="#the-data-viewer" id="toc-the-data-viewer" class="nav-link" data-scroll-target="#the-data-viewer"><span class="header-section-number">6.8.2</span> The Data Viewer</a></li>
-  <li><a href="#renv-integration" id="toc-renv-integration" class="nav-link" data-scroll-target="#renv-integration"><span class="header-section-number">6.8.3</span> renv Integration</a></li>
-  </ul></li>
-  <li><a href="#working-with-python" id="toc-working-with-python" class="nav-link" data-scroll-target="#working-with-python"><span class="header-section-number">6.9</span> Working with Python</a>
-  <ul class="collapse">
-  <li><a href="#running-code-1" id="toc-running-code-1" class="nav-link" data-scroll-target="#running-code-1"><span class="header-section-number">6.9.1</span> Running Code</a></li>
-  <li><a href="#selecting-the-interpreter" id="toc-selecting-the-interpreter" class="nav-link" data-scroll-target="#selecting-the-interpreter"><span class="header-section-number">6.9.2</span> Selecting the Interpreter</a></li>
-  <li><a href="#rendering-python-qmd" id="toc-rendering-python-qmd" class="nav-link" data-scroll-target="#rendering-python-qmd"><span class="header-section-number">6.9.3</span> Rendering Python QMD</a></li>
-  <li><a href="#python-yaml-header" id="toc-python-yaml-header" class="nav-link" data-scroll-target="#python-yaml-header"><span class="header-section-number">6.9.4</span> Python YAML Header</a></li>
-  <li><a href="#python-setup-chunk" id="toc-python-setup-chunk" class="nav-link" data-scroll-target="#python-setup-chunk"><span class="header-section-number">6.9.5</span> Python Setup Chunk</a></li>
-  <li><a href="#python-figure-saving" id="toc-python-figure-saving" class="nav-link" data-scroll-target="#python-figure-saving"><span class="header-section-number">6.9.6</span> Python Figure Saving</a></li>
-  <li><a href="#python-provenance-chunk" id="toc-python-provenance-chunk" class="nav-link" data-scroll-target="#python-provenance-chunk"><span class="header-section-number">6.9.7</span> Python Provenance Chunk</a></li>
-  <li><a href="#language-mixing" id="toc-language-mixing" class="nav-link" data-scroll-target="#language-mixing"><span class="header-section-number">6.9.8</span> Language Mixing</a></li>
-  <li><a href="#r-vs-python-quick-reference" id="toc-r-vs-python-quick-reference" class="nav-link" data-scroll-target="#r-vs-python-quick-reference"><span class="header-section-number">6.9.9</span> R vs Python Quick Reference</a></li>
-  </ul></li>
-  <li><a href="#saving-outputs" id="toc-saving-outputs" class="nav-link" data-scroll-target="#saving-outputs"><span class="header-section-number">6.10</span> Saving Outputs</a></li>
-  <li><a href="#working-directory-and-paths" id="toc-working-directory-and-paths" class="nav-link" data-scroll-target="#working-directory-and-paths"><span class="header-section-number">6.11</span> Working Directory and Paths</a>
-  <ul class="collapse">
-  <li><a href="#the-solution-herehere" id="toc-the-solution-herehere" class="nav-link" data-scroll-target="#the-solution-herehere"><span class="header-section-number">6.11.1</span> The Solution: <code>here::here()</code></a></li>
-  </ul></li>
-  <li><a href="#rendering-1" id="toc-rendering-1" class="nav-link" data-scroll-target="#rendering-1"><span class="header-section-number">6.12</span> Rendering</a>
-  <ul class="collapse">
-  <li><a href="#from-the-terminal" id="toc-from-the-terminal" class="nav-link" data-scroll-target="#from-the-terminal"><span class="header-section-number">6.12.1</span> From the Terminal</a></li>
-  <li><a href="#from-positron" id="toc-from-positron" class="nav-link" data-scroll-target="#from-positron"><span class="header-section-number">6.12.2</span> From Positron</a></li>
-  <li><a href="#preview-mode" id="toc-preview-mode" class="nav-link" data-scroll-target="#preview-mode"><span class="header-section-number">6.12.3</span> Preview Mode</a></li>
-  </ul></li>
-  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices"><span class="header-section-number">6.13</span> Best Practices</a>
-  <ul class="collapse">
-  <li><a href="#render-before-committing" id="toc-render-before-committing" class="nav-link" data-scroll-target="#render-before-committing"><span class="header-section-number">6.13.1</span> Render Before Committing</a></li>
-  <li><a href="#self-contained-scripts" id="toc-self-contained-scripts" class="nav-link" data-scroll-target="#self-contained-scripts"><span class="header-section-number">6.13.2</span> Self-Contained Scripts</a></li>
-  <li><a href="#clear-section-structure" id="toc-clear-section-structure" class="nav-link" data-scroll-target="#clear-section-structure"><span class="header-section-number">6.13.3</span> Clear Section Structure</a></li>
-  <li><a href="#validation-chunks" id="toc-validation-chunks" class="nav-link" data-scroll-target="#validation-chunks"><span class="header-section-number">6.13.4</span> Validation Chunks</a></li>
-  <li><a href="#provenance-chunk" id="toc-provenance-chunk" class="nav-link" data-scroll-target="#provenance-chunk"><span class="header-section-number">6.13.5</span> Provenance Chunk</a></li>
-  </ul></li>
-  <li><a href="#common-issues" id="toc-common-issues" class="nav-link" data-scroll-target="#common-issues"><span class="header-section-number">6.14</span> Common Issues</a>
-  <ul class="collapse">
-  <li><a href="#object-not-found-during-render" id="toc-object-not-found-during-render" class="nav-link" data-scroll-target="#object-not-found-during-render"><span class="header-section-number">6.14.1</span> “Object not found” During Render</a></li>
-  <li><a href="#figures-not-appearing" id="toc-figures-not-appearing" class="nav-link" data-scroll-target="#figures-not-appearing"><span class="header-section-number">6.14.2</span> Figures Not Appearing</a></li>
-  <li><a href="#package-messages-cluttering-output" id="toc-package-messages-cluttering-output" class="nav-link" data-scroll-target="#package-messages-cluttering-output"><span class="header-section-number">6.14.3</span> Package Messages Cluttering Output</a></li>
-  <li><a href="#output-file-is-huge" id="toc-output-file-is-huge" class="nav-link" data-scroll-target="#output-file-is-huge"><span class="header-section-number">6.14.4</span> Output File Is Huge</a></li>
-  <li><a href="#chunk-takes-forever" id="toc-chunk-takes-forever" class="nav-link" data-scroll-target="#chunk-takes-forever"><span class="header-section-number">6.14.5</span> Chunk Takes Forever</a></li>
-  </ul></li>
-  <li><a href="#quick-reference" id="toc-quick-reference" class="nav-link" data-scroll-target="#quick-reference"><span class="header-section-number">6.15</span> Quick Reference</a>
-  <ul class="collapse">
-  <li><a href="#typical-yaml-header-r" id="toc-typical-yaml-header-r" class="nav-link" data-scroll-target="#typical-yaml-header-r"><span class="header-section-number">6.15.1</span> Typical YAML Header (R)</a></li>
-  <li><a href="#typical-yaml-header-python" id="toc-typical-yaml-header-python" class="nav-link" data-scroll-target="#typical-yaml-header-python"><span class="header-section-number">6.15.2</span> Typical YAML Header (Python)</a></li>
-  <li><a href="#r-setup-chunk-template" id="toc-r-setup-chunk-template" class="nav-link" data-scroll-target="#r-setup-chunk-template"><span class="header-section-number">6.15.3</span> R Setup Chunk Template</a></li>
-  <li><a href="#python-setup-chunk-template" id="toc-python-setup-chunk-template" class="nav-link" data-scroll-target="#python-setup-chunk-template"><span class="header-section-number">6.15.4</span> Python Setup Chunk Template</a></li>
-  <li><a href="#chunk-options-reference" id="toc-chunk-options-reference" class="nav-link" data-scroll-target="#chunk-options-reference"><span class="header-section-number">6.15.5</span> Chunk Options Reference</a></li>
-  <li><a href="#quarto-commands" id="toc-quarto-commands" class="nav-link" data-scroll-target="#quarto-commands"><span class="header-section-number">6.15.6</span> Quarto Commands</a></li>
-  <li><a href="#keyboard-shortcuts-positron" id="toc-keyboard-shortcuts-positron" class="nav-link" data-scroll-target="#keyboard-shortcuts-positron"><span class="header-section-number">6.15.7</span> Keyboard Shortcuts (Positron)</a></li>
-  </ul></li>
+  <li><a href="#python-specific-notes" id="toc-python-specific-notes" class="nav-link" data-scroll-target="#python-specific-notes"><span class="header-section-number">6.10</span> Python-Specific Notes</a></li>
   </ul>
 </nav>
     </div>
@@ -629,9 +590,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In the Musser Lab, Quarto documents are the standard format for data analysis because they solve a fundamental problem: keeping your code, your results, and your explanation of those results in sync. When you render a <code>.qmd</code> file, Quarto executes the code fresh and weaves the outputs into the document, so the report always reflects the actual analysis.</p>
 <section id="why-quarto" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="why-quarto"><span class="header-section-number">6.1</span> Why Quarto?</h2>
-<section id="compared-to-plain-r-scripts" class="level3" data-number="6.1.1">
-<h3 data-number="6.1.1" class="anchored" data-anchor-id="compared-to-plain-r-scripts"><span class="header-section-number">6.1.1</span> Compared to Plain R Scripts</h3>
-<p>A plain <code>.R</code> script is just code. It can produce outputs, but there’s no built-in way to document what the code does, why you made certain choices, or what the results mean. When you share a script, collaborators see the code but not your interpretation.</p>
+<section id="compared-to-plain-scripts" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="compared-to-plain-scripts"><span class="header-section-number">6.1.1</span> Compared to Plain Scripts</h3>
+<p>A plain <code>.R</code> or <code>.py</code> script is just code. It can produce outputs, but there’s no built-in way to document what the code does, why you made certain choices, or what the results mean. When you share a script, collaborators see the code but not your interpretation. Comments help, but they’re limited—you can’t embed figures, formatted tables, or section headings in a comment.</p>
 <p>With Quarto:</p>
 <ul>
 <li><strong>Code and narrative live together</strong> — explain what you’re doing as you do it</li>
@@ -639,8 +600,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Output is shareable</strong> — render to HTML that anyone can open in a browser</li>
 </ul>
 </section>
-<section id="compared-to-r-markdown" class="level3" data-number="6.1.2">
-<h3 data-number="6.1.2" class="anchored" data-anchor-id="compared-to-r-markdown"><span class="header-section-number">6.1.2</span> Compared to R Markdown</h3>
+<section id="compared-to-jupyter-notebooks" class="level3" data-number="6.1.2">
+<h3 data-number="6.1.2" class="anchored" data-anchor-id="compared-to-jupyter-notebooks"><span class="header-section-number">6.1.2</span> Compared to Jupyter Notebooks</h3>
+<p>If you’ve used Jupyter notebooks (<code>.ipynb</code>), you might wonder why we use Quarto instead. Jupyter is a great tool for interactive exploration, but <code>.qmd</code> files have several advantages for reproducible analysis:</p>
+<p><strong>Plain text, not JSON.</strong> Jupyter notebooks are stored as JSON with embedded output cells, making them difficult to version control with Git. A small code change can produce a massive diff because the output cells change too. Quarto documents are plain text—diffs show exactly what you changed, and merge conflicts are easy to resolve.</p>
+<p><strong>Fresh-session rendering.</strong> When you run cells in a Jupyter notebook, results depend on the order you executed them and what’s lingering in memory. It’s easy to have a notebook that “works” only because you ran cell 5 before cell 3 during development. Quarto renders in a fresh session every time, catching hidden dependencies that Jupyter lets slip through.</p>
+<p><strong>Positron integration.</strong> In Positron, you get the best of both worlds—interactive execution with Cmd+Enter (like Jupyter) plus a persistent console, Variables pane, and Data Viewer alongside your document. You don’t lose the interactive workflow; you gain reproducibility on top of it.</p>
+<p><strong>One format, both languages.</strong> Quarto treats R and Python as equal citizens. The same <code>.qmd</code> format, chunk options, and rendering pipeline work for both. No need to learn separate tools for each language.</p>
+<p>If you’re coming from Jupyter, the transition is straightforward: your code goes in fenced chunks instead of cells, your markdown goes between chunks instead of in markdown cells, and you render the whole document instead of running cells individually. The interactive development experience in Positron feels very similar to Jupyter—you just get reproducibility as a bonus.</p>
+</section>
+<section id="compared-to-r-markdown" class="level3" data-number="6.1.3">
+<h3 data-number="6.1.3" class="anchored" data-anchor-id="compared-to-r-markdown"><span class="header-section-number">6.1.3</span> Compared to R Markdown</h3>
 <p>If you’ve used R Markdown (<code>.Rmd</code>), Quarto will feel familiar. The core idea—mixing code, results, and narrative—is the same. Quarto is R Markdown’s successor, developed by Posit (the company behind RStudio) as a unified system that works equally well with R, Python, Julia, and other languages.</p>
 <table class="caption-top table">
 <colgroup>
@@ -680,8 +650,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <p>You don’t need to memorize the differences. If you know R Markdown, Quarto works similarly. If you’re new to both, just learn Quarto—it’s the modern standard.</p>
 </section>
-<section id="what-else-can-quarto-do" class="level3" data-number="6.1.3">
-<h3 data-number="6.1.3" class="anchored" data-anchor-id="what-else-can-quarto-do"><span class="header-section-number">6.1.3</span> What Else Can Quarto Do?</h3>
+<section id="what-else-can-quarto-do" class="level3" data-number="6.1.4">
+<h3 data-number="6.1.4" class="anchored" data-anchor-id="what-else-can-quarto-do"><span class="header-section-number">6.1.4</span> What Else Can Quarto Do?</h3>
 <p>While we primarily use Quarto for analysis scripts, it’s a general-purpose publishing system. This book was built with Quarto. You can also create:</p>
 <ul>
 <li><strong>Websites</strong> — project documentation, lab websites</li>
@@ -693,53 +663,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="the-interactive-development-workflow" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="the-interactive-development-workflow"><span class="header-section-number">6.2</span> The Interactive Development Workflow</h2>
-<p>Before diving into syntax, understand how you’ll actually work with Quarto documents. The workflow has two modes:</p>
-<section id="interactive-development" class="level3" data-number="6.2.1">
-<h3 data-number="6.2.1" class="anchored" data-anchor-id="interactive-development"><span class="header-section-number">6.2.1</span> Interactive Development</h3>
-<p>Most of your time is spent running code <strong>interactively</strong>—executing chunks one at a time, inspecting results, and iterating. This is exploratory work:</p>
-<ol type="1">
-<li><strong>Write a chunk</strong> of code in your <code>.qmd</code> file</li>
-<li><strong>Run it</strong> with Cmd+Enter (macOS) or Ctrl+Enter (Windows)</li>
-<li><strong>Inspect</strong> the output in the Console, Variables pane, or Data Viewer</li>
-<li><strong>Iterate</strong> — modify the code, run again, check results</li>
-<li><strong>Move on</strong> to the next chunk when satisfied</li>
-</ol>
-<p>During interactive development, you’re using Positron like an enhanced REPL. The <code>.qmd</code> file is your scratch pad. Objects you create persist in your R or Python session, so you can build on previous chunks.</p>
+<p>Before diving into syntax, understand how you’ll actually work with Quarto documents. There are two modes, and you’ll spend most of your time in the first one.</p>
+<p><strong>Interactive development</strong> is where the real work happens. You write a chunk of code in your <code>.qmd</code> file, run it with Cmd+Enter (macOS) or Ctrl+Enter (Windows), inspect the output in the Console or Data Viewer, tweak it, run again. Objects you create persist in your R or Python session, so you can build on previous chunks. This feels just like working in a Jupyter notebook or an R console—the <code>.qmd</code> file is your scratch pad, and Positron is your workbench.</p>
 <p>[TODO: screenshot of Positron with .qmd open, console showing output, Data Viewer with dataframe]</p>
-</section>
-<section id="rendering" class="level3" data-number="6.2.2">
-<h3 data-number="6.2.2" class="anchored" data-anchor-id="rendering"><span class="header-section-number">6.2.2</span> Rendering</h3>
-<p>When the analysis is complete—or when you want to share it—you <strong>render</strong> the document:</p>
+<p><strong>Rendering</strong> is for validation and sharing. When the analysis is complete—or when you want to check that everything works end-to-end—you render the document:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>quarto render my_analysis.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Rendering executes every code chunk in a <strong>fresh session</strong> (no leftover objects from interactive work) and produces a standalone HTML file. This catches errors you might miss interactively, like relying on an object you created manually but forgot to include in the script.</p>
-<p><strong>The key insight</strong>: Interactive mode is for development. Rendering is for validation and sharing. Always render before committing or sending a report to someone.</p>
+<p>A typical session looks like this: you open your project in Positron, create or open a <code>.qmd</code> file, and start writing chunks—setup first (libraries, paths), then data loading, then analysis. You run each chunk interactively, checking results as you go. When the analysis feels complete, you render the whole document. If rendering fails (usually a missing object or package), you fix it and render again. Once it succeeds, you commit the <code>.qmd</code> file.</p>
+<p><strong>The key insight</strong>: interactive mode is for development, rendering is for validation. Always render before committing or sending a report to someone.</p>
 </section>
-<section id="a-typical-session" class="level3" data-number="6.2.3">
-<h3 data-number="6.2.3" class="anchored" data-anchor-id="a-typical-session"><span class="header-section-number">6.2.3</span> A Typical Session</h3>
-<p>Here’s what a working session looks like:</p>
-<ol type="1">
-<li>Open your project in Positron</li>
-<li>Open or create a <code>.qmd</code> file</li>
-<li>Write the setup chunk (libraries, paths)</li>
-<li>Run it interactively to confirm packages load</li>
-<li>Write a data-loading chunk, run it, inspect the data in Data Viewer</li>
-<li>Write analysis chunks one at a time, running and checking each</li>
-<li>When complete, render the full document</li>
-<li>Fix any errors that appear during render (usually missing objects or packages)</li>
-<li>Commit the <code>.qmd</code> file (and optionally the rendered HTML)</li>
-</ol>
-<p>This interactive-then-render workflow is why Quarto documents are more reliable than scripts you only ever run interactively.</p>
-</section>
-</section>
-<section id="document-structure" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="document-structure"><span class="header-section-number">6.3</span> Document Structure</h2>
-<p>A Quarto document has two parts:</p>
-<ol type="1">
-<li><strong>YAML header</strong> — metadata and rendering options (between <code>---</code> markers at the top)</li>
-<li><strong>Body</strong> — Markdown text interspersed with code chunks</li>
-</ol>
-<section id="minimal-example" class="level3" data-number="6.3.1">
-<h3 data-number="6.3.1" class="anchored" data-anchor-id="minimal-example"><span class="header-section-number">6.3.1</span> Minimal Example</h3>
+<section id="writing-a-quarto-document" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="writing-a-quarto-document"><span class="header-section-number">6.3</span> Writing a Quarto Document</h2>
+<p>A Quarto document has two parts: a <strong>YAML header</strong> (metadata and rendering options, between <code>---</code> markers at the top) and a <strong>body</strong> (Markdown text interspersed with code chunks).</p>
+<section id="document-structure" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="document-structure"><span class="header-section-number">6.3.1</span> Document Structure</h3>
+<p>Here’s a minimal example:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "My Analysis"</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
@@ -761,18 +699,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>When rendered, this produces an HTML file with the title, your text, and the code outputs (the <code>glimpse()</code> output and the plot) embedded.</p>
+<p>When rendered, this produces an HTML file with the title, your text, and the code outputs (the <code>glimpse()</code> output and the plot) embedded. For Python, the only difference is the chunk fence—use <code>```{python}</code> instead of <code>```{r}</code>.</p>
 </section>
-</section>
-<section id="the-yaml-header" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="the-yaml-header"><span class="header-section-number">6.4</span> The YAML Header</h2>
-<p>The YAML header controls document metadata and rendering behavior. Here’s the standard header for a lab analysis script:</p>
+<section id="the-yaml-header" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="the-yaml-header"><span class="header-section-number">6.3.2</span> The YAML Header</h3>
+<p>The YAML header controls document metadata and rendering behavior. Here’s what a typical lab analysis header looks like:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="" aria-current="page">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Phosphoproteomics Volcano Plots"</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">subtitle</span><span class="kw">:</span><span class="at"> </span><span class="st">"Tryptamine treatment time course"</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Your Name"</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> today</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">status</span><span class="kw">:</span><span class="at"> development</span><span class="co">        # development | finalized | deprecated</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">status</span><span class="kw">:</span><span class="at"> development</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
@@ -792,8 +733,466 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">cache</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
 <span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<section id="document-metadata" class="level3" data-number="6.4.1">
-<h3 data-number="6.4.1" class="anchored" data-anchor-id="document-metadata"><span class="header-section-number">6.4.1</span> Document Metadata</h3>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Phosphoproteomics Volcano Plots"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">subtitle</span><span class="kw">:</span><span class="at"> </span><span class="st">"Tryptamine treatment time course"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Your Name"</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> today</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">status</span><span class="kw">:</span><span class="at"> development</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">jupyter</span><span class="kw">:</span><span class="at"> python3</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc-depth</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">number-sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-overflow</span><span class="kw">:</span><span class="at"> wrap</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-tools</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">highlight-style</span><span class="kw">:</span><span class="at"> github</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> cosmo</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fontsize</span><span class="kw">:</span><span class="at"> 1rem</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">linestretch</span><span class="kw">:</span><span class="at"> </span><span class="fl">1.5</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">self-contained</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">cache</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>The two headers are nearly identical. Python adds <code>jupyter: python3</code> (which tells Quarto to use the Jupyter kernel for execution) and drops <code>message: false</code> (which is R-specific—R packages print startup messages, Python packages generally don’t).</p>
+<p>Here’s what the key options do:</p>
+<ul>
+<li><strong><code>status</code></strong> tracks the script’s lifecycle stage (<code>development</code>, <code>finalized</code>, <code>deprecated</code>)—see <a href="../part2/project-organization.html#script-lifecycle">Project Organization</a></li>
+<li><strong><code>toc: true</code></strong> adds a table of contents, making long analyses navigable</li>
+<li><strong><code>self-contained: true</code></strong> bundles everything into a single HTML file you can email or share</li>
+<li><strong><code>code-tools: true</code></strong> adds a button to show/hide all code at once</li>
+<li><strong><code>echo: true</code></strong> shows your code in the output—important for analysis scripts where the code <em>is</em> part of the documentation</li>
+<li><strong><code>message: false</code> / <code>warning: false</code></strong> keeps rendered output clean by suppressing package messages and warnings</li>
+</ul>
+<p>For the full list of YAML options, see the <a href="#quick-reference">Quick Reference</a> tables at the end of this chapter. For a copy-paste template you can use to start new scripts, see <a href="../appendices/templates.html" class="quarto-xref"><span>Appendix C</span></a>.</p>
+<div class="claude-callout callout callout-style-default callout-warning callout-titled" title="Claude Code">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Claude Code
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Claude Code can generate a complete YAML header and setup chunk tailored to your analysis.</p>
+<blockquote class="blockquote">
+<p>I’m starting a new R analysis script for differential expression using DESeq2. Set up a QMD with the standard lab header and a setup chunk that loads DESeq2, tidyverse, and here.</p>
+</blockquote>
+<p>Claude will create a <code>.qmd</code> file with the full YAML header, setup chunk with library loading, output directory creation, and provenance tracking—all following the lab conventions described in this chapter.</p>
+</div>
+</div>
+</section>
+<section id="the-setup-chunk" class="level3" data-number="6.3.3">
+<h3 data-number="6.3.3" class="anchored" data-anchor-id="the-setup-chunk"><span class="header-section-number">6.3.3</span> The Setup Chunk</h3>
+<p>Every analysis script should start with a setup chunk that loads packages, defines paths, sets options, and captures the git commit hash for provenance tracking.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Libraries ----</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>({</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(tidyverse)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(here)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Paths ----</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>dir_data <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>dir_out <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"outs"</span>, <span class="st">"01_script_name"</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(dir_out, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Options ----</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Provenance ----</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>git_hash <span class="ot">&lt;-</span> <span class="fu">system</span>(<span class="st">"git rev-parse --short HEAD"</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Rendered from commit:"</span>, git_hash, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess, sys, random</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>PROJECT_ROOT <span class="op">=</span> Path(subprocess.check_output(</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"git"</span>, <span class="st">"rev-parse"</span>, <span class="st">"--show-toplevel"</span>]</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>).decode().strip())</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>, <span class="bu">str</span>(PROJECT_ROOT <span class="op">/</span> <span class="st">"python"</span>))</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Options ----</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>random.seed(<span class="dv">42</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">"display.max_columns"</span>, <span class="va">None</span>)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Paths ----</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>out_dir <span class="op">=</span> PROJECT_ROOT <span class="op">/</span> <span class="st">"outs/01_script_name"</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>out_dir.mkdir(parents<span class="op">=</span><span class="va">True</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>git_hash <span class="op">=</span> subprocess.check_output(</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"git"</span>, <span class="st">"rev-parse"</span>, <span class="st">"--short"</span>, <span class="st">"HEAD"</span>]</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>).decode().strip()</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Rendered from commit: </span><span class="sc">{</span>git_hash<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Both versions follow the same pattern: libraries, paths, options, provenance. The key differences:</p>
+<ul>
+<li><strong><code>#| include: false</code></strong> (R only) — hides the setup chunk from the rendered output. Python setup chunks typically stay visible because the import list serves as documentation.</li>
+<li><strong><code>suppressPackageStartupMessages()</code></strong> (R) — prevents the noisy startup messages that R packages print when loaded.</li>
+<li><strong><code>here::here()</code></strong> (R) vs <strong><code>PROJECT_ROOT</code></strong> (Python) — both build file paths relative to the project root, not the script location. The R version uses the <code>here</code> package; the Python version finds the root via <code>git rev-parse</code>. See <a href="#working-directory-and-paths">Working Directory and Paths</a>.</li>
+<li><strong><code>set.seed(42)</code></strong> — makes random operations reproducible. Python needs two seeds (<code>random.seed</code> for stdlib, <code>np.random.seed</code> for NumPy).</li>
+</ul>
+</section>
+<section id="code-chunks" class="level3" data-number="6.3.4">
+<h3 data-number="6.3.4" class="anchored" data-anchor-id="code-chunks"><span class="header-section-number">6.3.4</span> Code Chunks</h3>
+<p>Code chunks are fenced with triple backticks and a language identifier:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># R code here</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Python code here</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Use the <code>#|</code> syntax to set options for individual chunks:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: load-data</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"input.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>label</code> option names the chunk. This is useful for debugging (error messages reference the chunk label), cross-references (linking to figures), and caching.</p>
+<p>Here are the chunk patterns you’ll use most often:</p>
+<p><strong>Hidden setup</strong> — runs but doesn’t appear in output:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Visible code with clean output</strong> — shows code, hides messages:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: load-data</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Figure with caption</strong> — for publication-ready figures:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-volcano</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Volcano plot showing differential expression"</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 6</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(results, <span class="fu">aes</span>(<span class="at">x =</span> logFC, <span class="at">y =</span> <span class="sc">-</span><span class="fu">log10</span>(pvalue))) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Code shown but not run</strong> — for demonstrating syntax:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: example-syntax</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># This code is displayed but not executed</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hypothetical_function</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For the full table of chunk options, see the <a href="#quick-reference">Quick Reference</a> at the end of this chapter.</p>
+</section>
+<section id="documenting-inputs-and-outputs" class="level3" data-number="6.3.5">
+<h3 data-number="6.3.5" class="anchored" data-anchor-id="documenting-inputs-and-outputs"><span class="header-section-number">6.3.5</span> Documenting Inputs and Outputs</h3>
+<p>After the setup chunk, add an explicit inputs section that loads all dependencies. This makes it immediately clear what the script needs to run:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: inputs</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Inputs (from other scripts) ---</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">"outs/03_differential/limma_results.rds"</span>))</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Inputs (external data) ---</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>metadata <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/sample_metadata.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: inputs</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Inputs (from other scripts) ---</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> pd.read_parquet(PROJECT_ROOT <span class="op">/</span> <span class="st">"outs/03_differential/deseq_results.parquet"</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Inputs (external data) ---</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>metadata <span class="op">=</span> pd.read_csv(PROJECT_ROOT <span class="op">/</span> <span class="st">"data/sample_metadata.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Separating inputs from analysis code makes dependencies self-documenting—reading the top of any script shows exactly what it depends on. You can also document inputs and outputs in the introduction text:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Volcano Plots</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>This script generates volcano plots for the phosphoproteomics time course.</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>**Inputs:**</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`outs/03_differential/limma_results.rds`</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`data/sample_metadata.csv`</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>**Outputs:**</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`outs/04_volcano_plots/volcano_*.pdf`</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`outs/04_volcano_plots/significant_hits.csv`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>See the <a href="../part2/project-organization.html">Project Organization</a> chapter for how this fits into the larger project structure.</p>
+</section>
+</section>
+<section id="saving-outputs" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="saving-outputs"><span class="header-section-number">6.4</span> Saving Outputs</h2>
+<p>Don’t rely on the Plots pane or copy-paste. Save figures and tables to files explicitly:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-volcano</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Volcano plot showing differential phosphorylation"</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(results, <span class="fu">aes</span>(<span class="at">x =</span> logFC, <span class="at">y =</span> <span class="sc">-</span><span class="fu">log10</span>(adj.P.Val))) <span class="sc">+</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Display in rendered document</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Save to output folder</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">file.path</span>(dir_out, <span class="st">"volcano_plot.pdf"</span>),</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot =</span> p,</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="dv">6</span>,</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="dv">4</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For tables:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(significant_hits, <span class="fu">file.path</span>(dir_out, <span class="st">"significant_hits.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-volcano</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Volcano plot showing differential phosphorylation"</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>ax.scatter(results[<span class="st">"logFC"</span>], <span class="op">-</span>np.log10(results[<span class="st">"adj_pval"</span>]))</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"log2 Fold Change"</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"-log10 Adjusted P-value"</span>)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Save to output folder AND display inline</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>fig.savefig(out_dir <span class="op">/</span> <span class="st">"volcano_plot.pdf"</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">"tight"</span>)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>fig.savefig(out_dir <span class="op">/</span> <span class="st">"volcano_plot.png"</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">"tight"</span>)</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For tables:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>significant_hits.to_csv(out_dir <span class="op">/</span> <span class="st">"significant_hits.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>This approach embeds the figure in the rendered HTML, saves a high-quality copy for publication or further use, and makes the output traceable (the file exists in <code>outs/</code>).</p>
+</section>
+<section id="working-directory-and-paths" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="working-directory-and-paths"><span class="header-section-number">6.5</span> Working Directory and Paths</h2>
+<p>When Quarto renders a <code>.qmd</code>, the working directory is the folder containing the <code>.qmd</code> file—not the project root. This can cause path confusion.</p>
+<pre><code>project/
+├── scripts/
+│   └── 01_analysis.qmd    ← Working directory during render
+├── data/
+│   └── input.csv
+└── outs/</code></pre>
+<p>From <code>scripts/01_analysis.qmd</code>, a relative path to the data would be <code>../data/input.csv</code>. But this breaks if you move the script or run it from a different location.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">R: <code>here::here()</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">Python: <code>PROJECT_ROOT</code></a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<p>The <code>here</code> package finds the project root (by looking for <code>.git</code>, <code>.Rproj</code>, etc.) and builds paths from there:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Always works, regardless of working directory</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"input.csv"</span>))</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Instead of fragile relative paths</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/input.csv"</span>)  <span class="co"># Don't do this</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<p>Python doesn’t have a direct equivalent of <code>here</code>, so the setup chunk finds the project root via Git:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>PROJECT_ROOT <span class="op">=</span> Path(subprocess.check_output(</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"git"</span>, <span class="st">"rev-parse"</span>, <span class="st">"--show-toplevel"</span>]</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>).decode().strip())</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Always works, regardless of working directory</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(PROJECT_ROOT <span class="op">/</span> <span class="st">"data/input.csv"</span>)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Instead of fragile relative paths</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"../data/input.csv"</span>)  <span class="co"># Don't do this</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Use project-root-relative paths for all file operations in your scripts. It makes your code portable and reproducible.</p>
+</section>
+<section id="rendering" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="rendering"><span class="header-section-number">6.6</span> Rendering</h2>
+<section id="from-the-terminal" class="level3" data-number="6.6.1">
+<h3 data-number="6.6.1" class="anchored" data-anchor-id="from-the-terminal"><span class="header-section-number">6.6.1</span> From the Terminal</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>quarto render scripts/01_analysis.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<p>Python QMD files require the conda environment to be active when you render:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>source ~/miniconda3/etc/profile.d/conda.sh &amp;&amp; conda activate my-project &amp;&amp; quarto render scripts/02_plots.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If <code>quarto render</code> fails with <code>ModuleNotFoundError</code>, check that your conda environment is active. This is the number one Python QMD gotcha.</p>
+</div>
+</div>
+</div>
+<p>To render all <code>.qmd</code> files in a directory:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>quarto render scripts/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="from-positron" class="level3" data-number="6.6.2">
+<h3 data-number="6.6.2" class="anchored" data-anchor-id="from-positron"><span class="header-section-number">6.6.2</span> From Positron</h3>
+<p>Click the <strong>Render</strong> button in the editor toolbar, or use <strong>Cmd+Shift+K</strong> (macOS) / <strong>Ctrl+Shift+K</strong> (Windows).</p>
+</section>
+<section id="preview-mode" class="level3" data-number="6.6.3">
+<h3 data-number="6.6.3" class="anchored" data-anchor-id="preview-mode"><span class="header-section-number">6.6.3</span> Preview Mode</h3>
+<p>For live feedback during development, use preview mode:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>quarto preview scripts/01_analysis.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This opens a browser window that automatically refreshes when you save changes. Useful for tuning formatting, but remember that preview still renders in a fresh session—it’s not the same as interactive execution.</p>
+</section>
+</section>
+<section id="best-practices" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="best-practices"><span class="header-section-number">6.7</span> Best Practices</h2>
+<section id="render-before-committing" class="level3" data-number="6.7.1">
+<h3 data-number="6.7.1" class="anchored" data-anchor-id="render-before-committing"><span class="header-section-number">6.7.1</span> Render Before Committing</h3>
+<p>Always render the full document before committing to Git. This catches missing packages (installed interactively but not in your lockfile), missing objects (created interactively but not in the script), and order dependencies (chunks that depend on earlier chunks you modified).</p>
+</section>
+<section id="self-contained-scripts" class="level3" data-number="6.7.2">
+<h3 data-number="6.7.2" class="anchored" data-anchor-id="self-contained-scripts"><span class="header-section-number">6.7.2</span> Self-Contained Scripts</h3>
+<p>Every <code>.qmd</code> should run successfully from a fresh R or Python session. Don’t assume objects exist from previous interactive work. If render fails, your script isn’t self-contained.</p>
+</section>
+<section id="clear-section-structure" class="level3" data-number="6.7.3">
+<h3 data-number="6.7.3" class="anchored" data-anchor-id="clear-section-structure"><span class="header-section-number">6.7.3</span> Clear Section Structure</h3>
+<p>Organize your script with clear headings:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduction</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu"># Setup</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu"># Load Data</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu"># Analysis</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu"># Results</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="fu"># Summary</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This makes the script navigable (via Positron’s Outline panel) and the rendered document readable.</p>
+</section>
+<section id="validation-chunks" class="level3" data-number="6.7.4">
+<h3 data-number="6.7.4" class="anchored" data-anchor-id="validation-chunks"><span class="header-section-number">6.7.4</span> Validation Chunks</h3>
+<p>For complex analyses, add validation chunks that verify data integrity:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: validate-data</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check required columns exist</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>required_cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"sample_id"</span>, <span class="st">"condition"</span>, <span class="st">"value"</span>)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>missing_cols <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(required_cols, <span class="fu">names</span>(data))</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">length</span>(missing_cols) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop</span>(<span class="st">"Missing required columns: "</span>, <span class="fu">paste</span>(missing_cols, <span class="at">collapse =</span> <span class="st">", "</span>))</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="st">"No data loaded"</span> <span class="ot">=</span> <span class="fu">nrow</span>(data) <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>These chunks catch problems early and provide clear error messages.</p>
+</section>
+<section id="provenance-chunk" class="level3" data-number="6.7.5">
+<h3 data-number="6.7.5" class="anchored" data-anchor-id="provenance-chunk"><span class="header-section-number">6.7.5</span> Provenance Chunk</h3>
+<p>End every script with a chunk that writes <code>BUILD_INFO.txt</code> and prints session information. This records which script, commit, and timestamp produced the outputs—answering “when was this last regenerated?”</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: build-info</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(<span class="st">"script:"</span>, <span class="st">"01_script_name.qmd"</span>),</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(<span class="st">"commit:"</span>, git_hash),</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(<span class="st">"date:"</span>, <span class="fu">format</span>(<span class="fu">Sys.time</span>(), <span class="st">"%Y-%m-%d %H:%M:%S"</span>))</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">file.path</span>(dir_out, <span class="st">"BUILD_INFO.txt"</span>)</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: build-info</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>(out_dir <span class="op">/</span> <span class="st">"BUILD_INFO.txt"</span>).write_text(</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"script: 01_script_name.qmd</span><span class="ch">\n</span><span class="ss">"</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"commit: </span><span class="sc">{</span>git_hash<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"date: </span><span class="sc">{</span>datetime<span class="sc">.</span>now()<span class="sc">.</span>strftime(<span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st"> %H:%M:%S'</span>)<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> session_info</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>session_info.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="common-issues" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="common-issues"><span class="header-section-number">6.8</span> Common Issues</h2>
+<div class="claude-callout callout callout-style-default callout-warning callout-titled" title="Claude Code">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Claude Code
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Claude Code can debug render failures, especially the common case where code works interactively but fails during rendering.</p>
+<blockquote class="blockquote">
+<p>When I run <code>quarto render analysis.qmd</code>, I get this error: [paste error]. The code runs fine interactively in the console. What’s going wrong?</p>
+</blockquote>
+<p>Claude will trace the error to its cause—typically a missing object that existed in your interactive session but isn’t created in the script, or a path that resolves differently during rendering.</p>
+</div>
+</div>
+<section id="object-not-found-during-render" class="level3" data-number="6.8.1">
+<h3 data-number="6.8.1" class="anchored" data-anchor-id="object-not-found-during-render"><span class="header-section-number">6.8.1</span> “Object not found” During Render</h3>
+<p>Code that works interactively may fail during render if you rely on objects not created in the script. You created an object manually in the console, then used it in a chunk without creating it in the script. Ensure all objects are created within the <code>.qmd</code> and render frequently to catch this early.</p>
+</section>
+<section id="figures-not-appearing" class="level3" data-number="6.8.2">
+<h3 data-number="6.8.2" class="anchored" data-anchor-id="figures-not-appearing"><span class="header-section-number">6.8.2</span> Figures Not Appearing</h3>
+<p>If a plot doesn’t show up in the rendered output, add an explicit <code>print()</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(x, y)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p)  <span class="co"># Required inside loops or complex chunks</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The explicit <code>print()</code> is needed when the plot is the result of an assignment or is inside a loop/function.</p>
+</section>
+<section id="package-messages-cluttering-output" class="level3" data-number="6.8.3">
+<h3 data-number="6.8.3" class="anchored" data-anchor-id="package-messages-cluttering-output"><span class="header-section-number">6.8.3</span> Package Messages Cluttering Output</h3>
+<p>Set <code>message: false</code> and <code>warning: false</code> in the YAML <code>execute:</code> block to suppress them globally, or per-chunk for specific chunks.</p>
+</section>
+<section id="output-file-is-huge" class="level3" data-number="6.8.4">
+<h3 data-number="6.8.4" class="anchored" data-anchor-id="output-file-is-huge"><span class="header-section-number">6.8.4</span> Output File Is Huge</h3>
+<p>If your HTML is very large:</p>
+<ul>
+<li><strong>Embedded images</strong>: Use <code>self-contained: false</code> to keep images in a separate <code>_files</code> folder</li>
+<li><strong>High resolution</strong>: Add <code>fig-dpi: 150</code> to reduce figure resolution</li>
+<li><strong>SVG format</strong>: Use <code>fig-format: png</code> instead of SVG for complex plots</li>
+</ul>
+</section>
+<section id="chunk-takes-forever" class="level3" data-number="6.8.5">
+<h3 data-number="6.8.5" class="anchored" data-anchor-id="chunk-takes-forever"><span class="header-section-number">6.8.5</span> Chunk Takes Forever</h3>
+<p>For long-running chunks during development, consider <code>#| cache: true</code>. This caches the chunk’s results—subsequent renders skip execution if the code hasn’t changed. Use sparingly, as caching can cause subtle bugs if dependencies change.</p>
+</section>
+</section>
+<section id="quick-reference" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="quick-reference"><span class="header-section-number">6.9</span> Quick Reference</h2>
+<section id="yaml-options" class="level3" data-number="6.9.1">
+<h3 data-number="6.9.1" class="anchored" data-anchor-id="yaml-options"><span class="header-section-number">6.9.1</span> YAML Options</h3>
+<section id="document-metadata" class="level4" data-number="6.9.1.1">
+<h4 data-number="6.9.1.1" class="anchored" data-anchor-id="document-metadata"><span class="header-section-number">6.9.1.1</span> Document Metadata</h4>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -825,21 +1224,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td><code>status</code></td>
-<td>Script lifecycle stage (see <a href="../part2/project-organization.html#script-lifecycle">Project Organization</a>)</td>
+<td>Script lifecycle stage</td>
 <td><code>development</code></td>
+</tr>
+<tr class="even">
+<td><code>jupyter</code></td>
+<td>Jupyter kernel (Python only)</td>
+<td><code>python3</code></td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="format-options" class="level3" data-number="6.4.2">
-<h3 data-number="6.4.2" class="anchored" data-anchor-id="format-options"><span class="header-section-number">6.4.2</span> Format Options</h3>
-<p>These go under <code>format: html:</code> and control the HTML output:</p>
+<section id="format-options-under-format-html" class="level4" data-number="6.9.1.2">
+<h4 data-number="6.9.1.2" class="anchored" data-anchor-id="format-options-under-format-html"><span class="header-section-number">6.9.1.2</span> Format Options (under <code>format: html:</code>)</h4>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 26%">
-<col style="width: 30%">
-<col style="width: 43%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Option</th>
@@ -871,7 +1269,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td><code>code-fold</code></td>
 <td>Collapse code blocks by default</td>
-<td><code>false</code> for analysis scripts</td>
+<td><code>false</code></td>
 </tr>
 <tr class="even">
 <td><code>code-tools</code></td>
@@ -900,15 +1298,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td><code>self-contained</code></td>
-<td>Single HTML file (no external dependencies)</td>
+<td>Single HTML file</td>
 <td><code>true</code></td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="execute-options" class="level3" data-number="6.4.3">
-<h3 data-number="6.4.3" class="anchored" data-anchor-id="execute-options"><span class="header-section-number">6.4.3</span> Execute Options</h3>
-<p>These go under <code>execute:</code> and control code execution:</p>
+<section id="execute-options-under-execute" class="level4" data-number="6.9.1.3">
+<h4 data-number="6.9.1.3" class="anchored" data-anchor-id="execute-options-under-execute"><span class="header-section-number">6.9.1.3</span> Execute Options (under <code>execute:</code>)</h4>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -921,12 +1318,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td><code>echo</code></td>
 <td>Show code in output</td>
-<td><code>true</code> for analysis scripts</td>
+<td><code>true</code></td>
 </tr>
 <tr class="even">
 <td><code>message</code></td>
-<td>Show package messages</td>
-<td><code>false</code> (R only)</td>
+<td>Show package messages (R only)</td>
+<td><code>false</code></td>
 </tr>
 <tr class="odd">
 <td><code>warning</code></td>
@@ -940,736 +1337,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>Setting <code>message: false</code> and <code>warning: false</code> globally keeps your rendered output clean. You can override these per-chunk when you need to see specific messages. We set <code>cache: false</code> explicitly to avoid subtle bugs from stale cached results.</p>
 </section>
 </section>
-<section id="the-setup-chunk" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="the-setup-chunk"><span class="header-section-number">6.5</span> The Setup Chunk</h2>
-<p>Every analysis script should start with a setup chunk that loads packages, defines paths, sets options, and captures the git commit hash for provenance.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Libraries ----</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>({</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(tidyverse)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(here)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Paths ----</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>dir_data <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>dir_out <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"outs"</span>, <span class="st">"01_script_name"</span>)</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(dir_out, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Options ----</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Provenance ----</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>git_hash <span class="ot">&lt;-</span> <span class="fu">system</span>(<span class="st">"git rev-parse --short HEAD"</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Rendered from commit:"</span>, git_hash, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<section id="key-patterns" class="level3" data-number="6.5.1">
-<h3 data-number="6.5.1" class="anchored" data-anchor-id="key-patterns"><span class="header-section-number">6.5.1</span> Key Patterns</h3>
-<p><strong><code>#| include: false</code></strong> — The chunk runs but doesn’t appear in the rendered output. Use this for setup code that readers don’t need to see.</p>
-<p><strong><code>suppressPackageStartupMessages()</code></strong> — Prevents the startup messages that packages print when loaded. This keeps your console (and rendered output) clean.</p>
-<p><strong><code>here::here()</code></strong> — Builds file paths relative to the project root, not the script location. Essential for reproducibility. See <a href="#working-directory-and-paths">Working Directory and Paths</a> below.</p>
-<p><strong><code>dir.create(..., showWarnings = FALSE)</code></strong> — Ensures output directories exist. The <code>showWarnings = FALSE</code> prevents errors if the directory already exists.</p>
-<p><strong><code>set.seed()</code></strong> — Makes random operations reproducible. Use a fixed seed when your analysis involves any randomness (sampling, clustering, etc.).</p>
-<p><strong><code>git_hash</code></strong> — Captures the current commit for provenance tracking. This is used later in <code>BUILD_INFO.txt</code> (see <a href="#provenance-chunk">Provenance Chunk</a> below).</p>
-</section>
-</section>
-<section id="documenting-inputs" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="documenting-inputs"><span class="header-section-number">6.6</span> Documenting Inputs</h2>
-<p>After the setup chunk, add an explicit inputs section that loads all dependencies. This makes it immediately clear what the script needs to run:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: inputs</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Inputs (from other scripts) ---</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">"outs/03_differential/limma_results.rds"</span>))</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Inputs (external data) ---</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>metadata <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/sample_metadata.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Separating inputs from analysis code makes dependencies self-documenting—reading the top of any script shows exactly what it depends on. You can also document outputs in the introduction text:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Volcano Plots</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>This script generates volcano plots for the phosphoproteomics time course.</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>**Inputs:**</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`outs/03_differential/limma_results.rds`</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`data/sample_metadata.csv`</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>**Outputs:**</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`outs/04_volcano_plots/volcano_*.pdf`</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`outs/04_volcano_plots/significant_hits.csv`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>See the <a href="../part2/project-organization.html">Project Organization</a> chapter for how this fits into the larger project structure.</p>
-</section>
-<section id="code-chunks" class="level2" data-number="6.7">
-<h2 data-number="6.7" class="anchored" data-anchor-id="code-chunks"><span class="header-section-number">6.7</span> Code Chunks</h2>
-<p>Code chunks are fenced with triple backticks and a language identifier:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># R code here</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Python code here</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<section id="chunk-options" class="level3" data-number="6.7.1">
-<h3 data-number="6.7.1" class="anchored" data-anchor-id="chunk-options"><span class="header-section-number">6.7.1</span> Chunk Options</h3>
-<p>Use the <code>#|</code> syntax to set options for individual chunks:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: load-data</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"input.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The <code>label</code> option names the chunk. This is useful for:</p>
-<ul>
-<li>Debugging (error messages reference the chunk label)</li>
-<li>Cross-references (linking to figures)</li>
-<li>Caching (cached chunks are identified by label)</li>
-</ul>
-</section>
-<section id="common-chunk-options" class="level3" data-number="6.7.2">
-<h3 data-number="6.7.2" class="anchored" data-anchor-id="common-chunk-options"><span class="header-section-number">6.7.2</span> Common Chunk Options</h3>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Option</th>
-<th>Purpose</th>
-<th>Values</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>label</code></td>
-<td>Chunk identifier</td>
-<td><code>load-data</code>, <code>fig-volcano</code></td>
-</tr>
-<tr class="even">
-<td><code>echo</code></td>
-<td>Show this chunk’s code</td>
-<td><code>true</code>, <code>false</code></td>
-</tr>
-<tr class="odd">
-<td><code>eval</code></td>
-<td>Run this chunk</td>
-<td><code>true</code>, <code>false</code></td>
-</tr>
-<tr class="even">
-<td><code>include</code></td>
-<td>Include in output at all</td>
-<td><code>true</code>, <code>false</code></td>
-</tr>
-<tr class="odd">
-<td><code>message</code></td>
-<td>Show messages</td>
-<td><code>true</code>, <code>false</code></td>
-</tr>
-<tr class="even">
-<td><code>warning</code></td>
-<td>Show warnings</td>
-<td><code>true</code>, <code>false</code></td>
-</tr>
-<tr class="odd">
-<td><code>fig-cap</code></td>
-<td>Figure caption</td>
-<td><code>"My figure title"</code></td>
-</tr>
-<tr class="even">
-<td><code>fig-width</code></td>
-<td>Figure width (inches)</td>
-<td><code>6</code></td>
-</tr>
-<tr class="odd">
-<td><code>fig-height</code></td>
-<td>Figure height (inches)</td>
-<td><code>4</code></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="chunk-patterns" class="level3" data-number="6.7.3">
-<h3 data-number="6.7.3" class="anchored" data-anchor-id="chunk-patterns"><span class="header-section-number">6.7.3</span> Chunk Patterns</h3>
-<p><strong>Hidden setup</strong> — runs but doesn’t appear in output:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Visible code with clean output</strong> — shows code, hides messages:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: load-data</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Figure with caption</strong> — for publication-ready figures:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-volcano</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Volcano plot showing differential expression"</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 6</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(results, <span class="fu">aes</span>(<span class="at">x =</span> logFC, <span class="at">y =</span> <span class="sc">-</span><span class="fu">log10</span>(pvalue))) <span class="sc">+</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Code shown but not run</strong> — for demonstrating syntax:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: example-syntax</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># This code is displayed but not executed</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hypothetical_function</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-</section>
-<section id="working-with-r" class="level2" data-number="6.8">
-<h2 data-number="6.8" class="anchored" data-anchor-id="working-with-r"><span class="header-section-number">6.8</span> Working with R</h2>
-<section id="running-code" class="level3" data-number="6.8.1">
-<h3 data-number="6.8.1" class="anchored" data-anchor-id="running-code"><span class="header-section-number">6.8.1</span> Running Code</h3>
-<p>Select code in the editor and press <strong>Cmd+Enter</strong> (macOS) or <strong>Ctrl+Enter</strong> (Windows) to run it in the R console. For entire chunks, use <strong>Cmd+Shift+Enter</strong>.</p>
-<p>When you run R code:</p>
-<ul>
-<li>Output appears in the Console</li>
-<li>Plots appear in the Plots pane (and can be viewed in Data Viewer for inspection)</li>
-<li>Objects are created in your R session (visible in Variables pane)</li>
-</ul>
-</section>
-<section id="the-data-viewer" class="level3" data-number="6.8.2">
-<h3 data-number="6.8.2" class="anchored" data-anchor-id="the-data-viewer"><span class="header-section-number">6.8.2</span> The Data Viewer</h3>
-<p>Click any dataframe in the Variables pane to open it in Positron’s Data Viewer. This is essential for exploratory work—you’ll constantly check data after transformations to verify they worked correctly.</p>
-</section>
-<section id="renv-integration" class="level3" data-number="6.8.3">
-<h3 data-number="6.8.3" class="anchored" data-anchor-id="renv-integration"><span class="header-section-number">6.8.3</span> renv Integration</h3>
-<p>If your project uses renv (and it should), the R console automatically activates it. You’ll see:</p>
-<pre><code>- Project '/path/to/project' loaded. [renv 1.0.0]</code></pre>
-<p>This confirms you’re using the project’s package library, not your global library.</p>
-</section>
-</section>
-<section id="working-with-python" class="level2" data-number="6.9">
-<h2 data-number="6.9" class="anchored" data-anchor-id="working-with-python"><span class="header-section-number">6.9</span> Working with Python</h2>
-<p>Quarto <code>.qmd</code> is the standard format for Python data analysis in the lab, just as it is for R. Plain <code>.py</code> files are for standalone utilities, CLI tools, and library code—not for data analysis scripts. Everything described above (YAML headers, setup chunks, inputs, provenance) applies to Python QMD too.</p>
-<section id="running-code-1" class="level3" data-number="6.9.1">
-<h3 data-number="6.9.1" class="anchored" data-anchor-id="running-code-1"><span class="header-section-number">6.9.1</span> Running Code</h3>
-<p>The same shortcuts work for Python: <strong>Cmd+Enter</strong> to run the current line or selection.</p>
-<p>For Python chunks to execute during render, you need <code>ipykernel</code> installed in your conda environment:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>conda install ipykernel</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="selecting-the-interpreter" class="level3" data-number="6.9.2">
-<h3 data-number="6.9.2" class="anchored" data-anchor-id="selecting-the-interpreter"><span class="header-section-number">6.9.2</span> Selecting the Interpreter</h3>
-<p>Ensure Positron is using the correct conda environment:</p>
-<ol type="1">
-<li>Open Command Palette (Cmd/Ctrl+Shift+P)</li>
-<li>Type “Python: Select Interpreter”</li>
-<li>Choose your project’s conda environment</li>
-</ol>
-</section>
-<section id="rendering-python-qmd" class="level3" data-number="6.9.3">
-<h3 data-number="6.9.3" class="anchored" data-anchor-id="rendering-python-qmd"><span class="header-section-number">6.9.3</span> Rendering Python QMD</h3>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Activate Conda Before Rendering
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Python QMD files require the conda environment to be active when you render. Without this, Quarto uses the wrong Python or can’t find your packages:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>source ~/miniconda3/etc/profile.d/conda.sh &amp;&amp; conda activate my-project &amp;&amp; quarto render scripts/02_analysis.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This is the #1 Python QMD gotcha. If <code>quarto render</code> fails with <code>ModuleNotFoundError</code>, check that your conda environment is active.</p>
-</div>
-</div>
-</section>
-<section id="python-yaml-header" class="level3" data-number="6.9.4">
-<h3 data-number="6.9.4" class="anchored" data-anchor-id="python-yaml-header"><span class="header-section-number">6.9.4</span> Python YAML Header</h3>
-<p>The Python YAML header is the same as R, with two differences: add <code>jupyter: python3</code> and drop <code>message: false</code> (which is R-specific):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Script Title"</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">subtitle</span><span class="kw">:</span><span class="at"> </span><span class="st">"Brief description"</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Your Name"</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> today</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">status</span><span class="kw">:</span><span class="at"> development</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">jupyter</span><span class="kw">:</span><span class="at"> python3</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc-depth</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">number-sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-overflow</span><span class="kw">:</span><span class="at"> wrap</span></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-tools</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">highlight-style</span><span class="kw">:</span><span class="at"> github</span></span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> cosmo</span></span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fontsize</span><span class="kw">:</span><span class="at"> 1rem</span></span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">linestretch</span><span class="kw">:</span><span class="at"> </span><span class="fl">1.5</span></span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">self-contained</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">cache</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="python-setup-chunk" class="level3" data-number="6.9.5">
-<h3 data-number="6.9.5" class="anchored" data-anchor-id="python-setup-chunk"><span class="header-section-number">6.9.5</span> Python Setup Chunk</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>PROJECT_ROOT <span class="op">=</span> Path(subprocess.check_output(</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"git"</span>, <span class="st">"rev-parse"</span>, <span class="st">"--show-toplevel"</span>]</span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>).decode().strip())</span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>, <span class="bu">str</span>(PROJECT_ROOT <span class="op">/</span> <span class="st">"python"</span>))</span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="co"># from helpers import ...  # if needed</span></span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Options ----</span></span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>random.seed(<span class="dv">42</span>)</span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">"display.max_columns"</span>, <span class="va">None</span>)</span>
-<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span>
-<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Paths ----</span></span>
-<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>out_dir <span class="op">=</span> PROJECT_ROOT <span class="op">/</span> <span class="st">"outs/XX_script_name"</span></span>
-<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>out_dir.mkdir(parents<span class="op">=</span><span class="va">True</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>git_hash <span class="op">=</span> subprocess.check_output(</span>
-<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"git"</span>, <span class="st">"rev-parse"</span>, <span class="st">"--short"</span>, <span class="st">"HEAD"</span>]</span>
-<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>).decode().strip()</span>
-<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Rendered from commit: </span><span class="sc">{</span>git_hash<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Key differences from R:</p>
-<ul>
-<li><strong><code>PROJECT_ROOT</code></strong> replaces <code>here::here()</code> — found via <code>git rev-parse --show-toplevel</code></li>
-<li><strong>Helper loading</strong> uses <code>sys.path.insert()</code> instead of <code>source()</code></li>
-<li><strong>Two random seeds</strong> — <code>random.seed(42)</code> for Python stdlib, <code>np.random.seed(42)</code> for NumPy</li>
-</ul>
-</section>
-<section id="python-figure-saving" class="level3" data-number="6.9.6">
-<h3 data-number="6.9.6" class="anchored" data-anchor-id="python-figure-saving"><span class="header-section-number">6.9.6</span> Python Figure Saving</h3>
-<p>Save figures to <code>outs/</code> AND display inline:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-example</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Description of figure"</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ... plotting code ...</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Save to outs/ AND display inline</span></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>fig.savefig(out_dir <span class="op">/</span> <span class="st">"figure_name.pdf"</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">"tight"</span>)</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>fig.savefig(out_dir <span class="op">/</span> <span class="st">"figure_name.png"</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">"tight"</span>)</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="python-provenance-chunk" class="level3" data-number="6.9.7">
-<h3 data-number="6.9.7" class="anchored" data-anchor-id="python-provenance-chunk"><span class="header-section-number">6.9.7</span> Python Provenance Chunk</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: build-info</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>(out_dir <span class="op">/</span> <span class="st">"BUILD_INFO.txt"</span>).write_text(</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"script: XX_script_name.qmd</span><span class="ch">\n</span><span class="ss">"</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"commit: </span><span class="sc">{</span>git_hash<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"date: </span><span class="sc">{</span>datetime<span class="sc">.</span>now()<span class="sc">.</span>strftime(<span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st"> %H:%M:%S'</span>)<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> session_info</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>session_info.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><code>session_info</code> must be installed in your conda environment: <code>pip install session-info</code>. Include it in every data science environment.</p>
-</div>
-</div>
-</section>
-<section id="language-mixing" class="level3" data-number="6.9.8">
-<h3 data-number="6.9.8" class="anchored" data-anchor-id="language-mixing"><span class="header-section-number">6.9.8</span> Language Mixing</h3>
-<p>Do not mix R and Python chunks in a single <code>.qmd</code>. Each script uses one language. Scripts communicate through files in <code>outs/</code>, not shared memory. If an R script produces data that a Python script needs, save it as Parquet (see <a href="../part2/project-organization.html#output-files">Project Organization</a>).</p>
-</section>
-<section id="r-vs-python-quick-reference" class="level3" data-number="6.9.9">
-<h3 data-number="6.9.9" class="anchored" data-anchor-id="r-vs-python-quick-reference"><span class="header-section-number">6.9.9</span> R vs Python Quick Reference</h3>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 52%">
-<col style="width: 13%">
-<col style="width: 34%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Convention</th>
-<th>R</th>
-<th>Python</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Project root</td>
-<td><code>here::here()</code></td>
-<td><code>PROJECT_ROOT</code> (from git)</td>
-</tr>
-<tr class="even">
-<td>Read CSV</td>
-<td><code>read_csv(here("data/file.csv"))</code></td>
-<td><code>pd.read_csv(PROJECT_ROOT / "data/file.csv")</code></td>
-</tr>
-<tr class="odd">
-<td>Read TSV</td>
-<td><code>read_tsv(here("data/file.tsv"))</code></td>
-<td><code>pd.read_csv(PROJECT_ROOT / "data/file.tsv", sep="\t")</code></td>
-</tr>
-<tr class="even">
-<td>Read Parquet</td>
-<td><code>arrow::read_parquet(here(...))</code></td>
-<td><code>pd.read_parquet(PROJECT_ROOT / ...)</code></td>
-</tr>
-<tr class="odd">
-<td>Save figure</td>
-<td><code>ggsave(file.path(dir_out, "fig.pdf"))</code></td>
-<td><code>fig.savefig(out_dir / "fig.pdf")</code></td>
-</tr>
-<tr class="even">
-<td>Random seed</td>
-<td><code>set.seed(42)</code></td>
-<td><code>random.seed(42)</code> + <code>np.random.seed(42)</code></td>
-</tr>
-<tr class="odd">
-<td>Session info</td>
-<td><code>sessionInfo()</code></td>
-<td><code>session_info.show()</code></td>
-</tr>
-<tr class="even">
-<td>Chunk label</td>
-<td><code>{r label-name}</code> or <code>#| label:</code></td>
-<td><code>#| label:</code> only</td>
-</tr>
-<tr class="odd">
-<td>Helper loading</td>
-<td><code>source(here("R/helpers.R"))</code></td>
-<td><code>sys.path.insert(0, str(PROJECT_ROOT / "python"))</code></td>
-</tr>
-</tbody>
-</table>
-</section>
-</section>
-<section id="saving-outputs" class="level2" data-number="6.10">
-<h2 data-number="6.10" class="anchored" data-anchor-id="saving-outputs"><span class="header-section-number">6.10</span> Saving Outputs</h2>
-<p>Don’t rely on the Plots pane or copy-paste. Save figures and tables to files explicitly:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-volcano</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Volcano plot showing differential phosphorylation"</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(results, <span class="fu">aes</span>(<span class="at">x =</span> logFC, <span class="at">y =</span> <span class="sc">-</span><span class="fu">log10</span>(adj.P.Val))) <span class="sc">+</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Display in rendered document</span></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p)</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Save to output folder</span></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(</span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">file.path</span>(dir_out, <span class="st">"volcano_plot.pdf"</span>),</span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot =</span> p,</span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="dv">6</span>,</span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="dv">4</span></span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This approach:</p>
-<ul>
-<li>Embeds the figure in the rendered HTML (via <code>print(p)</code>)</li>
-<li>Saves a high-quality PDF for publication or further use</li>
-<li>Makes the output traceable (the file exists in <code>outs/</code>)</li>
-</ul>
-<p>For tables:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save results table</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(significant_hits, <span class="fu">file.path</span>(dir_out, <span class="st">"significant_hits.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="working-directory-and-paths" class="level2" data-number="6.11">
-<h2 data-number="6.11" class="anchored" data-anchor-id="working-directory-and-paths"><span class="header-section-number">6.11</span> Working Directory and Paths</h2>
-<p>When Quarto renders a <code>.qmd</code>, the working directory is the folder containing the <code>.qmd</code> file—not the project root. This can cause path confusion.</p>
-<pre><code>project/
-├── scripts/
-│   └── 01_analysis.qmd    ← Working directory during render
-├── data/
-│   └── input.csv
-└── outs/</code></pre>
-<p>From <code>scripts/01_analysis.qmd</code>, a relative path to the data would be <code>../data/input.csv</code>. But this breaks if you move the script or run it from a different location.</p>
-<section id="the-solution-herehere" class="level3" data-number="6.11.1">
-<h3 data-number="6.11.1" class="anchored" data-anchor-id="the-solution-herehere"><span class="header-section-number">6.11.1</span> The Solution: <code>here::here()</code></h3>
-<p>The <code>here</code> package finds the project root (by looking for <code>.git</code>, <code>.Rproj</code>, etc.) and builds paths from there:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Always works, regardless of working directory</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"input.csv"</span>))</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Instead of fragile relative paths</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/input.csv"</span>)  <span class="co"># Don't do this</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Use <code>here::here()</code> for all file paths in your scripts. It makes your code portable and reproducible.</p>
-</section>
-</section>
-<section id="rendering-1" class="level2" data-number="6.12">
-<h2 data-number="6.12" class="anchored" data-anchor-id="rendering-1"><span class="header-section-number">6.12</span> Rendering</h2>
-<section id="from-the-terminal" class="level3" data-number="6.12.1">
-<h3 data-number="6.12.1" class="anchored" data-anchor-id="from-the-terminal"><span class="header-section-number">6.12.1</span> From the Terminal</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a># Render an R document</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>quarto render scripts/01_analysis.qmd</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a># Render a Python document (conda must be active!)</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>source ~/miniconda3/etc/profile.d/conda.sh &amp;&amp; conda activate my-project &amp;&amp; quarto render scripts/02_plots.qmd</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a># Render all .qmd files in a directory</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>quarto render scripts/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="from-positron" class="level3" data-number="6.12.2">
-<h3 data-number="6.12.2" class="anchored" data-anchor-id="from-positron"><span class="header-section-number">6.12.2</span> From Positron</h3>
-<ul>
-<li>Click the <strong>Render</strong> button in the editor toolbar</li>
-<li>Or use <strong>Cmd+Shift+K</strong> (macOS) / <strong>Ctrl+Shift+K</strong> (Windows)</li>
-</ul>
-</section>
-<section id="preview-mode" class="level3" data-number="6.12.3">
-<h3 data-number="6.12.3" class="anchored" data-anchor-id="preview-mode"><span class="header-section-number">6.12.3</span> Preview Mode</h3>
-<p>For live feedback during development, use preview mode:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>quarto preview scripts/01_analysis.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This opens a browser window that automatically refreshes when you save changes. Useful for tuning formatting, but remember that preview still renders in a fresh session—it’s not the same as interactive execution.</p>
-</section>
-</section>
-<section id="best-practices" class="level2" data-number="6.13">
-<h2 data-number="6.13" class="anchored" data-anchor-id="best-practices"><span class="header-section-number">6.13</span> Best Practices</h2>
-<section id="render-before-committing" class="level3" data-number="6.13.1">
-<h3 data-number="6.13.1" class="anchored" data-anchor-id="render-before-committing"><span class="header-section-number">6.13.1</span> Render Before Committing</h3>
-<p>Always render the full document before committing to Git. This catches:</p>
-<ul>
-<li>Missing packages (installed interactively but not in lockfile)</li>
-<li>Missing objects (created interactively but not in the script)</li>
-<li>Order dependencies (chunks that depend on earlier chunks you modified)</li>
-</ul>
-</section>
-<section id="self-contained-scripts" class="level3" data-number="6.13.2">
-<h3 data-number="6.13.2" class="anchored" data-anchor-id="self-contained-scripts"><span class="header-section-number">6.13.2</span> Self-Contained Scripts</h3>
-<p>Every <code>.qmd</code> should run successfully from a fresh R session. Don’t assume objects exist from previous interactive work. If render fails, your script isn’t self-contained.</p>
-</section>
-<section id="clear-section-structure" class="level3" data-number="6.13.3">
-<h3 data-number="6.13.3" class="anchored" data-anchor-id="clear-section-structure"><span class="header-section-number">6.13.3</span> Clear Section Structure</h3>
-<p>Organize your script with clear headings:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduction</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu"># Setup</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu"># Load Data</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu"># Analysis</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="fu"># Results</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="fu"># Summary</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This makes the script navigable (via Positron’s Outline panel) and the rendered document readable.</p>
-</section>
-<section id="validation-chunks" class="level3" data-number="6.13.4">
-<h3 data-number="6.13.4" class="anchored" data-anchor-id="validation-chunks"><span class="header-section-number">6.13.4</span> Validation Chunks</h3>
-<p>For complex analyses, add validation chunks that verify data integrity:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: validate-data</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check required columns exist</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>required_cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"sample_id"</span>, <span class="st">"condition"</span>, <span class="st">"value"</span>)</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>missing_cols <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(required_cols, <span class="fu">names</span>(data))</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">length</span>(missing_cols) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stop</span>(<span class="st">"Missing required columns: "</span>, <span class="fu">paste</span>(missing_cols, <span class="at">collapse =</span> <span class="st">", "</span>))</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Check for expected conditions</span></span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="st">"No data loaded"</span> <span class="ot">=</span> <span class="fu">nrow</span>(data) <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>These chunks catch problems early and provide clear error messages.</p>
-</section>
-<section id="provenance-chunk" class="level3" data-number="6.13.5">
-<h3 data-number="6.13.5" class="anchored" data-anchor-id="provenance-chunk"><span class="header-section-number">6.13.5</span> Provenance Chunk</h3>
-<p>End every script with a chunk that writes <code>BUILD_INFO.txt</code> and prints session information:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: build-info</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(<span class="st">"script:"</span>, <span class="st">"01_script_name.qmd"</span>),</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(<span class="st">"commit:"</span>, git_hash),</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(<span class="st">"date:"</span>, <span class="fu">format</span>(<span class="fu">Sys.time</span>(), <span class="st">"%Y-%m-%d %H:%M:%S"</span>))</span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">file.path</span>(dir_out, <span class="st">"BUILD_INFO.txt"</span>)</span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This records:</p>
-<ul>
-<li><strong>BUILD_INFO.txt</strong> — which script, commit, and timestamp produced the outputs (answers “when was this last regenerated?”)</li>
-<li><strong>sessionInfo()</strong> — R version, package versions, and platform in the rendered HTML</li>
-</ul>
-</section>
-</section>
-<section id="common-issues" class="level2" data-number="6.14">
-<h2 data-number="6.14" class="anchored" data-anchor-id="common-issues"><span class="header-section-number">6.14</span> Common Issues</h2>
-<div class="claude-callout callout callout-style-default callout-warning callout-titled" title="Claude Code">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>Claude Code
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Claude Code can debug render failures, especially the common case where code works interactively but fails during rendering.</p>
-<blockquote class="blockquote">
-<p>When I run <code>quarto render analysis.qmd</code>, I get this error: [paste error]. The code runs fine interactively in the console. What’s going wrong?</p>
-</blockquote>
-<p>Claude will trace the error to its cause—typically a missing object that existed in your interactive session but isn’t created in the script, or a path that resolves differently during rendering.</p>
-</div>
-</div>
-<section id="object-not-found-during-render" class="level3" data-number="6.14.1">
-<h3 data-number="6.14.1" class="anchored" data-anchor-id="object-not-found-during-render"><span class="header-section-number">6.14.1</span> “Object not found” During Render</h3>
-<p>Code that works interactively may fail during render if you rely on objects not created in the script.</p>
-<p><strong>Cause</strong>: You created an object manually in the console, then used it in a chunk without creating it in the script.</p>
-<p><strong>Fix</strong>: Ensure all objects are created within the <code>.qmd</code>. Render frequently to catch this early.</p>
-</section>
-<section id="figures-not-appearing" class="level3" data-number="6.14.2">
-<h3 data-number="6.14.2" class="anchored" data-anchor-id="figures-not-appearing"><span class="header-section-number">6.14.2</span> Figures Not Appearing</h3>
-<p>If a plot doesn’t show up in the rendered output:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(x, y)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p)  <span class="co"># Required inside loops or complex chunks</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The explicit <code>print()</code> is needed when the plot is the result of an assignment or is inside a loop/function.</p>
-</section>
-<section id="package-messages-cluttering-output" class="level3" data-number="6.14.3">
-<h3 data-number="6.14.3" class="anchored" data-anchor-id="package-messages-cluttering-output"><span class="header-section-number">6.14.3</span> Package Messages Cluttering Output</h3>
-<p>Set <code>message: false</code> and <code>warning: false</code> in the <code>execute:</code> block:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">message</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Or per-chunk for specific chunks.</p>
-</section>
-<section id="output-file-is-huge" class="level3" data-number="6.14.4">
-<h3 data-number="6.14.4" class="anchored" data-anchor-id="output-file-is-huge"><span class="header-section-number">6.14.4</span> Output File Is Huge</h3>
-<p>If your HTML is very large:</p>
-<ul>
-<li><strong>Embedded images</strong>: Use <code>self-contained: false</code> to keep images in a separate <code>_files</code> folder</li>
-<li><strong>High resolution</strong>: Add <code>fig-dpi: 150</code> to reduce figure resolution</li>
-<li><strong>SVG format</strong>: Use <code>fig-format: png</code> instead of SVG for complex plots</li>
-</ul>
-</section>
-<section id="chunk-takes-forever" class="level3" data-number="6.14.5">
-<h3 data-number="6.14.5" class="anchored" data-anchor-id="chunk-takes-forever"><span class="header-section-number">6.14.5</span> Chunk Takes Forever</h3>
-<p>For long-running chunks during development, consider:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| cache: true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This caches the chunk’s results. Subsequent renders skip execution if the code hasn’t changed. Use sparingly—caching can cause subtle bugs if dependencies change.</p>
-</section>
-</section>
-<section id="quick-reference" class="level2" data-number="6.15">
-<h2 data-number="6.15" class="anchored" data-anchor-id="quick-reference"><span class="header-section-number">6.15</span> Quick Reference</h2>
-<section id="typical-yaml-header-r" class="level3" data-number="6.15.1">
-<h3 data-number="6.15.1" class="anchored" data-anchor-id="typical-yaml-header-r"><span class="header-section-number">6.15.1</span> Typical YAML Header (R)</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Analysis Title"</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">subtitle</span><span class="kw">:</span><span class="at"> </span><span class="st">"Project context"</span></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Your Name"</span></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> today</span></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="fu">status</span><span class="kw">:</span><span class="at"> development</span></span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc-depth</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">number-sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-overflow</span><span class="kw">:</span><span class="at"> wrap</span></span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-tools</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">highlight-style</span><span class="kw">:</span><span class="at"> github</span></span>
-<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> cosmo</span></span>
-<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fontsize</span><span class="kw">:</span><span class="at"> 1rem</span></span>
-<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">linestretch</span><span class="kw">:</span><span class="at"> </span><span class="fl">1.5</span></span>
-<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">self-contained</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
-<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">message</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">cache</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="typical-yaml-header-python" class="level3" data-number="6.15.2">
-<h3 data-number="6.15.2" class="anchored" data-anchor-id="typical-yaml-header-python"><span class="header-section-number">6.15.2</span> Typical YAML Header (Python)</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Analysis Title"</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">subtitle</span><span class="kw">:</span><span class="at"> </span><span class="st">"Project context"</span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Your Name"</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> today</span></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="fu">status</span><span class="kw">:</span><span class="at"> development</span></span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="fu">jupyter</span><span class="kw">:</span><span class="at"> python3</span></span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc-depth</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">number-sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-overflow</span><span class="kw">:</span><span class="at"> wrap</span></span>
-<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-tools</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">highlight-style</span><span class="kw">:</span><span class="at"> github</span></span>
-<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> cosmo</span></span>
-<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fontsize</span><span class="kw">:</span><span class="at"> 1rem</span></span>
-<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">linestretch</span><span class="kw">:</span><span class="at"> </span><span class="fl">1.5</span></span>
-<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">self-contained</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
-<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">cache</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="r-setup-chunk-template" class="level3" data-number="6.15.3">
-<h3 data-number="6.15.3" class="anchored" data-anchor-id="r-setup-chunk-template"><span class="header-section-number">6.15.3</span> R Setup Chunk Template</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Libraries ----</span></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>({</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(tidyverse)</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(here)</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Paths ----</span></span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>dir_data <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>)</span>
-<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>dir_out <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"outs"</span>, <span class="st">"01_script_name"</span>)</span>
-<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(dir_out, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Options ----</span></span>
-<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Provenance ----</span></span>
-<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>git_hash <span class="ot">&lt;-</span> <span class="fu">system</span>(<span class="st">"git rev-parse --short HEAD"</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Rendered from commit:"</span>, git_hash, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="python-setup-chunk-template" class="level3" data-number="6.15.4">
-<h3 data-number="6.15.4" class="anchored" data-anchor-id="python-setup-chunk-template"><span class="header-section-number">6.15.4</span> Python Setup Chunk Template</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess, sys, random</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>PROJECT_ROOT <span class="op">=</span> Path(subprocess.check_output(</span>
-<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"git"</span>, <span class="st">"rev-parse"</span>, <span class="st">"--show-toplevel"</span>]</span>
-<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>).decode().strip())</span>
-<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>, <span class="bu">str</span>(PROJECT_ROOT <span class="op">/</span> <span class="st">"python"</span>))</span>
-<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a>random.seed(<span class="dv">42</span>)</span>
-<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">"display.max_columns"</span>, <span class="va">None</span>)</span>
-<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span>
-<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-22"><a href="#cb35-22" aria-hidden="true" tabindex="-1"></a>out_dir <span class="op">=</span> PROJECT_ROOT <span class="op">/</span> <span class="st">"outs/XX_script_name"</span></span>
-<span id="cb35-23"><a href="#cb35-23" aria-hidden="true" tabindex="-1"></a>out_dir.mkdir(parents<span class="op">=</span><span class="va">True</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb35-24"><a href="#cb35-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-25"><a href="#cb35-25" aria-hidden="true" tabindex="-1"></a>git_hash <span class="op">=</span> subprocess.check_output(</span>
-<span id="cb35-26"><a href="#cb35-26" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"git"</span>, <span class="st">"rev-parse"</span>, <span class="st">"--short"</span>, <span class="st">"HEAD"</span>]</span>
-<span id="cb35-27"><a href="#cb35-27" aria-hidden="true" tabindex="-1"></a>).decode().strip()</span>
-<span id="cb35-28"><a href="#cb35-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Rendered from commit: </span><span class="sc">{</span>git_hash<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="chunk-options-reference" class="level3" data-number="6.15.5">
-<h3 data-number="6.15.5" class="anchored" data-anchor-id="chunk-options-reference"><span class="header-section-number">6.15.5</span> Chunk Options Reference</h3>
+<section id="chunk-options" class="level3" data-number="6.9.2">
+<h3 data-number="6.9.2" class="anchored" data-anchor-id="chunk-options"><span class="header-section-number">6.9.2</span> Chunk Options</h3>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -1752,8 +1423,72 @@ Note
 </tbody>
 </table>
 </section>
-<section id="quarto-commands" class="level3" data-number="6.15.6">
-<h3 data-number="6.15.6" class="anchored" data-anchor-id="quarto-commands"><span class="header-section-number">6.15.6</span> Quarto Commands</h3>
+<section id="r-vs-python-comparison" class="level3" data-number="6.9.3">
+<h3 data-number="6.9.3" class="anchored" data-anchor-id="r-vs-python-comparison"><span class="header-section-number">6.9.3</span> R vs Python Comparison</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 52%">
+<col style="width: 13%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Convention</th>
+<th>R</th>
+<th>Python</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Project root</td>
+<td><code>here::here()</code></td>
+<td><code>PROJECT_ROOT</code> (from git)</td>
+</tr>
+<tr class="even">
+<td>Read CSV</td>
+<td><code>read_csv(here("data/file.csv"))</code></td>
+<td><code>pd.read_csv(PROJECT_ROOT / "data/file.csv")</code></td>
+</tr>
+<tr class="odd">
+<td>Read TSV</td>
+<td><code>read_tsv(here("data/file.tsv"))</code></td>
+<td><code>pd.read_csv(PROJECT_ROOT / "data/file.tsv", sep="\t")</code></td>
+</tr>
+<tr class="even">
+<td>Read Parquet</td>
+<td><code>arrow::read_parquet(here(...))</code></td>
+<td><code>pd.read_parquet(PROJECT_ROOT / ...)</code></td>
+</tr>
+<tr class="odd">
+<td>Save figure</td>
+<td><code>ggsave(file.path(dir_out, "fig.pdf"))</code></td>
+<td><code>fig.savefig(out_dir / "fig.pdf")</code></td>
+</tr>
+<tr class="even">
+<td>Random seed</td>
+<td><code>set.seed(42)</code></td>
+<td><code>random.seed(42)</code> + <code>np.random.seed(42)</code></td>
+</tr>
+<tr class="odd">
+<td>Session info</td>
+<td><code>sessionInfo()</code></td>
+<td><code>session_info.show()</code></td>
+</tr>
+<tr class="even">
+<td>Chunk label</td>
+<td><code>{r label-name}</code> or <code>#| label:</code></td>
+<td><code>#| label:</code> only</td>
+</tr>
+<tr class="odd">
+<td>Helper loading</td>
+<td><code>source(here("R/helpers.R"))</code></td>
+<td><code>sys.path.insert(0, str(PROJECT_ROOT / "python"))</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="quarto-commands" class="level3" data-number="6.9.4">
+<h3 data-number="6.9.4" class="anchored" data-anchor-id="quarto-commands"><span class="header-section-number">6.9.4</span> Quarto Commands</h3>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -1785,8 +1520,8 @@ Note
 </tbody>
 </table>
 </section>
-<section id="keyboard-shortcuts-positron" class="level3" data-number="6.15.7">
-<h3 data-number="6.15.7" class="anchored" data-anchor-id="keyboard-shortcuts-positron"><span class="header-section-number">6.15.7</span> Keyboard Shortcuts (Positron)</h3>
+<section id="keyboard-shortcuts-positron" class="level3" data-number="6.9.5">
+<h3 data-number="6.9.5" class="anchored" data-anchor-id="keyboard-shortcuts-positron"><span class="header-section-number">6.9.5</span> Keyboard Shortcuts (Positron)</h3>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -1818,9 +1553,19 @@ Note
 </tr>
 </tbody>
 </table>
-
-
+<p>For complete, copy-paste-ready templates (YAML headers, setup chunks, provenance chunks for both R and Python), see <a href="../appendices/templates.html" class="quarto-xref"><span>Appendix C</span></a>.</p>
 </section>
+</section>
+<section id="python-specific-notes" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="python-specific-notes"><span class="header-section-number">6.10</span> Python-Specific Notes</h2>
+<p>This section collects the Python-specific details that don’t fit neatly into the tabsets above.</p>
+<p><strong>Conda must be active for rendering.</strong> This is the number one Python QMD gotcha. Unlike R (which finds packages via renv automatically), Python QMD files require the conda environment to be active when you render. If <code>quarto render</code> fails with <code>ModuleNotFoundError</code>, activate your environment first.</p>
+<p><strong>Install <code>ipykernel</code>.</strong> Quarto uses Jupyter kernels to execute Python code. Your conda environment needs <code>ipykernel</code> installed (<code>conda install ipykernel</code>) or rendering will fail.</p>
+<p><strong>Install <code>session-info</code>.</strong> For the provenance chunk to work, install <code>session-info</code> in your conda environment: <code>pip install session-info</code>.</p>
+<p><strong>Don’t mix languages.</strong> Do not mix R and Python chunks in a single <code>.qmd</code>. Each script uses one language. Scripts communicate through files in <code>outs/</code>, not shared memory. If an R script produces data that a Python script needs, save it as Parquet (see <a href="../part2/project-organization.html#output-files">Project Organization</a>).</p>
+<p><strong>Selecting the interpreter.</strong> Ensure Positron is using the correct conda environment: open the Command Palette (Cmd/Ctrl+Shift+P), type “Python: Select Interpreter”, and choose your project’s environment.</p>
+
+
 </section>
 
 </main> <!-- /main -->
