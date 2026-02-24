@@ -373,7 +373,7 @@ Now run the `fig-dotplot-c1` chunk to visualize these markers across all cluster
 
 ```r
 top_genes <- rownames(head(markers_c1, 15))
-DotPlot(sponge, features = top_genes) + RotatedAxis()
+DotPlot(sponge, features = top_genes, scale = F, cols = "RdBu") + RotatedAxis() + coord_flip()
 ```
 
 In the **dot plot**, dot size shows what fraction of cells in each cluster express the gene, and dot color shows average expression level. Look for genes that are strongly expressed in cluster 1 but absent or low in most other clusters.

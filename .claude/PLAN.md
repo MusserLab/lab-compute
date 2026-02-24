@@ -44,12 +44,12 @@ The longest chapter (942 lines) and most reference-heavy. Overwhelming for a stu
 - [ ] Cut duplicate templates (already in Appendix C)
 - [ ] Positron with .qmd, console, and Data Viewer screenshot (`quarto.qmd:60`)
 
-#### Ch. 5 — Project Organization (light polish)
+#### Ch. 5 — Project Organization (REWRITE DONE)
 
-Content is solid and specific to lab conventions. Mermaid diagrams are good. Needs warmer intro (narrative about returning to a project 6 months later) and tone adjustment from spec-document to guide.
+Full rewrite completed Feb 2026 (496 → 458 lines). Restructured from reference spec to narrative teaching guide. Added: motivating opening, "Two Rules" framing, `.claude/` in project tree, `.qmd` as analysis format, exploratory directory section, "start flat, grow sectioned" guidance, cross-language Parquet examples, `/new-project` reference. Reduced to one Mermaid diagram. Fixed quarto.qmd cross-reference (`#output-files` → `#housekeeping`).
 
-- [ ] Add narrative intro paragraph
-- [ ] Soften tone throughout
+- [x] Add narrative intro paragraph
+- [x] Soften tone throughout
 
 #### Ch. 7 — R: rig & renv (light polish)
 
@@ -170,6 +170,20 @@ Quarto chapter:
 ## Session Notes
 
 _Add notes here during working sessions_
+
+### 2026-02-23
+- **Project Organization chapter (Ch. 5) full rewrite** — 496→458 lines, restructured from reference spec to narrative teaching guide
+  - New opening: narrative hook about returning to a project after 6 months
+  - "Two Rules" framing: inputs are sacred, outputs are disposable
+  - `.claude/` introduced in project tree with forward ref to Claude Code chapters
+  - `.qmd` as analysis format explained (was missing)
+  - Exploratory directory elevated to its own section with one-way dependency rule
+  - "Start flat, grow sectioned" guidance for project growth
+  - Cross-language Parquet examples (R and Python)
+  - `/new-project` referenced as the scaffolding tool
+  - Reduced from two Mermaid diagrams to one
+  - Complete example includes narrative walkthrough ("how would you find X?")
+  - Fixed quarto.qmd cross-reference (`#output-files` → `#housekeeping`)
 
 ### 2026-02-22
 - **Positron chapter (Ch. 4) full rewrite** — 385→~290 lines, restructured from UI-element tour to daily-workflow guide
