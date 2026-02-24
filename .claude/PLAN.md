@@ -9,7 +9,7 @@
 
 Assessed all 6 Part 2 chapters (Feb 2026). Common issue: they read like reference documentation, not teaching guides. The first-project chapter (Ch. 3) sets a high bar with narrative tone and 14 screenshots. Part 2 chapters need to move toward that quality.
 
-**Claude Code callouts**: Target is 2-3 per Part 2 chapter. Ch. 4 (Positron) has 3, Ch. 6 (Quarto) has 2, Ch. 7 (renv) has 3. Remaining Part 2 chapters have only 1 each — add 1-2 more per chapter during polishing.
+**Claude Code callouts**: Target is 2-3 per Part 2 chapter. Ch. 4 (Positron) has 3, Ch. 6 (Quarto) has 2, Ch. 7 (renv) has 3, Ch. 8 (Conda) has 3. Ch. 9 (Git) has only 1 — add 1-2 more during polishing.
 
 #### Ch. 4 — Positron (REWRITE DONE — screenshots pending)
 
@@ -63,11 +63,21 @@ Full rewrite completed Feb 2026 (580 → ~340 lines). Restructured from referenc
 - [x] "How rig and renv Work Together" section with Bioconductor version story
 - [x] Created Appendix D: R Packages for Biology
 
-#### Ch. 8 — Conda (mostly ready)
+#### Ch. 8 — Conda (REWRITE DONE — screenshots pending)
 
-Cleanest chapter in Part 2. Practical, well-organized. Light polish only.
+Full rewrite completed Feb 2026 (476 → 444 lines). Restructured from command reference to narrative teaching guide. Added: Miniforge installation section (macOS + Windows), one-time setup section (solver, channels, shell init), narrative environment walkthrough, Positron integration section with screenshot TODOs. `/new-project` skill referenced as automating environment creation and Positron configuration. Bioconda moved to advanced section at end.
 
-- [ ] Light tone review
+- [x] Narrative tone throughout (scenarios, explanations, not bullet lists)
+- [x] Added Miniforge installation section (was missing — installation.qmd deferred to this chapter)
+- [x] One-time setup: libmamba solver, conda-forge channel, Windows shell init
+- [x] "Creating your first environment" walkthrough with package explanations
+- [x] Positron integration section: Command Palette → Select Interpreter workflow
+- [x] 3 Claude Code callout boxes (package recommendations, environment diagnosis, Positron interpreter issues)
+- [x] 3 screenshot TODOs (terminal prompt, Select Interpreter, status bar)
+- [x] `/new-project` skill noted as automating env creation + package installation + Positron config
+- [x] Bioconda/channels moved to later section (not beginner-critical)
+- [x] Cut .condarc display, absorbed "Configuring Conda" into one-time setup
+- [x] Best practices woven into narrative (never use base, pin Python, meaningful names)
 
 #### Ch. 9 — Git & GitHub (mostly ready)
 
@@ -90,6 +100,11 @@ Positron chapter will need ~7 new screenshots after rewrite:
 
 Quarto chapter:
 - [ ] Positron with .qmd, console, and Data Viewer (`quarto.qmd:60`)
+
+Conda chapter will need ~3 new screenshots after rewrite:
+- [ ] Terminal showing `(my-project)` prompt after activation
+- [ ] Positron Command Palette → Python: Select Interpreter with conda environments
+- [ ] Positron status bar showing active Python environment
 
 ### Other Content
 - [ ] Update "Work in Progress" callout in `index.qmd:19-22` — all 21 chapters are substantive now, no stubs or placeholders remain. Soften or remove.
@@ -175,6 +190,20 @@ Quarto chapter:
 ## Session Notes
 
 _Add notes here during working sessions_
+
+### 2026-02-23 (session 4)
+- **Conda chapter (Ch. 8) full rewrite** — 476→444 lines, restructured from command reference to narrative teaching guide
+  - New opening: renv callback, "conda does the same thing for Python" framing for someone with no Python experience
+  - NEW: Miniforge installation section (macOS via Homebrew + direct download, Windows via installer) — fills gap where installation.qmd deferred to this chapter
+  - One-time setup section: conda-forge channel priority, libmamba solver, Windows shell init — framed as "do this once, forget about it"
+  - "Creating your first environment" walkthrough: explains every flag (`-n`, `python=3.11`, package list), ipykernel rationale woven into narrative
+  - Positron integration section: Command Palette → Python: Select Interpreter workflow, with 3 screenshot TODOs
+  - `/new-project` skill referenced as automating env creation, package installation, and Positron configuration
+  - 3 Claude Code callouts: package recommendations for new analysis types, ModuleNotFoundError diagnosis, Positron interpreter detection issues
+  - Best practices section rewritten narratively: "never install into base" with explanation, one env per project, pin Python version
+  - Bioconda/channels moved to later section (not beginner-critical), shortened
+  - Cut: .condarc YAML display, standalone "Configuring Conda" section, "Basic Commands" heading (commands woven into narrative)
+  - Troubleshooting tightened, merged duplicate Windows init content
 
 ### 2026-02-23 (session 3)
 - **R: rig & renv chapter (Ch. 7) full rewrite** — 580→~340 lines, restructured from reference documentation to narrative teaching guide

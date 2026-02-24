@@ -1,327 +1,337 @@
 # Conda
 
-In [Your First R Project](../part1/first-project.qmd), you used renv to manage R packages for your project. Conda serves the same purpose for Python: isolated, reproducible environments with pinned package versions. The concepts are the same—the tooling is different.
+In [Your First R Project](../part1/first-project.qmd), renv gave your project its own private library of R packages — isolated from everything else on your computer. If you installed Seurat for one project and ggplot2 for another, neither could interfere with the other. That isolation is what made your analysis reproducible.
 
-Conda is an environment and package manager that creates isolated spaces for your Python projects. Each environment has its own Python version and packages, preventing conflicts between projects.
+Conda does the same thing for Python. It creates **environments** — self-contained spaces, each with their own Python version and their own set of packages. When you start a new Python project, you create a new conda environment for it, install the packages you need, and work inside that environment. Nothing you do in one environment affects another.
 
-## Why Use Environments?
+If you've never used Python before, that's fine. This chapter assumes no prior Python experience — just the concepts you picked up from working with renv in Chapter 3. The commands are different, but the idea is the same: each project gets its own tools, and you record what you installed so others can reproduce your setup.
 
-Without environments:
+## Why Environments Matter
 
-- Project A needs `pandas 1.5`
-- Project B needs `pandas 2.0`
-- Both can't coexist in a single Python installation
+Imagine you're six months into a project analyzing microscopy images. You've been using a Python package called `scikit-image` version 0.21, and everything works. Then a labmate asks for help with their project, which needs `scikit-image` version 0.23 — a newer version with a different API. If Python packages all live in one place (the way they do with a bare `pip install`), updating for their project would break yours.
 
-With environments:
+This is exactly the problem renv solved for R, and it's the problem conda solves for Python. Each project gets its own environment with its own packages, so updating one project can't break another. You can even use different Python versions — one project on Python 3.11, another on 3.12 — without conflict.
 
+In the lab, every project gets its own conda environment. This isn't optional — it's how we keep analyses reproducible and avoid the kind of subtle, hard-to-diagnose bugs that come from shared package installations.
+
+## Installing Miniforge
+
+Conda itself is just a program — you need to install it before you can use it. We use **Miniforge**, a lightweight distribution that comes pre-configured with the `conda-forge` package channel (the community-maintained repository where most scientific Python packages live). Miniforge gives you conda without the bloat of the full Anaconda distribution.
+
+::: {.panel-tabset}
+
+### macOS
+
+The easiest way to install Miniforge on macOS is with **Homebrew**, the macOS package manager. If you already have Homebrew installed (you can check by running `brew --version` in Terminal), run:
+
+```default
+brew install miniforge
 ```
-project-a-env/
-  └── pandas 1.5
 
-project-b-env/
-  └── pandas 2.0
+If you don't have Homebrew, you can download the Miniforge installer directly from the [Miniforge GitHub releases page](https://github.com/conda-forge/miniforge#miniforge3). Download the macOS installer for your chip (Apple Silicon or Intel), then run it:
+
+```default
+bash Miniforge3-MacOSX-arm64.sh
 ```
 
-Each project has its own libraries specific to its needs. Updates to libraries or the addition of new libraries in one project are isolated from other projects.
+Follow the prompts, accepting the defaults. When the installer asks whether to initialize conda, say **yes**.
 
-## Basic Commands
+### Windows
+
+Download the Miniforge installer from the [Miniforge GitHub releases page](https://github.com/conda-forge/miniforge#miniforge3). Choose the Windows installer (`.exe` file), run it, and follow the prompts. Accept the default installation location (`C:\Users\YourName\miniforge3`).
+
+:::
+
+After installation, **close and reopen your terminal** (Terminal on macOS, PowerShell on Windows) so the new `conda` command becomes available. You can verify the installation worked by running:
+
+```default
+conda --version
+```
+
+If you see a version number (like `conda 24.7.1`), you're set. If you get "command not found," see the [Troubleshooting](#troubleshooting) section at the end of this chapter.
+
+## One-Time Setup
+
+Before creating your first environment, there are a few configuration steps that make conda faster and more reliable. You only need to do these once — they apply globally to all environments you create.
 
 ::: {.callout-note}
-## Windows Users: Initialize Your Shell First
+## Windows Users: Initialize Your Shell
 
-After installing Miniforge/conda on Windows, you must initialize your shell before `conda activate` will work. Open your terminal and run:
+On Windows, conda needs to hook into PowerShell before `conda activate` will work. Open PowerShell and run:
 
-**PowerShell:**
 ```default
 conda init powershell
 ```
 
-**Command Prompt:**
-```default
-conda init cmd.exe
-```
-
-Then **close and reopen your terminal**. You only need to do this once.
+Then **close and reopen PowerShell**. You only need to do this once. (If you use Command Prompt instead, run `conda init cmd.exe`.)
 :::
 
-### Create an Environment
+### Set conda-forge as the Default Channel
 
-You only need to create the environment once. New environments can be initiated with just a python installation, or include additional packages from the start. The option `-n project_name` specifies the name of the environment, and is followed by an initial list of packages to install:
+Conda downloads packages from **channels** — think of them as package repositories, like CRAN for R. The most important channel is **conda-forge**, a community-maintained collection of well-tested scientific packages. We want conda to always look here first:
 
 ```default
-# Create with just Python
-conda create -n my-project python=3.11
+conda config --set channel_priority strict
+conda config --add channels conda-forge
+```
 
-# Create with core data science packages (recommended)
+The first command tells conda to respect channel priority strictly (no mixing versions from different sources). The second makes conda-forge the top-priority channel. This avoids subtle version mismatches that can cause hard-to-debug problems.
+
+### Speed Up the Solver
+
+Conda figures out which package versions are compatible before installing anything — this is called "solving the environment." The default solver can be slow. The **libmamba** solver is much faster and is built into modern conda:
+
+```default
+conda config --set solver libmamba
+```
+
+With these three commands done, conda is configured for reliable, fast use. You won't need to think about this again.
+
+## Creating Your First Environment
+
+Let's create an environment for a hypothetical data analysis project. The command looks like this:
+
+```default
 conda create -n my-project python=3.11 numpy pandas matplotlib ipykernel
 ```
 
-### Core Data Science Packages
+Here's what each piece means:
 
-When setting up a new project environment, common data science packages you might include are:
+- `conda create` — make a new environment
+- `-n my-project` — name it "my-project" (you'll use this name every time you activate it)
+- `python=3.11` — install Python 3.11 (pinning the version so it doesn't change unexpectedly)
+- `numpy pandas matplotlib ipykernel` — install these packages into the environment from the start
 
-| Package | Purpose |
-|---------|---------|
-| `numpy` | Numerical computing with arrays and matrices |
-| `pandas` | Data manipulation and analysis (dataframes) |
-| `matplotlib` | Plotting and visualization |
-| `ipykernel` | **Required** for Quarto to execute Python `.qmd` files |
-| `seaborn` | Statistical data visualization (built on matplotlib) |
-| `session-info` | Python session info for reproducibility (install via pip) |
+Conda will show you a list of packages it plans to install (including dependencies) and ask you to confirm. Type `y` and hit Enter.
 
-A typical environment creation command:
+The packages in this example are a typical starting point for data science work. `numpy` handles numerical computing, `pandas` gives you dataframes (similar to R's dataframes or tibbles), `matplotlib` is the core plotting library, and `ipykernel` is required for Quarto to execute Python `.qmd` files. Without `ipykernel`, you'll get a kernel error when trying to render — so always include it.
 
-```default
-conda create -n my-project python=3.11 numpy pandas matplotlib seaborn ipykernel -y
-pip install session-info
-```
-
-::: {.callout-important}
-## Always Include ipykernel
-
-Every data science environment must include `ipykernel`. Without it, Quarto cannot execute Python `.qmd` files — you'll get a kernel error when rendering. Make it a habit to include it in every `conda create` command.
-:::
+You might also want `seaborn` (statistical visualization built on matplotlib) or `scikit-learn` (machine learning). You can add these during creation or install them later — there's no penalty for adding packages after the environment exists.
 
 ::: {.callout-note}
-## What about Jupyter?
-You don't need `jupyter` or `jupyterlab` for our workflow—Quarto handles document rendering directly. Only install them if you receive `.ipynb` notebook files from collaborators and want to open them in the traditional notebook interface.
+## What About Jupyter?
+You don't need `jupyter` or `jupyterlab` for our workflow — Quarto handles document rendering directly through `ipykernel`. Only install Jupyter if you receive `.ipynb` notebook files from collaborators and want to open them in the traditional notebook interface.
 :::
 
-### Activate/Deactivate
+::: {.callout-warning .claude-callout title="Claude Code"}
+When you're starting a new type of analysis and aren't sure which Python packages you need, Claude Code can recommend packages and generate the environment creation command.
+
+> I'm starting a Python project to analyze fluorescence microscopy images. I'll need to load TIFF stacks, segment cells, and measure intensities. What packages should I include in my conda environment?
+
+Claude will suggest the right packages (scikit-image for segmentation, tifffile for TIFF loading, etc.), generate the full `conda create` command, and flag any packages that need to be installed via pip instead of conda.
+:::
+
+::: {.callout-tip}
+## Claude Code Does This Automatically
+In practice, you'll rarely build environments from scratch. The Musser Lab's `/new-project` skill in Claude Code creates a conda environment for your project automatically, installs the packages you need, and configures Positron to use it. But understanding these commands is important for troubleshooting and for working outside the lab's automated workflow.
+:::
+
+## Using Your Environment
+
+### Activating and Deactivating
+
+An environment doesn't do anything until you **activate** it. Activation tells your terminal to use that environment's Python and packages instead of the system defaults:
 
 ```default
-# Activate (start using the environment)
 conda activate my-project
-
-# Deactivate (return to base)
-conda deactivate
 ```
 
-When activated, your prompt shows the environment name:
+When an environment is active, your terminal prompt changes to show the environment name in parentheses:
 
 ::: {.panel-tabset}
 
-### macOS / Linux
+### macOS
+
 ```default
 (my-project) $
 ```
 
 ### Windows
-```
-(my-project) C:\Users\yourname>
+
+```default
+(my-project) PS C:\Users\yourname>
 ```
 
 :::
 
-### Install Packages
+This is your visual confirmation that the right environment is active. If you don't see the environment name in your prompt, your code will use the wrong Python — a common source of "package not found" errors.
+
+[TODO: screenshot of terminal showing `(my-project)` in the prompt after activation]
+
+To leave an environment and return to the default state, run:
 
 ```default
-# Install a package
-conda install pandas
-
-# Install specific version
-conda install pandas=2.0
-
-# Install multiple packages
-conda install pandas numpy matplotlib seaborn
+conda deactivate
 ```
 
-### List Environments
+### Installing More Packages
+
+Once an environment is active, you can install additional packages into it:
 
 ```default
-# See all environments
-conda env list
+conda install seaborn scikit-learn
+```
 
-# See packages in current environment
+Conda installs packages into whichever environment is currently active, so always check your prompt before installing. If you accidentally install into the wrong environment, it's not the end of the world — just activate the right one and install again there.
+
+To see what's installed in your current environment:
+
+```default
 conda list
 ```
 
-### Remove Environment
+And to see all the environments you've created:
 
 ```default
-conda env remove -n my-project
+conda env list
 ```
 
-## Environment Files
+### Connecting to Positron {#connecting-to-positron}
 
-Environment files (`environment.yml`) let collaborators recreate your exact Python setup.
+Creating and activating an environment in the terminal is only half the story. You also need to tell **Positron** which environment to use, so that when you run Python code from a `.qmd` file, it uses the right Python with the right packages.
 
-### Export Your Environment
+1. Open Positron and navigate to your project folder
+2. Open the **Command Palette** (**Cmd+Shift+P** on macOS, **Ctrl+Shift+P** on Windows)
+3. Type **"Python: Select Interpreter"**
+4. Choose your environment from the list (it will show something like `Python 3.11 (my-project)`)
 
-We recommend using `--from-history` for most cases:
+[TODO: screenshot of Positron Command Palette showing "Python: Select Interpreter" with conda environments listed]
+
+Once selected, Positron remembers this choice for the project — you won't need to do it again unless you create a new environment. The **status bar** at the bottom of Positron shows which Python interpreter is active, so you can always verify at a glance.
+
+[TODO: screenshot of Positron status bar showing the active Python environment]
+
+::: {.callout-note}
+## Environment Not Showing Up?
+If you just created a new conda environment and it doesn't appear in Positron's interpreter list, try restarting Positron. It sometimes needs a fresh start to detect new environments.
+:::
+
+If you use the Musser Lab's `/new-project` skill in Claude Code, it configures the Positron interpreter automatically as part of project setup — one less thing to remember.
+
+## Sharing Environments
+
+### environment.yml
+
+Just as renv uses `renv.lock` to record your R packages, conda uses a file called `environment.yml` to record your Python environment. This file lists the environment name, which channels to use, and which packages are installed — everything someone else needs to recreate your setup.
+
+To create this file from your current environment:
 
 ```default
-# Recommended: exports only packages you explicitly installed
 conda env export --from-history > environment.yml
 ```
 
-This creates a portable file that works across platforms:
+The `--from-history` flag is important. It records only the packages you explicitly installed, not every transitive dependency. This makes the file portable across operating systems — a colleague on Windows can recreate an environment you built on macOS, because conda resolves platform-specific dependencies at install time.
+
+The resulting file looks like this:
 
 ```yaml
 name: my-project
 channels:
   - conda-forge
-  - defaults
 dependencies:
   - python=3.11
-  - pandas
   - numpy
+  - pandas
   - matplotlib
   - ipykernel
 ```
 
-### Full Export (When Needed)
+### Recreating an Environment from a File
 
-For exact reproducibility on the same platform, use the full export:
-
-```default
-conda env export > environment.yml
-```
-
-This includes exact versions and platform-specific builds—useful for debugging or archiving a precise state, but less portable.
-
-### Recreate from File
+When a collaborator shares a project with an `environment.yml`, they can recreate the environment with one command:
 
 ```default
 conda env create -f environment.yml
 ```
 
-::: {.callout-warning .claude-callout title="Claude Code"}
-Claude Code can diagnose environment issues by checking which environment is active, what's installed, and where packages are missing.
-
-> I'm getting `ModuleNotFoundError: No module named 'pandas'` when I run my script, but I thought I installed it. The environment is `my-project` and here's what `conda list` shows: [paste output]. What's wrong?
-
-Claude will check whether the package is installed in the right environment, whether your script is running in a different environment, and suggest the fix.
-:::
+This creates the environment, installs all the packages, and sets it up so they can activate it and start working. It's the conda equivalent of running `renv::restore()` in R.
 
 ::: {.callout-tip}
-## Keep environment.yml Updated
-When you install new packages, update your environment file. The Claude Code `/done` command can help manage this as part of your commit workflow.
+## Keep environment.yml in Git
+Commit `environment.yml` to your Git repository alongside your code and `renv.lock`. When you install new packages, re-export the file and commit the update. The Claude Code `/done` command can help manage this as part of your session wrap-up.
 :::
+
+### Full Export (When Needed)
+
+For exact reproducibility on the same platform, you can do a full export:
+
+```default
+conda env export > environment.yml
+```
+
+This includes exact version numbers and platform-specific build strings for every package, including dependencies. It's useful for archiving a precise state or debugging, but the file won't work on a different operating system. Use `--from-history` for sharing and full export for archiving.
 
 ## Best Practices
 
-::: {.callout-important}
-## Lab Policy: Never Use the Base Environment
-Always create a project-specific environment. Never install packages into the `base` environment—keep it minimal with just your conda configuration. This prevents conflicts and ensures each project is self-contained.
-:::
-
 ### One Environment Per Project
 
-Create a dedicated environment for each project:
+Every project in the lab gets its own conda environment, named after the project. This keeps things clean and avoids the situation where updating a package for one project silently breaks another. It also means `environment.yml` accurately reflects what that specific project needs.
 
 ```default
-conda create -n genomics-project python=3.11 numpy pandas matplotlib ipykernel
-conda create -n imaging-analysis python=3.10 numpy pandas matplotlib ipykernel
+conda create -n tihkal-analysis python=3.11 numpy pandas matplotlib ipykernel
+conda create -n imaging-project python=3.11 numpy pandas scikit-image ipykernel
 ```
+
+Name your environments after the project — short, descriptive, and easy to type. Avoid generic names like `env1` or `test` that tell you nothing when you see them in `conda env list` six months later.
+
+### Never Install into Base
+
+When you open a terminal with conda configured, you'll see `(base)` in your prompt. This is the **base environment** — it's where conda itself lives. Never install project packages into base. It's tempting (it's right there, already active), but packages in base affect every project on your machine. Keep base clean and always create a dedicated environment before installing anything.
+
+### Pin Your Python Version
+
+Always specify a Python version when creating an environment:
+
+```default
+conda create -n my-project python=3.11
+```
+
+Without a version, conda installs whatever Python is newest — which means your environment might get Python 3.12 today and someone recreating it might get 3.13 next year. Pinning the version ensures consistency. The specific patch version (3.11.x) will be the latest available within that minor version.
 
 ::: {.callout-note}
 ## Both Conda and renv
-In the lab, every project has both an `environment.yml` (for Python) and an `renv.lock` (for R), even if the project primarily uses one language. This ensures complete reproducibility.
+In the lab, every project has both an `environment.yml` (for Python) and an `renv.lock` (for R), even if the project primarily uses one language. This ensures complete reproducibility regardless of which language the analysis uses. The `/new-project` skill sets up both automatically.
 :::
-
-### Name Environments Meaningfully
-
-Use short, descriptive names:
-
-```default
-# Good
-conda create -n tihkal-analysis python=3.11
-
-# Less helpful
-conda create -n env1 python=3.11
-```
-
-### Pin Major Versions
-
-Specify Python version when creating:
-
-```default
-conda create -n my-project python=3.11  # Not just "python"
-```
-
-The specific minor version (3.11.x) will be the latest available; pinning the major version ensures compatibility.
-
-### Update Regularly (But Carefully)
-
-```default
-# Update all packages
-conda update --all
-
-# Update specific package
-conda update pandas
-```
-
-Test after updating to ensure nothing breaks. Update your `environment.yml` afterward.
 
 ## Conda vs pip
 
-Both install Python packages. General rule:
-
-- **Use conda first** for scientific packages (pandas, numpy, scipy)
-- **Use pip** for packages not available in conda
+Both conda and pip install Python packages, and you'll sometimes need both. The general rule is simple: **use conda first**, fall back to pip for packages conda doesn't have.
 
 ```default
-# Prefer
-conda install pandas
+# Prefer conda for scientific packages
+conda install pandas numpy scipy
 
-# If not available in conda
-pip install some-other-package
+# Use pip for packages not in conda
+pip install session-info
 ```
 
-::: {.callout-warning}
-## Mixing conda and pip
-When using both, install conda packages first, then pip packages. This avoids dependency conflicts.
-:::
+Most scientific packages (pandas, numpy, scipy, scikit-learn, matplotlib) are in conda-forge and install faster and more reliably through conda. Some specialized or newer packages are only on PyPI (Python's main package repository) and need pip.
 
-## Channels
+When using both in the same environment, install all your conda packages first, then pip packages. This avoids dependency conflicts. Conda is aware of pip-installed packages but can't manage them, so installing conda packages after pip can sometimes overwrite or break pip-installed ones.
 
-Channels are package repositories where conda looks for packages. Understanding channels matters because the same package can exist in multiple channels with different versions or builds.
+## Channels and Bioconda {#channels}
 
-### Main Channels
+For most data science work, the default conda-forge channel (which you configured in [One-Time Setup](#one-time-setup)) has everything you need. But if you work with bioinformatics command-line tools — things like `samtools`, `bedtools`, `bwa`, or `STAR` — you'll need an additional channel called **bioconda**.
 
-- **conda-forge**: Community-maintained, comprehensive, well-tested. This is the primary channel for most scientific packages.
-- **bioconda**: Bioinformatics tools (samtools, bedtools, bwa, etc.). Essential for genomics work.
-- **defaults**: Anaconda's default channel. We generally avoid this in favor of conda-forge.
-
-### Channel Priority
-
-When a package exists in multiple channels, conda uses **channel priority** to decide which version to install. We recommend **strict priority** with conda-forge first:
+Bioconda is a channel specifically for bioinformatics software, maintained by the bioinformatics community. To add it:
 
 ```default
-# Configure strict channel priority (one-time setup)
-conda config --set channel_priority strict
-```
-
-This ensures conda-forge packages are always preferred, avoiding subtle version mismatches.
-
-### Using Bioconda
-
-For bioinformatics tools, add bioconda to your channels. The recommended order is:
-
-```default
-# Add channels in priority order (highest priority last)
-conda config --add channels defaults
 conda config --add channels bioconda
-conda config --add channels conda-forge
 ```
 
-Then install bioinformatics tools normally:
+After adding bioconda, you can install bioinformatics tools directly into a conda environment:
 
 ```default
-conda install samtools bedtools
+conda create -n genomics-tools python=3.11 samtools bedtools
 ```
 
-### Specifying Channels in environment.yml
-
-For reproducibility, specify channels in your environment file:
+You can also specify channels in your `environment.yml` so collaborators get the right packages automatically:
 
 ```yaml
 name: genomics-project
 channels:
   - conda-forge
   - bioconda
-  - defaults
 dependencies:
   - python=3.11
   - pandas
@@ -329,98 +339,77 @@ dependencies:
   - bedtools
 ```
 
-The order matters—channels listed first have higher priority.
+The order of channels matters — channels listed first have higher priority. With `conda-forge` first, general scientific packages come from the well-tested community repository, while bioinformatics-specific tools come from bioconda.
 
-## Configuring Conda
+::: {.callout-warning .claude-callout title="Claude Code"}
+Claude Code can diagnose environment issues by checking which environment is active, what's installed, and where packages are missing.
 
-A few one-time configuration changes make conda faster and more reliable.
+> I'm getting `ModuleNotFoundError: No module named 'pandas'` when I run my Python script in Positron, but I installed pandas in my conda environment. Here's what `conda list` shows: [paste output]. What's wrong?
 
-### Use the Libmamba Solver
-
-The default conda solver can be slow, especially with complex environments. The **libmamba** solver is much faster and is now built into conda:
-
-```default
-# Set libmamba as the default solver (one-time, global)
-conda config --set solver libmamba
-```
-
-This dramatically speeds up environment creation and package installation. You only need to run this once—it applies to all environments.
-
-### Recommended .condarc Configuration
-
-Your conda configuration lives in `~/.condarc`. After the setup commands above, it should look something like:
-
-```yaml
-channels:
-  - conda-forge
-  - bioconda
-  - defaults
-channel_priority: strict
-solver: libmamba
-```
-
-You can edit this file directly or use `conda config` commands.
+Claude will check whether the package is installed in the right environment, whether Positron is pointing at a different Python interpreter, and suggest the specific fix — often it's as simple as selecting the right interpreter in the Command Palette.
+:::
 
 ## Troubleshooting
 
-### "Solving environment" takes forever
+### macOS: "conda: command not found"
 
-This usually means you haven't configured the fast solver. Set libmamba as your default:
+Your shell doesn't know where conda is. If you installed via Miniforge, run:
+
+```default
+source ~/miniforge3/etc/profile.d/conda.sh
+```
+
+To make this permanent, add that line to your shell configuration file (`~/.zshrc` for zsh, which is the default on modern macOS, or `~/.bashrc` for bash).
+
+### Windows: "conda is not recognized"
+
+The Miniforge installer may not have added conda to your PATH. You have two options:
+
+1. Use the **"Miniforge Prompt"** from the Start menu — this opens a terminal with conda pre-configured
+2. Add Miniforge to your PATH manually: search "Environment Variables" in Windows Settings and add `C:\Users\YourName\miniforge3\Scripts` to your PATH
+
+### Windows: "conda activate" Does Nothing
+
+This means conda isn't initialized for PowerShell. Run:
+
+```default
+conda init powershell
+```
+
+Then close and reopen your terminal completely. If you're using Positron's integrated terminal, close and reopen the entire application.
+
+### "Solving environment" Takes Forever
+
+You probably haven't set the fast solver. Run:
 
 ```default
 conda config --set solver libmamba
 ```
 
-Then try again. If you've already configured libmamba and it's still slow, you may have conflicting package requirements.
+If you've already set libmamba and it's still slow, you likely have conflicting package requirements. Try loosening version constraints or starting fresh (see below).
 
 ### Dependency Conflicts
 
-**Symptoms**: Conda reports "conflict" or can't find a solution when installing a package.
+Conda reports "conflict" or can't find a compatible set of packages. Try these in order:
 
-**Solutions**:
-
-1. **Check channel mixing**: Packages from different channels may conflict. Use strict channel priority with conda-forge first.
-
-2. **Loosen version constraints**: If you're requesting specific versions, try letting conda choose:
-   ```default
-   # Instead of
-   conda install pandas=1.5 numpy=1.24
-   # Try
-   conda install pandas numpy
-   ```
-
-3. **Start fresh**: Sometimes it's easier to recreate the environment:
-   ```default
-   conda deactivate
-   conda env remove -n my-project
-   conda create -n my-project python=3.11 numpy pandas matplotlib ipykernel
-   # Add other packages one at a time
-   ```
-
-4. **Check bioconda compatibility**: Some bioinformatics packages have strict dependencies. Check the package's documentation for known issues.
-
-### Package not found
-
-1. Check spelling
-2. Ensure you have the right channels configured (conda-forge, bioconda)
-3. Search for the package: `conda search package-name`
-4. Fall back to pip if it's not in conda
-
-### macOS/Linux: "conda: command not found"
-
-Your shell isn't configured for conda. Run:
+1. **Loosen version pins** — let conda choose versions instead of specifying exact ones
+2. **Start fresh** — sometimes it's easier to recreate the environment than to fix conflicts:
 
 ```default
-source ~/miniconda3/etc/profile.d/conda.sh
-# or if using Miniforge:
-source ~/miniforge3/etc/profile.d/conda.sh
+conda deactivate
+conda env remove -n my-project
+conda create -n my-project python=3.11 numpy pandas matplotlib ipykernel
 ```
 
-To make this permanent, add that line to your `~/.bashrc` or `~/.zshrc` file.
+Then add other packages one at a time to identify which one causes the conflict.
 
-### Environment corrupted
+### Package Not Found
 
-Remove and recreate:
+Check the spelling, make sure conda-forge is in your channels (`conda config --show channels`), and search for the package: `conda search package-name`. If it's not in any conda channel, install it with pip instead.
+
+### Environment Seems Corrupted
+
+If an environment is behaving strangely and you can't figure out why, remove it and recreate from your `environment.yml`:
 
 ```default
 conda deactivate
@@ -428,37 +417,15 @@ conda env remove -n my-project
 conda env create -f environment.yml
 ```
 
-### Windows: "conda activate" does nothing or errors
+This is the conda equivalent of `renv::restore()` — it rebuilds the environment from your recorded specification. This is also why keeping `environment.yml` up to date and committed to Git matters: it's your safety net.
 
-This usually means conda isn't initialized for your shell. Run:
+::: {.callout-warning .claude-callout title="Claude Code"}
+Claude Code is good at diagnosing environment and interpreter issues because it can check your conda configuration, Positron settings, and installed packages all at once.
 
-```default
-# For PowerShell
-conda init powershell
+> I created a conda environment called `analysis-env` and it shows up in `conda env list`, but when I open "Python: Select Interpreter" in Positron, it's not in the list. I've restarted Positron already. What else can I try?
 
-# For Command Prompt
-conda init cmd.exe
-```
-
-Then restart your terminal. If you're using VS Code or Positron's integrated terminal, close and reopen the entire application.
-
-### Windows: "conda is not recognized"
-
-The Miniforge installer may not have added conda to your PATH. Either:
-
-1. Use the "Miniforge Prompt" from the Start menu (this has conda pre-configured)
-2. Or add Miniforge to your PATH manually:
-   - Search "Environment Variables" in Windows Settings
-   - Add `C:\Users\YourName\miniforge3\Scripts` to your PATH
-
-## Integration with Positron
-
-1. Activate your environment in the terminal
-2. In Positron, open Command Palette (Cmd/Ctrl+Shift+P)
-3. Type "Python: Select Interpreter"
-4. Choose the environment
-
-The environment's Python will be used for running scripts and notebooks.
+Claude will check your conda installation path, Positron's Python discovery settings, and suggest targeted fixes — often a configuration path issue or a Positron extension that needs reloading.
+:::
 
 ## Quick Reference
 
@@ -468,9 +435,11 @@ The environment's Python will be used for running scripts and notebooks.
 | Activate | `conda activate NAME` |
 | Deactivate | `conda deactivate` |
 | Install package | `conda install PACKAGE` |
+| List packages | `conda list` |
+| List environments | `conda env list` |
 | Export environment | `conda env export --from-history > environment.yml` |
 | Create from file | `conda env create -f environment.yml` |
-| List environments | `conda env list` |
 | Remove environment | `conda env remove -n NAME` |
 | Set fast solver | `conda config --set solver libmamba` |
 | Set channel priority | `conda config --set channel_priority strict` |
+| Add bioconda channel | `conda config --add channels bioconda` |
