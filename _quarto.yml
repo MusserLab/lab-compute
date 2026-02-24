@@ -45,6 +45,7 @@ book:
     - appendices/shortcuts.qmd
     - appendices/commands.qmd
     - appendices/templates.qmd
+    - appendices/r-packages.qmd
 
 format:
   html:

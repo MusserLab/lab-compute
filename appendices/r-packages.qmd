@@ -1,0 +1,124 @@
+# R Packages for Biology {#sec-r-packages}
+
+This appendix lists the R packages you're most likely to use for biological data analysis in the lab. It's a reference, not a tutorial — you don't need to install all of these upfront. Install them as you need them for specific projects, using the methods described in the [R: rig & renv chapter](../part2/renv.qmd).
+
+## The Tidyverse {#tidyverse}
+
+The tidyverse is a collection of R packages that share a common design philosophy centered on "tidy data" — rectangular data where each variable is a column, each observation is a row, and each value is a cell. This simple principle, combined with a consistent and expressive syntax, has made the tidyverse the standard toolkit for data analysis in R.
+
+What makes the tidyverse practical is that it provides a unified grammar for the entire data analysis pipeline: importing data, reshaping it, transforming it, visualizing it, and communicating results. The packages are designed to work together, with consistent naming conventions and compatible data structures. Code written in tidyverse style tends to be readable — you can often understand what a pipeline does just by reading it.
+
+The tidyverse occupies the same role in R that pandas does in Python: both represent the modern, dataframe-centric approach to data manipulation. If you learn one well, the concepts transfer to the other.
+
+The core packages:
+
+| Package | Purpose |
+|---------|---------|
+| `dplyr` | Data manipulation: filter rows, select columns, create new variables, summarize, join tables |
+| `ggplot2` | Visualization using the grammar of graphics |
+| `tidyr` | Reshape data: pivot between wide and long formats |
+| `readr` | Fast, consistent data import (read_csv, read_tsv, etc.) |
+| `purrr` | Functional programming: apply functions across lists and vectors |
+| `stringr` | String manipulation with consistent syntax |
+
+Loading the tidyverse meta-package loads all of these at once:
+
+```r
+library(tidyverse)
+```
+
+::: {.callout-tip}
+## Learning the Tidyverse
+If you're new to R or transitioning from base R, work through [R for Data Science](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund. It's the definitive resource for learning modern R workflows.
+:::
+
+## Other Essential Packages
+
+| Package | Purpose |
+|---------|---------|
+| `here` | Build file paths relative to the project root — essential for reproducible scripts |
+| `knitr` | Required for rendering Quarto documents with R code |
+
+## Bioconductor {#bioconductor-appendix}
+
+Bioconductor is a specialized repository of R packages for bioinformatics and computational biology. It's separate from CRAN and has its own installation system, release schedule, and quality standards. If you're doing genomics, transcriptomics, or single-cell analysis in R, you'll use Bioconductor packages extensively.
+
+### What Makes Bioconductor Different
+
+**Curated and reviewed.** Packages undergo technical review before acceptance and must meet documentation and testing standards.
+
+**Coordinated releases.** All Bioconductor packages are released together twice per year, tested against each other for compatibility.
+
+**Specialized data structures.** Bioconductor defines standard classes for genomic data (`SummarizedExperiment`, `SingleCellExperiment`, etc.) that packages use consistently.
+
+**Tied to R versions.** Each Bioconductor release requires a specific R version. This is important for reproducibility — see the [rig & renv chapter](../part2/renv.qmd#bioconductor) for details.
+
+### Installing Bioconductor Packages
+
+Bioconductor packages are installed via `BiocManager`:
+
+```r
+# First, install BiocManager (only once per R installation)
+install.packages("BiocManager")
+
+# Then install Bioconductor packages
+BiocManager::install("DESeq2")
+BiocManager::install(c("limma", "edgeR", "tximport"))
+```
+
+In an renv project, you can also use the `bioc::` prefix:
+
+```r
+renv::install("bioc::DESeq2")
+```
+
+Always run `renv::snapshot()` after installing Bioconductor packages.
+
+### Bioconductor Version Synchronization
+
+Bioconductor versions are tied to R versions:
+
+| Bioconductor | R Version | Release Date |
+|--------------|-----------|--------------|
+| 3.18 | R 4.3.x | Oct 2023 |
+| 3.19 | R 4.4.x | May 2024 |
+| 3.20 | R 4.4.x | Oct 2024 |
+| 3.21 | R 4.5.x | May 2025 |
+
+Check your current Bioconductor version:
+
+```r
+BiocManager::version()
+```
+
+## RNA-seq Analysis Packages
+
+These packages form the core toolkit for bulk RNA-seq differential expression analysis:
+
+| Package | Purpose |
+|---------|---------|
+| `DESeq2` | Differential expression using negative binomial generalized linear models. The most widely used method. |
+| `limma` | Linear models for differential expression. Includes `voom` for RNA-seq count data. Fast and flexible. |
+| `edgeR` | Differential expression using empirical Bayes estimation. Similar approach to DESeq2. |
+| `tximport` | Import transcript-level quantifications from Salmon, kallisto, or RSEM into gene-level counts. |
+| `tximeta` | Like tximport but automatically attaches metadata about the reference transcriptome. |
+| `goseq` | Gene Ontology enrichment analysis that accounts for gene length bias in RNA-seq data. |
+
+A typical RNA-seq analysis workflow uses `tximport` or `tximeta` to import quantifications, then `DESeq2` (or `limma`/`edgeR`) for differential expression, then `goseq` for pathway analysis.
+
+## Single-Cell Analysis Packages
+
+Single-cell RNA-seq requires specialized methods. These are the main packages:
+
+| Package | Purpose |
+|---------|---------|
+| `Seurat` | Comprehensive toolkit for single-cell analysis: QC, normalization, clustering, visualization, integration across datasets. The most popular choice. |
+| `SingleCellExperiment` | Bioconductor's standard data structure for single-cell data. Many packages use this format. |
+| `scran` | Normalization (pooling-based), feature selection, and clustering methods from the Bioconductor ecosystem. |
+| `scater` | Quality control, visualization, and preprocessing. Works with SingleCellExperiment objects. |
+| `Monocle3` | Trajectory analysis and pseudotime inference — modeling how cells transition between states. |
+
+::: {.callout-note}
+## Seurat vs. Bioconductor Ecosystem
+Seurat is the most popular single-cell package but isn't part of Bioconductor — it's on CRAN (and GitHub). The Bioconductor single-cell packages (`SingleCellExperiment`, `scran`, `scater`) form an alternative ecosystem. Many workflows use both: Seurat for analysis and visualization, with conversion to `SingleCellExperiment` when needed for specific Bioconductor tools.
+:::

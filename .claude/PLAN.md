@@ -9,7 +9,7 @@
 
 Assessed all 6 Part 2 chapters (Feb 2026). Common issue: they read like reference documentation, not teaching guides. The first-project chapter (Ch. 3) sets a high bar with narrative tone and 14 screenshots. Part 2 chapters need to move toward that quality.
 
-**Claude Code callouts**: Target is 2-3 per Part 2 chapter. Ch. 4 (Positron) has 3, Ch. 6 (Quarto) has 2. Remaining Part 2 chapters have only 1 each — add 1-2 more per chapter during polishing.
+**Claude Code callouts**: Target is 2-3 per Part 2 chapter. Ch. 4 (Positron) has 3, Ch. 6 (Quarto) has 2, Ch. 7 (renv) has 3. Remaining Part 2 chapters have only 1 each — add 1-2 more per chapter during polishing.
 
 #### Ch. 4 — Positron (REWRITE DONE — screenshots pending)
 
@@ -51,12 +51,17 @@ Full rewrite completed Feb 2026 (496 → 458 lines). Restructured from reference
 - [x] Add narrative intro paragraph
 - [x] Soften tone throughout
 
-#### Ch. 7 — R: rig & renv (light polish)
+#### Ch. 7 — R: rig & renv (REWRITE DONE — screenshots pending)
 
-Well-structured. Connect more to Ch. 3 experience (students already did renv::init() but may not understand what happened). The "why this matters" opening is effective.
+Full rewrite completed Feb 2026 (580 → ~340 lines). Restructured from reference documentation to narrative teaching guide built around Ch. 3 callbacks. Package reference content (tidyverse, Bioconductor tables, RNA-seq/single-cell package lists) moved to new Appendix D (`appendices/r-packages.qmd`).
 
-- [ ] Tie renv workflow section back to Ch. 3 experience
-- [ ] Minor tone adjustments
+- [x] Tie renv workflow section back to Ch. 3 experience
+- [x] Narrative tone throughout (scenarios, explanations, not bullet lists)
+- [x] Fixed outdated `.vscode/settings.json` → Command Palette approach
+- [x] 3 Claude Code callout boxes (package discovery, renv status, installation errors)
+- [x] 4 screenshot TODOs placed throughout
+- [x] "How rig and renv Work Together" section with Bioconductor version story
+- [x] Created Appendix D: R Packages for Biology
 
 #### Ch. 8 — Conda (mostly ready)
 
@@ -170,6 +175,19 @@ Quarto chapter:
 ## Session Notes
 
 _Add notes here during working sessions_
+
+### 2026-02-23 (session 3)
+- **R: rig & renv chapter (Ch. 7) full rewrite** — 580→~340 lines, restructured from reference documentation to narrative teaching guide
+  - Opens with Ch. 3 callbacks: "what renv::init() actually did"
+  - rig section: concrete scenario (upgrading R, old project breaks), Bioconductor tie-in
+  - Fixed outdated `.vscode/settings.json` per-project R version → Command Palette approach
+  - renv section built on Ch. 3 experience: walks through files created, explains snapshot/restore cycle as a story
+  - 3 Claude Code callouts: package discovery for new analysis types, interpreting renv::status(), debugging installation errors
+  - 4 screenshot TODOs: rig list, Command Palette R: Select R Binary, renv activation message, renv::status() output
+  - "How rig and renv Work Together" section: renv.lock records R version + Bioconductor version + packages
+  - Cut ~200 lines of package reference content → moved to new Appendix D: R Packages for Biology
+  - Appendix D (`appendices/r-packages.qmd`): tidyverse, Bioconductor (with version table), RNA-seq packages, single-cell packages
+  - Added `appendices/r-packages.qmd` to `_quarto.yml`
 
 ### 2026-02-23 (session 2)
 - **Quarto chapter (Ch. 6) full rewrite** — 942→786 lines, restructured from reference doc to teaching guide

@@ -1,53 +1,39 @@
 # R: rig & renv
 
-In [Your First R Project](../part1/first-project.qmd), you ran `renv::init()`, installed packages, and ran `renv::snapshot()` to lock your environment. This chapter explains what those commands actually do under the hood, and covers rig for managing R versions alongside renv for packages.
+In [Your First R Project](../part1/first-project.qmd), you ran `renv::init()`, installed Seurat and half a dozen other packages, and ran `renv::snapshot()` to lock everything down. It worked — but what actually happened? Where did those packages go? What is `renv.lock` recording? And why did the installation chapter have you install R with something called "rig" instead of downloading it from the R website?
 
-Managing R effectively requires two things: controlling which **version of R** you're running, and controlling which **packages** are installed for each project. We use **rig** for the former and **renv** for the latter. Together, they give you the same isolation and reproducibility that conda provides for Python.
-
-## Why This Matters
-
-Without version management:
-
-- You update R for one project and break another that depended on the old version
-- A collaborator has R 4.3 while you have R 4.4, and Bioconductor packages behave differently
-- All your projects share one package library—updating `ggplot2` for Project A might break Project B
-
-With rig + renv:
-
-- Multiple R versions coexist on your machine
-- Each project specifies which R version it needs
-- Each project has its own package library with versions locked in `renv.lock`
-- Anyone can recreate your exact environment
+This chapter answers those questions. Managing R effectively requires two things: controlling which **version of R** you're running, and controlling which **packages** are installed for each project. We use **rig** for the first and **renv** for the second. Together, they give each project a self-contained, reproducible R setup — the same idea as conda environments for Python, but with R's own tools.
 
 ## rig: Managing R Versions
 
-rig (R Installation Manager) lets you install, switch between, and manage multiple R versions from the command line. The [Installation chapter](../part1/installation.qmd) covers how to install rig itself; this section covers day-to-day usage.
+### Why You'd Need More Than One
 
-### Why Multiple R Versions?
+Imagine this: you built your Spongilla analysis six months ago with R 4.4. Now you're starting a new project, and R 4.5 is out with nice improvements. Should you update?
 
-You might need multiple R versions when:
+If you just download R 4.5 from the R website, it overwrites R 4.4. Your new project runs fine, but when you go back to the Spongilla analysis, subtle things might break. Packages that worked under R 4.4 might behave differently under R 4.5. Worse, if you're using Bioconductor packages for genomics work, each Bioconductor release is tied to a specific R version — upgrading R can silently change which Bioconductor packages you get, potentially altering your results.
 
-- **Collaborating**: A collaborator's project uses R 4.3, but your default is R 4.4
-- **Bioconductor compatibility**: Bioconductor versions are tied to specific R versions (see [Bioconductor section](#bioconductor) below)
-- **Legacy projects**: An older analysis needs to run exactly as it did originally
-- **Testing**: You want to verify code works across R versions before sharing
+This is the problem rig solves. When you run `rig add release`, it installs the new R version *alongside* the old one, not replacing it. You can have R 4.3, R 4.4, and R 4.5 all installed at the same time, and switch between them depending on which project you're working on.
 
-### Essential rig Commands
+[TODO: screenshot of terminal showing `rig list` output with multiple R versions installed]
+
+### Day-to-Day Usage
+
+The [Installation chapter](../part1/installation.qmd) covered installing rig and adding your first R version. Here are the commands you'll use day to day:
 
 ```default
-# List installed R versions
+# See which R versions are installed
 rig list
 
 # Install the latest stable R
 rig add release
 
-# Install a specific version
+# Install a specific older version
 rig add 4.3
 
 # Set the system default
 rig default 4.4
 
-# See which version is default
+# Check which version is the default
 rig default
 ```
 
@@ -58,499 +44,218 @@ When you run `rig add`, it downloads and installs R without removing previous ve
 
 ### Setting R Version Per Project
 
-For reproducibility, you can lock a specific R version to a project so that Positron always uses it, regardless of your system default. Add this to `.vscode/settings.json` in your project:
+For most day-to-day work, the system default R version is fine — all your new projects will use it. But when you need a specific version for a particular project (because a collaborator uses R 4.3, or because the project depends on a specific Bioconductor release), you can lock it per project.
 
-::: {.panel-tabset}
+In Positron, open the Command Palette (**Cmd+Shift+P** on macOS, **Ctrl+Shift+P** on Windows) and type **R: Select R Binary**. You'll see a list of the R versions rig has installed. Pick the one you want, and Positron will remember that choice for this project — every time you open the project, it uses the version you selected.
 
-### macOS (Apple Silicon)
-```json
-{
-  "r.rpath.mac": "/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/bin/R"
-}
-```
+[TODO: screenshot of Command Palette showing "R: Select R Binary" with a list of installed R versions]
 
-### macOS (Intel)
-```json
-{
-  "r.rpath.mac": "/Library/Frameworks/R.framework/Versions/4.4-x86_64/Resources/bin/R"
-}
-```
-
-### Windows
-```json
-{
-  "r.rpath.windows": "C:\\Program Files\\R\\R-4.4.0\\bin\\R.exe"
-}
-```
-
-:::
-
-You can also set this interactively: open the Command Palette in Positron (**Cmd+Shift+P** / **Ctrl+Shift+P**) and select **R: Select R Binary**. See the [Positron chapter](positron.qmd#setting-the-r-version) for more details.
+You only need to do this once per project. If you use the Musser Lab's `/new-project` skill in Claude Code, it sets the R version automatically when scaffolding a new project. See the [Positron chapter](positron.qmd#setting-the-r-version) for more details.
 
 ## renv: Project Package Libraries
 
-renv creates isolated package libraries for each project. Instead of all projects sharing your user library, each project gets its own `renv/library/` folder with exactly the packages it needs.
+### What renv Actually Did in Chapter 3
 
-### The Workflow
+When you ran `renv::init()` in your first project, renv created several files in your project folder. At the time you probably didn't pay much attention to them — you were focused on getting Seurat running. Here's what each one does.
 
-The renv workflow has four steps:
+The **`renv/` folder** is your project's private package library. When you installed Seurat, ggplot2, and the other packages, they went here — not into a shared system library that all your projects use. This is the key idea: each project has its own packages, so installing something for Project A can't break Project B.
 
-1. **Initialize** renv in your project (`renv::init()`)
-2. **Install** packages as you work (`install.packages()` or `renv::install()`)
-3. **Snapshot** to record what you installed (`renv::snapshot()`)
-4. **Restore** on another machine or after cloning (`renv::restore()`)
+The **`renv.lock`** file is a JSON snapshot of every package in your project library — names, exact versions, and where they came from (CRAN, Bioconductor, GitHub). This is what makes your analysis reproducible. When a collaborator clones your project and runs `renv::restore()`, renv reads this file and installs every package at the exact version you recorded.
 
-### Initialize renv
+The **`.Rprofile`** file runs automatically when R starts in this folder. It calls the activation script (`renv/activate.R`), which tells R to use the project library instead of the system library. That's why you see `Project loaded. [renv 1.0.0]` in the console when you open the project in Positron — it's renv confirming it's active.
 
-In a new or existing R project:
-
-```r
-# Install renv if needed (only once per R installation)
-install.packages("renv")
-
-# Initialize renv for this project
-renv::init()
-```
-
-This creates:
-
-| File/Folder | Purpose |
-|-------------|---------|
-| `renv/` | Local package library (packages installed here) |
-| `renv.lock` | Lockfile recording exact package versions |
-| `.Rprofile` | Activates renv automatically when R starts |
-| `renv/activate.R` | The activation script |
-
-When you open the project in Positron and start R, you'll see:
-
-```
-- Project '/path/to/project' loaded. [renv 1.0.0]
-```
-
-This confirms renv is active.
+[TODO: screenshot of Positron console showing "Project loaded. [renv 1.0.0]" activation message]
 
 ### Installing Packages
 
-With renv active, install packages as usual:
+You already installed packages in Chapter 3 with `renv::install()`. Here's what else you need to know.
+
+For most packages, `install.packages()` still works — renv intercepts the call and installs into your project library. But `renv::install()` is more versatile because it understands multiple sources:
 
 ```r
-# Install from CRAN
+# Install from CRAN (either method works)
 install.packages("ggplot2")
+renv::install("ggplot2")
 
-# Install multiple packages
-install.packages(c("dplyr", "tidyr", "readr"))
-```
+# Install from Bioconductor (must use renv::install with bioc:: prefix)
+renv::install("bioc::DESeq2")
 
-For more control, use `renv::install()`:
-
-```r
 # Install from GitHub
-renv::install("tidyverse/ggplot2")
+renv::install("satijalab/seurat")
 
 # Install a specific version
 renv::install("ggplot2@3.4.0")
-
-# Install from Bioconductor (after setting up BiocManager)
-renv::install("bioc::DESeq2")
 ```
 
-### Snapshot
+The `bioc::` prefix is important. Bioconductor is a separate repository of R packages for bioinformatics — things like DESeq2 for differential expression, SingleCellExperiment for single-cell data structures, and hundreds of other genomics tools. These packages aren't on CRAN, so you need the prefix to tell renv where to find them. For a guide to common R packages for genomics and single-cell analysis, see [Appendix D: R Packages for Biology](../appendices/r-packages.qmd).
 
-After installing or updating packages, save the current state:
+::: {.callout-warning .claude-callout title="Claude Code"}
+When you're starting a new type of analysis and aren't sure which packages you need, Claude Code can recommend packages and generate the install commands.
+
+> I'm starting a bulk RNA-seq analysis in my renv project. I need to import Salmon quantifications and run differential expression. What R packages do I need and how do I install them?
+
+Claude will recommend the right packages (tximport for importing quantifications, DESeq2 for differential expression, etc.), generate the correct `renv::install()` commands with the `bioc::` prefix for Bioconductor packages, and remind you to snapshot afterward.
+:::
+
+### Snapshot and Restore: The Core Loop
+
+After installing packages, the most important habit is **snapshot**:
 
 ```r
 renv::snapshot()
 ```
 
-This updates `renv.lock` with the exact versions of all packages in your project library. **Always snapshot after installing packages**, and commit the updated `renv.lock` to Git.
+This updates `renv.lock` with the exact versions of everything in your project library. After snapshotting, **commit the updated `renv.lock` to Git**. This is the cycle you'll repeat throughout a project:
 
-### Restore
+1. Install or update a package
+2. Run `renv::snapshot()` to record the change
+3. Commit `renv.lock` to Git
 
-When you clone a project or set it up on a new machine:
+Why does this matter? Imagine your collaborator clones your project from GitHub six months from now. The R code is all there, but without the right packages at the right versions, nothing runs. When they open the project and run:
 
 ```r
 renv::restore()
 ```
 
-This reads `renv.lock` and installs every package at the exact version recorded. This is how collaborators reproduce your environment.
+renv reads `renv.lock` and installs every package at the exact version you recorded. Your collaborator gets the same environment you had, not whatever happens to be current on CRAN that day. This is what makes the analysis reproducible — not just the code, but the exact tools that ran it.
 
-### Status
+### Checking Status
 
-Check whether your library matches the lockfile:
+Before committing your work, it's good practice to check whether your library and lockfile are in sync:
 
 ```r
 renv::status()
 ```
 
-This tells you if packages are:
+This tells you if any packages are installed but not recorded in the lockfile (you need to `snapshot()`), missing from your library (you need to `restore()`), or at different versions than the lockfile expects.
 
-- Missing from the library (need `renv::restore()`)
-- Installed but not in the lockfile (need `renv::snapshot()`)
-- Different versions than the lockfile
+The most common message you'll see is **"The project is out-of-sync."** This sounds alarming but usually just means you installed something and forgot to snapshot, or you pulled changes from Git that updated the lockfile and haven't restored yet. Run `renv::status()` to see the details, and it will be clear which direction to go.
 
-Run `renv::status()` before committing to ensure your lockfile is current.
+[TODO: screenshot of R console showing `renv::status()` output with out-of-sync packages listed]
 
 ::: {.callout-warning .claude-callout title="Claude Code"}
-Claude Code can interpret renv status messages and tell you whether to `restore()` or `snapshot()`.
+Claude Code can interpret renv status messages and tell you whether to restore or snapshot.
 
-> I'm getting `Project 'my-project' is out-of-sync` when I start R. Here's the output of `renv::status()`: [paste output]. Should I restore or snapshot?
+> I'm getting "The project is out-of-sync" when I start R. Here's the output of `renv::status()`: [paste output]. What should I do — restore or snapshot?
 
 Claude will read the status output, explain which packages are out of sync and why, and recommend the right command.
 :::
 
-## Core R Packages
+## How rig and renv Work Together {#bioconductor}
 
-### The tidyverse {#tidyverse}
+rig and renv solve different problems, but they connect in an important way. When you run `renv::snapshot()`, the lockfile records not just your packages but also your **R version** and, if you're using Bioconductor, the **Bioconductor version**. This creates a complete picture of your environment.
 
-The tidyverse is a collection of R packages that share a common design philosophy centered on "tidy data"—rectangular data where each variable is a column, each observation is a row, and each value is a cell. This simple principle, combined with a consistent and expressive syntax, has made the tidyverse the standard toolkit for data analysis in R.
+The connection matters because of Bioconductor. Each Bioconductor release is built and tested against a specific R version — Bioconductor 3.19 works with R 4.4, Bioconductor 3.20 also works with R 4.4, and Bioconductor 3.21 requires R 4.5. If you change your R version, you may get a different Bioconductor release with different package versions. For a project that uses Bioconductor packages, changing R can subtly change your results even if your code doesn't change at all.
 
-What makes the tidyverse transformative is that it provides a unified grammar for the entire data analysis pipeline: importing data, reshaping it, transforming it, visualizing it, and communicating results. The packages are designed to work together seamlessly, with consistent naming conventions and compatible data structures. Code written in tidyverse style tends to be readable and self-documenting—you can often understand what a pipeline does just by reading it.
+This is why pinning R per project (using the Command Palette method described above) matters for critical analyses — especially anything heading toward publication. renv records the R and Bioconductor versions in the lockfile, and rig makes it easy to have the right R version available. Together, they ensure that `renv::restore()` on another machine gives you the same environment, not just the same package names.
 
-The tidyverse occupies the same role in R that pandas does in Python: both represent the modern, dataframe-centric approach to data manipulation. While they developed somewhat independently (pandas emerged around 2008, dplyr in 2014), they share the philosophy that most data analysis tasks involve filtering rows, selecting columns, creating new variables, grouping, and summarizing. If you learn one well, the concepts transfer to the other.
-
-The core tidyverse packages are:
-
-| Package | Purpose |
-|---------|---------|
-| `dplyr` | Data manipulation: filter rows, select columns, create new variables, summarize, join tables |
-| `ggplot2` | Visualization using the grammar of graphics |
-| `tidyr` | Reshape data: pivot between wide and long formats |
-| `readr` | Fast, consistent data import (read_csv, read_tsv, etc.) |
-| `purrr` | Functional programming: apply functions across lists and vectors |
-| `stringr` | String manipulation with consistent syntax |
-
-Loading the tidyverse meta-package loads all of these at once:
-
-```r
-library(tidyverse)
-```
-
-::: {.callout-tip}
-## Learning the tidyverse
-This guide assumes basic familiarity with tidyverse syntax. If you're new to R or transitioning from base R, work through [R for Data Science](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund. It's the definitive resource for learning modern R workflows.
-:::
-
-### Other Essential Packages
-
-| Package | Purpose |
-|---------|---------|
-| `here` | Build file paths relative to the project root—essential for reproducible scripts |
-| `knitr` | Required for rendering Quarto documents with R code |
-
-## Bioconductor {#bioconductor}
-
-Bioconductor is a specialized repository of R packages for bioinformatics and computational biology. It's separate from CRAN and has its own installation system, release schedule, and quality standards. If you're doing genomics, transcriptomics, or single-cell analysis in R, you'll use Bioconductor packages extensively.
-
-### What Makes Bioconductor Different
-
-**Curated and reviewed**: Packages undergo technical review before acceptance and must meet documentation and testing standards.
-
-**Coordinated releases**: All Bioconductor packages are released together twice per year, tested against each other for compatibility.
-
-**Specialized data structures**: Bioconductor defines standard classes for genomic data (`SummarizedExperiment`, `SingleCellExperiment`, etc.) that packages use consistently.
-
-**Tied to R versions**: Each Bioconductor release requires a specific R version. This is important for reproducibility.
-
-### Installing Bioconductor Packages
-
-Bioconductor packages are installed via `BiocManager`, not `install.packages()`:
-
-```r
-# First, install BiocManager (only once)
-install.packages("BiocManager")
-
-# Then install Bioconductor packages
-BiocManager::install("DESeq2")
-BiocManager::install(c("limma", "edgeR", "tximport"))
-
-# Don't forget to snapshot
-renv::snapshot()
-```
-
-renv automatically detects Bioconductor packages and records them correctly in the lockfile.
-
-### Bioconductor Version Synchronization {#bioc-versions}
-
-Bioconductor versions are tied to R versions:
-
-| Bioconductor | R Version | Release Date |
-|--------------|-----------|--------------|
-| 3.18 | R 4.3.x | Oct 2023 |
-| 3.19 | R 4.4.x | May 2024 |
-| 3.20 | R 4.4.x | Oct 2024 |
-| 3.21 | R 4.5.x | May 2025 |
-
-**Why this matters**: If you developed an analysis with R 4.3 and Bioconductor 3.18, a collaborator with R 4.4 will get Bioconductor 3.19 or 3.20—potentially with different package behaviors. For critical analyses, pin the R version in your project settings (see [Setting R Version Per Project](#setting-r-version-per-project) above).
-
-Check your current Bioconductor version:
+You can check your current Bioconductor version at any time:
 
 ```r
 BiocManager::version()
 ```
 
-::: {.callout-note}
-## Bioconductor and renv
-When you use renv, the Bioconductor version is recorded in `renv.lock` along with package versions. Running `renv::restore()` on a new machine will install packages from the same Bioconductor release, helping ensure reproducibility.
-:::
-
-### RNA-seq Analysis Packages
-
-These packages form the core toolkit for bulk RNA-seq differential expression analysis:
-
-| Package | Purpose |
-|---------|---------|
-| `DESeq2` | Differential expression using negative binomial generalized linear models. The most widely used method. |
-| `limma` | Linear models for differential expression. Includes `voom` for RNA-seq count data. Fast and flexible. |
-| `edgeR` | Differential expression using empirical Bayes estimation. Similar approach to DESeq2. |
-| `tximport` | Import transcript-level quantifications from Salmon, kallisto, or RSEM into gene-level counts. |
-| `tximeta` | Like tximport but automatically attaches metadata about the reference transcriptome. |
-| `goseq` | Gene Ontology enrichment analysis that accounts for gene length bias in RNA-seq data. |
-
-A typical RNA-seq analysis workflow uses `tximport` or `tximeta` to import quantifications, then `DESeq2` (or `limma`/`edgeR`) for differential expression, then `goseq` for pathway analysis.
-
-### Single-Cell Analysis Packages
-
-Single-cell RNA-seq requires specialized methods. These are the main packages:
-
-| Package | Purpose |
-|---------|---------|
-| `Seurat` | Comprehensive toolkit for single-cell analysis: QC, normalization, clustering, visualization, integration across datasets. The most popular choice. |
-| `SingleCellExperiment` | Bioconductor's standard data structure for single-cell data. Many packages use this format. |
-| `scran` | Normalization (pooling-based), feature selection, and clustering methods from the Bioconductor ecosystem. |
-| `scater` | Quality control, visualization, and preprocessing. Works with SingleCellExperiment objects. |
-| `Monocle3` | Trajectory analysis and pseudotime inference—modeling how cells transition between states. |
-
-::: {.callout-note}
-## Seurat vs. Bioconductor ecosystem
-Seurat is the most popular single-cell package but isn't part of Bioconductor—it's on CRAN (and GitHub). The Bioconductor single-cell packages (`SingleCellExperiment`, `scran`, `scater`) form an alternative ecosystem. Many workflows use both: Seurat for analysis and visualization, with conversion to `SingleCellExperiment` when needed for specific Bioconductor tools.
-:::
-
-## Installing from Other Sources
-
-### GitHub Packages
-
-For development versions or packages not on CRAN:
-
-```r
-# Install from GitHub
-renv::install("satijalab/seurat")
-
-# Install a specific branch
-renv::install("satijalab/seurat@develop")
-
-# Install a specific commit
-renv::install("satijalab/seurat@abc1234")
-```
-
-### Specific Versions
-
-```r
-# Install exact version from CRAN
-renv::install("dplyr@1.1.0")
-
-# Install exact version from Bioconductor
-renv::install("bioc::DESeq2@1.40.0")
-```
-
-### Local Packages
-
-```r
-# Install from a local directory
-renv::install("/path/to/local/package")
-```
-
-## The Lockfile
-
-`renv.lock` is a JSON file that records every package, its version, and its source:
-
-```json
-{
-  "R": {
-    "Version": "4.4.1",
-    "Repositories": [
-      {
-        "Name": "CRAN",
-        "URL": "https://cloud.r-project.org"
-      }
-    ]
-  },
-  "Bioconductor": {
-    "Version": "3.19"
-  },
-  "Packages": {
-    "DESeq2": {
-      "Package": "DESeq2",
-      "Version": "1.44.0",
-      "Source": "Bioconductor"
-    },
-    "ggplot2": {
-      "Package": "ggplot2",
-      "Version": "3.5.0",
-      "Source": "Repository"
-    }
-  }
-}
-```
-
-The lockfile records:
-
-- R version used
-- Bioconductor version (if applicable)
-- Every package with exact version and source
-
-**Always commit `renv.lock` to Git.** This is how collaborators (and future you) reproduce your environment.
-
 ## What to Commit to Git
+
+You've been committing `renv.lock` since Chapter 3, and that's the most important file. Here's the full list of what goes into Git and what doesn't.
 
 **Include in Git:**
 
-- `renv.lock` — Package versions (this is the important one)
-- `renv/activate.R` — Activation script
-- `.Rprofile` — Auto-activation on R startup
+- `renv.lock` — the lockfile (exact package versions — the whole point)
+- `renv/activate.R` — the activation script
+- `.Rprofile` — auto-activates renv when R starts
 
-**Exclude from Git** (add to `.gitignore`):
+**Exclude from Git** (should be in `.gitignore`):
 
-- `renv/library/` — The actual installed packages (too large, platform-specific)
-- `renv/staging/` — Temporary files during installation
+- `renv/library/` — the actual installed packages (too large and platform-specific)
+- `renv/staging/` — temporary files during installation
 
-The default renv setup handles this correctly. If you used the `.gitignore` from the [Setting Up a Lab Project](../part3/setup-walkthrough.qmd) chapter, these exclusions are already in place.
+The default renv setup handles the `.gitignore` entries automatically. If you used the lab's project setup walkthrough or the `/new-project` skill, these exclusions are already in place.
 
 ## Updating Packages
 
-### Update All Packages
+Packages get updates — bug fixes, new features, performance improvements. To update everything in your project:
 
 ```r
 renv::update()
-renv::snapshot()  # Don't forget!
 ```
 
-### Update Specific Package
+Or update a specific package:
 
 ```r
 renv::update("ggplot2")
-renv::snapshot()
 ```
 
-### Revert After a Bad Update
-
-If an update breaks something, restore the previous state:
-
-```r
-renv::restore()
-```
-
-This reinstalls packages at the versions in `renv.lock`, effectively undoing the update. (This is why we snapshot and commit before updating.)
-
-## Best Practices
-
-### Snapshot After Installing
-
-Every time you install or update packages:
+After updating, test that your analysis still runs correctly, then snapshot:
 
 ```r
 renv::snapshot()
 ```
 
-Then commit the updated `renv.lock`:
-
-```default
-git add renv.lock
-git commit -m "Add ggplot2 package"
-```
-
-### Check Status Before Committing
-
-```r
-renv::status()
-```
-
-Ensure your lockfile reflects your actual installed packages before pushing to GitHub.
-
-### Document Non-Standard Installations
-
-If packages require special installation steps (GitHub, specific versions, etc.), document them in your README:
-
-```markdown
-## Setup
-
-After cloning, restore the R environment:
+Here's a useful habit: **snapshot and commit before updating**. That way, if an update breaks something, you can restore the previous state:
 
 ```r
 renv::restore()
 ```
 
-Note: `custompackage` is installed from GitHub:
-```r
-renv::install("username/custompackage")
-```
-```
-
-### Pin R Version for Critical Projects
-
-For analyses that need to be reproducible long-term (publication-associated code), pin the R version in `.vscode/settings.json` and document it in your README.
+This reinstalls packages at the versions in `renv.lock`, effectively undoing the update. Because you committed the old lockfile, you can always get back to a known-good state.
 
 ## Troubleshooting
 
 ### "The project is out-of-sync"
 
-This warning means packages in your library don't match `renv.lock`:
+This is the most common renv message and it's usually not a real problem. It means your installed packages don't match what's in `renv.lock`. Run `renv::status()` to see the details:
 
 ```r
-# See what's different
 renv::status()
-
-# Option 1: Sync library to lockfile (discard local changes)
-renv::restore()
-
-# Option 2: Update lockfile to match library (keep local changes)
-renv::snapshot()
 ```
+
+If it shows packages installed but not in the lockfile, you probably installed something and forgot to snapshot — run `renv::snapshot()`. If it shows packages in the lockfile but not installed, you probably pulled changes from Git — run `renv::restore()`.
 
 ### Package Installation Fails
 
-Try rebuilding from source:
+Sometimes a package won't install, especially packages with compiled code (C or Fortran). Try rebuilding from source:
 
 ```r
 renv::install("package-name", rebuild = TRUE)
 ```
 
-For Bioconductor packages, ensure BiocManager is installed and your R version is compatible.
-
-### Bioconductor Version Mismatch
-
-If you see warnings about Bioconductor version mismatches:
-
-```r
-# Check your Bioconductor version
-BiocManager::version()
-
-# Check what version renv expects
-renv::lockfile_read()$Bioconductor$Version
-```
-
-If they differ, you may need to update your R version to match, or update the lockfile to use the Bioconductor version for your current R.
+For Bioconductor packages, make sure BiocManager is installed and your R version is compatible with the Bioconductor release you need. Bioconductor's website lists which R versions work with each release.
 
 ### renv is Slow
 
-The first `renv::restore()` on a new machine downloads all packages, which takes time. Subsequent operations use a global cache, so packages shared across projects only download once.
+The first time you run `renv::restore()` on a new machine, renv downloads and installs every package from scratch. This can take a while for projects with many packages (Seurat alone has dozens of dependencies). Be patient — subsequent operations are faster because renv maintains a global cache. Packages that are shared across projects only download once; renv links them into each project's library.
 
 ### Starting Fresh
 
-If things are really broken:
+If things are really broken and you want to start over:
 
 ```r
-# Deactivate renv
 renv::deactivate()
+```
 
-# Remove renv files (in terminal)
-# rm -rf renv renv.lock .Rprofile
+Then remove the renv files in the terminal:
 
-# Reinitialize
+```default
+rm -rf renv renv.lock .Rprofile
+```
+
+And reinitialize:
+
+```r
 renv::init()
 ```
 
 ::: {.callout-warning}
-This removes your lockfile. If you need to preserve the package versions, copy `renv.lock` somewhere safe before deleting.
+This removes your lockfile, so you lose the record of which package versions you had. If you need to preserve that information, copy `renv.lock` somewhere safe before deleting it.
+:::
+
+::: {.callout-warning .claude-callout title="Claude Code"}
+Claude Code is good at diagnosing package installation errors because it can check your R version, Bioconductor version, and system dependencies all at once.
+
+> I'm trying to install DESeq2 with `renv::install("bioc::DESeq2")` but I'm getting errors about missing dependencies. Here's the error output: [paste error]. I'm on R 4.4 with renv 1.0. Can you help me figure out what's wrong?
+
+Claude will check whether the error is a Bioconductor version mismatch, a missing system library, or a network issue, and suggest the specific fix.
 :::
 
 ## Quick Reference
@@ -571,8 +276,8 @@ This removes your lockfile. If you need to preserve the package versions, copy `
 |------|---------|
 | Initialize renv | `renv::init()` |
 | Install from CRAN | `install.packages("pkg")` |
+| Install from Bioconductor | `renv::install("bioc::pkg")` |
 | Install from GitHub | `renv::install("user/repo")` |
-| Install from Bioconductor | `BiocManager::install("pkg")` |
 | Snapshot | `renv::snapshot()` |
 | Restore | `renv::restore()` |
 | Check status | `renv::status()` |
