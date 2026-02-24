@@ -1,4 +1,6 @@
-# Claude Code Chapter Improvement Plan
+# Claude Code Chapter Improvement Plan — COMPLETED Feb 2026
+
+> **Status: Archived.** All items in this plan were implemented across Feb 2026 sessions. The Claude Code chapters were rewritten (Option A: 4 chapters, revised content), orange callout boxes were added across all book chapters, and project-specific skills were documented. See PLAN.md session notes for details.
 
 This document captures the planning work done to improve the Claude Code sections of the lab_compute book.
 

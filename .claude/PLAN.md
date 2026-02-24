@@ -1,19 +1,92 @@
 # Lab Compute Guide — Planning Document
 
 > This document tracks next steps and improvements for the book.
-> Last updated: 2026-02-20
+> Last updated: 2026-02-22
 
 ## Still Open
 
-### Screenshots (3 remaining)
+### Part 2: Polishing (priority order)
+
+Assessed all 6 Part 2 chapters (Feb 2026). Common issue: they read like reference documentation, not teaching guides. The first-project chapter (Ch. 3) sets a high bar with narrative tone and 14 screenshots. Part 2 chapters need to move toward that quality.
+
+**Claude Code callouts**: Target is 2-3 per Part 2 chapter. Ch. 4 (Positron) has 3. All other Part 2 chapters have only 1 each — add 1-2 more per chapter during polishing.
+
+#### Ch. 4 — Positron (REWRITE DONE — screenshots pending)
+
+Full rewrite completed Feb 2026. See plan: `.claude/plans/parsed-strolling-hoare.md`
+
+Completed:
+- [x] Restructure around daily workflow, not UI element tour
+- [x] Add "Console vs Terminal" section — when to use which, with examples
+- [x] Add "Managing Multiple Sessions" — tabs, switching, which console receives Cmd+Enter code
+- [x] Add "Status Bar" section — what it shows, why to check it
+- [x] Add "When Things Go Wrong" — panel recovery, session restart, Output panel
+- [x] Rewrite "Restarting R" — clean environment testing, not a rendering prerequisite
+- [x] Note: R/Python version only needs to be set once per project via Command Palette; /new-project skill does this automatically
+- [x] Add Jupyter extension to Extensions section
+- [x] Mention that Terminal opens to project root
+- [x] Remove JSON settings examples (too advanced for this stage)
+- [x] Match narrative tone of Ch. 3 and Ch. 9 (Git)
+- [x] ~7 screenshot TODOs placed throughout
+- [x] Note: needs future link to Musser Lab-specific Claude Code skills chapter (doesn't exist yet)
+- [x] Windows terminal callout (PowerShell vs Unix, conda init, file paths)
+- [x] Data Viewer: opens CSV/TSV from File Explorer
+- [x] File Explorer: project scope, + buttons for new files/folders
+- [x] 3 Claude Code callout boxes
+- [x] Fixed .vscode → .positron throughout
+- [x] Interpreter settings: described as internally remembered (no visible settings file)
+
+#### Ch. 6 — Quarto (needs restructuring)
+
+The longest chapter (942 lines) and most reference-heavy. Overwhelming for a student's first read. Needs splitting into "what you need now" (interactive workflow, basic syntax) vs. "reference" (full YAML tables, templates). Templates at the end may duplicate Appendix C.
+
+- [ ] Restructure: teaching content first, reference tables at end
+- [ ] Cut duplicate templates (already in Appendix C)
+- [ ] Positron with .qmd, console, and Data Viewer screenshot (`quarto.qmd:60`)
+
+#### Ch. 5 — Project Organization (light polish)
+
+Content is solid and specific to lab conventions. Mermaid diagrams are good. Needs warmer intro (narrative about returning to a project 6 months later) and tone adjustment from spec-document to guide.
+
+- [ ] Add narrative intro paragraph
+- [ ] Soften tone throughout
+
+#### Ch. 7 — R: rig & renv (light polish)
+
+Well-structured. Connect more to Ch. 3 experience (students already did renv::init() but may not understand what happened). The "why this matters" opening is effective.
+
+- [ ] Tie renv workflow section back to Ch. 3 experience
+- [ ] Minor tone adjustments
+
+#### Ch. 8 — Conda (mostly ready)
+
+Cleanest chapter in Part 2. Practical, well-organized. Light polish only.
+
+- [ ] Light tone review
+
+#### Ch. 9 — Git & GitHub (mostly ready)
+
+Best tone in Part 2 — friendly, narrative, well-paced. Closest to Ch. 3 quality bar.
+
+- [ ] Light review only
+
+### Screenshots
 
 first-project.qmd is done (14 images in `images/first-project/`).
 
-- [ ] Positron interface with labeled panes (`positron.qmd:29`)
-- [ ] Positron Data Viewer with dataframe open (`positron.qmd:80`)
+Positron chapter will need ~7 new screenshots after rewrite:
+- [ ] Full interface with labeled panes
+- [ ] Console and terminal tabs side by side
+- [ ] Multiple tabs in bottom panel (R, Python, Terminal)
+- [ ] Data Viewer with filtering active
+- [ ] Outline panel with a .qmd file
+- [ ] Command Palette with a search term
+- [ ] Status bar annotated
+
+Quarto chapter:
 - [ ] Positron with .qmd, console, and Data Viewer (`quarto.qmd:60`)
 
-### Content
+### Other Content
 - [ ] Update "Work in Progress" callout in `index.qmd:19-22` — all 21 chapters are substantive now, no stubs or placeholders remain. Soften or remove.
 - [ ] Review Quick Start section for clarity and completeness
 - [ ] Test installation instructions on a fresh machine (macOS and Windows)
@@ -21,6 +94,7 @@ first-project.qmd is done (14 images in `images/first-project/`).
 - [ ] Review `first-project.qmd` — ensure all steps work end-to-end
 - [ ] Consider subsetting Spongilla data more aggressively (~10K cells → ~2-3K) to get matrix.mtx.gz under 50 MB (GitHub recommended limit; currently 94 MB)
 - [ ] **Git/GitHub**: Add section on GitHub Classroom (if using for courses)
+- [ ] **Claude Code**: Musser Lab-specific skills chapter (referenced from positron.qmd for /new-project)
 
 ### Part 4: Workflows
 - [ ] **Starting Project**: Add template repo link once created
@@ -96,6 +170,20 @@ first-project.qmd is done (14 images in `images/first-project/`).
 ## Session Notes
 
 _Add notes here during working sessions_
+
+### 2026-02-22
+- **Positron chapter (Ch. 4) full rewrite** — 385→~290 lines, restructured from UI-element tour to daily-workflow guide
+  - New sections: Console vs Terminal, Managing Multiple Sessions, Status Bar, When Things Go Wrong
+  - Windows terminal callout (PowerShell vs Unix differences, conda init, file paths)
+  - Data Viewer: added CSV/TSV opening from File Explorer
+  - File Explorer: project scope, + buttons for new files/folders
+  - Restart R reframed: clean environment testing, NOT a rendering prerequisite
+  - All `.vscode` → `.positron` (Positron uses its own settings directory)
+  - Interpreter settings: internally remembered by Positron (no visible file written)
+  - 3 Claude Code callout boxes, 7 screenshot TODOs
+  - Preserved cross-reference anchors (#setting-the-r-version, #rstudio-positron-translation)
+- Assessed all 6 Part 2 chapters; added priority-ordered polishing roadmap to PLAN.md
+- Archived CLAUDE_CODE_CHAPTER_PLAN.md (marked COMPLETED Feb 2026)
 
 ### 2026-02-21
 - Claude Code callout icon: replaced warning triangle with chat-dots (speech bubble) via CSS override in `styles.css`

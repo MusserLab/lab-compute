@@ -52,7 +52,7 @@ lab_compute/
 | Document | Topic | Has status table? |
 |----------|-------|:-:|
 | [PLAN.md](.claude/PLAN.md) | Book roadmap, open items, session notes | Yes |
-| [CLAUDE_CODE_CHAPTER_PLAN.md](.claude/CLAUDE_CODE_CHAPTER_PLAN.md) | Claude Code chapter research and outline | Yes |
+| [CLAUDE_CODE_CHAPTER_PLAN.md](.claude/CLAUDE_CODE_CHAPTER_PLAN.md) | Claude Code chapter research and outline (COMPLETED) | No |
 
 ### Convention/Reference
 

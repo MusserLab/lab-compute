@@ -187,13 +187,15 @@ Two things to notice:
 
 ![Environment pane showing the counts and sponge objects](../images/first-project/environment-pane-objects.png)
 
-Now let's inspect the cell metadata. Run the `peek-metadata` chunk, or type this in the console:
+Now let's inspect the cell metadata. Run the `peek-metadata` chunk—it uses `head()` to print the first few rows of the metadata table to the console. That's useful for a quick look, and it's what we use in the script because `head()` works when the document is rendered to HTML later.
+
+But for interactive exploration, try typing this directly in the console:
 
 ```r
 View(sponge@meta.data)
 ```
 
-This opens Positron's **data viewer**—a spreadsheet-style view of the metadata, with one row per cell. You'll see three columns:
+This opens Positron's **data viewer**—a spreadsheet-style view of the metadata, with one row per cell. `View()` only works interactively (it opens a GUI pane), which is why the script uses `head()` instead. You'll see three columns:
 
 - **orig.ident** — which sample the cell came from
 - **nCount_RNA** — total UMI counts per cell (how much RNA was captured)
