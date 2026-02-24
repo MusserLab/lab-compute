@@ -781,7 +781,9 @@ analysis_v2_final_FINAL_fixed.R</code></pre>
 </section>
 <section id="your-first-commit" class="level2">
 <h2 class="anchored" data-anchor-id="your-first-commit">Your First Commit</h2>
-<p>The best way to learn Git is to use it. This walkthrough uses Positron’s <strong>Source Control panel</strong>, which gives you a visual interface for all the common Git operations. You’ll need a project that’s already a Git repository — if you worked through <a href="../part3/setup-walkthrough.html">Setting Up a Lab Project</a>, you already have one. If not, you can initialize any project folder by running <code>git init</code> in Positron’s terminal.</p>
+<p>The best way to learn Git is to use it. This walkthrough uses Positron’s <strong>Source Control panel</strong>, which gives you a visual interface for all the common Git operations. You’ll need a project that’s a Git repository. If you worked through <a href="../part1/first-project.html">Your First R Project</a>, open that <code>my-first-analysis</code> folder in Positron and initialize it as a Git repository by running this in Positron’s terminal (<strong>Cmd+`</strong> or <strong>Ctrl+`</strong>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>git init</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You should see “Initialized empty Git repository.” Now Git is tracking that folder, and you can follow along below.</p>
 <section id="open-the-source-control-panel" class="level3">
 <h3 class="anchored" data-anchor-id="open-the-source-control-panel">Open the Source Control Panel</h3>
 <p>Click the <strong>branch icon</strong> in Positron’s left sidebar, or press <strong>Cmd+Shift+G</strong> (macOS) / <strong>Ctrl+Shift+G</strong> (Windows). If there are no changes since your last commit, the panel will be mostly empty — that’s normal.</p>
@@ -832,8 +834,20 @@ analysis_v2_final_FINAL_fixed.R</code></pre>
 <section id="pushing-to-github" class="level2">
 <h2 class="anchored" data-anchor-id="pushing-to-github">Pushing to GitHub</h2>
 <p>A commit saves your changes locally. <strong>Pushing</strong> uploads those commits to GitHub, where they’re backed up and accessible to collaborators. Think of it this way: committing is saving your work, pushing is backing it up.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>First Push Requires a Remote
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you started your project with <code>git init</code> (as in the walkthrough above), Git doesn’t know where on GitHub to send your code yet. You need to create a GitHub repository first — see <a href="#creating-a-new-repo">Creating a New Repo</a> below for how to do that. If you cloned an existing repository from GitHub, the remote is already configured and you can push right away.</p>
+</div>
+</div>
 <p>To push from Positron, click the <strong>three-dot menu</strong> (⋯) at the top of the Source Control panel and select <strong>Push</strong>. You can also click the <strong>sync icon</strong> in the status bar at the bottom of the window — it pushes your commits and pulls any new ones from GitHub in one step.</p>
-<p>The first time you push a new repository, Git may ask you to set an “upstream” — this just means telling Git where on GitHub to send the code. If you created the repo through GitHub (or with <code>gh repo create</code>), this is already configured.</p>
 <section id="pull-before-you-start" class="level3">
 <h3 class="anchored" data-anchor-id="pull-before-you-start">Pull Before You Start</h3>
 <p>If you’re collaborating with someone, or if you work from multiple computers, get in the habit of <strong>pulling before you start working</strong>. Pulling downloads any new commits from GitHub that you don’t have locally. Click the three-dot menu → <strong>Pull</strong>, or use the sync icon. This avoids conflicts later — it’s much easier to integrate changes before you start editing than after.</p>
@@ -863,17 +877,14 @@ Remove outlier samples identified in PCA (samples 12, 47)</code></pre>
 <h2 class="anchored" data-anchor-id="what-to-track-and-what-to-ignore">What to Track and What to Ignore</h2>
 <p>Not everything in your project folder belongs in Git. Code, documentation, and configuration files should be tracked. Large data files, generated outputs, credentials, and system junk should not.</p>
 <p>The <strong><code>.gitignore</code></strong> file tells Git which files and folders to skip. Place it in the root of your project and Git will ignore anything that matches the patterns inside. Here’s a simplified version for a typical lab project:</p>
-<pre><code># Data files (too large for Git)
-*.h5ad
-*.rds
-
-# Generated outputs (reproducible from code)
+<pre><code># Generated outputs (reproducible from code)
 outs/
 
 # R artifacts
 .Rhistory
 .RData
 renv/library/
+renv/staging/
 
 # Python artifacts
 __pycache__/
@@ -887,9 +898,10 @@ __pycache__/
 .env
 *credentials*
 
-# OS files
+# OS and IDE files
 .DS_Store
-Thumbs.db</code></pre>
+Thumbs.db
+.positron/</code></pre>
 <p>See the <a href="../part3/setup-walkthrough.html">Setting Up a Lab Project</a> chapter for a more complete <code>.gitignore</code> template. The key principle: <strong>track things humans write, ignore things computers generate</strong>. If a file can be recreated by running your code, it probably doesn’t belong in Git.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">

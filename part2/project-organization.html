@@ -603,8 +603,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ├── renv.lock             # R package versions
 ├── .gitignore
 └── README.md</code></pre>
-<p>If you’re using Claude Code, the <code>/new-project</code> command scaffolds this entire structure for you—creating directories, initializing Git, setting up conda and renv, and generating a <code>.claude/CLAUDE.md</code> with your project’s conventions. But it’s worth understanding what each piece does.</p>
-<p>The <code>.claude/</code> directory holds project-level configuration for Claude Code, including a <code>CLAUDE.md</code> file that describes the project’s purpose, environment, and conventions. As a project matures, you may also add planning documents here to track multi-session work. You’ll learn more about this in the <a href="../claude-code/configuring-projects.html">Claude Code chapters</a>.</p>
+<p>If you’re using Claude Code (covered in Part 3), the <code>/new-project</code> command scaffolds this entire structure for you — creating directories, initializing Git, setting up conda and renv, and generating a <code>.claude/CLAUDE.md</code> with your project’s conventions. But it’s worth understanding what each piece does.</p>
+<p>The <code>.claude/</code> directory holds project-level configuration for Claude Code, including a <code>CLAUDE.md</code> file that describes the project’s purpose, environment, and conventions. As a project matures, you may also add planning documents here to track multi-session work. You’ll learn more about this in the <a href="../claude-code/getting-started.html">Claude Code chapters</a>.</p>
 <p>Not every project needs every directory. An R-only project won’t have <code>python/</code> or <code>environment.yml</code>. A Python-only project won’t have <code>R/</code> or <code>renv.lock</code>. The <code>/new-project</code> command asks about your languages and creates only what’s needed.</p>
 </section>
 <section id="data-directory" class="level2" data-number="5.3">
@@ -707,7 +707,7 @@ date: 2026-02-14 15:30:00</code></pre>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>metadata <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/sample_metadata.csv"</span>))</span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>annotations <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="fu">here</span>(<span class="st">"data/gene_annotations.tsv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Reading the top of any script shows exactly what it depends on and where those files come from. No separate manifest or pipeline specification needed—the dependencies are right there in the code.</p>
-<p>Dependencies don’t have to be strictly linear. A plotting script might read from the original data, from an early QC script, and from a later differential analysis:</p>
+<p>Dependencies don’t have to be strictly linear. A plotting script might read from the original data, from an early QC script, and from a later differential analysis. Here’s what that looks like as a dependency diagram:</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -866,7 +866,8 @@ date: 2026-02-14 15:30:00</code></pre>
 </section>
 <section id="cross-language-data" class="level3" data-number="5.10.2">
 <h3 data-number="5.10.2" class="anchored" data-anchor-id="cross-language-data"><span class="header-section-number">5.10.2</span> Cross-Language Data</h3>
-<p>When data produced by an R script needs to be read by a Python script (or vice versa), use <strong>Parquet</strong> format. Parquet files are smaller than CSV, preserve column types (so you don’t lose the distinction between integers and strings), and are fast to read in both languages:</p>
+<p>When data produced by an R script needs to be read by a Python script (or vice versa), use <strong>Parquet</strong> format. CSV files lose type information — a column of integers might be read back as strings, or dates might be misinterpreted. Parquet avoids this by storing column types alongside the data, so what you save is exactly what you read back. Parquet files are also smaller and faster to read than CSV in both languages.</p>
+<p>In R, Parquet support comes from the <code>arrow</code> package. Install it with <code>renv::install("arrow")</code> if you haven’t already:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># R: save as Parquet</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>arrow<span class="sc">::</span><span class="fu">write_parquet</span>(results, <span class="fu">file.path</span>(dir_out, <span class="st">"results.parquet"</span>))</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -887,8 +888,9 @@ date: 2026-02-14 15:30:00</code></pre>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"R/gene_helpers.R"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># In any script, load project helpers with:</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>, <span class="bu">str</span>(PROJECT_ROOT <span class="op">/</span> <span class="st">"python"</span>))</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>, <span class="bu">str</span>(PROJECT_ROOT <span class="op">/</span> <span class="st">"python"</span>))  <span class="co"># tell Python where to find your modules</span></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gene_helpers <span class="im">import</span> normalize_name</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Python doesn’t automatically know to look in your project’s <code>python/</code> folder for modules — <code>sys.path.insert</code> adds that folder to the list of places Python searches when you <code>import</code> something. The R equivalent (<code>source()</code>) is simpler because it takes a direct file path.</p>
 <p>Fix functions in place and let Git track the history—don’t version function names (<code>make_gene_short_v2</code>).</p>
 <p><strong>Cross-project helpers</strong> go in <code>~/lib/R/</code> and <code>~/lib/python/</code>. When a project-level function proves useful across two or more projects, promote it to your personal library. This keeps project repositories clean while making reusable code accessible everywhere.</p>
 </section>

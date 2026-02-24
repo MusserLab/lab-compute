@@ -809,7 +809,7 @@ ul.task-list li input[type="checkbox"] {
 <li>Type “R: Select R Binary”</li>
 <li>Choose the version you want</li>
 </ol>
-<p>This usually only needs to be done <strong>once per project</strong> — Positron remembers your choice and uses it every time you open the project. If you use the Musser Lab’s <code>/new-project</code> skill in Claude Code, it sets the R version automatically when scaffolding a new project.</p>
+<p>This usually only needs to be done <strong>once per project</strong> — Positron remembers your choice and uses it every time you open the project. If you later use the Musser Lab’s <code>/new-project</code> skill in Claude Code (covered in Part 3), it sets the R version automatically when scaffolding a new project.</p>
 <p>See the <a href="../part2/renv.html">R: rig &amp; renv chapter</a> for more on managing R versions and packages.</p>
 </section>
 </section>
@@ -823,7 +823,7 @@ ul.task-list li input[type="checkbox"] {
 <li>Type “Python: Select Interpreter”</li>
 <li>Choose your project’s conda environment from the list</li>
 </ol>
-<p>Like R, this only needs to be done <strong>once per project</strong> — Positron remembers your choice. If you use the Musser Lab’s <code>/new-project</code> skill in Claude Code, it configures this automatically.</p>
+<p>Like R, this only needs to be done <strong>once per project</strong> — Positron remembers your choice. If you later use the Musser Lab’s <code>/new-project</code> skill in Claude Code (covered in Part 3), it configures this automatically.</p>
 <p>See the <a href="../part2/conda.html">Conda chapter</a> for how to create and manage Python environments.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -951,8 +951,8 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="project-settings" class="level2" data-number="4.14">
 <h2 data-number="4.14" class="anchored" data-anchor-id="project-settings"><span class="header-section-number">4.14</span> Project Settings</h2>
-<p>Positron stores project-specific settings in a <code>.positron/</code> folder inside your project. When you select an R version or Python interpreter through the Command Palette, Positron remembers that choice for the project — though it handles this internally, so you won’t see a visible settings file the way you would with <code>.vscode/settings.json</code> in VS Code.</p>
-<p>You generally don’t need to think about this. The Command Palette handles most configuration, and Claude Code can adjust settings for you when needed (for example, the <code>/new-project</code> skill writes interpreter paths to project settings automatically). If something goes wrong with interpreter detection, checking <code>.positron/</code> for stale settings is a reasonable troubleshooting step.</p>
+<p>Positron stores project-specific settings in a <code>.positron/</code> folder inside your project. When you select an R version or Python interpreter through the Command Palette, Positron remembers that choice here. The folder is hidden by default (the <code>.</code> prefix hides it in most file browsers), and you normally won’t need to look at it — Positron manages it for you through the Command Palette.</p>
+<p>You generally don’t need to think about this. The Command Palette handles most configuration, and Claude Code can adjust settings for you when needed. If something goes wrong with interpreter detection — Positron suddenly uses the wrong R version or Python environment — checking inside <code>.positron/</code> for stale settings is a reasonable troubleshooting step. You can also safely delete the folder; Positron will recreate it next time you select an interpreter.</p>
 
 
 </section>

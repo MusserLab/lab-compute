@@ -526,11 +526,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#the-interactive-development-workflow" id="toc-the-interactive-development-workflow" class="nav-link" data-scroll-target="#the-interactive-development-workflow"><span class="header-section-number">6.2</span> The Interactive Development Workflow</a></li>
   <li><a href="#writing-a-quarto-document" id="toc-writing-a-quarto-document" class="nav-link" data-scroll-target="#writing-a-quarto-document"><span class="header-section-number">6.3</span> Writing a Quarto Document</a>
   <ul class="collapse">
-  <li><a href="#document-structure" id="toc-document-structure" class="nav-link" data-scroll-target="#document-structure"><span class="header-section-number">6.3.1</span> Document Structure</a></li>
-  <li><a href="#the-yaml-header" id="toc-the-yaml-header" class="nav-link" data-scroll-target="#the-yaml-header"><span class="header-section-number">6.3.2</span> The YAML Header</a></li>
-  <li><a href="#the-setup-chunk" id="toc-the-setup-chunk" class="nav-link" data-scroll-target="#the-setup-chunk"><span class="header-section-number">6.3.3</span> The Setup Chunk</a></li>
-  <li><a href="#code-chunks" id="toc-code-chunks" class="nav-link" data-scroll-target="#code-chunks"><span class="header-section-number">6.3.4</span> Code Chunks</a></li>
-  <li><a href="#documenting-inputs-and-outputs" id="toc-documenting-inputs-and-outputs" class="nav-link" data-scroll-target="#documenting-inputs-and-outputs"><span class="header-section-number">6.3.5</span> Documenting Inputs and Outputs</a></li>
+  <li><a href="#creating-a-new-document" id="toc-creating-a-new-document" class="nav-link" data-scroll-target="#creating-a-new-document"><span class="header-section-number">6.3.1</span> Creating a New Document</a></li>
+  <li><a href="#document-structure" id="toc-document-structure" class="nav-link" data-scroll-target="#document-structure"><span class="header-section-number">6.3.2</span> Document Structure</a></li>
+  <li><a href="#the-yaml-header" id="toc-the-yaml-header" class="nav-link" data-scroll-target="#the-yaml-header"><span class="header-section-number">6.3.3</span> The YAML Header</a></li>
+  <li><a href="#the-setup-chunk" id="toc-the-setup-chunk" class="nav-link" data-scroll-target="#the-setup-chunk"><span class="header-section-number">6.3.4</span> The Setup Chunk</a></li>
+  <li><a href="#code-chunks" id="toc-code-chunks" class="nav-link" data-scroll-target="#code-chunks"><span class="header-section-number">6.3.5</span> Code Chunks</a></li>
+  <li><a href="#documenting-inputs-and-outputs" id="toc-documenting-inputs-and-outputs" class="nav-link" data-scroll-target="#documenting-inputs-and-outputs"><span class="header-section-number">6.3.6</span> Documenting Inputs and Outputs</a></li>
   </ul></li>
   <li><a href="#saving-outputs" id="toc-saving-outputs" class="nav-link" data-scroll-target="#saving-outputs"><span class="header-section-number">6.4</span> Saving Outputs</a></li>
   <li><a href="#working-directory-and-paths" id="toc-working-directory-and-paths" class="nav-link" data-scroll-target="#working-directory-and-paths"><span class="header-section-number">6.5</span> Working Directory and Paths</a></li>
@@ -681,8 +682,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="writing-a-quarto-document" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="writing-a-quarto-document"><span class="header-section-number">6.3</span> Writing a Quarto Document</h2>
 <p>A Quarto document has two parts: a <strong>YAML header</strong> (metadata and rendering options, between <code>---</code> markers at the top) and a <strong>body</strong> (Markdown text interspersed with code chunks).</p>
-<section id="document-structure" class="level3" data-number="6.3.1">
-<h3 data-number="6.3.1" class="anchored" data-anchor-id="document-structure"><span class="header-section-number">6.3.1</span> Document Structure</h3>
+<section id="creating-a-new-document" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="creating-a-new-document"><span class="header-section-number">6.3.1</span> Creating a New Document</h3>
+<p>To start a new Quarto document in Positron, go to the File Explorer in the left sidebar, right-click inside your <code>scripts/</code> folder, and select <strong>New File</strong>. Name it with a <code>.qmd</code> extension (like <code>01_analysis.qmd</code>). Positron recognizes the extension and gives you Quarto syntax highlighting and the Render button in the toolbar. Start by pasting in the YAML header and setup chunk from the templates below, then begin adding your own sections and code chunks.</p>
+</section>
+<section id="document-structure" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="document-structure"><span class="header-section-number">6.3.2</span> Document Structure</h3>
 <p>Here’s a minimal example:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "My Analysis"</span></span>
@@ -707,8 +712,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>When rendered, this produces an HTML file with the title, your text, and the code outputs (the <code>glimpse()</code> output and the plot) embedded. For Python, the only difference is the chunk fence—use <code>```{python}</code> instead of <code>```{r}</code>.</p>
 </section>
-<section id="the-yaml-header" class="level3" data-number="6.3.2">
-<h3 data-number="6.3.2" class="anchored" data-anchor-id="the-yaml-header"><span class="header-section-number">6.3.2</span> The YAML Header</h3>
+<section id="the-yaml-header" class="level3" data-number="6.3.3">
+<h3 data-number="6.3.3" class="anchored" data-anchor-id="the-yaml-header"><span class="header-section-number">6.3.3</span> The YAML Header</h3>
 <p>The YAML header controls document metadata and rendering behavior. Here’s what a typical lab analysis header looks like:</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="" aria-current="page">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Python</a></li></ul>
@@ -798,8 +803,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="the-setup-chunk" class="level3" data-number="6.3.3">
-<h3 data-number="6.3.3" class="anchored" data-anchor-id="the-setup-chunk"><span class="header-section-number">6.3.3</span> The Setup Chunk</h3>
+<section id="the-setup-chunk" class="level3" data-number="6.3.4">
+<h3 data-number="6.3.4" class="anchored" data-anchor-id="the-setup-chunk"><span class="header-section-number">6.3.4</span> The Setup Chunk</h3>
 <p>Every analysis script should start with a setup chunk that loads packages, defines paths, sets options, and captures the git commit hash for provenance tracking.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Python</a></li></ul>
@@ -830,35 +835,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess, sys, random</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>PROJECT_ROOT <span class="op">=</span> Path(subprocess.check_output(</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"git"</span>, <span class="st">"rev-parse"</span>, <span class="st">"--show-toplevel"</span>]</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>).decode().strip())</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>, <span class="bu">str</span>(PROJECT_ROOT <span class="op">/</span> <span class="st">"python"</span>))</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Options ----</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>random.seed(<span class="dv">42</span>)</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">"display.max_columns"</span>, <span class="va">None</span>)</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard library modules (built into Python)</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess, sys, random</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Third-party packages (installed via conda)</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Project Root ----</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the project root by asking Git where the repository starts.</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># This lets us build reliable file paths regardless of where the script lives.</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>PROJECT_ROOT <span class="op">=</span> Path(subprocess.check_output(</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"git"</span>, <span class="st">"rev-parse"</span>, <span class="st">"--show-toplevel"</span>]</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>).decode().strip())</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the project's python/ folder so we can import our own helper modules</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>, <span class="bu">str</span>(PROJECT_ROOT <span class="op">/</span> <span class="st">"python"</span>))</span>
 <span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Paths ----</span></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>out_dir <span class="op">=</span> PROJECT_ROOT <span class="op">/</span> <span class="st">"outs/01_script_name"</span></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>out_dir.mkdir(parents<span class="op">=</span><span class="va">True</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>git_hash <span class="op">=</span> subprocess.check_output(</span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"git"</span>, <span class="st">"rev-parse"</span>, <span class="st">"--short"</span>, <span class="st">"HEAD"</span>]</span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>).decode().strip()</span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Rendered from commit: </span><span class="sc">{</span>git_hash<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Options ----</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>random.seed(<span class="dv">42</span>)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">"display.max_columns"</span>, <span class="va">None</span>)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Paths ----</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>out_dir <span class="op">=</span> PROJECT_ROOT <span class="op">/</span> <span class="st">"outs/01_script_name"</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>out_dir.mkdir(parents<span class="op">=</span><span class="va">True</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Provenance ----</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>git_hash <span class="op">=</span> subprocess.check_output(</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"git"</span>, <span class="st">"rev-parse"</span>, <span class="st">"--short"</span>, <span class="st">"HEAD"</span>]</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>).decode().strip()</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Rendered from commit: </span><span class="sc">{</span>git_hash<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>These Templates Require Git
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The provenance section uses <code>git rev-parse</code> to capture the current commit hash, and the Python version uses it to find the project root. These commands only work if your project is a Git repository. If you haven’t set up Git yet (covered in the <a href="../part2/git-github.html">Git &amp; GitHub chapter</a>), you can comment out the provenance lines for now and add them back later when your project is under version control.</p>
 </div>
 </div>
 <p>Both versions follow the same pattern: libraries, paths, options, provenance. The key differences:</p>
@@ -869,8 +894,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong><code>set.seed(42)</code></strong> — makes random operations reproducible. Python needs two seeds (<code>random.seed</code> for stdlib, <code>np.random.seed</code> for NumPy).</li>
 </ul>
 </section>
-<section id="code-chunks" class="level3" data-number="6.3.4">
-<h3 data-number="6.3.4" class="anchored" data-anchor-id="code-chunks"><span class="header-section-number">6.3.4</span> Code Chunks</h3>
+<section id="code-chunks" class="level3" data-number="6.3.5">
+<h3 data-number="6.3.5" class="anchored" data-anchor-id="code-chunks"><span class="header-section-number">6.3.5</span> Code Chunks</h3>
 <p>Code chunks are fenced with triple backticks and a language identifier:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># R code here</span></span>
@@ -913,8 +938,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hypothetical_function</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For the full table of chunk options, see the <a href="#quick-reference">Quick Reference</a> at the end of this chapter.</p>
 </section>
-<section id="documenting-inputs-and-outputs" class="level3" data-number="6.3.5">
-<h3 data-number="6.3.5" class="anchored" data-anchor-id="documenting-inputs-and-outputs"><span class="header-section-number">6.3.5</span> Documenting Inputs and Outputs</h3>
+<section id="documenting-inputs-and-outputs" class="level3" data-number="6.3.6">
+<h3 data-number="6.3.6" class="anchored" data-anchor-id="documenting-inputs-and-outputs"><span class="header-section-number">6.3.6</span> Documenting Inputs and Outputs</h3>
 <p>After the setup chunk, add an explicit inputs section that loads all dependencies. This makes it immediately clear what the script needs to run:</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Python</a></li></ul>
@@ -1052,7 +1077,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>quarto render scripts/01_analysis.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
-<p>Python QMD files require the conda environment to be active when you render:</p>
+<p>Python QMD files require the <strong>conda environment</strong> to be active when you render. If you haven’t set up conda yet, the <a href="../part2/conda.html">Conda chapter</a> walks through installation and environment creation — come back to this section after that.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>source ~/miniconda3/etc/profile.d/conda.sh &amp;&amp; conda activate my-project &amp;&amp; quarto render scripts/02_plots.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If <code>quarto render</code> fails with <code>ModuleNotFoundError</code>, check that your conda environment is active. This is the number one Python QMD gotcha.</p>
 </div>
@@ -1564,10 +1589,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="python-specific-notes" class="level2" data-number="6.10">
 <h2 data-number="6.10" class="anchored" data-anchor-id="python-specific-notes"><span class="header-section-number">6.10</span> Python-Specific Notes</h2>
-<p>This section collects the Python-specific details that don’t fit neatly into the tabsets above.</p>
+<p>This section collects the Python-specific details that don’t fit neatly into the tabsets above. If you haven’t set up conda yet, read the <a href="../part2/conda.html">Conda chapter</a> first — these notes will make more sense after that.</p>
 <p><strong>Conda must be active for rendering.</strong> This is the number one Python QMD gotcha. Unlike R (which finds packages via renv automatically), Python QMD files require the conda environment to be active when you render. If <code>quarto render</code> fails with <code>ModuleNotFoundError</code>, activate your environment first.</p>
 <p><strong>Install <code>ipykernel</code>.</strong> Quarto uses Jupyter kernels to execute Python code. Your conda environment needs <code>ipykernel</code> installed (<code>conda install ipykernel</code>) or rendering will fail.</p>
-<p><strong>Install <code>session-info</code>.</strong> For the provenance chunk to work, install <code>session-info</code> in your conda environment: <code>pip install session-info</code>.</p>
+<p><strong>Install <code>session-info</code>.</strong> For the provenance chunk to work, install <code>session-info</code> in your conda environment: <code>pip install session-info</code>. Note the dash in the install name vs.&nbsp;the underscore in the import (<code>import session_info</code>) — this is a common Python convention where package install names use dashes but module names use underscores.</p>
 <p><strong>Don’t mix languages.</strong> Do not mix R and Python chunks in a single <code>.qmd</code>. Each script uses one language. Scripts communicate through files in <code>outs/</code>, not shared memory. If an R script produces data that a Python script needs, save it as Parquet (see <a href="../part2/project-organization.html#housekeeping">Project Organization</a>).</p>
 <p><strong>Selecting the interpreter.</strong> Ensure Positron is using the correct conda environment: open the Command Palette (Cmd/Ctrl+Shift+P), type “Python: Select Interpreter”, and choose your project’s environment.</p>
 
