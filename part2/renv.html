@@ -498,6 +498,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Templates</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/r-packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">R Packages for Biology</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -510,63 +516,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#why-this-matters" id="toc-why-this-matters" class="nav-link active" data-scroll-target="#why-this-matters"><span class="header-section-number">7.1</span> Why This Matters</a></li>
-  <li><a href="#rig-managing-r-versions" id="toc-rig-managing-r-versions" class="nav-link" data-scroll-target="#rig-managing-r-versions"><span class="header-section-number">7.2</span> rig: Managing R Versions</a>
+  <li><a href="#rig-managing-r-versions" id="toc-rig-managing-r-versions" class="nav-link active" data-scroll-target="#rig-managing-r-versions"><span class="header-section-number">7.1</span> rig: Managing R Versions</a>
   <ul class="collapse">
-  <li><a href="#why-multiple-r-versions" id="toc-why-multiple-r-versions" class="nav-link" data-scroll-target="#why-multiple-r-versions"><span class="header-section-number">7.2.1</span> Why Multiple R Versions?</a></li>
-  <li><a href="#essential-rig-commands" id="toc-essential-rig-commands" class="nav-link" data-scroll-target="#essential-rig-commands"><span class="header-section-number">7.2.2</span> Essential rig Commands</a></li>
-  <li><a href="#setting-r-version-per-project" id="toc-setting-r-version-per-project" class="nav-link" data-scroll-target="#setting-r-version-per-project"><span class="header-section-number">7.2.3</span> Setting R Version Per Project</a></li>
+  <li><a href="#why-youd-need-more-than-one" id="toc-why-youd-need-more-than-one" class="nav-link" data-scroll-target="#why-youd-need-more-than-one"><span class="header-section-number">7.1.1</span> Why You’d Need More Than One</a></li>
+  <li><a href="#day-to-day-usage" id="toc-day-to-day-usage" class="nav-link" data-scroll-target="#day-to-day-usage"><span class="header-section-number">7.1.2</span> Day-to-Day Usage</a></li>
+  <li><a href="#setting-r-version-per-project" id="toc-setting-r-version-per-project" class="nav-link" data-scroll-target="#setting-r-version-per-project"><span class="header-section-number">7.1.3</span> Setting R Version Per Project</a></li>
   </ul></li>
-  <li><a href="#renv-project-package-libraries" id="toc-renv-project-package-libraries" class="nav-link" data-scroll-target="#renv-project-package-libraries"><span class="header-section-number">7.3</span> renv: Project Package Libraries</a>
+  <li><a href="#renv-project-package-libraries" id="toc-renv-project-package-libraries" class="nav-link" data-scroll-target="#renv-project-package-libraries"><span class="header-section-number">7.2</span> renv: Project Package Libraries</a>
   <ul class="collapse">
-  <li><a href="#the-workflow" id="toc-the-workflow" class="nav-link" data-scroll-target="#the-workflow"><span class="header-section-number">7.3.1</span> The Workflow</a></li>
-  <li><a href="#initialize-renv" id="toc-initialize-renv" class="nav-link" data-scroll-target="#initialize-renv"><span class="header-section-number">7.3.2</span> Initialize renv</a></li>
-  <li><a href="#installing-packages" id="toc-installing-packages" class="nav-link" data-scroll-target="#installing-packages"><span class="header-section-number">7.3.3</span> Installing Packages</a></li>
-  <li><a href="#snapshot" id="toc-snapshot" class="nav-link" data-scroll-target="#snapshot"><span class="header-section-number">7.3.4</span> Snapshot</a></li>
-  <li><a href="#restore" id="toc-restore" class="nav-link" data-scroll-target="#restore"><span class="header-section-number">7.3.5</span> Restore</a></li>
-  <li><a href="#status" id="toc-status" class="nav-link" data-scroll-target="#status"><span class="header-section-number">7.3.6</span> Status</a></li>
+  <li><a href="#what-renv-actually-did-in-chapter-3" id="toc-what-renv-actually-did-in-chapter-3" class="nav-link" data-scroll-target="#what-renv-actually-did-in-chapter-3"><span class="header-section-number">7.2.1</span> What renv Actually Did in Chapter 3</a></li>
+  <li><a href="#installing-packages" id="toc-installing-packages" class="nav-link" data-scroll-target="#installing-packages"><span class="header-section-number">7.2.2</span> Installing Packages</a></li>
+  <li><a href="#snapshot-and-restore-the-core-loop" id="toc-snapshot-and-restore-the-core-loop" class="nav-link" data-scroll-target="#snapshot-and-restore-the-core-loop"><span class="header-section-number">7.2.3</span> Snapshot and Restore: The Core Loop</a></li>
+  <li><a href="#checking-status" id="toc-checking-status" class="nav-link" data-scroll-target="#checking-status"><span class="header-section-number">7.2.4</span> Checking Status</a></li>
   </ul></li>
-  <li><a href="#core-r-packages" id="toc-core-r-packages" class="nav-link" data-scroll-target="#core-r-packages"><span class="header-section-number">7.4</span> Core R Packages</a>
+  <li><a href="#bioconductor" id="toc-bioconductor" class="nav-link" data-scroll-target="#bioconductor"><span class="header-section-number">7.3</span> How rig and renv Work Together</a></li>
+  <li><a href="#what-to-commit-to-git" id="toc-what-to-commit-to-git" class="nav-link" data-scroll-target="#what-to-commit-to-git"><span class="header-section-number">7.4</span> What to Commit to Git</a></li>
+  <li><a href="#updating-packages" id="toc-updating-packages" class="nav-link" data-scroll-target="#updating-packages"><span class="header-section-number">7.5</span> Updating Packages</a></li>
+  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting"><span class="header-section-number">7.6</span> Troubleshooting</a>
   <ul class="collapse">
-  <li><a href="#tidyverse" id="toc-tidyverse" class="nav-link" data-scroll-target="#tidyverse"><span class="header-section-number">7.4.1</span> The tidyverse</a></li>
-  <li><a href="#other-essential-packages" id="toc-other-essential-packages" class="nav-link" data-scroll-target="#other-essential-packages"><span class="header-section-number">7.4.2</span> Other Essential Packages</a></li>
+  <li><a href="#the-project-is-out-of-sync" id="toc-the-project-is-out-of-sync" class="nav-link" data-scroll-target="#the-project-is-out-of-sync"><span class="header-section-number">7.6.1</span> “The project is out-of-sync”</a></li>
+  <li><a href="#package-installation-fails" id="toc-package-installation-fails" class="nav-link" data-scroll-target="#package-installation-fails"><span class="header-section-number">7.6.2</span> Package Installation Fails</a></li>
+  <li><a href="#renv-is-slow" id="toc-renv-is-slow" class="nav-link" data-scroll-target="#renv-is-slow"><span class="header-section-number">7.6.3</span> renv is Slow</a></li>
+  <li><a href="#starting-fresh" id="toc-starting-fresh" class="nav-link" data-scroll-target="#starting-fresh"><span class="header-section-number">7.6.4</span> Starting Fresh</a></li>
   </ul></li>
-  <li><a href="#bioconductor" id="toc-bioconductor" class="nav-link" data-scroll-target="#bioconductor"><span class="header-section-number">7.5</span> Bioconductor</a>
+  <li><a href="#quick-reference" id="toc-quick-reference" class="nav-link" data-scroll-target="#quick-reference"><span class="header-section-number">7.7</span> Quick Reference</a>
   <ul class="collapse">
-  <li><a href="#what-makes-bioconductor-different" id="toc-what-makes-bioconductor-different" class="nav-link" data-scroll-target="#what-makes-bioconductor-different"><span class="header-section-number">7.5.1</span> What Makes Bioconductor Different</a></li>
-  <li><a href="#installing-bioconductor-packages" id="toc-installing-bioconductor-packages" class="nav-link" data-scroll-target="#installing-bioconductor-packages"><span class="header-section-number">7.5.2</span> Installing Bioconductor Packages</a></li>
-  <li><a href="#bioc-versions" id="toc-bioc-versions" class="nav-link" data-scroll-target="#bioc-versions"><span class="header-section-number">7.5.3</span> Bioconductor Version Synchronization</a></li>
-  <li><a href="#rna-seq-analysis-packages" id="toc-rna-seq-analysis-packages" class="nav-link" data-scroll-target="#rna-seq-analysis-packages"><span class="header-section-number">7.5.4</span> RNA-seq Analysis Packages</a></li>
-  <li><a href="#single-cell-analysis-packages" id="toc-single-cell-analysis-packages" class="nav-link" data-scroll-target="#single-cell-analysis-packages"><span class="header-section-number">7.5.5</span> Single-Cell Analysis Packages</a></li>
-  </ul></li>
-  <li><a href="#installing-from-other-sources" id="toc-installing-from-other-sources" class="nav-link" data-scroll-target="#installing-from-other-sources"><span class="header-section-number">7.6</span> Installing from Other Sources</a>
-  <ul class="collapse">
-  <li><a href="#github-packages" id="toc-github-packages" class="nav-link" data-scroll-target="#github-packages"><span class="header-section-number">7.6.1</span> GitHub Packages</a></li>
-  <li><a href="#specific-versions" id="toc-specific-versions" class="nav-link" data-scroll-target="#specific-versions"><span class="header-section-number">7.6.2</span> Specific Versions</a></li>
-  <li><a href="#local-packages" id="toc-local-packages" class="nav-link" data-scroll-target="#local-packages"><span class="header-section-number">7.6.3</span> Local Packages</a></li>
-  </ul></li>
-  <li><a href="#the-lockfile" id="toc-the-lockfile" class="nav-link" data-scroll-target="#the-lockfile"><span class="header-section-number">7.7</span> The Lockfile</a></li>
-  <li><a href="#what-to-commit-to-git" id="toc-what-to-commit-to-git" class="nav-link" data-scroll-target="#what-to-commit-to-git"><span class="header-section-number">7.8</span> What to Commit to Git</a></li>
-  <li><a href="#updating-packages" id="toc-updating-packages" class="nav-link" data-scroll-target="#updating-packages"><span class="header-section-number">7.9</span> Updating Packages</a>
-  <ul class="collapse">
-  <li><a href="#update-all-packages" id="toc-update-all-packages" class="nav-link" data-scroll-target="#update-all-packages"><span class="header-section-number">7.9.1</span> Update All Packages</a></li>
-  <li><a href="#update-specific-package" id="toc-update-specific-package" class="nav-link" data-scroll-target="#update-specific-package"><span class="header-section-number">7.9.2</span> Update Specific Package</a></li>
-  <li><a href="#revert-after-a-bad-update" id="toc-revert-after-a-bad-update" class="nav-link" data-scroll-target="#revert-after-a-bad-update"><span class="header-section-number">7.9.3</span> Revert After a Bad Update</a></li>
-  </ul></li>
-  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices"><span class="header-section-number">7.10</span> Best Practices</a>
-  <ul class="collapse">
-  <li><a href="#snapshot-after-installing" id="toc-snapshot-after-installing" class="nav-link" data-scroll-target="#snapshot-after-installing"><span class="header-section-number">7.10.1</span> Snapshot After Installing</a></li>
-  <li><a href="#check-status-before-committing" id="toc-check-status-before-committing" class="nav-link" data-scroll-target="#check-status-before-committing"><span class="header-section-number">7.10.2</span> Check Status Before Committing</a></li>
-  <li><a href="#document-non-standard-installations" id="toc-document-non-standard-installations" class="nav-link" data-scroll-target="#document-non-standard-installations"><span class="header-section-number">7.10.3</span> Document Non-Standard Installations</a></li>
-  <li><a href="#package-installation-fails" id="toc-package-installation-fails" class="nav-link" data-scroll-target="#package-installation-fails"><span class="header-section-number">7.10.4</span> Package Installation Fails</a></li>
-  <li><a href="#bioconductor-version-mismatch" id="toc-bioconductor-version-mismatch" class="nav-link" data-scroll-target="#bioconductor-version-mismatch"><span class="header-section-number">7.10.5</span> Bioconductor Version Mismatch</a></li>
-  <li><a href="#renv-is-slow" id="toc-renv-is-slow" class="nav-link" data-scroll-target="#renv-is-slow"><span class="header-section-number">7.10.6</span> renv is Slow</a></li>
-  <li><a href="#starting-fresh" id="toc-starting-fresh" class="nav-link" data-scroll-target="#starting-fresh"><span class="header-section-number">7.10.7</span> Starting Fresh</a></li>
-  </ul></li>
-  <li><a href="#quick-reference" id="toc-quick-reference" class="nav-link" data-scroll-target="#quick-reference"><span class="header-section-number">7.11</span> Quick Reference</a>
-  <ul class="collapse">
-  <li><a href="#rig-commands" id="toc-rig-commands" class="nav-link" data-scroll-target="#rig-commands"><span class="header-section-number">7.11.1</span> rig Commands</a></li>
-  <li><a href="#renv-commands" id="toc-renv-commands" class="nav-link" data-scroll-target="#renv-commands"><span class="header-section-number">7.11.2</span> renv Commands</a></li>
+  <li><a href="#rig-commands" id="toc-rig-commands" class="nav-link" data-scroll-target="#rig-commands"><span class="header-section-number">7.7.1</span> rig Commands</a></li>
+  <li><a href="#renv-commands" id="toc-renv-commands" class="nav-link" data-scroll-target="#renv-commands"><span class="header-section-number">7.7.2</span> renv Commands</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -594,52 +570,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In <a href="../part1/first-project.html">Your First R Project</a>, you ran <code>renv::init()</code>, installed packages, and ran <code>renv::snapshot()</code> to lock your environment. This chapter explains what those commands actually do under the hood, and covers rig for managing R versions alongside renv for packages.</p>
-<p>Managing R effectively requires two things: controlling which <strong>version of R</strong> you’re running, and controlling which <strong>packages</strong> are installed for each project. We use <strong>rig</strong> for the former and <strong>renv</strong> for the latter. Together, they give you the same isolation and reproducibility that conda provides for Python.</p>
-<section id="why-this-matters" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="why-this-matters"><span class="header-section-number">7.1</span> Why This Matters</h2>
-<p>Without version management:</p>
-<ul>
-<li>You update R for one project and break another that depended on the old version</li>
-<li>A collaborator has R 4.3 while you have R 4.4, and Bioconductor packages behave differently</li>
-<li>All your projects share one package library—updating <code>ggplot2</code> for Project A might break Project B</li>
-</ul>
-<p>With rig + renv:</p>
-<ul>
-<li>Multiple R versions coexist on your machine</li>
-<li>Each project specifies which R version it needs</li>
-<li>Each project has its own package library with versions locked in <code>renv.lock</code></li>
-<li>Anyone can recreate your exact environment</li>
-</ul>
+<p>In <a href="../part1/first-project.html">Your First R Project</a>, you ran <code>renv::init()</code>, installed Seurat and half a dozen other packages, and ran <code>renv::snapshot()</code> to lock everything down. It worked — but what actually happened? Where did those packages go? What is <code>renv.lock</code> recording? And why did the installation chapter have you install R with something called “rig” instead of downloading it from the R website?</p>
+<p>This chapter answers those questions. Managing R effectively requires two things: controlling which <strong>version of R</strong> you’re running, and controlling which <strong>packages</strong> are installed for each project. We use <strong>rig</strong> for the first and <strong>renv</strong> for the second. Together, they give each project a self-contained, reproducible R setup — the same idea as conda environments for Python, but with R’s own tools.</p>
+<section id="rig-managing-r-versions" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="rig-managing-r-versions"><span class="header-section-number">7.1</span> rig: Managing R Versions</h2>
+<section id="why-youd-need-more-than-one" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="why-youd-need-more-than-one"><span class="header-section-number">7.1.1</span> Why You’d Need More Than One</h3>
+<p>Imagine this: you built your Spongilla analysis six months ago with R 4.4. Now you’re starting a new project, and R 4.5 is out with nice improvements. Should you update?</p>
+<p>If you just download R 4.5 from the R website, it overwrites R 4.4. Your new project runs fine, but when you go back to the Spongilla analysis, subtle things might break. Packages that worked under R 4.4 might behave differently under R 4.5. Worse, if you’re using Bioconductor packages for genomics work, each Bioconductor release is tied to a specific R version — upgrading R can silently change which Bioconductor packages you get, potentially altering your results.</p>
+<p>This is the problem rig solves. When you run <code>rig add release</code>, it installs the new R version <em>alongside</em> the old one, not replacing it. You can have R 4.3, R 4.4, and R 4.5 all installed at the same time, and switch between them depending on which project you’re working on.</p>
+<p>[TODO: screenshot of terminal showing <code>rig list</code> output with multiple R versions installed]</p>
 </section>
-<section id="rig-managing-r-versions" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="rig-managing-r-versions"><span class="header-section-number">7.2</span> rig: Managing R Versions</h2>
-<p>rig (R Installation Manager) lets you install, switch between, and manage multiple R versions from the command line. The <a href="../part1/installation.html">Installation chapter</a> covers how to install rig itself; this section covers day-to-day usage.</p>
-<section id="why-multiple-r-versions" class="level3" data-number="7.2.1">
-<h3 data-number="7.2.1" class="anchored" data-anchor-id="why-multiple-r-versions"><span class="header-section-number">7.2.1</span> Why Multiple R Versions?</h3>
-<p>You might need multiple R versions when:</p>
-<ul>
-<li><strong>Collaborating</strong>: A collaborator’s project uses R 4.3, but your default is R 4.4</li>
-<li><strong>Bioconductor compatibility</strong>: Bioconductor versions are tied to specific R versions (see <a href="#bioconductor">Bioconductor section</a> below)</li>
-<li><strong>Legacy projects</strong>: An older analysis needs to run exactly as it did originally</li>
-<li><strong>Testing</strong>: You want to verify code works across R versions before sharing</li>
-</ul>
-</section>
-<section id="essential-rig-commands" class="level3" data-number="7.2.2">
-<h3 data-number="7.2.2" class="anchored" data-anchor-id="essential-rig-commands"><span class="header-section-number">7.2.2</span> Essential rig Commands</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a># List installed R versions</span>
+<section id="day-to-day-usage" class="level3" data-number="7.1.2">
+<h3 data-number="7.1.2" class="anchored" data-anchor-id="day-to-day-usage"><span class="header-section-number">7.1.2</span> Day-to-Day Usage</h3>
+<p>The <a href="../part1/installation.html">Installation chapter</a> covered installing rig and adding your first R version. Here are the commands you’ll use day to day:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a># See which R versions are installed</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>rig list</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a># Install the latest stable R</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>rig add release</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a># Install a specific version</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a># Install a specific older version</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>rig add 4.3</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a># Set the system default</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>rig default 4.4</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a># See which version is default</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a># Check which version is the default</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>rig default</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -655,125 +612,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="setting-r-version-per-project" class="level3" data-number="7.2.3">
-<h3 data-number="7.2.3" class="anchored" data-anchor-id="setting-r-version-per-project"><span class="header-section-number">7.2.3</span> Setting R Version Per Project</h3>
-<p>For reproducibility, you can lock a specific R version to a project so that Positron always uses it, regardless of your system default. Add this to <code>.vscode/settings.json</code> in your project:</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="" aria-current="page">macOS (Apple Silicon)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">macOS (Intel)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Windows</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"r.rpath.mac"</span><span class="fu">:</span> <span class="st">"/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/bin/R"</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"r.rpath.mac"</span><span class="fu">:</span> <span class="st">"/Library/Frameworks/R.framework/Versions/4.4-x86_64/Resources/bin/R"</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"r.rpath.windows"</span><span class="fu">:</span> <span class="st">"C:</span><span class="ch">\\</span><span class="st">Program Files</span><span class="ch">\\</span><span class="st">R</span><span class="ch">\\</span><span class="st">R-4.4.0</span><span class="ch">\\</span><span class="st">bin</span><span class="ch">\\</span><span class="st">R.exe"</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-</div>
-<p>You can also set this interactively: open the Command Palette in Positron (<strong>Cmd+Shift+P</strong> / <strong>Ctrl+Shift+P</strong>) and select <strong>R: Select R Binary</strong>. See the <a href="../part2/positron.html#setting-the-r-version">Positron chapter</a> for more details.</p>
+<section id="setting-r-version-per-project" class="level3" data-number="7.1.3">
+<h3 data-number="7.1.3" class="anchored" data-anchor-id="setting-r-version-per-project"><span class="header-section-number">7.1.3</span> Setting R Version Per Project</h3>
+<p>For most day-to-day work, the system default R version is fine — all your new projects will use it. But when you need a specific version for a particular project (because a collaborator uses R 4.3, or because the project depends on a specific Bioconductor release), you can lock it per project.</p>
+<p>In Positron, open the Command Palette (<strong>Cmd+Shift+P</strong> on macOS, <strong>Ctrl+Shift+P</strong> on Windows) and type <strong>R: Select R Binary</strong>. You’ll see a list of the R versions rig has installed. Pick the one you want, and Positron will remember that choice for this project — every time you open the project, it uses the version you selected.</p>
+<p>[TODO: screenshot of Command Palette showing “R: Select R Binary” with a list of installed R versions]</p>
+<p>You only need to do this once per project. If you use the Musser Lab’s <code>/new-project</code> skill in Claude Code, it sets the R version automatically when scaffolding a new project. See the <a href="../part2/positron.html#setting-the-r-version">Positron chapter</a> for more details.</p>
 </section>
 </section>
-<section id="renv-project-package-libraries" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="renv-project-package-libraries"><span class="header-section-number">7.3</span> renv: Project Package Libraries</h2>
-<p>renv creates isolated package libraries for each project. Instead of all projects sharing your user library, each project gets its own <code>renv/library/</code> folder with exactly the packages it needs.</p>
-<section id="the-workflow" class="level3" data-number="7.3.1">
-<h3 data-number="7.3.1" class="anchored" data-anchor-id="the-workflow"><span class="header-section-number">7.3.1</span> The Workflow</h3>
-<p>The renv workflow has four steps:</p>
-<ol type="1">
-<li><strong>Initialize</strong> renv in your project (<code>renv::init()</code>)</li>
-<li><strong>Install</strong> packages as you work (<code>install.packages()</code> or <code>renv::install()</code>)</li>
-<li><strong>Snapshot</strong> to record what you installed (<code>renv::snapshot()</code>)</li>
-<li><strong>Restore</strong> on another machine or after cloning (<code>renv::restore()</code>)</li>
-</ol>
+<section id="renv-project-package-libraries" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="renv-project-package-libraries"><span class="header-section-number">7.2</span> renv: Project Package Libraries</h2>
+<section id="what-renv-actually-did-in-chapter-3" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="what-renv-actually-did-in-chapter-3"><span class="header-section-number">7.2.1</span> What renv Actually Did in Chapter 3</h3>
+<p>When you ran <code>renv::init()</code> in your first project, renv created several files in your project folder. At the time you probably didn’t pay much attention to them — you were focused on getting Seurat running. Here’s what each one does.</p>
+<p>The <strong><code>renv/</code> folder</strong> is your project’s private package library. When you installed Seurat, ggplot2, and the other packages, they went here — not into a shared system library that all your projects use. This is the key idea: each project has its own packages, so installing something for Project A can’t break Project B.</p>
+<p>The <strong><code>renv.lock</code></strong> file is a JSON snapshot of every package in your project library — names, exact versions, and where they came from (CRAN, Bioconductor, GitHub). This is what makes your analysis reproducible. When a collaborator clones your project and runs <code>renv::restore()</code>, renv reads this file and installs every package at the exact version you recorded.</p>
+<p>The <strong><code>.Rprofile</code></strong> file runs automatically when R starts in this folder. It calls the activation script (<code>renv/activate.R</code>), which tells R to use the project library instead of the system library. That’s why you see <code>Project loaded. [renv 1.0.0]</code> in the console when you open the project in Positron — it’s renv confirming it’s active.</p>
+<p>[TODO: screenshot of Positron console showing “Project loaded. [renv 1.0.0]” activation message]</p>
 </section>
-<section id="initialize-renv" class="level3" data-number="7.3.2">
-<h3 data-number="7.3.2" class="anchored" data-anchor-id="initialize-renv"><span class="header-section-number">7.3.2</span> Initialize renv</h3>
-<p>In a new or existing R project:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install renv if needed (only once per R installation)</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"renv"</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize renv for this project</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This creates:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>File/Folder</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>renv/</code></td>
-<td>Local package library (packages installed here)</td>
-</tr>
-<tr class="even">
-<td><code>renv.lock</code></td>
-<td>Lockfile recording exact package versions</td>
-</tr>
-<tr class="odd">
-<td><code>.Rprofile</code></td>
-<td>Activates renv automatically when R starts</td>
-</tr>
-<tr class="even">
-<td><code>renv/activate.R</code></td>
-<td>The activation script</td>
-</tr>
-</tbody>
-</table>
-<p>When you open the project in Positron and start R, you’ll see:</p>
-<pre><code>- Project '/path/to/project' loaded. [renv 1.0.0]</code></pre>
-<p>This confirms renv is active.</p>
-</section>
-<section id="installing-packages" class="level3" data-number="7.3.3">
-<h3 data-number="7.3.3" class="anchored" data-anchor-id="installing-packages"><span class="header-section-number">7.3.3</span> Installing Packages</h3>
-<p>With renv active, install packages as usual:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install from CRAN</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Install multiple packages</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"dplyr"</span>, <span class="st">"tidyr"</span>, <span class="st">"readr"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>For more control, use <code>renv::install()</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install from GitHub</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">install</span>(<span class="st">"tidyverse/ggplot2"</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Install a specific version</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">install</span>(<span class="st">"ggplot2@3.4.0"</span>)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Install from Bioconductor (after setting up BiocManager)</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">install</span>(<span class="st">"bioc::DESeq2"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="snapshot" class="level3" data-number="7.3.4">
-<h3 data-number="7.3.4" class="anchored" data-anchor-id="snapshot"><span class="header-section-number">7.3.4</span> Snapshot</h3>
-<p>After installing or updating packages, save the current state:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This updates <code>renv.lock</code> with the exact versions of all packages in your project library. <strong>Always snapshot after installing packages</strong>, and commit the updated <code>renv.lock</code> to Git.</p>
-</section>
-<section id="restore" class="level3" data-number="7.3.5">
-<h3 data-number="7.3.5" class="anchored" data-anchor-id="restore"><span class="header-section-number">7.3.5</span> Restore</h3>
-<p>When you clone a project or set it up on a new machine:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This reads <code>renv.lock</code> and installs every package at the exact version recorded. This is how collaborators reproduce your environment.</p>
-</section>
-<section id="status" class="level3" data-number="7.3.6">
-<h3 data-number="7.3.6" class="anchored" data-anchor-id="status"><span class="header-section-number">7.3.6</span> Status</h3>
-<p>Check whether your library matches the lockfile:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">status</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This tells you if packages are:</p>
-<ul>
-<li>Missing from the library (need <code>renv::restore()</code>)</li>
-<li>Installed but not in the lockfile (need <code>renv::snapshot()</code>)</li>
-<li>Different versions than the lockfile</li>
-</ul>
-<p>Run <code>renv::status()</code> before committing to ensure your lockfile is current.</p>
+<section id="installing-packages" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="installing-packages"><span class="header-section-number">7.2.2</span> Installing Packages</h3>
+<p>You already installed packages in Chapter 3 with <code>renv::install()</code>. Here’s what else you need to know.</p>
+<p>For most packages, <code>install.packages()</code> still works — renv intercepts the call and installs into your project library. But <code>renv::install()</code> is more versatile because it understands multiple sources:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install from CRAN (either method works)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">install</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Install from Bioconductor (must use renv::install with bioc:: prefix)</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">install</span>(<span class="st">"bioc::DESeq2"</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Install from GitHub</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">install</span>(<span class="st">"satijalab/seurat"</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Install a specific version</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">install</span>(<span class="st">"ggplot2@3.4.0"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>bioc::</code> prefix is important. Bioconductor is a separate repository of R packages for bioinformatics — things like DESeq2 for differential expression, SingleCellExperiment for single-cell data structures, and hundreds of other genomics tools. These packages aren’t on CRAN, so you need the prefix to tell renv where to find them. For a guide to common R packages for genomics and single-cell analysis, see <a href="../appendices/r-packages.html">Appendix D: R Packages for Biology</a>.</p>
 <div class="claude-callout callout callout-style-default callout-warning callout-titled" title="Claude Code">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -784,450 +657,116 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Claude Code can interpret renv status messages and tell you whether to <code>restore()</code> or <code>snapshot()</code>.</p>
+<p>When you’re starting a new type of analysis and aren’t sure which packages you need, Claude Code can recommend packages and generate the install commands.</p>
 <blockquote class="blockquote">
-<p>I’m getting <code>Project 'my-project' is out-of-sync</code> when I start R. Here’s the output of <code>renv::status()</code>: [paste output]. Should I restore or snapshot?</p>
+<p>I’m starting a bulk RNA-seq analysis in my renv project. I need to import Salmon quantifications and run differential expression. What R packages do I need and how do I install them?</p>
+</blockquote>
+<p>Claude will recommend the right packages (tximport for importing quantifications, DESeq2 for differential expression, etc.), generate the correct <code>renv::install()</code> commands with the <code>bioc::</code> prefix for Bioconductor packages, and remind you to snapshot afterward.</p>
+</div>
+</div>
+</section>
+<section id="snapshot-and-restore-the-core-loop" class="level3" data-number="7.2.3">
+<h3 data-number="7.2.3" class="anchored" data-anchor-id="snapshot-and-restore-the-core-loop"><span class="header-section-number">7.2.3</span> Snapshot and Restore: The Core Loop</h3>
+<p>After installing packages, the most important habit is <strong>snapshot</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This updates <code>renv.lock</code> with the exact versions of everything in your project library. After snapshotting, <strong>commit the updated <code>renv.lock</code> to Git</strong>. This is the cycle you’ll repeat throughout a project:</p>
+<ol type="1">
+<li>Install or update a package</li>
+<li>Run <code>renv::snapshot()</code> to record the change</li>
+<li>Commit <code>renv.lock</code> to Git</li>
+</ol>
+<p>Why does this matter? Imagine your collaborator clones your project from GitHub six months from now. The R code is all there, but without the right packages at the right versions, nothing runs. When they open the project and run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>renv reads <code>renv.lock</code> and installs every package at the exact version you recorded. Your collaborator gets the same environment you had, not whatever happens to be current on CRAN that day. This is what makes the analysis reproducible — not just the code, but the exact tools that ran it.</p>
+</section>
+<section id="checking-status" class="level3" data-number="7.2.4">
+<h3 data-number="7.2.4" class="anchored" data-anchor-id="checking-status"><span class="header-section-number">7.2.4</span> Checking Status</h3>
+<p>Before committing your work, it’s good practice to check whether your library and lockfile are in sync:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">status</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This tells you if any packages are installed but not recorded in the lockfile (you need to <code>snapshot()</code>), missing from your library (you need to <code>restore()</code>), or at different versions than the lockfile expects.</p>
+<p>The most common message you’ll see is <strong>“The project is out-of-sync.”</strong> This sounds alarming but usually just means you installed something and forgot to snapshot, or you pulled changes from Git that updated the lockfile and haven’t restored yet. Run <code>renv::status()</code> to see the details, and it will be clear which direction to go.</p>
+<p>[TODO: screenshot of R console showing <code>renv::status()</code> output with out-of-sync packages listed]</p>
+<div class="claude-callout callout callout-style-default callout-warning callout-titled" title="Claude Code">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Claude Code
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Claude Code can interpret renv status messages and tell you whether to restore or snapshot.</p>
+<blockquote class="blockquote">
+<p>I’m getting “The project is out-of-sync” when I start R. Here’s the output of <code>renv::status()</code>: [paste output]. What should I do — restore or snapshot?</p>
 </blockquote>
 <p>Claude will read the status output, explain which packages are out of sync and why, and recommend the right command.</p>
 </div>
 </div>
 </section>
 </section>
-<section id="core-r-packages" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="core-r-packages"><span class="header-section-number">7.4</span> Core R Packages</h2>
-<section id="tidyverse" class="level3" data-number="7.4.1">
-<h3 data-number="7.4.1" class="anchored" data-anchor-id="tidyverse"><span class="header-section-number">7.4.1</span> The tidyverse</h3>
-<p>The tidyverse is a collection of R packages that share a common design philosophy centered on “tidy data”—rectangular data where each variable is a column, each observation is a row, and each value is a cell. This simple principle, combined with a consistent and expressive syntax, has made the tidyverse the standard toolkit for data analysis in R.</p>
-<p>What makes the tidyverse transformative is that it provides a unified grammar for the entire data analysis pipeline: importing data, reshaping it, transforming it, visualizing it, and communicating results. The packages are designed to work together seamlessly, with consistent naming conventions and compatible data structures. Code written in tidyverse style tends to be readable and self-documenting—you can often understand what a pipeline does just by reading it.</p>
-<p>The tidyverse occupies the same role in R that pandas does in Python: both represent the modern, dataframe-centric approach to data manipulation. While they developed somewhat independently (pandas emerged around 2008, dplyr in 2014), they share the philosophy that most data analysis tasks involve filtering rows, selecting columns, creating new variables, grouping, and summarizing. If you learn one well, the concepts transfer to the other.</p>
-<p>The core tidyverse packages are:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Package</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>dplyr</code></td>
-<td>Data manipulation: filter rows, select columns, create new variables, summarize, join tables</td>
-</tr>
-<tr class="even">
-<td><code>ggplot2</code></td>
-<td>Visualization using the grammar of graphics</td>
-</tr>
-<tr class="odd">
-<td><code>tidyr</code></td>
-<td>Reshape data: pivot between wide and long formats</td>
-</tr>
-<tr class="even">
-<td><code>readr</code></td>
-<td>Fast, consistent data import (read_csv, read_tsv, etc.)</td>
-</tr>
-<tr class="odd">
-<td><code>purrr</code></td>
-<td>Functional programming: apply functions across lists and vectors</td>
-</tr>
-<tr class="even">
-<td><code>stringr</code></td>
-<td>String manipulation with consistent syntax</td>
-</tr>
-</tbody>
-</table>
-<p>Loading the tidyverse meta-package loads all of these at once:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Learning the tidyverse
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This guide assumes basic familiarity with tidyverse syntax. If you’re new to R or transitioning from base R, work through <a href="https://r4ds.hadley.nz/">R for Data Science</a> by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund. It’s the definitive resource for learning modern R workflows.</p>
-</div>
-</div>
+<section id="bioconductor" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="bioconductor"><span class="header-section-number">7.3</span> How rig and renv Work Together</h2>
+<p>rig and renv solve different problems, but they connect in an important way. When you run <code>renv::snapshot()</code>, the lockfile records not just your packages but also your <strong>R version</strong> and, if you’re using Bioconductor, the <strong>Bioconductor version</strong>. This creates a complete picture of your environment.</p>
+<p>The connection matters because of Bioconductor. Each Bioconductor release is built and tested against a specific R version — Bioconductor 3.19 works with R 4.4, Bioconductor 3.20 also works with R 4.4, and Bioconductor 3.21 requires R 4.5. If you change your R version, you may get a different Bioconductor release with different package versions. For a project that uses Bioconductor packages, changing R can subtly change your results even if your code doesn’t change at all.</p>
+<p>This is why pinning R per project (using the Command Palette method described above) matters for critical analyses — especially anything heading toward publication. renv records the R and Bioconductor versions in the lockfile, and rig makes it easy to have the right R version available. Together, they ensure that <code>renv::restore()</code> on another machine gives you the same environment, not just the same package names.</p>
+<p>You can check your current Bioconductor version at any time:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">version</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="other-essential-packages" class="level3" data-number="7.4.2">
-<h3 data-number="7.4.2" class="anchored" data-anchor-id="other-essential-packages"><span class="header-section-number">7.4.2</span> Other Essential Packages</h3>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Package</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>here</code></td>
-<td>Build file paths relative to the project root—essential for reproducible scripts</td>
-</tr>
-<tr class="even">
-<td><code>knitr</code></td>
-<td>Required for rendering Quarto documents with R code</td>
-</tr>
-</tbody>
-</table>
-</section>
-</section>
-<section id="bioconductor" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="bioconductor"><span class="header-section-number">7.5</span> Bioconductor</h2>
-<p>Bioconductor is a specialized repository of R packages for bioinformatics and computational biology. It’s separate from CRAN and has its own installation system, release schedule, and quality standards. If you’re doing genomics, transcriptomics, or single-cell analysis in R, you’ll use Bioconductor packages extensively.</p>
-<section id="what-makes-bioconductor-different" class="level3" data-number="7.5.1">
-<h3 data-number="7.5.1" class="anchored" data-anchor-id="what-makes-bioconductor-different"><span class="header-section-number">7.5.1</span> What Makes Bioconductor Different</h3>
-<p><strong>Curated and reviewed</strong>: Packages undergo technical review before acceptance and must meet documentation and testing standards.</p>
-<p><strong>Coordinated releases</strong>: All Bioconductor packages are released together twice per year, tested against each other for compatibility.</p>
-<p><strong>Specialized data structures</strong>: Bioconductor defines standard classes for genomic data (<code>SummarizedExperiment</code>, <code>SingleCellExperiment</code>, etc.) that packages use consistently.</p>
-<p><strong>Tied to R versions</strong>: Each Bioconductor release requires a specific R version. This is important for reproducibility.</p>
-</section>
-<section id="installing-bioconductor-packages" class="level3" data-number="7.5.2">
-<h3 data-number="7.5.2" class="anchored" data-anchor-id="installing-bioconductor-packages"><span class="header-section-number">7.5.2</span> Installing Bioconductor Packages</h3>
-<p>Bioconductor packages are installed via <code>BiocManager</code>, not <code>install.packages()</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First, install BiocManager (only once)</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"BiocManager"</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Then install Bioconductor packages</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">"DESeq2"</span>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="fu">c</span>(<span class="st">"limma"</span>, <span class="st">"edgeR"</span>, <span class="st">"tximport"</span>))</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Don't forget to snapshot</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>renv automatically detects Bioconductor packages and records them correctly in the lockfile.</p>
-</section>
-<section id="bioc-versions" class="level3" data-number="7.5.3">
-<h3 data-number="7.5.3" class="anchored" data-anchor-id="bioc-versions"><span class="header-section-number">7.5.3</span> Bioconductor Version Synchronization</h3>
-<p>Bioconductor versions are tied to R versions:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Bioconductor</th>
-<th>R Version</th>
-<th>Release Date</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>3.18</td>
-<td>R 4.3.x</td>
-<td>Oct 2023</td>
-</tr>
-<tr class="even">
-<td>3.19</td>
-<td>R 4.4.x</td>
-<td>May 2024</td>
-</tr>
-<tr class="odd">
-<td>3.20</td>
-<td>R 4.4.x</td>
-<td>Oct 2024</td>
-</tr>
-<tr class="even">
-<td>3.21</td>
-<td>R 4.5.x</td>
-<td>May 2025</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Why this matters</strong>: If you developed an analysis with R 4.3 and Bioconductor 3.18, a collaborator with R 4.4 will get Bioconductor 3.19 or 3.20—potentially with different package behaviors. For critical analyses, pin the R version in your project settings (see <a href="#setting-r-version-per-project">Setting R Version Per Project</a> above).</p>
-<p>Check your current Bioconductor version:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">version</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Bioconductor and renv
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>When you use renv, the Bioconductor version is recorded in <code>renv.lock</code> along with package versions. Running <code>renv::restore()</code> on a new machine will install packages from the same Bioconductor release, helping ensure reproducibility.</p>
-</div>
-</div>
-</section>
-<section id="rna-seq-analysis-packages" class="level3" data-number="7.5.4">
-<h3 data-number="7.5.4" class="anchored" data-anchor-id="rna-seq-analysis-packages"><span class="header-section-number">7.5.4</span> RNA-seq Analysis Packages</h3>
-<p>These packages form the core toolkit for bulk RNA-seq differential expression analysis:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Package</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>DESeq2</code></td>
-<td>Differential expression using negative binomial generalized linear models. The most widely used method.</td>
-</tr>
-<tr class="even">
-<td><code>limma</code></td>
-<td>Linear models for differential expression. Includes <code>voom</code> for RNA-seq count data. Fast and flexible.</td>
-</tr>
-<tr class="odd">
-<td><code>edgeR</code></td>
-<td>Differential expression using empirical Bayes estimation. Similar approach to DESeq2.</td>
-</tr>
-<tr class="even">
-<td><code>tximport</code></td>
-<td>Import transcript-level quantifications from Salmon, kallisto, or RSEM into gene-level counts.</td>
-</tr>
-<tr class="odd">
-<td><code>tximeta</code></td>
-<td>Like tximport but automatically attaches metadata about the reference transcriptome.</td>
-</tr>
-<tr class="even">
-<td><code>goseq</code></td>
-<td>Gene Ontology enrichment analysis that accounts for gene length bias in RNA-seq data.</td>
-</tr>
-</tbody>
-</table>
-<p>A typical RNA-seq analysis workflow uses <code>tximport</code> or <code>tximeta</code> to import quantifications, then <code>DESeq2</code> (or <code>limma</code>/<code>edgeR</code>) for differential expression, then <code>goseq</code> for pathway analysis.</p>
-</section>
-<section id="single-cell-analysis-packages" class="level3" data-number="7.5.5">
-<h3 data-number="7.5.5" class="anchored" data-anchor-id="single-cell-analysis-packages"><span class="header-section-number">7.5.5</span> Single-Cell Analysis Packages</h3>
-<p>Single-cell RNA-seq requires specialized methods. These are the main packages:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Package</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>Seurat</code></td>
-<td>Comprehensive toolkit for single-cell analysis: QC, normalization, clustering, visualization, integration across datasets. The most popular choice.</td>
-</tr>
-<tr class="even">
-<td><code>SingleCellExperiment</code></td>
-<td>Bioconductor’s standard data structure for single-cell data. Many packages use this format.</td>
-</tr>
-<tr class="odd">
-<td><code>scran</code></td>
-<td>Normalization (pooling-based), feature selection, and clustering methods from the Bioconductor ecosystem.</td>
-</tr>
-<tr class="even">
-<td><code>scater</code></td>
-<td>Quality control, visualization, and preprocessing. Works with SingleCellExperiment objects.</td>
-</tr>
-<tr class="odd">
-<td><code>Monocle3</code></td>
-<td>Trajectory analysis and pseudotime inference—modeling how cells transition between states.</td>
-</tr>
-</tbody>
-</table>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Seurat vs.&nbsp;Bioconductor ecosystem
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Seurat is the most popular single-cell package but isn’t part of Bioconductor—it’s on CRAN (and GitHub). The Bioconductor single-cell packages (<code>SingleCellExperiment</code>, <code>scran</code>, <code>scater</code>) form an alternative ecosystem. Many workflows use both: Seurat for analysis and visualization, with conversion to <code>SingleCellExperiment</code> when needed for specific Bioconductor tools.</p>
-</div>
-</div>
-</section>
-</section>
-<section id="installing-from-other-sources" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="installing-from-other-sources"><span class="header-section-number">7.6</span> Installing from Other Sources</h2>
-<section id="github-packages" class="level3" data-number="7.6.1">
-<h3 data-number="7.6.1" class="anchored" data-anchor-id="github-packages"><span class="header-section-number">7.6.1</span> GitHub Packages</h3>
-<p>For development versions or packages not on CRAN:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install from GitHub</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">install</span>(<span class="st">"satijalab/seurat"</span>)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Install a specific branch</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">install</span>(<span class="st">"satijalab/seurat@develop"</span>)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Install a specific commit</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">install</span>(<span class="st">"satijalab/seurat@abc1234"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="specific-versions" class="level3" data-number="7.6.2">
-<h3 data-number="7.6.2" class="anchored" data-anchor-id="specific-versions"><span class="header-section-number">7.6.2</span> Specific Versions</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install exact version from CRAN</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">install</span>(<span class="st">"dplyr@1.1.0"</span>)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Install exact version from Bioconductor</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">install</span>(<span class="st">"bioc::DESeq2@1.40.0"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="local-packages" class="level3" data-number="7.6.3">
-<h3 data-number="7.6.3" class="anchored" data-anchor-id="local-packages"><span class="header-section-number">7.6.3</span> Local Packages</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install from a local directory</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">install</span>(<span class="st">"/path/to/local/package"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-</section>
-<section id="the-lockfile" class="level2" data-number="7.7">
-<h2 data-number="7.7" class="anchored" data-anchor-id="the-lockfile"><span class="header-section-number">7.7</span> The Lockfile</h2>
-<p><code>renv.lock</code> is a JSON file that records every package, its version, and its source:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"R"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"Version"</span><span class="fu">:</span> <span class="st">"4.4.1"</span><span class="fu">,</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"Repositories"</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"Name"</span><span class="fu">:</span> <span class="st">"CRAN"</span><span class="fu">,</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"URL"</span><span class="fu">:</span> <span class="st">"https://cloud.r-project.org"</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="ot">]</span></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"Bioconductor"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"Version"</span><span class="fu">:</span> <span class="st">"3.19"</span></span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"Packages"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"DESeq2"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Package"</span><span class="fu">:</span> <span class="st">"DESeq2"</span><span class="fu">,</span></span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Version"</span><span class="fu">:</span> <span class="st">"1.44.0"</span><span class="fu">,</span></span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Source"</span><span class="fu">:</span> <span class="st">"Bioconductor"</span></span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"ggplot2"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Package"</span><span class="fu">:</span> <span class="st">"ggplot2"</span><span class="fu">,</span></span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Version"</span><span class="fu">:</span> <span class="st">"3.5.0"</span><span class="fu">,</span></span>
-<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"Source"</span><span class="fu">:</span> <span class="st">"Repository"</span></span>
-<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
-<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
-<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The lockfile records:</p>
-<ul>
-<li>R version used</li>
-<li>Bioconductor version (if applicable)</li>
-<li>Every package with exact version and source</li>
-</ul>
-<p><strong>Always commit <code>renv.lock</code> to Git.</strong> This is how collaborators (and future you) reproduce your environment.</p>
-</section>
-<section id="what-to-commit-to-git" class="level2" data-number="7.8">
-<h2 data-number="7.8" class="anchored" data-anchor-id="what-to-commit-to-git"><span class="header-section-number">7.8</span> What to Commit to Git</h2>
+<section id="what-to-commit-to-git" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="what-to-commit-to-git"><span class="header-section-number">7.4</span> What to Commit to Git</h2>
+<p>You’ve been committing <code>renv.lock</code> since Chapter 3, and that’s the most important file. Here’s the full list of what goes into Git and what doesn’t.</p>
 <p><strong>Include in Git:</strong></p>
 <ul>
-<li><code>renv.lock</code> — Package versions (this is the important one)</li>
-<li><code>renv/activate.R</code> — Activation script</li>
-<li><code>.Rprofile</code> — Auto-activation on R startup</li>
+<li><code>renv.lock</code> — the lockfile (exact package versions — the whole point)</li>
+<li><code>renv/activate.R</code> — the activation script</li>
+<li><code>.Rprofile</code> — auto-activates renv when R starts</li>
 </ul>
-<p><strong>Exclude from Git</strong> (add to <code>.gitignore</code>):</p>
+<p><strong>Exclude from Git</strong> (should be in <code>.gitignore</code>):</p>
 <ul>
-<li><code>renv/library/</code> — The actual installed packages (too large, platform-specific)</li>
-<li><code>renv/staging/</code> — Temporary files during installation</li>
+<li><code>renv/library/</code> — the actual installed packages (too large and platform-specific)</li>
+<li><code>renv/staging/</code> — temporary files during installation</li>
 </ul>
-<p>The default renv setup handles this correctly. If you used the <code>.gitignore</code> from the <a href="../part3/setup-walkthrough.html">Setting Up a Lab Project</a> chapter, these exclusions are already in place.</p>
+<p>The default renv setup handles the <code>.gitignore</code> entries automatically. If you used the lab’s project setup walkthrough or the <code>/new-project</code> skill, these exclusions are already in place.</p>
 </section>
-<section id="updating-packages" class="level2" data-number="7.9">
-<h2 data-number="7.9" class="anchored" data-anchor-id="updating-packages"><span class="header-section-number">7.9</span> Updating Packages</h2>
-<section id="update-all-packages" class="level3" data-number="7.9.1">
-<h3 data-number="7.9.1" class="anchored" data-anchor-id="update-all-packages"><span class="header-section-number">7.9.1</span> Update All Packages</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">update</span>()</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()  <span class="co"># Don't forget!</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="updating-packages" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="updating-packages"><span class="header-section-number">7.5</span> Updating Packages</h2>
+<p>Packages get updates — bug fixes, new features, performance improvements. To update everything in your project:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">update</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Or update a specific package:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">update</span>(<span class="st">"ggplot2"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>After updating, test that your analysis still runs correctly, then snapshot:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Here’s a useful habit: <strong>snapshot and commit before updating</strong>. That way, if an update breaks something, you can restore the previous state:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This reinstalls packages at the versions in <code>renv.lock</code>, effectively undoing the update. Because you committed the old lockfile, you can always get back to a known-good state.</p>
 </section>
-<section id="update-specific-package" class="level3" data-number="7.9.2">
-<h3 data-number="7.9.2" class="anchored" data-anchor-id="update-specific-package"><span class="header-section-number">7.9.2</span> Update Specific Package</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">update</span>(<span class="st">"ggplot2"</span>)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="troubleshooting" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="troubleshooting"><span class="header-section-number">7.6</span> Troubleshooting</h2>
+<section id="the-project-is-out-of-sync" class="level3" data-number="7.6.1">
+<h3 data-number="7.6.1" class="anchored" data-anchor-id="the-project-is-out-of-sync"><span class="header-section-number">7.6.1</span> “The project is out-of-sync”</h3>
+<p>This is the most common renv message and it’s usually not a real problem. It means your installed packages don’t match what’s in <code>renv.lock</code>. Run <code>renv::status()</code> to see the details:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">status</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If it shows packages installed but not in the lockfile, you probably installed something and forgot to snapshot — run <code>renv::snapshot()</code>. If it shows packages in the lockfile but not installed, you probably pulled changes from Git — run <code>renv::restore()</code>.</p>
 </section>
-<section id="revert-after-a-bad-update" class="level3" data-number="7.9.3">
-<h3 data-number="7.9.3" class="anchored" data-anchor-id="revert-after-a-bad-update"><span class="header-section-number">7.9.3</span> Revert After a Bad Update</h3>
-<p>If an update breaks something, restore the previous state:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This reinstalls packages at the versions in <code>renv.lock</code>, effectively undoing the update. (This is why we snapshot and commit before updating.)</p>
+<section id="package-installation-fails" class="level3" data-number="7.6.2">
+<h3 data-number="7.6.2" class="anchored" data-anchor-id="package-installation-fails"><span class="header-section-number">7.6.2</span> Package Installation Fails</h3>
+<p>Sometimes a package won’t install, especially packages with compiled code (C or Fortran). Try rebuilding from source:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">install</span>(<span class="st">"package-name"</span>, <span class="at">rebuild =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For Bioconductor packages, make sure BiocManager is installed and your R version is compatible with the Bioconductor release you need. Bioconductor’s website lists which R versions work with each release.</p>
 </section>
+<section id="renv-is-slow" class="level3" data-number="7.6.3">
+<h3 data-number="7.6.3" class="anchored" data-anchor-id="renv-is-slow"><span class="header-section-number">7.6.3</span> renv is Slow</h3>
+<p>The first time you run <code>renv::restore()</code> on a new machine, renv downloads and installs every package from scratch. This can take a while for projects with many packages (Seurat alone has dozens of dependencies). Be patient — subsequent operations are faster because renv maintains a global cache. Packages that are shared across projects only download once; renv links them into each project’s library.</p>
 </section>
-<section id="best-practices" class="level2" data-number="7.10">
-<h2 data-number="7.10" class="anchored" data-anchor-id="best-practices"><span class="header-section-number">7.10</span> Best Practices</h2>
-<section id="snapshot-after-installing" class="level3" data-number="7.10.1">
-<h3 data-number="7.10.1" class="anchored" data-anchor-id="snapshot-after-installing"><span class="header-section-number">7.10.1</span> Snapshot After Installing</h3>
-<p>Every time you install or update packages:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Then commit the updated <code>renv.lock</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>git add renv.lock</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>git commit -m "Add ggplot2 package"</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="check-status-before-committing" class="level3" data-number="7.10.2">
-<h3 data-number="7.10.2" class="anchored" data-anchor-id="check-status-before-committing"><span class="header-section-number">7.10.2</span> Check Status Before Committing</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">status</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Ensure your lockfile reflects your actual installed packages before pushing to GitHub.</p>
-</section>
-<section id="document-non-standard-installations" class="level3" data-number="7.10.3">
-<h3 data-number="7.10.3" class="anchored" data-anchor-id="document-non-standard-installations"><span class="header-section-number">7.10.3</span> Document Non-Standard Installations</h3>
-<p>If packages require special installation steps (GitHub, specific versions, etc.), document them in your README:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Setup</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>After cloning, restore the R environment:</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Note: <code>custompackage</code> is installed from GitHub:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">install</span>(<span class="st">"username/custompackage"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre><code>
-### Pin R Version for Critical Projects
-
-For analyses that need to be reproducible long-term (publication-associated code), pin the R version in `.vscode/settings.json` and document it in your README.
-
-## Troubleshooting
-
-### "The project is out-of-sync"
-
-This warning means packages in your library don't match `renv.lock`:
-
-```r
-# See what's different
-renv::status()
-
-# Option 1: Sync library to lockfile (discard local changes)
-renv::restore()
-
-# Option 2: Update lockfile to match library (keep local changes)
-renv::snapshot()</code></pre>
-</section>
-<section id="package-installation-fails" class="level3" data-number="7.10.4">
-<h3 data-number="7.10.4" class="anchored" data-anchor-id="package-installation-fails"><span class="header-section-number">7.10.4</span> Package Installation Fails</h3>
-<p>Try rebuilding from source:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">install</span>(<span class="st">"package-name"</span>, <span class="at">rebuild =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>For Bioconductor packages, ensure BiocManager is installed and your R version is compatible.</p>
-</section>
-<section id="bioconductor-version-mismatch" class="level3" data-number="7.10.5">
-<h3 data-number="7.10.5" class="anchored" data-anchor-id="bioconductor-version-mismatch"><span class="header-section-number">7.10.5</span> Bioconductor Version Mismatch</h3>
-<p>If you see warnings about Bioconductor version mismatches:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check your Bioconductor version</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">version</span>()</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check what version renv expects</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">lockfile_read</span>()<span class="sc">$</span>Bioconductor<span class="sc">$</span>Version</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>If they differ, you may need to update your R version to match, or update the lockfile to use the Bioconductor version for your current R.</p>
-</section>
-<section id="renv-is-slow" class="level3" data-number="7.10.6">
-<h3 data-number="7.10.6" class="anchored" data-anchor-id="renv-is-slow"><span class="header-section-number">7.10.6</span> renv is Slow</h3>
-<p>The first <code>renv::restore()</code> on a new machine downloads all packages, which takes time. Subsequent operations use a global cache, so packages shared across projects only download once.</p>
-</section>
-<section id="starting-fresh" class="level3" data-number="7.10.7">
-<h3 data-number="7.10.7" class="anchored" data-anchor-id="starting-fresh"><span class="header-section-number">7.10.7</span> Starting Fresh</h3>
-<p>If things are really broken:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Deactivate renv</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">deactivate</span>()</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove renv files (in terminal)</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co"># rm -rf renv renv.lock .Rprofile</span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Reinitialize</span></span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="starting-fresh" class="level3" data-number="7.6.4">
+<h3 data-number="7.6.4" class="anchored" data-anchor-id="starting-fresh"><span class="header-section-number">7.6.4</span> Starting Fresh</h3>
+<p>If things are really broken and you want to start over:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">deactivate</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Then remove the renv files in the terminal:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>rm -rf renv renv.lock .Rprofile</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>And reinitialize:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1238,15 +777,32 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This removes your lockfile. If you need to preserve the package versions, copy <code>renv.lock</code> somewhere safe before deleting.</p>
+<p>This removes your lockfile, so you lose the record of which package versions you had. If you need to preserve that information, copy <code>renv.lock</code> somewhere safe before deleting it.</p>
+</div>
+</div>
+<div class="claude-callout callout callout-style-default callout-warning callout-titled" title="Claude Code">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Claude Code
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Claude Code is good at diagnosing package installation errors because it can check your R version, Bioconductor version, and system dependencies all at once.</p>
+<blockquote class="blockquote">
+<p>I’m trying to install DESeq2 with <code>renv::install("bioc::DESeq2")</code> but I’m getting errors about missing dependencies. Here’s the error output: [paste error]. I’m on R 4.4 with renv 1.0. Can you help me figure out what’s wrong?</p>
+</blockquote>
+<p>Claude will check whether the error is a Bioconductor version mismatch, a missing system library, or a network issue, and suggest the specific fix.</p>
 </div>
 </div>
 </section>
 </section>
-<section id="quick-reference" class="level2" data-number="7.11">
-<h2 data-number="7.11" class="anchored" data-anchor-id="quick-reference"><span class="header-section-number">7.11</span> Quick Reference</h2>
-<section id="rig-commands" class="level3" data-number="7.11.1">
-<h3 data-number="7.11.1" class="anchored" data-anchor-id="rig-commands"><span class="header-section-number">7.11.1</span> rig Commands</h3>
+<section id="quick-reference" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="quick-reference"><span class="header-section-number">7.7</span> Quick Reference</h2>
+<section id="rig-commands" class="level3" data-number="7.7.1">
+<h3 data-number="7.7.1" class="anchored" data-anchor-id="rig-commands"><span class="header-section-number">7.7.1</span> rig Commands</h3>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -1278,8 +834,8 @@ Warning
 </tbody>
 </table>
 </section>
-<section id="renv-commands" class="level3" data-number="7.11.2">
-<h3 data-number="7.11.2" class="anchored" data-anchor-id="renv-commands"><span class="header-section-number">7.11.2</span> renv Commands</h3>
+<section id="renv-commands" class="level3" data-number="7.7.2">
+<h3 data-number="7.7.2" class="anchored" data-anchor-id="renv-commands"><span class="header-section-number">7.7.2</span> renv Commands</h3>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -1297,12 +853,12 @@ Warning
 <td><code>install.packages("pkg")</code></td>
 </tr>
 <tr class="odd">
-<td>Install from GitHub</td>
-<td><code>renv::install("user/repo")</code></td>
+<td>Install from Bioconductor</td>
+<td><code>renv::install("bioc::pkg")</code></td>
 </tr>
 <tr class="even">
-<td>Install from Bioconductor</td>
-<td><code>BiocManager::install("pkg")</code></td>
+<td>Install from GitHub</td>
+<td><code>renv::install("user/repo")</code></td>
 </tr>
 <tr class="odd">
 <td>Snapshot</td>

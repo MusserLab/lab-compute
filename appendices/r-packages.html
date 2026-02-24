@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>10&nbsp; Introduction to Claude Code – Data Analysis in the Musser Lab</title>
+<title>Appendix D — R Packages for Biology – Data Analysis in the Musser Lab</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../claude-code/project-files.html" rel="next">
-<link href="../part2/git-github.html" rel="prev">
+<link href="../appendices/templates.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -111,6 +110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -284,7 +284,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../claude-code/intro.html">Claude Code</a></li><li class="breadcrumb-item"><a href="../claude-code/intro.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Introduction to Claude Code</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendices/shortcuts.html">Appendices</a></li><li class="breadcrumb-item"><a href="../appendices/r-packages.html"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">R Packages for Biology</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -342,7 +342,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part1/first-project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Your First Project</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Your First R Project</span></span></a>
   </div>
 </li>
       </ul>
@@ -405,14 +405,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../claude-code/intro.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Introduction to Claude Code</span></span></a>
+  <a href="../claude-code/getting-started.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Getting Started with Claude Code</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../claude-code/project-files.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Project and User Files</span></span></a>
+  <a href="../claude-code/configuring-projects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Configuring Your Project for Claude</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -423,8 +423,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../claude-code/session-walkthrough.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session Walkthrough</span></span></a>
+  <a href="../claude-code/working-effectively.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Working Effectively with Claude</span></span></a>
   </div>
 </li>
       </ul>
@@ -440,26 +440,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../part3/setup-walkthrough.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Setting Up a Lab Project</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../part3/starting-project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Starting a New Analysis Project</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Quick Reference: Project Setup</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part3/collaborating.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Collaborating with Others</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Collaborating with Others</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part3/reproducibility.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Reproducible Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Reproducible Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part3/troubleshooting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Common Tasks &amp; Troubleshooting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Common Tasks &amp; Troubleshooting</span></span></a>
   </div>
 </li>
       </ul>
@@ -491,6 +497,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Templates</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/r-packages.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">R Packages for Biology</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -503,22 +515,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-claude-code-can-do" id="toc-what-claude-code-can-do" class="nav-link active" data-scroll-target="#what-claude-code-can-do"><span class="header-section-number">10.1</span> What Claude Code Can Do</a></li>
-  <li><a href="#when-to-use-claude-code" id="toc-when-to-use-claude-code" class="nav-link" data-scroll-target="#when-to-use-claude-code"><span class="header-section-number">10.2</span> When to Use Claude Code</a></li>
-  <li><a href="#when-not-to-use-claude-code" id="toc-when-not-to-use-claude-code" class="nav-link" data-scroll-target="#when-not-to-use-claude-code"><span class="header-section-number">10.3</span> When Not to Use Claude Code</a></li>
-  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation"><span class="header-section-number">10.4</span> Installation</a></li>
-  <li><a href="#starting-a-session" id="toc-starting-a-session" class="nav-link" data-scroll-target="#starting-a-session"><span class="header-section-number">10.5</span> Starting a Session</a></li>
-  <li><a href="#basic-interactions" id="toc-basic-interactions" class="nav-link" data-scroll-target="#basic-interactions"><span class="header-section-number">10.6</span> Basic Interactions</a>
+  <li><a href="#tidyverse" id="toc-tidyverse" class="nav-link active" data-scroll-target="#tidyverse"><span class="header-section-number">D.1</span> The Tidyverse</a></li>
+  <li><a href="#other-essential-packages" id="toc-other-essential-packages" class="nav-link" data-scroll-target="#other-essential-packages"><span class="header-section-number">D.2</span> Other Essential Packages</a></li>
+  <li><a href="#bioconductor-appendix" id="toc-bioconductor-appendix" class="nav-link" data-scroll-target="#bioconductor-appendix"><span class="header-section-number">D.3</span> Bioconductor</a>
   <ul class="collapse">
-  <li><a href="#asking-questions" id="toc-asking-questions" class="nav-link" data-scroll-target="#asking-questions"><span class="header-section-number">10.6.1</span> Asking Questions</a></li>
-  <li><a href="#writing-code" id="toc-writing-code" class="nav-link" data-scroll-target="#writing-code"><span class="header-section-number">10.6.2</span> Writing Code</a></li>
-  <li><a href="#editing-files" id="toc-editing-files" class="nav-link" data-scroll-target="#editing-files"><span class="header-section-number">10.6.3</span> Editing Files</a></li>
-  <li><a href="#running-commands" id="toc-running-commands" class="nav-link" data-scroll-target="#running-commands"><span class="header-section-number">10.6.4</span> Running Commands</a></li>
+  <li><a href="#what-makes-bioconductor-different" id="toc-what-makes-bioconductor-different" class="nav-link" data-scroll-target="#what-makes-bioconductor-different"><span class="header-section-number">D.3.1</span> What Makes Bioconductor Different</a></li>
+  <li><a href="#installing-bioconductor-packages" id="toc-installing-bioconductor-packages" class="nav-link" data-scroll-target="#installing-bioconductor-packages"><span class="header-section-number">D.3.2</span> Installing Bioconductor Packages</a></li>
+  <li><a href="#bioconductor-version-synchronization" id="toc-bioconductor-version-synchronization" class="nav-link" data-scroll-target="#bioconductor-version-synchronization"><span class="header-section-number">D.3.3</span> Bioconductor Version Synchronization</a></li>
   </ul></li>
-  <li><a href="#reviewing-changes" id="toc-reviewing-changes" class="nav-link" data-scroll-target="#reviewing-changes"><span class="header-section-number">10.7</span> Reviewing Changes</a></li>
-  <li><a href="#ending-a-session" id="toc-ending-a-session" class="nav-link" data-scroll-target="#ending-a-session"><span class="header-section-number">10.8</span> Ending a Session</a></li>
-  <li><a href="#the-mental-model" id="toc-the-mental-model" class="nav-link" data-scroll-target="#the-mental-model"><span class="header-section-number">10.9</span> The Mental Model</a></li>
-  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">10.10</span> Next Steps</a></li>
+  <li><a href="#rna-seq-analysis-packages" id="toc-rna-seq-analysis-packages" class="nav-link" data-scroll-target="#rna-seq-analysis-packages"><span class="header-section-number">D.4</span> RNA-seq Analysis Packages</a></li>
+  <li><a href="#single-cell-analysis-packages" id="toc-single-cell-analysis-packages" class="nav-link" data-scroll-target="#single-cell-analysis-packages"><span class="header-section-number">D.5</span> Single-Cell Analysis Packages</a></li>
   </ul>
 </nav>
     </div>
@@ -526,9 +532,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../claude-code/intro.html">Claude Code</a></li><li class="breadcrumb-item"><a href="../claude-code/intro.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Introduction to Claude Code</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendices/shortcuts.html">Appendices</a></li><li class="breadcrumb-item"><a href="../appendices/r-packages.html"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">R Packages for Biology</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Introduction to Claude Code</span></h1>
+<h1 class="title"><span id="sec-r-packages" class="quarto-section-identifier">Appendix D — R Packages for Biology</span></h1>
 </div>
 
 
@@ -545,118 +551,246 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Claude Code is an AI assistant that runs in your terminal and works directly with your files. Unlike web-based AI tools, it can read your code, edit files, and execute commands—all within the context of your project.</p>
-<section id="what-claude-code-can-do" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="what-claude-code-can-do"><span class="header-section-number">10.1</span> What Claude Code Can Do</h2>
-<ul>
-<li><strong>Write code</strong> — Generate scripts, functions, and analyses</li>
-<li><strong>Edit files</strong> — Modify existing code based on your instructions</li>
-<li><strong>Run commands</strong> — Execute shell commands and see output</li>
-<li><strong>Search codebases</strong> — Find files and patterns across projects</li>
-<li><strong>Explain code</strong> — Help you understand complex or unfamiliar code</li>
-<li><strong>Debug</strong> — Identify and fix errors</li>
-</ul>
+<p>This appendix lists the R packages you’re most likely to use for biological data analysis in the lab. It’s a reference, not a tutorial — you don’t need to install all of these upfront. Install them as you need them for specific projects, using the methods described in the <a href="../part2/renv.html">R: rig &amp; renv chapter</a>.</p>
+<section id="tidyverse" class="level2" data-number="D.1">
+<h2 data-number="D.1" class="anchored" data-anchor-id="tidyverse"><span class="header-section-number">D.1</span> The Tidyverse</h2>
+<p>The tidyverse is a collection of R packages that share a common design philosophy centered on “tidy data” — rectangular data where each variable is a column, each observation is a row, and each value is a cell. This simple principle, combined with a consistent and expressive syntax, has made the tidyverse the standard toolkit for data analysis in R.</p>
+<p>What makes the tidyverse practical is that it provides a unified grammar for the entire data analysis pipeline: importing data, reshaping it, transforming it, visualizing it, and communicating results. The packages are designed to work together, with consistent naming conventions and compatible data structures. Code written in tidyverse style tends to be readable — you can often understand what a pipeline does just by reading it.</p>
+<p>The tidyverse occupies the same role in R that pandas does in Python: both represent the modern, dataframe-centric approach to data manipulation. If you learn one well, the concepts transfer to the other.</p>
+<p>The core packages:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Package</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>dplyr</code></td>
+<td>Data manipulation: filter rows, select columns, create new variables, summarize, join tables</td>
+</tr>
+<tr class="even">
+<td><code>ggplot2</code></td>
+<td>Visualization using the grammar of graphics</td>
+</tr>
+<tr class="odd">
+<td><code>tidyr</code></td>
+<td>Reshape data: pivot between wide and long formats</td>
+</tr>
+<tr class="even">
+<td><code>readr</code></td>
+<td>Fast, consistent data import (read_csv, read_tsv, etc.)</td>
+</tr>
+<tr class="odd">
+<td><code>purrr</code></td>
+<td>Functional programming: apply functions across lists and vectors</td>
+</tr>
+<tr class="even">
+<td><code>stringr</code></td>
+<td>String manipulation with consistent syntax</td>
+</tr>
+</tbody>
+</table>
+<p>Loading the tidyverse meta-package loads all of these at once:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Learning the Tidyverse
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you’re new to R or transitioning from base R, work through <a href="https://r4ds.hadley.nz/">R for Data Science</a> by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund. It’s the definitive resource for learning modern R workflows.</p>
+</div>
+</div>
 </section>
-<section id="when-to-use-claude-code" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="when-to-use-claude-code"><span class="header-section-number">10.2</span> When to Use Claude Code</h2>
-<p>Claude Code is particularly useful when you:</p>
-<ul>
-<li>Are starting a new analysis and want to scaffold the structure</li>
-<li>Need to write boilerplate code (data loading, standard plots)</li>
-<li>Are debugging an error you don’t understand</li>
-<li>Want to refactor or clean up existing code</li>
-<li>Need to understand unfamiliar code in a project</li>
-</ul>
+<section id="other-essential-packages" class="level2" data-number="D.2">
+<h2 data-number="D.2" class="anchored" data-anchor-id="other-essential-packages"><span class="header-section-number">D.2</span> Other Essential Packages</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Package</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>here</code></td>
+<td>Build file paths relative to the project root — essential for reproducible scripts</td>
+</tr>
+<tr class="even">
+<td><code>knitr</code></td>
+<td>Required for rendering Quarto documents with R code</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="when-not-to-use-claude-code" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="when-not-to-use-claude-code"><span class="header-section-number">10.3</span> When Not to Use Claude Code</h2>
-<p>Claude Code is a tool, not a replacement for understanding your analysis:</p>
-<ul>
-<li><strong>Don’t</strong> blindly accept generated code without reviewing it</li>
-<li><strong>Don’t</strong> use it for tasks you need to deeply understand (learn the method first)</li>
-<li><strong>Don’t</strong> rely on it for domain-specific scientific decisions</li>
-<li><strong>Don’t</strong> assume it knows your data or experimental design</li>
-</ul>
+<section id="bioconductor-appendix" class="level2" data-number="D.3">
+<h2 data-number="D.3" class="anchored" data-anchor-id="bioconductor-appendix"><span class="header-section-number">D.3</span> Bioconductor</h2>
+<p>Bioconductor is a specialized repository of R packages for bioinformatics and computational biology. It’s separate from CRAN and has its own installation system, release schedule, and quality standards. If you’re doing genomics, transcriptomics, or single-cell analysis in R, you’ll use Bioconductor packages extensively.</p>
+<section id="what-makes-bioconductor-different" class="level3" data-number="D.3.1">
+<h3 data-number="D.3.1" class="anchored" data-anchor-id="what-makes-bioconductor-different"><span class="header-section-number">D.3.1</span> What Makes Bioconductor Different</h3>
+<p><strong>Curated and reviewed.</strong> Packages undergo technical review before acceptance and must meet documentation and testing standards.</p>
+<p><strong>Coordinated releases.</strong> All Bioconductor packages are released together twice per year, tested against each other for compatibility.</p>
+<p><strong>Specialized data structures.</strong> Bioconductor defines standard classes for genomic data (<code>SummarizedExperiment</code>, <code>SingleCellExperiment</code>, etc.) that packages use consistently.</p>
+<p><strong>Tied to R versions.</strong> Each Bioconductor release requires a specific R version. This is important for reproducibility — see the <a href="../part2/renv.html#bioconductor">rig &amp; renv chapter</a> for details.</p>
 </section>
-<section id="installation" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="installation"><span class="header-section-number">10.4</span> Installation</h2>
-<p>See <a href="../part1/installation.html#claude-code">Installation</a> for setup instructions.</p>
+<section id="installing-bioconductor-packages" class="level3" data-number="D.3.2">
+<h3 data-number="D.3.2" class="anchored" data-anchor-id="installing-bioconductor-packages"><span class="header-section-number">D.3.2</span> Installing Bioconductor Packages</h3>
+<p>Bioconductor packages are installed via <code>BiocManager</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First, install BiocManager (only once per R installation)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"BiocManager"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Then install Bioconductor packages</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">"DESeq2"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="fu">c</span>(<span class="st">"limma"</span>, <span class="st">"edgeR"</span>, <span class="st">"tximport"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>In an renv project, you can also use the <code>bioc::</code> prefix:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">install</span>(<span class="st">"bioc::DESeq2"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Always run <code>renv::snapshot()</code> after installing Bioconductor packages.</p>
 </section>
-<section id="starting-a-session" class="level2" data-number="10.5">
-<h2 data-number="10.5" class="anchored" data-anchor-id="starting-a-session"><span class="header-section-number">10.5</span> Starting a Session</h2>
-<p>Navigate to your project directory and start Claude Code:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/projects/my-analysis</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">claude</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This opens an interactive session. Claude Code automatically reads any project configuration files (covered in the next chapter) to understand your project context.</p>
+<section id="bioconductor-version-synchronization" class="level3" data-number="D.3.3">
+<h3 data-number="D.3.3" class="anchored" data-anchor-id="bioconductor-version-synchronization"><span class="header-section-number">D.3.3</span> Bioconductor Version Synchronization</h3>
+<p>Bioconductor versions are tied to R versions:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Bioconductor</th>
+<th>R Version</th>
+<th>Release Date</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3.18</td>
+<td>R 4.3.x</td>
+<td>Oct 2023</td>
+</tr>
+<tr class="even">
+<td>3.19</td>
+<td>R 4.4.x</td>
+<td>May 2024</td>
+</tr>
+<tr class="odd">
+<td>3.20</td>
+<td>R 4.4.x</td>
+<td>Oct 2024</td>
+</tr>
+<tr class="even">
+<td>3.21</td>
+<td>R 4.5.x</td>
+<td>May 2025</td>
+</tr>
+</tbody>
+</table>
+<p>Check your current Bioconductor version:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">version</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="basic-interactions" class="level2" data-number="10.6">
-<h2 data-number="10.6" class="anchored" data-anchor-id="basic-interactions"><span class="header-section-number">10.6</span> Basic Interactions</h2>
-<section id="asking-questions" class="level3" data-number="10.6.1">
-<h3 data-number="10.6.1" class="anchored" data-anchor-id="asking-questions"><span class="header-section-number">10.6.1</span> Asking Questions</h3>
-<pre><code>&gt; What does the normalize_counts function do?</code></pre>
-<p>Claude Code will read the relevant file and explain the code.</p>
 </section>
-<section id="writing-code" class="level3" data-number="10.6.2">
-<h3 data-number="10.6.2" class="anchored" data-anchor-id="writing-code"><span class="header-section-number">10.6.2</span> Writing Code</h3>
-<pre><code>&gt; Create an R script that loads data/counts.csv and calculates summary statistics by group</code></pre>
-<p>Claude Code will write the code and show you the result before saving.</p>
+<section id="rna-seq-analysis-packages" class="level2" data-number="D.4">
+<h2 data-number="D.4" class="anchored" data-anchor-id="rna-seq-analysis-packages"><span class="header-section-number">D.4</span> RNA-seq Analysis Packages</h2>
+<p>These packages form the core toolkit for bulk RNA-seq differential expression analysis:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Package</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>DESeq2</code></td>
+<td>Differential expression using negative binomial generalized linear models. The most widely used method.</td>
+</tr>
+<tr class="even">
+<td><code>limma</code></td>
+<td>Linear models for differential expression. Includes <code>voom</code> for RNA-seq count data. Fast and flexible.</td>
+</tr>
+<tr class="odd">
+<td><code>edgeR</code></td>
+<td>Differential expression using empirical Bayes estimation. Similar approach to DESeq2.</td>
+</tr>
+<tr class="even">
+<td><code>tximport</code></td>
+<td>Import transcript-level quantifications from Salmon, kallisto, or RSEM into gene-level counts.</td>
+</tr>
+<tr class="odd">
+<td><code>tximeta</code></td>
+<td>Like tximport but automatically attaches metadata about the reference transcriptome.</td>
+</tr>
+<tr class="even">
+<td><code>goseq</code></td>
+<td>Gene Ontology enrichment analysis that accounts for gene length bias in RNA-seq data.</td>
+</tr>
+</tbody>
+</table>
+<p>A typical RNA-seq analysis workflow uses <code>tximport</code> or <code>tximeta</code> to import quantifications, then <code>DESeq2</code> (or <code>limma</code>/<code>edgeR</code>) for differential expression, then <code>goseq</code> for pathway analysis.</p>
 </section>
-<section id="editing-files" class="level3" data-number="10.6.3">
-<h3 data-number="10.6.3" class="anchored" data-anchor-id="editing-files"><span class="header-section-number">10.6.3</span> Editing Files</h3>
-<pre><code>&gt; In analysis.qmd, add a step that filters out samples with fewer than 1000 counts</code></pre>
-<p>Claude Code shows you the proposed changes and asks for confirmation.</p>
-</section>
-<section id="running-commands" class="level3" data-number="10.6.4">
-<h3 data-number="10.6.4" class="anchored" data-anchor-id="running-commands"><span class="header-section-number">10.6.4</span> Running Commands</h3>
-<pre><code>&gt; Run quarto render on analysis.qmd and show me any errors</code></pre>
-<p>Claude Code executes the command and reports the output.</p>
-</section>
-</section>
-<section id="reviewing-changes" class="level2" data-number="10.7">
-<h2 data-number="10.7" class="anchored" data-anchor-id="reviewing-changes"><span class="header-section-number">10.7</span> Reviewing Changes</h2>
-<p>Claude Code always shows you what it plans to do before doing it:</p>
-<ul>
-<li><strong>File edits</strong> — Shows a diff of proposed changes</li>
-<li><strong>New files</strong> — Shows the content it will write</li>
-<li><strong>Commands</strong> — Shows the command before running (for potentially destructive operations)</li>
-</ul>
-<p>Review carefully before accepting. You can:</p>
-<ul>
-<li>Accept the change</li>
-<li>Ask for modifications</li>
-<li>Reject and try a different approach</li>
-</ul>
-</section>
-<section id="ending-a-session" class="level2" data-number="10.8">
-<h2 data-number="10.8" class="anchored" data-anchor-id="ending-a-session"><span class="header-section-number">10.8</span> Ending a Session</h2>
-<p>Type <code>/exit</code> or press <code>Ctrl+C</code> to end the session.</p>
-</section>
-<section id="the-mental-model" class="level2" data-number="10.9">
-<h2 data-number="10.9" class="anchored" data-anchor-id="the-mental-model"><span class="header-section-number">10.9</span> The Mental Model</h2>
-<p>Think of Claude Code as a capable assistant who:</p>
-<ul>
-<li>Can see and modify your project files</li>
-<li>Knows general programming patterns and best practices</li>
-<li>Reads your project configuration to understand context</li>
-<li><strong>Does not</strong> inherently know your scientific domain or data</li>
-<li><strong>Does not</strong> remember previous sessions (each session starts fresh)</li>
-</ul>
-<p>Your job is to:</p>
-<ul>
-<li>Provide clear instructions</li>
-<li>Supply necessary context about your data and goals</li>
-<li>Review and verify all outputs</li>
-<li>Make scientific and analytical decisions</li>
-</ul>
-</section>
-<section id="next-steps" class="level2" data-number="10.10">
-<h2 data-number="10.10" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">10.10</span> Next Steps</h2>
-<p>The following chapters cover:</p>
-<ul>
-<li><strong>Project and User Files</strong> — How to configure Claude Code for your projects</li>
-<li><strong>Skills</strong> — Reusable instructions for common tasks</li>
-<li><strong>Session Walkthrough</strong> — A complete example of using Claude Code in practice</li>
-</ul>
+<section id="single-cell-analysis-packages" class="level2" data-number="D.5">
+<h2 data-number="D.5" class="anchored" data-anchor-id="single-cell-analysis-packages"><span class="header-section-number">D.5</span> Single-Cell Analysis Packages</h2>
+<p>Single-cell RNA-seq requires specialized methods. These are the main packages:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Package</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Seurat</code></td>
+<td>Comprehensive toolkit for single-cell analysis: QC, normalization, clustering, visualization, integration across datasets. The most popular choice.</td>
+</tr>
+<tr class="even">
+<td><code>SingleCellExperiment</code></td>
+<td>Bioconductor’s standard data structure for single-cell data. Many packages use this format.</td>
+</tr>
+<tr class="odd">
+<td><code>scran</code></td>
+<td>Normalization (pooling-based), feature selection, and clustering methods from the Bioconductor ecosystem.</td>
+</tr>
+<tr class="even">
+<td><code>scater</code></td>
+<td>Quality control, visualization, and preprocessing. Works with SingleCellExperiment objects.</td>
+</tr>
+<tr class="odd">
+<td><code>Monocle3</code></td>
+<td>Trajectory analysis and pseudotime inference — modeling how cells transition between states.</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Seurat vs.&nbsp;Bioconductor Ecosystem
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Seurat is the most popular single-cell package but isn’t part of Bioconductor — it’s on CRAN (and GitHub). The Bioconductor single-cell packages (<code>SingleCellExperiment</code>, <code>scran</code>, <code>scater</code>) form an alternative ecosystem. Many workflows use both: Seurat for analysis and visualization, with conversion to <code>SingleCellExperiment</code> when needed for specific Bioconductor tools.</p>
+</div>
+</div>
 
 
 </section>
@@ -1077,14 +1211,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../part2/git-github.html" class="pagination-link" aria-label="Git &amp; GitHub">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Git &amp; GitHub</span></span>
+      <a href="../appendices/templates.html" class="pagination-link" aria-label="Templates">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Templates</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../claude-code/project-files.html" class="pagination-link" aria-label="Project and User Files">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Project and User Files</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

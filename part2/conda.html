@@ -498,6 +498,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Templates</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/r-packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">R Packages for Biology</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -510,54 +516,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#why-use-environments" id="toc-why-use-environments" class="nav-link active" data-scroll-target="#why-use-environments"><span class="header-section-number">8.1</span> Why Use Environments?</a></li>
-  <li><a href="#basic-commands" id="toc-basic-commands" class="nav-link" data-scroll-target="#basic-commands"><span class="header-section-number">8.2</span> Basic Commands</a>
+  <li><a href="#why-environments-matter" id="toc-why-environments-matter" class="nav-link active" data-scroll-target="#why-environments-matter"><span class="header-section-number">8.1</span> Why Environments Matter</a></li>
+  <li><a href="#installing-miniforge" id="toc-installing-miniforge" class="nav-link" data-scroll-target="#installing-miniforge"><span class="header-section-number">8.2</span> Installing Miniforge</a></li>
+  <li><a href="#one-time-setup" id="toc-one-time-setup" class="nav-link" data-scroll-target="#one-time-setup"><span class="header-section-number">8.3</span> One-Time Setup</a>
   <ul class="collapse">
-  <li><a href="#create-an-environment" id="toc-create-an-environment" class="nav-link" data-scroll-target="#create-an-environment"><span class="header-section-number">8.2.1</span> Create an Environment</a></li>
-  <li><a href="#core-data-science-packages" id="toc-core-data-science-packages" class="nav-link" data-scroll-target="#core-data-science-packages"><span class="header-section-number">8.2.2</span> Core Data Science Packages</a></li>
-  <li><a href="#activatedeactivate" id="toc-activatedeactivate" class="nav-link" data-scroll-target="#activatedeactivate"><span class="header-section-number">8.2.3</span> Activate/Deactivate</a></li>
-  <li><a href="#install-packages" id="toc-install-packages" class="nav-link" data-scroll-target="#install-packages"><span class="header-section-number">8.2.4</span> Install Packages</a></li>
-  <li><a href="#list-environments" id="toc-list-environments" class="nav-link" data-scroll-target="#list-environments"><span class="header-section-number">8.2.5</span> List Environments</a></li>
-  <li><a href="#remove-environment" id="toc-remove-environment" class="nav-link" data-scroll-target="#remove-environment"><span class="header-section-number">8.2.6</span> Remove Environment</a></li>
+  <li><a href="#set-conda-forge-as-the-default-channel" id="toc-set-conda-forge-as-the-default-channel" class="nav-link" data-scroll-target="#set-conda-forge-as-the-default-channel"><span class="header-section-number">8.3.1</span> Set conda-forge as the Default Channel</a></li>
+  <li><a href="#speed-up-the-solver" id="toc-speed-up-the-solver" class="nav-link" data-scroll-target="#speed-up-the-solver"><span class="header-section-number">8.3.2</span> Speed Up the Solver</a></li>
   </ul></li>
-  <li><a href="#environment-files" id="toc-environment-files" class="nav-link" data-scroll-target="#environment-files"><span class="header-section-number">8.3</span> Environment Files</a>
+  <li><a href="#creating-your-first-environment" id="toc-creating-your-first-environment" class="nav-link" data-scroll-target="#creating-your-first-environment"><span class="header-section-number">8.4</span> Creating Your First Environment</a></li>
+  <li><a href="#using-your-environment" id="toc-using-your-environment" class="nav-link" data-scroll-target="#using-your-environment"><span class="header-section-number">8.5</span> Using Your Environment</a>
   <ul class="collapse">
-  <li><a href="#export-your-environment" id="toc-export-your-environment" class="nav-link" data-scroll-target="#export-your-environment"><span class="header-section-number">8.3.1</span> Export Your Environment</a></li>
-  <li><a href="#full-export-when-needed" id="toc-full-export-when-needed" class="nav-link" data-scroll-target="#full-export-when-needed"><span class="header-section-number">8.3.2</span> Full Export (When Needed)</a></li>
-  <li><a href="#recreate-from-file" id="toc-recreate-from-file" class="nav-link" data-scroll-target="#recreate-from-file"><span class="header-section-number">8.3.3</span> Recreate from File</a></li>
+  <li><a href="#activating-and-deactivating" id="toc-activating-and-deactivating" class="nav-link" data-scroll-target="#activating-and-deactivating"><span class="header-section-number">8.5.1</span> Activating and Deactivating</a></li>
+  <li><a href="#installing-more-packages" id="toc-installing-more-packages" class="nav-link" data-scroll-target="#installing-more-packages"><span class="header-section-number">8.5.2</span> Installing More Packages</a></li>
+  <li><a href="#connecting-to-positron" id="toc-connecting-to-positron" class="nav-link" data-scroll-target="#connecting-to-positron"><span class="header-section-number">8.5.3</span> Connecting to Positron</a></li>
   </ul></li>
-  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices"><span class="header-section-number">8.4</span> Best Practices</a>
+  <li><a href="#sharing-environments" id="toc-sharing-environments" class="nav-link" data-scroll-target="#sharing-environments"><span class="header-section-number">8.6</span> Sharing Environments</a>
   <ul class="collapse">
-  <li><a href="#one-environment-per-project" id="toc-one-environment-per-project" class="nav-link" data-scroll-target="#one-environment-per-project"><span class="header-section-number">8.4.1</span> One Environment Per Project</a></li>
-  <li><a href="#name-environments-meaningfully" id="toc-name-environments-meaningfully" class="nav-link" data-scroll-target="#name-environments-meaningfully"><span class="header-section-number">8.4.2</span> Name Environments Meaningfully</a></li>
-  <li><a href="#pin-major-versions" id="toc-pin-major-versions" class="nav-link" data-scroll-target="#pin-major-versions"><span class="header-section-number">8.4.3</span> Pin Major Versions</a></li>
-  <li><a href="#update-regularly-but-carefully" id="toc-update-regularly-but-carefully" class="nav-link" data-scroll-target="#update-regularly-but-carefully"><span class="header-section-number">8.4.4</span> Update Regularly (But Carefully)</a></li>
+  <li><a href="#environment.yml" id="toc-environment.yml" class="nav-link" data-scroll-target="#environment.yml"><span class="header-section-number">8.6.1</span> environment.yml</a></li>
+  <li><a href="#recreating-an-environment-from-a-file" id="toc-recreating-an-environment-from-a-file" class="nav-link" data-scroll-target="#recreating-an-environment-from-a-file"><span class="header-section-number">8.6.2</span> Recreating an Environment from a File</a></li>
+  <li><a href="#full-export-when-needed" id="toc-full-export-when-needed" class="nav-link" data-scroll-target="#full-export-when-needed"><span class="header-section-number">8.6.3</span> Full Export (When Needed)</a></li>
   </ul></li>
-  <li><a href="#conda-vs-pip" id="toc-conda-vs-pip" class="nav-link" data-scroll-target="#conda-vs-pip"><span class="header-section-number">8.5</span> Conda vs pip</a></li>
-  <li><a href="#channels" id="toc-channels" class="nav-link" data-scroll-target="#channels"><span class="header-section-number">8.6</span> Channels</a>
+  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices"><span class="header-section-number">8.7</span> Best Practices</a>
   <ul class="collapse">
-  <li><a href="#main-channels" id="toc-main-channels" class="nav-link" data-scroll-target="#main-channels"><span class="header-section-number">8.6.1</span> Main Channels</a></li>
-  <li><a href="#channel-priority" id="toc-channel-priority" class="nav-link" data-scroll-target="#channel-priority"><span class="header-section-number">8.6.2</span> Channel Priority</a></li>
-  <li><a href="#using-bioconda" id="toc-using-bioconda" class="nav-link" data-scroll-target="#using-bioconda"><span class="header-section-number">8.6.3</span> Using Bioconda</a></li>
-  <li><a href="#specifying-channels-in-environment.yml" id="toc-specifying-channels-in-environment.yml" class="nav-link" data-scroll-target="#specifying-channels-in-environment.yml"><span class="header-section-number">8.6.4</span> Specifying Channels in environment.yml</a></li>
+  <li><a href="#one-environment-per-project" id="toc-one-environment-per-project" class="nav-link" data-scroll-target="#one-environment-per-project"><span class="header-section-number">8.7.1</span> One Environment Per Project</a></li>
+  <li><a href="#never-install-into-base" id="toc-never-install-into-base" class="nav-link" data-scroll-target="#never-install-into-base"><span class="header-section-number">8.7.2</span> Never Install into Base</a></li>
+  <li><a href="#pin-your-python-version" id="toc-pin-your-python-version" class="nav-link" data-scroll-target="#pin-your-python-version"><span class="header-section-number">8.7.3</span> Pin Your Python Version</a></li>
   </ul></li>
-  <li><a href="#configuring-conda" id="toc-configuring-conda" class="nav-link" data-scroll-target="#configuring-conda"><span class="header-section-number">8.7</span> Configuring Conda</a>
+  <li><a href="#conda-vs-pip" id="toc-conda-vs-pip" class="nav-link" data-scroll-target="#conda-vs-pip"><span class="header-section-number">8.8</span> Conda vs pip</a></li>
+  <li><a href="#channels" id="toc-channels" class="nav-link" data-scroll-target="#channels"><span class="header-section-number">8.9</span> Channels and Bioconda</a></li>
+  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting"><span class="header-section-number">8.10</span> Troubleshooting</a>
   <ul class="collapse">
-  <li><a href="#use-the-libmamba-solver" id="toc-use-the-libmamba-solver" class="nav-link" data-scroll-target="#use-the-libmamba-solver"><span class="header-section-number">8.7.1</span> Use the Libmamba Solver</a></li>
-  <li><a href="#recommended-.condarc-configuration" id="toc-recommended-.condarc-configuration" class="nav-link" data-scroll-target="#recommended-.condarc-configuration"><span class="header-section-number">8.7.2</span> Recommended .condarc Configuration</a></li>
+  <li><a href="#macos-conda-command-not-found" id="toc-macos-conda-command-not-found" class="nav-link" data-scroll-target="#macos-conda-command-not-found"><span class="header-section-number">8.10.1</span> macOS: “conda: command not found”</a></li>
+  <li><a href="#windows-conda-is-not-recognized" id="toc-windows-conda-is-not-recognized" class="nav-link" data-scroll-target="#windows-conda-is-not-recognized"><span class="header-section-number">8.10.2</span> Windows: “conda is not recognized”</a></li>
+  <li><a href="#windows-conda-activate-does-nothing" id="toc-windows-conda-activate-does-nothing" class="nav-link" data-scroll-target="#windows-conda-activate-does-nothing"><span class="header-section-number">8.10.3</span> Windows: “conda activate” Does Nothing</a></li>
+  <li><a href="#solving-environment-takes-forever" id="toc-solving-environment-takes-forever" class="nav-link" data-scroll-target="#solving-environment-takes-forever"><span class="header-section-number">8.10.4</span> “Solving environment” Takes Forever</a></li>
+  <li><a href="#dependency-conflicts" id="toc-dependency-conflicts" class="nav-link" data-scroll-target="#dependency-conflicts"><span class="header-section-number">8.10.5</span> Dependency Conflicts</a></li>
+  <li><a href="#package-not-found" id="toc-package-not-found" class="nav-link" data-scroll-target="#package-not-found"><span class="header-section-number">8.10.6</span> Package Not Found</a></li>
+  <li><a href="#environment-seems-corrupted" id="toc-environment-seems-corrupted" class="nav-link" data-scroll-target="#environment-seems-corrupted"><span class="header-section-number">8.10.7</span> Environment Seems Corrupted</a></li>
   </ul></li>
-  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting"><span class="header-section-number">8.8</span> Troubleshooting</a>
-  <ul class="collapse">
-  <li><a href="#solving-environment-takes-forever" id="toc-solving-environment-takes-forever" class="nav-link" data-scroll-target="#solving-environment-takes-forever"><span class="header-section-number">8.8.1</span> “Solving environment” takes forever</a></li>
-  <li><a href="#dependency-conflicts" id="toc-dependency-conflicts" class="nav-link" data-scroll-target="#dependency-conflicts"><span class="header-section-number">8.8.2</span> Dependency Conflicts</a></li>
-  <li><a href="#package-not-found" id="toc-package-not-found" class="nav-link" data-scroll-target="#package-not-found"><span class="header-section-number">8.8.3</span> Package not found</a></li>
-  <li><a href="#macoslinux-conda-command-not-found" id="toc-macoslinux-conda-command-not-found" class="nav-link" data-scroll-target="#macoslinux-conda-command-not-found"><span class="header-section-number">8.8.4</span> macOS/Linux: “conda: command not found”</a></li>
-  <li><a href="#environment-corrupted" id="toc-environment-corrupted" class="nav-link" data-scroll-target="#environment-corrupted"><span class="header-section-number">8.8.5</span> Environment corrupted</a></li>
-  <li><a href="#windows-conda-activate-does-nothing-or-errors" id="toc-windows-conda-activate-does-nothing-or-errors" class="nav-link" data-scroll-target="#windows-conda-activate-does-nothing-or-errors"><span class="header-section-number">8.8.6</span> Windows: “conda activate” does nothing or errors</a></li>
-  <li><a href="#windows-conda-is-not-recognized" id="toc-windows-conda-is-not-recognized" class="nav-link" data-scroll-target="#windows-conda-is-not-recognized"><span class="header-section-number">8.8.7</span> Windows: “conda is not recognized”</a></li>
-  </ul></li>
-  <li><a href="#integration-with-positron" id="toc-integration-with-positron" class="nav-link" data-scroll-target="#integration-with-positron"><span class="header-section-number">8.9</span> Integration with Positron</a></li>
-  <li><a href="#quick-reference" id="toc-quick-reference" class="nav-link" data-scroll-target="#quick-reference"><span class="header-section-number">8.10</span> Quick Reference</a></li>
+  <li><a href="#quick-reference" id="toc-quick-reference" class="nav-link" data-scroll-target="#quick-reference"><span class="header-section-number">8.11</span> Quick Reference</a></li>
   </ul>
 </nav>
     </div>
@@ -584,197 +581,295 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In <a href="../part1/first-project.html">Your First R Project</a>, you used renv to manage R packages for your project. Conda serves the same purpose for Python: isolated, reproducible environments with pinned package versions. The concepts are the same—the tooling is different.</p>
-<p>Conda is an environment and package manager that creates isolated spaces for your Python projects. Each environment has its own Python version and packages, preventing conflicts between projects.</p>
-<section id="why-use-environments" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="why-use-environments"><span class="header-section-number">8.1</span> Why Use Environments?</h2>
-<p>Without environments:</p>
-<ul>
-<li>Project A needs <code>pandas 1.5</code></li>
-<li>Project B needs <code>pandas 2.0</code></li>
-<li>Both can’t coexist in a single Python installation</li>
-</ul>
-<p>With environments:</p>
-<pre><code>project-a-env/
-  └── pandas 1.5
-
-project-b-env/
-  └── pandas 2.0</code></pre>
-<p>Each project has its own libraries specific to its needs. Updates to libraries or the addition of new libraries in one project are isolated from other projects.</p>
+<p>In <a href="../part1/first-project.html">Your First R Project</a>, renv gave your project its own private library of R packages — isolated from everything else on your computer. If you installed Seurat for one project and ggplot2 for another, neither could interfere with the other. That isolation is what made your analysis reproducible.</p>
+<p>Conda does the same thing for Python. It creates <strong>environments</strong> — self-contained spaces, each with their own Python version and their own set of packages. When you start a new Python project, you create a new conda environment for it, install the packages you need, and work inside that environment. Nothing you do in one environment affects another.</p>
+<p>If you’ve never used Python before, that’s fine. This chapter assumes no prior Python experience — just the concepts you picked up from working with renv in Chapter 3. The commands are different, but the idea is the same: each project gets its own tools, and you record what you installed so others can reproduce your setup.</p>
+<section id="why-environments-matter" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="why-environments-matter"><span class="header-section-number">8.1</span> Why Environments Matter</h2>
+<p>Imagine you’re six months into a project analyzing microscopy images. You’ve been using a Python package called <code>scikit-image</code> version 0.21, and everything works. Then a labmate asks for help with their project, which needs <code>scikit-image</code> version 0.23 — a newer version with a different API. If Python packages all live in one place (the way they do with a bare <code>pip install</code>), updating for their project would break yours.</p>
+<p>This is exactly the problem renv solved for R, and it’s the problem conda solves for Python. Each project gets its own environment with its own packages, so updating one project can’t break another. You can even use different Python versions — one project on Python 3.11, another on 3.12 — without conflict.</p>
+<p>In the lab, every project gets its own conda environment. This isn’t optional — it’s how we keep analyses reproducible and avoid the kind of subtle, hard-to-diagnose bugs that come from shared package installations.</p>
 </section>
-<section id="basic-commands" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="basic-commands"><span class="header-section-number">8.2</span> Basic Commands</h2>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Windows Users: Initialize Your Shell First
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>After installing Miniforge/conda on Windows, you must initialize your shell before <code>conda activate</code> will work. Open your terminal and run:</p>
-<p><strong>PowerShell:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>conda init powershell</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Command Prompt:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>conda init cmd.exe</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Then <strong>close and reopen your terminal</strong>. You only need to do this once.</p>
-</div>
-</div>
-<section id="create-an-environment" class="level3" data-number="8.2.1">
-<h3 data-number="8.2.1" class="anchored" data-anchor-id="create-an-environment"><span class="header-section-number">8.2.1</span> Create an Environment</h3>
-<p>You only need to create the environment once. New environments can be initiated with just a python installation, or include additional packages from the start. The option <code>-n project_name</code> specifies the name of the environment, and is followed by an initial list of packages to install:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a># Create with just Python</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>conda create -n my-project python=3.11</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a># Create with core data science packages (recommended)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>conda create -n my-project python=3.11 numpy pandas matplotlib ipykernel</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="core-data-science-packages" class="level3" data-number="8.2.2">
-<h3 data-number="8.2.2" class="anchored" data-anchor-id="core-data-science-packages"><span class="header-section-number">8.2.2</span> Core Data Science Packages</h3>
-<p>When setting up a new project environment, common data science packages you might include are:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Package</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>numpy</code></td>
-<td>Numerical computing with arrays and matrices</td>
-</tr>
-<tr class="even">
-<td><code>pandas</code></td>
-<td>Data manipulation and analysis (dataframes)</td>
-</tr>
-<tr class="odd">
-<td><code>matplotlib</code></td>
-<td>Plotting and visualization</td>
-</tr>
-<tr class="even">
-<td><code>ipykernel</code></td>
-<td><strong>Required</strong> for Quarto to execute Python <code>.qmd</code> files</td>
-</tr>
-<tr class="odd">
-<td><code>seaborn</code></td>
-<td>Statistical data visualization (built on matplotlib)</td>
-</tr>
-<tr class="even">
-<td><code>session-info</code></td>
-<td>Python session info for reproducibility (install via pip)</td>
-</tr>
-</tbody>
-</table>
-<p>A typical environment creation command:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>conda create -n my-project python=3.11 numpy pandas matplotlib seaborn ipykernel -y</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>pip install session-info</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Always Include ipykernel
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Every data science environment must include <code>ipykernel</code>. Without it, Quarto cannot execute Python <code>.qmd</code> files — you’ll get a kernel error when rendering. Make it a habit to include it in every <code>conda create</code> command.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>What about Jupyter?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>You don’t need <code>jupyter</code> or <code>jupyterlab</code> for our workflow—Quarto handles document rendering directly. Only install them if you receive <code>.ipynb</code> notebook files from collaborators and want to open them in the traditional notebook interface.</p>
-</div>
-</div>
-</section>
-<section id="activatedeactivate" class="level3" data-number="8.2.3">
-<h3 data-number="8.2.3" class="anchored" data-anchor-id="activatedeactivate"><span class="header-section-number">8.2.3</span> Activate/Deactivate</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a># Activate (start using the environment)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>conda activate my-project</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a># Deactivate (return to base)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>conda deactivate</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>When activated, your prompt shows the environment name:</p>
+<section id="installing-miniforge" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="installing-miniforge"><span class="header-section-number">8.2</span> Installing Miniforge</h2>
+<p>Conda itself is just a program — you need to install it before you can use it. We use <strong>Miniforge</strong>, a lightweight distribution that comes pre-configured with the <code>conda-forge</code> package channel (the community-maintained repository where most scientific Python packages live). Miniforge gives you conda without the bloat of the full Anaconda distribution.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="" aria-current="page">macOS / Linux</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Windows</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="" aria-current="page">macOS</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Windows</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(my-project) $</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The easiest way to install Miniforge on macOS is with <strong>Homebrew</strong>, the macOS package manager. If you already have Homebrew installed (you can check by running <code>brew --version</code> in Terminal), run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>brew install miniforge</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If you don’t have Homebrew, you can download the Miniforge installer directly from the <a href="https://github.com/conda-forge/miniforge#miniforge3">Miniforge GitHub releases page</a>. Download the macOS installer for your chip (Apple Silicon or Intel), then run it:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>bash Miniforge3-MacOSX-arm64.sh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Follow the prompts, accepting the defaults. When the installer asks whether to initialize conda, say <strong>yes</strong>.</p>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<pre><code>(my-project) C:\Users\yourname&gt;</code></pre>
+<p>Download the Miniforge installer from the <a href="https://github.com/conda-forge/miniforge#miniforge3">Miniforge GitHub releases page</a>. Choose the Windows installer (<code>.exe</code> file), run it, and follow the prompts. Accept the default installation location (<code>C:\Users\YourName\miniforge3</code>).</p>
 </div>
 </div>
 </div>
+<p>After installation, <strong>close and reopen your terminal</strong> (Terminal on macOS, PowerShell on Windows) so the new <code>conda</code> command becomes available. You can verify the installation worked by running:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>conda --version</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If you see a version number (like <code>conda 24.7.1</code>), you’re set. If you get “command not found,” see the <a href="#troubleshooting">Troubleshooting</a> section at the end of this chapter.</p>
 </section>
-<section id="install-packages" class="level3" data-number="8.2.4">
-<h3 data-number="8.2.4" class="anchored" data-anchor-id="install-packages"><span class="header-section-number">8.2.4</span> Install Packages</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a># Install a package</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>conda install pandas</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a># Install specific version</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>conda install pandas=2.0</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a># Install multiple packages</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>conda install pandas numpy matplotlib seaborn</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="one-time-setup" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="one-time-setup"><span class="header-section-number">8.3</span> One-Time Setup</h2>
+<p>Before creating your first environment, there are a few configuration steps that make conda faster and more reliable. You only need to do these once — they apply globally to all environments you create.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Windows Users: Initialize Your Shell
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>On Windows, conda needs to hook into PowerShell before <code>conda activate</code> will work. Open PowerShell and run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>conda init powershell</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Then <strong>close and reopen PowerShell</strong>. You only need to do this once. (If you use Command Prompt instead, run <code>conda init cmd.exe</code>.)</p>
+</div>
+</div>
+<section id="set-conda-forge-as-the-default-channel" class="level3" data-number="8.3.1">
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="set-conda-forge-as-the-default-channel"><span class="header-section-number">8.3.1</span> Set conda-forge as the Default Channel</h3>
+<p>Conda downloads packages from <strong>channels</strong> — think of them as package repositories, like CRAN for R. The most important channel is <strong>conda-forge</strong>, a community-maintained collection of well-tested scientific packages. We want conda to always look here first:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>conda config --set channel_priority strict</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>conda config --add channels conda-forge</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The first command tells conda to respect channel priority strictly (no mixing versions from different sources). The second makes conda-forge the top-priority channel. This avoids subtle version mismatches that can cause hard-to-debug problems.</p>
 </section>
-<section id="list-environments" class="level3" data-number="8.2.5">
-<h3 data-number="8.2.5" class="anchored" data-anchor-id="list-environments"><span class="header-section-number">8.2.5</span> List Environments</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a># See all environments</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>conda env list</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a># See packages in current environment</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>conda list</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="remove-environment" class="level3" data-number="8.2.6">
-<h3 data-number="8.2.6" class="anchored" data-anchor-id="remove-environment"><span class="header-section-number">8.2.6</span> Remove Environment</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>conda env remove -n my-project</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="speed-up-the-solver" class="level3" data-number="8.3.2">
+<h3 data-number="8.3.2" class="anchored" data-anchor-id="speed-up-the-solver"><span class="header-section-number">8.3.2</span> Speed Up the Solver</h3>
+<p>Conda figures out which package versions are compatible before installing anything — this is called “solving the environment.” The default solver can be slow. The <strong>libmamba</strong> solver is much faster and is built into modern conda:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>conda config --set solver libmamba</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>With these three commands done, conda is configured for reliable, fast use. You won’t need to think about this again.</p>
 </section>
 </section>
-<section id="environment-files" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="environment-files"><span class="header-section-number">8.3</span> Environment Files</h2>
-<p>Environment files (<code>environment.yml</code>) let collaborators recreate your exact Python setup.</p>
-<section id="export-your-environment" class="level3" data-number="8.3.1">
-<h3 data-number="8.3.1" class="anchored" data-anchor-id="export-your-environment"><span class="header-section-number">8.3.1</span> Export Your Environment</h3>
-<p>We recommend using <code>--from-history</code> for most cases:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a># Recommended: exports only packages you explicitly installed</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>conda env export --from-history &gt; environment.yml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This creates a portable file that works across platforms:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> my-project</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">channels</span><span class="kw">:</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> conda-forge</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> defaults</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dependencies</span><span class="kw">:</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> python=3.11</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> pandas</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> numpy</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> matplotlib</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> ipykernel</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="creating-your-first-environment" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="creating-your-first-environment"><span class="header-section-number">8.4</span> Creating Your First Environment</h2>
+<p>Let’s create an environment for a hypothetical data analysis project. The command looks like this:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>conda create -n my-project python=3.11 numpy pandas matplotlib ipykernel</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Here’s what each piece means:</p>
+<ul>
+<li><code>conda create</code> — make a new environment</li>
+<li><code>-n my-project</code> — name it “my-project” (you’ll use this name every time you activate it)</li>
+<li><code>python=3.11</code> — install Python 3.11 (pinning the version so it doesn’t change unexpectedly)</li>
+<li><code>numpy pandas matplotlib ipykernel</code> — install these packages into the environment from the start</li>
+</ul>
+<p>Conda will show you a list of packages it plans to install (including dependencies) and ask you to confirm. Type <code>y</code> and hit Enter.</p>
+<p>The packages in this example are a typical starting point for data science work. <code>numpy</code> handles numerical computing, <code>pandas</code> gives you dataframes (similar to R’s dataframes or tibbles), <code>matplotlib</code> is the core plotting library, and <code>ipykernel</code> is required for Quarto to execute Python <code>.qmd</code> files. Without <code>ipykernel</code>, you’ll get a kernel error when trying to render — so always include it.</p>
+<p>You might also want <code>seaborn</code> (statistical visualization built on matplotlib) or <code>scikit-learn</code> (machine learning). You can add these during creation or install them later — there’s no penalty for adding packages after the environment exists.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>What About Jupyter?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You don’t need <code>jupyter</code> or <code>jupyterlab</code> for our workflow — Quarto handles document rendering directly through <code>ipykernel</code>. Only install Jupyter if you receive <code>.ipynb</code> notebook files from collaborators and want to open them in the traditional notebook interface.</p>
+</div>
+</div>
+<div class="claude-callout callout callout-style-default callout-warning callout-titled" title="Claude Code">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Claude Code
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When you’re starting a new type of analysis and aren’t sure which Python packages you need, Claude Code can recommend packages and generate the environment creation command.</p>
+<blockquote class="blockquote">
+<p>I’m starting a Python project to analyze fluorescence microscopy images. I’ll need to load TIFF stacks, segment cells, and measure intensities. What packages should I include in my conda environment?</p>
+</blockquote>
+<p>Claude will suggest the right packages (scikit-image for segmentation, tifffile for TIFF loading, etc.), generate the full <code>conda create</code> command, and flag any packages that need to be installed via pip instead of conda.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Claude Code Does This Automatically
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In practice, you’ll rarely build environments from scratch. The Musser Lab’s <code>/new-project</code> skill in Claude Code creates a conda environment for your project automatically, installs the packages you need, and configures Positron to use it. But understanding these commands is important for troubleshooting and for working outside the lab’s automated workflow.</p>
+</div>
+</div>
 </section>
-<section id="full-export-when-needed" class="level3" data-number="8.3.2">
-<h3 data-number="8.3.2" class="anchored" data-anchor-id="full-export-when-needed"><span class="header-section-number">8.3.2</span> Full Export (When Needed)</h3>
-<p>For exact reproducibility on the same platform, use the full export:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>conda env export &gt; environment.yml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This includes exact versions and platform-specific builds—useful for debugging or archiving a precise state, but less portable.</p>
+<section id="using-your-environment" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="using-your-environment"><span class="header-section-number">8.5</span> Using Your Environment</h2>
+<section id="activating-and-deactivating" class="level3" data-number="8.5.1">
+<h3 data-number="8.5.1" class="anchored" data-anchor-id="activating-and-deactivating"><span class="header-section-number">8.5.1</span> Activating and Deactivating</h3>
+<p>An environment doesn’t do anything until you <strong>activate</strong> it. Activation tells your terminal to use that environment’s Python and packages instead of the system defaults:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>conda activate my-project</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>When an environment is active, your terminal prompt changes to show the environment name in parentheses:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">macOS</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Windows</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(my-project) $</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(my-project) PS C:\Users\yourname&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>This is your visual confirmation that the right environment is active. If you don’t see the environment name in your prompt, your code will use the wrong Python — a common source of “package not found” errors.</p>
+<p>[TODO: screenshot of terminal showing <code>(my-project)</code> in the prompt after activation]</p>
+<p>To leave an environment and return to the default state, run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>conda deactivate</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="recreate-from-file" class="level3" data-number="8.3.3">
-<h3 data-number="8.3.3" class="anchored" data-anchor-id="recreate-from-file"><span class="header-section-number">8.3.3</span> Recreate from File</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>conda env create -f environment.yml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="installing-more-packages" class="level3" data-number="8.5.2">
+<h3 data-number="8.5.2" class="anchored" data-anchor-id="installing-more-packages"><span class="header-section-number">8.5.2</span> Installing More Packages</h3>
+<p>Once an environment is active, you can install additional packages into it:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>conda install seaborn scikit-learn</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Conda installs packages into whichever environment is currently active, so always check your prompt before installing. If you accidentally install into the wrong environment, it’s not the end of the world — just activate the right one and install again there.</p>
+<p>To see what’s installed in your current environment:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>conda list</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>And to see all the environments you’ve created:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>conda env list</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="connecting-to-positron" class="level3" data-number="8.5.3">
+<h3 data-number="8.5.3" class="anchored" data-anchor-id="connecting-to-positron"><span class="header-section-number">8.5.3</span> Connecting to Positron</h3>
+<p>Creating and activating an environment in the terminal is only half the story. You also need to tell <strong>Positron</strong> which environment to use, so that when you run Python code from a <code>.qmd</code> file, it uses the right Python with the right packages.</p>
+<ol type="1">
+<li>Open Positron and navigate to your project folder</li>
+<li>Open the <strong>Command Palette</strong> (<strong>Cmd+Shift+P</strong> on macOS, <strong>Ctrl+Shift+P</strong> on Windows)</li>
+<li>Type <strong>“Python: Select Interpreter”</strong></li>
+<li>Choose your environment from the list (it will show something like <code>Python 3.11 (my-project)</code>)</li>
+</ol>
+<p>[TODO: screenshot of Positron Command Palette showing “Python: Select Interpreter” with conda environments listed]</p>
+<p>Once selected, Positron remembers this choice for the project — you won’t need to do it again unless you create a new environment. The <strong>status bar</strong> at the bottom of Positron shows which Python interpreter is active, so you can always verify at a glance.</p>
+<p>[TODO: screenshot of Positron status bar showing the active Python environment]</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Environment Not Showing Up?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you just created a new conda environment and it doesn’t appear in Positron’s interpreter list, try restarting Positron. It sometimes needs a fresh start to detect new environments.</p>
+</div>
+</div>
+<p>If you use the Musser Lab’s <code>/new-project</code> skill in Claude Code, it configures the Positron interpreter automatically as part of project setup — one less thing to remember.</p>
+</section>
+</section>
+<section id="sharing-environments" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="sharing-environments"><span class="header-section-number">8.6</span> Sharing Environments</h2>
+<section id="environment.yml" class="level3" data-number="8.6.1">
+<h3 data-number="8.6.1" class="anchored" data-anchor-id="environment.yml"><span class="header-section-number">8.6.1</span> environment.yml</h3>
+<p>Just as renv uses <code>renv.lock</code> to record your R packages, conda uses a file called <code>environment.yml</code> to record your Python environment. This file lists the environment name, which channels to use, and which packages are installed — everything someone else needs to recreate your setup.</p>
+<p>To create this file from your current environment:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>conda env export --from-history &gt; environment.yml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>--from-history</code> flag is important. It records only the packages you explicitly installed, not every transitive dependency. This makes the file portable across operating systems — a colleague on Windows can recreate an environment you built on macOS, because conda resolves platform-specific dependencies at install time.</p>
+<p>The resulting file looks like this:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> my-project</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">channels</span><span class="kw">:</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> conda-forge</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dependencies</span><span class="kw">:</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> python=3.11</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> numpy</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> pandas</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> matplotlib</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> ipykernel</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="recreating-an-environment-from-a-file" class="level3" data-number="8.6.2">
+<h3 data-number="8.6.2" class="anchored" data-anchor-id="recreating-an-environment-from-a-file"><span class="header-section-number">8.6.2</span> Recreating an Environment from a File</h3>
+<p>When a collaborator shares a project with an <code>environment.yml</code>, they can recreate the environment with one command:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>conda env create -f environment.yml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This creates the environment, installs all the packages, and sets it up so they can activate it and start working. It’s the conda equivalent of running <code>renv::restore()</code> in R.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Keep environment.yml in Git
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Commit <code>environment.yml</code> to your Git repository alongside your code and <code>renv.lock</code>. When you install new packages, re-export the file and commit the update. The Claude Code <code>/done</code> command can help manage this as part of your session wrap-up.</p>
+</div>
+</div>
+</section>
+<section id="full-export-when-needed" class="level3" data-number="8.6.3">
+<h3 data-number="8.6.3" class="anchored" data-anchor-id="full-export-when-needed"><span class="header-section-number">8.6.3</span> Full Export (When Needed)</h3>
+<p>For exact reproducibility on the same platform, you can do a full export:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>conda env export &gt; environment.yml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This includes exact version numbers and platform-specific build strings for every package, including dependencies. It’s useful for archiving a precise state or debugging, but the file won’t work on a different operating system. Use <code>--from-history</code> for sharing and full export for archiving.</p>
+</section>
+</section>
+<section id="best-practices" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="best-practices"><span class="header-section-number">8.7</span> Best Practices</h2>
+<section id="one-environment-per-project" class="level3" data-number="8.7.1">
+<h3 data-number="8.7.1" class="anchored" data-anchor-id="one-environment-per-project"><span class="header-section-number">8.7.1</span> One Environment Per Project</h3>
+<p>Every project in the lab gets its own conda environment, named after the project. This keeps things clean and avoids the situation where updating a package for one project silently breaks another. It also means <code>environment.yml</code> accurately reflects what that specific project needs.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>conda create -n tihkal-analysis python=3.11 numpy pandas matplotlib ipykernel</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>conda create -n imaging-project python=3.11 numpy pandas scikit-image ipykernel</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Name your environments after the project — short, descriptive, and easy to type. Avoid generic names like <code>env1</code> or <code>test</code> that tell you nothing when you see them in <code>conda env list</code> six months later.</p>
+</section>
+<section id="never-install-into-base" class="level3" data-number="8.7.2">
+<h3 data-number="8.7.2" class="anchored" data-anchor-id="never-install-into-base"><span class="header-section-number">8.7.2</span> Never Install into Base</h3>
+<p>When you open a terminal with conda configured, you’ll see <code>(base)</code> in your prompt. This is the <strong>base environment</strong> — it’s where conda itself lives. Never install project packages into base. It’s tempting (it’s right there, already active), but packages in base affect every project on your machine. Keep base clean and always create a dedicated environment before installing anything.</p>
+</section>
+<section id="pin-your-python-version" class="level3" data-number="8.7.3">
+<h3 data-number="8.7.3" class="anchored" data-anchor-id="pin-your-python-version"><span class="header-section-number">8.7.3</span> Pin Your Python Version</h3>
+<p>Always specify a Python version when creating an environment:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>conda create -n my-project python=3.11</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Without a version, conda installs whatever Python is newest — which means your environment might get Python 3.12 today and someone recreating it might get 3.13 next year. Pinning the version ensures consistency. The specific patch version (3.11.x) will be the latest available within that minor version.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Both Conda and renv
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In the lab, every project has both an <code>environment.yml</code> (for Python) and an <code>renv.lock</code> (for R), even if the project primarily uses one language. This ensures complete reproducibility regardless of which language the analysis uses. The <code>/new-project</code> skill sets up both automatically.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="conda-vs-pip" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="conda-vs-pip"><span class="header-section-number">8.8</span> Conda vs pip</h2>
+<p>Both conda and pip install Python packages, and you’ll sometimes need both. The general rule is simple: <strong>use conda first</strong>, fall back to pip for packages conda doesn’t have.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a># Prefer conda for scientific packages</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>conda install pandas numpy scipy</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a># Use pip for packages not in conda</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>pip install session-info</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Most scientific packages (pandas, numpy, scipy, scikit-learn, matplotlib) are in conda-forge and install faster and more reliably through conda. Some specialized or newer packages are only on PyPI (Python’s main package repository) and need pip.</p>
+<p>When using both in the same environment, install all your conda packages first, then pip packages. This avoids dependency conflicts. Conda is aware of pip-installed packages but can’t manage them, so installing conda packages after pip can sometimes overwrite or break pip-installed ones.</p>
+</section>
+<section id="channels" class="level2" data-number="8.9">
+<h2 data-number="8.9" class="anchored" data-anchor-id="channels"><span class="header-section-number">8.9</span> Channels and Bioconda</h2>
+<p>For most data science work, the default conda-forge channel (which you configured in <a href="#one-time-setup">One-Time Setup</a>) has everything you need. But if you work with bioinformatics command-line tools — things like <code>samtools</code>, <code>bedtools</code>, <code>bwa</code>, or <code>STAR</code> — you’ll need an additional channel called <strong>bioconda</strong>.</p>
+<p>Bioconda is a channel specifically for bioinformatics software, maintained by the bioinformatics community. To add it:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>conda config --add channels bioconda</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>After adding bioconda, you can install bioinformatics tools directly into a conda environment:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>conda create -n genomics-tools python=3.11 samtools bedtools</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You can also specify channels in your <code>environment.yml</code> so collaborators get the right packages automatically:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> genomics-project</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">channels</span><span class="kw">:</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> conda-forge</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> bioconda</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dependencies</span><span class="kw">:</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> python=3.11</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> pandas</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> samtools</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> bedtools</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The order of channels matters — channels listed first have higher priority. With <code>conda-forge</code> first, general scientific packages come from the well-tested community repository, while bioinformatics-specific tools come from bioconda.</p>
 <div class="claude-callout callout callout-style-default callout-warning callout-titled" title="Claude Code">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -787,263 +882,84 @@ project-b-env/
 <div class="callout-body-container callout-body">
 <p>Claude Code can diagnose environment issues by checking which environment is active, what’s installed, and where packages are missing.</p>
 <blockquote class="blockquote">
-<p>I’m getting <code>ModuleNotFoundError: No module named 'pandas'</code> when I run my script, but I thought I installed it. The environment is <code>my-project</code> and here’s what <code>conda list</code> shows: [paste output]. What’s wrong?</p>
+<p>I’m getting <code>ModuleNotFoundError: No module named 'pandas'</code> when I run my Python script in Positron, but I installed pandas in my conda environment. Here’s what <code>conda list</code> shows: [paste output]. What’s wrong?</p>
 </blockquote>
-<p>Claude will check whether the package is installed in the right environment, whether your script is running in a different environment, and suggest the fix.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Keep environment.yml Updated
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>When you install new packages, update your environment file. The Claude Code <code>/done</code> command can help manage this as part of your commit workflow.</p>
+<p>Claude will check whether the package is installed in the right environment, whether Positron is pointing at a different Python interpreter, and suggest the specific fix — often it’s as simple as selecting the right interpreter in the Command Palette.</p>
 </div>
 </div>
 </section>
+<section id="troubleshooting" class="level2" data-number="8.10">
+<h2 data-number="8.10" class="anchored" data-anchor-id="troubleshooting"><span class="header-section-number">8.10</span> Troubleshooting</h2>
+<section id="macos-conda-command-not-found" class="level3" data-number="8.10.1">
+<h3 data-number="8.10.1" class="anchored" data-anchor-id="macos-conda-command-not-found"><span class="header-section-number">8.10.1</span> macOS: “conda: command not found”</h3>
+<p>Your shell doesn’t know where conda is. If you installed via Miniforge, run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>source ~/miniforge3/etc/profile.d/conda.sh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To make this permanent, add that line to your shell configuration file (<code>~/.zshrc</code> for zsh, which is the default on modern macOS, or <code>~/.bashrc</code> for bash).</p>
 </section>
-<section id="best-practices" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="best-practices"><span class="header-section-number">8.4</span> Best Practices</h2>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Lab Policy: Never Use the Base Environment
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Always create a project-specific environment. Never install packages into the <code>base</code> environment—keep it minimal with just your conda configuration. This prevents conflicts and ensures each project is self-contained.</p>
-</div>
-</div>
-<section id="one-environment-per-project" class="level3" data-number="8.4.1">
-<h3 data-number="8.4.1" class="anchored" data-anchor-id="one-environment-per-project"><span class="header-section-number">8.4.1</span> One Environment Per Project</h3>
-<p>Create a dedicated environment for each project:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>conda create -n genomics-project python=3.11 numpy pandas matplotlib ipykernel</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>conda create -n imaging-analysis python=3.10 numpy pandas matplotlib ipykernel</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Both Conda and renv
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>In the lab, every project has both an <code>environment.yml</code> (for Python) and an <code>renv.lock</code> (for R), even if the project primarily uses one language. This ensures complete reproducibility.</p>
-</div>
-</div>
-</section>
-<section id="name-environments-meaningfully" class="level3" data-number="8.4.2">
-<h3 data-number="8.4.2" class="anchored" data-anchor-id="name-environments-meaningfully"><span class="header-section-number">8.4.2</span> Name Environments Meaningfully</h3>
-<p>Use short, descriptive names:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a># Good</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>conda create -n tihkal-analysis python=3.11</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a># Less helpful</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>conda create -n env1 python=3.11</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="pin-major-versions" class="level3" data-number="8.4.3">
-<h3 data-number="8.4.3" class="anchored" data-anchor-id="pin-major-versions"><span class="header-section-number">8.4.3</span> Pin Major Versions</h3>
-<p>Specify Python version when creating:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>conda create -n my-project python=3.11  # Not just "python"</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The specific minor version (3.11.x) will be the latest available; pinning the major version ensures compatibility.</p>
-</section>
-<section id="update-regularly-but-carefully" class="level3" data-number="8.4.4">
-<h3 data-number="8.4.4" class="anchored" data-anchor-id="update-regularly-but-carefully"><span class="header-section-number">8.4.4</span> Update Regularly (But Carefully)</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a># Update all packages</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>conda update --all</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a># Update specific package</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>conda update pandas</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Test after updating to ensure nothing breaks. Update your <code>environment.yml</code> afterward.</p>
-</section>
-</section>
-<section id="conda-vs-pip" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="conda-vs-pip"><span class="header-section-number">8.5</span> Conda vs pip</h2>
-<p>Both install Python packages. General rule:</p>
-<ul>
-<li><strong>Use conda first</strong> for scientific packages (pandas, numpy, scipy)</li>
-<li><strong>Use pip</strong> for packages not available in conda</li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a># Prefer</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>conda install pandas</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a># If not available in conda</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>pip install some-other-package</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>Mixing conda and pip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>When using both, install conda packages first, then pip packages. This avoids dependency conflicts.</p>
-</div>
-</div>
-</section>
-<section id="channels" class="level2" data-number="8.6">
-<h2 data-number="8.6" class="anchored" data-anchor-id="channels"><span class="header-section-number">8.6</span> Channels</h2>
-<p>Channels are package repositories where conda looks for packages. Understanding channels matters because the same package can exist in multiple channels with different versions or builds.</p>
-<section id="main-channels" class="level3" data-number="8.6.1">
-<h3 data-number="8.6.1" class="anchored" data-anchor-id="main-channels"><span class="header-section-number">8.6.1</span> Main Channels</h3>
-<ul>
-<li><strong>conda-forge</strong>: Community-maintained, comprehensive, well-tested. This is the primary channel for most scientific packages.</li>
-<li><strong>bioconda</strong>: Bioinformatics tools (samtools, bedtools, bwa, etc.). Essential for genomics work.</li>
-<li><strong>defaults</strong>: Anaconda’s default channel. We generally avoid this in favor of conda-forge.</li>
-</ul>
-</section>
-<section id="channel-priority" class="level3" data-number="8.6.2">
-<h3 data-number="8.6.2" class="anchored" data-anchor-id="channel-priority"><span class="header-section-number">8.6.2</span> Channel Priority</h3>
-<p>When a package exists in multiple channels, conda uses <strong>channel priority</strong> to decide which version to install. We recommend <strong>strict priority</strong> with conda-forge first:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a># Configure strict channel priority (one-time setup)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>conda config --set channel_priority strict</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This ensures conda-forge packages are always preferred, avoiding subtle version mismatches.</p>
-</section>
-<section id="using-bioconda" class="level3" data-number="8.6.3">
-<h3 data-number="8.6.3" class="anchored" data-anchor-id="using-bioconda"><span class="header-section-number">8.6.3</span> Using Bioconda</h3>
-<p>For bioinformatics tools, add bioconda to your channels. The recommended order is:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a># Add channels in priority order (highest priority last)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>conda config --add channels defaults</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>conda config --add channels bioconda</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>conda config --add channels conda-forge</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Then install bioinformatics tools normally:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>conda install samtools bedtools</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="specifying-channels-in-environment.yml" class="level3" data-number="8.6.4">
-<h3 data-number="8.6.4" class="anchored" data-anchor-id="specifying-channels-in-environment.yml"><span class="header-section-number">8.6.4</span> Specifying Channels in environment.yml</h3>
-<p>For reproducibility, specify channels in your environment file:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> genomics-project</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">channels</span><span class="kw">:</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> conda-forge</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> bioconda</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> defaults</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dependencies</span><span class="kw">:</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> python=3.11</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> pandas</span></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> samtools</span></span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> bedtools</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The order matters—channels listed first have higher priority.</p>
-</section>
-</section>
-<section id="configuring-conda" class="level2" data-number="8.7">
-<h2 data-number="8.7" class="anchored" data-anchor-id="configuring-conda"><span class="header-section-number">8.7</span> Configuring Conda</h2>
-<p>A few one-time configuration changes make conda faster and more reliable.</p>
-<section id="use-the-libmamba-solver" class="level3" data-number="8.7.1">
-<h3 data-number="8.7.1" class="anchored" data-anchor-id="use-the-libmamba-solver"><span class="header-section-number">8.7.1</span> Use the Libmamba Solver</h3>
-<p>The default conda solver can be slow, especially with complex environments. The <strong>libmamba</strong> solver is much faster and is now built into conda:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a># Set libmamba as the default solver (one-time, global)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>conda config --set solver libmamba</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This dramatically speeds up environment creation and package installation. You only need to run this once—it applies to all environments.</p>
-</section>
-<section id="recommended-.condarc-configuration" class="level3" data-number="8.7.2">
-<h3 data-number="8.7.2" class="anchored" data-anchor-id="recommended-.condarc-configuration"><span class="header-section-number">8.7.2</span> Recommended .condarc Configuration</h3>
-<p>Your conda configuration lives in <code>~/.condarc</code>. After the setup commands above, it should look something like:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">channels</span><span class="kw">:</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> conda-forge</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> bioconda</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> defaults</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="fu">channel_priority</span><span class="kw">:</span><span class="at"> strict</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="fu">solver</span><span class="kw">:</span><span class="at"> libmamba</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>You can edit this file directly or use <code>conda config</code> commands.</p>
-</section>
-</section>
-<section id="troubleshooting" class="level2" data-number="8.8">
-<h2 data-number="8.8" class="anchored" data-anchor-id="troubleshooting"><span class="header-section-number">8.8</span> Troubleshooting</h2>
-<section id="solving-environment-takes-forever" class="level3" data-number="8.8.1">
-<h3 data-number="8.8.1" class="anchored" data-anchor-id="solving-environment-takes-forever"><span class="header-section-number">8.8.1</span> “Solving environment” takes forever</h3>
-<p>This usually means you haven’t configured the fast solver. Set libmamba as your default:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>conda config --set solver libmamba</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Then try again. If you’ve already configured libmamba and it’s still slow, you may have conflicting package requirements.</p>
-</section>
-<section id="dependency-conflicts" class="level3" data-number="8.8.2">
-<h3 data-number="8.8.2" class="anchored" data-anchor-id="dependency-conflicts"><span class="header-section-number">8.8.2</span> Dependency Conflicts</h3>
-<p><strong>Symptoms</strong>: Conda reports “conflict” or can’t find a solution when installing a package.</p>
-<p><strong>Solutions</strong>:</p>
+<section id="windows-conda-is-not-recognized" class="level3" data-number="8.10.2">
+<h3 data-number="8.10.2" class="anchored" data-anchor-id="windows-conda-is-not-recognized"><span class="header-section-number">8.10.2</span> Windows: “conda is not recognized”</h3>
+<p>The Miniforge installer may not have added conda to your PATH. You have two options:</p>
 <ol type="1">
-<li><p><strong>Check channel mixing</strong>: Packages from different channels may conflict. Use strict channel priority with conda-forge first.</p></li>
-<li><p><strong>Loosen version constraints</strong>: If you’re requesting specific versions, try letting conda choose:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a># Instead of</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>conda install pandas=1.5 numpy=1.24</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a># Try</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>conda install pandas numpy</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p><strong>Start fresh</strong>: Sometimes it’s easier to recreate the environment:</p>
+<li>Use the <strong>“Miniforge Prompt”</strong> from the Start menu — this opens a terminal with conda pre-configured</li>
+<li>Add Miniforge to your PATH manually: search “Environment Variables” in Windows Settings and add <code>C:\Users\YourName\miniforge3\Scripts</code> to your PATH</li>
+</ol>
+</section>
+<section id="windows-conda-activate-does-nothing" class="level3" data-number="8.10.3">
+<h3 data-number="8.10.3" class="anchored" data-anchor-id="windows-conda-activate-does-nothing"><span class="header-section-number">8.10.3</span> Windows: “conda activate” Does Nothing</h3>
+<p>This means conda isn’t initialized for PowerShell. Run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>conda init powershell</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Then close and reopen your terminal completely. If you’re using Positron’s integrated terminal, close and reopen the entire application.</p>
+</section>
+<section id="solving-environment-takes-forever" class="level3" data-number="8.10.4">
+<h3 data-number="8.10.4" class="anchored" data-anchor-id="solving-environment-takes-forever"><span class="header-section-number">8.10.4</span> “Solving environment” Takes Forever</h3>
+<p>You probably haven’t set the fast solver. Run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>conda config --set solver libmamba</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If you’ve already set libmamba and it’s still slow, you likely have conflicting package requirements. Try loosening version constraints or starting fresh (see below).</p>
+</section>
+<section id="dependency-conflicts" class="level3" data-number="8.10.5">
+<h3 data-number="8.10.5" class="anchored" data-anchor-id="dependency-conflicts"><span class="header-section-number">8.10.5</span> Dependency Conflicts</h3>
+<p>Conda reports “conflict” or can’t find a compatible set of packages. Try these in order:</p>
+<ol type="1">
+<li><strong>Loosen version pins</strong> — let conda choose versions instead of specifying exact ones</li>
+<li><strong>Start fresh</strong> — sometimes it’s easier to recreate the environment than to fix conflicts:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>conda deactivate</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>conda env remove -n my-project</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>conda create -n my-project python=3.11 numpy pandas matplotlib ipykernel</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Then add other packages one at a time to identify which one causes the conflict.</p>
+</section>
+<section id="package-not-found" class="level3" data-number="8.10.6">
+<h3 data-number="8.10.6" class="anchored" data-anchor-id="package-not-found"><span class="header-section-number">8.10.6</span> Package Not Found</h3>
+<p>Check the spelling, make sure conda-forge is in your channels (<code>conda config --show channels</code>), and search for the package: <code>conda search package-name</code>. If it’s not in any conda channel, install it with pip instead.</p>
+</section>
+<section id="environment-seems-corrupted" class="level3" data-number="8.10.7">
+<h3 data-number="8.10.7" class="anchored" data-anchor-id="environment-seems-corrupted"><span class="header-section-number">8.10.7</span> Environment Seems Corrupted</h3>
+<p>If an environment is behaving strangely and you can’t figure out why, remove it and recreate from your <code>environment.yml</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>conda deactivate</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>conda env remove -n my-project</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>conda create -n my-project python=3.11 numpy pandas matplotlib ipykernel</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a># Add other packages one at a time</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p><strong>Check bioconda compatibility</strong>: Some bioinformatics packages have strict dependencies. Check the package’s documentation for known issues.</p></li>
-</ol>
-</section>
-<section id="package-not-found" class="level3" data-number="8.8.3">
-<h3 data-number="8.8.3" class="anchored" data-anchor-id="package-not-found"><span class="header-section-number">8.8.3</span> Package not found</h3>
-<ol type="1">
-<li>Check spelling</li>
-<li>Ensure you have the right channels configured (conda-forge, bioconda)</li>
-<li>Search for the package: <code>conda search package-name</code></li>
-<li>Fall back to pip if it’s not in conda</li>
-</ol>
-</section>
-<section id="macoslinux-conda-command-not-found" class="level3" data-number="8.8.4">
-<h3 data-number="8.8.4" class="anchored" data-anchor-id="macoslinux-conda-command-not-found"><span class="header-section-number">8.8.4</span> macOS/Linux: “conda: command not found”</h3>
-<p>Your shell isn’t configured for conda. Run:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>source ~/miniconda3/etc/profile.d/conda.sh</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a># or if using Miniforge:</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>source ~/miniforge3/etc/profile.d/conda.sh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>To make this permanent, add that line to your <code>~/.bashrc</code> or <code>~/.zshrc</code> file.</p>
-</section>
-<section id="environment-corrupted" class="level3" data-number="8.8.5">
-<h3 data-number="8.8.5" class="anchored" data-anchor-id="environment-corrupted"><span class="header-section-number">8.8.5</span> Environment corrupted</h3>
-<p>Remove and recreate:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>conda deactivate</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>conda env remove -n my-project</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>conda env create -f environment.yml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="windows-conda-activate-does-nothing-or-errors" class="level3" data-number="8.8.6">
-<h3 data-number="8.8.6" class="anchored" data-anchor-id="windows-conda-activate-does-nothing-or-errors"><span class="header-section-number">8.8.6</span> Windows: “conda activate” does nothing or errors</h3>
-<p>This usually means conda isn’t initialized for your shell. Run:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a># For PowerShell</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>conda init powershell</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a># For Command Prompt</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>conda init cmd.exe</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Then restart your terminal. If you’re using VS Code or Positron’s integrated terminal, close and reopen the entire application.</p>
-</section>
-<section id="windows-conda-is-not-recognized" class="level3" data-number="8.8.7">
-<h3 data-number="8.8.7" class="anchored" data-anchor-id="windows-conda-is-not-recognized"><span class="header-section-number">8.8.7</span> Windows: “conda is not recognized”</h3>
-<p>The Miniforge installer may not have added conda to your PATH. Either:</p>
-<ol type="1">
-<li>Use the “Miniforge Prompt” from the Start menu (this has conda pre-configured)</li>
-<li>Or add Miniforge to your PATH manually:
-<ul>
-<li>Search “Environment Variables” in Windows Settings</li>
-<li>Add <code>C:\Users\YourName\miniforge3\Scripts</code> to your PATH</li>
-</ul></li>
-</ol>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>conda env create -f environment.yml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This is the conda equivalent of <code>renv::restore()</code> — it rebuilds the environment from your recorded specification. This is also why keeping <code>environment.yml</code> up to date and committed to Git matters: it’s your safety net.</p>
+<div class="claude-callout callout callout-style-default callout-warning callout-titled" title="Claude Code">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Claude Code
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Claude Code is good at diagnosing environment and interpreter issues because it can check your conda configuration, Positron settings, and installed packages all at once.</p>
+<blockquote class="blockquote">
+<p>I created a conda environment called <code>analysis-env</code> and it shows up in <code>conda env list</code>, but when I open “Python: Select Interpreter” in Positron, it’s not in the list. I’ve restarted Positron already. What else can I try?</p>
+</blockquote>
+<p>Claude will check your conda installation path, Positron’s Python discovery settings, and suggest targeted fixes — often a configuration path issue or a Positron extension that needs reloading.</p>
+</div>
+</div>
 </section>
 </section>
-<section id="integration-with-positron" class="level2" data-number="8.9">
-<h2 data-number="8.9" class="anchored" data-anchor-id="integration-with-positron"><span class="header-section-number">8.9</span> Integration with Positron</h2>
-<ol type="1">
-<li>Activate your environment in the terminal</li>
-<li>In Positron, open Command Palette (Cmd/Ctrl+Shift+P)</li>
-<li>Type “Python: Select Interpreter”</li>
-<li>Choose the environment</li>
-</ol>
-<p>The environment’s Python will be used for running scripts and notebooks.</p>
-</section>
-<section id="quick-reference" class="level2" data-number="8.10">
-<h2 data-number="8.10" class="anchored" data-anchor-id="quick-reference"><span class="header-section-number">8.10</span> Quick Reference</h2>
+<section id="quick-reference" class="level2" data-number="8.11">
+<h2 data-number="8.11" class="anchored" data-anchor-id="quick-reference"><span class="header-section-number">8.11</span> Quick Reference</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 40%">
@@ -1073,6 +989,14 @@ project-b-env/
 <td><code>conda install PACKAGE</code></td>
 </tr>
 <tr class="odd">
+<td>List packages</td>
+<td><code>conda list</code></td>
+</tr>
+<tr class="even">
+<td>List environments</td>
+<td><code>conda env list</code></td>
+</tr>
+<tr class="odd">
 <td>Export environment</td>
 <td><code>conda env export --from-history &gt; environment.yml</code></td>
 </tr>
@@ -1081,20 +1005,20 @@ project-b-env/
 <td><code>conda env create -f environment.yml</code></td>
 </tr>
 <tr class="odd">
-<td>List environments</td>
-<td><code>conda env list</code></td>
-</tr>
-<tr class="even">
 <td>Remove environment</td>
 <td><code>conda env remove -n NAME</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Set fast solver</td>
 <td><code>conda config --set solver libmamba</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Set channel priority</td>
 <td><code>conda config --set channel_priority strict</code></td>
+</tr>
+<tr class="even">
+<td>Add bioconda channel</td>
+<td><code>conda config --add channels bioconda</code></td>
 </tr>
 </tbody>
 </table>
