@@ -747,9 +747,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <figcaption>Environment pane showing the counts and sponge objects</figcaption>
 </figure>
 </div>
-<p>Now let’s inspect the cell metadata. Run the <code>peek-metadata</code> chunk, or type this in the console:</p>
+<p>Now let’s inspect the cell metadata. Run the <code>peek-metadata</code> chunk—it uses <code>head()</code> to print the first few rows of the metadata table to the console. That’s useful for a quick look, and it’s what we use in the script because <code>head()</code> works when the document is rendered to HTML later.</p>
+<p>But for interactive exploration, try typing this directly in the console:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(sponge<span class="sc">@</span>meta.data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This opens Positron’s <strong>data viewer</strong>—a spreadsheet-style view of the metadata, with one row per cell. You’ll see three columns:</p>
+<p>This opens Positron’s <strong>data viewer</strong>—a spreadsheet-style view of the metadata, with one row per cell. <code>View()</code> only works interactively (it opens a GUI pane), which is why the script uses <code>head()</code> instead. You’ll see three columns:</p>
 <ul>
 <li><strong>orig.ident</strong> — which sample the cell came from</li>
 <li><strong>nCount_RNA</strong> — total UMI counts per cell (how much RNA was captured)</li>
