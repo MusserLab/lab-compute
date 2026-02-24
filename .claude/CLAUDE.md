@@ -53,6 +53,7 @@ lab_compute/
 |----------|-------|:-:|
 | [PLAN.md](.claude/PLAN.md) | Book roadmap, open items, session notes | Yes |
 | [CLAUDE_CODE_CHAPTER_PLAN.md](.claude/CLAUDE_CODE_CHAPTER_PLAN.md) | Claude Code chapter research and outline (COMPLETED) | No |
+| [CLAUDE_CODE_REWRITE_PLAN.md](.claude/CLAUDE_CODE_REWRITE_PLAN.md) | Part 3 full rewrite — 6 chapters, detailed outlines | No |
 
 ### Convention/Reference
 

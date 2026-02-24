@@ -1,7 +1,7 @@
 # Lab Compute Guide — Planning Document
 
 > This document tracks next steps and improvements for the book.
-> Last updated: 2026-02-23
+> Last updated: 2026-02-24
 
 ## Still Open
 
@@ -123,6 +123,25 @@ Conda chapter will need ~3 new screenshots after rewrite:
 - [ ] Positron Command Palette → Python: Select Interpreter with conda environments
 - [ ] Positron status bar showing active Python environment
 
+### Part 3: Working with AI (FULL REWRITE PLANNED — was "Claude Code")
+
+Detailed plan: `.claude/CLAUDE_CODE_REWRITE_PLAN.md`
+
+Expanding from 4 reference-style chapters to 6 narrative teaching chapters. Inspired by Anthropic's 4D AI Fluency Framework (Delegation, Description, Discernment, Diligence), adapted for data science students. Examples grounded in single-cell RNA-seq analysis. Includes deep research workflows for gene interpretation.
+
+| Ch. | File | Title | Status |
+|-----|------|-------|--------|
+| 1 | `ai-fluency.qmd` | AI Fluency | TODO |
+| 2 | `getting-started.qmd` | Getting Started | TODO (full rewrite) |
+| 3 | `teaching-claude.qmd` | Teaching Claude About Your Work | TODO |
+| 4 | `working-effectively.qmd` | Working Effectively | TODO (full rewrite) |
+| 5 | `musser-lab-toolkit.qmd` | The Musser Lab Toolkit | TODO |
+| 6 | `staying-safe.qmd` | Staying Safe | TODO |
+
+Files to delete after rewrite: `configuring-projects.qmd`, `skills.qmd` (content absorbed into Chs. 3 and 5).
+
+New appendix needed: Lab Skills Reference (complete table of all Musser Lab skills).
+
 ### Other Content
 - [ ] Update "Work in Progress" callout in `index.qmd:19-22` — all 21 chapters are substantive now, no stubs or placeholders remain. Soften or remove.
 - [ ] Review Quick Start section for clarity and completeness
@@ -131,7 +150,6 @@ Conda chapter will need ~3 new screenshots after rewrite:
 - [ ] Review `first-project.qmd` — ensure all steps work end-to-end
 - [ ] Consider subsetting Spongilla data more aggressively (~10K cells → ~2-3K) to get matrix.mtx.gz under 50 MB (GitHub recommended limit; currently 94 MB)
 - [ ] **Git/GitHub**: Add section on GitHub Classroom (if using for courses)
-- [ ] **Claude Code**: Musser Lab-specific skills chapter (referenced from positron.qmd for /new-project)
 
 ### Part 4: Workflows
 - [ ] **Starting Project**: Add template repo link once created
@@ -139,6 +157,7 @@ Conda chapter will need ~3 new screenshots after rewrite:
 
 ### Appendices
 - [ ] Add links to external resources
+- [ ] **New Appendix E: Lab Skills Reference** — complete table of all Musser Lab Claude Code skills (part of Part 3 rewrite)
 
 ## Ideas for Future Chapters
 
@@ -207,6 +226,22 @@ Conda chapter will need ~3 new screenshots after rewrite:
 ## Session Notes
 
 _Add notes here during working sessions_
+
+### 2026-02-24
+- **Part 3 full rewrite planning session** — created `CLAUDE_CODE_REWRITE_PLAN.md` with detailed outlines for 6 new chapters
+  - Expanding from 4 reference-style chapters to 6 narrative teaching chapters
+  - Part renamed "Working with AI" (was "Claude Code"); directory stays `claude-code/`
+  - Inspired by Anthropic's 4D AI Fluency Framework (Delegation, Description, Discernment, Diligence)
+  - Ch. 1: AI Fluency — three interaction modes (automation/augmentation/agency), learning paradox, 4D framework adapted for data science
+  - Ch. 2: Getting Started — narrative first session with Spongilla project (thinking + coding interactions)
+  - Ch. 3: Teaching Claude About Your Work — CLAUDE.md, plan files, skills (simple → complex)
+  - Ch. 4: Working Effectively — "Thinking Together" and "Coding Together" session patterns, deep research for gene interpretation, challenging Claude's recommendations
+  - Ch. 5: The Musser Lab Toolkit — lab skills repo walkthrough, key skills, example CLAUDE.md files
+  - Ch. 6: Staying Safe — permissions, hooks, settings.json, data protection, prompt injection
+  - Cross-cutting: "Claude as thinking partner" framing in every chapter; learning paradox thread throughout
+  - Domain focus: single-cell RNA-seq examples (Seurat, Spongilla) throughout all chapters
+  - New Appendix E: Lab Skills Reference (complete table of all lab skills)
+  - Registered plan in CLAUDE.md Project Document Registry
 
 ### 2026-02-23 (session 5)
 - **Git & GitHub chapter (Ch. 9) full rewrite** — 353→429 lines, restructured from reference doc to narrative teaching guide
