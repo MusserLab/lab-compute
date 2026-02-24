@@ -1,7 +1,7 @@
 # Lab Compute Guide — Planning Document
 
 > This document tracks next steps and improvements for the book.
-> Last updated: 2026-02-22
+> Last updated: 2026-02-23
 
 ## Still Open
 
@@ -9,7 +9,7 @@
 
 Assessed all 6 Part 2 chapters (Feb 2026). Common issue: they read like reference documentation, not teaching guides. The first-project chapter (Ch. 3) sets a high bar with narrative tone and 14 screenshots. Part 2 chapters need to move toward that quality.
 
-**Claude Code callouts**: Target is 2-3 per Part 2 chapter. Ch. 4 (Positron) has 3. All other Part 2 chapters have only 1 each — add 1-2 more per chapter during polishing.
+**Claude Code callouts**: Target is 2-3 per Part 2 chapter. Ch. 4 (Positron) has 3, Ch. 6 (Quarto) has 2. Remaining Part 2 chapters have only 1 each — add 1-2 more per chapter during polishing.
 
 #### Ch. 4 — Positron (REWRITE DONE — screenshots pending)
 
@@ -36,12 +36,12 @@ Completed:
 - [x] Fixed .vscode → .positron throughout
 - [x] Interpreter settings: described as internally remembered (no visible settings file)
 
-#### Ch. 6 — Quarto (needs restructuring)
+#### Ch. 6 — Quarto (REWRITE DONE — screenshot pending)
 
-The longest chapter (942 lines) and most reference-heavy. Overwhelming for a student's first read. Needs splitting into "what you need now" (interactive workflow, basic syntax) vs. "reference" (full YAML tables, templates). Templates at the end may duplicate Appendix C.
+Full rewrite completed Feb 2026 (942 → 786 lines). Restructured from reference doc to teaching guide with Python as first-class citizen. Added: "Compared to Jupyter Notebooks" subsection, 7 R/Python tabsets throughout, new Claude Code callout (2 total). Dissolved standalone "Working with Python" section — Python integrated everywhere via tabsets. Cut ~160 lines of duplicated templates, replaced with @sec-templates cross-references. Reference tables moved to end.
 
-- [ ] Restructure: teaching content first, reference tables at end
-- [ ] Cut duplicate templates (already in Appendix C)
+- [x] Restructure: teaching content first, reference tables at end
+- [x] Cut duplicate templates (already in Appendix C)
 - [ ] Positron with .qmd, console, and Data Viewer screenshot (`quarto.qmd:60`)
 
 #### Ch. 5 — Project Organization (REWRITE DONE)
@@ -170,6 +170,17 @@ Quarto chapter:
 ## Session Notes
 
 _Add notes here during working sessions_
+
+### 2026-02-23 (session 2)
+- **Quarto chapter (Ch. 6) full rewrite** — 942→786 lines, restructured from reference doc to teaching guide
+  - New "Compared to Jupyter Notebooks" subsection (plain text diffs, fresh-session rendering, Positron integration)
+  - "Compared to Plain Scripts" reframed for both .R and .py
+  - 7 R/Python tabsets: YAML header, setup chunk, inputs, saving outputs, working directory, rendering, provenance
+  - New Claude Code callout for scaffolding QMD files (2 total in chapter)
+  - Dissolved standalone "Working with Python" section — Python integrated everywhere
+  - Cut ~160 lines of duplicated templates (Quick Reference), replaced with @sec-templates cross-refs
+  - "Python-Specific Notes" short section at end (conda gotchas, ipykernel, session-info, no mixing)
+  - Reference tables (YAML options, chunk options, R-vs-Python comparison) moved to Quick Reference at end
 
 ### 2026-02-23
 - **Project Organization chapter (Ch. 5) full rewrite** — 496→458 lines, restructured from reference spec to narrative teaching guide

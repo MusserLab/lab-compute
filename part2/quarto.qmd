@@ -8,15 +8,29 @@ In the Musser Lab, Quarto documents are the standard format for data analysis be
 
 ## Why Quarto?
 
-### Compared to Plain R Scripts
+### Compared to Plain Scripts
 
-A plain `.R` script is just code. It can produce outputs, but there's no built-in way to document what the code does, why you made certain choices, or what the results mean. When you share a script, collaborators see the code but not your interpretation.
+A plain `.R` or `.py` script is just code. It can produce outputs, but there's no built-in way to document what the code does, why you made certain choices, or what the results mean. When you share a script, collaborators see the code but not your interpretation. Comments help, but they're limited—you can't embed figures, formatted tables, or section headings in a comment.
 
 With Quarto:
 
 - **Code and narrative live together** — explain what you're doing as you do it
 - **Results are embedded** — figures and tables appear in the document
 - **Output is shareable** — render to HTML that anyone can open in a browser
+
+### Compared to Jupyter Notebooks
+
+If you've used Jupyter notebooks (`.ipynb`), you might wonder why we use Quarto instead. Jupyter is a great tool for interactive exploration, but `.qmd` files have several advantages for reproducible analysis:
+
+**Plain text, not JSON.** Jupyter notebooks are stored as JSON with embedded output cells, making them difficult to version control with Git. A small code change can produce a massive diff because the output cells change too. Quarto documents are plain text—diffs show exactly what you changed, and merge conflicts are easy to resolve.
+
+**Fresh-session rendering.** When you run cells in a Jupyter notebook, results depend on the order you executed them and what's lingering in memory. It's easy to have a notebook that "works" only because you ran cell 5 before cell 3 during development. Quarto renders in a fresh session every time, catching hidden dependencies that Jupyter lets slip through.
+
+**Positron integration.** In Positron, you get the best of both worlds—interactive execution with Cmd+Enter (like Jupyter) plus a persistent console, Variables pane, and Data Viewer alongside your document. You don't lose the interactive workflow; you gain reproducibility on top of it.
+
+**One format, both languages.** Quarto treats R and Python as equal citizens. The same `.qmd` format, chunk options, and rendering pipeline work for both. No need to learn separate tools for each language.
+
+If you're coming from Jupyter, the transition is straightforward: your code goes in fenced chunks instead of cells, your markdown goes between chunks instead of in markdown cells, and you render the whole document instead of running cells individually. The interactive development experience in Positron feels very similar to Jupyter—you just get reproducibility as a bonus.
 
 ### Compared to R Markdown
 
@@ -43,25 +57,13 @@ See the [Quarto documentation](https://quarto.org/docs/guide/) if you want to ex
 
 ## The Interactive Development Workflow
 
-Before diving into syntax, understand how you'll actually work with Quarto documents. The workflow has two modes:
+Before diving into syntax, understand how you'll actually work with Quarto documents. There are two modes, and you'll spend most of your time in the first one.
 
-### Interactive Development
-
-Most of your time is spent running code **interactively**—executing chunks one at a time, inspecting results, and iterating. This is exploratory work:
-
-1. **Write a chunk** of code in your `.qmd` file
-2. **Run it** with Cmd+Enter (macOS) or Ctrl+Enter (Windows)
-3. **Inspect** the output in the Console, Variables pane, or Data Viewer
-4. **Iterate** — modify the code, run again, check results
-5. **Move on** to the next chunk when satisfied
-
-During interactive development, you're using Positron like an enhanced REPL. The `.qmd` file is your scratch pad. Objects you create persist in your R or Python session, so you can build on previous chunks.
+**Interactive development** is where the real work happens. You write a chunk of code in your `.qmd` file, run it with Cmd+Enter (macOS) or Ctrl+Enter (Windows), inspect the output in the Console or Data Viewer, tweak it, run again. Objects you create persist in your R or Python session, so you can build on previous chunks. This feels just like working in a Jupyter notebook or an R console—the `.qmd` file is your scratch pad, and Positron is your workbench.
 
 [TODO: screenshot of Positron with .qmd open, console showing output, Data Viewer with dataframe]
 
-### Rendering
-
-When the analysis is complete—or when you want to share it—you **render** the document:
+**Rendering** is for validation and sharing. When the analysis is complete—or when you want to check that everything works end-to-end—you render the document:
 
 ```default
 quarto render my_analysis.qmd
@@ -69,32 +71,17 @@ quarto render my_analysis.qmd
 
 Rendering executes every code chunk in a **fresh session** (no leftover objects from interactive work) and produces a standalone HTML file. This catches errors you might miss interactively, like relying on an object you created manually but forgot to include in the script.
 
-**The key insight**: Interactive mode is for development. Rendering is for validation and sharing. Always render before committing or sending a report to someone.
+A typical session looks like this: you open your project in Positron, create or open a `.qmd` file, and start writing chunks—setup first (libraries, paths), then data loading, then analysis. You run each chunk interactively, checking results as you go. When the analysis feels complete, you render the whole document. If rendering fails (usually a missing object or package), you fix it and render again. Once it succeeds, you commit the `.qmd` file.
 
-### A Typical Session
+**The key insight**: interactive mode is for development, rendering is for validation. Always render before committing or sending a report to someone.
 
-Here's what a working session looks like:
+## Writing a Quarto Document
 
-1. Open your project in Positron
-2. Open or create a `.qmd` file
-3. Write the setup chunk (libraries, paths)
-4. Run it interactively to confirm packages load
-5. Write a data-loading chunk, run it, inspect the data in Data Viewer
-6. Write analysis chunks one at a time, running and checking each
-7. When complete, render the full document
-8. Fix any errors that appear during render (usually missing objects or packages)
-9. Commit the `.qmd` file (and optionally the rendered HTML)
+A Quarto document has two parts: a **YAML header** (metadata and rendering options, between `---` markers at the top) and a **body** (Markdown text interspersed with code chunks).
 
-This interactive-then-render workflow is why Quarto documents are more reliable than scripts you only ever run interactively.
+### Document Structure
 
-## Document Structure
-
-A Quarto document has two parts:
-
-1. **YAML header** — metadata and rendering options (between `---` markers at the top)
-2. **Body** — Markdown text interspersed with code chunks
-
-### Minimal Example
+Here's a minimal example:
 
 ````markdown
 ---
@@ -120,11 +107,15 @@ ggplot(data, aes(x = x, y = y)) +
 ```
 ````
 
-When rendered, this produces an HTML file with the title, your text, and the code outputs (the `glimpse()` output and the plot) embedded.
+When rendered, this produces an HTML file with the title, your text, and the code outputs (the `glimpse()` output and the plot) embedded. For Python, the only difference is the chunk fence—use ```` ```{python} ```` instead of ```` ```{r} ````.
 
-## The YAML Header
+### The YAML Header
 
-The YAML header controls document metadata and rendering behavior. Here's the standard header for a lab analysis script:
+The YAML header controls document metadata and rendering behavior. Here's what a typical lab analysis header looks like:
+
+::: {.panel-tabset}
+
+#### R
 
 ```yaml
 ---
@@ -132,7 +123,7 @@ title: "Phosphoproteomics Volcano Plots"
 subtitle: "Tryptamine treatment time course"
 author: "Your Name"
 date: today
-status: development        # development | finalized | deprecated
+status: development
 format:
   html:
     toc: true
@@ -154,50 +145,66 @@ execute:
 ---
 ```
 
-### Document Metadata
+#### Python
 
-| Option | Purpose | Example |
-|--------|---------|---------|
-| `title` | Document title (appears at top) | `"My Analysis"` |
-| `subtitle` | Secondary title | `"Brief description"` |
-| `author` | Your name | `"Jane Doe"` |
-| `date` | Date; use `today` for automatic | `today` |
-| `status` | Script lifecycle stage (see [Project Organization](project-organization.qmd#script-lifecycle)) | `development` |
+```yaml
+---
+title: "Phosphoproteomics Volcano Plots"
+subtitle: "Tryptamine treatment time course"
+author: "Your Name"
+date: today
+status: development
+jupyter: python3
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    code-overflow: wrap
+    code-fold: false
+    code-tools: true
+    highlight-style: github
+    theme: cosmo
+    fontsize: 1rem
+    linestretch: 1.5
+    self-contained: true
+execute:
+  echo: true
+  warning: false
+  cache: false
+---
+```
 
-### Format Options
+:::
 
-These go under `format: html:` and control the HTML output:
+The two headers are nearly identical. Python adds `jupyter: python3` (which tells Quarto to use the Jupyter kernel for execution) and drops `message: false` (which is R-specific—R packages print startup messages, Python packages generally don't).
 
-| Option | Purpose | Recommended |
-|--------|---------|-------------|
-| `toc` | Include table of contents | `true` |
-| `toc-depth` | How many heading levels in TOC | `2` |
-| `number-sections` | Number your headings | `true` |
-| `code-overflow` | How to handle long code lines | `wrap` |
-| `code-fold` | Collapse code blocks by default | `false` for analysis scripts |
-| `code-tools` | Add show/hide all code button | `true` |
-| `highlight-style` | Syntax highlighting theme | `github` |
-| `theme` | Bootstrap theme for HTML | `cosmo` |
-| `fontsize` | Base font size | `1rem` |
-| `linestretch` | Line spacing multiplier | `1.5` |
-| `self-contained` | Single HTML file (no external dependencies) | `true` |
+Here's what the key options do:
 
-### Execute Options
+- **`status`** tracks the script's lifecycle stage (`development`, `finalized`, `deprecated`)—see [Project Organization](project-organization.qmd#script-lifecycle)
+- **`toc: true`** adds a table of contents, making long analyses navigable
+- **`self-contained: true`** bundles everything into a single HTML file you can email or share
+- **`code-tools: true`** adds a button to show/hide all code at once
+- **`echo: true`** shows your code in the output—important for analysis scripts where the code *is* part of the documentation
+- **`message: false` / `warning: false`** keeps rendered output clean by suppressing package messages and warnings
 
-These go under `execute:` and control code execution:
+For the full list of YAML options, see the [Quick Reference](#quick-reference) tables at the end of this chapter. For a copy-paste template you can use to start new scripts, see @sec-templates.
 
-| Option | Purpose | Recommended |
-|--------|---------|-------------|
-| `echo` | Show code in output | `true` for analysis scripts |
-| `message` | Show package messages | `false` (R only) |
-| `warning` | Show warnings | `false` |
-| `cache` | Cache chunk results | `false` |
+::: {.callout-warning .claude-callout title="Claude Code"}
+Claude Code can generate a complete YAML header and setup chunk tailored to your analysis.
 
-Setting `message: false` and `warning: false` globally keeps your rendered output clean. You can override these per-chunk when you need to see specific messages. We set `cache: false` explicitly to avoid subtle bugs from stale cached results.
+> I'm starting a new R analysis script for differential expression using DESeq2. Set up a QMD with the standard lab header and a setup chunk that loads DESeq2, tidyverse, and here.
 
-## The Setup Chunk
+Claude will create a `.qmd` file with the full YAML header, setup chunk with library loading, output directory creation, and provenance tracking—all following the lab conventions described in this chapter.
+:::
 
-Every analysis script should start with a setup chunk that loads packages, defines paths, sets options, and captures the git commit hash for provenance.
+### The Setup Chunk
+
+Every analysis script should start with a setup chunk that loads packages, defines paths, sets options, and captures the git commit hash for provenance tracking.
+
+::: {.panel-tabset}
+
+#### R
 
 ```r
 #| label: setup
@@ -223,55 +230,51 @@ git_hash <- system("git rev-parse --short HEAD", intern = TRUE)
 cat("Rendered from commit:", git_hash, "\n")
 ```
 
-### Key Patterns
+#### Python
 
-**`#| include: false`** — The chunk runs but doesn't appear in the rendered output. Use this for setup code that readers don't need to see.
+```python
+#| label: setup
 
-**`suppressPackageStartupMessages()`** — Prevents the startup messages that packages print when loaded. This keeps your console (and rendered output) clean.
+import subprocess, sys, random
+from pathlib import Path
+from datetime import datetime
 
-**`here::here()`** — Builds file paths relative to the project root, not the script location. Essential for reproducibility. See [Working Directory and Paths](#working-directory-and-paths) below.
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
-**`dir.create(..., showWarnings = FALSE)`** — Ensures output directories exist. The `showWarnings = FALSE` prevents errors if the directory already exists.
+PROJECT_ROOT = Path(subprocess.check_output(
+    ["git", "rev-parse", "--show-toplevel"]
+).decode().strip())
+sys.path.insert(0, str(PROJECT_ROOT / "python"))
 
-**`set.seed()`** — Makes random operations reproducible. Use a fixed seed when your analysis involves any randomness (sampling, clustering, etc.).
+# ---- Options ----
+random.seed(42)
+np.random.seed(42)
+pd.set_option("display.max_columns", None)
+sns.set_theme(style="whitegrid")
 
-**`git_hash`** — Captures the current commit for provenance tracking. This is used later in `BUILD_INFO.txt` (see [Provenance Chunk](#provenance-chunk) below).
+# ---- Paths ----
+out_dir = PROJECT_ROOT / "outs/01_script_name"
+out_dir.mkdir(parents=True, exist_ok=True)
 
-## Documenting Inputs
-
-After the setup chunk, add an explicit inputs section that loads all dependencies. This makes it immediately clear what the script needs to run:
-
-```r
-#| label: inputs
-
-# --- Inputs (from other scripts) ---
-results <- readRDS(here("outs/03_differential/limma_results.rds"))
-
-# --- Inputs (external data) ---
-metadata <- read_csv(here("data/sample_metadata.csv"))
+git_hash = subprocess.check_output(
+    ["git", "rev-parse", "--short", "HEAD"]
+).decode().strip()
+print(f"Rendered from commit: {git_hash}")
 ```
 
-Separating inputs from analysis code makes dependencies self-documenting—reading the top of any script shows exactly what it depends on. You can also document outputs in the introduction text:
+:::
 
-```markdown
-# Volcano Plots
+Both versions follow the same pattern: libraries, paths, options, provenance. The key differences:
 
-This script generates volcano plots for the phosphoproteomics time course.
+- **`#| include: false`** (R only) — hides the setup chunk from the rendered output. Python setup chunks typically stay visible because the import list serves as documentation.
+- **`suppressPackageStartupMessages()`** (R) — prevents the noisy startup messages that R packages print when loaded.
+- **`here::here()`** (R) vs **`PROJECT_ROOT`** (Python) — both build file paths relative to the project root, not the script location. The R version uses the `here` package; the Python version finds the root via `git rev-parse`. See [Working Directory and Paths](#working-directory-and-paths).
+- **`set.seed(42)`** — makes random operations reproducible. Python needs two seeds (`random.seed` for stdlib, `np.random.seed` for NumPy).
 
-**Inputs:**
-
-- `outs/03_differential/limma_results.rds`
-- `data/sample_metadata.csv`
-
-**Outputs:**
-
-- `outs/04_volcano_plots/volcano_*.pdf`
-- `outs/04_volcano_plots/significant_hits.csv`
-```
-
-See the [Project Organization](project-organization.qmd) chapter for how this fits into the larger project structure.
-
-## Code Chunks
+### Code Chunks
 
 Code chunks are fenced with triple backticks and a language identifier:
 
@@ -285,39 +288,18 @@ Code chunks are fenced with triple backticks and a language identifier:
 ```
 ````
 
-### Chunk Options
-
 Use the `#|` syntax to set options for individual chunks:
 
 ```r
 #| label: load-data
 #| message: false
-#| warning: false
 
 data <- read_csv(here::here("data", "input.csv"))
 ```
 
-The `label` option names the chunk. This is useful for:
+The `label` option names the chunk. This is useful for debugging (error messages reference the chunk label), cross-references (linking to figures), and caching.
 
-- Debugging (error messages reference the chunk label)
-- Cross-references (linking to figures)
-- Caching (cached chunks are identified by label)
-
-### Common Chunk Options
-
-| Option | Purpose | Values |
-|--------|---------|--------|
-| `label` | Chunk identifier | `load-data`, `fig-volcano` |
-| `echo` | Show this chunk's code | `true`, `false` |
-| `eval` | Run this chunk | `true`, `false` |
-| `include` | Include in output at all | `true`, `false` |
-| `message` | Show messages | `true`, `false` |
-| `warning` | Show warnings | `true`, `false` |
-| `fig-cap` | Figure caption | `"My figure title"` |
-| `fig-width` | Figure width (inches) | `6` |
-| `fig-height` | Figure height (inches) | `4` |
-
-### Chunk Patterns
+Here are the chunk patterns you'll use most often:
 
 **Hidden setup** — runs but doesn't appear in output:
 
@@ -360,202 +342,67 @@ ggplot(results, aes(x = logFC, y = -log10(pvalue))) +
 hypothetical_function()
 ```
 
-## Working with R
+For the full table of chunk options, see the [Quick Reference](#quick-reference) at the end of this chapter.
 
-### Running Code
+### Documenting Inputs and Outputs
 
-Select code in the editor and press **Cmd+Enter** (macOS) or **Ctrl+Enter** (Windows) to run it in the R console. For entire chunks, use **Cmd+Shift+Enter**.
+After the setup chunk, add an explicit inputs section that loads all dependencies. This makes it immediately clear what the script needs to run:
 
-When you run R code:
+::: {.panel-tabset}
 
-- Output appears in the Console
-- Plots appear in the Plots pane (and can be viewed in Data Viewer for inspection)
-- Objects are created in your R session (visible in Variables pane)
+#### R
 
-### The Data Viewer
+```r
+#| label: inputs
 
-Click any dataframe in the Variables pane to open it in Positron's Data Viewer. This is essential for exploratory work—you'll constantly check data after transformations to verify they worked correctly.
+# --- Inputs (from other scripts) ---
+results <- readRDS(here("outs/03_differential/limma_results.rds"))
 
-### renv Integration
-
-If your project uses renv (and it should), the R console automatically activates it. You'll see:
-
-```
-- Project '/path/to/project' loaded. [renv 1.0.0]
+# --- Inputs (external data) ---
+metadata <- read_csv(here("data/sample_metadata.csv"))
 ```
 
-This confirms you're using the project's package library, not your global library.
+#### Python
 
-## Working with Python {#working-with-python}
+```python
+#| label: inputs
 
-Quarto `.qmd` is the standard format for Python data analysis in the lab, just as it is for R. Plain `.py` files are for standalone utilities, CLI tools, and library code—not for data analysis scripts. Everything described above (YAML headers, setup chunks, inputs, provenance) applies to Python QMD too.
+# --- Inputs (from other scripts) ---
+results = pd.read_parquet(PROJECT_ROOT / "outs/03_differential/deseq_results.parquet")
 
-### Running Code
-
-The same shortcuts work for Python: **Cmd+Enter** to run the current line or selection.
-
-For Python chunks to execute during render, you need `ipykernel` installed in your conda environment:
-
-```default
-conda install ipykernel
+# --- Inputs (external data) ---
+metadata = pd.read_csv(PROJECT_ROOT / "data/sample_metadata.csv")
 ```
 
-### Selecting the Interpreter
-
-Ensure Positron is using the correct conda environment:
-
-1. Open Command Palette (Cmd/Ctrl+Shift+P)
-2. Type "Python: Select Interpreter"
-3. Choose your project's conda environment
-
-### Rendering Python QMD
-
-::: {.callout-important}
-## Activate Conda Before Rendering
-
-Python QMD files require the conda environment to be active when you render. Without this, Quarto uses the wrong Python or can't find your packages:
-
-```default
-source ~/miniconda3/etc/profile.d/conda.sh && conda activate my-project && quarto render scripts/02_analysis.qmd
-```
-
-This is the #1 Python QMD gotcha. If `quarto render` fails with `ModuleNotFoundError`, check that your conda environment is active.
 :::
 
-### Python YAML Header
+Separating inputs from analysis code makes dependencies self-documenting—reading the top of any script shows exactly what it depends on. You can also document inputs and outputs in the introduction text:
 
-The Python YAML header is the same as R, with two differences: add `jupyter: python3` and drop `message: false` (which is R-specific):
+```markdown
+# Volcano Plots
 
-```yaml
----
-title: "Script Title"
-subtitle: "Brief description"
-author: "Your Name"
-date: today
-status: development
-jupyter: python3
-format:
-  html:
-    toc: true
-    toc-depth: 2
-    number-sections: true
-    code-overflow: wrap
-    code-fold: false
-    code-tools: true
-    highlight-style: github
-    theme: cosmo
-    fontsize: 1rem
-    linestretch: 1.5
-    self-contained: true
-execute:
-  echo: true
-  warning: false
-  cache: false
----
+This script generates volcano plots for the phosphoproteomics time course.
+
+**Inputs:**
+
+- `outs/03_differential/limma_results.rds`
+- `data/sample_metadata.csv`
+
+**Outputs:**
+
+- `outs/04_volcano_plots/volcano_*.pdf`
+- `outs/04_volcano_plots/significant_hits.csv`
 ```
 
-### Python Setup Chunk
-
-```python
-#| label: setup
-
-import subprocess
-import sys
-import random
-from pathlib import Path
-from datetime import datetime
-
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-PROJECT_ROOT = Path(subprocess.check_output(
-    ["git", "rev-parse", "--show-toplevel"]
-).decode().strip())
-sys.path.insert(0, str(PROJECT_ROOT / "python"))
-# from helpers import ...  # if needed
-
-# ---- Options ----
-random.seed(42)
-np.random.seed(42)
-pd.set_option("display.max_columns", None)
-sns.set_theme(style="whitegrid")
-
-# ---- Paths ----
-out_dir = PROJECT_ROOT / "outs/XX_script_name"
-out_dir.mkdir(parents=True, exist_ok=True)
-
-git_hash = subprocess.check_output(
-    ["git", "rev-parse", "--short", "HEAD"]
-).decode().strip()
-print(f"Rendered from commit: {git_hash}")
-```
-
-Key differences from R:
-
-- **`PROJECT_ROOT`** replaces `here::here()` — found via `git rev-parse --show-toplevel`
-- **Helper loading** uses `sys.path.insert()` instead of `source()`
-- **Two random seeds** — `random.seed(42)` for Python stdlib, `np.random.seed(42)` for NumPy
-
-### Python Figure Saving
-
-Save figures to `outs/` AND display inline:
-
-```python
-#| label: fig-example
-#| fig-cap: "Description of figure"
-
-fig, ax = plt.subplots(figsize=(6, 4))
-# ... plotting code ...
-plt.tight_layout()
-
-# Save to outs/ AND display inline
-fig.savefig(out_dir / "figure_name.pdf", dpi=300, bbox_inches="tight")
-fig.savefig(out_dir / "figure_name.png", dpi=300, bbox_inches="tight")
-plt.show()
-```
-
-### Python Provenance Chunk
-
-```python
-#| label: build-info
-
-(out_dir / "BUILD_INFO.txt").write_text(
-    f"script: XX_script_name.qmd\n"
-    f"commit: {git_hash}\n"
-    f"date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"
-)
-
-import session_info
-session_info.show()
-```
-
-::: {.callout-note}
-`session_info` must be installed in your conda environment: `pip install session-info`. Include it in every data science environment.
-:::
-
-### Language Mixing
-
-Do not mix R and Python chunks in a single `.qmd`. Each script uses one language. Scripts communicate through files in `outs/`, not shared memory. If an R script produces data that a Python script needs, save it as Parquet (see [Project Organization](project-organization.qmd#output-files)).
-
-### R vs Python Quick Reference
-
-| Convention | R | Python |
-|------------|---|--------|
-| Project root | `here::here()` | `PROJECT_ROOT` (from git) |
-| Read CSV | `read_csv(here("data/file.csv"))` | `pd.read_csv(PROJECT_ROOT / "data/file.csv")` |
-| Read TSV | `read_tsv(here("data/file.tsv"))` | `pd.read_csv(PROJECT_ROOT / "data/file.tsv", sep="\t")` |
-| Read Parquet | `arrow::read_parquet(here(...))` | `pd.read_parquet(PROJECT_ROOT / ...)` |
-| Save figure | `ggsave(file.path(dir_out, "fig.pdf"))` | `fig.savefig(out_dir / "fig.pdf")` |
-| Random seed | `set.seed(42)` | `random.seed(42)` + `np.random.seed(42)` |
-| Session info | `sessionInfo()` | `session_info.show()` |
-| Chunk label | `{r label-name}` or `#| label:` | `#| label:` only |
-| Helper loading | `source(here("R/helpers.R"))` | `sys.path.insert(0, str(PROJECT_ROOT / "python"))` |
+See the [Project Organization](project-organization.qmd) chapter for how this fits into the larger project structure.
 
 ## Saving Outputs
 
 Don't rely on the Plots pane or copy-paste. Save figures and tables to files explicitly:
+
+::: {.panel-tabset}
+
+#### R
 
 ```r
 #| label: fig-volcano
@@ -577,18 +424,39 @@ ggsave(
 )
 ```
 
-This approach:
-
-- Embeds the figure in the rendered HTML (via `print(p)`)
-- Saves a high-quality PDF for publication or further use
-- Makes the output traceable (the file exists in `outs/`)
-
 For tables:
 
 ```r
-# Save results table
 write_csv(significant_hits, file.path(dir_out, "significant_hits.csv"))
 ```
+
+#### Python
+
+```python
+#| label: fig-volcano
+#| fig-cap: "Volcano plot showing differential phosphorylation"
+
+fig, ax = plt.subplots(figsize=(6, 4))
+ax.scatter(results["logFC"], -np.log10(results["adj_pval"]))
+ax.set_xlabel("log2 Fold Change")
+ax.set_ylabel("-log10 Adjusted P-value")
+plt.tight_layout()
+
+# Save to output folder AND display inline
+fig.savefig(out_dir / "volcano_plot.pdf", dpi=300, bbox_inches="tight")
+fig.savefig(out_dir / "volcano_plot.png", dpi=300, bbox_inches="tight")
+plt.show()
+```
+
+For tables:
+
+```python
+significant_hits.to_csv(out_dir / "significant_hits.csv", index=False)
+```
+
+:::
+
+This approach embeds the figure in the rendered HTML, saves a high-quality copy for publication or further use, and makes the output traceable (the file exists in `outs/`).
 
 ## Working Directory and Paths
 
@@ -605,7 +473,9 @@ project/
 
 From `scripts/01_analysis.qmd`, a relative path to the data would be `../data/input.csv`. But this breaks if you move the script or run it from a different location.
 
-### The Solution: `here::here()`
+::: {.panel-tabset}
+
+#### R: `here::here()`
 
 The `here` package finds the project root (by looking for `.git`, `.Rproj`, etc.) and builds paths from there:
 
@@ -617,27 +487,59 @@ data <- read_csv(here::here("data", "input.csv"))
 data <- read_csv("../data/input.csv")  # Don't do this
 ```
 
-Use `here::here()` for all file paths in your scripts. It makes your code portable and reproducible.
+#### Python: `PROJECT_ROOT`
+
+Python doesn't have a direct equivalent of `here`, so the setup chunk finds the project root via Git:
+
+```python
+PROJECT_ROOT = Path(subprocess.check_output(
+    ["git", "rev-parse", "--show-toplevel"]
+).decode().strip())
+
+# Always works, regardless of working directory
+data = pd.read_csv(PROJECT_ROOT / "data/input.csv")
+
+# Instead of fragile relative paths
+data = pd.read_csv("../data/input.csv")  # Don't do this
+```
+
+:::
+
+Use project-root-relative paths for all file operations in your scripts. It makes your code portable and reproducible.
 
 ## Rendering
 
 ### From the Terminal
 
+::: {.panel-tabset}
+
+#### R
+
 ```default
-# Render an R document
 quarto render scripts/01_analysis.qmd
+```
 
-# Render a Python document (conda must be active!)
+#### Python
+
+Python QMD files require the conda environment to be active when you render:
+
+```default
 source ~/miniconda3/etc/profile.d/conda.sh && conda activate my-project && quarto render scripts/02_plots.qmd
+```
 
-# Render all .qmd files in a directory
+If `quarto render` fails with `ModuleNotFoundError`, check that your conda environment is active. This is the number one Python QMD gotcha.
+
+:::
+
+To render all `.qmd` files in a directory:
+
+```default
 quarto render scripts/
 ```
 
 ### From Positron
 
-- Click the **Render** button in the editor toolbar
-- Or use **Cmd+Shift+K** (macOS) / **Ctrl+Shift+K** (Windows)
+Click the **Render** button in the editor toolbar, or use **Cmd+Shift+K** (macOS) / **Ctrl+Shift+K** (Windows).
 
 ### Preview Mode
 
@@ -653,15 +555,11 @@ This opens a browser window that automatically refreshes when you save changes. 
 
 ### Render Before Committing
 
-Always render the full document before committing to Git. This catches:
-
-- Missing packages (installed interactively but not in lockfile)
-- Missing objects (created interactively but not in the script)
-- Order dependencies (chunks that depend on earlier chunks you modified)
+Always render the full document before committing to Git. This catches missing packages (installed interactively but not in your lockfile), missing objects (created interactively but not in the script), and order dependencies (chunks that depend on earlier chunks you modified).
 
 ### Self-Contained Scripts
 
-Every `.qmd` should run successfully from a fresh R session. Don't assume objects exist from previous interactive work. If render fails, your script isn't self-contained.
+Every `.qmd` should run successfully from a fresh R or Python session. Don't assume objects exist from previous interactive work. If render fails, your script isn't self-contained.
 
 ### Clear Section Structure
 
@@ -693,7 +591,6 @@ if (length(missing_cols) > 0) {
   stop("Missing required columns: ", paste(missing_cols, collapse = ", "))
 }
 
-# Check for expected conditions
 stopifnot("No data loaded" = nrow(data) > 0)
 ```
 
@@ -701,7 +598,11 @@ These chunks catch problems early and provide clear error messages.
 
 ### Provenance Chunk {#provenance-chunk}
 
-End every script with a chunk that writes `BUILD_INFO.txt` and prints session information:
+End every script with a chunk that writes `BUILD_INFO.txt` and prints session information. This records which script, commit, and timestamp produced the outputs—answering "when was this last regenerated?"
+
+::: {.panel-tabset}
+
+#### R
 
 ```r
 #| label: build-info
@@ -718,10 +619,22 @@ writeLines(
 sessionInfo()
 ```
 
-This records:
+#### Python
 
-- **BUILD_INFO.txt** — which script, commit, and timestamp produced the outputs (answers "when was this last regenerated?")
-- **sessionInfo()** — R version, package versions, and platform in the rendered HTML
+```python
+#| label: build-info
+
+(out_dir / "BUILD_INFO.txt").write_text(
+    f"script: 01_script_name.qmd\n"
+    f"commit: {git_hash}\n"
+    f"date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"
+)
+
+import session_info
+session_info.show()
+```
+
+:::
 
 ## Common Issues
 
@@ -735,15 +648,11 @@ Claude will trace the error to its cause—typically a missing object that exist
 
 ### "Object not found" During Render
 
-Code that works interactively may fail during render if you rely on objects not created in the script.
-
-**Cause**: You created an object manually in the console, then used it in a chunk without creating it in the script.
-
-**Fix**: Ensure all objects are created within the `.qmd`. Render frequently to catch this early.
+Code that works interactively may fail during render if you rely on objects not created in the script. You created an object manually in the console, then used it in a chunk without creating it in the script. Ensure all objects are created within the `.qmd` and render frequently to catch this early.
 
 ### Figures Not Appearing
 
-If a plot doesn't show up in the rendered output:
+If a plot doesn't show up in the rendered output, add an explicit `print()`:
 
 ```r
 p <- ggplot(data, aes(x, y)) + geom_point()
@@ -754,15 +663,7 @@ The explicit `print()` is needed when the plot is the result of an assignment or
 
 ### Package Messages Cluttering Output
 
-Set `message: false` and `warning: false` in the `execute:` block:
-
-```yaml
-execute:
-  message: false
-  warning: false
-```
-
-Or per-chunk for specific chunks.
+Set `message: false` and `warning: false` in the YAML `execute:` block to suppress them globally, or per-chunk for specific chunks.
 
 ### Output File Is Huge
 
@@ -774,136 +675,49 @@ If your HTML is very large:
 
 ### Chunk Takes Forever
 
-For long-running chunks during development, consider:
+For long-running chunks during development, consider `#| cache: true`. This caches the chunk's results—subsequent renders skip execution if the code hasn't changed. Use sparingly, as caching can cause subtle bugs if dependencies change.
 
-```r
-#| cache: true
-```
+## Quick Reference {#quick-reference}
 
-This caches the chunk's results. Subsequent renders skip execution if the code hasn't changed. Use sparingly—caching can cause subtle bugs if dependencies change.
+### YAML Options
 
-## Quick Reference
+#### Document Metadata
 
-### Typical YAML Header (R)
+| Option | Purpose | Example |
+|--------|---------|---------|
+| `title` | Document title (appears at top) | `"My Analysis"` |
+| `subtitle` | Secondary title | `"Brief description"` |
+| `author` | Your name | `"Jane Doe"` |
+| `date` | Date; use `today` for automatic | `today` |
+| `status` | Script lifecycle stage | `development` |
+| `jupyter` | Jupyter kernel (Python only) | `python3` |
 
-```yaml
----
-title: "Analysis Title"
-subtitle: "Project context"
-author: "Your Name"
-date: today
-status: development
-format:
-  html:
-    toc: true
-    toc-depth: 2
-    number-sections: true
-    code-overflow: wrap
-    code-fold: false
-    code-tools: true
-    highlight-style: github
-    theme: cosmo
-    fontsize: 1rem
-    linestretch: 1.5
-    self-contained: true
-execute:
-  echo: true
-  message: false
-  warning: false
-  cache: false
----
-```
+#### Format Options (under `format: html:`)
 
-### Typical YAML Header (Python)
+| Option | Purpose | Recommended |
+|--------|---------|-------------|
+| `toc` | Include table of contents | `true` |
+| `toc-depth` | How many heading levels in TOC | `2` |
+| `number-sections` | Number your headings | `true` |
+| `code-overflow` | How to handle long code lines | `wrap` |
+| `code-fold` | Collapse code blocks by default | `false` |
+| `code-tools` | Add show/hide all code button | `true` |
+| `highlight-style` | Syntax highlighting theme | `github` |
+| `theme` | Bootstrap theme for HTML | `cosmo` |
+| `fontsize` | Base font size | `1rem` |
+| `linestretch` | Line spacing multiplier | `1.5` |
+| `self-contained` | Single HTML file | `true` |
 
-```yaml
----
-title: "Analysis Title"
-subtitle: "Project context"
-author: "Your Name"
-date: today
-status: development
-jupyter: python3
-format:
-  html:
-    toc: true
-    toc-depth: 2
-    number-sections: true
-    code-overflow: wrap
-    code-fold: false
-    code-tools: true
-    highlight-style: github
-    theme: cosmo
-    fontsize: 1rem
-    linestretch: 1.5
-    self-contained: true
-execute:
-  echo: true
-  warning: false
-  cache: false
----
-```
+#### Execute Options (under `execute:`)
 
-### R Setup Chunk Template
+| Option | Purpose | Recommended |
+|--------|---------|-------------|
+| `echo` | Show code in output | `true` |
+| `message` | Show package messages (R only) | `false` |
+| `warning` | Show warnings | `false` |
+| `cache` | Cache chunk results | `false` |
 
-```r
-#| label: setup
-#| include: false
-
-# ---- Libraries ----
-suppressPackageStartupMessages({
-  library(tidyverse)
-  library(here)
-})
-
-# ---- Paths ----
-dir_data <- here::here("data")
-dir_out <- here::here("outs", "01_script_name")
-dir.create(dir_out, recursive = TRUE, showWarnings = FALSE)
-
-# ---- Options ----
-options(stringsAsFactors = FALSE)
-set.seed(42)
-
-# ---- Provenance ----
-git_hash <- system("git rev-parse --short HEAD", intern = TRUE)
-cat("Rendered from commit:", git_hash, "\n")
-```
-
-### Python Setup Chunk Template
-
-```python
-#| label: setup
-
-import subprocess, sys, random
-from pathlib import Path
-from datetime import datetime
-
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-PROJECT_ROOT = Path(subprocess.check_output(
-    ["git", "rev-parse", "--show-toplevel"]
-).decode().strip())
-sys.path.insert(0, str(PROJECT_ROOT / "python"))
-
-random.seed(42)
-np.random.seed(42)
-pd.set_option("display.max_columns", None)
-sns.set_theme(style="whitegrid")
-
-out_dir = PROJECT_ROOT / "outs/XX_script_name"
-out_dir.mkdir(parents=True, exist_ok=True)
-
-git_hash = subprocess.check_output(
-    ["git", "rev-parse", "--short", "HEAD"]
-).decode().strip()
-print(f"Rendered from commit: {git_hash}")
-```
-
-### Chunk Options Reference
+### Chunk Options
 
 | Option | Purpose | Values |
 |--------|---------|--------|
@@ -921,6 +735,20 @@ print(f"Rendered from commit: {git_hash}")
 | `fig-dpi` | Resolution | Number (default 72) |
 | `fig-format` | Output format | `png` / `svg` / `pdf` |
 | `tbl-cap` | Table caption | String |
+
+### R vs Python Comparison
+
+| Convention | R | Python |
+|------------|---|--------|
+| Project root | `here::here()` | `PROJECT_ROOT` (from git) |
+| Read CSV | `read_csv(here("data/file.csv"))` | `pd.read_csv(PROJECT_ROOT / "data/file.csv")` |
+| Read TSV | `read_tsv(here("data/file.tsv"))` | `pd.read_csv(PROJECT_ROOT / "data/file.tsv", sep="\t")` |
+| Read Parquet | `arrow::read_parquet(here(...))` | `pd.read_parquet(PROJECT_ROOT / ...)` |
+| Save figure | `ggsave(file.path(dir_out, "fig.pdf"))` | `fig.savefig(out_dir / "fig.pdf")` |
+| Random seed | `set.seed(42)` | `random.seed(42)` + `np.random.seed(42)` |
+| Session info | `sessionInfo()` | `session_info.show()` |
+| Chunk label | `{r label-name}` or `#| label:` | `#| label:` only |
+| Helper loading | `source(here("R/helpers.R"))` | `sys.path.insert(0, str(PROJECT_ROOT / "python"))` |
 
 ### Quarto Commands
 
@@ -940,3 +768,19 @@ print(f"Rendered from commit: {git_hash}")
 | Run chunk | Cmd+Shift+Enter | Ctrl+Shift+Enter |
 | Render document | Cmd+Shift+K | Ctrl+Shift+K |
 | Insert R chunk | Cmd+Option+I | Ctrl+Alt+I |
+
+For complete, copy-paste-ready templates (YAML headers, setup chunks, provenance chunks for both R and Python), see @sec-templates.
+
+## Python-Specific Notes
+
+This section collects the Python-specific details that don't fit neatly into the tabsets above.
+
+**Conda must be active for rendering.** This is the number one Python QMD gotcha. Unlike R (which finds packages via renv automatically), Python QMD files require the conda environment to be active when you render. If `quarto render` fails with `ModuleNotFoundError`, activate your environment first.
+
+**Install `ipykernel`.** Quarto uses Jupyter kernels to execute Python code. Your conda environment needs `ipykernel` installed (`conda install ipykernel`) or rendering will fail.
+
+**Install `session-info`.** For the provenance chunk to work, install `session-info` in your conda environment: `pip install session-info`.
+
+**Don't mix languages.** Do not mix R and Python chunks in a single `.qmd`. Each script uses one language. Scripts communicate through files in `outs/`, not shared memory. If an R script produces data that a Python script needs, save it as Parquet (see [Project Organization](project-organization.qmd#housekeeping)).
+
+**Selecting the interpreter.** Ensure Positron is using the correct conda environment: open the Command Palette (Cmd/Ctrl+Shift+P), type "Python: Select Interpreter", and choose your project's environment.
