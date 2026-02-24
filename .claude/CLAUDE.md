@@ -121,7 +121,7 @@ Screenshots are marked with `[TODO: screenshot]` throughout.
 - **Restart terminal reminders**: After every installation step, remind students to close and reopen their terminal so new commands are available.
 - **Homebrew references**: Always briefly explain what Homebrew is when first mentioning `brew` commands, and provide a non-Homebrew alternative (download link).
 - **Tone**: Friendly, narrative paragraphs over bullet lists. Write things out rather than listing them. The audience has some coding experience but is not expert.
-- **Parts 2–4 are marked "Work in Progress"** in the Welcome page.
+- **Parts 1–2 are complete; Parts 3–4 are marked "Work in Progress"** in the Welcome page.
 
 ## Notes
 

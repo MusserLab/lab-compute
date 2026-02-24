@@ -60,7 +60,7 @@ When you ran `renv::init()` in your first project, renv created several files in
 
 The **`renv/` folder** is your project's private package library. When you installed Seurat, ggplot2, and the other packages, they went here — not into a shared system library that all your projects use. This is the key idea: each project has its own packages, so installing something for Project A can't break Project B.
 
-The **`renv.lock`** file is a JSON snapshot of every package in your project library — names, exact versions, and where they came from (CRAN, Bioconductor, GitHub). This is what makes your analysis reproducible. When a collaborator clones your project and runs `renv::restore()`, renv reads this file and installs every package at the exact version you recorded.
+The **`renv.lock`** file is a snapshot of every package in your project library — names, exact versions, and where they came from (CRAN, Bioconductor, GitHub). This is what makes your analysis reproducible. When a collaborator clones your project and runs `renv::restore()`, renv reads this file and installs every package at the exact version you recorded.
 
 The **`.Rprofile`** file runs automatically when R starts in this folder. It calls the activation script (`renv/activate.R`), which tells R to use the project library instead of the system library. That's why you see `Project loaded. [renv 1.0.0]` in the console when you open the project in Positron — it's renv confirming it's active.
 

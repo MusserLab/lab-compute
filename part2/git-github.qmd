@@ -399,7 +399,7 @@ A few more things worth knowing about as you use GitHub:
 
 **Forking.** If you want to experiment with someone else's public repository without affecting the original, you can **fork** it — this creates a copy under your account. Any changes you make stay in your fork unless you submit a pull request back to the original.
 
-**GitHub in your browser vs. on your computer.** Anything you do on GitHub's website (creating issues, editing files, browsing history) affects the remote repository. To get those changes on your local computer, you need to **pull**. Anything you do on your computer (editing code, committing) stays local until you **push**.
+**GitHub in your browser vs. on your computer.** Changes you make on GitHub's website (creating issues, editing files) affect the remote repository. To get those changes on your local computer, you need to **pull**. Anything you do on your computer (editing code, committing) stays local until you **push**.
 
 ## As Your Projects Grow: Branches and Pull Requests {#as-your-projects-grow-branches-and-pull-requests}
 

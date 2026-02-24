@@ -181,7 +181,7 @@ execute:
 
 :::
 
-The two headers are nearly identical. Python adds `jupyter: python3` (which tells Quarto to use the Jupyter kernel for execution) and drops `message: false` (which is R-specific—R packages print startup messages, Python packages generally don't).
+The two headers are nearly identical. Python adds `jupyter: python3` (which tells Quarto how to run the Python code) and drops `message: false` (which is R-specific—R packages print startup messages, Python packages generally don't).
 
 Here's what the key options do:
 

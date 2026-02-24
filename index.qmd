@@ -18,7 +18,7 @@ This guide is for lab members who have some experience writing code — maybe yo
 
 ::: {.callout-important}
 ## Work in Progress
-Parts 2, 3, and 4 are still being written. Some chapters are complete, others are drafts or placeholders. Part 1 is ready to use now.
+Parts 1 and 2 are complete. Parts 3 and 4 are still being written — some chapters are drafts or placeholders.
 :::
 
 ## By the End of Your First Project

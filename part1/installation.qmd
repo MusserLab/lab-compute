@@ -122,7 +122,7 @@ quarto --version
 
 ## 4. Claude Code
 
-Claude Code is an AI coding assistant that runs in your terminal or integrates directly into Positron. Unlike chat-based AI tools, Claude Code can read and write files in your project, run commands, and help you build and debug code interactively. It understands context from your entire codebase, making it useful for writing code, explaining unfamiliar code, debugging errors, and planning larger projects. Think of it as a knowledgeable collaborator who's always available.
+Claude Code is an AI coding assistant that runs in your terminal or integrates directly into Positron. Unlike chat-based AI tools, Claude Code can read and write files in your project, run commands, and help you build and debug code interactively. It can see and work with your entire codebase, making it useful for writing code, explaining unfamiliar code, debugging errors, and planning larger projects. Think of it as a knowledgeable collaborator who's always available.
 
 ### Prerequisites
 

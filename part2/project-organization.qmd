@@ -36,7 +36,7 @@ my-project/
 └── README.md
 ```
 
-If you're using Claude Code (covered in Part 3), the `/new-project` command scaffolds this entire structure for you — creating directories, initializing Git, setting up conda and renv, and generating a `.claude/CLAUDE.md` with your project's conventions. But it's worth understanding what each piece does.
+If you're using Claude Code (covered in Part 3), the `/new-project` command creates this entire structure for you — creating directories, initializing Git, setting up conda and renv, and generating a `.claude/CLAUDE.md` with your project's conventions. But it's worth understanding what each piece does.
 
 The `.claude/` directory holds project-level configuration for Claude Code, including a `CLAUDE.md` file that describes the project's purpose, environment, and conventions. As a project matures, you may also add planning documents here to track multi-session work. You'll learn more about this in the [Claude Code chapters](../claude-code/getting-started.qmd).
 
@@ -263,7 +263,7 @@ A few things to notice:
 - **Shared data** that multiple sections use can live at the top level of `data/` (e.g., `data/gene_annotations/`).
 - **Cross-section scripts** like `combined/01_integration.qmd` can read from any section's `outs/` folder.
 
-Use **semantic names** for sections—names that describe what the analysis is about (`phosphoproteomics`, `transcriptomics`, `figures`) rather than generic labels. A new lab member should be able to look at the directory names and understand the project's scope.
+Use **descriptive names** for sections—names that describe what the analysis is about (`phosphoproteomics`, `transcriptomics`, `figures`) rather than generic labels. A new lab member should be able to look at the directory names and understand the project's scope.
 
 ### Alternative: Prefixes
 

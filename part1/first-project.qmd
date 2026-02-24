@@ -336,7 +336,7 @@ Run the `fig-umap` chunk:
 DimPlot(sponge, reduction = "umap", label = TRUE) + NoLegend()
 ```
 
-The UMAP is one of many ways to look at single-cell data. Each dot is a cell, colored by cluster, and cells that are close together have similar gene expression. It's a useful 2D summary of high-dimensional relationships, but it's important not to over-interpret distances or shapes—UMAP is a visualization tool, not an analysis endpoint. The real work is figuring out what each cluster *is*, which we'll do next.
+The UMAP is one of many ways to look at single-cell data. Each dot is a cell, colored by cluster, and cells that are close together have similar gene expression. It's a useful 2D summary of relationships among thousands of genes, but it's important not to over-interpret distances or shapes—UMAP is a visualization tool, not an analysis endpoint. The real work is figuring out what each cluster *is*, which we'll do next.
 
 ![UMAP with cluster labels](../images/first-project/umap-clusters.png)
 
@@ -424,7 +424,7 @@ mkdir -p outs/01_seurat_basics
 mv scripts/01_seurat_basics.html outs/01_seurat_basics/
 ```
 
-The first command renders the document—Quarto re-executes all your R code from scratch. Then we move the HTML output into the `outs/` folder, following the lab convention of keeping script outputs separate from source code. In Part 2, you'll learn about additional conventions for this folder—like `BUILD_INFO.txt` files that track which code version produced each output—but for now, just getting the output into the right place is enough. When it finishes, open `outs/01_seurat_basics/01_seurat_basics.html` in your browser to see the full analysis as a formatted report—code, plots, and your written explanations all together.
+The first command renders the document—Quarto re-executes all your R code from scratch. Then we move the HTML output into the `outs/` folder, following the lab convention of keeping script outputs separate from source code. In Part 2, you'll learn about additional conventions for this folder, like `BUILD_INFO.txt` files that track which code version produced each output. For now, just getting the output into the right place is enough. When it finishes, open `outs/01_seurat_basics/01_seurat_basics.html` in your browser to see the full analysis as a formatted report—code, plots, and your written explanations all together.
 
 ![The rendered HTML report in a browser](../images/first-project/rendered-html-report.png)
 

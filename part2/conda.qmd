@@ -104,7 +104,7 @@ Here's what each piece means:
 
 Conda will show you a list of packages it plans to install (including dependencies) and ask you to confirm. Type `y` and hit Enter.
 
-The packages in this example are a typical starting point for data science work. `numpy` handles numerical computing, `pandas` gives you dataframes (similar to R's dataframes or tibbles), `matplotlib` is the core plotting library, and `ipykernel` is required for Quarto to execute Python `.qmd` files. Without `ipykernel`, you'll get a kernel error when trying to render — so always include it.
+The packages in this example are a typical starting point for data science work. `numpy` handles numerical computing, `pandas` gives you dataframes (similar to R's dataframes or tibbles), `matplotlib` is the core plotting library, and `ipykernel` is required for Quarto to execute Python `.qmd` files. Without `ipykernel`, you'll get an error when trying to render — so always include it.
 
 You might also want `seaborn` (statistical visualization built on matplotlib) or `scikit-learn` (machine learning). You can add these during creation or install them later — there's no penalty for adding packages after the environment exists.
 
@@ -220,7 +220,7 @@ To create this file from your current environment:
 conda env export --from-history > environment.yml
 ```
 
-The `--from-history` flag is important. It records only the packages you explicitly installed, not every transitive dependency. This makes the file portable across operating systems — a colleague on Windows can recreate an environment you built on macOS, because conda resolves platform-specific dependencies at install time.
+The `--from-history` flag is important. It records only the packages you explicitly installed, not every sub-package that was pulled in automatically as a dependency. This makes the file portable across operating systems — a colleague on Windows can recreate an environment you built on macOS, because conda resolves platform-specific dependencies at install time.
 
 The resulting file looks like this:
 

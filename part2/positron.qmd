@@ -8,11 +8,11 @@ Positron is your home base. It's where you write code, explore data, run analyse
 
 If you're coming from RStudio, Positron will feel familiar: there's an R console, a variable explorer, a data viewer, and a file browser. But Positron adds capabilities that matter for modern data science workflows.
 
-**First-class support for both R and Python.** Most lab projects use both languages. In RStudio, Python support is an afterthought. In Positron, both languages are treated equally — you can have R and Python sessions running side by side, each with its own console and environment viewer. In practice, we usually write one language per script (`.qmd` file), and Positron handles switching between them seamlessly.
+**Full support for both R and Python.** Most lab projects use both languages. In RStudio, Python support is an afterthought. In Positron, both languages are treated equally — you can have R and Python sessions running side by side, each with its own console and environment viewer. In practice, we usually write one language per script (`.qmd` file), and Positron handles switching between them seamlessly.
 
 **A superior Data Viewer.** Click any dataframe in the Variables pane and it opens in a fast, interactive viewer. You can sort columns, filter rows, and search for values. For large datasets, it handles millions of rows smoothly. The Data Viewer is central to exploratory analysis — you'll use it constantly.
 
-**The VS Code extension ecosystem.** Positron inherits thousands of extensions: linters, formatters, Git tools, AI coding assistants. Unlike RStudio, which exists in its own world, Positron connects you to the broader developer tooling ecosystem.
+**Access to VS Code extensions.** Positron inherits thousands of extensions: linters, formatters, Git tools, AI coding assistants. Unlike RStudio, which exists in its own world, Positron connects you to the broader developer tooling ecosystem.
 
 ### RStudio → Positron Translation {#rstudio-positron-translation}
 
@@ -22,7 +22,7 @@ If you're coming from RStudio, here are the key conceptual shifts:
 |---|---|---|
 | "Project" (.Rproj) | **Open Folder / Workspace** | The folder is the unit of work; you open it as a workspace. |
 | R console | R console | Still an R process, but integrated with a broader editor/terminal model. |
-| Python integration | Python interpreter + (sometimes) **kernel** | You must be explicit about which Python environment is used for scripts/notebooks. |
+| Python integration | **Python interpreter** | You choose which Python environment to use for each project. |
 | R package library | `renv` | Packages are pinned per project; do not rely on global R libraries. |
 | "Environment pane" | variable viewers + terminal + notebooks | Different UI, same goals. |
 
@@ -192,7 +192,7 @@ If you have multiple R versions installed (via rig), you can choose which one Po
 2. Type "R: Select R Binary"
 3. Choose the version you want
 
-This usually only needs to be done **once per project** — Positron remembers your choice and uses it every time you open the project. If you later use the Musser Lab's `/new-project` skill in Claude Code (covered in Part 3), it sets the R version automatically when scaffolding a new project.
+This usually only needs to be done **once per project** — Positron remembers your choice and uses it every time you open the project. If you later use the Musser Lab's `/new-project` skill in Claude Code (covered in Part 3), it sets the R version automatically when setting up a new project.
 
 See the [R: rig & renv chapter](renv.qmd) for more on managing R versions and packages.
 
