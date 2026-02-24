@@ -327,19 +327,7 @@ For this walkthrough, you can use either. For real lab projects, use the MusserL
 
 ### Authenticate with GitHub
 
-If you haven't already, install and authenticate the GitHub CLI:
-
-```default
-# macOS
-brew install gh
-
-# Windows: Download from https://cli.github.com/
-
-# Authenticate
-gh auth login
-```
-
-When prompted, choose **"Login with a web browser"** and follow the prompts.
+If you haven't already set up the GitHub CLI (`gh`), follow the installation and authentication steps in the [Git & GitHub chapter](../part2/git-github.qmd#sec-github-auth). Once authenticated, you can create repositories and push code from the terminal.
 
 ### Create and Push to GitHub
 

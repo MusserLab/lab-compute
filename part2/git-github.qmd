@@ -4,9 +4,13 @@ number-sections: false
 
 # Git & GitHub
 
+In [Your First R Project](../part1/first-project.qmd), you wrote an analysis script, ran it, and got results. Everything was in one session — you edited, re-ran, edited some more. But what happens tomorrow, when you want to undo a change you made this afternoon? Or next month, when a reviewer asks you to re-run the analysis the way it was before you changed the normalization method? What happens when a collaborator needs to work on the same project, or when your laptop dies?
+
+These are the problems Git and GitHub solve. Git keeps a complete history of every change you make to your code, and GitHub backs it up online where others can access it. Together, they form the backbone of how we manage code in the lab — think of them as the computational equivalent of a lab notebook. This chapter walks you through installing both tools, understanding how they work, and using them in your daily workflow.
+
 ## What is Git?
 
-Git is a **version control system**—software that tracks every change you make to your files over time. Think of it as an unlimited undo history for your entire project, with the ability to see exactly what changed, when, and why.
+Git is a **version control system** — software that tracks every change you make to your files over time. Think of it as an unlimited undo history for your entire project, with the ability to see exactly what changed, when, and why.
 
 Without version control, projects tend to accumulate files like this:
 
@@ -18,160 +22,234 @@ analysis_v2_final_FINAL.R
 analysis_v2_final_FINAL_fixed.R
 ```
 
-With Git, you have one file (`analysis.R`) and a complete history of every version. You can:
+With Git, you keep one file — `analysis.R` — and Git tracks every version behind the scenes. You can compare any two versions to see exactly which lines were added or removed. Every saved version (called a **commit**) includes a message explaining what changed, so you can look back six months later and understand the evolution of your analysis. If something breaks, you can restore any previous version. And when it's time to collaborate, multiple people can work on the same project without overwriting each other's changes.
 
-- **See what changed**: Compare any two versions to see exactly which lines were added, removed, or modified
-- **Understand why**: Each saved version includes a message explaining the change
-- **Go back in time**: Restore any previous version if something breaks
-- **Work in parallel**: Create "branches" to experiment without affecting your main code
-- **Collaborate safely**: Multiple people can work on the same project without overwriting each other
+Git runs locally on your computer. Every project folder that Git tracks is called a **repository** (or "repo" for short). The history lives in a hidden `.git` folder inside your project — you'll never need to touch it directly, but knowing it's there helps you understand what Git is doing.
 
-Git runs locally on your computer. Every project folder that Git tracks is called a **repository** (or "repo"). The history lives in a hidden `.git` folder inside your project.
+## Installing Git
+
+::: {.panel-tabset}
+
+### macOS
+
+Git comes bundled with Apple's **Xcode Command Line Tools**, a collection of developer utilities. Many Macs already have this installed — you may have been prompted to install it the first time you opened Terminal or ran a developer tool. To check, open **Terminal** and run:
+
+```default
+git --version
+```
+
+If you see a version number (like `git version 2.39.5`), Git is already installed and you can skip ahead to [Configure Your Identity](#configure-your-identity).
+
+If you see a popup asking to install Xcode Command Line Tools, click **Install** and wait for it to finish. If you get "command not found" with no popup, install manually:
+
+```default
+xcode-select --install
+```
+
+Alternatively, if you have [Homebrew](https://brew.sh) installed, you can get a newer version of Git with:
+
+```default
+brew install git
+```
+
+After installation, **close and reopen Terminal**, then verify:
+
+```default
+git --version
+```
+
+### Windows
+
+Download Git from [https://git-scm.com/downloads/win](https://git-scm.com/downloads/win). Run the installer and **accept all the default settings** — the defaults are well-chosen and changing them can cause confusing problems later.
+
+After installation, **close and reopen PowerShell**, then verify:
+
+```default
+git --version
+```
+
+:::
+
+### Configure Your Identity {#configure-your-identity}
+
+Every Git commit is stamped with your name and email address, so collaborators (and future you) can see who made each change. Tell Git who you are by running these commands in your terminal, replacing the name and email with your own:
+
+```default
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+```
+
+Use the same email address you'll use for your GitHub account. This is a one-time setup — Git remembers this configuration for all projects on your computer.
 
 ## What is GitHub?
 
-GitHub is a **website that hosts Git repositories online**. Git and GitHub are related but different:
+GitHub is a website that hosts Git repositories online. Git and GitHub are related but different things:
 
-| Git | GitHub |
-|-----|--------|
-| Software on your computer | Website (github.com) |
-| Tracks file history locally | Stores repos in the cloud |
-| Works offline | Requires internet |
-| Free, open-source tool | Company (owned by Microsoft) |
+| | Git | GitHub |
+|---|---|---|
+| **What** | Software on your computer | Website (github.com) |
+| **Where** | Tracks file history locally | Stores repos in the cloud |
+| **Connectivity** | Works offline | Requires internet |
+| **Cost** | Free, open-source | Free for public and private repos |
 
-You can use Git without GitHub—the history stays on your computer. But GitHub adds important capabilities:
+You can use Git without GitHub — your history stays on your computer. But GitHub adds capabilities that matter for research: your code is backed up in the cloud (safe from laptop failures), collaborators can access and contribute to your project, and you can share your work publicly when you're ready. GitHub also provides project management tools — Issues for tracking tasks and bugs, pull requests for reviewing changes, and a web interface for browsing code and history.
 
-- **Backup**: Your code is safe even if your laptop dies
-- **Collaboration**: Others can access, download, and contribute to your project
-- **Visibility**: Share your work publicly or keep it private
-- **Project management**: Issues, pull requests, and documentation
+Other Git hosting services exist (GitLab, Bitbucket), but GitHub is the most widely used in science and the one we use in the lab.
 
-Other Git hosting services exist (GitLab, Bitbucket), but GitHub is the most common in science and the one we use in the lab.
+## Setting Up GitHub
 
-## Personal Accounts vs. the Lab Organization
+### Create a GitHub Account
 
-On GitHub, you have a **personal account** (your username), and you can also belong to **organizations** (shared accounts for teams).
+If you don't already have one, go to [github.com](https://github.com) and sign up. Use an email address you check regularly — GitHub sends notifications when collaborators comment on your code or request your review. A professional username is best, since this will be visible on your published work (something like `jsmith` or `jane-smith`, not `xXx_data_ninja_xXx`).
 
-The lab uses the **MusserLab** organization for all research projects. Here's how to think about where your repos should live:
+### Install the GitHub CLI
+
+The **GitHub CLI** (`gh`) lets you interact with GitHub from your terminal — creating repositories, authenticating, and more. You don't strictly need it (you can do everything through the GitHub website), but it makes several common tasks much faster.
+
+::: {.panel-tabset}
+
+### macOS
+
+If you have [Homebrew](https://brew.sh):
+
+```default
+brew install gh
+```
+
+If you don't have Homebrew, download the installer from [https://cli.github.com](https://cli.github.com).
+
+### Windows
+
+Download the installer from [https://cli.github.com](https://cli.github.com). Run it and follow the prompts. **Close and reopen PowerShell** after installation.
+
+:::
+
+### Authenticate with GitHub {#sec-github-auth}
+
+Run the following command, then follow the prompts:
+
+```default
+gh auth login
+```
+
+When asked, choose:
+
+- **GitHub.com** (not Enterprise)
+- **HTTPS** (not SSH)
+- **Login with a web browser**
+
+This opens your browser where you log in with your GitHub credentials and authorize the CLI. Once complete, both `gh` (the GitHub CLI) and `git push`/`git pull` (regular Git) will be authenticated — you won't need to enter passwords for routine Git operations.
+
+Verify it worked:
+
+```default
+gh auth status
+```
+
+You should see your GitHub username and "Logged in to github.com."
+
+[TODO: screenshot of terminal showing gh auth login prompts and successful authentication]
+
+### Join the MusserLab Organization
+
+Ask Jake to add you to the **MusserLab** organization on GitHub. Once you accept the invitation (check your email or GitHub notifications), you'll be able to create and access repositories under the MusserLab account.
+
+## The MusserLab Organization
+
+On GitHub, you have a **personal account** (your username) and you can also belong to **organizations** — shared accounts for teams. The lab uses the **MusserLab** organization for all research projects.
 
 | Where | When to use | Examples |
 |-------|-------------|----------|
-| **Your personal account** | Personal projects only: coursework, side projects, learning exercises | `jsmith/practice-git`, `jsmith/coursework` |
-| **MusserLab organization** | All lab research—no exceptions | `MusserLab/tryptamine-phospho`, `MusserLab/rnaseq-pipeline` |
+| **Your personal account** | Personal projects, coursework, learning, side projects | `jsmith/practice-git`, `jsmith/coursework` |
+| **MusserLab organization** | All lab research — no exceptions | `MusserLab/tryptamine-phospho`, `MusserLab/sponge-rnaseq` |
 
 ::: {.callout-important}
-### Lab research belongs on the organization
-If a project involves lab research, it must be on the MusserLab organization—not your personal account. This ensures continuity when people leave, makes collaboration possible, and keeps lab work in one place.
+### Lab Research Belongs on the Organization
+If a project involves lab research, it goes on the MusserLab organization — not your personal account. This ensures continuity when people leave, makes collaboration straightforward, and keeps all lab work in one findable place.
 :::
 
-### Visibility: Public vs. Private
+### Public vs. Private Repositories
 
-Both personal accounts and organizations can have public or private repos:
+Every repository on GitHub is either **public** (anyone on the internet can see it) or **private** (only you and people you explicitly grant access can see it). Lab research repos are typically kept **private** while work is in progress. You can always change a repo's visibility later.
 
-- **Private**: Only you (or organization members) can see it
-- **Public**: Anyone on the internet can see it
+When a paper is published, we usually create a separate, curated **public repository** with cleaned-up code and documentation — rather than making the messy working repo public. This approach lets you work freely during research without worrying about how your commit history looks to the outside world.
 
-Lab research repos are typically kept **private**. When a paper is published, we usually create a separate, curated public repository with cleaned-up code and documentation—rather than making the working repo public. This lets you work freely during research without worrying about how messy your commit history looks.
+### README: Your Project's Landing Page
 
-### Adding Collaborators
+When someone visits your repository on GitHub, the first thing they see is the **README** — a file called `README.md` that GitHub renders at the bottom of the file listing. A good README tells visitors what the project is, how to set it up, and how to use it. Even for private repos, a short README helps collaborators (and future you) get oriented quickly. At minimum, include a one-paragraph description of what the project does and any setup instructions a new contributor would need.
 
-To give someone access to your repo:
+## How Git Works: The Core Ideas
 
-1. Go to your repo on GitHub
-2. **Settings** → **Collaborators and teams**
-3. Click **Add people**
-4. Enter their GitHub username
-5. Choose their permission level:
-   - **Read**: Can view and clone, but not push changes
-   - **Write**: Can push changes (use this for active collaborators)
-   - **Admin**: Full control including settings (rarely needed)
+Before diving into the daily workflow, it helps to understand a few core concepts. Don't worry about memorizing these — you'll internalize them through use. Think of this section as a reference you can come back to.
 
-## Why We Use Git for All Research
+A **repository** (repo) is just a project folder that Git is tracking. When you tell Git to start tracking a folder, it creates a hidden `.git` directory inside that stores the entire history. Your project files look the same — Git works invisibly in the background.
 
-In the lab, we use Git for all research projects—think of it as the computational equivalent of a lab notebook. Your commit history becomes a record of how your analysis evolved: what you tried, what you changed, and why.
+A **commit** is a snapshot of your project at a moment in time. Think of it like saving a version of a document, except Git saves the state of *every file* in your project at once. Each commit has a unique ID (like `a1b2c3d`), a message you write describing what changed, and a pointer to the previous commit. Commits form a chain — your project's timeline.
 
-This practice pays off in several ways:
+The **staging area** is a holding area for changes you want to include in your next commit. When you change a file, Git notices, but it doesn't automatically include that change in your next commit. You first **stage** the changes (pick which ones to include), then **commit** them (save the snapshot). This two-step process lets you make many changes but commit them in logical groups — for example, committing your QC filtering changes separately from your visualization updates.
 
-1. **A record of your work**: Every commit documents what you did and when, which helps with scientific integrity and your own memory
-2. **Safety net**: Experiment freely knowing you can always go back if something breaks
-3. **Backup**: Combined with GitHub, your work survives laptop failures and accidental deletions
-4. **Reproducibility**: Collaborators (and future you) can trace exactly what code produced which results
+A **branch** is a parallel version of your project. The default branch is called `main`. You can create other branches to experiment without affecting `main`, then merge them back when ready. We'll come back to branches [later in this chapter](#as-your-projects-grow-branches-and-pull-requests).
 
-You don't need to master every Git feature—the basics go a long way. The next sections cover what you need for daily work.
+A **remote** is a copy of your repository on another computer — typically GitHub. Your local repo and the remote stay in sync through **pushing** (uploading your commits) and **pulling** (downloading others' commits).
 
-## Key Concepts
+## Your First Commit
 
-Before using Git, understand these core ideas:
+The best way to learn Git is to use it. This walkthrough uses Positron's **Source Control panel**, which gives you a visual interface for all the common Git operations. You'll need a project that's already a Git repository — if you worked through [Setting Up a Lab Project](../part3/setup-walkthrough.qmd), you already have one. If not, you can initialize any project folder by running `git init` in Positron's terminal.
 
-**Repository (repo)**
-: A project folder that Git is tracking. Contains a hidden `.git` folder that stores the entire history.
+### Open the Source Control Panel
 
-**Commit**
-: A snapshot of your project at a moment in time. Each commit has a unique ID (like `a1b2c3d`), a message describing what changed, and a pointer to the previous commit. Commits form a chain—your project's history.
+Click the **branch icon** in Positron's left sidebar, or press **Cmd+Shift+G** (macOS) / **Ctrl+Shift+G** (Windows). If there are no changes since your last commit, the panel will be mostly empty — that's normal.
 
-**Staging area**
-: A holding area for changes you want to include in your next commit. You "stage" files first, then "commit" them. This two-step process lets you commit only some of your changes.
+### Make a Change
 
-**Branch**
-: A parallel version of your project. The default branch is called `main`. You can create other branches to experiment without affecting `main`, then merge them back when ready.
+Open any file in your project and make a small edit — add a comment, fix a typo, or change a line of code. Save the file.
 
-**Remote**
-: A copy of your repository on another server—typically GitHub. Your local repo and the remote stay in sync through pushing (uploading your commits) and pulling (downloading others' commits).
+### See What Changed
 
-## The Daily Workflow in Positron
+Switch back to the Source Control panel. Your edited file appears under **Changes**, with a letter indicating what happened:
 
-Most of your Git usage follows this pattern: edit files, stage changes, commit with a message, and push to GitHub. Positron's **Source Control panel** makes this straightforward without needing to use the command line.
+- **M** (Modified) — an existing file was changed
+- **U** (Untracked) — a new file Git hasn't seen before
+- **D** (Deleted) — a file was removed
+- **A** (Added) — a new file that's been staged
 
-### Opening Source Control
+Click the filename to see a **diff view** — a side-by-side comparison showing exactly which lines were added (highlighted in green) and removed (highlighted in red). This is one of Git's most useful features: before committing, you can review exactly what you're about to save.
 
-Click the **branch icon** in the left sidebar, or use **Cmd+Shift+G** (macOS) / **Ctrl+Shift+G** (Windows). You'll see:
+[TODO: screenshot of Positron Source Control panel showing a modified file and the diff view]
 
-- **Changes**: Files you've modified since the last commit
-- **Staged Changes**: Files ready to be committed
+### Stage Your Changes
 
-### The Basic Cycle
+Click the **+** icon next to the file. It moves from "Changes" to "Staged Changes" — this means you've selected it for your next commit. You don't have to stage everything at once. If you made unrelated changes to several files, you can commit them separately with different messages, keeping your history clean and meaningful.
 
-**1. Make changes to your files**
+### Write a Message and Commit
 
-Work normally—edit scripts, add new files, delete things you don't need. Git tracks everything automatically.
+Type a message in the text box at the top of the Source Control panel. Something like "Add QC filtering step" or "Fix sample labeling in metadata" — a short description of what this change does. Then click the **checkmark** (✓) to commit.
 
-**2. Review what changed**
+That's it — you've made a commit. The Source Control panel clears, and your change is recorded in Git's history. But right now, this commit only exists on your computer. GitHub doesn't know about it yet.
 
-Open the Source Control panel. You'll see a list of changed files under "Changes." Click any file to see a **diff view** showing exactly what lines were added (green) or removed (red).
+::: {.callout-warning .claude-callout title="Claude Code"}
+Claude Code can commit your work for you, writing descriptive commit messages based on what actually changed.
 
-**3. Stage files for commit**
+> I just finished filtering the dataset and updating the QC thresholds. Can you commit these changes with a good message?
 
-Click the **+** icon next to each file you want to include in your commit. The file moves from "Changes" to "Staged Changes."
-
-::: {.callout-tip}
-### Be intentional about staging
-You don't have to stage everything at once. If you made unrelated changes to several files, you can commit them separately with different messages. This keeps your history cleaner and easier to understand.
+Claude will look at your staged changes, write a message that describes what you did, and make the commit. This is especially useful when you've made many changes and aren't sure how to summarize them. The lab's `/done` skill does this automatically at the end of a work session.
 :::
 
-**4. Write a commit message and commit**
+## Pushing to GitHub
 
-Type a message in the text box at the top of the Source Control panel. Then click the **checkmark** (✓) to commit.
+A commit saves your changes locally. **Pushing** uploads those commits to GitHub, where they're backed up and accessible to collaborators. Think of it this way: committing is saving your work, pushing is backing it up.
 
-**5. Push to GitHub**
+To push from Positron, click the **three-dot menu** (⋯) at the top of the Source Control panel and select **Push**. You can also click the **sync icon** in the status bar at the bottom of the window — it pushes your commits and pulls any new ones from GitHub in one step.
 
-Click the **three-dot menu** (⋯) and select **Push**, or click the sync icon in the status bar. Until you push, your commits exist only on your computer.
+The first time you push a new repository, Git may ask you to set an "upstream" — this just means telling Git where on GitHub to send the code. If you created the repo through GitHub (or with `gh repo create`), this is already configured.
 
-**6. Pull before starting work**
+### Pull Before You Start
 
-If you're collaborating or working from multiple computers, always pull before you start making changes. Click the three-dot menu → **Pull** to download any new commits from GitHub.
-
-### What the Icons Mean
-
-In the Source Control panel, you'll see letters next to changed files:
-
-- **M** (Modified): An existing file was changed
-- **U** (Untracked): A new file Git hasn't seen before
-- **D** (Deleted): A file was removed
-- **A** (Added): A new file that's been staged
+If you're collaborating with someone, or if you work from multiple computers, get in the habit of **pulling before you start working**. Pulling downloads any new commits from GitHub that you don't have locally. Click the three-dot menu → **Pull**, or use the sync icon. This avoids conflicts later — it's much easier to integrate changes before you start editing than after.
 
 ## Writing Good Commit Messages
 
-Commit messages are part of your scientific record. Write them for future-you (and collaborators) who need to understand what changed and why.
+Your commit messages become part of your project's history — a record of what you did and why. Good messages make that history useful; bad messages make it noise.
 
 **Bad messages:**
 ```
@@ -191,35 +269,22 @@ Update normalization to use SCTransform instead of LogNormalize
 Remove outlier samples identified in PCA (samples 12, 47)
 ```
 
-These explain *what* changed and often *why*. When you look at the history, you can understand the evolution of your analysis.
+These explain *what* changed and often *why*. When you look at the history, each message is a chapter in the story of your analysis.
 
 ### When to Commit
 
-Commit when you've completed a logical unit of work:
+Commit when you've completed a logical unit of work: finished a new analysis step, fixed a bug, added a figure, or made a decision you want to record. Don't wait until the end of the day to make one giant commit. Small, focused commits are easier to understand and easier to undo if needed.
 
-- Finished a new analysis step
-- Fixed a bug
-- Added a new figure
-- Made a decision you want to record
+## What to Track and What to Ignore
 
-Don't wait until the end of the day to make one giant commit. Small, focused commits are easier to understand and easier to undo if needed.
+Not everything in your project folder belongs in Git. Code, documentation, and configuration files should be tracked. Large data files, generated outputs, credentials, and system junk should not.
 
-## Setting Up .gitignore
-
-The `.gitignore` file tells Git which files to ignore—they won't be tracked or committed. This is essential for:
-
-- **Large files**: Data files that are too big for Git
-- **Generated files**: Outputs that can be recreated from code
-- **Secrets**: Credentials that should never be shared
-- **System junk**: OS and IDE files that aren't part of your project
-
-### Standard .gitignore for Lab Projects
+The **`.gitignore`** file tells Git which files and folders to skip. Place it in the root of your project and Git will ignore anything that matches the patterns inside. Here's a simplified version for a typical lab project:
 
 ```
-# Large data files (add specific patterns as needed)
+# Data files (too large for Git)
 *.h5ad
 *.rds
-*.csv
 
 # Generated outputs (reproducible from code)
 outs/
@@ -227,13 +292,10 @@ outs/
 # R artifacts
 .Rhistory
 .RData
-.Rproj.user/
 renv/library/
 
 # Python artifacts
 __pycache__/
-*.pyc
-.venv/
 
 # Quarto rendering
 *_files/
@@ -243,111 +305,125 @@ __pycache__/
 # Secrets - NEVER commit these
 .env
 *credentials*
-*secret*
 
 # OS files
 .DS_Store
 Thumbs.db
-
-# IDE settings (optional - some teams share these)
-.vscode/
-.positron/
 ```
 
+See the [Setting Up a Lab Project](../part3/setup-walkthrough.qmd) chapter for a more complete `.gitignore` template. The key principle: **track things humans write, ignore things computers generate**. If a file can be recreated by running your code, it probably doesn't belong in Git.
+
 ::: {.callout-important}
-### Create .gitignore first
-Set up `.gitignore` before your first commit. Once a file is committed, adding it to `.gitignore` won't remove it from history—it's already tracked.
+### Create .gitignore First
+Set up `.gitignore` before your first commit. Once a file is committed, adding it to `.gitignore` won't remove it from history — it's already tracked. Getting this right from the start saves headaches later.
+:::
+
+::: {.callout-warning .claude-callout title="Claude Code"}
+Claude Code can create a `.gitignore` tailored to your specific project setup.
+
+> I'm starting a new R project that will also use Python for some preprocessing. I'm using renv for R packages and conda for Python. Can you create a .gitignore file?
+
+Claude will generate a `.gitignore` with the right patterns for both languages — renv cache, conda environments, data files, Quarto artifacts, and OS-specific junk files.
 :::
 
 ## Getting a Repository
+
+There are two common scenarios: joining an existing project, or starting a new one.
 
 ### Cloning an Existing Repo
 
 If a repository already exists on GitHub and you want to work on it:
 
 1. Go to the repo on GitHub
-2. Click the green **Code** button
-3. Copy the HTTPS URL
-4. In Positron, open the Command Palette (Cmd/Ctrl+Shift+P)
-5. Type "Git: Clone" and paste the URL
-6. Choose where to save it
+2. Click the green **Code** button and copy the HTTPS URL
+3. In Positron, open the Command Palette (**Cmd/Ctrl+Shift+P**) and type "Git: Clone"
+4. Paste the URL and choose where to save it
 
-Positron downloads the repository and opens it. You can immediately start working, committing, and pushing.
+Positron downloads the repository and opens it as your workspace. You can start working immediately.
 
 ### Creating a New Repo
 
-For a brand new project, the easiest approach is to create the repo on GitHub first:
+For a brand new project, the easiest approach is to create the repo on GitHub first, then clone it to your computer:
 
-1. Go to github.com and click **New repository**
-2. Choose the MusserLab organization (for lab projects)
-3. Name it, set visibility to Private, and check "Add a README"
-4. Clone it to your computer using the steps above
+1. Go to [github.com](https://github.com) and click **New repository** (the **+** icon in the top right)
+2. Choose the **MusserLab** organization as the owner (for lab projects)
+3. Give it a short, descriptive name (lowercase with hyphens, like `sponge-rnaseq`)
+4. Set visibility to **Private**
+5. Check **Add a README file**
+6. Clone it to your computer using the steps above
 
-This sets everything up correctly from the start.
+This sets up the remote connection correctly from the start. The [Setting Up a Lab Project](../part3/setup-walkthrough.qmd) chapter walks through the full project creation workflow, including folder structure, environments, and first commit.
 
-## Beyond the Basics
+## Exploring GitHub
 
-The workflow above covers 90% of what you'll do with Git. But Git has powerful features for more complex situations. Here's what they are and when you might need them—you don't need to learn these now, but it helps to know they exist.
+GitHub is more than just a place to store code — it's a project management tool with a web interface that you'll use regularly. When you visit a repository on GitHub, you'll see several useful features.
 
-### Branches
+### Browsing Files and History
 
-A branch is a parallel version of your project. The main use case: you want to try something experimental without risking your working code. You create a branch, make changes there, and if it works, you merge it back into `main`. If it doesn't, you delete the branch and `main` is untouched.
+The main page of any repository shows the **file listing** — all files and folders in the project, just like a file explorer. Click any file to view its contents directly in the browser. This is useful for quickly checking a collaborator's code or reading documentation without cloning the entire repository.
 
-Positron's Source Control panel shows your current branch in the status bar and lets you create and switch branches through the branch menu. For solo analysis work, you often don't need branches—committing directly to `main` is fine. Branches become more useful when collaborating or when you want to experiment with major changes.
+Above the file listing, you'll see the **most recent commit message** and when it was made. Click **Commits** (or the commit count) to see the full history — every commit ever made, in reverse chronological order. Click any commit to see exactly what changed: the diff view shows added lines in green and removed lines in red, just like Positron's Source Control panel.
 
-### Merge Conflicts
+[TODO: screenshot of a GitHub repository page showing the file listing, recent commit, and README]
 
-Conflicts happen when two people change the same lines in a file, or when you have changes on two different computers that overlap. Git can't automatically decide which version to keep, so it asks you to resolve it manually.
+### Issues: Tracking Tasks and Bugs
 
-When this happens, the conflicting file will show both versions with special markers. You edit the file to keep the version you want (or combine them), then commit the resolution. Positron highlights conflicts and provides tools to help resolve them.
+GitHub **Issues** are a lightweight way to track tasks, bugs, and questions for a project. Think of them as a shared to-do list. Each issue has a title, a description, and a discussion thread where collaborators can comment.
 
-Conflicts are less common than you might fear, especially on solo projects. Pull before you start working, and you'll rarely encounter them.
+To create an issue, click the **Issues** tab at the top of the repository and then **New issue**. Give it a clear title ("QC thresholds need updating for new batch") and describe what needs to happen. You can assign issues to specific people and add labels like "bug" or "enhancement" to organize them.
+
+The real power of issues comes from linking them to commits. When you include an issue number in a commit message — like `Fix normalization bug (closes #12)` — GitHub automatically closes the issue when that commit reaches the `main` branch. This creates a traceable record: the issue describes the problem, and the linked commit shows exactly how it was fixed.
+
+[TODO: screenshot of a GitHub Issue showing the title, description, and a linked commit]
 
 ::: {.callout-warning .claude-callout title="Claude Code"}
-Claude Code can explain confusing Git messages and suggest safe next steps.
+Claude Code can help you understand confusing Git messages and suggest safe next steps.
 
 > Git is showing me this and I'm not sure what to do: `Your branch and 'origin/main' have diverged, and have 2 and 3 different commits each, respectively.` What does this mean and how do I fix it?
 
-Claude will explain the situation in plain language (your local and remote branches have different changes) and walk you through resolving it safely, typically with `git pull --rebase` or a merge.
+Claude will explain the situation in plain language — your local and remote branches have different changes that need to be reconciled — and walk you through resolving it safely.
 :::
 
-### Undoing Mistakes
+### Other Useful GitHub Features
 
-Git provides ways to undo changes at every stage:
+A few more things worth knowing about as you use GitHub:
 
-- **Before staging**: Discard changes to a file, reverting to the last committed version
-- **After staging but before committing**: Unstage files while keeping your changes
-- **After committing**: Undo the last commit (keeping the changes) or amend it with corrections
-- **After pushing**: This is trickier—changes are on the server. Usually you make a new commit that reverses the problematic one.
+**Adding collaborators.** To give someone access to a private repo, go to **Settings → Collaborators** and invite them by GitHub username. You can choose their permission level — **Write** access is what active collaborators need.
 
-The Source Control panel provides options for discarding and unstaging changes. More complex undo operations (like reverting commits) are available through the Command Palette or by asking for help.
+**Forking.** If you want to experiment with someone else's public repository without affecting the original, you can **fork** it — this creates a copy under your account. Any changes you make stay in your fork unless you submit a pull request back to the original.
 
-### Pull Requests
+**GitHub in your browser vs. on your computer.** Anything you do on GitHub's website (creating issues, editing files, browsing history) affects the remote repository. To get those changes on your local computer, you need to **pull**. Anything you do on your computer (editing code, committing) stays local until you **push**.
 
-Pull requests (PRs) are GitHub's way of proposing changes for review before merging them. Instead of committing directly to `main`, you create a branch, push it to GitHub, and open a PR. Others can review the changes and discuss before merging.
+## As Your Projects Grow: Branches and Pull Requests {#as-your-projects-grow-branches-and-pull-requests}
 
-For solo work, PRs are optional. They're most valuable when you want someone else to review your code before it becomes part of the main project, or when you want a clear record of when and why a set of changes was merged.
+For solo analysis work, the workflow described above — edit, commit, push to `main` — is all you need. But as projects grow or involve more people, two features become valuable: **branches** and **pull requests**.
 
-## Learning More
+A **branch** is a parallel version of your project. Imagine you want to try a completely different normalization approach, but you're not sure it will work. Instead of making changes directly on `main` (and potentially breaking something), you create a branch — a copy where you can experiment freely. If the experiment works, you **merge** the branch back into `main`. If it doesn't, you delete it, and `main` is untouched. Positron's status bar shows which branch you're on, and the Source Control panel lets you create and switch branches.
 
-This chapter covers what you need to use Git effectively in your daily work. If you want to go deeper—learning command-line Git, understanding how Git works internally, or mastering advanced workflows—these resources are excellent:
+A **pull request** (PR) is GitHub's way of proposing changes for review before merging them into `main`. Instead of merging your branch yourself, you open a pull request on GitHub, where collaborators can see your changes, leave comments, and discuss before the merge happens. Pull requests are most valuable when you want another pair of eyes on your work — they create a clear, documented record of when and why a set of changes was incorporated.
 
-- **[Pro Git Book](https://git-scm.com/book/en/v2)**: The comprehensive, free reference. Covers everything from basics to internals.
-- **[GitHub Docs: Using Git](https://docs.github.com/en/get-started/using-git)**: Practical guides focused on common tasks.
+For now, you don't need to use branches or pull requests. But knowing they exist helps when you encounter them in collaborative projects or when Claude Code suggests using them. The [Collaborating](../part3/collaborating.qmd) chapter covers these workflows in detail.
 
-## Best Practices Summary
+## Best Practices
 
 **Commit often, push regularly**
-: Small commits are easier to understand. Pushing backs up your work.
+: Small commits are easier to understand. Pushing backs up your work. Don't let changes pile up.
 
 **Pull before you start working**
-: Especially on shared projects—get others' changes before you start.
+: Especially on shared projects — get others' changes before you start yours.
 
 **Write meaningful commit messages**
-: Future-you will thank present-you.
+: Future-you will thank present-you. Describe what changed and why.
 
 **Use .gitignore from the start**
 : Prevent large files and secrets from ever entering the repo.
 
 **Don't panic**
-: Git rarely loses data. Most mistakes are recoverable—ask for help if you get stuck.
+: Git rarely loses data. Most mistakes are recoverable — if you see an error message you don't understand, ask Claude Code before trying to fix it yourself.
+
+## Learning More
+
+This chapter covers what you need to use Git effectively in your daily work. If you want to go deeper — learning command-line Git, understanding how Git works internally, or mastering advanced workflows — these resources are excellent:
+
+- **[Pro Git Book](https://git-scm.com/book/en/v2)**: The comprehensive, free reference. Covers everything from basics to internals.
+- **[GitHub Docs](https://docs.github.com/en/get-started/using-git)**: Practical guides focused on common tasks.

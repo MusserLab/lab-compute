@@ -9,7 +9,7 @@
 
 Assessed all 6 Part 2 chapters (Feb 2026). Common issue: they read like reference documentation, not teaching guides. The first-project chapter (Ch. 3) sets a high bar with narrative tone and 14 screenshots. Part 2 chapters need to move toward that quality.
 
-**Claude Code callouts**: Target is 2-3 per Part 2 chapter. Ch. 4 (Positron) has 3, Ch. 6 (Quarto) has 2, Ch. 7 (renv) has 3, Ch. 8 (Conda) has 3. Ch. 9 (Git) has only 1 — add 1-2 more during polishing.
+**Claude Code callouts**: Target is 2-3 per Part 2 chapter. All chapters now meet target: Ch. 4 (3), Ch. 6 (2), Ch. 7 (3), Ch. 8 (3), Ch. 9 (3).
 
 #### Ch. 4 — Positron (REWRITE DONE — screenshots pending)
 
@@ -79,11 +79,21 @@ Full rewrite completed Feb 2026 (476 → 444 lines). Restructured from command r
 - [x] Cut .condarc display, absorbed "Configuring Conda" into one-time setup
 - [x] Best practices woven into narrative (never use base, pin Python, meaningful names)
 
-#### Ch. 9 — Git & GitHub (mostly ready)
+#### Ch. 9 — Git & GitHub (REWRITE DONE — screenshots pending)
 
-Best tone in Part 2 — friendly, narrative, well-paced. Closest to Ch. 3 quality bar.
+Full rewrite completed Feb 2026 (353 → 429 lines). Restructured from reference doc to narrative teaching guide. Added: Git installation section (macOS/Windows), GitHub setup (account, CLI, `gh auth login`), `git config` identity, "Your First Commit" hands-on walkthrough, "Exploring GitHub" web interface tour (Issues, README, file browsing), friendlier branches/PRs preview. Setup-walkthrough updated to cross-reference Ch. 9 for GitHub CLI auth.
 
-- [ ] Light review only
+- [x] Opening callback to Ch. 3 (matching pattern from Chs. 4, 6, 7, 8)
+- [x] Git installation (macOS Xcode CLT/Homebrew, Windows git-scm.com, tabsets)
+- [x] GitHub setup: account, CLI install, `gh auth login`, `git config`, joining MusserLab org
+- [x] Narrative core concepts (not definition list)
+- [x] "Your First Commit" hands-on walkthrough in Positron Source Control
+- [x] "Exploring GitHub" section: web interface, file browsing, commit history, Issues
+- [x] README as project landing page
+- [x] Replaced "Beyond the Basics" with "As Your Projects Grow" framing
+- [x] 3 Claude Code callout boxes (commit messages, .gitignore, confusing Git messages)
+- [x] 5 screenshot TODOs placed throughout
+- [x] Setup-walkthrough cross-references Ch. 9 for `gh auth login` (removed duplication)
 
 ### Screenshots
 
@@ -100,6 +110,13 @@ Positron chapter will need ~7 new screenshots after rewrite:
 
 Quarto chapter:
 - [ ] Positron with .qmd, console, and Data Viewer (`quarto.qmd:60`)
+
+Git chapter will need ~5 new screenshots after rewrite:
+- [ ] `gh auth login` terminal prompts and successful authentication
+- [ ] GitHub repo page showing file listing, recent commit, and README (MusserLab example)
+- [ ] Positron Source Control panel showing a modified file and diff view
+- [ ] GitHub Issue showing title, description, and linked commit
+- [ ] Positron Source Control panel during first commit walkthrough
 
 Conda chapter will need ~3 new screenshots after rewrite:
 - [ ] Terminal showing `(my-project)` prompt after activation
@@ -190,6 +207,21 @@ Conda chapter will need ~3 new screenshots after rewrite:
 ## Session Notes
 
 _Add notes here during working sessions_
+
+### 2026-02-23 (session 5)
+- **Git & GitHub chapter (Ch. 9) full rewrite** — 353→429 lines, restructured from reference doc to narrative teaching guide
+  - Opening callback to Ch. 3: "what happens when you want to go back to yesterday's version?"
+  - NEW: Git installation section — macOS (Xcode CLT/Homebrew) and Windows (git-scm.com) with tabsets
+  - NEW: GitHub setup — account creation, GitHub CLI install (macOS/Windows tabset), `gh auth login` walkthrough, joining MusserLab org
+  - NEW: `git config --global user.name/email` identity setup
+  - Core concepts rewritten as narrative flow (not definition list), with staging analogy
+  - "Your First Commit" hands-on walkthrough in Positron Source Control panel
+  - Expanded MusserLab section: README as landing page, public vs private explained with publication workflow
+  - NEW: "Exploring GitHub" section: web interface tour, file browsing, commit history, Issues (creating + linking with `closes #12`)
+  - Replaced "Beyond the Basics" with friendlier "As Your Projects Grow" — branches and PRs as concepts, cross-ref to Collaborating chapter
+  - 3 Claude Code callouts (was 1): commit message writing, .gitignore generation, confusing Git messages
+  - 5 screenshot TODOs: gh auth login, GitHub repo page, Positron diff view, GitHub Issue, first commit walkthrough
+  - `setup-walkthrough.qmd`: replaced duplicated `gh auth login` instructions with cross-reference to Ch. 9
 
 ### 2026-02-23 (session 4)
 - **Conda chapter (Ch. 8) full rewrite** — 476→444 lines, restructured from command reference to narrative teaching guide
