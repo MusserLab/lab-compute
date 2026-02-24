@@ -603,7 +603,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ├── renv.lock             # R package versions
 ├── .gitignore
 └── README.md</code></pre>
-<p>If you’re using Claude Code (covered in Part 3), the <code>/new-project</code> command scaffolds this entire structure for you — creating directories, initializing Git, setting up conda and renv, and generating a <code>.claude/CLAUDE.md</code> with your project’s conventions. But it’s worth understanding what each piece does.</p>
+<p>If you’re using Claude Code (covered in Part 3), the <code>/new-project</code> command creates this entire structure for you — creating directories, initializing Git, setting up conda and renv, and generating a <code>.claude/CLAUDE.md</code> with your project’s conventions. But it’s worth understanding what each piece does.</p>
 <p>The <code>.claude/</code> directory holds project-level configuration for Claude Code, including a <code>CLAUDE.md</code> file that describes the project’s purpose, environment, and conventions. As a project matures, you may also add planning documents here to track multi-session work. You’ll learn more about this in the <a href="../claude-code/getting-started.html">Claude Code chapters</a>.</p>
 <p>Not every project needs every directory. An R-only project won’t have <code>python/</code> or <code>environment.yml</code>. A Python-only project won’t have <code>R/</code> or <code>renv.lock</code>. The <code>/new-project</code> command asks about your languages and creates only what’s needed.</p>
 </section>
@@ -789,7 +789,7 @@ date: 2026-02-14 15:30:00</code></pre>
 <li><strong>Shared data</strong> that multiple sections use can live at the top level of <code>data/</code> (e.g., <code>data/gene_annotations/</code>).</li>
 <li><strong>Cross-section scripts</strong> like <code>combined/01_integration.qmd</code> can read from any section’s <code>outs/</code> folder.</li>
 </ul>
-<p>Use <strong>semantic names</strong> for sections—names that describe what the analysis is about (<code>phosphoproteomics</code>, <code>transcriptomics</code>, <code>figures</code>) rather than generic labels. A new lab member should be able to look at the directory names and understand the project’s scope.</p>
+<p>Use <strong>descriptive names</strong> for sections—names that describe what the analysis is about (<code>phosphoproteomics</code>, <code>transcriptomics</code>, <code>figures</code>) rather than generic labels. A new lab member should be able to look at the directory names and understand the project’s scope.</p>
 <section id="alternative-prefixes" class="level3" data-number="5.8.1">
 <h3 data-number="5.8.1" class="anchored" data-anchor-id="alternative-prefixes"><span class="header-section-number">5.8.1</span> Alternative: Prefixes</h3>
 <p>For projects with just two or three analytical threads and only a few scripts each, subdirectories can be overkill. You can use prefixes instead:</p>
