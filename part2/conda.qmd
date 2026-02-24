@@ -123,7 +123,7 @@ Claude will suggest the right packages (scikit-image for segmentation, tifffile 
 
 ::: {.callout-tip}
 ## Claude Code Does This Automatically
-In practice, you'll rarely build environments from scratch. The Musser Lab's `/new-project` skill in Claude Code creates a conda environment for your project automatically, installs the packages you need, and configures Positron to use it. But understanding these commands is important for troubleshooting and for working outside the lab's automated workflow.
+In practice, you'll rarely build environments from scratch. The Musser Lab's `/new-project` skill in Claude Code (covered in Part 3) creates a conda environment for your project automatically, installs the packages you need, and configures Positron to use it. But understanding these commands is important for troubleshooting and for working outside the lab's automated workflow.
 :::
 
 ## Using Your Environment
@@ -290,7 +290,7 @@ Without a version, conda installs whatever Python is newest — which means your
 
 ::: {.callout-note}
 ## Both Conda and renv
-In the lab, every project has both an `environment.yml` (for Python) and an `renv.lock` (for R), even if the project primarily uses one language. This ensures complete reproducibility regardless of which language the analysis uses. The `/new-project` skill sets up both automatically.
+In the lab, every project has both an `environment.yml` (for Python) and an `renv.lock` (for R), even if the project primarily uses one language. Projects evolve — what starts as an R-only analysis might later need a Python script for preprocessing, or vice versa. Having both environment files in place from the start means you don't have to retrofit them later when you add a second language.
 :::
 
 ## Conda vs pip

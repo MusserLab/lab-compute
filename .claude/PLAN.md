@@ -227,6 +227,15 @@ New appendix needed: Lab Skills Reference (complete table of all Musser Lab skil
 
 _Add notes here during working sessions_
 
+### 2026-02-24 (session 2)
+- **Cross-chapter consistency and beginner review** — read all Part 1 + Part 2 chapters, identified 20 issues, fixed all
+  - Broken link: `project-organization.qmd` → `configuring-projects.qmd` (will be deleted in Part 3 rewrite) → updated to `getting-started.qmd`
+  - Forward references: 6 `/new-project` mentions across 4 chapters now say "(covered in Part 3)"
+  - Ordering: Quarto Python sections now note "read the Conda chapter first"; setup chunk template has "These Templates Require Git" callout
+  - Git chapter: "Your First Commit" now walks through `git init` on the first-project folder; push section notes remote is required; `.gitignore` harmonized with project-organization chapter (removed redundant `*.rds`, added `renv/staging/` and `.positron/`)
+  - Beginner fixes: added "Creating a New Document" paragraph in Quarto; Python setup chunk has inline comments; Parquet section explains type preservation and notes `arrow` install; `sys.path.insert` explained; `session-info` dash/underscore note
+  - Minor: `.positron/` folder clarified; "Both Conda and renv" justified for single-language projects; Bioconductor release history link added; renv forward references softened; first-project mentions BUILD_INFO.txt as a Part 2 convention
+
 ### 2026-02-24
 - **Part 3 full rewrite planning session** — created `CLAUDE_CODE_REWRITE_PLAN.md` with detailed outlines for 6 new chapters
   - Expanding from 4 reference-style chapters to 6 narrative teaching chapters

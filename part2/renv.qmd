@@ -50,7 +50,7 @@ In Positron, open the Command Palette (**Cmd+Shift+P** on macOS, **Ctrl+Shift+P*
 
 [TODO: screenshot of Command Palette showing "R: Select R Binary" with a list of installed R versions]
 
-You only need to do this once per project. If you use the Musser Lab's `/new-project` skill in Claude Code, it sets the R version automatically when scaffolding a new project. See the [Positron chapter](positron.qmd#setting-the-r-version) for more details.
+You only need to do this once per project. If you later use the Musser Lab's `/new-project` skill in Claude Code (covered in Part 3), it sets the R version automatically when scaffolding a new project. See the [Positron chapter](positron.qmd#setting-the-r-version) for more details.
 
 ## renv: Project Package Libraries
 
@@ -145,7 +145,7 @@ Claude will read the status output, explain which packages are out of sync and w
 
 rig and renv solve different problems, but they connect in an important way. When you run `renv::snapshot()`, the lockfile records not just your packages but also your **R version** and, if you're using Bioconductor, the **Bioconductor version**. This creates a complete picture of your environment.
 
-The connection matters because of Bioconductor. Each Bioconductor release is built and tested against a specific R version — Bioconductor 3.19 works with R 4.4, Bioconductor 3.20 also works with R 4.4, and Bioconductor 3.21 requires R 4.5. If you change your R version, you may get a different Bioconductor release with different package versions. For a project that uses Bioconductor packages, changing R can subtly change your results even if your code doesn't change at all.
+The connection matters because of Bioconductor. Each Bioconductor release is built and tested against a specific R version — Bioconductor 3.19 works with R 4.4, Bioconductor 3.20 also works with R 4.4, and Bioconductor 3.21 requires R 4.5. If you change your R version, you may get a different Bioconductor release with different package versions. For a project that uses Bioconductor packages, changing R can subtly change your results even if your code doesn't change at all. You can check which Bioconductor releases work with which R versions on the [Bioconductor release history page](https://bioconductor.org/about/release-announcements/).
 
 This is why pinning R per project (using the Command Palette method described above) matters for critical analyses — especially anything heading toward publication. renv records the R and Bioconductor versions in the lockfile, and rig makes it easy to have the right R version available. Together, they ensure that `renv::restore()` on another machine gives you the same environment, not just the same package names.
 
@@ -170,7 +170,7 @@ You've been committing `renv.lock` since Chapter 3, and that's the most importan
 - `renv/library/` — the actual installed packages (too large and platform-specific)
 - `renv/staging/` — temporary files during installation
 
-The default renv setup handles the `.gitignore` entries automatically. If you used the lab's project setup walkthrough or the `/new-project` skill, these exclusions are already in place.
+The default renv setup handles the `.gitignore` entries automatically — when you ran `renv::init()`, it created a `.gitignore` inside the `renv/` folder that excludes `library/` and `staging/`. If you set up your project through the lab's workflow tools (covered in later chapters), these exclusions are already in place.
 
 ## Updating Packages
 

@@ -36,9 +36,9 @@ my-project/
 └── README.md
 ```
 
-If you're using Claude Code, the `/new-project` command scaffolds this entire structure for you—creating directories, initializing Git, setting up conda and renv, and generating a `.claude/CLAUDE.md` with your project's conventions. But it's worth understanding what each piece does.
+If you're using Claude Code (covered in Part 3), the `/new-project` command scaffolds this entire structure for you — creating directories, initializing Git, setting up conda and renv, and generating a `.claude/CLAUDE.md` with your project's conventions. But it's worth understanding what each piece does.
 
-The `.claude/` directory holds project-level configuration for Claude Code, including a `CLAUDE.md` file that describes the project's purpose, environment, and conventions. As a project matures, you may also add planning documents here to track multi-session work. You'll learn more about this in the [Claude Code chapters](../claude-code/configuring-projects.qmd).
+The `.claude/` directory holds project-level configuration for Claude Code, including a `CLAUDE.md` file that describes the project's purpose, environment, and conventions. As a project matures, you may also add planning documents here to track multi-session work. You'll learn more about this in the [Claude Code chapters](../claude-code/getting-started.qmd).
 
 Not every project needs every directory. An R-only project won't have `python/` or `environment.yml`. A Python-only project won't have `R/` or `renv.lock`. The `/new-project` command asks about your languages and creates only what's needed.
 
@@ -176,7 +176,7 @@ annotations <- read_tsv(here("data/gene_annotations.tsv"))
 
 Reading the top of any script shows exactly what it depends on and where those files come from. No separate manifest or pipeline specification needed—the dependencies are right there in the code.
 
-Dependencies don't have to be strictly linear. A plotting script might read from the original data, from an early QC script, and from a later differential analysis:
+Dependencies don't have to be strictly linear. A plotting script might read from the original data, from an early QC script, and from a later differential analysis. Here's what that looks like as a dependency diagram:
 
 ```{mermaid}
 flowchart LR
@@ -328,7 +328,9 @@ Avoid spaces (they cause problems in terminal commands), generic names (`results
 
 ### Cross-Language Data
 
-When data produced by an R script needs to be read by a Python script (or vice versa), use **Parquet** format. Parquet files are smaller than CSV, preserve column types (so you don't lose the distinction between integers and strings), and are fast to read in both languages:
+When data produced by an R script needs to be read by a Python script (or vice versa), use **Parquet** format. CSV files lose type information — a column of integers might be read back as strings, or dates might be misinterpreted. Parquet avoids this by storing column types alongside the data, so what you save is exactly what you read back. Parquet files are also smaller and faster to read than CSV in both languages.
+
+In R, Parquet support comes from the `arrow` package. Install it with `renv::install("arrow")` if you haven't already:
 
 ```r
 # R: save as Parquet
@@ -362,9 +364,11 @@ source(here("R/gene_helpers.R"))
 ```python
 # In any script, load project helpers with:
 import sys
-sys.path.insert(0, str(PROJECT_ROOT / "python"))
+sys.path.insert(0, str(PROJECT_ROOT / "python"))  # tell Python where to find your modules
 from gene_helpers import normalize_name
 ```
+
+Python doesn't automatically know to look in your project's `python/` folder for modules — `sys.path.insert` adds that folder to the list of places Python searches when you `import` something. The R equivalent (`source()`) is simpler because it takes a direct file path.
 
 Fix functions in place and let Git track the history—don't version function names (`make_gene_short_v2`).
 

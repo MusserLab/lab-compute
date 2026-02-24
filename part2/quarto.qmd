@@ -79,6 +79,10 @@ A typical session looks like this: you open your project in Positron, create or 
 
 A Quarto document has two parts: a **YAML header** (metadata and rendering options, between `---` markers at the top) and a **body** (Markdown text interspersed with code chunks).
 
+### Creating a New Document
+
+To start a new Quarto document in Positron, go to the File Explorer in the left sidebar, right-click inside your `scripts/` folder, and select **New File**. Name it with a `.qmd` extension (like `01_analysis.qmd`). Positron recognizes the extension and gives you Quarto syntax highlighting and the Render button in the toolbar. Start by pasting in the YAML header and setup chunk from the templates below, then begin adding your own sections and code chunks.
+
 ### Document Structure
 
 Here's a minimal example:
@@ -235,18 +239,24 @@ cat("Rendered from commit:", git_hash, "\n")
 ```python
 #| label: setup
 
+# Standard library modules (built into Python)
 import subprocess, sys, random
 from pathlib import Path
 from datetime import datetime
 
+# Third-party packages (installed via conda)
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+# ---- Project Root ----
+# Find the project root by asking Git where the repository starts.
+# This lets us build reliable file paths regardless of where the script lives.
 PROJECT_ROOT = Path(subprocess.check_output(
     ["git", "rev-parse", "--show-toplevel"]
 ).decode().strip())
+# Add the project's python/ folder so we can import our own helper modules
 sys.path.insert(0, str(PROJECT_ROOT / "python"))
 
 # ---- Options ----
@@ -259,12 +269,18 @@ sns.set_theme(style="whitegrid")
 out_dir = PROJECT_ROOT / "outs/01_script_name"
 out_dir.mkdir(parents=True, exist_ok=True)
 
+# ---- Provenance ----
 git_hash = subprocess.check_output(
     ["git", "rev-parse", "--short", "HEAD"]
 ).decode().strip()
 print(f"Rendered from commit: {git_hash}")
 ```
 
+:::
+
+::: {.callout-note}
+## These Templates Require Git
+The provenance section uses `git rev-parse` to capture the current commit hash, and the Python version uses it to find the project root. These commands only work if your project is a Git repository. If you haven't set up Git yet (covered in the [Git & GitHub chapter](git-github.qmd)), you can comment out the provenance lines for now and add them back later when your project is under version control.
 :::
 
 Both versions follow the same pattern: libraries, paths, options, provenance. The key differences:
@@ -521,7 +537,7 @@ quarto render scripts/01_analysis.qmd
 
 #### Python
 
-Python QMD files require the conda environment to be active when you render:
+Python QMD files require the **conda environment** to be active when you render. If you haven't set up conda yet, the [Conda chapter](conda.qmd) walks through installation and environment creation — come back to this section after that.
 
 ```default
 source ~/miniconda3/etc/profile.d/conda.sh && conda activate my-project && quarto render scripts/02_plots.qmd
@@ -773,13 +789,13 @@ For complete, copy-paste-ready templates (YAML headers, setup chunks, provenance
 
 ## Python-Specific Notes
 
-This section collects the Python-specific details that don't fit neatly into the tabsets above.
+This section collects the Python-specific details that don't fit neatly into the tabsets above. If you haven't set up conda yet, read the [Conda chapter](conda.qmd) first — these notes will make more sense after that.
 
 **Conda must be active for rendering.** This is the number one Python QMD gotcha. Unlike R (which finds packages via renv automatically), Python QMD files require the conda environment to be active when you render. If `quarto render` fails with `ModuleNotFoundError`, activate your environment first.
 
 **Install `ipykernel`.** Quarto uses Jupyter kernels to execute Python code. Your conda environment needs `ipykernel` installed (`conda install ipykernel`) or rendering will fail.
 
-**Install `session-info`.** For the provenance chunk to work, install `session-info` in your conda environment: `pip install session-info`.
+**Install `session-info`.** For the provenance chunk to work, install `session-info` in your conda environment: `pip install session-info`. Note the dash in the install name vs. the underscore in the import (`import session_info`) — this is a common Python convention where package install names use dashes but module names use underscores.
 
 **Don't mix languages.** Do not mix R and Python chunks in a single `.qmd`. Each script uses one language. Scripts communicate through files in `outs/`, not shared memory. If an R script produces data that a Python script needs, save it as Parquet (see [Project Organization](project-organization.qmd#housekeeping)).
 

@@ -192,7 +192,7 @@ If you have multiple R versions installed (via rig), you can choose which one Po
 2. Type "R: Select R Binary"
 3. Choose the version you want
 
-This usually only needs to be done **once per project** — Positron remembers your choice and uses it every time you open the project. If you use the Musser Lab's `/new-project` skill in Claude Code, it sets the R version automatically when scaffolding a new project.
+This usually only needs to be done **once per project** — Positron remembers your choice and uses it every time you open the project. If you later use the Musser Lab's `/new-project` skill in Claude Code (covered in Part 3), it sets the R version automatically when scaffolding a new project.
 
 See the [R: rig & renv chapter](renv.qmd) for more on managing R versions and packages.
 
@@ -206,7 +206,7 @@ When you first open a project that uses Python, you need to tell Positron which 
 2. Type "Python: Select Interpreter"
 3. Choose your project's conda environment from the list
 
-Like R, this only needs to be done **once per project** — Positron remembers your choice. If you use the Musser Lab's `/new-project` skill in Claude Code, it configures this automatically.
+Like R, this only needs to be done **once per project** — Positron remembers your choice. If you later use the Musser Lab's `/new-project` skill in Claude Code (covered in Part 3), it configures this automatically.
 
 See the [Conda chapter](conda.qmd) for how to create and manage Python environments.
 
@@ -294,6 +294,6 @@ Don't install a dozen extensions on day one. Start with the essentials above and
 
 ## Project Settings
 
-Positron stores project-specific settings in a `.positron/` folder inside your project. When you select an R version or Python interpreter through the Command Palette, Positron remembers that choice for the project — though it handles this internally, so you won't see a visible settings file the way you would with `.vscode/settings.json` in VS Code.
+Positron stores project-specific settings in a `.positron/` folder inside your project. When you select an R version or Python interpreter through the Command Palette, Positron remembers that choice here. The folder is hidden by default (the `.` prefix hides it in most file browsers), and you normally won't need to look at it — Positron manages it for you through the Command Palette.
 
-You generally don't need to think about this. The Command Palette handles most configuration, and Claude Code can adjust settings for you when needed (for example, the `/new-project` skill writes interpreter paths to project settings automatically). If something goes wrong with interpreter detection, checking `.positron/` for stale settings is a reasonable troubleshooting step.
+You generally don't need to think about this. The Command Palette handles most configuration, and Claude Code can adjust settings for you when needed. If something goes wrong with interpreter detection — Positron suddenly uses the wrong R version or Python environment — checking inside `.positron/` for stale settings is a reasonable troubleshooting step. You can also safely delete the folder; Positron will recreate it next time you select an interpreter.

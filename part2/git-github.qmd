@@ -194,7 +194,13 @@ A **remote** is a copy of your repository on another computer — typically GitH
 
 ## Your First Commit
 
-The best way to learn Git is to use it. This walkthrough uses Positron's **Source Control panel**, which gives you a visual interface for all the common Git operations. You'll need a project that's already a Git repository — if you worked through [Setting Up a Lab Project](../part3/setup-walkthrough.qmd), you already have one. If not, you can initialize any project folder by running `git init` in Positron's terminal.
+The best way to learn Git is to use it. This walkthrough uses Positron's **Source Control panel**, which gives you a visual interface for all the common Git operations. You'll need a project that's a Git repository. If you worked through [Your First R Project](../part1/first-project.qmd), open that `my-first-analysis` folder in Positron and initialize it as a Git repository by running this in Positron's terminal (**Cmd+\`** or **Ctrl+\`**):
+
+```default
+git init
+```
+
+You should see "Initialized empty Git repository." Now Git is tracking that folder, and you can follow along below.
 
 ### Open the Source Control Panel
 
@@ -239,9 +245,12 @@ Claude will look at your staged changes, write a message that describes what you
 
 A commit saves your changes locally. **Pushing** uploads those commits to GitHub, where they're backed up and accessible to collaborators. Think of it this way: committing is saving your work, pushing is backing it up.
 
-To push from Positron, click the **three-dot menu** (⋯) at the top of the Source Control panel and select **Push**. You can also click the **sync icon** in the status bar at the bottom of the window — it pushes your commits and pulls any new ones from GitHub in one step.
+::: {.callout-note}
+## First Push Requires a Remote
+If you started your project with `git init` (as in the walkthrough above), Git doesn't know where on GitHub to send your code yet. You need to create a GitHub repository first — see [Creating a New Repo](#creating-a-new-repo) below for how to do that. If you cloned an existing repository from GitHub, the remote is already configured and you can push right away.
+:::
 
-The first time you push a new repository, Git may ask you to set an "upstream" — this just means telling Git where on GitHub to send the code. If you created the repo through GitHub (or with `gh repo create`), this is already configured.
+To push from Positron, click the **three-dot menu** (⋯) at the top of the Source Control panel and select **Push**. You can also click the **sync icon** in the status bar at the bottom of the window — it pushes your commits and pulls any new ones from GitHub in one step.
 
 ### Pull Before You Start
 
@@ -282,10 +291,6 @@ Not everything in your project folder belongs in Git. Code, documentation, and c
 The **`.gitignore`** file tells Git which files and folders to skip. Place it in the root of your project and Git will ignore anything that matches the patterns inside. Here's a simplified version for a typical lab project:
 
 ```
-# Data files (too large for Git)
-*.h5ad
-*.rds
-
 # Generated outputs (reproducible from code)
 outs/
 
@@ -293,6 +298,7 @@ outs/
 .Rhistory
 .RData
 renv/library/
+renv/staging/
 
 # Python artifacts
 __pycache__/
@@ -306,9 +312,10 @@ __pycache__/
 .env
 *credentials*
 
-# OS files
+# OS and IDE files
 .DS_Store
 Thumbs.db
+.positron/
 ```
 
 See the [Setting Up a Lab Project](../part3/setup-walkthrough.qmd) chapter for a more complete `.gitignore` template. The key principle: **track things humans write, ignore things computers generate**. If a file can be recreated by running your code, it probably doesn't belong in Git.
