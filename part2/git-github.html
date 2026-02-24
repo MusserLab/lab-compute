@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -482,42 +517,55 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#what-is-git" id="toc-what-is-git" class="nav-link active" data-scroll-target="#what-is-git">What is Git?</a></li>
-  <li><a href="#what-is-github" id="toc-what-is-github" class="nav-link" data-scroll-target="#what-is-github">What is GitHub?</a></li>
-  <li><a href="#personal-accounts-vs.-the-lab-organization" id="toc-personal-accounts-vs.-the-lab-organization" class="nav-link" data-scroll-target="#personal-accounts-vs.-the-lab-organization">Personal Accounts vs.&nbsp;the Lab Organization</a>
+  <li><a href="#installing-git" id="toc-installing-git" class="nav-link" data-scroll-target="#installing-git">Installing Git</a>
   <ul class="collapse">
-  <li><a href="#visibility-public-vs.-private" id="toc-visibility-public-vs.-private" class="nav-link" data-scroll-target="#visibility-public-vs.-private">Visibility: Public vs.&nbsp;Private</a></li>
-  <li><a href="#adding-collaborators" id="toc-adding-collaborators" class="nav-link" data-scroll-target="#adding-collaborators">Adding Collaborators</a></li>
+  <li><a href="#configure-your-identity" id="toc-configure-your-identity" class="nav-link" data-scroll-target="#configure-your-identity">Configure Your Identity</a></li>
   </ul></li>
-  <li><a href="#why-we-use-git-for-all-research" id="toc-why-we-use-git-for-all-research" class="nav-link" data-scroll-target="#why-we-use-git-for-all-research">Why We Use Git for All Research</a></li>
-  <li><a href="#key-concepts" id="toc-key-concepts" class="nav-link" data-scroll-target="#key-concepts">Key Concepts</a></li>
-  <li><a href="#the-daily-workflow-in-positron" id="toc-the-daily-workflow-in-positron" class="nav-link" data-scroll-target="#the-daily-workflow-in-positron">The Daily Workflow in Positron</a>
+  <li><a href="#what-is-github" id="toc-what-is-github" class="nav-link" data-scroll-target="#what-is-github">What is GitHub?</a></li>
+  <li><a href="#setting-up-github" id="toc-setting-up-github" class="nav-link" data-scroll-target="#setting-up-github">Setting Up GitHub</a>
   <ul class="collapse">
-  <li><a href="#opening-source-control" id="toc-opening-source-control" class="nav-link" data-scroll-target="#opening-source-control">Opening Source Control</a></li>
-  <li><a href="#the-basic-cycle" id="toc-the-basic-cycle" class="nav-link" data-scroll-target="#the-basic-cycle">The Basic Cycle</a></li>
-  <li><a href="#what-the-icons-mean" id="toc-what-the-icons-mean" class="nav-link" data-scroll-target="#what-the-icons-mean">What the Icons Mean</a></li>
+  <li><a href="#create-a-github-account" id="toc-create-a-github-account" class="nav-link" data-scroll-target="#create-a-github-account">Create a GitHub Account</a></li>
+  <li><a href="#install-the-github-cli" id="toc-install-the-github-cli" class="nav-link" data-scroll-target="#install-the-github-cli">Install the GitHub CLI</a></li>
+  <li><a href="#sec-github-auth" id="toc-sec-github-auth" class="nav-link" data-scroll-target="#sec-github-auth">Authenticate with GitHub</a></li>
+  <li><a href="#join-the-musserlab-organization" id="toc-join-the-musserlab-organization" class="nav-link" data-scroll-target="#join-the-musserlab-organization">Join the MusserLab Organization</a></li>
+  </ul></li>
+  <li><a href="#the-musserlab-organization" id="toc-the-musserlab-organization" class="nav-link" data-scroll-target="#the-musserlab-organization">The MusserLab Organization</a>
+  <ul class="collapse">
+  <li><a href="#public-vs.-private-repositories" id="toc-public-vs.-private-repositories" class="nav-link" data-scroll-target="#public-vs.-private-repositories">Public vs.&nbsp;Private Repositories</a></li>
+  <li><a href="#readme-your-projects-landing-page" id="toc-readme-your-projects-landing-page" class="nav-link" data-scroll-target="#readme-your-projects-landing-page">README: Your Project’s Landing Page</a></li>
+  </ul></li>
+  <li><a href="#how-git-works-the-core-ideas" id="toc-how-git-works-the-core-ideas" class="nav-link" data-scroll-target="#how-git-works-the-core-ideas">How Git Works: The Core Ideas</a></li>
+  <li><a href="#your-first-commit" id="toc-your-first-commit" class="nav-link" data-scroll-target="#your-first-commit">Your First Commit</a>
+  <ul class="collapse">
+  <li><a href="#open-the-source-control-panel" id="toc-open-the-source-control-panel" class="nav-link" data-scroll-target="#open-the-source-control-panel">Open the Source Control Panel</a></li>
+  <li><a href="#make-a-change" id="toc-make-a-change" class="nav-link" data-scroll-target="#make-a-change">Make a Change</a></li>
+  <li><a href="#see-what-changed" id="toc-see-what-changed" class="nav-link" data-scroll-target="#see-what-changed">See What Changed</a></li>
+  <li><a href="#stage-your-changes" id="toc-stage-your-changes" class="nav-link" data-scroll-target="#stage-your-changes">Stage Your Changes</a></li>
+  <li><a href="#write-a-message-and-commit" id="toc-write-a-message-and-commit" class="nav-link" data-scroll-target="#write-a-message-and-commit">Write a Message and Commit</a></li>
+  </ul></li>
+  <li><a href="#pushing-to-github" id="toc-pushing-to-github" class="nav-link" data-scroll-target="#pushing-to-github">Pushing to GitHub</a>
+  <ul class="collapse">
+  <li><a href="#pull-before-you-start" id="toc-pull-before-you-start" class="nav-link" data-scroll-target="#pull-before-you-start">Pull Before You Start</a></li>
   </ul></li>
   <li><a href="#writing-good-commit-messages" id="toc-writing-good-commit-messages" class="nav-link" data-scroll-target="#writing-good-commit-messages">Writing Good Commit Messages</a>
   <ul class="collapse">
   <li><a href="#when-to-commit" id="toc-when-to-commit" class="nav-link" data-scroll-target="#when-to-commit">When to Commit</a></li>
   </ul></li>
-  <li><a href="#setting-up-.gitignore" id="toc-setting-up-.gitignore" class="nav-link" data-scroll-target="#setting-up-.gitignore">Setting Up .gitignore</a>
-  <ul class="collapse">
-  <li><a href="#standard-.gitignore-for-lab-projects" id="toc-standard-.gitignore-for-lab-projects" class="nav-link" data-scroll-target="#standard-.gitignore-for-lab-projects">Standard .gitignore for Lab Projects</a></li>
-  </ul></li>
+  <li><a href="#what-to-track-and-what-to-ignore" id="toc-what-to-track-and-what-to-ignore" class="nav-link" data-scroll-target="#what-to-track-and-what-to-ignore">What to Track and What to Ignore</a></li>
   <li><a href="#getting-a-repository" id="toc-getting-a-repository" class="nav-link" data-scroll-target="#getting-a-repository">Getting a Repository</a>
   <ul class="collapse">
   <li><a href="#cloning-an-existing-repo" id="toc-cloning-an-existing-repo" class="nav-link" data-scroll-target="#cloning-an-existing-repo">Cloning an Existing Repo</a></li>
   <li><a href="#creating-a-new-repo" id="toc-creating-a-new-repo" class="nav-link" data-scroll-target="#creating-a-new-repo">Creating a New Repo</a></li>
   </ul></li>
-  <li><a href="#beyond-the-basics" id="toc-beyond-the-basics" class="nav-link" data-scroll-target="#beyond-the-basics">Beyond the Basics</a>
+  <li><a href="#exploring-github" id="toc-exploring-github" class="nav-link" data-scroll-target="#exploring-github">Exploring GitHub</a>
   <ul class="collapse">
-  <li><a href="#branches" id="toc-branches" class="nav-link" data-scroll-target="#branches">Branches</a></li>
-  <li><a href="#merge-conflicts" id="toc-merge-conflicts" class="nav-link" data-scroll-target="#merge-conflicts">Merge Conflicts</a></li>
-  <li><a href="#undoing-mistakes" id="toc-undoing-mistakes" class="nav-link" data-scroll-target="#undoing-mistakes">Undoing Mistakes</a></li>
-  <li><a href="#pull-requests" id="toc-pull-requests" class="nav-link" data-scroll-target="#pull-requests">Pull Requests</a></li>
+  <li><a href="#browsing-files-and-history" id="toc-browsing-files-and-history" class="nav-link" data-scroll-target="#browsing-files-and-history">Browsing Files and History</a></li>
+  <li><a href="#issues-tracking-tasks-and-bugs" id="toc-issues-tracking-tasks-and-bugs" class="nav-link" data-scroll-target="#issues-tracking-tasks-and-bugs">Issues: Tracking Tasks and Bugs</a></li>
+  <li><a href="#other-useful-github-features" id="toc-other-useful-github-features" class="nav-link" data-scroll-target="#other-useful-github-features">Other Useful GitHub Features</a></li>
   </ul></li>
+  <li><a href="#as-your-projects-grow-branches-and-pull-requests" id="toc-as-your-projects-grow-branches-and-pull-requests" class="nav-link" data-scroll-target="#as-your-projects-grow-branches-and-pull-requests">As Your Projects Grow: Branches and Pull Requests</a></li>
+  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices">Best Practices</a></li>
   <li><a href="#learning-more" id="toc-learning-more" class="nav-link" data-scroll-target="#learning-more">Learning More</a></li>
-  <li><a href="#best-practices-summary" id="toc-best-practices-summary" class="nav-link" data-scroll-target="#best-practices-summary">Best Practices Summary</a></li>
   </ul>
 </nav>
     </div>
@@ -544,67 +592,135 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>In <a href="../part1/first-project.html">Your First R Project</a>, you wrote an analysis script, ran it, and got results. Everything was in one session — you edited, re-ran, edited some more. But what happens tomorrow, when you want to undo a change you made this afternoon? Or next month, when a reviewer asks you to re-run the analysis the way it was before you changed the normalization method? What happens when a collaborator needs to work on the same project, or when your laptop dies?</p>
+<p>These are the problems Git and GitHub solve. Git keeps a complete history of every change you make to your code, and GitHub backs it up online where others can access it. Together, they form the backbone of how we manage code in the lab — think of them as the computational equivalent of a lab notebook. This chapter walks you through installing both tools, understanding how they work, and using them in your daily workflow.</p>
 <section id="what-is-git" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-git">What is Git?</h2>
-<p>Git is a <strong>version control system</strong>—software that tracks every change you make to your files over time. Think of it as an unlimited undo history for your entire project, with the ability to see exactly what changed, when, and why.</p>
+<p>Git is a <strong>version control system</strong> — software that tracks every change you make to your files over time. Think of it as an unlimited undo history for your entire project, with the ability to see exactly what changed, when, and why.</p>
 <p>Without version control, projects tend to accumulate files like this:</p>
 <pre><code>analysis_v1.R
 analysis_v2.R
 analysis_v2_final.R
 analysis_v2_final_FINAL.R
 analysis_v2_final_FINAL_fixed.R</code></pre>
-<p>With Git, you have one file (<code>analysis.R</code>) and a complete history of every version. You can:</p>
-<ul>
-<li><strong>See what changed</strong>: Compare any two versions to see exactly which lines were added, removed, or modified</li>
-<li><strong>Understand why</strong>: Each saved version includes a message explaining the change</li>
-<li><strong>Go back in time</strong>: Restore any previous version if something breaks</li>
-<li><strong>Work in parallel</strong>: Create “branches” to experiment without affecting your main code</li>
-<li><strong>Collaborate safely</strong>: Multiple people can work on the same project without overwriting each other</li>
-</ul>
-<p>Git runs locally on your computer. Every project folder that Git tracks is called a <strong>repository</strong> (or “repo”). The history lives in a hidden <code>.git</code> folder inside your project.</p>
+<p>With Git, you keep one file — <code>analysis.R</code> — and Git tracks every version behind the scenes. You can compare any two versions to see exactly which lines were added or removed. Every saved version (called a <strong>commit</strong>) includes a message explaining what changed, so you can look back six months later and understand the evolution of your analysis. If something breaks, you can restore any previous version. And when it’s time to collaborate, multiple people can work on the same project without overwriting each other’s changes.</p>
+<p>Git runs locally on your computer. Every project folder that Git tracks is called a <strong>repository</strong> (or “repo” for short). The history lives in a hidden <code>.git</code> folder inside your project — you’ll never need to touch it directly, but knowing it’s there helps you understand what Git is doing.</p>
+</section>
+<section id="installing-git" class="level2">
+<h2 class="anchored" data-anchor-id="installing-git">Installing Git</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="" aria-current="page">macOS</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Windows</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>Git comes bundled with Apple’s <strong>Xcode Command Line Tools</strong>, a collection of developer utilities. Many Macs already have this installed — you may have been prompted to install it the first time you opened Terminal or ran a developer tool. To check, open <strong>Terminal</strong> and run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>git --version</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If you see a version number (like <code>git version 2.39.5</code>), Git is already installed and you can skip ahead to <a href="#configure-your-identity">Configure Your Identity</a>.</p>
+<p>If you see a popup asking to install Xcode Command Line Tools, click <strong>Install</strong> and wait for it to finish. If you get “command not found” with no popup, install manually:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>xcode-select --install</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Alternatively, if you have <a href="https://brew.sh">Homebrew</a> installed, you can get a newer version of Git with:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>brew install git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>After installation, <strong>close and reopen Terminal</strong>, then verify:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>git --version</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>Download Git from <a href="https://git-scm.com/downloads/win">https://git-scm.com/downloads/win</a>. Run the installer and <strong>accept all the default settings</strong> — the defaults are well-chosen and changing them can cause confusing problems later.</p>
+<p>After installation, <strong>close and reopen PowerShell</strong>, then verify:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>git --version</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<section id="configure-your-identity" class="level3">
+<h3 class="anchored" data-anchor-id="configure-your-identity">Configure Your Identity</h3>
+<p>Every Git commit is stamped with your name and email address, so collaborators (and future you) can see who made each change. Tell Git who you are by running these commands in your terminal, replacing the name and email with your own:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>git config --global user.name "Your Name"</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>git config --global user.email "your.email@example.com"</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Use the same email address you’ll use for your GitHub account. This is a one-time setup — Git remembers this configuration for all projects on your computer.</p>
+</section>
 </section>
 <section id="what-is-github" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-github">What is GitHub?</h2>
-<p>GitHub is a <strong>website that hosts Git repositories online</strong>. Git and GitHub are related but different:</p>
+<p>GitHub is a website that hosts Git repositories online. Git and GitHub are related but different things:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
+<th></th>
 <th>Git</th>
 <th>GitHub</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
+<td><strong>What</strong></td>
 <td>Software on your computer</td>
 <td>Website (github.com)</td>
 </tr>
 <tr class="even">
+<td><strong>Where</strong></td>
 <td>Tracks file history locally</td>
 <td>Stores repos in the cloud</td>
 </tr>
 <tr class="odd">
+<td><strong>Connectivity</strong></td>
 <td>Works offline</td>
 <td>Requires internet</td>
 </tr>
 <tr class="even">
-<td>Free, open-source tool</td>
-<td>Company (owned by Microsoft)</td>
+<td><strong>Cost</strong></td>
+<td>Free, open-source</td>
+<td>Free for public and private repos</td>
 </tr>
 </tbody>
 </table>
-<p>You can use Git without GitHub—the history stays on your computer. But GitHub adds important capabilities:</p>
-<ul>
-<li><strong>Backup</strong>: Your code is safe even if your laptop dies</li>
-<li><strong>Collaboration</strong>: Others can access, download, and contribute to your project</li>
-<li><strong>Visibility</strong>: Share your work publicly or keep it private</li>
-<li><strong>Project management</strong>: Issues, pull requests, and documentation</li>
-</ul>
-<p>Other Git hosting services exist (GitLab, Bitbucket), but GitHub is the most common in science and the one we use in the lab.</p>
+<p>You can use Git without GitHub — your history stays on your computer. But GitHub adds capabilities that matter for research: your code is backed up in the cloud (safe from laptop failures), collaborators can access and contribute to your project, and you can share your work publicly when you’re ready. GitHub also provides project management tools — Issues for tracking tasks and bugs, pull requests for reviewing changes, and a web interface for browsing code and history.</p>
+<p>Other Git hosting services exist (GitLab, Bitbucket), but GitHub is the most widely used in science and the one we use in the lab.</p>
 </section>
-<section id="personal-accounts-vs.-the-lab-organization" class="level2">
-<h2 class="anchored" data-anchor-id="personal-accounts-vs.-the-lab-organization">Personal Accounts vs.&nbsp;the Lab Organization</h2>
-<p>On GitHub, you have a <strong>personal account</strong> (your username), and you can also belong to <strong>organizations</strong> (shared accounts for teams).</p>
-<p>The lab uses the <strong>MusserLab</strong> organization for all research projects. Here’s how to think about where your repos should live:</p>
+<section id="setting-up-github" class="level2">
+<h2 class="anchored" data-anchor-id="setting-up-github">Setting Up GitHub</h2>
+<section id="create-a-github-account" class="level3">
+<h3 class="anchored" data-anchor-id="create-a-github-account">Create a GitHub Account</h3>
+<p>If you don’t already have one, go to <a href="https://github.com">github.com</a> and sign up. Use an email address you check regularly — GitHub sends notifications when collaborators comment on your code or request your review. A professional username is best, since this will be visible on your published work (something like <code>jsmith</code> or <code>jane-smith</code>, not <code>xXx_data_ninja_xXx</code>).</p>
+</section>
+<section id="install-the-github-cli" class="level3">
+<h3 class="anchored" data-anchor-id="install-the-github-cli">Install the GitHub CLI</h3>
+<p>The <strong>GitHub CLI</strong> (<code>gh</code>) lets you interact with GitHub from your terminal — creating repositories, authenticating, and more. You don’t strictly need it (you can do everything through the GitHub website), but it makes several common tasks much faster.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">macOS</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Windows</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p>If you have <a href="https://brew.sh">Homebrew</a>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>brew install gh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If you don’t have Homebrew, download the installer from <a href="https://cli.github.com">https://cli.github.com</a>.</p>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p>Download the installer from <a href="https://cli.github.com">https://cli.github.com</a>. Run it and follow the prompts. <strong>Close and reopen PowerShell</strong> after installation.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-github-auth" class="level3">
+<h3 class="anchored" data-anchor-id="sec-github-auth">Authenticate with GitHub</h3>
+<p>Run the following command, then follow the prompts:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>gh auth login</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>When asked, choose:</p>
+<ul>
+<li><strong>GitHub.com</strong> (not Enterprise)</li>
+<li><strong>HTTPS</strong> (not SSH)</li>
+<li><strong>Login with a web browser</strong></li>
+</ul>
+<p>This opens your browser where you log in with your GitHub credentials and authorize the CLI. Once complete, both <code>gh</code> (the GitHub CLI) and <code>git push</code>/<code>git pull</code> (regular Git) will be authenticated — you won’t need to enter passwords for routine Git operations.</p>
+<p>Verify it worked:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>gh auth status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You should see your GitHub username and “Logged in to github.com.”</p>
+<p>[TODO: screenshot of terminal showing gh auth login prompts and successful authentication]</p>
+</section>
+<section id="join-the-musserlab-organization" class="level3">
+<h3 class="anchored" data-anchor-id="join-the-musserlab-organization">Join the MusserLab Organization</h3>
+<p>Ask Jake to add you to the <strong>MusserLab</strong> organization on GitHub. Once you accept the invitation (check your email or GitHub notifications), you’ll be able to create and access repositories under the MusserLab account.</p>
+</section>
+</section>
+<section id="the-musserlab-organization" class="level2">
+<h2 class="anchored" data-anchor-id="the-musserlab-organization">The MusserLab Organization</h2>
+<p>On GitHub, you have a <strong>personal account</strong> (your username) and you can also belong to <strong>organizations</strong> — shared accounts for teams. The lab uses the <strong>MusserLab</strong> organization for all research projects.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 23%">
@@ -621,13 +737,13 @@ analysis_v2_final_FINAL_fixed.R</code></pre>
 <tbody>
 <tr class="odd">
 <td><strong>Your personal account</strong></td>
-<td>Personal projects only: coursework, side projects, learning exercises</td>
+<td>Personal projects, coursework, learning, side projects</td>
 <td><code>jsmith/practice-git</code>, <code>jsmith/coursework</code></td>
 </tr>
 <tr class="even">
 <td><strong>MusserLab organization</strong></td>
-<td>All lab research—no exceptions</td>
-<td><code>MusserLab/tryptamine-phospho</code>, <code>MusserLab/rnaseq-pipeline</code></td>
+<td>All lab research — no exceptions</td>
+<td><code>MusserLab/tryptamine-phospho</code>, <code>MusserLab/sponge-rnaseq</code></td>
 </tr>
 </tbody>
 </table>
@@ -637,130 +753,95 @@ analysis_v2_final_FINAL_fixed.R</code></pre>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Lab research belongs on the organization
+<span class="screen-reader-only">Important</span>Lab Research Belongs on the Organization
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If a project involves lab research, it must be on the MusserLab organization—not your personal account. This ensures continuity when people leave, makes collaboration possible, and keeps lab work in one place.</p>
+<p>If a project involves lab research, it goes on the MusserLab organization — not your personal account. This ensures continuity when people leave, makes collaboration straightforward, and keeps all lab work in one findable place.</p>
 </div>
 </div>
-<section id="visibility-public-vs.-private" class="level3">
-<h3 class="anchored" data-anchor-id="visibility-public-vs.-private">Visibility: Public vs.&nbsp;Private</h3>
-<p>Both personal accounts and organizations can have public or private repos:</p>
+<section id="public-vs.-private-repositories" class="level3">
+<h3 class="anchored" data-anchor-id="public-vs.-private-repositories">Public vs.&nbsp;Private Repositories</h3>
+<p>Every repository on GitHub is either <strong>public</strong> (anyone on the internet can see it) or <strong>private</strong> (only you and people you explicitly grant access can see it). Lab research repos are typically kept <strong>private</strong> while work is in progress. You can always change a repo’s visibility later.</p>
+<p>When a paper is published, we usually create a separate, curated <strong>public repository</strong> with cleaned-up code and documentation — rather than making the messy working repo public. This approach lets you work freely during research without worrying about how your commit history looks to the outside world.</p>
+</section>
+<section id="readme-your-projects-landing-page" class="level3">
+<h3 class="anchored" data-anchor-id="readme-your-projects-landing-page">README: Your Project’s Landing Page</h3>
+<p>When someone visits your repository on GitHub, the first thing they see is the <strong>README</strong> — a file called <code>README.md</code> that GitHub renders at the bottom of the file listing. A good README tells visitors what the project is, how to set it up, and how to use it. Even for private repos, a short README helps collaborators (and future you) get oriented quickly. At minimum, include a one-paragraph description of what the project does and any setup instructions a new contributor would need.</p>
+</section>
+</section>
+<section id="how-git-works-the-core-ideas" class="level2">
+<h2 class="anchored" data-anchor-id="how-git-works-the-core-ideas">How Git Works: The Core Ideas</h2>
+<p>Before diving into the daily workflow, it helps to understand a few core concepts. Don’t worry about memorizing these — you’ll internalize them through use. Think of this section as a reference you can come back to.</p>
+<p>A <strong>repository</strong> (repo) is just a project folder that Git is tracking. When you tell Git to start tracking a folder, it creates a hidden <code>.git</code> directory inside that stores the entire history. Your project files look the same — Git works invisibly in the background.</p>
+<p>A <strong>commit</strong> is a snapshot of your project at a moment in time. Think of it like saving a version of a document, except Git saves the state of <em>every file</em> in your project at once. Each commit has a unique ID (like <code>a1b2c3d</code>), a message you write describing what changed, and a pointer to the previous commit. Commits form a chain — your project’s timeline.</p>
+<p>The <strong>staging area</strong> is a holding area for changes you want to include in your next commit. When you change a file, Git notices, but it doesn’t automatically include that change in your next commit. You first <strong>stage</strong> the changes (pick which ones to include), then <strong>commit</strong> them (save the snapshot). This two-step process lets you make many changes but commit them in logical groups — for example, committing your QC filtering changes separately from your visualization updates.</p>
+<p>A <strong>branch</strong> is a parallel version of your project. The default branch is called <code>main</code>. You can create other branches to experiment without affecting <code>main</code>, then merge them back when ready. We’ll come back to branches <a href="#as-your-projects-grow-branches-and-pull-requests">later in this chapter</a>.</p>
+<p>A <strong>remote</strong> is a copy of your repository on another computer — typically GitHub. Your local repo and the remote stay in sync through <strong>pushing</strong> (uploading your commits) and <strong>pulling</strong> (downloading others’ commits).</p>
+</section>
+<section id="your-first-commit" class="level2">
+<h2 class="anchored" data-anchor-id="your-first-commit">Your First Commit</h2>
+<p>The best way to learn Git is to use it. This walkthrough uses Positron’s <strong>Source Control panel</strong>, which gives you a visual interface for all the common Git operations. You’ll need a project that’s already a Git repository — if you worked through <a href="../part3/setup-walkthrough.html">Setting Up a Lab Project</a>, you already have one. If not, you can initialize any project folder by running <code>git init</code> in Positron’s terminal.</p>
+<section id="open-the-source-control-panel" class="level3">
+<h3 class="anchored" data-anchor-id="open-the-source-control-panel">Open the Source Control Panel</h3>
+<p>Click the <strong>branch icon</strong> in Positron’s left sidebar, or press <strong>Cmd+Shift+G</strong> (macOS) / <strong>Ctrl+Shift+G</strong> (Windows). If there are no changes since your last commit, the panel will be mostly empty — that’s normal.</p>
+</section>
+<section id="make-a-change" class="level3">
+<h3 class="anchored" data-anchor-id="make-a-change">Make a Change</h3>
+<p>Open any file in your project and make a small edit — add a comment, fix a typo, or change a line of code. Save the file.</p>
+</section>
+<section id="see-what-changed" class="level3">
+<h3 class="anchored" data-anchor-id="see-what-changed">See What Changed</h3>
+<p>Switch back to the Source Control panel. Your edited file appears under <strong>Changes</strong>, with a letter indicating what happened:</p>
 <ul>
-<li><strong>Private</strong>: Only you (or organization members) can see it</li>
-<li><strong>Public</strong>: Anyone on the internet can see it</li>
+<li><strong>M</strong> (Modified) — an existing file was changed</li>
+<li><strong>U</strong> (Untracked) — a new file Git hasn’t seen before</li>
+<li><strong>D</strong> (Deleted) — a file was removed</li>
+<li><strong>A</strong> (Added) — a new file that’s been staged</li>
 </ul>
-<p>Lab research repos are typically kept <strong>private</strong>. When a paper is published, we usually create a separate, curated public repository with cleaned-up code and documentation—rather than making the working repo public. This lets you work freely during research without worrying about how messy your commit history looks.</p>
+<p>Click the filename to see a <strong>diff view</strong> — a side-by-side comparison showing exactly which lines were added (highlighted in green) and removed (highlighted in red). This is one of Git’s most useful features: before committing, you can review exactly what you’re about to save.</p>
+<p>[TODO: screenshot of Positron Source Control panel showing a modified file and the diff view]</p>
 </section>
-<section id="adding-collaborators" class="level3">
-<h3 class="anchored" data-anchor-id="adding-collaborators">Adding Collaborators</h3>
-<p>To give someone access to your repo:</p>
-<ol type="1">
-<li>Go to your repo on GitHub</li>
-<li><strong>Settings</strong> → <strong>Collaborators and teams</strong></li>
-<li>Click <strong>Add people</strong></li>
-<li>Enter their GitHub username</li>
-<li>Choose their permission level:
-<ul>
-<li><strong>Read</strong>: Can view and clone, but not push changes</li>
-<li><strong>Write</strong>: Can push changes (use this for active collaborators)</li>
-<li><strong>Admin</strong>: Full control including settings (rarely needed)</li>
-</ul></li>
-</ol>
+<section id="stage-your-changes" class="level3">
+<h3 class="anchored" data-anchor-id="stage-your-changes">Stage Your Changes</h3>
+<p>Click the <strong>+</strong> icon next to the file. It moves from “Changes” to “Staged Changes” — this means you’ve selected it for your next commit. You don’t have to stage everything at once. If you made unrelated changes to several files, you can commit them separately with different messages, keeping your history clean and meaningful.</p>
 </section>
-</section>
-<section id="why-we-use-git-for-all-research" class="level2">
-<h2 class="anchored" data-anchor-id="why-we-use-git-for-all-research">Why We Use Git for All Research</h2>
-<p>In the lab, we use Git for all research projects—think of it as the computational equivalent of a lab notebook. Your commit history becomes a record of how your analysis evolved: what you tried, what you changed, and why.</p>
-<p>This practice pays off in several ways:</p>
-<ol type="1">
-<li><strong>A record of your work</strong>: Every commit documents what you did and when, which helps with scientific integrity and your own memory</li>
-<li><strong>Safety net</strong>: Experiment freely knowing you can always go back if something breaks</li>
-<li><strong>Backup</strong>: Combined with GitHub, your work survives laptop failures and accidental deletions</li>
-<li><strong>Reproducibility</strong>: Collaborators (and future you) can trace exactly what code produced which results</li>
-</ol>
-<p>You don’t need to master every Git feature—the basics go a long way. The next sections cover what you need for daily work.</p>
-</section>
-<section id="key-concepts" class="level2">
-<h2 class="anchored" data-anchor-id="key-concepts">Key Concepts</h2>
-<p>Before using Git, understand these core ideas:</p>
-<dl>
-<dt><strong>Repository (repo)</strong></dt>
-<dd>
-A project folder that Git is tracking. Contains a hidden <code>.git</code> folder that stores the entire history.
-</dd>
-<dt><strong>Commit</strong></dt>
-<dd>
-A snapshot of your project at a moment in time. Each commit has a unique ID (like <code>a1b2c3d</code>), a message describing what changed, and a pointer to the previous commit. Commits form a chain—your project’s history.
-</dd>
-<dt><strong>Staging area</strong></dt>
-<dd>
-A holding area for changes you want to include in your next commit. You “stage” files first, then “commit” them. This two-step process lets you commit only some of your changes.
-</dd>
-<dt><strong>Branch</strong></dt>
-<dd>
-A parallel version of your project. The default branch is called <code>main</code>. You can create other branches to experiment without affecting <code>main</code>, then merge them back when ready.
-</dd>
-<dt><strong>Remote</strong></dt>
-<dd>
-A copy of your repository on another server—typically GitHub. Your local repo and the remote stay in sync through pushing (uploading your commits) and pulling (downloading others’ commits).
-</dd>
-</dl>
-</section>
-<section id="the-daily-workflow-in-positron" class="level2">
-<h2 class="anchored" data-anchor-id="the-daily-workflow-in-positron">The Daily Workflow in Positron</h2>
-<p>Most of your Git usage follows this pattern: edit files, stage changes, commit with a message, and push to GitHub. Positron’s <strong>Source Control panel</strong> makes this straightforward without needing to use the command line.</p>
-<section id="opening-source-control" class="level3">
-<h3 class="anchored" data-anchor-id="opening-source-control">Opening Source Control</h3>
-<p>Click the <strong>branch icon</strong> in the left sidebar, or use <strong>Cmd+Shift+G</strong> (macOS) / <strong>Ctrl+Shift+G</strong> (Windows). You’ll see:</p>
-<ul>
-<li><strong>Changes</strong>: Files you’ve modified since the last commit</li>
-<li><strong>Staged Changes</strong>: Files ready to be committed</li>
-</ul>
-</section>
-<section id="the-basic-cycle" class="level3">
-<h3 class="anchored" data-anchor-id="the-basic-cycle">The Basic Cycle</h3>
-<p><strong>1. Make changes to your files</strong></p>
-<p>Work normally—edit scripts, add new files, delete things you don’t need. Git tracks everything automatically.</p>
-<p><strong>2. Review what changed</strong></p>
-<p>Open the Source Control panel. You’ll see a list of changed files under “Changes.” Click any file to see a <strong>diff view</strong> showing exactly what lines were added (green) or removed (red).</p>
-<p><strong>3. Stage files for commit</strong></p>
-<p>Click the <strong>+</strong> icon next to each file you want to include in your commit. The file moves from “Changes” to “Staged Changes.”</p>
-<div class="callout callout-style-default callout-tip callout-titled">
+<section id="write-a-message-and-commit" class="level3">
+<h3 class="anchored" data-anchor-id="write-a-message-and-commit">Write a Message and Commit</h3>
+<p>Type a message in the text box at the top of the Source Control panel. Something like “Add QC filtering step” or “Fix sample labeling in metadata” — a short description of what this change does. Then click the <strong>checkmark</strong> (✓) to commit.</p>
+<p>That’s it — you’ve made a commit. The Source Control panel clears, and your change is recorded in Git’s history. But right now, this commit only exists on your computer. GitHub doesn’t know about it yet.</p>
+<div class="claude-callout callout callout-style-default callout-warning callout-titled" title="Claude Code">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Be intentional about staging
+<span class="screen-reader-only">Warning</span>Claude Code
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You don’t have to stage everything at once. If you made unrelated changes to several files, you can commit them separately with different messages. This keeps your history cleaner and easier to understand.</p>
+<p>Claude Code can commit your work for you, writing descriptive commit messages based on what actually changed.</p>
+<blockquote class="blockquote">
+<p>I just finished filtering the dataset and updating the QC thresholds. Can you commit these changes with a good message?</p>
+</blockquote>
+<p>Claude will look at your staged changes, write a message that describes what you did, and make the commit. This is especially useful when you’ve made many changes and aren’t sure how to summarize them. The lab’s <code>/done</code> skill does this automatically at the end of a work session.</p>
 </div>
 </div>
-<p><strong>4. Write a commit message and commit</strong></p>
-<p>Type a message in the text box at the top of the Source Control panel. Then click the <strong>checkmark</strong> (✓) to commit.</p>
-<p><strong>5. Push to GitHub</strong></p>
-<p>Click the <strong>three-dot menu</strong> (⋯) and select <strong>Push</strong>, or click the sync icon in the status bar. Until you push, your commits exist only on your computer.</p>
-<p><strong>6. Pull before starting work</strong></p>
-<p>If you’re collaborating or working from multiple computers, always pull before you start making changes. Click the three-dot menu → <strong>Pull</strong> to download any new commits from GitHub.</p>
 </section>
-<section id="what-the-icons-mean" class="level3">
-<h3 class="anchored" data-anchor-id="what-the-icons-mean">What the Icons Mean</h3>
-<p>In the Source Control panel, you’ll see letters next to changed files:</p>
-<ul>
-<li><strong>M</strong> (Modified): An existing file was changed</li>
-<li><strong>U</strong> (Untracked): A new file Git hasn’t seen before</li>
-<li><strong>D</strong> (Deleted): A file was removed</li>
-<li><strong>A</strong> (Added): A new file that’s been staged</li>
-</ul>
+</section>
+<section id="pushing-to-github" class="level2">
+<h2 class="anchored" data-anchor-id="pushing-to-github">Pushing to GitHub</h2>
+<p>A commit saves your changes locally. <strong>Pushing</strong> uploads those commits to GitHub, where they’re backed up and accessible to collaborators. Think of it this way: committing is saving your work, pushing is backing it up.</p>
+<p>To push from Positron, click the <strong>three-dot menu</strong> (⋯) at the top of the Source Control panel and select <strong>Push</strong>. You can also click the <strong>sync icon</strong> in the status bar at the bottom of the window — it pushes your commits and pulls any new ones from GitHub in one step.</p>
+<p>The first time you push a new repository, Git may ask you to set an “upstream” — this just means telling Git where on GitHub to send the code. If you created the repo through GitHub (or with <code>gh repo create</code>), this is already configured.</p>
+<section id="pull-before-you-start" class="level3">
+<h3 class="anchored" data-anchor-id="pull-before-you-start">Pull Before You Start</h3>
+<p>If you’re collaborating with someone, or if you work from multiple computers, get in the habit of <strong>pulling before you start working</strong>. Pulling downloads any new commits from GitHub that you don’t have locally. Click the three-dot menu → <strong>Pull</strong>, or use the sync icon. This avoids conflicts later — it’s much easier to integrate changes before you start editing than after.</p>
 </section>
 </section>
 <section id="writing-good-commit-messages" class="level2">
 <h2 class="anchored" data-anchor-id="writing-good-commit-messages">Writing Good Commit Messages</h2>
-<p>Commit messages are part of your scientific record. Write them for future-you (and collaborators) who need to understand what changed and why.</p>
+<p>Your commit messages become part of your project’s history — a record of what you did and why. Good messages make that history useful; bad messages make it noise.</p>
 <p><strong>Bad messages:</strong></p>
 <pre><code>update
 fix
@@ -772,34 +853,19 @@ asdf</code></pre>
 Fix off-by-one error causing last sample to be dropped
 Update normalization to use SCTransform instead of LogNormalize
 Remove outlier samples identified in PCA (samples 12, 47)</code></pre>
-<p>These explain <em>what</em> changed and often <em>why</em>. When you look at the history, you can understand the evolution of your analysis.</p>
+<p>These explain <em>what</em> changed and often <em>why</em>. When you look at the history, each message is a chapter in the story of your analysis.</p>
 <section id="when-to-commit" class="level3">
 <h3 class="anchored" data-anchor-id="when-to-commit">When to Commit</h3>
-<p>Commit when you’ve completed a logical unit of work:</p>
-<ul>
-<li>Finished a new analysis step</li>
-<li>Fixed a bug</li>
-<li>Added a new figure</li>
-<li>Made a decision you want to record</li>
-</ul>
-<p>Don’t wait until the end of the day to make one giant commit. Small, focused commits are easier to understand and easier to undo if needed.</p>
+<p>Commit when you’ve completed a logical unit of work: finished a new analysis step, fixed a bug, added a figure, or made a decision you want to record. Don’t wait until the end of the day to make one giant commit. Small, focused commits are easier to understand and easier to undo if needed.</p>
 </section>
 </section>
-<section id="setting-up-.gitignore" class="level2">
-<h2 class="anchored" data-anchor-id="setting-up-.gitignore">Setting Up .gitignore</h2>
-<p>The <code>.gitignore</code> file tells Git which files to ignore—they won’t be tracked or committed. This is essential for:</p>
-<ul>
-<li><strong>Large files</strong>: Data files that are too big for Git</li>
-<li><strong>Generated files</strong>: Outputs that can be recreated from code</li>
-<li><strong>Secrets</strong>: Credentials that should never be shared</li>
-<li><strong>System junk</strong>: OS and IDE files that aren’t part of your project</li>
-</ul>
-<section id="standard-.gitignore-for-lab-projects" class="level3">
-<h3 class="anchored" data-anchor-id="standard-.gitignore-for-lab-projects">Standard .gitignore for Lab Projects</h3>
-<pre><code># Large data files (add specific patterns as needed)
+<section id="what-to-track-and-what-to-ignore" class="level2">
+<h2 class="anchored" data-anchor-id="what-to-track-and-what-to-ignore">What to Track and What to Ignore</h2>
+<p>Not everything in your project folder belongs in Git. Code, documentation, and configuration files should be tracked. Large data files, generated outputs, credentials, and system junk should not.</p>
+<p>The <strong><code>.gitignore</code></strong> file tells Git which files and folders to skip. Place it in the root of your project and Git will ignore anything that matches the patterns inside. Here’s a simplified version for a typical lab project:</p>
+<pre><code># Data files (too large for Git)
 *.h5ad
 *.rds
-*.csv
 
 # Generated outputs (reproducible from code)
 outs/
@@ -807,13 +873,10 @@ outs/
 # R artifacts
 .Rhistory
 .RData
-.Rproj.user/
 renv/library/
 
 # Python artifacts
 __pycache__/
-*.pyc
-.venv/
 
 # Quarto rendering
 *_files/
@@ -823,70 +886,24 @@ __pycache__/
 # Secrets - NEVER commit these
 .env
 *credentials*
-*secret*
 
 # OS files
 .DS_Store
-Thumbs.db
-
-# IDE settings (optional - some teams share these)
-.vscode/
-.positron/</code></pre>
+Thumbs.db</code></pre>
+<p>See the <a href="../part3/setup-walkthrough.html">Setting Up a Lab Project</a> chapter for a more complete <code>.gitignore</code> template. The key principle: <strong>track things humans write, ignore things computers generate</strong>. If a file can be recreated by running your code, it probably doesn’t belong in Git.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Create .gitignore first
+<span class="screen-reader-only">Important</span>Create .gitignore First
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Set up <code>.gitignore</code> before your first commit. Once a file is committed, adding it to <code>.gitignore</code> won’t remove it from history—it’s already tracked.</p>
+<p>Set up <code>.gitignore</code> before your first commit. Once a file is committed, adding it to <code>.gitignore</code> won’t remove it from history — it’s already tracked. Getting this right from the start saves headaches later.</p>
 </div>
 </div>
-</section>
-</section>
-<section id="getting-a-repository" class="level2">
-<h2 class="anchored" data-anchor-id="getting-a-repository">Getting a Repository</h2>
-<section id="cloning-an-existing-repo" class="level3">
-<h3 class="anchored" data-anchor-id="cloning-an-existing-repo">Cloning an Existing Repo</h3>
-<p>If a repository already exists on GitHub and you want to work on it:</p>
-<ol type="1">
-<li>Go to the repo on GitHub</li>
-<li>Click the green <strong>Code</strong> button</li>
-<li>Copy the HTTPS URL</li>
-<li>In Positron, open the Command Palette (Cmd/Ctrl+Shift+P)</li>
-<li>Type “Git: Clone” and paste the URL</li>
-<li>Choose where to save it</li>
-</ol>
-<p>Positron downloads the repository and opens it. You can immediately start working, committing, and pushing.</p>
-</section>
-<section id="creating-a-new-repo" class="level3">
-<h3 class="anchored" data-anchor-id="creating-a-new-repo">Creating a New Repo</h3>
-<p>For a brand new project, the easiest approach is to create the repo on GitHub first:</p>
-<ol type="1">
-<li>Go to github.com and click <strong>New repository</strong></li>
-<li>Choose the MusserLab organization (for lab projects)</li>
-<li>Name it, set visibility to Private, and check “Add a README”</li>
-<li>Clone it to your computer using the steps above</li>
-</ol>
-<p>This sets everything up correctly from the start.</p>
-</section>
-</section>
-<section id="beyond-the-basics" class="level2">
-<h2 class="anchored" data-anchor-id="beyond-the-basics">Beyond the Basics</h2>
-<p>The workflow above covers 90% of what you’ll do with Git. But Git has powerful features for more complex situations. Here’s what they are and when you might need them—you don’t need to learn these now, but it helps to know they exist.</p>
-<section id="branches" class="level3">
-<h3 class="anchored" data-anchor-id="branches">Branches</h3>
-<p>A branch is a parallel version of your project. The main use case: you want to try something experimental without risking your working code. You create a branch, make changes there, and if it works, you merge it back into <code>main</code>. If it doesn’t, you delete the branch and <code>main</code> is untouched.</p>
-<p>Positron’s Source Control panel shows your current branch in the status bar and lets you create and switch branches through the branch menu. For solo analysis work, you often don’t need branches—committing directly to <code>main</code> is fine. Branches become more useful when collaborating or when you want to experiment with major changes.</p>
-</section>
-<section id="merge-conflicts" class="level3">
-<h3 class="anchored" data-anchor-id="merge-conflicts">Merge Conflicts</h3>
-<p>Conflicts happen when two people change the same lines in a file, or when you have changes on two different computers that overlap. Git can’t automatically decide which version to keep, so it asks you to resolve it manually.</p>
-<p>When this happens, the conflicting file will show both versions with special markers. You edit the file to keep the version you want (or combine them), then commit the resolution. Positron highlights conflicts and provides tools to help resolve them.</p>
-<p>Conflicts are less common than you might fear, especially on solo projects. Pull before you start working, and you’ll rarely encounter them.</p>
 <div class="claude-callout callout callout-style-default callout-warning callout-titled" title="Claude Code">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -897,53 +914,104 @@ Thumbs.db
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Claude Code can explain confusing Git messages and suggest safe next steps.</p>
+<p>Claude Code can create a <code>.gitignore</code> tailored to your specific project setup.</p>
+<blockquote class="blockquote">
+<p>I’m starting a new R project that will also use Python for some preprocessing. I’m using renv for R packages and conda for Python. Can you create a .gitignore file?</p>
+</blockquote>
+<p>Claude will generate a <code>.gitignore</code> with the right patterns for both languages — renv cache, conda environments, data files, Quarto artifacts, and OS-specific junk files.</p>
+</div>
+</div>
+</section>
+<section id="getting-a-repository" class="level2">
+<h2 class="anchored" data-anchor-id="getting-a-repository">Getting a Repository</h2>
+<p>There are two common scenarios: joining an existing project, or starting a new one.</p>
+<section id="cloning-an-existing-repo" class="level3">
+<h3 class="anchored" data-anchor-id="cloning-an-existing-repo">Cloning an Existing Repo</h3>
+<p>If a repository already exists on GitHub and you want to work on it:</p>
+<ol type="1">
+<li>Go to the repo on GitHub</li>
+<li>Click the green <strong>Code</strong> button and copy the HTTPS URL</li>
+<li>In Positron, open the Command Palette (<strong>Cmd/Ctrl+Shift+P</strong>) and type “Git: Clone”</li>
+<li>Paste the URL and choose where to save it</li>
+</ol>
+<p>Positron downloads the repository and opens it as your workspace. You can start working immediately.</p>
+</section>
+<section id="creating-a-new-repo" class="level3">
+<h3 class="anchored" data-anchor-id="creating-a-new-repo">Creating a New Repo</h3>
+<p>For a brand new project, the easiest approach is to create the repo on GitHub first, then clone it to your computer:</p>
+<ol type="1">
+<li>Go to <a href="https://github.com">github.com</a> and click <strong>New repository</strong> (the <strong>+</strong> icon in the top right)</li>
+<li>Choose the <strong>MusserLab</strong> organization as the owner (for lab projects)</li>
+<li>Give it a short, descriptive name (lowercase with hyphens, like <code>sponge-rnaseq</code>)</li>
+<li>Set visibility to <strong>Private</strong></li>
+<li>Check <strong>Add a README file</strong></li>
+<li>Clone it to your computer using the steps above</li>
+</ol>
+<p>This sets up the remote connection correctly from the start. The <a href="../part3/setup-walkthrough.html">Setting Up a Lab Project</a> chapter walks through the full project creation workflow, including folder structure, environments, and first commit.</p>
+</section>
+</section>
+<section id="exploring-github" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-github">Exploring GitHub</h2>
+<p>GitHub is more than just a place to store code — it’s a project management tool with a web interface that you’ll use regularly. When you visit a repository on GitHub, you’ll see several useful features.</p>
+<section id="browsing-files-and-history" class="level3">
+<h3 class="anchored" data-anchor-id="browsing-files-and-history">Browsing Files and History</h3>
+<p>The main page of any repository shows the <strong>file listing</strong> — all files and folders in the project, just like a file explorer. Click any file to view its contents directly in the browser. This is useful for quickly checking a collaborator’s code or reading documentation without cloning the entire repository.</p>
+<p>Above the file listing, you’ll see the <strong>most recent commit message</strong> and when it was made. Click <strong>Commits</strong> (or the commit count) to see the full history — every commit ever made, in reverse chronological order. Click any commit to see exactly what changed: the diff view shows added lines in green and removed lines in red, just like Positron’s Source Control panel.</p>
+<p>[TODO: screenshot of a GitHub repository page showing the file listing, recent commit, and README]</p>
+</section>
+<section id="issues-tracking-tasks-and-bugs" class="level3">
+<h3 class="anchored" data-anchor-id="issues-tracking-tasks-and-bugs">Issues: Tracking Tasks and Bugs</h3>
+<p>GitHub <strong>Issues</strong> are a lightweight way to track tasks, bugs, and questions for a project. Think of them as a shared to-do list. Each issue has a title, a description, and a discussion thread where collaborators can comment.</p>
+<p>To create an issue, click the <strong>Issues</strong> tab at the top of the repository and then <strong>New issue</strong>. Give it a clear title (“QC thresholds need updating for new batch”) and describe what needs to happen. You can assign issues to specific people and add labels like “bug” or “enhancement” to organize them.</p>
+<p>The real power of issues comes from linking them to commits. When you include an issue number in a commit message — like <code>Fix normalization bug (closes #12)</code> — GitHub automatically closes the issue when that commit reaches the <code>main</code> branch. This creates a traceable record: the issue describes the problem, and the linked commit shows exactly how it was fixed.</p>
+<p>[TODO: screenshot of a GitHub Issue showing the title, description, and a linked commit]</p>
+<div class="claude-callout callout callout-style-default callout-warning callout-titled" title="Claude Code">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Claude Code
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Claude Code can help you understand confusing Git messages and suggest safe next steps.</p>
 <blockquote class="blockquote">
 <p>Git is showing me this and I’m not sure what to do: <code>Your branch and 'origin/main' have diverged, and have 2 and 3 different commits each, respectively.</code> What does this mean and how do I fix it?</p>
 </blockquote>
-<p>Claude will explain the situation in plain language (your local and remote branches have different changes) and walk you through resolving it safely, typically with <code>git pull --rebase</code> or a merge.</p>
+<p>Claude will explain the situation in plain language — your local and remote branches have different changes that need to be reconciled — and walk you through resolving it safely.</p>
 </div>
 </div>
 </section>
-<section id="undoing-mistakes" class="level3">
-<h3 class="anchored" data-anchor-id="undoing-mistakes">Undoing Mistakes</h3>
-<p>Git provides ways to undo changes at every stage:</p>
-<ul>
-<li><strong>Before staging</strong>: Discard changes to a file, reverting to the last committed version</li>
-<li><strong>After staging but before committing</strong>: Unstage files while keeping your changes</li>
-<li><strong>After committing</strong>: Undo the last commit (keeping the changes) or amend it with corrections</li>
-<li><strong>After pushing</strong>: This is trickier—changes are on the server. Usually you make a new commit that reverses the problematic one.</li>
-</ul>
-<p>The Source Control panel provides options for discarding and unstaging changes. More complex undo operations (like reverting commits) are available through the Command Palette or by asking for help.</p>
-</section>
-<section id="pull-requests" class="level3">
-<h3 class="anchored" data-anchor-id="pull-requests">Pull Requests</h3>
-<p>Pull requests (PRs) are GitHub’s way of proposing changes for review before merging them. Instead of committing directly to <code>main</code>, you create a branch, push it to GitHub, and open a PR. Others can review the changes and discuss before merging.</p>
-<p>For solo work, PRs are optional. They’re most valuable when you want someone else to review your code before it becomes part of the main project, or when you want a clear record of when and why a set of changes was merged.</p>
+<section id="other-useful-github-features" class="level3">
+<h3 class="anchored" data-anchor-id="other-useful-github-features">Other Useful GitHub Features</h3>
+<p>A few more things worth knowing about as you use GitHub:</p>
+<p><strong>Adding collaborators.</strong> To give someone access to a private repo, go to <strong>Settings → Collaborators</strong> and invite them by GitHub username. You can choose their permission level — <strong>Write</strong> access is what active collaborators need.</p>
+<p><strong>Forking.</strong> If you want to experiment with someone else’s public repository without affecting the original, you can <strong>fork</strong> it — this creates a copy under your account. Any changes you make stay in your fork unless you submit a pull request back to the original.</p>
+<p><strong>GitHub in your browser vs.&nbsp;on your computer.</strong> Anything you do on GitHub’s website (creating issues, editing files, browsing history) affects the remote repository. To get those changes on your local computer, you need to <strong>pull</strong>. Anything you do on your computer (editing code, committing) stays local until you <strong>push</strong>.</p>
 </section>
 </section>
-<section id="learning-more" class="level2">
-<h2 class="anchored" data-anchor-id="learning-more">Learning More</h2>
-<p>This chapter covers what you need to use Git effectively in your daily work. If you want to go deeper—learning command-line Git, understanding how Git works internally, or mastering advanced workflows—these resources are excellent:</p>
-<ul>
-<li><strong><a href="https://git-scm.com/book/en/v2">Pro Git Book</a></strong>: The comprehensive, free reference. Covers everything from basics to internals.</li>
-<li><strong><a href="https://docs.github.com/en/get-started/using-git">GitHub Docs: Using Git</a></strong>: Practical guides focused on common tasks.</li>
-</ul>
+<section id="as-your-projects-grow-branches-and-pull-requests" class="level2">
+<h2 class="anchored" data-anchor-id="as-your-projects-grow-branches-and-pull-requests">As Your Projects Grow: Branches and Pull Requests</h2>
+<p>For solo analysis work, the workflow described above — edit, commit, push to <code>main</code> — is all you need. But as projects grow or involve more people, two features become valuable: <strong>branches</strong> and <strong>pull requests</strong>.</p>
+<p>A <strong>branch</strong> is a parallel version of your project. Imagine you want to try a completely different normalization approach, but you’re not sure it will work. Instead of making changes directly on <code>main</code> (and potentially breaking something), you create a branch — a copy where you can experiment freely. If the experiment works, you <strong>merge</strong> the branch back into <code>main</code>. If it doesn’t, you delete it, and <code>main</code> is untouched. Positron’s status bar shows which branch you’re on, and the Source Control panel lets you create and switch branches.</p>
+<p>A <strong>pull request</strong> (PR) is GitHub’s way of proposing changes for review before merging them into <code>main</code>. Instead of merging your branch yourself, you open a pull request on GitHub, where collaborators can see your changes, leave comments, and discuss before the merge happens. Pull requests are most valuable when you want another pair of eyes on your work — they create a clear, documented record of when and why a set of changes was incorporated.</p>
+<p>For now, you don’t need to use branches or pull requests. But knowing they exist helps when you encounter them in collaborative projects or when Claude Code suggests using them. The <a href="../part3/collaborating.html">Collaborating</a> chapter covers these workflows in detail.</p>
 </section>
-<section id="best-practices-summary" class="level2">
-<h2 class="anchored" data-anchor-id="best-practices-summary">Best Practices Summary</h2>
+<section id="best-practices" class="level2">
+<h2 class="anchored" data-anchor-id="best-practices">Best Practices</h2>
 <dl>
 <dt><strong>Commit often, push regularly</strong></dt>
 <dd>
-Small commits are easier to understand. Pushing backs up your work.
+Small commits are easier to understand. Pushing backs up your work. Don’t let changes pile up.
 </dd>
 <dt><strong>Pull before you start working</strong></dt>
 <dd>
-Especially on shared projects—get others’ changes before you start.
+Especially on shared projects — get others’ changes before you start yours.
 </dd>
 <dt><strong>Write meaningful commit messages</strong></dt>
 <dd>
-Future-you will thank present-you.
+Future-you will thank present-you. Describe what changed and why.
 </dd>
 <dt><strong>Use .gitignore from the start</strong></dt>
 <dd>
@@ -951,9 +1019,17 @@ Prevent large files and secrets from ever entering the repo.
 </dd>
 <dt><strong>Don’t panic</strong></dt>
 <dd>
-Git rarely loses data. Most mistakes are recoverable—ask for help if you get stuck.
+Git rarely loses data. Most mistakes are recoverable — if you see an error message you don’t understand, ask Claude Code before trying to fix it yourself.
 </dd>
 </dl>
+</section>
+<section id="learning-more" class="level2">
+<h2 class="anchored" data-anchor-id="learning-more">Learning More</h2>
+<p>This chapter covers what you need to use Git effectively in your daily work. If you want to go deeper — learning command-line Git, understanding how Git works internally, or mastering advanced workflows — these resources are excellent:</p>
+<ul>
+<li><strong><a href="https://git-scm.com/book/en/v2">Pro Git Book</a></strong>: The comprehensive, free reference. Covers everything from basics to internals.</li>
+<li><strong><a href="https://docs.github.com/en/get-started/using-git">GitHub Docs</a></strong>: Practical guides focused on common tasks.</li>
+</ul>
 
 
 </section>
