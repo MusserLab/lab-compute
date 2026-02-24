@@ -280,7 +280,7 @@ Let's visualize the top markers across all clusters with a **dot plot**:
 #| fig-height: 6
 
 top_genes <- rownames(head(markers_c1, 15))
-DotPlot(sponge, features = top_genes) + RotatedAxis()
+DotPlot(sponge, features = top_genes, scale = F, cols = "RdBu") + RotatedAxis() + coord_flip()
 ```
 
 In the dot plot, dot **size** shows what fraction of cells in each cluster
