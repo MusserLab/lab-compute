@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>19&nbsp; Reproducible Analysis – Data Analysis in the Musser Lab</title>
+<title>14&nbsp; The Musser Lab Toolkit – Data Analysis in the Musser Lab</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../part3/troubleshooting.html" rel="next">
-<link href="../part3/collaborating.html" rel="prev">
+<link href="../claude-code/staying-safe.html" rel="next">
+<link href="../claude-code/working-effectively.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -285,7 +285,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part3/setup-walkthrough.html">Workflows</a></li><li class="breadcrumb-item"><a href="../part3/reproducibility.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Reproducible Analysis</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../claude-code/ai-fluency.html">Working with AI</a></li><li class="breadcrumb-item"><a href="../claude-code/musser-lab-toolkit.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">The Musser Lab Toolkit</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -430,7 +430,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../claude-code/musser-lab-toolkit.html" class="sidebar-item-text sidebar-link">
+  <a href="../claude-code/musser-lab-toolkit.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">The Musser Lab Toolkit</span></span></a>
   </div>
 </li>
@@ -471,7 +471,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../part3/reproducibility.html" class="sidebar-item-text sidebar-link active">
+  <a href="../part3/reproducibility.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Reproducible Analysis</span></span></a>
   </div>
 </li>
@@ -534,38 +534,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#why-reproducibility-matters" id="toc-why-reproducibility-matters" class="nav-link active" data-scroll-target="#why-reproducibility-matters"><span class="header-section-number">19.1</span> Why Reproducibility Matters</a></li>
-  <li><a href="#the-three-pillars" id="toc-the-three-pillars" class="nav-link" data-scroll-target="#the-three-pillars"><span class="header-section-number">19.2</span> The Three Pillars</a>
+  <li><a href="#the-lab-skills-repository" id="toc-the-lab-skills-repository" class="nav-link active" data-scroll-target="#the-lab-skills-repository"><span class="header-section-number">14.1</span> The Lab Skills Repository</a>
   <ul class="collapse">
-  <li><a href="#version-control-git" id="toc-version-control-git" class="nav-link" data-scroll-target="#version-control-git"><span class="header-section-number">19.2.1</span> 1. Version Control (Git)</a></li>
-  <li><a href="#environment-management-conda-renv" id="toc-environment-management-conda-renv" class="nav-link" data-scroll-target="#environment-management-conda-renv"><span class="header-section-number">19.2.2</span> 2. Environment Management (Conda + renv)</a></li>
-  <li><a href="#documentation" id="toc-documentation" class="nav-link" data-scroll-target="#documentation"><span class="header-section-number">19.2.3</span> 3. Documentation</a></li>
+  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation"><span class="header-section-number">14.1.1</span> Installation</a></li>
+  <li><a href="#staying-updated" id="toc-staying-updated" class="nav-link" data-scroll-target="#staying-updated"><span class="header-section-number">14.1.2</span> Staying updated</a></li>
   </ul></li>
-  <li><a href="#reproducibility-checklist" id="toc-reproducibility-checklist" class="nav-link" data-scroll-target="#reproducibility-checklist"><span class="header-section-number">19.3</span> Reproducibility Checklist</a>
+  <li><a href="#key-background-skills" id="toc-key-background-skills" class="nav-link" data-scroll-target="#key-background-skills"><span class="header-section-number">14.2</span> Key Background Skills</a>
   <ul class="collapse">
-  <li><a href="#environment" id="toc-environment" class="nav-link" data-scroll-target="#environment"><span class="header-section-number">19.3.1</span> Environment</a></li>
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="header-section-number">19.3.2</span> Data</a></li>
-  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code"><span class="header-section-number">19.3.3</span> Code</a></li>
-  <li><a href="#documentation-1" id="toc-documentation-1" class="nav-link" data-scroll-target="#documentation-1"><span class="header-section-number">19.3.4</span> Documentation</a></li>
+  <li><a href="#data-handling" id="toc-data-handling" class="nav-link" data-scroll-target="#data-handling"><span class="header-section-number">14.2.1</span> data-handling</a></li>
+  <li><a href="#debugging-before-patching" id="toc-debugging-before-patching" class="nav-link" data-scroll-target="#debugging-before-patching"><span class="header-section-number">14.2.2</span> debugging-before-patching</a></li>
+  <li><a href="#file-safety" id="toc-file-safety" class="nav-link" data-scroll-target="#file-safety"><span class="header-section-number">14.2.3</span> file-safety</a></li>
+  <li><a href="#git-conventions" id="toc-git-conventions" class="nav-link" data-scroll-target="#git-conventions"><span class="header-section-number">14.2.4</span> git-conventions</a></li>
+  <li><a href="#script-organization" id="toc-script-organization" class="nav-link" data-scroll-target="#script-organization"><span class="header-section-number">14.2.5</span> script-organization</a></li>
+  <li><a href="#r-plotting-style" id="toc-r-plotting-style" class="nav-link" data-scroll-target="#r-plotting-style"><span class="header-section-number">14.2.6</span> r-plotting-style</a></li>
   </ul></li>
-  <li><a href="#using-relative-paths" id="toc-using-relative-paths" class="nav-link" data-scroll-target="#using-relative-paths"><span class="header-section-number">19.4</span> Using Relative Paths</a></li>
-  <li><a href="#setting-random-seeds" id="toc-setting-random-seeds" class="nav-link" data-scroll-target="#setting-random-seeds"><span class="header-section-number">19.5</span> Setting Random Seeds</a></li>
-  <li><a href="#documenting-data" id="toc-documenting-data" class="nav-link" data-scroll-target="#documenting-data"><span class="header-section-number">19.6</span> Documenting Data</a></li>
-  <li><a href="#running-the-full-analysis" id="toc-running-the-full-analysis" class="nav-link" data-scroll-target="#running-the-full-analysis"><span class="header-section-number">19.7</span> Running the Full Analysis</a></li>
-  <li><a href="#testing-reproducibility" id="toc-testing-reproducibility" class="nav-link" data-scroll-target="#testing-reproducibility"><span class="header-section-number">19.8</span> Testing Reproducibility</a>
+  <li><a href="#slash-commands" id="toc-slash-commands" class="nav-link" data-scroll-target="#slash-commands"><span class="header-section-number">14.3</span> Slash Commands</a>
   <ul class="collapse">
-  <li><a href="#fresh-environment-test" id="toc-fresh-environment-test" class="nav-link" data-scroll-target="#fresh-environment-test"><span class="header-section-number">19.8.1</span> Fresh Environment Test</a></li>
-  <li><a href="#docker-advanced" id="toc-docker-advanced" class="nav-link" data-scroll-target="#docker-advanced"><span class="header-section-number">19.8.2</span> Docker (Advanced)</a></li>
+  <li><a href="#done" id="toc-done" class="nav-link" data-scroll-target="#done"><span class="header-section-number">14.3.1</span> /done</a></li>
+  <li><a href="#new-project" id="toc-new-project" class="nav-link" data-scroll-target="#new-project"><span class="header-section-number">14.3.2</span> /new-project</a></li>
+  <li><a href="#new-plan" id="toc-new-plan" class="nav-link" data-scroll-target="#new-plan"><span class="header-section-number">14.3.3</span> /new-plan</a></li>
+  <li><a href="#publish" id="toc-publish" class="nav-link" data-scroll-target="#publish"><span class="header-section-number">14.3.4</span> /publish</a></li>
   </ul></li>
-  <li><a href="#common-reproducibility-problems" id="toc-common-reproducibility-problems" class="nav-link" data-scroll-target="#common-reproducibility-problems"><span class="header-section-number">19.9</span> Common Reproducibility Problems</a>
+  <li><a href="#specialized-skills" id="toc-specialized-skills" class="nav-link" data-scroll-target="#specialized-skills"><span class="header-section-number">14.4</span> Specialized Skills</a></li>
+  <li><a href="#example-claude.md-files" id="toc-example-claude.md-files" class="nav-link" data-scroll-target="#example-claude.md-files"><span class="header-section-number">14.5</span> Example CLAUDE.md Files</a>
   <ul class="collapse">
-  <li><a href="#it-works-on-my-machine" id="toc-it-works-on-my-machine" class="nav-link" data-scroll-target="#it-works-on-my-machine"><span class="header-section-number">19.9.1</span> “It works on my machine”</a></li>
-  <li><a href="#missing-files" id="toc-missing-files" class="nav-link" data-scroll-target="#missing-files"><span class="header-section-number">19.9.2</span> Missing files</a></li>
-  <li><a href="#different-results-each-run" id="toc-different-results-each-run" class="nav-link" data-scroll-target="#different-results-each-run"><span class="header-section-number">19.9.3</span> Different results each run</a></li>
-  <li><a href="#manual-steps" id="toc-manual-steps" class="nav-link" data-scroll-target="#manual-steps"><span class="header-section-number">19.9.4</span> Manual steps</a></li>
+  <li><a href="#new-project-15-lines" id="toc-new-project-15-lines" class="nav-link" data-scroll-target="#new-project-15-lines"><span class="header-section-number">14.5.1</span> New project (~15 lines)</a></li>
+  <li><a href="#mid-project-40-lines" id="toc-mid-project-40-lines" class="nav-link" data-scroll-target="#mid-project-40-lines"><span class="header-section-number">14.5.2</span> Mid-project (~40 lines)</a></li>
+  <li><a href="#mature-project-60-lines" id="toc-mature-project-60-lines" class="nav-link" data-scroll-target="#mature-project-60-lines"><span class="header-section-number">14.5.3</span> Mature project (~60 lines)</a></li>
   </ul></li>
-  <li><a href="#tools-that-help" id="toc-tools-that-help" class="nav-link" data-scroll-target="#tools-that-help"><span class="header-section-number">19.10</span> Tools That Help</a></li>
-  <li><a href="#quick-reference" id="toc-quick-reference" class="nav-link" data-scroll-target="#quick-reference"><span class="header-section-number">19.11</span> Quick Reference</a></li>
+  <li><a href="#whats-next" id="toc-whats-next" class="nav-link" data-scroll-target="#whats-next"><span class="header-section-number">14.6</span> What’s Next</a></li>
   </ul>
 </nav>
     </div>
@@ -573,9 +570,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part3/setup-walkthrough.html">Workflows</a></li><li class="breadcrumb-item"><a href="../part3/reproducibility.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Reproducible Analysis</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../claude-code/ai-fluency.html">Working with AI</a></li><li class="breadcrumb-item"><a href="../claude-code/musser-lab-toolkit.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">The Musser Lab Toolkit</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Reproducible Analysis</span></h1>
+<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">The Musser Lab Toolkit</span></h1>
 </div>
 
 
@@ -592,56 +589,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Reproducibility means others (including future you) can run your analysis and get the same results. This chapter covers practices that ensure reproducibility.</p>
-<section id="why-reproducibility-matters" class="level2" data-number="19.1">
-<h2 data-number="19.1" class="anchored" data-anchor-id="why-reproducibility-matters"><span class="header-section-number">19.1</span> Why Reproducibility Matters</h2>
-<ul>
-<li><strong>Verification</strong>: Others can check your work</li>
-<li><strong>Building on work</strong>: You or others can extend the analysis</li>
-<li><strong>Debugging</strong>: Easier to find and fix problems</li>
-<li><strong>Publication</strong>: Increasingly required by journals</li>
-<li><strong>Future you</strong>: Six months from now, you’ll thank yourself</li>
-</ul>
+<p>In the previous chapters, you learned how to write your own CLAUDE.md, create plan files, and even build simple skills. You don’t have to start from scratch. The Musser Lab maintains a shared set of Claude Code skills, conventions, and configuration examples that any lab member can install. This chapter walks you through what’s available, how to set it up, and how the key skills work in practice.</p>
+<section id="the-lab-skills-repository" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="the-lab-skills-repository"><span class="header-section-number">14.1</span> The Lab Skills Repository</h2>
+<p>All shared lab skills live in a GitHub repository: <a href="https://github.com/MusserLab/lab-claude-skills">MusserLab/lab-claude-skills</a>. This is a public repository — you can browse the skills online, and installing them is straightforward.</p>
+<section id="installation" class="level3" data-number="14.1.1">
+<h3 data-number="14.1.1" class="anchored" data-anchor-id="installation"><span class="header-section-number">14.1.1</span> Installation</h3>
+<p>Clone the repository and copy the skills into your personal Claude Code configuration:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>git clone https://github.com/MusserLab/lab-claude-skills.git</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>cp -r lab-claude-skills/skills/* ~/.claude/skills/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>That’s it. The skills are now available in every Claude Code session, across all your projects. Claude loads them automatically based on context — you don’t need to activate them manually.</p>
 </section>
-<section id="the-three-pillars" class="level2" data-number="19.2">
-<h2 data-number="19.2" class="anchored" data-anchor-id="the-three-pillars"><span class="header-section-number">19.2</span> The Three Pillars</h2>
-<section id="version-control-git" class="level3" data-number="19.2.1">
-<h3 data-number="19.2.1" class="anchored" data-anchor-id="version-control-git"><span class="header-section-number">19.2.1</span> 1. Version Control (Git)</h3>
-<p>Track every change to your code:</p>
-<ul>
-<li>What changed</li>
-<li>When it changed</li>
-<li>Why it changed</li>
-</ul>
-<p>With Git, you can always return to a working state.</p>
-</section>
-<section id="environment-management-conda-renv" class="level3" data-number="19.2.2">
-<h3 data-number="19.2.2" class="anchored" data-anchor-id="environment-management-conda-renv"><span class="header-section-number">19.2.2</span> 2. Environment Management (Conda + renv)</h3>
-<p>Lock down exact package versions:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># environment.yml</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dependencies</span><span class="kw">:</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> python=3.11.5</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> pandas=2.0.3</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> numpy=1.24.3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="er">//</span> <span class="er">renv.lock</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="er">"ggplot2":</span> <span class="fu">{</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"Version"</span><span class="fu">:</span> <span class="st">"3.4.2"</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Different package versions can give different results.</p>
-</section>
-<section id="documentation" class="level3" data-number="19.2.3">
-<h3 data-number="19.2.3" class="anchored" data-anchor-id="documentation"><span class="header-section-number">19.2.3</span> 3. Documentation</h3>
-<p>Explain:</p>
-<ul>
-<li>How to set up the environment</li>
-<li>How to run the analysis</li>
-<li>What the data looks like</li>
-<li>What decisions you made and why</li>
-</ul>
-</section>
-</section>
-<section id="reproducibility-checklist" class="level2" data-number="19.3">
-<h2 data-number="19.3" class="anchored" data-anchor-id="reproducibility-checklist"><span class="header-section-number">19.3</span> Reproducibility Checklist</h2>
+<section id="staying-updated" class="level3" data-number="14.1.2">
+<h3 data-number="14.1.2" class="anchored" data-anchor-id="staying-updated"><span class="header-section-number">14.1.2</span> Staying updated</h3>
+<p>When skills are updated (new features, bug fixes, improved instructions), pull the latest version and copy again:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>cd lab-claude-skills</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>git pull</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>cp -r skills/* ~/.claude/skills/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You can also just re-clone if you prefer. The skills are small text files — there’s nothing to build or compile.</p>
 <div class="claude-callout callout callout-style-default callout-warning callout-titled" title="Claude Code">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -652,238 +617,220 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Claude Code can audit your scripts for common reproducibility pitfalls.</p>
+<p>Claude Code can help you install and update lab skills.</p>
 <blockquote class="blockquote">
-<p>Can you check <code>analysis/01_qc.qmd</code> for reproducibility issues? Look for hardcoded paths, missing package declarations, missing seed settings, or code that might behave differently on another machine.</p>
+<p>I need to install the Musser Lab skills from MusserLab/lab-claude-skills. Clone the repo and copy the skills to my ~/.claude/skills/ folder.</p>
 </blockquote>
-<p>Claude will scan the file and flag issues like absolute paths, missing <code>library()</code> calls, unseeded random operations, and platform-dependent code.</p>
+<p>Claude will handle the git clone and file copying, and confirm what was installed.</p>
 </div>
 </div>
-<section id="environment" class="level3" data-number="19.3.1">
-<h3 data-number="19.3.1" class="anchored" data-anchor-id="environment"><span class="header-section-number">19.3.1</span> Environment</h3>
-<ul class="task-list">
-<li><label><input type="checkbox">All dependencies listed in <code>environment.yml</code> (Python) or <code>renv.lock</code> (R)</label></li>
-<li><label><input type="checkbox">Specific versions pinned, not just package names</label></li>
-<li><label><input type="checkbox">Instructions for environment setup in README</label></li>
-</ul>
-</section>
-<section id="data" class="level3" data-number="19.3.2">
-<h3 data-number="19.3.2" class="anchored" data-anchor-id="data"><span class="header-section-number">19.3.2</span> Data</h3>
-<ul class="task-list">
-<li><label><input type="checkbox">Raw data preserved unchanged</label></li>
-<li><label><input type="checkbox">Data processing steps documented and scripted</label></li>
-<li><label><input type="checkbox">Data sources documented</label></li>
-<li><label><input type="checkbox">If data can’t be shared, describe format and structure</label></li>
-</ul>
-</section>
-<section id="code" class="level3" data-number="19.3.3">
-<h3 data-number="19.3.3" class="anchored" data-anchor-id="code"><span class="header-section-number">19.3.3</span> Code</h3>
-<ul class="task-list">
-<li><label><input type="checkbox">Analysis runs from start to finish without manual intervention</label></li>
-<li><label><input type="checkbox">File paths are relative, not absolute</label></li>
-<li><label><input type="checkbox">No hardcoded paths like <code>/Users/myname/...</code></label></li>
-<li><label><input type="checkbox">Random seeds set for stochastic processes</label></li>
-<li><label><input type="checkbox">Intermediate results can be regenerated from code</label></li>
-</ul>
-</section>
-<section id="documentation-1" class="level3" data-number="19.3.4">
-<h3 data-number="19.3.4" class="anchored" data-anchor-id="documentation-1"><span class="header-section-number">19.3.4</span> Documentation</h3>
-<ul class="task-list">
-<li><label><input type="checkbox">README explains setup and execution</label></li>
-<li><label><input type="checkbox">Analysis steps documented in code comments or notebooks</label></li>
-<li><label><input type="checkbox">Key decisions annotated with rationale</label></li>
-</ul>
 </section>
 </section>
-<section id="using-relative-paths" class="level2" data-number="19.4">
-<h2 data-number="19.4" class="anchored" data-anchor-id="using-relative-paths"><span class="header-section-number">19.4</span> Using Relative Paths</h2>
-<p><strong>Bad</strong> — hardcoded absolute paths:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"/Users/jm284/projects/analysis/data/data.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Good</strong> — relative paths with <code>here</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"data.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Python</strong> — use <code>pathlib</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>PROJECT_ROOT <span class="op">=</span> Path(<span class="va">__file__</span>).parent.parent</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(PROJECT_ROOT <span class="op">/</span> <span class="st">"data"</span> <span class="op">/</span> <span class="st">"data.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The <code>here</code> package (R) and <code>pathlib</code> (Python) find paths relative to the project root, regardless of where scripts are run from.</p>
+<section id="key-background-skills" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="key-background-skills"><span class="header-section-number">14.2</span> Key Background Skills</h2>
+<p>Background skills load automatically when Claude detects they’re relevant — you never invoke them explicitly. Here are the ones you’ll encounter most often.</p>
+<section id="data-handling" class="level3" data-number="14.2.1">
+<h3 data-number="14.2.1" class="anchored" data-anchor-id="data-handling"><span class="header-section-number">14.2.1</span> data-handling</h3>
+<p><strong>What it does:</strong> Ensures Claude shows you what’s happening to your data at every step. After loading a dataset, Claude reports dimensions. After a join, it reports how many rows matched and how many were lost. Before making an analytical decision (like choosing a threshold or filtering method), it presents options and asks you.</p>
+<p><strong>What this looks like in practice:</strong></p>
+<p>Without the skill, you might ask Claude to load some data, and it just does it silently — you don’t find out until later that 200 rows were dropped during a merge. With the skill, Claude’s behavior changes:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/counts.csv"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Loaded"</span>, <span class="fu">nrow</span>(data), <span class="st">"rows,"</span>, <span class="fu">ncol</span>(data), <span class="st">"columns</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>After a join:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>merged <span class="ot">&lt;-</span> <span class="fu">left_join</span>(counts, metadata, <span class="at">by =</span> <span class="st">"sample_id"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Joined:"</span>, <span class="fu">nrow</span>(counts), <span class="st">"→"</span>, <span class="fu">nrow</span>(merged), <span class="st">"rows</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Unmatched samples:"</span>, <span class="fu">sum</span>(<span class="fu">is.na</span>(merged<span class="sc">$</span>condition)), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This surfaces information that you need for scientific judgment. Data dimensions aren’t just a coding convenience — they’re how you catch silent data loss, unexpected duplicates, and filtering that went too far.</p>
 </section>
-<section id="setting-random-seeds" class="level2" data-number="19.5">
-<h2 data-number="19.5" class="anchored" data-anchor-id="setting-random-seeds"><span class="header-section-number">19.5</span> Setting Random Seeds</h2>
-<p>Many analyses involve randomness (bootstrapping, sampling, train/test splits). Set seeds for reproducibility:</p>
-<p><strong>R:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">sample</span>(data, <span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Python:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>random.seed(<span class="dv">42</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> np.random.choice(data, <span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Document why you chose that seed (or just pick a number consistently).</p>
+<section id="debugging-before-patching" class="level3" data-number="14.2.2">
+<h3 data-number="14.2.2" class="anchored" data-anchor-id="debugging-before-patching"><span class="header-section-number">14.2.2</span> debugging-before-patching</h3>
+<p><strong>What it does:</strong> Stops Claude from slapping quick fixes onto symptoms. Instead of immediately adding <code>na.rm = TRUE</code> to silence a warning, Claude investigates <em>why</em> NAs are present. Instead of wrapping code in <code>tryCatch</code> to suppress an error, Claude traces the error to its source.</p>
+<p><strong>Why this matters:</strong> Quick fixes mask real problems. If NAs appeared in your data, that’s information — maybe a join failed, maybe a sample was miscoded, maybe there’s a real biological reason. The skill forces Claude to diagnose first and share what it finds before proposing a solution. This mirrors how an experienced analyst works: understand the problem, then fix it.</p>
 </section>
-<section id="documenting-data" class="level2" data-number="19.6">
-<h2 data-number="19.6" class="anchored" data-anchor-id="documenting-data"><span class="header-section-number">19.6</span> Documenting Data</h2>
-<p>In your README or a separate <code>DATA.md</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Data Description</span></span>
+<section id="file-safety" class="level3" data-number="14.2.3">
+<h3 data-number="14.2.3" class="anchored" data-anchor-id="file-safety"><span class="header-section-number">14.2.3</span> file-safety</h3>
+<p><strong>What it does:</strong> Prevents Claude from overwriting files that shouldn’t be modified. The most important rule: Claude won’t write to <code>data/</code> directories, because raw data is sacred. It also checks before overwriting existing output files, and warns before modifying files that other scripts depend on.</p>
+<p><strong>What this looks like in practice:</strong> If you ask Claude to save processed data to <code>data/cleaned_counts.csv</code>, it will refuse and explain why — processed data belongs in <code>outs/</code>, not alongside your raw inputs. This reinforces the project organization conventions from <a href="../part2/project-organization.html">Part 2</a>.</p>
+</section>
+<section id="git-conventions" class="level3" data-number="14.2.4">
+<h3 data-number="14.2.4" class="anchored" data-anchor-id="git-conventions"><span class="header-section-number">14.2.4</span> git-conventions</h3>
+<p><strong>What it does:</strong> Ensures Claude follows lab git practices. Every commit includes a co-author line acknowledging Claude’s contribution. Before committing, Claude reviews what’s staged to avoid accidentally including secrets (<code>.env</code> files, API keys), large files, or temporary files. Commit messages are descriptive and follow a consistent style.</p>
+<p>You’ve already seen this in action if you’ve used the <code>/done</code> command. The skill works behind the scenes every time Claude interacts with git.</p>
+</section>
+<section id="script-organization" class="level3" data-number="14.2.5">
+<h3 data-number="14.2.5" class="anchored" data-anchor-id="script-organization"><span class="header-section-number">14.2.5</span> script-organization</h3>
+<p><strong>What it does:</strong> Enforces the project structure conventions from <a href="../part2/project-organization.html">Project Organization</a>. Scripts use numbered prefixes (<code>01_</code>, <code>02_</code>). Each script’s output goes to a matching <code>outs/</code> subfolder. Scripts include a lifecycle status field (active, exploratory, deprecated). The <code>data/</code> folder is read-only, <code>outs/</code> is disposable.</p>
+<p>When you ask Claude to create a new analysis script, it follows this structure automatically — numbered correctly, with the right output directory, and with proper chunk options for a <code>.qmd</code> file.</p>
+</section>
+<section id="r-plotting-style" class="level3" data-number="14.2.6">
+<h3 data-number="14.2.6" class="anchored" data-anchor-id="r-plotting-style"><span class="header-section-number">14.2.6</span> r-plotting-style</h3>
+<p><strong>What it does:</strong> Applies a consistent visual style to all ggplot2 plots. The base is <code>theme_classic()</code> — clean, no gridlines, no gray background. Text labels use <code>ggrepel</code> to avoid overlapping. Colors, sizing, and font conventions are standardized so that figures from different scripts look like they belong to the same project.</p>
+<p>This might seem minor, but visual consistency matters. When you’re comparing plots from different stages of an analysis, or preparing figures for a presentation, having a unified style eliminates one more thing to worry about.</p>
+</section>
+</section>
+<section id="slash-commands" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="slash-commands"><span class="header-section-number">14.3</span> Slash Commands</h2>
+<p>Unlike background skills, slash commands are tools you invoke explicitly by typing <code>/command</code> in the chat.</p>
+<section id="done" class="level3" data-number="14.3.1">
+<h3 data-number="14.3.1" class="anchored" data-anchor-id="done"><span class="header-section-number">14.3.1</span> /done</h3>
+<p>You’ve already seen this in <a href="../claude-code/working-effectively.html">Working Effectively</a>. Type <code>/done</code> at the end of a session, and Claude summarizes your work, checks if renv needs updating, and offers to commit your changes. It’s the lab-standard way to wrap up a working session cleanly.</p>
+</section>
+<section id="new-project" class="level3" data-number="14.3.2">
+<h3 data-number="14.3.2" class="anchored" data-anchor-id="new-project"><span class="header-section-number">14.3.2</span> /new-project</h3>
+<p>This is the big one for getting started. <code>/new-project</code> scaffolds a complete project — directory structure, conda environment, renv initialization, CLAUDE.md, <code>.gitignore</code>, git repo, and GitHub remote — all in one command. It asks you a few questions (project name, type, languages) and builds everything.</p>
+<p>What it creates:</p>
+<pre><code>my-project/
+├── .claude/
+│   └── CLAUDE.md            # Pre-filled with project info
+├── data/                     # Raw data (read-only)
+├── scripts/                  # Analysis scripts (.qmd)
+│   └── exploratory/          # One-off analyses
+├── outs/                     # Script outputs
+├── R/                        # Shared R functions (if using R)
+├── python/                   # Shared Python functions (if using Python)
+├── .gitignore                # Pre-configured for data science
+├── renv.lock                 # R package management (if using R)
+└── README.md                 # Project description</code></pre>
+<p>It also creates the conda environment with standard packages, configures Positron’s interpreter settings, and initializes git. The <a href="../part3/setup-walkthrough.html">Setup Walkthrough</a> in Part 4 covers this workflow in detail.</p>
+</section>
+<section id="new-plan" class="level3" data-number="14.3.3">
+<h3 data-number="14.3.3" class="anchored" data-anchor-id="new-plan"><span class="header-section-number">14.3.3</span> /new-plan</h3>
+<p>Creates a planning document in <code>.claude/</code> and registers it in your CLAUDE.md. You’ve seen plan files in <a href="../claude-code/teaching-claude.html">Teaching Claude About Your Work</a> — this command automates the setup. Use it when starting a multi-step analysis, tracking figures for a paper, or any work that will span multiple sessions.</p>
+</section>
+<section id="publish" class="level3" data-number="14.3.4">
+<h3 data-number="14.3.4" class="anchored" data-anchor-id="publish"><span class="header-section-number">14.3.4</span> /publish</h3>
+<p>For Quarto book and website projects (like this book). Commits current changes, runs <code>quarto publish gh-pages</code>, and pushes to GitHub Pages. You probably won’t need this for analysis projects, but it’s there for documentation work.</p>
+</section>
+</section>
+<section id="specialized-skills" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="specialized-skills"><span class="header-section-number">14.4</span> Specialized Skills</h2>
+<p>As your work deepens beyond standard single-cell analysis, you’ll encounter skills built for specific domains. You don’t need to learn these now — just know they exist so you can find them when you need them.</p>
+<p><strong>protein-phylogeny.</strong> Generates a complete phylogenetics pipeline as a <code>.qmd</code> analysis script. Give it a set of protein sequences and it builds a script with MAFFT alignment, optional trimming, and IQ-TREE tree inference, configured for your specific protein family and taxonomic scope.</p>
+<p><strong>gene-lookup.</strong> Looks up gene and protein information from database identifiers. Give it a UniProt accession, an Ensembl ID, or a FlyBase gene name, and it retrieves annotations, function descriptions, and cross-references. Useful when you’re working with gene lists and need to quickly identify what something is.</p>
+<p><strong>tree-formatting.</strong> Phylogenetic tree visualization with ggtree in R. Handles tree layout, branch coloring by taxonomy, clade collapsing, support value display, and annotation overlays. Pairs with <code>protein-phylogeny</code> — one builds the tree, the other formats the figure.</p>
+<p><strong>scientific-manuscript.</strong> Guidance for writing papers aimed at high-impact journals (Nature, Science, Cell). Covers narrative structure, prose style, paragraph flow, and strategic rhetoric. Not for routine papers — specifically for when the writing itself needs to be exceptional.</p>
+<p><strong>figure-export.</strong> Conventions for saving publication-quality figures. Handles PDF with <code>cairo_pdf</code>, PNG at appropriate DPI, and SVG via <code>svglite</code> for editing in Inkscape. Ensures rasterized elements (like UMAP plots with thousands of points) are handled correctly.</p>
+</section>
+<section id="example-claude.md-files" class="level2" data-number="14.5">
+<h2 data-number="14.5" class="anchored" data-anchor-id="example-claude.md-files"><span class="header-section-number">14.5</span> Example CLAUDE.md Files</h2>
+<p>In <a href="../claude-code/teaching-claude.html">Teaching Claude About Your Work</a>, you built up a CLAUDE.md step by step. Here are three real-world examples at different project stages, to give you a sense of what these files look like in practice.</p>
+<section id="new-project-15-lines" class="level3" data-number="14.5.1">
+<h3 data-number="14.5.1" class="anchored" data-anchor-id="new-project-15-lines"><span class="header-section-number">14.5.1</span> New project (~15 lines)</h3>
+<p>Just created with <code>/new-project</code>, barely started:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Spongilla Regeneration</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>scRNA-seq analysis of Spongilla lacustris regeneration time course.</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Environment</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>R packages managed with renv</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Python: <span class="in">`conda activate spongilla-regen`</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Count matrices in <span class="in">`data/`</span> (10X format, 6 samples)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Time points: 0h, 6h, 12h, 24h, 48h, 72h post-dissociation</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Workflows</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Render: <span class="in">`quarto render scripts/01_qc.qmd`</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Outputs: <span class="in">`outs/[script_name]/`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="mid-project-40-lines" class="level3" data-number="14.5.2">
+<h3 data-number="14.5.2" class="anchored" data-anchor-id="mid-project-40-lines"><span class="header-section-number">14.5.2</span> Mid-project (~40 lines)</h3>
+<p>Active analysis, conventions established, some decisions made:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Spongilla Regeneration</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>scRNA-seq analysis of Spongilla lacustris regeneration time course</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>(6 time points, ~50,000 cells total).</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Scientific Context</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Studying cell type dynamics during whole-body regeneration</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Key question: which cell types appear first, and do they</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  transdifferentiate or arise from stem cells?</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Comparing to Hydra and planarian regeneration literature</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## Environment</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>R packages: renv (auto-activates)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Python: <span class="in">`conda activate spongilla-regen`</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key Files</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`scripts/01_qc.qmd`</span> — QC and filtering (DONE)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`scripts/02_integration.qmd`</span> — Sample integration with Harmony (DONE)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`scripts/03_clustering.qmd`</span> — Clustering and annotation (IN PROGRESS)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`outs/02_integration/sponge_integrated.rds`</span> — Integrated Seurat object</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="fu">## Analytical Decisions</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Integration: Harmony (not Seurat CCA) — faster, handles our</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  batch structure well, recommended by reviewers of similar datasets</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>QC: permissive thresholds, removed 2 junk clusters post-clustering</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>PCs: 30 (elbow at ~20, extra for rare regeneration-specific types)</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Resolution: 1.5 — gives 20 clusters, merging after annotation</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conventions</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>theme_classic() for all plots</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Cell type colors defined in <span class="in">`R/colors.R`</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>All time points labeled as "0h", "6h", etc. (not "0hr" or "T0")</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gotchas</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>72h sample has lower cell count (~3,000 vs ~8,000) — real biology,</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>  not a QC issue</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Gene "Wnt3" appears as "Wnt3 A" in this annotation version</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="mature-project-60-lines" class="level3" data-number="14.5.3">
+<h3 data-number="14.5.3" class="anchored" data-anchor-id="mature-project-60-lines"><span class="header-section-number">14.5.3</span> Mature project (~60 lines)</h3>
+<p>Full documentation, plan files, complex analysis:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Spongilla Regeneration</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">### data/counts.csv</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Source: GEO accession GSE12345</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Downloaded: 2024-01-15</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Format: CSV, 20,000 genes × 12 samples</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Columns: gene_id, sample1, sample2, ...</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="fu">### data/metadata.csv</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Source: Provided by collaborator</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Format: CSV, 12 rows</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Columns: sample_id, condition, batch, replicate</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="running-the-full-analysis" class="level2" data-number="19.7">
-<h2 data-number="19.7" class="anchored" data-anchor-id="running-the-full-analysis"><span class="header-section-number">19.7</span> Running the Full Analysis</h2>
-<p>Create a master script or Makefile that runs everything:</p>
-<p><strong>Shell script</strong> (<code>run_analysis.sh</code>):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>#!/bin/bash</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>set -e  # Exit on error</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>echo "Setting up environment..."</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>conda activate my-analysis</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>echo "Step 1: Cleaning data..."</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>Rscript scripts/01_clean_data.R</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>echo "Step 2: Analysis..."</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>python scripts/02_analyze.py</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>echo "Step 3: Figures..."</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>Rscript scripts/03_figures.R</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>echo "Done!"</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Quarto</strong> (<code>analysis.qmd</code>):</p>
-<p>A Quarto document that runs all code chunks in order is inherently reproducible — rendering the document runs the full analysis.</p>
-<p><strong>Make</strong> (<code>Makefile</code>):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dv">all:</span><span class="dt"> outs/03_figures/figure1.pdf outs/02_analysis/results.csv</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="dv">outs/03_figures/figure1.pdf:</span><span class="dt"> scripts/03_figures.qmd outs/01_clean_data/clean.csv</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>quarto render scripts/03_figures.qmd</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="dv">outs/01_clean_data/clean.csv:</span><span class="dt"> scripts/01_clean_data.qmd data/data.csv</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>quarto render scripts/01_clean_data.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="testing-reproducibility" class="level2" data-number="19.8">
-<h2 data-number="19.8" class="anchored" data-anchor-id="testing-reproducibility"><span class="header-section-number">19.8</span> Testing Reproducibility</h2>
-<section id="fresh-environment-test" class="level3" data-number="19.8.1">
-<h3 data-number="19.8.1" class="anchored" data-anchor-id="fresh-environment-test"><span class="header-section-number">19.8.1</span> Fresh Environment Test</h3>
-<ol type="1">
-<li>Clone your repo to a new location</li>
-<li>Create environment from scratch</li>
-<li>Run the full analysis</li>
-<li>Compare results</li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a># In a temporary directory</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>git clone https://github.com/user/project.git test-project</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>cd test-project</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>conda env create -f environment.yml</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>conda activate project-name</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>./run_analysis.sh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="docker-advanced" class="level3" data-number="19.8.2">
-<h3 data-number="19.8.2" class="anchored" data-anchor-id="docker-advanced"><span class="header-section-number">19.8.2</span> Docker (Advanced)</h3>
-<p>For maximum reproducibility, package everything in a Docker container:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> rocker/tidyverse:4.3.1</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> . /analysis</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /analysis</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">R</span> <span class="at">-e</span> <span class="st">"renv::restore()"</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">"Rscript"</span>, <span class="st">"run_all.R"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This captures:</p>
-<ul>
-<li>Operating system</li>
-<li>R version</li>
-<li>All packages</li>
-</ul>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>scRNA-seq analysis of Spongilla lacustris regeneration time course.</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>Manuscript in preparation for Current Biology.</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Scientific Context</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>6 time points post-dissociation (0h–72h), ~50,000 cells total</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Central finding: archaeocytes (stem cells) are the primary source</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  of regenerating cell types — no transdifferentiation observed</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Key cell types: archaeocytes, pinacocytes, choanocytes, sclerocytes,</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  amoebocytes, and 3 novel regeneration-specific populations</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Environment</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>R: renv (auto-activates), R 4.4.1</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Python: <span class="in">`conda activate spongilla-regen`</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="fu">## Project Documents</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`ANALYSIS_PLAN.md`</span> — Pipeline status, decisions log</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`FIGURE_PLAN.md`</span> — All manuscript figures with status</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`REVIEWER_NOTES.md`</span> — Reviewer comments and responses</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key Files</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`scripts/01_qc.qmd`</span> through <span class="in">`scripts/08_trajectory.qmd`</span> — full pipeline</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`scripts/fig_*.qmd`</span> — Manuscript figure scripts</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`outs/08_trajectory/monocle_cds.rds`</span> — Trajectory object</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`R/colors.R`</span> — Cell type colors (consistent across all figures)</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`R/gene_lists.R`</span> — Curated pathway gene lists (Wnt, Notch, TGF-beta)</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## Analytical Decisions</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Integration: Harmony (batch = sample_id)</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Clustering: Leiden, resolution 1.5, 20 clusters → 12 cell types after merging</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Trajectory: Monocle3, rooted at archaeocyte cluster</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>DE: FindMarkers with Wilcoxon test, adjusted p &lt; 0.05, log2FC &gt; 0.5</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Excluded: 72h-specific cluster 18 (likely dissociation artifact — high</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>  stress genes, no clear identity, absent in other time points)</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conventions</span></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>theme_classic(), 12pt base font</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Colors: <span class="in">`R/colors.R`</span> (do not change without updating all figure scripts)</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Figure dimensions: 8×6 main, 4×4 supplementary</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Export: PDF with cairo_pdf for vector, PNG at 300 DPI for raster elements</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gotchas</span></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Monocle3 requires specific Seurat-to-CDS conversion — see <span class="in">`scripts/07_prep_trajectory.qmd`</span></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Gene "Wnt3" appears as "Wnt3 A" in this annotation</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>renv::restore() fails on M1 Macs for leidenbase — install from source with <span class="in">`renv::install("leidenbase", type = "source")`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>These aren’t templates to copy verbatim — they’re examples of how a CLAUDE.md grows organically as a project develops. Start with what you know, and add to it as you work.</p>
 </section>
 </section>
-<section id="common-reproducibility-problems" class="level2" data-number="19.9">
-<h2 data-number="19.9" class="anchored" data-anchor-id="common-reproducibility-problems"><span class="header-section-number">19.9</span> Common Reproducibility Problems</h2>
-<section id="it-works-on-my-machine" class="level3" data-number="19.9.1">
-<h3 data-number="19.9.1" class="anchored" data-anchor-id="it-works-on-my-machine"><span class="header-section-number">19.9.1</span> “It works on my machine”</h3>
-<p><strong>Cause</strong>: Different package versions, OS differences, or missing dependencies.</p>
-<p><strong>Solution</strong>: Use conda/renv, test in fresh environment.</p>
-</section>
-<section id="missing-files" class="level3" data-number="19.9.2">
-<h3 data-number="19.9.2" class="anchored" data-anchor-id="missing-files"><span class="header-section-number">19.9.2</span> Missing files</h3>
-<p><strong>Cause</strong>: Data files not included or paths are wrong.</p>
-<p><strong>Solution</strong>: Document data sources, use relative paths.</p>
-</section>
-<section id="different-results-each-run" class="level3" data-number="19.9.3">
-<h3 data-number="19.9.3" class="anchored" data-anchor-id="different-results-each-run"><span class="header-section-number">19.9.3</span> Different results each run</h3>
-<p><strong>Cause</strong>: Unseeded random number generation.</p>
-<p><strong>Solution</strong>: Set random seeds.</p>
-</section>
-<section id="manual-steps" class="level3" data-number="19.9.4">
-<h3 data-number="19.9.4" class="anchored" data-anchor-id="manual-steps"><span class="header-section-number">19.9.4</span> Manual steps</h3>
-<p><strong>Cause</strong>: Analysis requires clicking buttons or manual edits.</p>
-<p><strong>Solution</strong>: Script everything. If you must have manual steps, document them precisely.</p>
-</section>
-</section>
-<section id="tools-that-help" class="level2" data-number="19.10">
-<h2 data-number="19.10" class="anchored" data-anchor-id="tools-that-help"><span class="header-section-number">19.10</span> Tools That Help</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Tool</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>here</code> (R)</td>
-<td>Reliable relative paths</td>
-</tr>
-<tr class="even">
-<td><code>pathlib</code> (Python)</td>
-<td>Path handling</td>
-</tr>
-<tr class="odd">
-<td><code>renv</code></td>
-<td>R package management</td>
-</tr>
-<tr class="even">
-<td><code>conda</code></td>
-<td>Python environment management</td>
-</tr>
-<tr class="odd">
-<td>Quarto</td>
-<td>Literate programming</td>
-</tr>
-<tr class="even">
-<td>Git</td>
-<td>Version control</td>
-</tr>
-<tr class="odd">
-<td>Docker</td>
-<td>Full environment capture</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="quick-reference" class="level2" data-number="19.11">
-<h2 data-number="19.11" class="anchored" data-anchor-id="quick-reference"><span class="header-section-number">19.11</span> Quick Reference</h2>
-<p><strong>For every project:</strong></p>
-<ol type="1">
-<li>Use Git for version control</li>
-<li>Lock environments with conda/renv</li>
-<li>Use relative paths</li>
-<li>Set random seeds</li>
-<li>Document everything</li>
-<li>Test in a fresh environment before sharing</li>
-</ol>
+<section id="whats-next" class="level2" data-number="14.6">
+<h2 data-number="14.6" class="anchored" data-anchor-id="whats-next"><span class="header-section-number">14.6</span> What’s Next</h2>
+<p>The final chapter in this section, <a href="../claude-code/staying-safe.html">Staying Safe</a>, covers Claude Code’s safety features — the permission system, hooks, settings, and data protection. These are the guardrails that make it safe to give Claude access to your project files, and understanding them is part of using Claude Code responsibly.</p>
+<p>A complete table of all lab skills — name, type, and one-line description — is available in <a href="../appendices/lab-skills.html">Appendix E</a>.</p>
 
 
 </section>
@@ -1304,13 +1251,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../part3/collaborating.html" class="pagination-link" aria-label="Collaborating with Others">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Collaborating with Others</span></span>
+      <a href="../claude-code/working-effectively.html" class="pagination-link" aria-label="Working Effectively with Claude">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Working Effectively with Claude</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../part3/troubleshooting.html" class="pagination-link" aria-label="Common Tasks &amp; Troubleshooting">
-        <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Common Tasks &amp; Troubleshooting</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../claude-code/staying-safe.html" class="pagination-link" aria-label="Staying Safe">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Staying Safe</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

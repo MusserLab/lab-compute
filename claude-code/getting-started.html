@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>10&nbsp; Getting Started with Claude Code – Data Analysis in the Musser Lab</title>
+<title>11&nbsp; Getting Started with Claude Code – Data Analysis in the Musser Lab</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +65,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../claude-code/configuring-projects.html" rel="next">
-<link href="../part2/git-github.html" rel="prev">
+<link href="../claude-code/teaching-claude.html" rel="next">
+<link href="../claude-code/ai-fluency.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -250,7 +285,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../claude-code/getting-started.html">Claude Code</a></li><li class="breadcrumb-item"><a href="../claude-code/getting-started.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Getting Started with Claude Code</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../claude-code/ai-fluency.html">Working with AI</a></li><li class="breadcrumb-item"><a href="../claude-code/getting-started.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Getting Started with Claude Code</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -363,7 +398,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Claude Code</span></a>
+ <span class="menu-text">Working with AI</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -371,26 +406,38 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../claude-code/ai-fluency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">AI Fluency</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../claude-code/getting-started.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Getting Started with Claude Code</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Getting Started with Claude Code</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../claude-code/configuring-projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Configuring Your Project for Claude</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../claude-code/skills.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Skills</span></span></a>
+  <a href="../claude-code/teaching-claude.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Teaching Claude About Your Work</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../claude-code/working-effectively.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Working Effectively with Claude</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../claude-code/musser-lab-toolkit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">The Musser Lab Toolkit</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../claude-code/staying-safe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Staying Safe</span></span></a>
   </div>
 </li>
       </ul>
@@ -407,31 +454,31 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part3/setup-walkthrough.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Setting Up a Lab Project</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Setting Up a Lab Project</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part3/starting-project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Quick Reference: Project Setup</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Quick Reference: Project Setup</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part3/collaborating.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Collaborating with Others</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Collaborating with Others</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part3/reproducibility.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Reproducible Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Reproducible Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part3/troubleshooting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Common Tasks &amp; Troubleshooting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Common Tasks &amp; Troubleshooting</span></span></a>
   </div>
 </li>
       </ul>
@@ -469,6 +516,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">R Packages for Biology</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendices/lab-skills.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Lab Skills Reference</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -481,22 +534,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start"><span class="header-section-number">10.1</span> Before You Start</a></li>
-  <li><a href="#using-claude-code-in-positron" id="toc-using-claude-code-in-positron" class="nav-link" data-scroll-target="#using-claude-code-in-positron"><span class="header-section-number">10.2</span> Using Claude Code in Positron</a>
-  <ul class="collapse">
-  <li><a href="#terminal-alternative" id="toc-terminal-alternative" class="nav-link" data-scroll-target="#terminal-alternative"><span class="header-section-number">10.2.1</span> Terminal Alternative</a></li>
-  </ul></li>
-  <li><a href="#what-claude-code-can-do" id="toc-what-claude-code-can-do" class="nav-link" data-scroll-target="#what-claude-code-can-do"><span class="header-section-number">10.3</span> What Claude Code Can Do</a></li>
-  <li><a href="#when-to-use-claude-code" id="toc-when-to-use-claude-code" class="nav-link" data-scroll-target="#when-to-use-claude-code"><span class="header-section-number">10.4</span> When to Use Claude Code</a></li>
-  <li><a href="#the-mental-model" id="toc-the-mental-model" class="nav-link" data-scroll-target="#the-mental-model"><span class="header-section-number">10.5</span> The Mental Model</a>
-  <ul class="collapse">
-  <li><a href="#capable-but-not-omniscient" id="toc-capable-but-not-omniscient" class="nav-link" data-scroll-target="#capable-but-not-omniscient"><span class="header-section-number">10.5.1</span> 1. Capable but not omniscient</a></li>
-  <li><a href="#context-matters" id="toc-context-matters" class="nav-link" data-scroll-target="#context-matters"><span class="header-section-number">10.5.2</span> 2. Context matters</a></li>
-  <li><a href="#verify-then-trust" id="toc-verify-then-trust" class="nav-link" data-scroll-target="#verify-then-trust"><span class="header-section-number">10.5.3</span> 3. Verify, then trust</a></li>
-  </ul></li>
-  <li><a href="#a-quick-example" id="toc-a-quick-example" class="nav-link" data-scroll-target="#a-quick-example"><span class="header-section-number">10.6</span> A Quick Example</a></li>
-  <li><a href="#reviewing-changes" id="toc-reviewing-changes" class="nav-link" data-scroll-target="#reviewing-changes"><span class="header-section-number">10.7</span> Reviewing Changes</a></li>
-  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">10.8</span> Next Steps</a></li>
+  <li><a href="#before-you-start" id="toc-before-you-start" class="nav-link active" data-scroll-target="#before-you-start"><span class="header-section-number">11.1</span> Before You Start</a></li>
+  <li><a href="#opening-claude-code-in-positron" id="toc-opening-claude-code-in-positron" class="nav-link" data-scroll-target="#opening-claude-code-in-positron"><span class="header-section-number">11.2</span> Opening Claude Code in Positron</a></li>
+  <li><a href="#your-first-conversation-thinking-together" id="toc-your-first-conversation-thinking-together" class="nav-link" data-scroll-target="#your-first-conversation-thinking-together"><span class="header-section-number">11.3</span> Your First Conversation: Thinking Together</a></li>
+  <li><a href="#your-second-conversation-coding-together" id="toc-your-second-conversation-coding-together" class="nav-link" data-scroll-target="#your-second-conversation-coding-together"><span class="header-section-number">11.4</span> Your Second Conversation: Coding Together</a></li>
+  <li><a href="#what-claude-code-can-do" id="toc-what-claude-code-can-do" class="nav-link" data-scroll-target="#what-claude-code-can-do"><span class="header-section-number">11.5</span> What Claude Code Can Do</a></li>
+  <li><a href="#the-terminal-alternative" id="toc-the-terminal-alternative" class="nav-link" data-scroll-target="#the-terminal-alternative"><span class="header-section-number">11.6</span> The Terminal Alternative</a></li>
+  <li><a href="#three-things-to-remember" id="toc-three-things-to-remember" class="nav-link" data-scroll-target="#three-things-to-remember"><span class="header-section-number">11.7</span> Three Things to Remember</a></li>
+  <li><a href="#whats-next" id="toc-whats-next" class="nav-link" data-scroll-target="#whats-next"><span class="header-section-number">11.8</span> What’s Next</a></li>
   </ul>
 </nav>
     </div>
@@ -504,9 +549,9 @@ ul.task-list li input[type="checkbox"] {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../claude-code/getting-started.html">Claude Code</a></li><li class="breadcrumb-item"><a href="../claude-code/getting-started.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Getting Started with Claude Code</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../claude-code/ai-fluency.html">Working with AI</a></li><li class="breadcrumb-item"><a href="../claude-code/getting-started.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Getting Started with Claude Code</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Getting Started with Claude Code</span></h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Getting Started with Claude Code</span></h1>
 </div>
 
 
@@ -523,188 +568,80 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Claude Code is an AI assistant that works directly with your project files. Unlike web-based AI chat, it can read your code, edit files, run commands, and search across your codebase, all within the context of your project.</p>
-<section id="before-you-start" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="before-you-start"><span class="header-section-number">10.1</span> Before You Start</h2>
-<p>If you followed the <a href="../part1/installation.html">Installation chapter</a>, you’ve already installed Claude Code, authenticated, and added the Positron extension. If you skipped that chapter or need a refresher, here’s what you need:</p>
-<ol type="1">
-<li><strong>Node.js</strong> installed (<a href="https://nodejs.org">nodejs.org</a>)</li>
-<li><strong>Claude Code CLI</strong> installed: <code>npm install -g @anthropic-ai/claude-code</code></li>
-<li><strong>Authenticated</strong>: run <code>claude</code> in your terminal once and log in with your Anthropic account</li>
-<li><strong>Positron extension</strong>: Extensions view → search “Claude Code” → Install</li>
-</ol>
-<p>If any of those steps are unfamiliar, work through <a href="../part1/installation.html#claude-code">Section 2.4</a> first.</p>
+<p>In <a href="../part1/first-project.html">Your First R Project</a>, you built a single-cell analysis from raw count data to identified cell types. Along the way, you probably noticed orange “Claude Code” callout boxes scattered throughout the book, suggesting things you could ask an AI assistant. Now you’re going to actually use it.</p>
+<p>This chapter walks you through your first real Claude Code session. By the end, you’ll have had two conversations with Claude — one where you think together about a scientific question, and one where Claude writes code for you — and you’ll have a feel for how this tool fits into your daily work.</p>
+<section id="before-you-start" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="before-you-start"><span class="header-section-number">11.1</span> Before You Start</h2>
+<p>If you followed the <a href="../part1/installation.html">Installation chapter</a>, you already have everything you need: Claude Code installed, authenticated with OAuth, and the Positron extension added. If you skipped that chapter, work through <a href="../part1/installation.html#claude-code">Section 2.4</a> first — you need Node.js, the Claude Code CLI, authentication, and the Positron extension.</p>
+<p>You’ll also want the Spongilla project from Chapter 3 open in Positron, with the Seurat analysis script in <code>scripts/</code>. We’ll use it as the basis for your first conversations with Claude.</p>
 </section>
-<section id="using-claude-code-in-positron" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="using-claude-code-in-positron"><span class="header-section-number">10.2</span> Using Claude Code in Positron</h2>
-<p>The easiest way to use Claude Code is through the Positron extension. This keeps your code, terminal, and AI assistant in one window.</p>
-<p><strong>To open Claude Code in Positron:</strong></p>
-<ol type="1">
-<li>Open your project folder in Positron</li>
-<li>Click the Claude Code icon in the left sidebar (or use <code>Cmd+Shift+P</code> → “Claude Code: Open”)</li>
-<li>Start typing in the chat panel</li>
-</ol>
-<p>The extension automatically knows which project you’re working in and can see your files.</p>
-<p><strong>Key shortcuts:</strong></p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Action</th>
-<th>Shortcut</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Submit message</td>
-<td><code>Enter</code> (or <code>Cmd+Enter</code> depending on settings)</td>
-</tr>
-<tr class="even">
-<td>New conversation</td>
-<td>Click “+” or <code>Cmd+N</code> in the Claude panel</td>
-</tr>
-<tr class="odd">
-<td>Reference a file</td>
-<td>Type <code>@</code> and start typing the filename</td>
-</tr>
-</tbody>
-</table>
-<section id="terminal-alternative" class="level3" data-number="10.2.1">
-<h3 data-number="10.2.1" class="anchored" data-anchor-id="terminal-alternative"><span class="header-section-number">10.2.1</span> Terminal Alternative</h3>
-<p>You can also run Claude Code directly in any terminal by navigating to your project directory and typing <code>claude</code>. This gives you the same capabilities as the extension — reading files, editing code, running commands — but in a terminal interface rather than a sidebar panel. Some people prefer this, especially for quick one-off questions or when working outside Positron.</p>
+<section id="opening-claude-code-in-positron" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="opening-claude-code-in-positron"><span class="header-section-number">11.2</span> Opening Claude Code in Positron</h2>
+<p>Open your Spongilla project folder in Positron (File → Open Folder, then navigate to <code>my-first-analysis/</code>). In the left sidebar, you should see the Claude Code icon — a small speech-bubble logo. Click it to open the Claude Code panel.</p>
+<p>[TODO: screenshot — Positron sidebar with Claude Code icon highlighted]</p>
+<p>The panel that appears is your conversation interface. It’s like a chat window, but Claude can do more than just talk — it can read files in your project, propose edits to your code, and run commands in your terminal. It knows which folder you have open and can see all the files inside it.</p>
+<p>A few things to know about the interface:</p>
+<p><strong>Submitting messages.</strong> Type in the input box at the bottom and press Enter to send. If you need a newline within your message, use Shift+Enter.</p>
+<p><strong>Starting fresh.</strong> Each conversation is independent. Click the “+” button at the top of the panel (or use Cmd+N / Ctrl+N) to start a new conversation. You’ll do this often — it’s like starting a fresh page in a notebook.</p>
+<p><strong>Referencing files.</strong> Type <code>@</code> followed by a filename to explicitly point Claude at a specific file. This is useful when you want Claude to read or edit something particular, though Claude can also find files on its own.</p>
+<p>[TODO: screenshot — Claude Code panel open with the input box and conversation area visible]</p>
 </section>
+<section id="your-first-conversation-thinking-together" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="your-first-conversation-thinking-together"><span class="header-section-number">11.3</span> Your First Conversation: Thinking Together</h2>
+<p>Let’s start with a question — not a coding request, but a scientific one. You ran quality control in the Spongilla analysis, filtering cells based on <code>nFeature_RNA</code>. But why that metric? What does it actually tell you, and how would you choose a threshold for your own data?</p>
+<p>Type this into the Claude Code panel:</p>
+<blockquote class="blockquote">
+<p>In the Spongilla analysis script, we filter cells based on nFeature_RNA. How do I know what threshold to use? What are people typically looking for when they set QC thresholds in single-cell data?</p>
+</blockquote>
+<p>Press Enter and watch what happens. Claude reads your analysis script to understand what you’re working with, then explains the biology behind QC filtering: what low gene counts mean (empty droplets, dying cells), what high counts might indicate (doublets), and how thresholds depend on your specific dataset. It might suggest looking at a violin plot to help you decide, and explain why some analysts prefer lenient thresholds at this stage, relying on clustering to identify junk cells later.</p>
+<p>[TODO: screenshot — Claude’s response to the QC threshold question, showing it read the script]</p>
+<p>Notice what just happened. You didn’t ask Claude to write any code. You asked it to help you <em>understand</em> a decision in your analysis — a decision you might have previously just copied from a tutorial without thinking about. Claude brought knowledge about single-cell best practices, discussed the tradeoffs, and helped you think through the reasoning. This is one of the most valuable ways to use Claude: as a thinking partner who can explain the <em>why</em> behind analytical choices.</p>
+<p>This is what we’ll call <strong>augmentation</strong> in the next chapter — you and Claude thinking together. You bring the questions and the scientific judgment; Claude brings broad knowledge of methods, common practices, and the ability to explain concepts clearly. No code was written, but you understand your analysis better than you did five minutes ago.</p>
 </section>
-<section id="what-claude-code-can-do" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="what-claude-code-can-do"><span class="header-section-number">10.3</span> What Claude Code Can Do</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 54%">
-<col style="width: 45%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Capability</th>
-<th>Examples</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Understand code</strong></td>
-<td>Explain functions, trace data flow, find patterns</td>
-</tr>
-<tr class="even">
-<td><strong>Write code</strong></td>
-<td>Create scripts, write functions, generate boilerplate</td>
-</tr>
-<tr class="odd">
-<td><strong>Edit files</strong></td>
-<td>Fix bugs, refactor, add features to existing files</td>
-</tr>
-<tr class="even">
-<td><strong>Run commands</strong></td>
-<td>Execute R/Python scripts, git operations, quarto render</td>
-</tr>
-<tr class="odd">
-<td><strong>Search</strong></td>
-<td>Find where things are defined, grep for patterns</td>
-</tr>
-<tr class="even">
-<td><strong>Debug</strong></td>
-<td>Trace errors, explain stack traces, suggest fixes</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="when-to-use-claude-code" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="when-to-use-claude-code"><span class="header-section-number">10.4</span> When to Use Claude Code</h2>
-<p><strong>Claude Code is helpful for:</strong></p>
+<section id="your-second-conversation-coding-together" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="your-second-conversation-coding-together"><span class="header-section-number">11.4</span> Your Second Conversation: Coding Together</h2>
+<p>Now let’s ask Claude to actually do something. Following directly from the QC discussion, you might want to see the distribution of <code>nFeature_RNA</code> before filtering, so you can make an informed threshold decision. Start a new conversation (click “+”) and try this:</p>
+<blockquote class="blockquote">
+<p>Can you add a violin plot of nFeature_RNA to the QC section of scripts/01_seurat_basics.qmd, so I can see the distribution before the filtering step? Put it right before the existing QC violin plot.</p>
+</blockquote>
+<p>This time, Claude does something different. It reads your analysis script, finds the QC section, and proposes an edit — a new code chunk that creates a violin plot of <code>nFeature_RNA</code> alone, placed before the existing two-panel QC plot. You’ll see the proposed change as a <strong>diff</strong>: lines highlighted in green are being added, and the surrounding context shows exactly where in the file the edit will go.</p>
+<p>[TODO: screenshot — diff view showing Claude’s proposed edit to the QC section]</p>
+<p>This is the approval flow you’ll use constantly:</p>
 <ul>
-<li>Setting up project structure and boilerplate</li>
-<li>Debugging cryptic error messages</li>
-<li>Understanding unfamiliar code in a project</li>
-<li>Writing repetitive code (data loading, plotting templates)</li>
-<li>Troubleshooting environment issues (conda, renv, paths)</li>
-<li>Explaining what code does and how components connect</li>
+<li><strong>Review the diff.</strong> Read what Claude is proposing. Does it make sense? Is it in the right place in the file?</li>
+<li><strong>Accept or reject.</strong> If the change looks good, click Accept (or press the shortcut shown). If something’s off, tell Claude what to change — “Actually, put it after the filtering step instead” — and it will revise.</li>
+<li><strong>Test it.</strong> After accepting, run the new code chunk interactively (Cmd+Shift+Enter) to see if it works and if the plot looks right.</li>
 </ul>
-<p><strong>Claude Code is not a replacement for:</strong></p>
-<ul>
-<li>Your analytical judgment (you decide normalization methods, thresholds, interpretations)</li>
-<li>Your domain expertise (you know biology, Claude knows code)</li>
-<li>Careful code review (always verify outputs, especially for statistics)</li>
-<li>Understanding methods you’ll use repeatedly (learn them, don’t just copy-paste)</li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>The division of labor
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>You bring the scientific knowledge and analytical decisions. Claude Code brings coding speed and pattern recognition. The combination is powerful, but you’re always the one making the calls.</p>
-</div>
-</div>
+<p>You just experienced Claude as a <strong>coding collaborator</strong>. You described what you wanted in plain English, Claude read your existing code to understand the context, and proposed a specific edit that fits the style and structure of your script. You reviewed it, accepted it, and ran it.</p>
 </section>
-<section id="the-mental-model" class="level2" data-number="10.5">
-<h2 data-number="10.5" class="anchored" data-anchor-id="the-mental-model"><span class="header-section-number">10.5</span> The Mental Model</h2>
-<p>Three concepts help you work effectively with Claude Code:</p>
-<section id="capable-but-not-omniscient" class="level3" data-number="10.5.1">
-<h3 data-number="10.5.1" class="anchored" data-anchor-id="capable-but-not-omniscient"><span class="header-section-number">10.5.1</span> 1. Capable but not omniscient</h3>
-<p>Claude can write sophisticated code, but it doesn’t automatically know:</p>
-<ul>
-<li>Your specific data structures and conventions</li>
-<li>Your project’s history and past decisions</li>
-<li>What you’ve tried before and why it didn’t work</li>
-</ul>
-<p><strong>Solution:</strong> Tell Claude what it needs to know. Be specific about your data, your goals, and any constraints.</p>
+<section id="what-claude-code-can-do" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="what-claude-code-can-do"><span class="header-section-number">11.5</span> What Claude Code Can Do</h2>
+<p>Those two conversations — thinking together and coding together — showed you the core of Claude Code. But it can do more than answer questions and edit files. Here’s what it looks like in practice, framed around the kind of work you’ll actually do:</p>
+<p><strong>Understand your code.</strong> You can point Claude at any file in your project and ask what it does. “Walk me through the normalization section of the analysis script” or “Why does this use <code>left_join</code> instead of <code>inner_join</code>?” This is especially useful when you’re working with code someone else wrote, or revisiting your own code after a break.</p>
+<p><strong>Write new code.</strong> Claude can create scripts, write functions, or add sections to existing files. It reads your project to match the style and conventions already in use. “Write a function that takes a Seurat object and returns a summary table of cells per cluster” — Claude will write it, and you review.</p>
+<p><strong>Edit existing files.</strong> This is what you just saw: Claude proposes changes as diffs that you approve or reject. It can fix bugs, refactor code, add features, or restructure sections of a file.</p>
+<p><strong>Run commands.</strong> Claude can execute commands in your terminal — rendering a Quarto document, running git operations, installing packages. It always shows you the command before running it and asks for approval.</p>
+<p><strong>Search your project.</strong> “Where is the clustering resolution set?” or “Find all the places we use <code>FindMarkers</code>.” Claude searches across your files and reports what it finds.</p>
+<p><strong>Debug errors.</strong> Paste an error message and tell Claude where it happened. It reads the relevant code, traces the problem, and proposes a fix. This is one of the most common and immediately useful interactions.</p>
+<p>Each of these capabilities follows the same pattern: Claude proposes, you review, you decide. You’re always in control.</p>
 </section>
-<section id="context-matters" class="level3" data-number="10.5.2">
-<h3 data-number="10.5.2" class="anchored" data-anchor-id="context-matters"><span class="header-section-number">10.5.2</span> 2. Context matters</h3>
-<p>Claude only knows what’s in your project folder and what you tell it. Each new conversation starts fresh—it doesn’t remember yesterday’s session.</p>
-<p><strong>Solution:</strong> Use project configuration files (covered in the next chapter) to give Claude persistent context about your project.</p>
+<section id="the-terminal-alternative" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="the-terminal-alternative"><span class="header-section-number">11.6</span> The Terminal Alternative</h2>
+<p>Everything you just did in Positron’s sidebar panel also works in a plain terminal. Navigate to your project folder and type <code>claude</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>cd ~/Documents/my-first-analysis</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>claude</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You’ll get a text-based interface with the same capabilities — reading files, proposing edits, running commands. Some people prefer the terminal for quick questions or when working outside Positron. The Positron extension is usually more convenient for day-to-day work because everything is in one window, but it’s good to know both options exist.</p>
 </section>
-<section id="verify-then-trust" class="level3" data-number="10.5.3">
-<h3 data-number="10.5.3" class="anchored" data-anchor-id="verify-then-trust"><span class="header-section-number">10.5.3</span> 3. Verify, then trust</h3>
-<p>Claude often gets things right, but sometimes produces plausible-looking code with subtle bugs, especially for:</p>
-<ul>
-<li>Statistical methods it doesn’t fully understand</li>
-<li>Edge cases in your specific data</li>
-<li>Domain-specific conventions it guesses at</li>
-</ul>
-<p><strong>Solution:</strong> Run the code and check the outputs. For analytical code, verify counts at each step and spot-check results.</p>
+<section id="three-things-to-remember" class="level2" data-number="11.7">
+<h2 data-number="11.7" class="anchored" data-anchor-id="three-things-to-remember"><span class="header-section-number">11.7</span> Three Things to Remember</h2>
+<p>You’ve now experienced Claude Code firsthand. Before moving on, here are three things to carry with you:</p>
+<p><strong>Be specific.</strong> Your prompts shaped what Claude did. When you asked about QC thresholds with specific context (the Spongilla analysis, nFeature_RNA), Claude gave you a focused, useful answer. Vague questions like “help me with my analysis” get vague answers. Include what you’re working with, what you’ve tried, and what you’re trying to accomplish.</p>
+<p><strong>Verify the output.</strong> You reviewed a diff before accepting it. This isn’t optional — it’s the workflow. Claude writes plausible code that usually works, but sometimes has subtle bugs, especially with statistical methods or domain-specific conventions. Run the code, check the output, and make sure it does what you expect. If you can’t explain what the code does to a labmate, you accepted it too quickly.</p>
+<p><strong>Claude doesn’t remember.</strong> Each new conversation starts from scratch. Claude doesn’t know what you discussed yesterday, what decisions you made last week, or what you tried and rejected. That’s why you started a fresh conversation for the coding request — and it’s why the next chapter matters. You can teach Claude about your project so that every conversation starts with shared context, not a blank slate.</p>
 </section>
-</section>
-<section id="a-quick-example" class="level2" data-number="10.6">
-<h2 data-number="10.6" class="anchored" data-anchor-id="a-quick-example"><span class="header-section-number">10.6</span> A Quick Example</h2>
-<p>Here’s what a typical interaction looks like in Positron:</p>
-<p><strong>You type:</strong> &gt; I’m getting this error when I run the script: &gt; &gt; Error in <code>left_join()</code>: ! <code>by</code> must be supplied when <code>x</code> and <code>y</code> have no common variables. &gt; &gt; The join is on line 45 of analysis.qmd</p>
-<p><strong>Claude responds:</strong> - Reads the relevant section of <code>analysis.qmd</code> - Explains that the column names don’t match between the two dataframes - Shows you the column names in each - Proposes a fix with the correct <code>by =</code> argument - Asks if you want to apply the edit</p>
-<p>You review the proposed change, accept it, and the file is updated.</p>
-</section>
-<section id="reviewing-changes" class="level2" data-number="10.7">
-<h2 data-number="10.7" class="anchored" data-anchor-id="reviewing-changes"><span class="header-section-number">10.7</span> Reviewing Changes</h2>
-<p>Claude always shows you what it plans to do:</p>
-<ul>
-<li><strong>File edits</strong> — Shows a diff with the proposed changes highlighted</li>
-<li><strong>New files</strong> — Shows the full content before writing</li>
-<li><strong>Commands</strong> — Shows the command before running it</li>
-</ul>
-<p>You can:</p>
-<ul>
-<li><strong>Accept</strong> the change</li>
-<li><strong>Ask for modifications</strong> (“Can you also add error handling for empty files?”)</li>
-<li><strong>Reject</strong> and try a different approach (“Actually, let’s do this a different way”)</li>
-</ul>
-</section>
-<section id="next-steps" class="level2" data-number="10.8">
-<h2 data-number="10.8" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">10.8</span> Next Steps</h2>
-<p>Now that you understand what Claude Code can do, the following chapters cover:</p>
-<ul>
-<li><strong>Configuring Projects</strong> — How to give Claude persistent context about your project</li>
-<li><strong>Skills</strong> — Reusable instruction sets for common tasks</li>
-<li><strong>Working Effectively</strong> — Patterns for productive Claude Code sessions</li>
-</ul>
+<section id="whats-next" class="level2" data-number="11.8">
+<h2 data-number="11.8" class="anchored" data-anchor-id="whats-next"><span class="header-section-number">11.8</span> What’s Next</h2>
+<p>The next chapter, <a href="../claude-code/ai-fluency.html">AI Fluency</a>, steps back to build the conceptual framework for working with AI effectively — the habits and principles that turn Claude from a novelty into a genuine research tool. Then <a href="../claude-code/teaching-claude.html">Teaching Claude About Your Work</a> shows you how to give Claude persistent memory about your project, so you don’t have to re-explain everything each session.</p>
 
 
 </section>
@@ -1125,13 +1062,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../part2/git-github.html" class="pagination-link" aria-label="Git &amp; GitHub">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Git &amp; GitHub</span></span>
+      <a href="../claude-code/ai-fluency.html" class="pagination-link" aria-label="AI Fluency">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">AI Fluency</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../claude-code/configuring-projects.html" class="pagination-link" aria-label="Configuring Your Project for Claude">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Configuring Your Project for Claude</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../claude-code/teaching-claude.html" class="pagination-link" aria-label="Teaching Claude About Your Work">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Teaching Claude About Your Work</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

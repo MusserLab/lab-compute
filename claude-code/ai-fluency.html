@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>19&nbsp; Reproducible Analysis – Data Analysis in the Musser Lab</title>
+<title>10&nbsp; AI Fluency – Data Analysis in the Musser Lab</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -65,8 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../part3/troubleshooting.html" rel="next">
-<link href="../part3/collaborating.html" rel="prev">
+<link href="../claude-code/getting-started.html" rel="next">
+<link href="../part2/git-github.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -285,7 +250,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part3/setup-walkthrough.html">Workflows</a></li><li class="breadcrumb-item"><a href="../part3/reproducibility.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Reproducible Analysis</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../claude-code/ai-fluency.html">Working with AI</a></li><li class="breadcrumb-item"><a href="../claude-code/ai-fluency.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">AI Fluency</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -406,7 +371,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../claude-code/ai-fluency.html" class="sidebar-item-text sidebar-link">
+  <a href="../claude-code/ai-fluency.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">AI Fluency</span></span></a>
   </div>
 </li>
@@ -471,7 +436,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../part3/reproducibility.html" class="sidebar-item-text sidebar-link active">
+  <a href="../part3/reproducibility.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Reproducible Analysis</span></span></a>
   </div>
 </li>
@@ -534,38 +499,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#why-reproducibility-matters" id="toc-why-reproducibility-matters" class="nav-link active" data-scroll-target="#why-reproducibility-matters"><span class="header-section-number">19.1</span> Why Reproducibility Matters</a></li>
-  <li><a href="#the-three-pillars" id="toc-the-three-pillars" class="nav-link" data-scroll-target="#the-three-pillars"><span class="header-section-number">19.2</span> The Three Pillars</a>
+  <li><a href="#three-ways-to-work-with-ai" id="toc-three-ways-to-work-with-ai" class="nav-link active" data-scroll-target="#three-ways-to-work-with-ai"><span class="header-section-number">10.1</span> Three Ways to Work with AI</a>
   <ul class="collapse">
-  <li><a href="#version-control-git" id="toc-version-control-git" class="nav-link" data-scroll-target="#version-control-git"><span class="header-section-number">19.2.1</span> 1. Version Control (Git)</a></li>
-  <li><a href="#environment-management-conda-renv" id="toc-environment-management-conda-renv" class="nav-link" data-scroll-target="#environment-management-conda-renv"><span class="header-section-number">19.2.2</span> 2. Environment Management (Conda + renv)</a></li>
-  <li><a href="#documentation" id="toc-documentation" class="nav-link" data-scroll-target="#documentation"><span class="header-section-number">19.2.3</span> 3. Documentation</a></li>
+  <li><a href="#mode-1-automation" id="toc-mode-1-automation" class="nav-link" data-scroll-target="#mode-1-automation"><span class="header-section-number">10.1.1</span> Mode 1: Automation</a></li>
+  <li><a href="#mode-2-augmentation" id="toc-mode-2-augmentation" class="nav-link" data-scroll-target="#mode-2-augmentation"><span class="header-section-number">10.1.2</span> Mode 2: Augmentation</a></li>
+  <li><a href="#mode-3-agency" id="toc-mode-3-agency" class="nav-link" data-scroll-target="#mode-3-agency"><span class="header-section-number">10.1.3</span> Mode 3: Agency</a></li>
+  <li><a href="#where-students-get-stuck" id="toc-where-students-get-stuck" class="nav-link" data-scroll-target="#where-students-get-stuck"><span class="header-section-number">10.1.4</span> Where students get stuck</a></li>
+  <li><a href="#extended-research" id="toc-extended-research" class="nav-link" data-scroll-target="#extended-research"><span class="header-section-number">10.1.5</span> Extended research</a></li>
   </ul></li>
-  <li><a href="#reproducibility-checklist" id="toc-reproducibility-checklist" class="nav-link" data-scroll-target="#reproducibility-checklist"><span class="header-section-number">19.3</span> Reproducibility Checklist</a>
+  <li><a href="#the-learning-paradox" id="toc-the-learning-paradox" class="nav-link" data-scroll-target="#the-learning-paradox"><span class="header-section-number">10.2</span> The Learning Paradox</a>
   <ul class="collapse">
-  <li><a href="#environment" id="toc-environment" class="nav-link" data-scroll-target="#environment"><span class="header-section-number">19.3.1</span> Environment</a></li>
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="header-section-number">19.3.2</span> Data</a></li>
-  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code"><span class="header-section-number">19.3.3</span> Code</a></li>
-  <li><a href="#documentation-1" id="toc-documentation-1" class="nav-link" data-scroll-target="#documentation-1"><span class="header-section-number">19.3.4</span> Documentation</a></li>
+  <li><a href="#claude-as-teacher-not-just-producer" id="toc-claude-as-teacher-not-just-producer" class="nav-link" data-scroll-target="#claude-as-teacher-not-just-producer"><span class="header-section-number">10.2.1</span> Claude as teacher, not just producer</a></li>
+  <li><a href="#the-rule-of-thumb" id="toc-the-rule-of-thumb" class="nav-link" data-scroll-target="#the-rule-of-thumb"><span class="header-section-number">10.2.2</span> The rule of thumb</a></li>
   </ul></li>
-  <li><a href="#using-relative-paths" id="toc-using-relative-paths" class="nav-link" data-scroll-target="#using-relative-paths"><span class="header-section-number">19.4</span> Using Relative Paths</a></li>
-  <li><a href="#setting-random-seeds" id="toc-setting-random-seeds" class="nav-link" data-scroll-target="#setting-random-seeds"><span class="header-section-number">19.5</span> Setting Random Seeds</a></li>
-  <li><a href="#documenting-data" id="toc-documenting-data" class="nav-link" data-scroll-target="#documenting-data"><span class="header-section-number">19.6</span> Documenting Data</a></li>
-  <li><a href="#running-the-full-analysis" id="toc-running-the-full-analysis" class="nav-link" data-scroll-target="#running-the-full-analysis"><span class="header-section-number">19.7</span> Running the Full Analysis</a></li>
-  <li><a href="#testing-reproducibility" id="toc-testing-reproducibility" class="nav-link" data-scroll-target="#testing-reproducibility"><span class="header-section-number">19.8</span> Testing Reproducibility</a>
+  <li><a href="#four-principles-for-working-with-ai" id="toc-four-principles-for-working-with-ai" class="nav-link" data-scroll-target="#four-principles-for-working-with-ai"><span class="header-section-number">10.3</span> Four Principles for Working with AI</a>
   <ul class="collapse">
-  <li><a href="#fresh-environment-test" id="toc-fresh-environment-test" class="nav-link" data-scroll-target="#fresh-environment-test"><span class="header-section-number">19.8.1</span> Fresh Environment Test</a></li>
-  <li><a href="#docker-advanced" id="toc-docker-advanced" class="nav-link" data-scroll-target="#docker-advanced"><span class="header-section-number">19.8.2</span> Docker (Advanced)</a></li>
+  <li><a href="#communicate-clearly" id="toc-communicate-clearly" class="nav-link" data-scroll-target="#communicate-clearly"><span class="header-section-number">10.3.1</span> 1. Communicate clearly</a></li>
+  <li><a href="#evaluate-output-critically" id="toc-evaluate-output-critically" class="nav-link" data-scroll-target="#evaluate-output-critically"><span class="header-section-number">10.3.2</span> 2. Evaluate output critically</a></li>
+  <li><a href="#delegate-thoughtfully" id="toc-delegate-thoughtfully" class="nav-link" data-scroll-target="#delegate-thoughtfully"><span class="header-section-number">10.3.3</span> 3. Delegate thoughtfully</a></li>
+  <li><a href="#be-transparent-and-ethical" id="toc-be-transparent-and-ethical" class="nav-link" data-scroll-target="#be-transparent-and-ethical"><span class="header-section-number">10.3.4</span> 4. Be transparent and ethical</a></li>
   </ul></li>
-  <li><a href="#common-reproducibility-problems" id="toc-common-reproducibility-problems" class="nav-link" data-scroll-target="#common-reproducibility-problems"><span class="header-section-number">19.9</span> Common Reproducibility Problems</a>
-  <ul class="collapse">
-  <li><a href="#it-works-on-my-machine" id="toc-it-works-on-my-machine" class="nav-link" data-scroll-target="#it-works-on-my-machine"><span class="header-section-number">19.9.1</span> “It works on my machine”</a></li>
-  <li><a href="#missing-files" id="toc-missing-files" class="nav-link" data-scroll-target="#missing-files"><span class="header-section-number">19.9.2</span> Missing files</a></li>
-  <li><a href="#different-results-each-run" id="toc-different-results-each-run" class="nav-link" data-scroll-target="#different-results-each-run"><span class="header-section-number">19.9.3</span> Different results each run</a></li>
-  <li><a href="#manual-steps" id="toc-manual-steps" class="nav-link" data-scroll-target="#manual-steps"><span class="header-section-number">19.9.4</span> Manual steps</a></li>
-  </ul></li>
-  <li><a href="#tools-that-help" id="toc-tools-that-help" class="nav-link" data-scroll-target="#tools-that-help"><span class="header-section-number">19.10</span> Tools That Help</a></li>
-  <li><a href="#quick-reference" id="toc-quick-reference" class="nav-link" data-scroll-target="#quick-reference"><span class="header-section-number">19.11</span> Quick Reference</a></li>
+  <li><a href="#building-these-habits" id="toc-building-these-habits" class="nav-link" data-scroll-target="#building-these-habits"><span class="header-section-number">10.4</span> Building These Habits</a></li>
   </ul>
 </nav>
     </div>
@@ -573,9 +527,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part3/setup-walkthrough.html">Workflows</a></li><li class="breadcrumb-item"><a href="../part3/reproducibility.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Reproducible Analysis</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../claude-code/ai-fluency.html">Working with AI</a></li><li class="breadcrumb-item"><a href="../claude-code/ai-fluency.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">AI Fluency</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Reproducible Analysis</span></h1>
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">AI Fluency</span></h1>
 </div>
 
 
@@ -592,298 +546,122 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Reproducibility means others (including future you) can run your analysis and get the same results. This chapter covers practices that ensure reproducibility.</p>
-<section id="why-reproducibility-matters" class="level2" data-number="19.1">
-<h2 data-number="19.1" class="anchored" data-anchor-id="why-reproducibility-matters"><span class="header-section-number">19.1</span> Why Reproducibility Matters</h2>
-<ul>
-<li><strong>Verification</strong>: Others can check your work</li>
-<li><strong>Building on work</strong>: You or others can extend the analysis</li>
-<li><strong>Debugging</strong>: Easier to find and fix problems</li>
-<li><strong>Publication</strong>: Increasingly required by journals</li>
-<li><strong>Future you</strong>: Six months from now, you’ll thank yourself</li>
-</ul>
-</section>
-<section id="the-three-pillars" class="level2" data-number="19.2">
-<h2 data-number="19.2" class="anchored" data-anchor-id="the-three-pillars"><span class="header-section-number">19.2</span> The Three Pillars</h2>
-<section id="version-control-git" class="level3" data-number="19.2.1">
-<h3 data-number="19.2.1" class="anchored" data-anchor-id="version-control-git"><span class="header-section-number">19.2.1</span> 1. Version Control (Git)</h3>
-<p>Track every change to your code:</p>
-<ul>
-<li>What changed</li>
-<li>When it changed</li>
-<li>Why it changed</li>
-</ul>
-<p>With Git, you can always return to a working state.</p>
-</section>
-<section id="environment-management-conda-renv" class="level3" data-number="19.2.2">
-<h3 data-number="19.2.2" class="anchored" data-anchor-id="environment-management-conda-renv"><span class="header-section-number">19.2.2</span> 2. Environment Management (Conda + renv)</h3>
-<p>Lock down exact package versions:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># environment.yml</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dependencies</span><span class="kw">:</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> python=3.11.5</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> pandas=2.0.3</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> numpy=1.24.3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="er">//</span> <span class="er">renv.lock</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="er">"ggplot2":</span> <span class="fu">{</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"Version"</span><span class="fu">:</span> <span class="st">"3.4.2"</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Different package versions can give different results.</p>
-</section>
-<section id="documentation" class="level3" data-number="19.2.3">
-<h3 data-number="19.2.3" class="anchored" data-anchor-id="documentation"><span class="header-section-number">19.2.3</span> 3. Documentation</h3>
-<p>Explain:</p>
-<ul>
-<li>How to set up the environment</li>
-<li>How to run the analysis</li>
-<li>What the data looks like</li>
-<li>What decisions you made and why</li>
-</ul>
-</section>
-</section>
-<section id="reproducibility-checklist" class="level2" data-number="19.3">
-<h2 data-number="19.3" class="anchored" data-anchor-id="reproducibility-checklist"><span class="header-section-number">19.3</span> Reproducibility Checklist</h2>
-<div class="claude-callout callout callout-style-default callout-warning callout-titled" title="Claude Code">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>Claude Code
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Claude Code can audit your scripts for common reproducibility pitfalls.</p>
+<p>You’ve spent the first two parts of this book learning the tools of data science: Positron for writing and running code, Quarto for reproducible documents, renv and conda for managing packages, Git for tracking changes. These are the instruments. Now you have a collaborator who can write code, debug errors, explain methods, search the literature, and help you think through analytical decisions — but it’s not a person, and working with it well is a skill unto itself.</p>
+<p>This chapter builds that skill. It’s more conceptual than the others in this section — less “click here, type this” and more “here’s how to think about what you’re doing.” The ideas here will make everything in the following chapters more effective. If you ever feel stuck or frustrated in a Claude Code session, come back to this chapter. The answer is usually one of the principles below.</p>
+<section id="three-ways-to-work-with-ai" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="three-ways-to-work-with-ai"><span class="header-section-number">10.1</span> Three Ways to Work with AI</h2>
+<p>There are three distinct modes of working with Claude, and recognizing which one you’re in — and which one you <em>should</em> be in — is the single most important skill for using AI effectively.</p>
+<section id="mode-1-automation" class="level3" data-number="10.1.1">
+<h3 data-number="10.1.1" class="anchored" data-anchor-id="mode-1-automation"><span class="header-section-number">10.1.1</span> Mode 1: Automation</h3>
+<p>You tell Claude exactly what to do, and it does it.</p>
 <blockquote class="blockquote">
-<p>Can you check <code>analysis/01_qc.qmd</code> for reproducibility issues? Look for hardcoded paths, missing package declarations, missing seed settings, or code that might behave differently on another machine.</p>
+<p>Rename all the cluster labels in my Seurat object from numbers to the cell type names in this table.</p>
 </blockquote>
-<p>Claude will scan the file and flag issues like absolute paths, missing <code>library()</code> calls, unseeded random operations, and platform-dependent code.</p>
-</div>
-</div>
-<section id="environment" class="level3" data-number="19.3.1">
-<h3 data-number="19.3.1" class="anchored" data-anchor-id="environment"><span class="header-section-number">19.3.1</span> Environment</h3>
-<ul class="task-list">
-<li><label><input type="checkbox">All dependencies listed in <code>environment.yml</code> (Python) or <code>renv.lock</code> (R)</label></li>
-<li><label><input type="checkbox">Specific versions pinned, not just package names</label></li>
-<li><label><input type="checkbox">Instructions for environment setup in README</label></li>
-</ul>
+<blockquote class="blockquote">
+<p>Convert this R script to use tidyverse syntax instead of base R.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Add <code>#| fig-cap:</code> options to every figure chunk in my QMD.</p>
+</blockquote>
+<p>This is Claude as a fast, accurate typist. The task is mechanical, the instructions are specific, and there’s little ambiguity about what success looks like. Automation is genuinely useful — these tasks are tedious to do by hand and error-prone — but if this is all you use Claude for, you’re missing most of the value.</p>
 </section>
-<section id="data" class="level3" data-number="19.3.2">
-<h3 data-number="19.3.2" class="anchored" data-anchor-id="data"><span class="header-section-number">19.3.2</span> Data</h3>
-<ul class="task-list">
-<li><label><input type="checkbox">Raw data preserved unchanged</label></li>
-<li><label><input type="checkbox">Data processing steps documented and scripted</label></li>
-<li><label><input type="checkbox">Data sources documented</label></li>
-<li><label><input type="checkbox">If data can’t be shared, describe format and structure</label></li>
-</ul>
+<section id="mode-2-augmentation" class="level3" data-number="10.1.2">
+<h3 data-number="10.1.2" class="anchored" data-anchor-id="mode-2-augmentation"><span class="header-section-number">10.1.2</span> Mode 2: Augmentation</h3>
+<p>You’re thinking together. Claude brings broad knowledge of methods, literature, and common practices; you bring your scientific question, your data, and your judgment. This mode goes far beyond coding:</p>
+<p><strong>Analytical planning.</strong> You have single-cell data from 4 <em>Spongilla</em> samples at different developmental stages. Before writing any code, you ask: <em>What are the main steps in a standard integration analysis? What choices will I need to make at each step? What methods exist for integration, and when should I use each one?</em> Claude walks you through the landscape — Seurat’s integration, Harmony, scVI — explaining the tradeoffs and what to look for when evaluating results. You read the papers it references, then decide which approach fits your data.</p>
+<p><strong>Method evaluation.</strong> You’re following a tutorial that uses <code>SCTransform</code> for normalization. Is that the right choice for your dataset? What are the alternatives? What assumptions does each method make? Claude explains — and when you ask “What would someone who disagrees with SCTransform say?”, it presents the counterarguments and the literature supporting them. Now you’re making an informed choice rather than blindly following a tutorial.</p>
+<p><strong>Literature exploration.</strong> You need to understand how people identify cell types in non-model organisms, or you want recent papers on trajectory inference for developmental data. Claude points you to key publications and explains their relevance. You read the actual papers — Claude’s summaries are starting points, not endpoints.</p>
+<p><strong>Result interpretation.</strong> You’ve run <code>FindMarkers</code> on a cluster and have 50 differentially expressed genes. Instead of running GO enrichment and getting generic terms like “signal transduction,” you share the gene list with Claude and ask: <em>What biological processes are these genes associated with? What cell type might this be? What’s surprising in this list?</em> Claude synthesizes what it knows from the literature into a narrative — which you then verify against primary sources and your own biological knowledge.</p>
+<p><strong>Troubleshooting analytical decisions.</strong> Your UMAP shows two clusters that seem to be merging. What could cause this? Is it a resolution issue, a batch effect, or genuinely similar cell types? How should you think about whether to split or merge them? Claude helps you reason through the possibilities, but you make the call based on your data.</p>
+<p>This is research, planning, interpretation, and learning — the intellectual side of data science, not just the coding side. Mode 2 is where the real power is, and it’s where you learn the most.</p>
 </section>
-<section id="code" class="level3" data-number="19.3.3">
-<h3 data-number="19.3.3" class="anchored" data-anchor-id="code"><span class="header-section-number">19.3.3</span> Code</h3>
-<ul class="task-list">
-<li><label><input type="checkbox">Analysis runs from start to finish without manual intervention</label></li>
-<li><label><input type="checkbox">File paths are relative, not absolute</label></li>
-<li><label><input type="checkbox">No hardcoded paths like <code>/Users/myname/...</code></label></li>
-<li><label><input type="checkbox">Random seeds set for stochastic processes</label></li>
-<li><label><input type="checkbox">Intermediate results can be regenerated from code</label></li>
-</ul>
+<section id="mode-3-agency" class="level3" data-number="10.1.3">
+<h3 data-number="10.1.3" class="anchored" data-anchor-id="mode-3-agency"><span class="header-section-number">10.1.3</span> Mode 3: Agency</h3>
+<p>You give Claude a goal and let it work.</p>
+<blockquote class="blockquote">
+<p>Here’s my count matrix and metadata. Write a QC script that filters outlier cells, generates diagnostic violin plots, and saves the cleaned Seurat object.</p>
+</blockquote>
+<p>Claude reads your data, makes decisions about thresholds, writes the code, and can even run it. This is powerful — especially for routine tasks where you know what good output looks like — but it requires trust. You need enough understanding to evaluate whether Claude’s decisions were reasonable. Did it set sensible QC thresholds? Did it handle your sample metadata correctly? Are the diagnostic plots actually diagnostic?</p>
 </section>
-<section id="documentation-1" class="level3" data-number="19.3.4">
-<h3 data-number="19.3.4" class="anchored" data-anchor-id="documentation-1"><span class="header-section-number">19.3.4</span> Documentation</h3>
-<ul class="task-list">
-<li><label><input type="checkbox">README explains setup and execution</label></li>
-<li><label><input type="checkbox">Analysis steps documented in code comments or notebooks</label></li>
-<li><label><input type="checkbox">Key decisions annotated with rationale</label></li>
-</ul>
+<section id="where-students-get-stuck" class="level3" data-number="10.1.4">
+<h3 data-number="10.1.4" class="anchored" data-anchor-id="where-students-get-stuck"><span class="header-section-number">10.1.4</span> Where students get stuck</h3>
+<p>Most students default to Mode 1 (tell Claude what to type) or jump straight to Mode 3 (do it all for me). Mode 1 underuses Claude. Mode 3 is risky when you don’t yet have the experience to evaluate what Claude produces. Mode 2 — thinking together — is the sweet spot, especially while you’re still learning. It’s also the mode that makes you a better scientist, because you’re developing analytical judgment through conversation rather than outsourcing it.</p>
+<p>In practice, these modes blend constantly. A typical session might start with Mode 2 (discussing which analysis approach to take), shift to Mode 3 (Claude writes the code), and then return to Mode 2 (interpreting the results together). The important thing is knowing which mode you’re in and whether it’s the right one for the task at hand.</p>
 </section>
-</section>
-<section id="using-relative-paths" class="level2" data-number="19.4">
-<h2 data-number="19.4" class="anchored" data-anchor-id="using-relative-paths"><span class="header-section-number">19.4</span> Using Relative Paths</h2>
-<p><strong>Bad</strong> — hardcoded absolute paths:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"/Users/jm284/projects/analysis/data/data.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Good</strong> — relative paths with <code>here</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"data.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Python</strong> — use <code>pathlib</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>PROJECT_ROOT <span class="op">=</span> Path(<span class="va">__file__</span>).parent.parent</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(PROJECT_ROOT <span class="op">/</span> <span class="st">"data"</span> <span class="op">/</span> <span class="st">"data.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The <code>here</code> package (R) and <code>pathlib</code> (Python) find paths relative to the project root, regardless of where scripts are run from.</p>
-</section>
-<section id="setting-random-seeds" class="level2" data-number="19.5">
-<h2 data-number="19.5" class="anchored" data-anchor-id="setting-random-seeds"><span class="header-section-number">19.5</span> Setting Random Seeds</h2>
-<p>Many analyses involve randomness (bootstrapping, sampling, train/test splits). Set seeds for reproducibility:</p>
-<p><strong>R:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">sample</span>(data, <span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Python:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>random.seed(<span class="dv">42</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> np.random.choice(data, <span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Document why you chose that seed (or just pick a number consistently).</p>
-</section>
-<section id="documenting-data" class="level2" data-number="19.6">
-<h2 data-number="19.6" class="anchored" data-anchor-id="documenting-data"><span class="header-section-number">19.6</span> Documenting Data</h2>
-<p>In your README or a separate <code>DATA.md</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Data Description</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">### data/counts.csv</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Source: GEO accession GSE12345</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Downloaded: 2024-01-15</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Format: CSV, 20,000 genes × 12 samples</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Columns: gene_id, sample1, sample2, ...</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="fu">### data/metadata.csv</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Source: Provided by collaborator</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Format: CSV, 12 rows</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Columns: sample_id, condition, batch, replicate</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="running-the-full-analysis" class="level2" data-number="19.7">
-<h2 data-number="19.7" class="anchored" data-anchor-id="running-the-full-analysis"><span class="header-section-number">19.7</span> Running the Full Analysis</h2>
-<p>Create a master script or Makefile that runs everything:</p>
-<p><strong>Shell script</strong> (<code>run_analysis.sh</code>):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>#!/bin/bash</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>set -e  # Exit on error</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>echo "Setting up environment..."</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>conda activate my-analysis</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>echo "Step 1: Cleaning data..."</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>Rscript scripts/01_clean_data.R</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>echo "Step 2: Analysis..."</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>python scripts/02_analyze.py</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>echo "Step 3: Figures..."</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>Rscript scripts/03_figures.R</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>echo "Done!"</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Quarto</strong> (<code>analysis.qmd</code>):</p>
-<p>A Quarto document that runs all code chunks in order is inherently reproducible — rendering the document runs the full analysis.</p>
-<p><strong>Make</strong> (<code>Makefile</code>):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dv">all:</span><span class="dt"> outs/03_figures/figure1.pdf outs/02_analysis/results.csv</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="dv">outs/03_figures/figure1.pdf:</span><span class="dt"> scripts/03_figures.qmd outs/01_clean_data/clean.csv</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>quarto render scripts/03_figures.qmd</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="dv">outs/01_clean_data/clean.csv:</span><span class="dt"> scripts/01_clean_data.qmd data/data.csv</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>quarto render scripts/01_clean_data.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="testing-reproducibility" class="level2" data-number="19.8">
-<h2 data-number="19.8" class="anchored" data-anchor-id="testing-reproducibility"><span class="header-section-number">19.8</span> Testing Reproducibility</h2>
-<section id="fresh-environment-test" class="level3" data-number="19.8.1">
-<h3 data-number="19.8.1" class="anchored" data-anchor-id="fresh-environment-test"><span class="header-section-number">19.8.1</span> Fresh Environment Test</h3>
-<ol type="1">
-<li>Clone your repo to a new location</li>
-<li>Create environment from scratch</li>
-<li>Run the full analysis</li>
-<li>Compare results</li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a># In a temporary directory</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>git clone https://github.com/user/project.git test-project</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>cd test-project</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>conda env create -f environment.yml</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>conda activate project-name</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>./run_analysis.sh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="docker-advanced" class="level3" data-number="19.8.2">
-<h3 data-number="19.8.2" class="anchored" data-anchor-id="docker-advanced"><span class="header-section-number">19.8.2</span> Docker (Advanced)</h3>
-<p>For maximum reproducibility, package everything in a Docker container:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> rocker/tidyverse:4.3.1</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> . /analysis</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /analysis</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">R</span> <span class="at">-e</span> <span class="st">"renv::restore()"</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">"Rscript"</span>, <span class="st">"run_all.R"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This captures:</p>
-<ul>
-<li>Operating system</li>
-<li>R version</li>
-<li>All packages</li>
-</ul>
+<section id="extended-research" class="level3" data-number="10.1.5">
+<h3 data-number="10.1.5" class="anchored" data-anchor-id="extended-research"><span class="header-section-number">10.1.5</span> Extended research</h3>
+<p>One particularly powerful form of Mode 2 deserves its own mention. Claude can do extended research — reading broadly across the literature to compile information, synthesize findings, or generate curated resources for your analysis. This goes beyond a quick question-and-answer exchange.</p>
+<p>For example, you might ask Claude to compile a curated list of Wnt signaling pathway genes — gene symbols, brief functional descriptions, and key references — that you then explore in your single-cell data with <code>FeaturePlot</code> and <code>DotPlot</code>. Or you might give Claude a list of differentially expressed genes and ask it to read the literature and produce a narrative synthesis of what those genes suggest about cell identity, rather than relying on the often-uninformative output of GO enrichment analysis.</p>
+<p>You can access this through Claude Code itself (asking Claude to search the web and synthesize information) or through Claude’s web interface at <a href="https://claude.ai">claude.ai</a>, which has a dedicated research mode for extended investigations. We’ll cover the full workflow in <a href="../claude-code/working-effectively.html">Working Effectively</a>.</p>
 </section>
 </section>
-<section id="common-reproducibility-problems" class="level2" data-number="19.9">
-<h2 data-number="19.9" class="anchored" data-anchor-id="common-reproducibility-problems"><span class="header-section-number">19.9</span> Common Reproducibility Problems</h2>
-<section id="it-works-on-my-machine" class="level3" data-number="19.9.1">
-<h3 data-number="19.9.1" class="anchored" data-anchor-id="it-works-on-my-machine"><span class="header-section-number">19.9.1</span> “It works on my machine”</h3>
-<p><strong>Cause</strong>: Different package versions, OS differences, or missing dependencies.</p>
-<p><strong>Solution</strong>: Use conda/renv, test in fresh environment.</p>
+<section id="the-learning-paradox" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="the-learning-paradox"><span class="header-section-number">10.2</span> The Learning Paradox</h2>
+<p>Here’s the tension you need to confront honestly: you’re learning to code and analyze data at the same time you have access to a tool that can do both for you.</p>
+<p>The temptation is real. Claude can write an entire analysis script in seconds. It can debug errors you don’t understand, choose statistical methods you haven’t learned yet, and produce clean, professional-looking code. It’s easy to fall into a pattern: ask Claude, copy the output, run it, move on. The analysis works. The report looks great. You feel productive.</p>
+<p>The problem comes later. When a reviewer asks why you chose that normalization method, you don’t have an answer. When the code breaks in a new context, you can’t troubleshoot it because you never understood it. When a collaborator asks you to explain your clustering approach at lab meeting, you realize you can’t. You skipped the learning part, and now you’re stuck.</p>
+<p>This isn’t hypothetical. It’s the central challenge of using AI as a student, and pretending it doesn’t exist doesn’t help.</p>
+<section id="claude-as-teacher-not-just-producer" class="level3" data-number="10.2.1">
+<h3 data-number="10.2.1" class="anchored" data-anchor-id="claude-as-teacher-not-just-producer"><span class="header-section-number">10.2.1</span> Claude as teacher, not just producer</h3>
+<p>The solution isn’t to avoid Claude — it’s to use it differently. Instead of treating Claude as a code-producing machine, treat it as a teacher. Here are concrete patterns:</p>
+<p><strong>After Claude writes code, ask it to teach you.</strong> “Walk me through this script line by line. What does each function do? Why did you structure it this way?” Don’t just skim the explanation — run the code interactively, line by line in the Positron console, and watch what each step produces. This is how you build real understanding.</p>
+<p><strong>Before accepting a method, ask for the debate.</strong> “You chose SCTransform for normalization. Why? What are the alternatives? What would someone who disagrees with this choice say? Find me papers that argue for a different approach.” Claude is remarkably good at presenting counterarguments when you explicitly ask for them. This is one of the most valuable habits you can develop — it trains scientific thinking.</p>
+<p><strong>Dissect the output, don’t just accept it.</strong> “Why did 200 genes get filtered out at this step? What would happen if I changed the threshold? Show me a few of the genes that were filtered — are any of them biologically interesting?” Every number in an analysis reflects a choice, and understanding those choices is what makes you a scientist rather than a pipeline operator.</p>
+<p><strong>When Claude suggests a package, ask about it.</strong> “What does <code>harmony</code> do? How is it different from Seurat’s built-in integration? When would I choose one over the other?” Don’t install packages blindly just because Claude told you to.</p>
+<p><strong>Ask Claude for the primary literature, then read it.</strong> “What are the key papers on Leiden clustering? Which one should I read first?” Claude can point you to the right sources, but reading the actual papers — understanding the methods, the assumptions, the limitations — is irreplaceable. Claude’s summary is a starting point, not a substitute.</p>
 </section>
-<section id="missing-files" class="level3" data-number="19.9.2">
-<h3 data-number="19.9.2" class="anchored" data-anchor-id="missing-files"><span class="header-section-number">19.9.2</span> Missing files</h3>
-<p><strong>Cause</strong>: Data files not included or paths are wrong.</p>
-<p><strong>Solution</strong>: Document data sources, use relative paths.</p>
-</section>
-<section id="different-results-each-run" class="level3" data-number="19.9.3">
-<h3 data-number="19.9.3" class="anchored" data-anchor-id="different-results-each-run"><span class="header-section-number">19.9.3</span> Different results each run</h3>
-<p><strong>Cause</strong>: Unseeded random number generation.</p>
-<p><strong>Solution</strong>: Set random seeds.</p>
-</section>
-<section id="manual-steps" class="level3" data-number="19.9.4">
-<h3 data-number="19.9.4" class="anchored" data-anchor-id="manual-steps"><span class="header-section-number">19.9.4</span> Manual steps</h3>
-<p><strong>Cause</strong>: Analysis requires clicking buttons or manual edits.</p>
-<p><strong>Solution</strong>: Script everything. If you must have manual steps, document them precisely.</p>
+<section id="the-rule-of-thumb" class="level3" data-number="10.2.2">
+<h3 data-number="10.2.2" class="anchored" data-anchor-id="the-rule-of-thumb"><span class="header-section-number">10.2.2</span> The rule of thumb</h3>
+<p>If you can’t explain what the code does <strong>and</strong> why you chose this approach over alternatives to a labmate, you accepted it too quickly. Go back and ask Claude to teach you.</p>
+<p>This doesn’t mean you need to understand every line of boilerplate. You don’t need to deeply understand the internals of <code>Read10X()</code> to use it productively. The learning paradox applies most to analytical decisions — the choices that shape your scientific conclusions. Those are the ones worth understanding deeply.</p>
 </section>
 </section>
-<section id="tools-that-help" class="level2" data-number="19.10">
-<h2 data-number="19.10" class="anchored" data-anchor-id="tools-that-help"><span class="header-section-number">19.10</span> Tools That Help</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Tool</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>here</code> (R)</td>
-<td>Reliable relative paths</td>
-</tr>
-<tr class="even">
-<td><code>pathlib</code> (Python)</td>
-<td>Path handling</td>
-</tr>
-<tr class="odd">
-<td><code>renv</code></td>
-<td>R package management</td>
-</tr>
-<tr class="even">
-<td><code>conda</code></td>
-<td>Python environment management</td>
-</tr>
-<tr class="odd">
-<td>Quarto</td>
-<td>Literate programming</td>
-</tr>
-<tr class="even">
-<td>Git</td>
-<td>Version control</td>
-</tr>
-<tr class="odd">
-<td>Docker</td>
-<td>Full environment capture</td>
-</tr>
-</tbody>
-</table>
+<section id="four-principles-for-working-with-ai" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="four-principles-for-working-with-ai"><span class="header-section-number">10.3</span> Four Principles for Working with AI</h2>
+<p>The ideas above can be organized into four core principles, adapted from Anthropic’s <a href="https://anthropic.skilljar.com/ai-fluency-framework-foundations">AI Fluency</a> course for a data science context. Think of these as habits to build, not rules to memorize.</p>
+<section id="communicate-clearly" class="level3" data-number="10.3.1">
+<h3 data-number="10.3.1" class="anchored" data-anchor-id="communicate-clearly"><span class="header-section-number">10.3.1</span> 1. Communicate clearly</h3>
+<p>Claude doesn’t know things you haven’t told it. Each conversation starts fresh — no memory of yesterday’s session, no knowledge of what you’ve tried before, no understanding of your scientific question beyond what you provide. This means the quality of your input directly determines the quality of the output.</p>
+<p>Good communication includes three things:</p>
+<p><strong>Background.</strong> What your data looks like, what organism you’re studying, what stage of analysis you’re at, what you’ve already tried. “I’m working with 10,000 single-cell transcriptomes from <em>Spongilla lacustris</em>, 4 developmental stages, already QC’d and normalized” gives Claude enormously more to work with than “I have some single-cell data.”</p>
+<p><strong>A specific request.</strong> “Help me with my analysis” is almost useless. “I need to integrate my 4 samples before clustering — what integration methods should I consider, and what are the tradeoffs for a dataset like mine?” gives Claude something concrete to respond to.</p>
+<p><strong>What success looks like.</strong> If you’re asking for code, describe the expected output. “I want a dot plot with clusters on the x-axis, my top 10 marker genes on the y-axis, scaled by expression level.” If you’re asking for an explanation, say what level of detail you need. “Explain this like I’ve taken one bioinformatics course” is different from “Explain this like I’m writing a methods section.”</p>
+<p>There’s a reason being specific matters beyond just getting better answers. Claude is a language model — it generates responses by predicting what’s most likely to be helpful given your input. The more precise and detailed your prompt, the better the prediction. Vague prompts get generic responses because <em>many different answers are plausible</em>. Specific prompts narrow the space to what you actually need. This isn’t a quirk to work around; it’s how the technology fundamentally works, and working <em>with</em> it rather than against it is the core skill of AI fluency.</p>
+<p>In <a href="../claude-code/teaching-claude.html">Teaching Claude About Your Work</a>, you’ll learn how to give Claude persistent context through configuration files, so you don’t have to re-explain your project every session. But even with good configuration, clear communication in each conversation still matters.</p>
 </section>
-<section id="quick-reference" class="level2" data-number="19.11">
-<h2 data-number="19.11" class="anchored" data-anchor-id="quick-reference"><span class="header-section-number">19.11</span> Quick Reference</h2>
-<p><strong>For every project:</strong></p>
-<ol type="1">
-<li>Use Git for version control</li>
-<li>Lock environments with conda/renv</li>
-<li>Use relative paths</li>
-<li>Set random seeds</li>
-<li>Document everything</li>
-<li>Test in a fresh environment before sharing</li>
-</ol>
+<section id="evaluate-output-critically" class="level3" data-number="10.3.2">
+<h3 data-number="10.3.2" class="anchored" data-anchor-id="evaluate-output-critically"><span class="header-section-number">10.3.2</span> 2. Evaluate output critically</h3>
+<p>Claude produces clean, confident answers. Science is messy. The gap between those two things is where mistakes hide.</p>
+<p><strong>Code can have subtle bugs.</strong> Claude’s code usually runs, but “runs” and “correct” are not the same thing. A join might silently drop rows. A statistical test might have the wrong comparison group. A filtering step might use <code>&gt;</code> when it should use <code>&gt;=</code>. These bugs don’t throw errors — they produce plausible-looking output that happens to be wrong.</p>
+<p><strong>Methods can be inappropriate.</strong> Claude might choose a method that’s technically valid but wrong for your data. A parametric test when your data isn’t normally distributed. A normalization method that assumes equal library sizes when yours vary by 10-fold. Claude doesn’t always know the properties of your specific dataset, and it tends toward popular defaults even when they’re not the best choice.</p>
+<p><strong>Scientific claims need verification.</strong> Claude can synthesize information impressively, but it can also generate confident-sounding claims that are subtly wrong or out of date. Gene function annotations might be from a different organism. A “well-established” finding might be controversial in the actual literature. A cited paper might not say quite what Claude claims it says.</p>
+<p>Why does this happen? Claude is a language model — it predicts likely continuations of text. It doesn’t run code in its head, doesn’t truly “understand” statistical assumptions, and occasionally produces plausible-sounding statements that aren’t accurate. This is sometimes called “hallucination,” and it’s not a bug that will be fixed in the next version — it’s a fundamental property of how language models work. Understanding this helps you calibrate your trust appropriately: rely on Claude for knowledge synthesis and pattern recognition, but verify specific claims and check code outputs against expectations.</p>
+<p><strong>Concrete checks for code:</strong> verify row counts before and after joins, spot-check a few values by hand, compare statistical output to published benchmarks, look at a few genes individually instead of trusting aggregate results.</p>
+<p><strong>Concrete checks for scientific claims:</strong> ask Claude for the primary literature supporting its recommendation, then read the actual paper. Ask for the counterargument. Compare what Claude says to what established researchers in your field recommend. If Claude cites a specific finding, verify it.</p>
+<p>The habit of asking “What’s the argument against this?” is one of the most powerful things you can do. Claude is very good at presenting counterarguments, alternative methods, and dissenting literature — but only when you ask. Train yourself to ask.</p>
+</section>
+<section id="delegate-thoughtfully" class="level3" data-number="10.3.3">
+<h3 data-number="10.3.3" class="anchored" data-anchor-id="delegate-thoughtfully"><span class="header-section-number">10.3.3</span> 3. Delegate thoughtfully</h3>
+<p>Not everything is worth doing yourself, and not everything should be handed to Claude. Learning to draw this line well is a skill that develops with experience, but here’s a starting framework:</p>
+<p><strong>Give Claude the mechanical work.</strong> Boilerplate code, repetitive edits, formatting, debugging error messages, writing first drafts of documentation, scaffolding new files in the right structure. These tasks are time-consuming and error-prone for humans, and Claude does them well. This is Mode 1 territory, and it’s genuinely valuable.</p>
+<p><strong>Think together on analytical decisions.</strong> Method selection, parameter choices, interpretation of results, experimental design, choosing what to visualize and why. These are the decisions that shape your scientific conclusions. Claude should be part of the conversation — it often knows methods and literature you don’t — but you make the call. This is Mode 2, and it’s where you develop as a scientist.</p>
+<p><strong>Keep verification for yourself.</strong> Understanding what the code does, checking that the output makes biological sense, reading the papers Claude points you to, deciding whether an interpretation is convincing. These are your responsibilities. Claude can help you learn faster, but it can’t learn for you.</p>
+<p><strong>The gray zone is large</strong>, and that’s okay. Claude can write a statistical analysis, but you verify the assumptions. Claude can suggest a clustering resolution, but you decide if the clusters make biological sense. Claude can generate a figure, but you decide if it communicates the right message. Over time, as your expertise grows, the boundary shifts — you’ll be comfortable delegating more because you’re better at evaluating the output.</p>
+</section>
+<section id="be-transparent-and-ethical" class="level3" data-number="10.3.4">
+<h3 data-number="10.3.4" class="anchored" data-anchor-id="be-transparent-and-ethical"><span class="header-section-number">10.3.4</span> 4. Be transparent and ethical</h3>
+<p>AI use in science carries ethical responsibilities. Being transparent about it isn’t just good practice — it’s necessary for scientific integrity.</p>
+<p><strong>Tell your collaborators.</strong> If Claude helped design an analysis or interpret results, say so. Science depends on knowing how conclusions were reached.</p>
+<p><strong>Note it in your methods.</strong> When AI assisted with analysis, code generation, or interpretation, include this in your methods section. There’s no shame in it — it’s just honest reporting. The field is still developing norms here, but disclosure is always the right default.</p>
+<p><strong>Use the co-author line.</strong> In the Git chapter, you learned that lab convention is to include a co-author line in git commits when Claude helped with the code. This creates a transparent record in the project history. You’ll see it throughout this book’s own commit log.</p>
+<p><strong>Don’t pass off AI work as your own thinking.</strong> If Claude generated an interpretation or wrote a paragraph, and you present it as your own intellectual contribution, that’s dishonest — even if you agree with it. Use Claude’s output as a starting point that you refine, verify, and make your own.</p>
+<p><strong>Be thoughtful about data.</strong> Don’t paste sensitive or unpublished data into web-based AI tools without considering the implications. Claude Code runs locally and sends your prompts to Anthropic’s API for processing, but understanding what data goes where is part of being a responsible researcher. We cover this in detail in <a href="../claude-code/staying-safe.html">Staying Safe</a>.</p>
+</section>
+</section>
+<section id="building-these-habits" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="building-these-habits"><span class="header-section-number">10.4</span> Building These Habits</h2>
+<p>These four principles — communicate clearly, evaluate critically, delegate thoughtfully, be transparent — aren’t things you’ll master in a day. They develop through practice, and the rest of this section gives you that practice. The <a href="../claude-code/getting-started.html">next chapter</a> walks you through your first Claude Code session. <a href="../claude-code/teaching-claude.html">Teaching Claude About Your Work</a> shows you how to build persistent context. <a href="../claude-code/working-effectively.html">Working Effectively</a> covers the patterns and workflows that make daily collaboration productive.</p>
+<p>When things feel off in a Claude Code session — you’re getting unhelpful responses, or the output doesn’t feel right, or you’re not sure whether to trust what Claude produced — come back to these four principles. Usually one of them will point to the issue: you weren’t specific enough, you didn’t verify, you delegated something you should have thought through, or you’re not sure how to be transparent about what Claude contributed. The principles are the foundation. Everything else is practice.</p>
 
 
 </section>
@@ -1304,13 +1082,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../part3/collaborating.html" class="pagination-link" aria-label="Collaborating with Others">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Collaborating with Others</span></span>
+      <a href="../part2/git-github.html" class="pagination-link" aria-label="Git &amp; GitHub">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Git &amp; GitHub</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../part3/troubleshooting.html" class="pagination-link" aria-label="Common Tasks &amp; Troubleshooting">
-        <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Common Tasks &amp; Troubleshooting</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../claude-code/getting-started.html" class="pagination-link" aria-label="Getting Started with Claude Code">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Getting Started with Claude Code</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
