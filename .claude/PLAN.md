@@ -123,27 +123,34 @@ Conda chapter will need ~3 new screenshots after rewrite:
 - [ ] Positron Command Palette → Python: Select Interpreter with conda environments
 - [ ] Positron status bar showing active Python environment
 
-### Part 3: Working with AI (FULL REWRITE PLANNED — was "Claude Code")
+### Part 3: Working with AI (REWRITE DONE — was "Claude Code")
 
 Detailed plan: `.claude/CLAUDE_CODE_REWRITE_PLAN.md`
 
-Expanding from 4 reference-style chapters to 6 narrative teaching chapters. Inspired by Anthropic's 4D AI Fluency Framework (Delegation, Description, Discernment, Diligence), adapted for data science students. Examples grounded in single-cell RNA-seq analysis. Includes deep research workflows for gene interpretation.
+Full rewrite completed Feb 2026. Expanded from 4 reference-style chapters to 6 narrative teaching chapters. Inspired by Anthropic's 4D AI Fluency Framework, adapted for data science students. Examples grounded in single-cell RNA-seq analysis. Includes deep research workflows for gene interpretation.
 
 | Ch. | File | Title | Status |
 |-----|------|-------|--------|
-| 1 | `ai-fluency.qmd` | AI Fluency | TODO |
-| 2 | `getting-started.qmd` | Getting Started | TODO (full rewrite) |
-| 3 | `teaching-claude.qmd` | Teaching Claude About Your Work | TODO |
-| 4 | `working-effectively.qmd` | Working Effectively | TODO (full rewrite) |
-| 5 | `musser-lab-toolkit.qmd` | The Musser Lab Toolkit | TODO |
-| 6 | `staying-safe.qmd` | Staying Safe | TODO |
+| 1 | `ai-fluency.qmd` | AI Fluency | DONE |
+| 2 | `getting-started.qmd` | Getting Started | DONE (full rewrite) |
+| 3 | `teaching-claude.qmd` | Teaching Claude About Your Work | DONE |
+| 4 | `working-effectively.qmd` | Working Effectively | DONE (full rewrite) |
+| 5 | `musser-lab-toolkit.qmd` | The Musser Lab Toolkit | DONE |
+| 6 | `staying-safe.qmd` | Staying Safe | DONE |
 
-Files to delete after rewrite: `configuring-projects.qmd`, `skills.qmd` (content absorbed into Chs. 3 and 5).
+Completed:
+- [x] All 6 chapters written with narrative tone matching Parts 1-2 quality bar
+- [x] Old `configuring-projects.qmd` and `skills.qmd` deleted (content absorbed into Chs. 3 and 5)
+- [x] `_quarto.yml` updated: part renamed "Working with AI", 6 new chapters
+- [x] Appendix E (Lab Skills Reference) created
+- [x] `index.qmd` updated: Part 3 description and Work in Progress callout
 
-New appendix needed: Lab Skills Reference (complete table of all Musser Lab skills).
+Screenshots pending:
+- [ ] Ch. 2: Positron sidebar with Claude Code icon (~4 screenshots)
+- [ ] Ch. 6: Permission prompt, hook blocking a command (~2 screenshots)
 
 ### Other Content
-- [ ] Update "Work in Progress" callout in `index.qmd:19-22` — all 21 chapters are substantive now, no stubs or placeholders remain. Soften or remove.
+- [x] Update "Work in Progress" callout in `index.qmd` — updated to "Parts 1–3 complete, Part 4 still being written"
 - [ ] Review Quick Start section for clarity and completeness
 - [ ] Test installation instructions on a fresh machine (macOS and Windows)
 - [ ] Have a student test the Quick Start walkthrough
@@ -157,7 +164,7 @@ New appendix needed: Lab Skills Reference (complete table of all Musser Lab skil
 
 ### Appendices
 - [ ] Add links to external resources
-- [ ] **New Appendix E: Lab Skills Reference** — complete table of all Musser Lab Claude Code skills (part of Part 3 rewrite)
+- [x] **Appendix E: Lab Skills Reference** — complete table of all Musser Lab Claude Code skills
 
 ## Ideas for Future Chapters
 
@@ -226,6 +233,21 @@ New appendix needed: Lab Skills Reference (complete table of all Musser Lab skil
 ## Session Notes
 
 _Add notes here during working sessions_
+
+### 2026-02-24 (session 3)
+- **Part 3 full rewrite — all 6 chapters written** in one session
+  - Ch. 1 (AI Fluency, ~220 lines): Three interaction modes (automation/augmentation/agency), learning paradox as major section, 4D framework adapted for data science. Essayistic tone with concrete Spongilla examples.
+  - Ch. 2 (Getting Started, ~120 lines): Two walk-through interactions — (1) thinking together about QC thresholds, (2) coding together to add violin plot. Approval flow taught through experience. 4 screenshot TODOs.
+  - Ch. 3 (Teaching Claude, ~280 lines): CLAUDE.md built progressively from 5 lines to full mid-project example. Plan files from simple checklist to multi-file setup. Skills introduction (simple → slash commands → complex). Absorbs old configuring-projects.qmd and skills.qmd.
+  - Ch. 4 (Working Effectively, ~330 lines): Exploration-first pattern, "Thinking Together" and "Coding Together" halves, deep research section (gene lists, DE interpretation), managing conversations, `/done` command, when things go wrong.
+  - Ch. 5 (Musser Lab Toolkit, ~250 lines): Lab skills repo installation, 6 key background skills narratively explained, 4 slash commands, specialized skills preview, 3 example CLAUDE.md files at different project stages.
+  - Ch. 6 (Staying Safe, ~180 lines): Permission system (diffs, commands, allow once vs session), hooks as automatic guardrails, settings at three levels, data protection (what Claude sends, credentials, web vs CLI), prompt injection brief.
+  - `_quarto.yml`: Part renamed "Working with AI", 6 chapters listed, old configuring-projects and skills removed
+  - Deleted: `configuring-projects.qmd`, `skills.qmd` (content absorbed into Chs. 3 and 5)
+  - Created: Appendix E (`appendices/lab-skills.qmd`) — complete table of all lab background skills and slash commands
+  - Updated: `index.qmd` Part 3 description and Work in Progress callout (Parts 1–3 complete)
+  - Updated: `.claude/CLAUDE.md` project structure tree (new chapter list, new appendix)
+  - Updated: `PLAN.md` status table (all 6 chapters DONE), session notes
 
 ### 2026-02-24 (session 2)
 - **Cross-chapter consistency and beginner review** — read all Part 1 + Part 2 chapters, identified 20 issues, fixed all

@@ -1,254 +1,264 @@
 # Working Effectively with Claude
 
-This chapter covers practical patterns for productive Claude Code sessions—how to write good prompts, manage context, and iterate effectively.
+You know what Claude Code is and you've had your first session. You've taught Claude about your project with CLAUDE.md and plan files. Now let's talk about how to actually work together productively, day after day.
 
-## Prompt Patterns That Work
+This isn't about memorizing commands or perfecting prompt syntax. It's about developing instincts for when to ask, what to ask, and how to evaluate what you get back. These instincts come from practice, but knowing the patterns up front helps you build them faster.
 
-The key to effective prompts is being **specific**. Compare:
+## The Exploration-First Pattern
 
-| Less Effective | More Effective |
-|----------------|----------------|
-| "Fix this error" | "I'm getting this error when I render: [paste error]. The issue seems to be in the data loading section around line 45." |
-| "Make a plot" | "Create a volcano plot of the DE results. X-axis: log2 fold change. Y-axis: -log10 adjusted p-value. Highlight genes with adjP < 0.05 and abs(log2FC) > 1." |
-| "Clean this up" | "Refactor this function to: 1) separate data loading from processing, 2) add input validation, 3) return a tibble instead of a list." |
+The single most important workflow pattern — and the one that prevents the most mistakes — is simple: before asking Claude to *do* something, ask it to *explain* or *plan*.
 
-### What to Include in Prompts
+Here's what this looks like in practice:
 
-| Context Type | Example |
-|--------------|---------|
-| **The goal** | "I want to create a sample QC report" |
-| **The specific file/data** | "The data is in `data/counts.csv`, 10k genes × 48 samples" |
-| **Constraints** | "Use ggplot2, match the style in our other figures" |
-| **What you've tried** | "I tried using `left_join` but got duplicate rows" |
+> **You:** What does the normalization section of 02_clustering.qmd do?
+>
+> **Claude:** *[reads the script and explains each step: what NormalizeData does, why FindVariableFeatures selects 2000 genes, what ScaleData achieves]*
+>
+> **You:** I want to try SCTransform instead of LogNormalize. What are the tradeoffs?
+>
+> **Claude:** *[discusses both methods, their assumptions, when each is appropriate, potential issues with your data]*
+>
+> **You:** Let's go with SCTransform. Implement it.
+>
+> **Claude:** *[proposes specific edits to the script]*
 
-### The Exploration-First Pattern
+Three messages, and by the time Claude writes code, you both understand the goal, the method, and the reasoning. Contrast this with jumping straight to "replace LogNormalize with SCTransform in my script" — Claude would do it, but you'd miss the chance to learn about the tradeoffs, and you wouldn't catch it if SCTransform was a poor choice for your data.
 
-For complex tasks, explore before implementing:
+This pattern also catches misunderstandings. If Claude's explanation of what a section does doesn't match your understanding, you've found a problem *before* introducing new bugs.
 
-```
-You: What does scripts/process_data.R do? Walk me through the main steps.
+## Thinking Together
 
-Claude: [explains the script]
+Some of your most valuable Claude Code sessions won't involve any code at all. These are Mode 2 conversations — you and Claude working through the intellectual side of data science.
 
-You: I need to add a quality filter after the normalization step.
-     Before you write code, what's your approach?
+### Planning an analysis
 
-Claude: [describes approach]
+You have 4 single-cell samples from different *Spongilla* developmental stages. Before writing any integration code, talk it through:
 
-You: That sounds right. Go ahead and implement it.
+> I have 4 single-cell samples from different developmental stages. What's the best strategy for integrating them before clustering? What methods exist and when should I use each one?
 
-Claude: [makes the edit]
+Claude will walk you through the options — Seurat's CCA-based integration, Harmony, scVI, LIGER — explaining what each method assumes about batch effects and biological signal. You discuss which assumptions fit your data. You read the papers Claude references. Then you decide.
 
-You: Run the script and show me the output.
-```
+This is where you develop analytical judgment — not by following a tutorial step by step, but by understanding the landscape of choices and reasoning through them with a knowledgeable partner.
 
-This catches misunderstandings before you've committed to an implementation.
+### Evaluating method choices
 
-## Managing Session Context
+Don't follow tutorials blindly. When you encounter a step in an analysis, ask Claude to help you understand *why* it exists:
 
-### When to Start a New Conversation
+> The tutorial I'm following uses SCTransform for normalization. Is that the right choice for my data? My samples have very different library sizes and some clusters have very low counts. What are the alternatives?
 
-- **Switching to unrelated work** — Moving from data analysis to writing documentation
-- **Context is cluttered** — The conversation has wandered through many topics
-- **Claude seems confused** — Stuck in a wrong direction, repeating mistakes
-- **After a natural break** — Coming back to work after lunch, next day
+Claude explains the assumptions behind each method and what makes them appropriate or not for your specific situation. Now you're making an informed choice rather than copying a pipeline.
 
-### When to Continue the Current Conversation
+### Challenging Claude's recommendations
 
-- **Building on recent work** — "Now add error handling to that function"
-- **Fixing issues** — "That plot has overlapping labels, fix it"
-- **Iterating on approach** — "Actually, let's use a different normalization method"
+This is one of the most valuable habits you can develop. Claude tends to give clean, confident answers. But science is messy, and the first answer isn't always the best one. Train yourself to push back:
 
-### Keep Sessions Focused
+> What's the argument *against* using Harmony for integration? What would a skeptic say?
 
-One main task per conversation works best. If you find yourself on a tangent that's becoming substantial, consider starting a new session for it.
+> Are there papers that disagree with this approach? Find them for me.
 
-::: {.callout-tip}
-### Use plan files across sessions
-Since Claude doesn't remember previous conversations, use [plan files](configuring-projects.qmd#plan-files-for-complex-projects) to track what's done and what's pending. Claude reads these at session start.
+> You recommended resolution 2.0 for clustering. What are the limitations of that choice? What would I miss at a lower resolution? What artifacts might I see at a higher one?
+
+> What are the assumptions behind this statistical test that could be violated with my data?
+
+Claude is remarkably good at presenting counterarguments when you explicitly ask for them. It can play devil's advocate, find dissenting literature, and lay out alternative viewpoints — but it won't do this unprompted. You have to ask. This trains scientific thinking: the habit of considering multiple perspectives before committing to a decision.
+
+### Interpreting results
+
+After running an analysis, Claude can help you make sense of what you found:
+
+> Here are my cluster markers from FindAllMarkers. What do the top genes for cluster 5 suggest about cell type identity?
+
+> My differential expression between juvenile and adult stages found 500 significant genes. How do I make sense of this? What patterns should I look for?
+
+> I'm seeing unexpected Wnt pathway expression in my pinacocytes. Is this known in the literature?
+
+Claude synthesizes what it knows from the biological literature to help you form hypotheses. The key word is *hypotheses* — these are starting points for your own investigation, not conclusions. Always verify against primary literature and your own domain knowledge.
+
+### Finding relevant literature
+
+> What are the key papers on cell type identification in sponges? Which should I read first?
+
+> I'm trying to understand why my choanocyte cluster has high ribosomal gene expression. Is this a real biological signal or a QC artifact? What does the literature say about ribosomal gene expression in choanocytes?
+
+Claude can point you to relevant publications and explain their significance. But read the actual papers — Claude's summaries are useful for triage (deciding what to read), not for deep understanding.
+
+## Coding Together
+
+The other half of working with Claude is writing code. Here are the patterns that work best.
+
+### Debugging errors
+
+When you hit an error, give Claude the full picture:
+
+> I'm getting this error when I run the clustering chunk in scripts/02_clustering.qmd:
+>
+> Error in FindNeighbors: Reduction pca was not found in the Seurat object. Please run RunPCA first.
+>
+> I thought I already ran PCA. Can you check what's happening?
+
+Three things make this effective: the actual error message (not a paraphrase), the file location, and context about what you expected. Claude reads the script, traces the problem (maybe PCA is in a chunk you didn't run, or it was overwritten by a later operation), and proposes a fix.
+
+::: {.callout-warning .claude-callout title="Claude Code"}
+Claude Code excels at debugging because it can read your files, trace the error, and understand the full context.
+
+> I'm getting this error: [paste the exact error]. It happens in scripts/02_clustering.qmd around line 45. I was trying to run UMAP after clustering. What's wrong?
+
+Claude will read the script, identify the root cause, and propose a fix — often catching upstream issues you didn't suspect.
 :::
 
-## Reviewing Claude's Work
+### Understanding code you didn't write
 
-Always review before accepting:
+This connects directly to the learning paradox from [AI Fluency](ai-fluency.qmd). When Claude writes code for you, don't just accept it — learn from it:
 
-| What to Check | Why |
-|---------------|-----|
-| **The diff** | See exactly what changed |
-| **Run the code** | Verify it actually works |
-| **Check edge cases** | Empty data? Missing values? |
-| **Read the logic** | Does the approach make sense? |
+> Walk me through this FindMarkers call line by line. What does each argument do?
 
-For analytical code, extra scrutiny:
+> Why did you use `left_join` instead of `inner_join` here? What happens to unmatched rows?
 
-- Verify row counts at each step
-- Check that joins matched as expected
-- Confirm statistical methods are what you intended
-- Spot-check a few results manually
+> I see you used `scale = FALSE` in the DotPlot. What does scaling do, and why did you turn it off?
 
-## Common Session Patterns
+These questions take thirty seconds to ask and they're how you build real understanding. If Claude wrote something you can't explain, that's the learning paradox telling you to slow down.
 
-### Debugging
+### Building something new
 
-```
-I'm getting this error when I run the script:
+When creating new code, build incrementally rather than asking for everything at once:
 
-Error in `mutate()`:
-! Problem while computing `ratio = count / total`.
-Caused by error in `count / total`:
-! non-conformable arrays
+> Load the filtered Seurat object from outs/01_qc/sponge_filtered.rds and show me its structure. How many cells and genes? What metadata columns are there?
 
-The code is around line 67 of analysis.qmd. What's wrong?
-```
+*[Claude loads and reports]*
 
-*Include: the error message, where it happens, relevant code.*
+> Now run FindAllMarkers with default parameters and show me the top 5 genes per cluster.
 
-### Understanding Code
+*[Claude runs, you examine the results]*
 
-```
-Explain what the normalize_counts() function does in scripts/utils.R.
-Walk through each step.
-```
+> Good. Create a dot plot of the top 3 markers per cluster — use the same style as the plots in 01_qc_normalization.qmd.
 
-*Ask about specific functions or sections, not "explain the whole codebase."*
+Each step can be verified before moving on. If something looks wrong at step 2, you fix it before building step 3 on a broken foundation.
 
-### Building Something New
+### Extending existing code
 
-```
-Create a function that:
-1. Takes a dataframe with columns 'gene_id' and 'count'
-2. Filters to genes with count > 10
-3. Adds a 'log_count' column (log2 with pseudocount of 1)
-4. Returns the filtered dataframe
+When adding to a script, reference the existing patterns:
 
-Put it in scripts/utils.R.
-```
+> In scripts/02_clustering.qmd, add a section after the UMAP that creates FeaturePlots for a list of candidate genes. Use the same chunk option style as the other figure chunks in that script.
 
-*Be specific about inputs, outputs, and where to put it.*
+Pointing Claude at the existing style ensures consistency. Claude reads the file, matches the pattern (chunk labels, figure captions, output dimensions), and produces code that looks like it belongs.
 
-### Extending Existing Code
+### The natural flow
 
-```
-In analysis/02_de.qmd, add a volcano plot after the results table.
-Use the same style as the plots in 01_qc.qmd.
-```
+In practice, thinking and coding interleave constantly. A typical session might look like:
 
-*Reference existing patterns when you want consistency.*
+1. **Discuss** what analysis to do next (thinking together)
+2. **Claude writes** the code (coding together)
+3. **You run it** and examine the output
+4. **Discuss** what the results mean (thinking together)
+5. **Decide** the next step based on results
+6. **Claude writes** more code
 
-### Refactoring
+This plan → think → code → interpret → plan cycle is the core rhythm of working with Claude in data science. It mirrors how you'd work with a human collaborator — alternating between strategic discussion and hands-on implementation.
 
-```
-The data loading code is duplicated in three scripts.
-Extract it into a load_counts() function in scripts/utils.R,
-then update the scripts to use it.
-```
+## Managing Conversations
 
-*State the goal and the approach you want.*
+### When to start fresh
 
-## The /done Command
+Start a new conversation when:
 
-End productive sessions with `/done`:
+- **You're switching tasks.** Moving from clustering analysis to figure formatting is a new conversation.
+- **The context feels cluttered.** If the conversation has wandered through many topics, Claude's attention is spread thin.
+- **Claude seems confused.** If it keeps making the same mistake or misunderstanding your project, a fresh start often helps.
+- **You've taken a break.** After lunch, after a meeting, the next day — start fresh.
 
-```
-/done
-```
+### When to continue
 
-This triggers the end-of-session skill which:
+Keep the current conversation going when:
 
-1. **Summarizes** what was accomplished
-2. **Checks renv** — If you're in an R project, asks about updating the lockfile
-3. **Offers to commit** — Shows changed files and suggests a commit message
-4. **Publishes** (if applicable) — For Quarto books, offers to publish to GitHub Pages
+- **You're building on recent work.** "Now add error handling to that function."
+- **You're fixing issues.** "That plot has overlapping labels, fix it with ggrepel."
+- **You're iterating on an approach.** "Actually, let's try resolution 1.0 instead."
 
-This ensures your work is saved and documented before you close the session.
+### One task per conversation
 
-## Iterating Effectively
+The most practical guideline: keep each conversation focused on one main task. If you're annotating cell types and suddenly need to fix a bug in your QC script, start a new conversation for the QC bug. The plan file tracks your progress across conversations so nothing gets lost.
 
-### Start Small, Build Up
+### The `/done` command
 
-Don't ask for an entire analysis at once. Build piece by piece:
+When you've finished a productive session, type `/done`. This triggers the end-of-session skill, which:
 
-1. "Load the data and show me its structure"
-2. "Filter to high-confidence genes"
-3. "Calculate summary statistics by condition"
-4. "Create a comparison plot"
+1. **Summarizes** what was accomplished in the session
+2. **Checks renv** — if you installed new R packages, asks about updating the lockfile
+3. **Offers to commit** — shows changed files and suggests a descriptive commit message
+4. **Publishes** (for Quarto sites) — offers to publish to GitHub Pages if relevant
 
-Each step can be verified before moving on.
+This ensures your work is saved and documented before you close the session. It's a good habit to build — the summary also helps you update your CLAUDE.md and plan files with decisions from the session.
 
-### Correct Mistakes Immediately
+::: {.callout-warning .claude-callout title="Claude Code"}
+The `/done` command wraps up your session and saves your work.
 
-If something's wrong, say so directly:
+> /done
 
-```
-That's not quite right—the grouping should be by 'condition',
-not 'sample'. Fix it.
-```
+Claude will summarize what you accomplished, check if packages or plan files need updating, and offer to commit your changes with a descriptive message.
+:::
 
-Claude adjusts based on feedback within the session.
+## Deep Research: Literature and Biological Interpretation
 
-### Ask "Why" Questions
+The thinking-together patterns above covered quick, conversational exchanges. But Claude can also do something more powerful: extended research — reading broadly across the literature, synthesizing information, and producing structured reports. This is Mode 2 (augmentation) at its most ambitious, and it can transform how you approach the scientific side of data analysis.
 
-If Claude makes a choice you don't understand:
+### What deep research is
 
-```
-Why did you use median instead of mean for the normalization?
-```
+When you ask Claude a quick question ("What does SCTransform do?"), it draws on its training knowledge to give you a concise answer. Extended research is different: you're asking Claude to conduct a broader investigation, pulling together information from multiple sources, synthesizing it into a coherent narrative, and producing something more like a research briefing than a chat reply.
 
-Understanding the reasoning helps you decide if it's appropriate for your use case.
+You can access this in two ways:
 
-## Tips for Effective Sessions
+- **Claude Code with web search.** Claude Code can search the web, read papers and documentation, and synthesize what it finds. Ask it to investigate a topic broadly and it will search, read, and report back.
+- **Claude on the web (claude.ai).** Claude's web interface has a dedicated research mode that can conduct extended multi-step investigations. This is useful for questions that require reading many sources.
 
-| Tip | Why |
-|-----|-----|
-| **Have your CLAUDE.md ready** | Better project docs = better context |
-| **Reference files by name** | "In `analysis.qmd`" not "in that file" |
-| **Paste actual error messages** | Don't paraphrase errors |
-| **State your goal** | What are you trying to accomplish? |
-| **Work incrementally** | One step at a time |
-| **Check outputs** | Don't assume it worked |
+Both approaches produce the same kind of output: a synthesized report grounded in specific sources that you can verify.
 
-## A Complete Session Example
+### Generating curated gene lists
 
-Here's a realistic session flow:
+Here's a concrete example. You want to check whether Wnt signaling pathway genes are active in your single-cell clusters. Instead of manually searching pathway databases, ask Claude:
 
-```
-You: I have count data in data/counts.csv. What does it look like?
+> I need a curated list of Wnt signaling pathway genes to explore in my Spongilla single-cell data. For each gene, give me: the standard gene symbol, a brief functional description (one sentence), and whether it's a ligand, receptor, or intracellular component. Include canonical and non-canonical Wnt pathway members. Focus on genes that are conserved in metazoans (not just vertebrate-specific).
 
-Claude: [reads file, reports dimensions, column names, value ranges]
+Claude searches databases and literature, compiles a table with gene symbols, functional annotations, and references, and flags which genes are broadly conserved versus vertebrate-specific. You then search for these genes in your Seurat object with `FeaturePlot` or `DotPlot` to see which clusters show Wnt pathway activity.
 
-You: Create a Quarto script at analysis/01_qc.qmd that:
-     - Loads the data
-     - Shows a histogram of total counts per sample
-     - Flags any sample with unusually low counts
+The same approach works for any pathway or gene family: Notch signaling, TGF-beta, cell cycle markers, apoptosis regulators, transcription factor families. Each curated list becomes a tool for exploring your data with biological hypotheses.
 
-Claude: [creates script, shows content]
+### Interpreting differentially expressed genes
 
-You: [reviews, accepts]
-     Render it and show me any errors.
+The traditional approach to making sense of a gene list: run `FindMarkers`, get 50 differentially expressed genes, throw them at a GO enrichment tool, get back generic terms like "signal transduction" and "protein binding." Useful in a limited way, but not great for building biological narratives.
 
-Claude: [runs quarto render, reports success]
+A more productive approach: give Claude the gene list and ask it to synthesize a biological interpretation.
 
-You: [opens HTML, notices an issue]
-     Sample_3 looks strange. Add a section that calculates
-     summary stats and explicitly flags outliers.
+> Here are the top 50 DE genes from cluster 8 vs. all other clusters in my Spongilla data: [paste list]. What biological processes are represented? What cell type does this signature suggest? What's surprising or unexpected in this list? Are there genes here that are known markers for specific cell types in sponges or other early-branching animals?
 
-Claude: [proposes edit]
+Claude reads the literature on these genes, identifies patterns (maybe you see a concentration of collagen genes and extracellular matrix components, suggesting a sclerocyte identity), and produces a narrative synthesis with specific references. This is often more informative than GO enrichment because Claude can integrate knowledge about your specific organism, developmental context, and the biological questions you're asking.
 
-You: [accepts]
-     Render again.
+### Critical evaluation
 
-Claude: [renders]
+This section would be incomplete without a strong caution. Claude's biological interpretations are *hypotheses*, not conclusions. They're informed starting points for your own investigation, and they must be verified:
 
-You: /done
+- **Check gene symbols.** Gene naming conventions differ between organisms. A gene name that refers to one protein in mammals might refer to something different in sponges, or might not exist at all. Verify that the gene symbols Claude uses actually correspond to the right proteins in your organism's annotation.
+- **Read the primary literature.** When Claude says "Gene X is a known marker of cell type Y in sponges," find and read the actual paper. Claude's summary might be accurate, or it might be conflating results from different organisms, different experimental contexts, or different definitions of "marker."
+- **Cross-reference with databases.** Check Claude's gene lists against established databases (UniProt, KEGG, Reactome) to verify pathway membership and function.
+- **Treat it as a starting point.** The workflow is: generate interpretation → verify with literature → explore in your data → iterate. Claude helps you form hypotheses faster. Testing them is still your job.
 
-Claude: Session summary:
-        - Created analysis/01_qc.qmd with QC diagnostics
-        - Identified Sample_3 as potential outlier
+## When Things Go Wrong
 
-        Commit these changes?
-        "Add QC analysis with sample diagnostics"
+Working with Claude isn't always smooth. Here are the most common problems and how to handle them:
 
-You: [accepts commit]
-```
+**Claude gets stuck in a loop.** It keeps trying the same failing approach, making small variations that don't address the real problem. This is a signal to start a new conversation. Describe the problem from scratch, including what you've already tried and why it didn't work. A fresh perspective often breaks the cycle.
 
-The key pattern: explore → create → verify → refine → commit.
+**Claude misunderstands your project.** It makes assumptions that don't match your data, or keeps suggesting approaches that don't fit. Check your CLAUDE.md — is it accurate? Is it missing context that would steer Claude in the right direction? Often the fix is better documentation, not a better prompt.
+
+**The code runs but the output looks wrong.** Don't just tell Claude to "fix it." Describe the discrepancy specifically: "I expected 10,000 cells after filtering but got 3,000. The histogram shows most cells were removed. Here's the plot — why did so many cells get filtered out?" The more specific you are about what's wrong, the more likely Claude is to find the real issue.
+
+**You don't understand what Claude did.** Ask. "Explain what you just changed and why" is always a valid question. This isn't a sign of weakness — it's the learning mode from [AI Fluency](ai-fluency.qmd). If you can't follow what Claude did, you can't verify it, and unverified code is a liability.
+
+**You've been going in circles for 20 minutes.** This is the signal to ask a human. Message your PI, ask a labmate, or post on the lab Slack. Claude is a powerful tool, but it's not omniscient, and some problems require human expertise — someone who knows your specific data, your organism, or the particular analysis method you're struggling with. Knowing when to escalate is a real skill.
+
+## Developing Your Style
+
+Over time, you'll develop your own patterns for working with Claude. Some people prefer long, detailed prompts. Others work in rapid back-and-forth exchanges. Some use Claude primarily for thinking (Mode 2), while others lean more on code generation (Mode 3). There's no single right approach.
+
+What does improve universally with time is the feedback loop: as you learn what Claude needs to know about your project, your CLAUDE.md gets better. As your CLAUDE.md gets better, Claude's responses improve. As responses improve, you discover new ways to use Claude effectively. Better context leads to better responses, which leads to better context.
+
+The principles from [AI Fluency](ai-fluency.qmd) are the foundation. The patterns in this chapter are the practice. The rest is experience.

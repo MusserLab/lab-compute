@@ -13,12 +13,12 @@ This guide is for lab members who have some experience writing code — maybe yo
 **Parts 2–4 are reference material** that you'll use as you need it:
 
 - **Part 2: Core Tools** — Deeper coverage of each tool in the lab stack: Positron, project organization, Quarto, renv, conda, and Git/GitHub. Come here when you need to understand how something works or troubleshoot it.
-- **Part 3: Claude Code** — How to use AI-assisted coding to accelerate your work. Covers setup, project configuration, and working effectively with Claude Code.
+- **Part 3: Working with AI** — How to work effectively with Claude Code as a thinking partner and coding collaborator. Covers AI fluency, getting started, project configuration, daily workflows, the lab toolkit, and safety.
 - **Part 4: Workflows** — Practical guides for common tasks: setting up a new project, collaborating with others, ensuring reproducibility, and troubleshooting.
 
 ::: {.callout-important}
 ## Work in Progress
-Parts 1 and 2 are complete. Parts 3 and 4 are still being written — some chapters are drafts or placeholders.
+Parts 1–3 are complete. Part 4 (Workflows) is still being written — some chapters are drafts.
 :::
 
 ## By the End of Your First Project

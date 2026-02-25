@@ -1,0 +1,39 @@
+# Lab Skills Reference {#sec-lab-skills}
+
+This appendix lists all Claude Code skills available in the Musser Lab toolkit. Install them from [MusserLab/lab-claude-skills](https://github.com/MusserLab/lab-claude-skills) — see [The Musser Lab Toolkit](../claude-code/musser-lab-toolkit.qmd) for installation instructions.
+
+## Background Skills
+
+Background skills load automatically based on context. You don't invoke them — Claude detects when they're relevant and follows their instructions.
+
+| Skill | Description |
+|-------|-------------|
+| `data-handling` | Shows data dimensions after loading, validates joins, asks before analytical decisions |
+| `debugging-before-patching` | Diagnoses root causes before fixing; never blind-patches symptoms |
+| `file-safety` | Prevents overwriting raw data (`data/`) and important files |
+| `git-conventions` | Co-author line in commits, reviews staged changes, avoids committing secrets |
+| `conda-env` | Sources conda before activation (required in non-interactive shells) |
+| `r-renv` | Explains renv warnings, reminds about `renv::snapshot()` after installs |
+| `r-plotting-style` | Lab ggplot2 theme: `theme_classic()`, `ggrepel` labels, consistent sizing |
+| `quarto-docs` | QMD analysis script conventions: status fields, git hash, `BUILD_INFO.txt` |
+| `script-organization` | Numbered scripts (`01_`, `02_`), `outs/` directories, lifecycle status |
+| `figure-export` | Publication-quality figure saving: PDF (`cairo_pdf`), PNG (300 DPI), SVG (`svglite`) |
+| `scientific-manuscript` | Writing guidance for high-impact journals (narrative structure, prose style) |
+| `protein-phylogeny` | Generates phylogenetics pipeline: MAFFT alignment, optional trimming, IQ-TREE |
+| `gene-lookup` | Looks up gene/protein info from database IDs (UniProt, Ensembl, FlyBase, etc.) |
+| `tree-formatting` | Phylogenetic tree visualization with ggtree: layout, coloring, clade collapsing |
+
+## Slash Commands
+
+Slash commands are invoked explicitly by typing `/command` in the Claude Code chat.
+
+| Command | Description |
+|---------|-------------|
+| `/done` | End-of-session wrap-up: summarize work, check renv, offer to commit |
+| `/new-project` | Scaffold a complete project: directories, conda env, renv, CLAUDE.md, git |
+| `/new-plan` | Create a planning document in `.claude/` and register it in CLAUDE.md |
+| `/publish` | Commit changes and publish Quarto book/website to GitHub Pages |
+| `/quarto-book-setup` | Initialize a new Quarto book project with GitHub Pages deployment |
+| `/audit` | Project health check: cross-check docs, prune conventions, find drift |
+| `/new-skill` | Create a new Claude Code skill with proper structure and description |
+| `/security-setup` | Configure security protections for sensitive files and credentials |

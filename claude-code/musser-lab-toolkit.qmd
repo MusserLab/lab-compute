@@ -1,0 +1,280 @@
+# The Musser Lab Toolkit
+
+In the previous chapters, you learned how to write your own CLAUDE.md, create plan files, and even build simple skills. You don't have to start from scratch. The Musser Lab maintains a shared set of Claude Code skills, conventions, and configuration examples that any lab member can install. This chapter walks you through what's available, how to set it up, and how the key skills work in practice.
+
+## The Lab Skills Repository
+
+All shared lab skills live in a GitHub repository: [MusserLab/lab-claude-skills](https://github.com/MusserLab/lab-claude-skills). This is a public repository — you can browse the skills online, and installing them is straightforward.
+
+### Installation
+
+Clone the repository and copy the skills into your personal Claude Code configuration:
+
+```default
+git clone https://github.com/MusserLab/lab-claude-skills.git
+cp -r lab-claude-skills/skills/* ~/.claude/skills/
+```
+
+That's it. The skills are now available in every Claude Code session, across all your projects. Claude loads them automatically based on context — you don't need to activate them manually.
+
+### Staying updated
+
+When skills are updated (new features, bug fixes, improved instructions), pull the latest version and copy again:
+
+```default
+cd lab-claude-skills
+git pull
+cp -r skills/* ~/.claude/skills/
+```
+
+You can also just re-clone if you prefer. The skills are small text files — there's nothing to build or compile.
+
+::: {.callout-warning .claude-callout title="Claude Code"}
+Claude Code can help you install and update lab skills.
+
+> I need to install the Musser Lab skills from MusserLab/lab-claude-skills. Clone the repo and copy the skills to my ~/.claude/skills/ folder.
+
+Claude will handle the git clone and file copying, and confirm what was installed.
+:::
+
+## Key Background Skills
+
+Background skills load automatically when Claude detects they're relevant — you never invoke them explicitly. Here are the ones you'll encounter most often.
+
+### data-handling
+
+**What it does:** Ensures Claude shows you what's happening to your data at every step. After loading a dataset, Claude reports dimensions. After a join, it reports how many rows matched and how many were lost. Before making an analytical decision (like choosing a threshold or filtering method), it presents options and asks you.
+
+**What this looks like in practice:**
+
+Without the skill, you might ask Claude to load some data, and it just does it silently — you don't find out until later that 200 rows were dropped during a merge. With the skill, Claude's behavior changes:
+
+```r
+data <- read_csv("data/counts.csv")
+cat("Loaded", nrow(data), "rows,", ncol(data), "columns\n")
+glimpse(data)
+```
+
+After a join:
+
+```r
+merged <- left_join(counts, metadata, by = "sample_id")
+cat("Joined:", nrow(counts), "→", nrow(merged), "rows\n")
+cat("Unmatched samples:", sum(is.na(merged$condition)), "\n")
+```
+
+This surfaces information that you need for scientific judgment. Data dimensions aren't just a coding convenience — they're how you catch silent data loss, unexpected duplicates, and filtering that went too far.
+
+### debugging-before-patching
+
+**What it does:** Stops Claude from slapping quick fixes onto symptoms. Instead of immediately adding `na.rm = TRUE` to silence a warning, Claude investigates *why* NAs are present. Instead of wrapping code in `tryCatch` to suppress an error, Claude traces the error to its source.
+
+**Why this matters:** Quick fixes mask real problems. If NAs appeared in your data, that's information — maybe a join failed, maybe a sample was miscoded, maybe there's a real biological reason. The skill forces Claude to diagnose first and share what it finds before proposing a solution. This mirrors how an experienced analyst works: understand the problem, then fix it.
+
+### file-safety
+
+**What it does:** Prevents Claude from overwriting files that shouldn't be modified. The most important rule: Claude won't write to `data/` directories, because raw data is sacred. It also checks before overwriting existing output files, and warns before modifying files that other scripts depend on.
+
+**What this looks like in practice:** If you ask Claude to save processed data to `data/cleaned_counts.csv`, it will refuse and explain why — processed data belongs in `outs/`, not alongside your raw inputs. This reinforces the project organization conventions from [Part 2](../part2/project-organization.qmd).
+
+### git-conventions
+
+**What it does:** Ensures Claude follows lab git practices. Every commit includes a co-author line acknowledging Claude's contribution. Before committing, Claude reviews what's staged to avoid accidentally including secrets (`.env` files, API keys), large files, or temporary files. Commit messages are descriptive and follow a consistent style.
+
+You've already seen this in action if you've used the `/done` command. The skill works behind the scenes every time Claude interacts with git.
+
+### script-organization
+
+**What it does:** Enforces the project structure conventions from [Project Organization](../part2/project-organization.qmd). Scripts use numbered prefixes (`01_`, `02_`). Each script's output goes to a matching `outs/` subfolder. Scripts include a lifecycle status field (active, exploratory, deprecated). The `data/` folder is read-only, `outs/` is disposable.
+
+When you ask Claude to create a new analysis script, it follows this structure automatically — numbered correctly, with the right output directory, and with proper chunk options for a `.qmd` file.
+
+### r-plotting-style
+
+**What it does:** Applies a consistent visual style to all ggplot2 plots. The base is `theme_classic()` — clean, no gridlines, no gray background. Text labels use `ggrepel` to avoid overlapping. Colors, sizing, and font conventions are standardized so that figures from different scripts look like they belong to the same project.
+
+This might seem minor, but visual consistency matters. When you're comparing plots from different stages of an analysis, or preparing figures for a presentation, having a unified style eliminates one more thing to worry about.
+
+## Slash Commands
+
+Unlike background skills, slash commands are tools you invoke explicitly by typing `/command` in the chat.
+
+### /done
+
+You've already seen this in [Working Effectively](working-effectively.qmd). Type `/done` at the end of a session, and Claude summarizes your work, checks if renv needs updating, and offers to commit your changes. It's the lab-standard way to wrap up a working session cleanly.
+
+### /new-project
+
+This is the big one for getting started. `/new-project` scaffolds a complete project — directory structure, conda environment, renv initialization, CLAUDE.md, `.gitignore`, git repo, and GitHub remote — all in one command. It asks you a few questions (project name, type, languages) and builds everything.
+
+What it creates:
+
+```
+my-project/
+├── .claude/
+│   └── CLAUDE.md            # Pre-filled with project info
+├── data/                     # Raw data (read-only)
+├── scripts/                  # Analysis scripts (.qmd)
+│   └── exploratory/          # One-off analyses
+├── outs/                     # Script outputs
+├── R/                        # Shared R functions (if using R)
+├── python/                   # Shared Python functions (if using Python)
+├── .gitignore                # Pre-configured for data science
+├── renv.lock                 # R package management (if using R)
+└── README.md                 # Project description
+```
+
+It also creates the conda environment with standard packages, configures Positron's interpreter settings, and initializes git. The [Setup Walkthrough](../part3/setup-walkthrough.qmd) in Part 4 covers this workflow in detail.
+
+### /new-plan
+
+Creates a planning document in `.claude/` and registers it in your CLAUDE.md. You've seen plan files in [Teaching Claude About Your Work](teaching-claude.qmd) — this command automates the setup. Use it when starting a multi-step analysis, tracking figures for a paper, or any work that will span multiple sessions.
+
+### /publish
+
+For Quarto book and website projects (like this book). Commits current changes, runs `quarto publish gh-pages`, and pushes to GitHub Pages. You probably won't need this for analysis projects, but it's there for documentation work.
+
+## Specialized Skills
+
+As your work deepens beyond standard single-cell analysis, you'll encounter skills built for specific domains. You don't need to learn these now — just know they exist so you can find them when you need them.
+
+**protein-phylogeny.** Generates a complete phylogenetics pipeline as a `.qmd` analysis script. Give it a set of protein sequences and it builds a script with MAFFT alignment, optional trimming, and IQ-TREE tree inference, configured for your specific protein family and taxonomic scope.
+
+**gene-lookup.** Looks up gene and protein information from database identifiers. Give it a UniProt accession, an Ensembl ID, or a FlyBase gene name, and it retrieves annotations, function descriptions, and cross-references. Useful when you're working with gene lists and need to quickly identify what something is.
+
+**tree-formatting.** Phylogenetic tree visualization with ggtree in R. Handles tree layout, branch coloring by taxonomy, clade collapsing, support value display, and annotation overlays. Pairs with `protein-phylogeny` — one builds the tree, the other formats the figure.
+
+**scientific-manuscript.** Guidance for writing papers aimed at high-impact journals (Nature, Science, Cell). Covers narrative structure, prose style, paragraph flow, and strategic rhetoric. Not for routine papers — specifically for when the writing itself needs to be exceptional.
+
+**figure-export.** Conventions for saving publication-quality figures. Handles PDF with `cairo_pdf`, PNG at appropriate DPI, and SVG via `svglite` for editing in Inkscape. Ensures rasterized elements (like UMAP plots with thousands of points) are handled correctly.
+
+## Example CLAUDE.md Files
+
+In [Teaching Claude About Your Work](teaching-claude.qmd), you built up a CLAUDE.md step by step. Here are three real-world examples at different project stages, to give you a sense of what these files look like in practice.
+
+### New project (~15 lines)
+
+Just created with `/new-project`, barely started:
+
+```markdown
+# Spongilla Regeneration
+
+scRNA-seq analysis of Spongilla lacustris regeneration time course.
+
+## Environment
+- R packages managed with renv
+- Python: `conda activate spongilla-regen`
+
+## Data
+- Count matrices in `data/` (10X format, 6 samples)
+- Time points: 0h, 6h, 12h, 24h, 48h, 72h post-dissociation
+
+## Workflows
+- Render: `quarto render scripts/01_qc.qmd`
+- Outputs: `outs/[script_name]/`
+```
+
+### Mid-project (~40 lines)
+
+Active analysis, conventions established, some decisions made:
+
+```markdown
+# Spongilla Regeneration
+
+scRNA-seq analysis of Spongilla lacustris regeneration time course
+(6 time points, ~50,000 cells total).
+
+## Scientific Context
+- Studying cell type dynamics during whole-body regeneration
+- Key question: which cell types appear first, and do they
+  transdifferentiate or arise from stem cells?
+- Comparing to Hydra and planarian regeneration literature
+
+## Environment
+- R packages: renv (auto-activates)
+- Python: `conda activate spongilla-regen`
+
+## Key Files
+- `scripts/01_qc.qmd` — QC and filtering (DONE)
+- `scripts/02_integration.qmd` — Sample integration with Harmony (DONE)
+- `scripts/03_clustering.qmd` — Clustering and annotation (IN PROGRESS)
+- `outs/02_integration/sponge_integrated.rds` — Integrated Seurat object
+
+## Analytical Decisions
+- Integration: Harmony (not Seurat CCA) — faster, handles our
+  batch structure well, recommended by reviewers of similar datasets
+- QC: permissive thresholds, removed 2 junk clusters post-clustering
+- PCs: 30 (elbow at ~20, extra for rare regeneration-specific types)
+- Resolution: 1.5 — gives 20 clusters, merging after annotation
+
+## Conventions
+- theme_classic() for all plots
+- Cell type colors defined in `R/colors.R`
+- All time points labeled as "0h", "6h", etc. (not "0hr" or "T0")
+
+## Gotchas
+- 72h sample has lower cell count (~3,000 vs ~8,000) — real biology,
+  not a QC issue
+- Gene "Wnt3" appears as "Wnt3 A" in this annotation version
+```
+
+### Mature project (~60 lines)
+
+Full documentation, plan files, complex analysis:
+
+```markdown
+# Spongilla Regeneration
+
+scRNA-seq analysis of Spongilla lacustris regeneration time course.
+Manuscript in preparation for Current Biology.
+
+## Scientific Context
+- 6 time points post-dissociation (0h–72h), ~50,000 cells total
+- Central finding: archaeocytes (stem cells) are the primary source
+  of regenerating cell types — no transdifferentiation observed
+- Key cell types: archaeocytes, pinacocytes, choanocytes, sclerocytes,
+  amoebocytes, and 3 novel regeneration-specific populations
+
+## Environment
+- R: renv (auto-activates), R 4.4.1
+- Python: `conda activate spongilla-regen`
+
+## Project Documents
+- `ANALYSIS_PLAN.md` — Pipeline status, decisions log
+- `FIGURE_PLAN.md` — All manuscript figures with status
+- `REVIEWER_NOTES.md` — Reviewer comments and responses
+
+## Key Files
+- `scripts/01_qc.qmd` through `scripts/08_trajectory.qmd` — full pipeline
+- `scripts/fig_*.qmd` — Manuscript figure scripts
+- `outs/08_trajectory/monocle_cds.rds` — Trajectory object
+- `R/colors.R` — Cell type colors (consistent across all figures)
+- `R/gene_lists.R` — Curated pathway gene lists (Wnt, Notch, TGF-beta)
+
+## Analytical Decisions
+- Integration: Harmony (batch = sample_id)
+- Clustering: Leiden, resolution 1.5, 20 clusters → 12 cell types after merging
+- Trajectory: Monocle3, rooted at archaeocyte cluster
+- DE: FindMarkers with Wilcoxon test, adjusted p < 0.05, log2FC > 0.5
+- Excluded: 72h-specific cluster 18 (likely dissociation artifact — high
+  stress genes, no clear identity, absent in other time points)
+
+## Conventions
+- theme_classic(), 12pt base font
+- Colors: `R/colors.R` (do not change without updating all figure scripts)
+- Figure dimensions: 8×6 main, 4×4 supplementary
+- Export: PDF with cairo_pdf for vector, PNG at 300 DPI for raster elements
+
+## Gotchas
+- Monocle3 requires specific Seurat-to-CDS conversion — see `scripts/07_prep_trajectory.qmd`
+- Gene "Wnt3" appears as "Wnt3 A" in this annotation
+- renv::restore() fails on M1 Macs for leidenbase — install from source with `renv::install("leidenbase", type = "source")`
+```
+
+These aren't templates to copy verbatim — they're examples of how a CLAUDE.md grows organically as a project develops. Start with what you know, and add to it as you work.
+
+## What's Next
+
+The final chapter in this section, [Staying Safe](staying-safe.qmd), covers Claude Code's safety features — the permission system, hooks, settings, and data protection. These are the guardrails that make it safe to give Claude access to your project files, and understanding them is part of using Claude Code responsibly.
+
+A complete table of all lab skills — name, type, and one-line description — is available in [Appendix E](../appendices/lab-skills.qmd).

@@ -1,144 +1,106 @@
 # Getting Started with Claude Code
 
-Claude Code is an AI assistant that works directly with your project files. Unlike web-based AI chat, it can read your code, edit files, run commands, and search across your codebase, all within the context of your project.
+In [Your First R Project](../part1/first-project.qmd), you built a single-cell analysis from raw count data to identified cell types. Along the way, you probably noticed orange "Claude Code" callout boxes scattered throughout the book, suggesting things you could ask an AI assistant. Now you're going to actually use it.
+
+This chapter walks you through your first real Claude Code session. By the end, you'll have had two conversations with Claude — one where you think together about a scientific question, and one where Claude writes code for you — and you'll have a feel for how this tool fits into your daily work.
 
 ## Before You Start
 
-If you followed the [Installation chapter](../part1/installation.qmd), you've already installed Claude Code, authenticated, and added the Positron extension. If you skipped that chapter or need a refresher, here's what you need:
+If you followed the [Installation chapter](../part1/installation.qmd), you already have everything you need: Claude Code installed, authenticated with OAuth, and the Positron extension added. If you skipped that chapter, work through [Section 2.4](../part1/installation.qmd#claude-code) first — you need Node.js, the Claude Code CLI, authentication, and the Positron extension.
 
-1. **Node.js** installed ([nodejs.org](https://nodejs.org))
-2. **Claude Code CLI** installed: `npm install -g @anthropic-ai/claude-code`
-3. **Authenticated**: run `claude` in your terminal once and log in with your Anthropic account
-4. **Positron extension**: Extensions view → search "Claude Code" → Install
+You'll also want the Spongilla project from Chapter 3 open in Positron, with the Seurat analysis script in `scripts/`. We'll use it as the basis for your first conversations with Claude.
 
-If any of those steps are unfamiliar, work through [Section 2.4](../part1/installation.qmd#claude-code) first.
+## Opening Claude Code in Positron
 
-## Using Claude Code in Positron
+Open your Spongilla project folder in Positron (File → Open Folder, then navigate to `my-first-analysis/`). In the left sidebar, you should see the Claude Code icon — a small speech-bubble logo. Click it to open the Claude Code panel.
 
-The easiest way to use Claude Code is through the Positron extension. This keeps your code, terminal, and AI assistant in one window.
+[TODO: screenshot — Positron sidebar with Claude Code icon highlighted]
 
-**To open Claude Code in Positron:**
+The panel that appears is your conversation interface. It's like a chat window, but Claude can do more than just talk — it can read files in your project, propose edits to your code, and run commands in your terminal. It knows which folder you have open and can see all the files inside it.
 
-1. Open your project folder in Positron
-2. Click the Claude Code icon in the left sidebar (or use `Cmd+Shift+P` → "Claude Code: Open")
-3. Start typing in the chat panel
+A few things to know about the interface:
 
-The extension automatically knows which project you're working in and can see your files.
+**Submitting messages.** Type in the input box at the bottom and press Enter to send. If you need a newline within your message, use Shift+Enter.
 
-**Key shortcuts:**
+**Starting fresh.** Each conversation is independent. Click the "+" button at the top of the panel (or use Cmd+N / Ctrl+N) to start a new conversation. You'll do this often — it's like starting a fresh page in a notebook.
 
-| Action | Shortcut |
-|--------|----------|
-| Submit message | `Enter` (or `Cmd+Enter` depending on settings) |
-| New conversation | Click "+" or `Cmd+N` in the Claude panel |
-| Reference a file | Type `@` and start typing the filename |
+**Referencing files.** Type `@` followed by a filename to explicitly point Claude at a specific file. This is useful when you want Claude to read or edit something particular, though Claude can also find files on its own.
 
-### Terminal Alternative
+[TODO: screenshot — Claude Code panel open with the input box and conversation area visible]
 
-You can also run Claude Code directly in any terminal by navigating to your project directory and typing `claude`. This gives you the same capabilities as the extension — reading files, editing code, running commands — but in a terminal interface rather than a sidebar panel. Some people prefer this, especially for quick one-off questions or when working outside Positron.
+## Your First Conversation: Thinking Together
+
+Let's start with a question — not a coding request, but a scientific one. You ran quality control in the Spongilla analysis, filtering cells based on `nFeature_RNA`. But why that metric? What does it actually tell you, and how would you choose a threshold for your own data?
+
+Type this into the Claude Code panel:
+
+> In the Spongilla analysis script, we filter cells based on nFeature_RNA. How do I know what threshold to use? What are people typically looking for when they set QC thresholds in single-cell data?
+
+Press Enter and watch what happens. Claude reads your analysis script to understand what you're working with, then explains the biology behind QC filtering: what low gene counts mean (empty droplets, dying cells), what high counts might indicate (doublets), and how thresholds depend on your specific dataset. It might suggest looking at a violin plot to help you decide, and explain why some analysts prefer lenient thresholds at this stage, relying on clustering to identify junk cells later.
+
+[TODO: screenshot — Claude's response to the QC threshold question, showing it read the script]
+
+Notice what just happened. You didn't ask Claude to write any code. You asked it to help you *understand* a decision in your analysis — a decision you might have previously just copied from a tutorial without thinking about. Claude brought knowledge about single-cell best practices, discussed the tradeoffs, and helped you think through the reasoning. This is one of the most valuable ways to use Claude: as a thinking partner who can explain the *why* behind analytical choices.
+
+This is what we'll call **augmentation** in the next chapter — you and Claude thinking together. You bring the questions and the scientific judgment; Claude brings broad knowledge of methods, common practices, and the ability to explain concepts clearly. No code was written, but you understand your analysis better than you did five minutes ago.
+
+## Your Second Conversation: Coding Together
+
+Now let's ask Claude to actually do something. Following directly from the QC discussion, you might want to see the distribution of `nFeature_RNA` before filtering, so you can make an informed threshold decision. Start a new conversation (click "+") and try this:
+
+> Can you add a violin plot of nFeature_RNA to the QC section of scripts/01_seurat_basics.qmd, so I can see the distribution before the filtering step? Put it right before the existing QC violin plot.
+
+This time, Claude does something different. It reads your analysis script, finds the QC section, and proposes an edit — a new code chunk that creates a violin plot of `nFeature_RNA` alone, placed before the existing two-panel QC plot. You'll see the proposed change as a **diff**: lines highlighted in green are being added, and the surrounding context shows exactly where in the file the edit will go.
+
+[TODO: screenshot — diff view showing Claude's proposed edit to the QC section]
+
+This is the approval flow you'll use constantly:
+
+- **Review the diff.** Read what Claude is proposing. Does it make sense? Is it in the right place in the file?
+- **Accept or reject.** If the change looks good, click Accept (or press the shortcut shown). If something's off, tell Claude what to change — "Actually, put it after the filtering step instead" — and it will revise.
+- **Test it.** After accepting, run the new code chunk interactively (Cmd+Shift+Enter) to see if it works and if the plot looks right.
+
+You just experienced Claude as a **coding collaborator**. You described what you wanted in plain English, Claude read your existing code to understand the context, and proposed a specific edit that fits the style and structure of your script. You reviewed it, accepted it, and ran it.
 
 ## What Claude Code Can Do
 
-| Capability | Examples |
-|------------|----------|
-| **Understand code** | Explain functions, trace data flow, find patterns |
-| **Write code** | Create scripts, write functions, generate boilerplate |
-| **Edit files** | Fix bugs, refactor, add features to existing files |
-| **Run commands** | Execute R/Python scripts, git operations, quarto render |
-| **Search** | Find where things are defined, grep for patterns |
-| **Debug** | Trace errors, explain stack traces, suggest fixes |
+Those two conversations — thinking together and coding together — showed you the core of Claude Code. But it can do more than answer questions and edit files. Here's what it looks like in practice, framed around the kind of work you'll actually do:
 
-## When to Use Claude Code
+**Understand your code.** You can point Claude at any file in your project and ask what it does. "Walk me through the normalization section of the analysis script" or "Why does this use `left_join` instead of `inner_join`?" This is especially useful when you're working with code someone else wrote, or revisiting your own code after a break.
 
-**Claude Code is helpful for:**
+**Write new code.** Claude can create scripts, write functions, or add sections to existing files. It reads your project to match the style and conventions already in use. "Write a function that takes a Seurat object and returns a summary table of cells per cluster" — Claude will write it, and you review.
 
-- Setting up project structure and boilerplate
-- Debugging cryptic error messages
-- Understanding unfamiliar code in a project
-- Writing repetitive code (data loading, plotting templates)
-- Troubleshooting environment issues (conda, renv, paths)
-- Explaining what code does and how components connect
+**Edit existing files.** This is what you just saw: Claude proposes changes as diffs that you approve or reject. It can fix bugs, refactor code, add features, or restructure sections of a file.
 
-**Claude Code is not a replacement for:**
+**Run commands.** Claude can execute commands in your terminal — rendering a Quarto document, running git operations, installing packages. It always shows you the command before running it and asks for approval.
 
-- Your analytical judgment (you decide normalization methods, thresholds, interpretations)
-- Your domain expertise (you know biology, Claude knows code)
-- Careful code review (always verify outputs, especially for statistics)
-- Understanding methods you'll use repeatedly (learn them, don't just copy-paste)
+**Search your project.** "Where is the clustering resolution set?" or "Find all the places we use `FindMarkers`." Claude searches across your files and reports what it finds.
 
-::: {.callout-note}
-### The division of labor
-You bring the scientific knowledge and analytical decisions. Claude Code brings coding speed and pattern recognition. The combination is powerful, but you're always the one making the calls.
-:::
+**Debug errors.** Paste an error message and tell Claude where it happened. It reads the relevant code, traces the problem, and proposes a fix. This is one of the most common and immediately useful interactions.
 
-## The Mental Model
+Each of these capabilities follows the same pattern: Claude proposes, you review, you decide. You're always in control.
 
-Three concepts help you work effectively with Claude Code:
+## The Terminal Alternative
 
-### 1. Capable but not omniscient
+Everything you just did in Positron's sidebar panel also works in a plain terminal. Navigate to your project folder and type `claude`:
 
-Claude can write sophisticated code, but it doesn't automatically know:
+```default
+cd ~/Documents/my-first-analysis
+claude
+```
 
-- Your specific data structures and conventions
-- Your project's history and past decisions
-- What you've tried before and why it didn't work
+You'll get a text-based interface with the same capabilities — reading files, proposing edits, running commands. Some people prefer the terminal for quick questions or when working outside Positron. The Positron extension is usually more convenient for day-to-day work because everything is in one window, but it's good to know both options exist.
 
-**Solution:** Tell Claude what it needs to know. Be specific about your data, your goals, and any constraints.
+## Three Things to Remember
 
-### 2. Context matters
+You've now experienced Claude Code firsthand. Before moving on, here are three things to carry with you:
 
-Claude only knows what's in your project folder and what you tell it. Each new conversation starts fresh—it doesn't remember yesterday's session.
+**Be specific.** Your prompts shaped what Claude did. When you asked about QC thresholds with specific context (the Spongilla analysis, nFeature_RNA), Claude gave you a focused, useful answer. Vague questions like "help me with my analysis" get vague answers. Include what you're working with, what you've tried, and what you're trying to accomplish.
 
-**Solution:** Use project configuration files (covered in the next chapter) to give Claude persistent context about your project.
+**Verify the output.** You reviewed a diff before accepting it. This isn't optional — it's the workflow. Claude writes plausible code that usually works, but sometimes has subtle bugs, especially with statistical methods or domain-specific conventions. Run the code, check the output, and make sure it does what you expect. If you can't explain what the code does to a labmate, you accepted it too quickly.
 
-### 3. Verify, then trust
+**Claude doesn't remember.** Each new conversation starts from scratch. Claude doesn't know what you discussed yesterday, what decisions you made last week, or what you tried and rejected. That's why you started a fresh conversation for the coding request — and it's why the next chapter matters. You can teach Claude about your project so that every conversation starts with shared context, not a blank slate.
 
-Claude often gets things right, but sometimes produces plausible-looking code with subtle bugs, especially for:
+## What's Next
 
-- Statistical methods it doesn't fully understand
-- Edge cases in your specific data
-- Domain-specific conventions it guesses at
-
-**Solution:** Run the code and check the outputs. For analytical code, verify counts at each step and spot-check results.
-
-## A Quick Example
-
-Here's what a typical interaction looks like in Positron:
-
-**You type:**
-> I'm getting this error when I run the script:
->
-> Error in `left_join()`: ! `by` must be supplied when `x` and `y` have no common variables.
->
-> The join is on line 45 of analysis.qmd
-
-**Claude responds:**
-- Reads the relevant section of `analysis.qmd`
-- Explains that the column names don't match between the two dataframes
-- Shows you the column names in each
-- Proposes a fix with the correct `by =` argument
-- Asks if you want to apply the edit
-
-You review the proposed change, accept it, and the file is updated.
-
-## Reviewing Changes
-
-Claude always shows you what it plans to do:
-
-- **File edits** — Shows a diff with the proposed changes highlighted
-- **New files** — Shows the full content before writing
-- **Commands** — Shows the command before running it
-
-You can:
-
-- **Accept** the change
-- **Ask for modifications** ("Can you also add error handling for empty files?")
-- **Reject** and try a different approach ("Actually, let's do this a different way")
-
-## Next Steps
-
-Now that you understand what Claude Code can do, the following chapters cover:
-
-- **Configuring Projects** — How to give Claude persistent context about your project
-- **Skills** — Reusable instruction sets for common tasks
-- **Working Effectively** — Patterns for productive Claude Code sessions
+The next chapter, [AI Fluency](ai-fluency.qmd), steps back to build the conceptual framework for working with AI effectively — the habits and principles that turn Claude from a novelty into a genuine research tool. Then [Teaching Claude About Your Work](teaching-claude.qmd) shows you how to give Claude persistent memory about your project, so you don't have to re-explain everything each session.

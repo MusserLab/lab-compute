@@ -1,0 +1,159 @@
+# AI Fluency
+
+You've spent the first two parts of this book learning the tools of data science: Positron for writing and running code, Quarto for reproducible documents, renv and conda for managing packages, Git for tracking changes. These are the instruments. Now you have a collaborator who can write code, debug errors, explain methods, search the literature, and help you think through analytical decisions — but it's not a person, and working with it well is a skill unto itself.
+
+This chapter builds that skill. It's more conceptual than the others in this section — less "click here, type this" and more "here's how to think about what you're doing." The ideas here will make everything in the following chapters more effective. If you ever feel stuck or frustrated in a Claude Code session, come back to this chapter. The answer is usually one of the principles below.
+
+## Three Ways to Work with AI
+
+There are three distinct modes of working with Claude, and recognizing which one you're in — and which one you *should* be in — is the single most important skill for using AI effectively.
+
+### Mode 1: Automation
+
+You tell Claude exactly what to do, and it does it.
+
+> Rename all the cluster labels in my Seurat object from numbers to the cell type names in this table.
+
+> Convert this R script to use tidyverse syntax instead of base R.
+
+> Add `#| fig-cap:` options to every figure chunk in my QMD.
+
+This is Claude as a fast, accurate typist. The task is mechanical, the instructions are specific, and there's little ambiguity about what success looks like. Automation is genuinely useful — these tasks are tedious to do by hand and error-prone — but if this is all you use Claude for, you're missing most of the value.
+
+### Mode 2: Augmentation
+
+You're thinking together. Claude brings broad knowledge of methods, literature, and common practices; you bring your scientific question, your data, and your judgment. This mode goes far beyond coding:
+
+**Analytical planning.** You have single-cell data from 4 *Spongilla* samples at different developmental stages. Before writing any code, you ask: *What are the main steps in a standard integration analysis? What choices will I need to make at each step? What methods exist for integration, and when should I use each one?* Claude walks you through the landscape — Seurat's integration, Harmony, scVI — explaining the tradeoffs and what to look for when evaluating results. You read the papers it references, then decide which approach fits your data.
+
+**Method evaluation.** You're following a tutorial that uses `SCTransform` for normalization. Is that the right choice for your dataset? What are the alternatives? What assumptions does each method make? Claude explains — and when you ask "What would someone who disagrees with SCTransform say?", it presents the counterarguments and the literature supporting them. Now you're making an informed choice rather than blindly following a tutorial.
+
+**Literature exploration.** You need to understand how people identify cell types in non-model organisms, or you want recent papers on trajectory inference for developmental data. Claude points you to key publications and explains their relevance. You read the actual papers — Claude's summaries are starting points, not endpoints.
+
+**Result interpretation.** You've run `FindMarkers` on a cluster and have 50 differentially expressed genes. Instead of running GO enrichment and getting generic terms like "signal transduction," you share the gene list with Claude and ask: *What biological processes are these genes associated with? What cell type might this be? What's surprising in this list?* Claude synthesizes what it knows from the literature into a narrative — which you then verify against primary sources and your own biological knowledge.
+
+**Troubleshooting analytical decisions.** Your UMAP shows two clusters that seem to be merging. What could cause this? Is it a resolution issue, a batch effect, or genuinely similar cell types? How should you think about whether to split or merge them? Claude helps you reason through the possibilities, but you make the call based on your data.
+
+This is research, planning, interpretation, and learning — the intellectual side of data science, not just the coding side. Mode 2 is where the real power is, and it's where you learn the most.
+
+### Mode 3: Agency
+
+You give Claude a goal and let it work.
+
+> Here's my count matrix and metadata. Write a QC script that filters outlier cells, generates diagnostic violin plots, and saves the cleaned Seurat object.
+
+Claude reads your data, makes decisions about thresholds, writes the code, and can even run it. This is powerful — especially for routine tasks where you know what good output looks like — but it requires trust. You need enough understanding to evaluate whether Claude's decisions were reasonable. Did it set sensible QC thresholds? Did it handle your sample metadata correctly? Are the diagnostic plots actually diagnostic?
+
+### Where students get stuck
+
+Most students default to Mode 1 (tell Claude what to type) or jump straight to Mode 3 (do it all for me). Mode 1 underuses Claude. Mode 3 is risky when you don't yet have the experience to evaluate what Claude produces. Mode 2 — thinking together — is the sweet spot, especially while you're still learning. It's also the mode that makes you a better scientist, because you're developing analytical judgment through conversation rather than outsourcing it.
+
+In practice, these modes blend constantly. A typical session might start with Mode 2 (discussing which analysis approach to take), shift to Mode 3 (Claude writes the code), and then return to Mode 2 (interpreting the results together). The important thing is knowing which mode you're in and whether it's the right one for the task at hand.
+
+### Extended research
+
+One particularly powerful form of Mode 2 deserves its own mention. Claude can do extended research — reading broadly across the literature to compile information, synthesize findings, or generate curated resources for your analysis. This goes beyond a quick question-and-answer exchange.
+
+For example, you might ask Claude to compile a curated list of Wnt signaling pathway genes — gene symbols, brief functional descriptions, and key references — that you then explore in your single-cell data with `FeaturePlot` and `DotPlot`. Or you might give Claude a list of differentially expressed genes and ask it to read the literature and produce a narrative synthesis of what those genes suggest about cell identity, rather than relying on the often-uninformative output of GO enrichment analysis.
+
+You can access this through Claude Code itself (asking Claude to search the web and synthesize information) or through Claude's web interface at [claude.ai](https://claude.ai), which has a dedicated research mode for extended investigations. We'll cover the full workflow in [Working Effectively](working-effectively.qmd).
+
+## The Learning Paradox
+
+Here's the tension you need to confront honestly: you're learning to code and analyze data at the same time you have access to a tool that can do both for you.
+
+The temptation is real. Claude can write an entire analysis script in seconds. It can debug errors you don't understand, choose statistical methods you haven't learned yet, and produce clean, professional-looking code. It's easy to fall into a pattern: ask Claude, copy the output, run it, move on. The analysis works. The report looks great. You feel productive.
+
+The problem comes later. When a reviewer asks why you chose that normalization method, you don't have an answer. When the code breaks in a new context, you can't troubleshoot it because you never understood it. When a collaborator asks you to explain your clustering approach at lab meeting, you realize you can't. You skipped the learning part, and now you're stuck.
+
+This isn't hypothetical. It's the central challenge of using AI as a student, and pretending it doesn't exist doesn't help.
+
+### Claude as teacher, not just producer
+
+The solution isn't to avoid Claude — it's to use it differently. Instead of treating Claude as a code-producing machine, treat it as a teacher. Here are concrete patterns:
+
+**After Claude writes code, ask it to teach you.** "Walk me through this script line by line. What does each function do? Why did you structure it this way?" Don't just skim the explanation — run the code interactively, line by line in the Positron console, and watch what each step produces. This is how you build real understanding.
+
+**Before accepting a method, ask for the debate.** "You chose SCTransform for normalization. Why? What are the alternatives? What would someone who disagrees with this choice say? Find me papers that argue for a different approach." Claude is remarkably good at presenting counterarguments when you explicitly ask for them. This is one of the most valuable habits you can develop — it trains scientific thinking.
+
+**Dissect the output, don't just accept it.** "Why did 200 genes get filtered out at this step? What would happen if I changed the threshold? Show me a few of the genes that were filtered — are any of them biologically interesting?" Every number in an analysis reflects a choice, and understanding those choices is what makes you a scientist rather than a pipeline operator.
+
+**When Claude suggests a package, ask about it.** "What does `harmony` do? How is it different from Seurat's built-in integration? When would I choose one over the other?" Don't install packages blindly just because Claude told you to.
+
+**Ask Claude for the primary literature, then read it.** "What are the key papers on Leiden clustering? Which one should I read first?" Claude can point you to the right sources, but reading the actual papers — understanding the methods, the assumptions, the limitations — is irreplaceable. Claude's summary is a starting point, not a substitute.
+
+### The rule of thumb
+
+If you can't explain what the code does **and** why you chose this approach over alternatives to a labmate, you accepted it too quickly. Go back and ask Claude to teach you.
+
+This doesn't mean you need to understand every line of boilerplate. You don't need to deeply understand the internals of `Read10X()` to use it productively. The learning paradox applies most to analytical decisions — the choices that shape your scientific conclusions. Those are the ones worth understanding deeply.
+
+## Four Principles for Working with AI
+
+The ideas above can be organized into four core principles, adapted from Anthropic's [AI Fluency](https://anthropic.skilljar.com/ai-fluency-framework-foundations) course for a data science context. Think of these as habits to build, not rules to memorize.
+
+### 1. Communicate clearly
+
+Claude doesn't know things you haven't told it. Each conversation starts fresh — no memory of yesterday's session, no knowledge of what you've tried before, no understanding of your scientific question beyond what you provide. This means the quality of your input directly determines the quality of the output.
+
+Good communication includes three things:
+
+**Background.** What your data looks like, what organism you're studying, what stage of analysis you're at, what you've already tried. "I'm working with 10,000 single-cell transcriptomes from *Spongilla lacustris*, 4 developmental stages, already QC'd and normalized" gives Claude enormously more to work with than "I have some single-cell data."
+
+**A specific request.** "Help me with my analysis" is almost useless. "I need to integrate my 4 samples before clustering — what integration methods should I consider, and what are the tradeoffs for a dataset like mine?" gives Claude something concrete to respond to.
+
+**What success looks like.** If you're asking for code, describe the expected output. "I want a dot plot with clusters on the x-axis, my top 10 marker genes on the y-axis, scaled by expression level." If you're asking for an explanation, say what level of detail you need. "Explain this like I've taken one bioinformatics course" is different from "Explain this like I'm writing a methods section."
+
+There's a reason being specific matters beyond just getting better answers. Claude is a language model — it generates responses by predicting what's most likely to be helpful given your input. The more precise and detailed your prompt, the better the prediction. Vague prompts get generic responses because *many different answers are plausible*. Specific prompts narrow the space to what you actually need. This isn't a quirk to work around; it's how the technology fundamentally works, and working *with* it rather than against it is the core skill of AI fluency.
+
+In [Teaching Claude About Your Work](teaching-claude.qmd), you'll learn how to give Claude persistent context through configuration files, so you don't have to re-explain your project every session. But even with good configuration, clear communication in each conversation still matters.
+
+### 2. Evaluate output critically
+
+Claude produces clean, confident answers. Science is messy. The gap between those two things is where mistakes hide.
+
+**Code can have subtle bugs.** Claude's code usually runs, but "runs" and "correct" are not the same thing. A join might silently drop rows. A statistical test might have the wrong comparison group. A filtering step might use `>` when it should use `>=`. These bugs don't throw errors — they produce plausible-looking output that happens to be wrong.
+
+**Methods can be inappropriate.** Claude might choose a method that's technically valid but wrong for your data. A parametric test when your data isn't normally distributed. A normalization method that assumes equal library sizes when yours vary by 10-fold. Claude doesn't always know the properties of your specific dataset, and it tends toward popular defaults even when they're not the best choice.
+
+**Scientific claims need verification.** Claude can synthesize information impressively, but it can also generate confident-sounding claims that are subtly wrong or out of date. Gene function annotations might be from a different organism. A "well-established" finding might be controversial in the actual literature. A cited paper might not say quite what Claude claims it says.
+
+Why does this happen? Claude is a language model — it predicts likely continuations of text. It doesn't run code in its head, doesn't truly "understand" statistical assumptions, and occasionally produces plausible-sounding statements that aren't accurate. This is sometimes called "hallucination," and it's not a bug that will be fixed in the next version — it's a fundamental property of how language models work. Understanding this helps you calibrate your trust appropriately: rely on Claude for knowledge synthesis and pattern recognition, but verify specific claims and check code outputs against expectations.
+
+**Concrete checks for code:** verify row counts before and after joins, spot-check a few values by hand, compare statistical output to published benchmarks, look at a few genes individually instead of trusting aggregate results.
+
+**Concrete checks for scientific claims:** ask Claude for the primary literature supporting its recommendation, then read the actual paper. Ask for the counterargument. Compare what Claude says to what established researchers in your field recommend. If Claude cites a specific finding, verify it.
+
+The habit of asking "What's the argument against this?" is one of the most powerful things you can do. Claude is very good at presenting counterarguments, alternative methods, and dissenting literature — but only when you ask. Train yourself to ask.
+
+### 3. Delegate thoughtfully
+
+Not everything is worth doing yourself, and not everything should be handed to Claude. Learning to draw this line well is a skill that develops with experience, but here's a starting framework:
+
+**Give Claude the mechanical work.** Boilerplate code, repetitive edits, formatting, debugging error messages, writing first drafts of documentation, scaffolding new files in the right structure. These tasks are time-consuming and error-prone for humans, and Claude does them well. This is Mode 1 territory, and it's genuinely valuable.
+
+**Think together on analytical decisions.** Method selection, parameter choices, interpretation of results, experimental design, choosing what to visualize and why. These are the decisions that shape your scientific conclusions. Claude should be part of the conversation — it often knows methods and literature you don't — but you make the call. This is Mode 2, and it's where you develop as a scientist.
+
+**Keep verification for yourself.** Understanding what the code does, checking that the output makes biological sense, reading the papers Claude points you to, deciding whether an interpretation is convincing. These are your responsibilities. Claude can help you learn faster, but it can't learn for you.
+
+**The gray zone is large**, and that's okay. Claude can write a statistical analysis, but you verify the assumptions. Claude can suggest a clustering resolution, but you decide if the clusters make biological sense. Claude can generate a figure, but you decide if it communicates the right message. Over time, as your expertise grows, the boundary shifts — you'll be comfortable delegating more because you're better at evaluating the output.
+
+### 4. Be transparent and ethical
+
+AI use in science carries ethical responsibilities. Being transparent about it isn't just good practice — it's necessary for scientific integrity.
+
+**Tell your collaborators.** If Claude helped design an analysis or interpret results, say so. Science depends on knowing how conclusions were reached.
+
+**Note it in your methods.** When AI assisted with analysis, code generation, or interpretation, include this in your methods section. There's no shame in it — it's just honest reporting. The field is still developing norms here, but disclosure is always the right default.
+
+**Use the co-author line.** In the Git chapter, you learned that lab convention is to include a co-author line in git commits when Claude helped with the code. This creates a transparent record in the project history. You'll see it throughout this book's own commit log.
+
+**Don't pass off AI work as your own thinking.** If Claude generated an interpretation or wrote a paragraph, and you present it as your own intellectual contribution, that's dishonest — even if you agree with it. Use Claude's output as a starting point that you refine, verify, and make your own.
+
+**Be thoughtful about data.** Don't paste sensitive or unpublished data into web-based AI tools without considering the implications. Claude Code runs locally and sends your prompts to Anthropic's API for processing, but understanding what data goes where is part of being a responsible researcher. We cover this in detail in [Staying Safe](staying-safe.qmd).
+
+## Building These Habits
+
+These four principles — communicate clearly, evaluate critically, delegate thoughtfully, be transparent — aren't things you'll master in a day. They develop through practice, and the rest of this section gives you that practice. The [next chapter](getting-started.qmd) walks you through your first Claude Code session. [Teaching Claude About Your Work](teaching-claude.qmd) shows you how to build persistent context. [Working Effectively](working-effectively.qmd) covers the patterns and workflows that make daily collaboration productive.
+
+When things feel off in a Claude Code session — you're getting unhelpful responses, or the output doesn't feel right, or you're not sure whether to trust what Claude produced — come back to these four principles. Usually one of them will point to the issue: you weren't specific enough, you didn't verify, you delegated something you should have thought through, or you're not sure how to be transparent about what Claude contributed. The principles are the foundation. Everything else is practice.

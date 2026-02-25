@@ -26,11 +26,13 @@ lab_compute/
 │   ├── renv.qmd
 │   ├── conda.qmd
 │   └── git-github.qmd
-├── claude-code/          # Claude Code (Part 3)
+├── claude-code/          # Working with AI (Part 3)
+│   ├── ai-fluency.qmd
 │   ├── getting-started.qmd
-│   ├── configuring-projects.qmd
-│   ├── skills.qmd
-│   └── working-effectively.qmd
+│   ├── teaching-claude.qmd
+│   ├── working-effectively.qmd
+│   ├── musser-lab-toolkit.qmd
+│   └── staying-safe.qmd
 ├── part3/                # Workflows (Part 4)
 │   ├── setup-walkthrough.qmd  # Full lab project setup (git, conda, renv, GitHub)
 │   ├── starting-project.qmd   # Quick reference/checklist + templates
@@ -40,7 +42,9 @@ lab_compute/
 ├── appendices/
 │   ├── shortcuts.qmd
 │   ├── commands.qmd
-│   └── templates.qmd
+│   ├── templates.qmd
+│   ├── r-packages.qmd
+│   └── lab-skills.qmd
 ├── images/               # Screenshots (TODO)
 └── examples/             # Code examples
 ```
@@ -121,7 +125,7 @@ Screenshots are marked with `[TODO: screenshot]` throughout.
 - **Restart terminal reminders**: After every installation step, remind students to close and reopen their terminal so new commands are available.
 - **Homebrew references**: Always briefly explain what Homebrew is when first mentioning `brew` commands, and provide a non-Homebrew alternative (download link).
 - **Tone**: Friendly, narrative paragraphs over bullet lists. Write things out rather than listing them. The audience has some coding experience but is not expert.
-- **Parts 1–2 are complete; Parts 3–4 are marked "Work in Progress"** in the Welcome page.
+- **Parts 1–3 are complete; Part 4 is marked "Work in Progress"** in the Welcome page.
 
 ## Notes
 

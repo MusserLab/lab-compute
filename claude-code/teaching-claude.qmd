@@ -1,0 +1,372 @@
+# Teaching Claude About Your Work
+
+In the previous chapter, you had your first conversations with Claude Code. You probably noticed something: Claude gave useful answers about QC thresholds and wrote a reasonable code edit, even though it knew nothing about you, your project, or your scientific questions beyond what it could read in the files you happened to have open. Imagine how much better those answers would be if Claude already knew your organism, your experimental design, the decisions you've made so far, and the conventions you follow.
+
+That's what this chapter is about. Claude doesn't remember yesterday's session — every new conversation starts from scratch. But you can teach Claude about your project by writing down the context it needs, so that every session starts with shared understanding rather than a blank slate. This isn't just a Claude Code feature; it's also good science practice. The files you create here will help *you* remember where you left off when you return to a project after a month.
+
+## Your Project CLAUDE.md
+
+The foundation of Claude's project knowledge is a single file: `.claude/CLAUDE.md`. This lives in a hidden `.claude/` folder at the root of your project. When Claude Code starts a new conversation, it reads this file first — before you type anything — and uses it as context for everything that follows.
+
+Let's build one up, step by step. Imagine you're starting a single-cell RNA-seq project analyzing *Spongilla* developmental stages.
+
+### Start simple
+
+When you first create a project, your CLAUDE.md doesn't need much. Five lines are enough:
+
+```markdown
+# Spongilla Development
+
+Single-cell RNA-seq analysis of Spongilla lacustris across 4 developmental stages.
+
+## Data
+- Raw counts: `data/spongilla_counts/` (10X format, ~10,000 cells)
+
+## Workflows
+- Render analysis: `quarto render scripts/01_qc_normalization.qmd`
+```
+
+This tells Claude what the project is, where the data lives, and how to run things. Already, when you ask Claude a question, it won't waste time asking "what kind of data do you have?" — it knows.
+
+### Add the scientific context
+
+As you start working, add the information that shapes your analysis:
+
+```markdown
+## Scientific Context
+- Organism: Spongilla lacustris (freshwater sponge)
+- Experimental design: 4 developmental stages (gemmule, hatching, juvenile, adult)
+- Key questions:
+  - How do cell type proportions change across development?
+  - When do specialized cell types (pinacocytes, choanocytes) first appear?
+- Reference genome: Spongilla v1.2 annotation
+```
+
+This matters more than you might think. When Claude knows your organism and your questions, its suggestions for both analysis approaches *and* code are dramatically better. "Find marker genes for cluster 5" produces different (and better) results when Claude knows you're studying a sponge and looking for developmental transitions than when it has no context at all.
+
+### Record decisions as you make them
+
+This is where CLAUDE.md becomes truly valuable. Every analysis involves choices — normalization methods, filtering thresholds, clustering parameters — and each choice has a reason. Record them:
+
+```markdown
+## Analytical Decisions
+- **Normalization**: LogNormalize (not SCTransform) — SCTransform
+  gave unstable results with our low-count pinacocyte populations
+- **QC thresholds**: nFeature_RNA > 200, nFeature_RNA < 5000 —
+  permissive; relying on clustering to identify junk
+- **Excluded**: Sample S23 failed QC (low gene counts, high mito %)
+- **PCs**: Using 40 — elbow at ~15, but including more to catch
+  rare cell types in later PCs
+- **Clustering resolution**: 2.0 — gives ~25 clusters, which we'll
+  merge after annotation
+```
+
+Now when you open a new session next week and ask "Should I try a different clustering resolution?", Claude already knows what you chose, why, and what alternatives you considered. It can give you an informed answer instead of starting from zero.
+
+### Add conventions and key files
+
+As the project grows, document the patterns you've established:
+
+```markdown
+## Conventions
+- All plots use theme_classic()
+- Tidyverse style for R code
+- Color palette: viridis for continuous, custom for cell types (see `R/colors.R`)
+
+## Key Files
+- `scripts/01_qc_normalization.qmd` — QC filtering and normalization (DONE)
+- `scripts/02_clustering.qmd` — Dimensionality reduction and clustering (IN PROGRESS)
+- `scripts/03_annotation.qmd` — Cell type annotation (NOT STARTED)
+- `R/colors.R` — Cell type color assignments
+- `outs/01_qc_normalization/sponge_filtered.rds` — Filtered Seurat object
+```
+
+### The complete picture
+
+Here's what a mid-project CLAUDE.md looks like when you put it all together:
+
+```markdown
+# Spongilla Development
+
+Single-cell RNA-seq analysis of Spongilla lacustris across 4 developmental stages.
+
+## Scientific Context
+- Organism: Spongilla lacustris (freshwater sponge)
+- Experimental design: 4 developmental stages (gemmule, hatching,
+  juvenile, adult)
+- Key questions:
+  - How do cell type proportions change across development?
+  - When do specialized cell types first appear?
+- Reference genome: Spongilla v1.2 annotation
+
+## Environment
+- R packages managed with renv (auto-activates)
+- Python: `conda activate spongilla-dev`
+
+## Data
+- Raw counts: `data/spongilla_counts/` (10X format, ~10,000 cells)
+- Metadata: `data/sample_metadata.csv`
+
+## Analytical Decisions
+- Normalization: LogNormalize (SCTransform unstable with low-count pops)
+- QC: nFeature_RNA 200-5000, permissive — relying on clustering QC
+- Excluded: Sample S23 (failed QC)
+- PCs: 40 (elbow ~15, extra to catch rare types)
+- Clustering: resolution 2.0, ~25 clusters, will merge after annotation
+
+## Key Files
+- `scripts/01_qc_normalization.qmd` — QC and normalization (DONE)
+- `scripts/02_clustering.qmd` — Clustering (IN PROGRESS)
+- `scripts/03_annotation.qmd` — Cell type annotation (NOT STARTED)
+- `outs/01_qc_normalization/sponge_filtered.rds` — Filtered Seurat object
+
+## Conventions
+- theme_classic() for all ggplot2 plots
+- Tidyverse style
+- Color palette: viridis for continuous, custom for cell types (`R/colors.R`)
+
+## Workflows
+- Render analysis: `quarto render scripts/01_qc_normalization.qmd`
+- Outputs go to `outs/[script_name]/`
+
+## Gotchas
+- Gene names have spaces (e.g., "Eef1a1 A") — quote them in R
+- Seurat objects can't be viewed in Data Explorer — use `View(obj@meta.data)`
+```
+
+This isn't a template to fill in mechanically — it's a living document that grows with your project. Start with what you know, and add to it as you work.
+
+### The habit
+
+At the end of each working session, ask yourself: *What did I learn that future sessions should know?* Did you make an analytical decision? Discover a gotcha? Change your approach? Add it to CLAUDE.md. Claude can help with this — at the end of a session, try:
+
+> Summarize the decisions we made in this session and suggest additions to CLAUDE.md.
+
+Claude will draft updates based on what you discussed, which you can review and add.
+
+## User-Level Configuration
+
+There's a second CLAUDE.md that applies to *all* your projects: `~/.claude/CLAUDE.md`. This lives in your home directory's `.claude/` folder and holds preferences that don't change from project to project.
+
+Typical things to put here:
+
+```markdown
+# User-Level Instructions
+
+## Environment
+- Conda must be sourced before activation:
+  `source ~/miniconda3/etc/profile.d/conda.sh`
+- Quarto is at `/usr/local/bin/quarto`
+
+## Preferences
+- Use tidyverse style for R code
+- Show data dimensions after loading
+- theme_classic() for all plots
+```
+
+Keep this file short and general. Anything specific to a project goes in the project's CLAUDE.md, not here.
+
+Claude reads both files at the start of every conversation. When they conflict, the project file takes precedence — so if your user-level file says "use tidyverse style" but a specific project says "use data.table syntax," Claude follows the project instruction for that project.
+
+## Plan Files for Complex Projects
+
+As a project grows beyond a few scripts, CLAUDE.md alone can get unwieldy. That's when plan files help — separate documents in the `.claude/` folder that track specific aspects of the project in detail.
+
+### Starting simple: an analysis plan
+
+The most common plan file is a simple analysis tracker. Where am I in the pipeline? What's done, what's in progress, what's next?
+
+```markdown
+# Analysis Plan
+
+## Pipeline Status
+- [x] QC and filtering
+- [x] Normalization
+- [x] Dimensionality reduction (PCA)
+- [x] Clustering (Leiden, resolution 2.0)
+- [ ] Cell type annotation — IN PROGRESS
+  - Clusters 0-5 annotated (archaeocytes, pinacocytes, choanocytes,
+    sclerocytes, amoebocytes, unknown)
+  - Clusters 6-24 need markers run
+- [ ] Differential expression between stages
+- [ ] Integration across developmental stages
+- [ ] Trajectory analysis
+
+## Decisions Log
+- 2026-02-15: Chose 20 PCs — elbow at ~15, added buffer for rare types
+- 2026-02-18: Resolution 2.0 gives ~25 clusters — better to over-split
+  and merge than under-split and miss biology
+- 2026-02-20: Cluster 12 looks like doublets (high nCount, mixed markers).
+  Will remove after confirming with DoubletFinder.
+```
+
+This is useful even if you never use Claude Code. When you come back to a project after a month, the plan file tells you exactly where you left off and why you made the decisions you did. Claude benefits from it too — when you ask "What should I work on next?", Claude can read the plan and give you an informed answer.
+
+### Scaling up
+
+For more complex projects, you might have several plan files:
+
+- **PLOTTING_PLAN.md** — tracks figures: which are done, which need revision, what the conventions are (dimensions, color palette, format)
+- **DATA_NOTES.md** — documents data sources, known issues, processing steps, and provenance
+- **ANALYSIS_DECISIONS.md** — a running log of analytical choices and their rationale, separated from the main CLAUDE.md to keep it from getting too long
+
+These files all live in `.claude/` alongside the main CLAUDE.md:
+
+```
+.claude/
+├── CLAUDE.md               # Main project overview
+├── ANALYSIS_PLAN.md         # Pipeline status and decisions
+├── PLOTTING_PLAN.md         # Figure tracking
+└── DATA_NOTES.md            # Data provenance and issues
+```
+
+Reference them from your main CLAUDE.md so Claude knows they exist:
+
+```markdown
+## Project Documents
+- `ANALYSIS_PLAN.md` — Pipeline status and decisions log
+- `PLOTTING_PLAN.md` — Figure tracking and conventions
+- `DATA_NOTES.md` — Data sources and known issues
+```
+
+You don't need all of these from the start. Most projects only ever need a CLAUDE.md and maybe one plan file. Add them when you feel the need, not because a checklist says to.
+
+## Skills: Teaching Claude How to Work
+
+CLAUDE.md teaches Claude about your *project*. Skills teach Claude about how to *work* — reusable instruction sets that customize Claude's behavior for specific tasks. They're like giving Claude a reference guide for a particular topic.
+
+### What skills look like
+
+A skill is a folder containing a `SKILL.md` file. Skills can live in two places:
+
+- **`~/.claude/skills/`** — Your personal skills, available in every project
+- **`.claude/skills/`** — Project-specific skills, available only in that project
+
+Here's the simplest possible skill — one that tells Claude to use a specific plotting style:
+
+```
+~/.claude/skills/r-plotting-style/
+└── SKILL.md
+```
+
+```markdown
+---
+name: r-plotting-style
+description: R ggplot2 plotting conventions and theme. Use when
+  creating or styling ggplot2 plots.
+---
+
+# R Plotting Conventions
+
+## Base Theme
+Always use `theme_classic()` as the base theme for ggplot2 plots.
+No gridlines, no background fill.
+
+## Labels
+Use `ggrepel` for text labels on points to avoid overlapping.
+
+## Example
+```r
+ggplot(data, aes(x = umap_1, y = umap_2, color = cluster)) +
+  geom_point(size = 0.5) +
+  theme_classic() +
+  labs(title = "UMAP Clusters", color = "Cluster")
+```
+```
+
+When you ask Claude to create a ggplot2 plot, it loads this skill and follows the conventions. Every plot comes out with `theme_classic()`, proper labeling, and consistent style — without you having to remind Claude each time.
+
+### Background skills vs. slash commands
+
+There are two kinds of skills:
+
+**Background skills** load automatically when relevant. The plotting skill above activates whenever you're working with ggplot2 code. A `data-handling` skill might activate whenever Claude is writing analysis code, reminding it to show data dimensions after loading and validate joins. You never invoke these explicitly — Claude recognizes when they apply.
+
+**Slash commands** are skills you invoke by name. Type `/done` at the end of a session, and the `done` skill runs: it summarizes your work, checks if packages need saving, and offers to commit your changes. Type `/new-project` to scaffold a complete project directory. These are tools you reach for intentionally.
+
+The difference is in the SKILL.md frontmatter:
+
+```yaml
+# Background skill — loads automatically
+---
+name: data-handling
+description: Data handling best practices for analysis scripts.
+  Use when writing data manipulation code.
+user-invocable: false
+---
+```
+
+```yaml
+# Slash command — you invoke it
+---
+name: done
+description: End-of-session wrap-up. Summarize work, check renv,
+  offer to commit.
+user-invocable: true
+---
+```
+
+### Anatomy of a skill file
+
+Every skill has the same structure:
+
+1. **Frontmatter** (between `---` marks) — the name, a description that tells Claude when to use it, and whether it's user-invocable
+2. **Instructions** — markdown content explaining what Claude should do, with examples
+
+The description field is important — it's what Claude uses to decide whether a skill is relevant. "Use when creating or styling ggplot2 plots" is much more useful than "Plotting style." Be specific about when the skill should activate.
+
+### Skills can be sophisticated
+
+The simplest skills are a few lines of conventions. But skills can also encode complex workflows. The Musser Lab has a `protein-phylogeny` skill that, when invoked, generates a complete `.qmd` analysis pipeline with MAFFT alignment, optional trimming, and IQ-TREE tree inference — all configured for the specific protein family you're studying. A `scientific-manuscript` skill provides detailed guidance on narrative structure, prose style, and strategic rhetoric for high-impact journal papers.
+
+You don't need to write complex skills to benefit from the concept. Even a five-line skill that says "always use `here()` for file paths and `theme_classic()` for plots" will improve your daily experience. Skills scale from trivial to sophisticated based on what you need.
+
+### Creating a skill
+
+The Musser Lab provides a set of shared skills (covered in [The Musser Lab Toolkit](musser-lab-toolkit.qmd)). But you can also create your own. If you find yourself repeating the same instruction to Claude across sessions — "remember, gene names in this dataset have spaces" or "always save figures as PDF at 300 DPI" — that's a candidate for a skill.
+
+To create one:
+
+1. Make a folder: `mkdir -p ~/.claude/skills/my-convention`
+2. Create `SKILL.md` inside it with a frontmatter block and instructions
+3. Start a new Claude Code session and test it
+
+Claude can help with this too:
+
+::: {.callout-warning .claude-callout title="Claude Code"}
+Claude Code can write skills based on conventions you describe.
+
+> I always want ggplot2 figures saved as PDF with cairo_pdf, 8x6 inches, 300 DPI for rasterized elements. Can you create a skill for this in ~/.claude/skills/figure-export/?
+
+Claude will create the skill file with proper frontmatter, clear instructions, and code examples.
+:::
+
+## Letting Claude Help Build These Files
+
+One of the nice things about Claude Code is that it can help you set up its own configuration. Here are prompts for common tasks:
+
+**Drafting an initial CLAUDE.md:**
+
+> Look at my project structure and create a .claude/CLAUDE.md that describes this project — what data is here, what scripts exist, and how to run things.
+
+Claude reads your directory structure, examines your scripts, and drafts a CLAUDE.md that captures the current state of the project. You review and refine it.
+
+**Creating a plan file:**
+
+> I'm working on 8 figures for a paper. Create a .claude/PLOTTING_PLAN.md that tracks each figure with status, script location, and notes.
+
+**Updating CLAUDE.md after a session:**
+
+> We made several decisions today — summarize them and suggest additions to .claude/CLAUDE.md.
+
+**Writing a simple skill:**
+
+> I always want Claude to show data dimensions after loading any dataset. Create a skill for this.
+
+This reinforces something from [AI Fluency](ai-fluency.qmd): Claude is a tool for managing its own configuration. You don't have to write everything from scratch.
+
+## What's Next
+
+There are other ways to customize Claude Code's behavior beyond the files covered here — hooks that run automatically before or after certain actions, permission settings that control what Claude can and can't do, and settings files that configure defaults. We'll cover those in [Staying Safe](staying-safe.qmd).
+
+The next chapter, [Working Effectively](working-effectively.qmd), is where you put all of this into practice. You've learned the principles (AI Fluency), had your first session (Getting Started), and set up the project context (this chapter). Now it's time to develop the daily habits and workflow patterns that make Claude Code genuinely useful for research.

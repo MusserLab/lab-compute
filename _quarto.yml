@@ -28,12 +28,14 @@ book:
         - part2/renv.qmd
         - part2/conda.qmd
         - part2/git-github.qmd
-    - part: "Claude Code"
+    - part: "Working with AI"
       chapters:
+        - claude-code/ai-fluency.qmd
         - claude-code/getting-started.qmd
-        - claude-code/configuring-projects.qmd
-        - claude-code/skills.qmd
+        - claude-code/teaching-claude.qmd
         - claude-code/working-effectively.qmd
+        - claude-code/musser-lab-toolkit.qmd
+        - claude-code/staying-safe.qmd
     - part: "Workflows"
       chapters:
         - part3/setup-walkthrough.qmd
@@ -46,6 +48,7 @@ book:
     - appendices/commands.qmd
     - appendices/templates.qmd
     - appendices/r-packages.qmd
+    - appendices/lab-skills.qmd
 
 format:
   html:
