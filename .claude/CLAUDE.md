@@ -56,8 +56,7 @@ lab_compute/
 | Document | Topic | Has status table? |
 |----------|-------|:-:|
 | [PLAN.md](.claude/PLAN.md) | Book roadmap, open items, session notes | Yes |
-| [CLAUDE_CODE_CHAPTER_PLAN.md](.claude/CLAUDE_CODE_CHAPTER_PLAN.md) | Claude Code chapter research and outline (COMPLETED) | No |
-| [CLAUDE_CODE_REWRITE_PLAN.md](.claude/CLAUDE_CODE_REWRITE_PLAN.md) | Part 3 full rewrite — 6 chapters, detailed outlines | No |
+| [CLAUDE_CODE_REWRITE_PLAN.md](.claude/CLAUDE_CODE_REWRITE_PLAN.md) | Part 3 full rewrite — 6 chapters, detailed outlines (COMPLETED) | No |
 
 ### Convention/Reference
 
@@ -132,3 +131,9 @@ Screenshots are marked with `[TODO: screenshot]` throughout.
 - The book uses the `cosmo` theme (light) and `darkly` theme (dark)
 - Code blocks have copy buttons enabled
 - Chapters are numbered automatically
+
+## Session Log
+
+### 2026-03-03
+- **Audit:** Deleted 2 superseded planning docs (CLAUDE_CODE_CHAPTER_PLAN.md, CLAUDE_CODE_OUTLINE.md). Collapsed PLAN.md session notes (kept last 5, summarized 12 older entries) and completed checklist (56 items → summary paragraph). Updated document registry and STATUS_SUMMARY.md. Added this session log.
+- Next: Screenshots (Part 2 + Part 3), Part 4 chapter rewrites
